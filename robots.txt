@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://moldartindia.com/sitemap.xml
