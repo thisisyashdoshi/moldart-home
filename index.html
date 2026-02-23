@@ -15,11 +15,13 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://moldartindia.com">
     <meta property="og:locale" content="en_IN">
+    <meta property="og:image" content="https://moldartindia.com/images/press_pad_new.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="theme-color" content="#18181b">
     <link rel="canonical" href="https://moldartindia.com">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta property="og:image" content="https://moldartindia.com/images/page5_img3.jpeg">
-    <meta property="twitter:image" content="https://moldartindia.com/images/page5_img3.jpeg">
-    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='4' fill='%2318181b'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-weight='900' font-size='20' fill='white'%3EM%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -27,43 +29,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Moldart",
-      "legalName": "M/S Deco Metal",
-      "alternateName": ["Deco Metal", "Mold Art India", "Moldart India"],
-      "url": "https://moldartindia.com",
-      "logo": "https://moldartindia.com/favicon.svg",
-      "foundingDate": "1989",
-      "taxID": "27AAHFD0708K1ZI",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+91-7208088788",
-        "contactType": "sales",
-        "areaServed": "IN",
-        "availableLanguage": "en"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West)",
-        "addressLocality": "Mumbai",
-        "addressRegion": "Maharashtra",
-        "postalCode": "400064",
-        "addressCountry": "IN"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/moldart-india",
-        "https://wa.me/917208088788"
-      ]
-    }
-    </script>
-    <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "qt76759u50");
+    {"@context":"https://schema.org","@type":"Organization","name":"Moldart","url":"https://moldartindia.com","foundingDate":"1989","address":{"@type":"PostalAddress","streetAddress":"#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West)","addressLocality":"Mumbai","addressRegion":"Maharashtra","postalCode":"400064","addressCountry":"IN"},"telephone":"+917208088788","email":"info@moldartindia.com","description":"Integrated industrial supply solutions for the wood-working and metallurgical industries since 1989."}
     </script>
 </head>
 
@@ -121,7 +87,7 @@
                 <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed">For over 35 years, we have
                     engineered integrated supply solutions for the wood-working and metallurgical industries — from raw
                     lamination tooling to finished architectural surfaces.</p>
-                <div class="flex gap-3 shrink-0">
+                <div class="flex gap-3 shrink-0 hero-cta-wrap">
                     <a href="#industry" class="btn-outline btn-lg">Explore Products</a>
                     <a href="#contact" class="btn-primary btn-lg">Contact Us</a>
                 </div>
@@ -676,7 +642,7 @@
                                 <div class="text-xs text-zinc-400 mt-1">+91 7208088788</div>
                             </div>
                         </a>
-                        <a href="http://www.linkedin.com/in/thisisyashdoshi" target="_blank"
+                        <a href="https://www.linkedin.com/in/thisisyashdoshi" target="_blank"
                             class="flex items-center gap-4 p-5 border card-hover transition-all"
                             style="text-decoration:none;">
                             <div
@@ -784,7 +750,7 @@
                                 class="link-line text-sm text-zinc-400">info@moldartindia.com</a>
                             <a href="https://wa.me/917208088788" target="_blank"
                                 class="link-line text-sm text-zinc-400">WhatsApp</a>
-                            <a href="http://www.linkedin.com/in/thisisyashdoshi" target="_blank"
+                            <a href="https://www.linkedin.com/in/thisisyashdoshi" target="_blank"
                                 class="link-line text-sm text-zinc-400">LinkedIn</a>
                         </div>
                     </div>
@@ -812,7 +778,16 @@
     <script>
         (function () {
             const pages = { home: 'page-home', about: 'page-about', industry: 'page-industry', contact: 'page-contact' };
+            const mobMenu = document.getElementById('mob-menu');
+
+            function closeMob() {
+                mobMenu.classList.remove('open');
+            }
+            // Expose globally for inline onclick handlers
+            window.closeMob = closeMob;
+
             function nav(id) {
+                closeMob();
                 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
                 const el = document.getElementById(pages[id] || 'page-home');
                 if (el) { el.classList.add('active'); }
@@ -833,6 +808,15 @@
             }
             window.addEventListener('hashchange', route);
 
+            // Close mobile menu on outside click
+            document.addEventListener('click', function (e) {
+                if (mobMenu.classList.contains('open') &&
+                    !mobMenu.contains(e.target) &&
+                    !e.target.closest('[aria-label="Menu"]')) {
+                    closeMob();
+                }
+            });
+
             // Scroll fade-in animations
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
@@ -842,7 +826,6 @@
             route();
             document.querySelectorAll('.yr').forEach(el => el.textContent = new Date().getFullYear());
         })();
-        function closeMob() { document.getElementById('mob-menu').classList.remove('open'); }
     </script>
 
 </body>
