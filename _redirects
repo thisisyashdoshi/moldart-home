@@ -1,4 +1,13 @@
-/about      /about/index.html      200
-/industry   /industry/index.html   200
-/contact    /contact/index.html    200
-/*          /index.html            200
+/favicon.ico              /favicon.ico              200
+/favicon-32x32.png        /favicon-32x32.png        200
+/favicon-48x48.png        /favicon-48x48.png        200
+/favicon-192x192.png      /favicon-192x192.png      200
+/apple-touch-icon.png     /apple-touch-icon.png     200
+/site.webmanifest         /site.webmanifest         200
+/robots.txt               /robots.txt               200
+/sitemap.xml              /sitemap.xml              200
+/sitemap-images.xml       /sitemap-images.xml       200
+/about                    /about/index.html         200
+/industry                 /industry/index.html      200
+/contact                  /contact/index.html       200
+/*                        /index.html               200
