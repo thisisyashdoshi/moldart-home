@@ -1,13 +1,868 @@
-<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Redirecting to About | Moldart</title>
-  <link rel="canonical" href="https://moldartindia.com/#about">
-  <meta http-equiv="refresh" content="0; url=/#about">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOLDART | Quality &amp; Precision Since 1989</title>
+    <meta name="description"
+        content="Moldart — 35+ years engineering integrated supply solutions for the wood-working and metallurgical industries. Press plates, lamination tooling, engineered substrates, decorative stainless steel. Mumbai, India.">
+    <meta name="keywords"
+        content="Moldart, press plates, press pads, lamination tooling, stainless steel, wood flooring, engineered substrates, Mumbai, India">
+    <meta property="og:title" content="MOLDART | Quality &amp; Precision Since 1989">
+    <meta property="og:description"
+        content="Integrated industrial supply solutions for the wood-working and metallurgical industries. Since 1989.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://moldartindia.com">
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:image" content="https://moldartindia.com/images/press_pad_new.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MOLDART | Quality &amp; Precision Since 1989">
+    <meta name="twitter:description"
+        content="Integrated industrial supply solutions for the wood-working and metallurgical industries. Since 1989.">
+    <meta name="twitter:image" content="https://moldartindia.com/images/press_pad_new.jpg">
+    <meta name="theme-color" content="#18181b">
+    <link rel="canonical" href="https://moldartindia.com">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://wa.me">
+    <link rel="dns-prefetch" href="https://www.linkedin.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=DM+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="preload" as="image" href="images/press_pad_new.webp" type="image/webp">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :focus-visible {
+            outline: 2px solid #18181b;
+            outline-offset: 2px;
+            border-radius: 2px
+        }
+
+        nav.scrolled {
+            box-shadow: 0 1px 12px rgba(0, 0, 0, 0.06);
+            border-bottom-color: transparent
+        }
+    </style>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Organization","name":"Moldart","url":"https://moldartindia.com","logo":"https://moldartindia.com/favicon-192x192.png","foundingDate":"1989","sameAs":["https://www.linkedin.com/in/thisisyashdoshi"],"address":{"@type":"PostalAddress","streetAddress":"#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West)","addressLocality":"Mumbai","addressRegion":"Maharashtra","postalCode":"400064","addressCountry":"IN"},"contactPoint":{"@type":"ContactPoint","telephone":"+917208088788","contactType":"sales","email":"info@moldartindia.com","availableLanguage":["English","Hindi"]},"description":"Integrated industrial supply solutions for the wood-working and metallurgical industries since 1989."}
+    </script>
 </head>
+
 <body>
-  <p>Redirecting to <a href="/#about">About</a>...</p>
+
+    <!-- ═══════════════════ NAV ═══════════════════ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white-90 backdrop-blur border-b border-zinc-100">
+        <div class="max-w mx-auto px h-16 flex items-center justify-between">
+            <a href="#home" class="flex items-center gap-3">
+                <div class="font-display font-black text-xl" style="letter-spacing:0.15em;line-height:1;">MOLDART</div>
+            </a>
+            <div class="md-hidden items-center gap-7">
+                <a href="#home" data-page="home"
+                    class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Home</a>
+                <a href="#about" data-page="about"
+                    class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">About</a>
+                <a href="#industry" data-page="industry"
+                    class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Industry</a>
+                <a href="#contact" class="ml-2 btn-primary" style="padding:0.625rem 1.25rem;">Contact
+                    <svg style="width:0.75rem;height:0.75rem;" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path d="M7 17L17 7M17 7H7M17 7v10" />
+                    </svg>
+                </a>
+            </div>
+            <button class="md-show" style="flex-direction:column;gap:6px;padding:8px;"
+                onclick="document.getElementById('mob-menu').classList.toggle('open')" aria-label="Menu">
+                <span style="display:block;width:1.25rem;height:1px;background:#18181b;"></span>
+                <span style="display:block;width:1.25rem;height:1px;background:#18181b;"></span>
+                <span style="display:block;width:0.875rem;height:1px;background:#18181b;align-self:flex-end;"></span>
+            </button>
+        </div>
+        <div id="mob-menu" style="border-top:1px solid #f4f4f5;background:#fff;padding:1.25rem 1.5rem;" class="md-show">
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+                <a href="#home" onclick="closeMob()" class="block text-sm font-medium text-zinc-600">Home</a>
+                <a href="#about" onclick="closeMob()" class="block text-sm font-medium text-zinc-600">About</a>
+                <a href="#industry" onclick="closeMob()" class="block text-sm font-medium text-zinc-600">Industry</a>
+                <a href="#contact" onclick="closeMob()" class="btn-primary" style="text-align:center;">Contact →</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════ HOME ═══════════════════ -->
+    <div id="page-home" class="page active pt-16">
+
+        <!-- Hero -->
+        <section class="max-w mx-auto px pt-20 pb-16 min-h-hero flex flex-col" style="justify-content:center;">
+            <div class="inline-flex items-center gap-3 mb-10">
+                <span style="width:2rem;height:1px;background:#d4d4d8;"></span>
+                <span class="section-label">Est. 1989 · Mumbai, India</span>
+            </div>
+            <h1 class="hero-heading mb-10">SETTING THE<br><span class="text-zinc-200">BENCHMARK</span><br>FOR QUALITY.
+            </h1>
+            <div class="flex flex-col md-flex-row gap-8 items-start md-items-end justify-between">
+                <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed">For over 35 years, we have
+                    engineered integrated supply solutions for the wood-working and metallurgical industries — from raw
+                    lamination tooling to finished architectural surfaces.</p>
+                <div class="flex gap-3 shrink-0 hero-cta-wrap">
+                    <a href="#industry" class="btn-outline btn-lg">Explore Products</a>
+                    <a href="#contact" class="btn-primary btn-lg">Contact Us</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="border-y border-zinc-100 bg-zinc-50 fade-up">
+            <div class="max-w mx-auto px py-10 grid grid-2 md-grid-4 divide-x">
+                <div style="padding:0 1.5rem;">
+                    <div class="font-display font-black text-5xl text-zinc-900">35<span class="text-zinc-300">+</span>
+                    </div>
+                    <div class="section-label mt-1">Years Experience</div>
+                </div>
+                <div style="padding:0 1.5rem;">
+                    <div class="font-display font-black text-5xl text-zinc-900">2</div>
+                    <div class="section-label mt-1">Core Sectors</div>
+                </div>
+                <div style="padding:0 1.5rem;">
+                    <div class="font-display font-black text-5xl text-zinc-900"
+                        style="font-size:clamp(1.8rem,4vw,3rem);">European</div>
+                    <div class="section-label mt-1">Quality Standard</div>
+                </div>
+                <div style="padding:0 1.5rem;">
+                    <div class="font-display font-black text-5xl text-zinc-900"
+                        style="font-size:clamp(1.8rem,4vw,3rem);">Indian</div>
+                    <div class="section-label mt-1">Cost Advantage</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="max-w mx-auto px py-24 fade-up">
+            <div class="grid md-grid-2 gap-10 items-center">
+                <div>
+                    <h2 class="font-display font-black text-5xl mb-4" style="line-height:1;">READY TO<br>WORK WITH US?
+                    </h2>
+                    <p class="text-sm text-zinc-500 leading-relaxed max-w-sm">Explore our full product range across wood
+                        and steel, or schedule a meeting for pricing and specifications.</p>
+                </div>
+                <div class="flex flex-col gap-4 md-justify-end" style="flex-wrap:wrap;">
+                    <a href="#industry" class="btn-primary btn-lg">Explore Products →</a>
+                    <a href="#about" class="btn-outline btn-lg">Our Story</a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="border-t border-zinc-100">
+            <div class="max-w mx-auto px py-7 flex flex-col md-flex-row justify-between items-center gap-4">
+                <div class="font-display font-black tracking-widest text-sm">MOLDART</div>
+                <div class="section-label">© <span class="yr"></span> · All rights reserved &bull;· Mumbai, India</div>
+                <div class="flex gap-6"><a href="tel:+917208088788"
+                        class="link-line text-xs text-zinc-400 transition-colors">+91 7208088788</a><a
+                        href="mailto:info@moldartindia.com"
+                        class="link-line text-xs text-zinc-400 transition-colors">info@moldartindia.com</a></div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ═══════════════════ ABOUT ═══════════════════ -->
+    <div id="page-about" class="page pt-16">
+        <section class="max-w mx-auto px py-20 border-b border-zinc-100">
+            <div class="inline-flex items-center gap-3 mb-10"><span
+                    style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Our
+                    Heritage</span></div>
+            <h1 class="page-heading">THREE DECADES<br>OF PRECISION.</h1>
+        </section>
+        <section class="max-w mx-auto px py-20 border-b border-zinc-100 fade-up">
+            <div class="grid md-grid-2 gap-20">
+                <div>
+                    <div class="section-label mb-6">Our Story</div>
+                    <p class="text-zinc-600 leading-relaxed mb-6 font-light">For over 35 years, Moldart has set the
+                        benchmark for quality and technical precision across two distinct industrial ecosystems — wood
+                        and steel.</p>
+                    <p class="text-zinc-600 leading-relaxed mb-6 font-light">Built on the principle of integrating
+                        European quality with the efficiency of global supply chains and the cost advantage of Indian
+                        operations, we deliver a unique value proposition to manufacturers, architects, and
+                        industrialists.</p>
+                    <div class="flex items-center gap-6 mt-10">
+                        <div>
+                            <div class="font-display font-black text-4xl">1989</div>
+                            <div class="section-label mt-1">Founded</div>
+                        </div>
+                        <div class="w-px h-12 bg-zinc-200"></div>
+                        <div>
+                            <div class="font-display font-black text-4xl">Mumbai</div>
+                            <div class="section-label mt-1">Headquarters</div>
+                        </div>
+                        <div class="w-px h-12 bg-zinc-200"></div>
+                        <div>
+                            <div class="font-display font-black text-4xl">Global</div>
+                            <div class="section-label mt-1">Supply Chain</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:1.5rem;">
+                    <div
+                        style="border-left:4px solid #18181b;padding-left:1.5rem;padding-top:0.25rem;padding-bottom:0.25rem;">
+                        <div class="font-display font-bold text-xl tracking-wide mb-2">WOOD ECOSYSTEM</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light">An integrated supply chain spanning
+                            precision lamination tooling (press plates, press pads), décor/process inputs, engineered
+                            panel substrates, and finished architectural products including flooring and furniture.</p>
+                    </div>
+                    <div
+                        style="border-left:4px solid #e4e4e7;padding-left:1.5rem;padding-top:0.25rem;padding-bottom:0.25rem;">
+                        <div class="font-display font-bold text-xl tracking-wide mb-2">STEEL DIVISION</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light">A specialized metallurgical division
+                            focused on industrial press plates for surface-critical applications (electronics, security)
+                            and premium decorative stainless steel for architectural and industrial use.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership -->
+        <section class="max-w mx-auto px py-20 border-b border-zinc-100 fade-up">
+            <div class="section-label mb-14">Leadership</div>
+            <div class="grid md-grid-2 gap-14">
+                <div>
+                    <div class="h-80 mb-7 overflow-hidden" style="background:#f4f4f5;">
+                        <img src="images/lalit_doshi.webp" alt="Mr. Lalit Doshi — Founder &amp; Partner"
+                            class="object-cover object-top" loading="lazy">
+                    </div>
+                    <h3 class="font-display font-bold text-2xl tracking-wider mb-1">MR. LALIT DOSHI</h3>
+                    <div class="section-label mb-5">Founder &amp; Partner</div>
+                    <p class="text-sm text-zinc-500 leading-relaxed font-light">The architect of Moldart's foundation,
+                        Mr. Lalit Doshi built the company across three and a half decades, establishing benchmark
+                        standards of quality and technical precision across the wood and steel supply industries in
+                        India and globally.</p>
+                </div>
+                <div>
+                    <div class="h-80 mb-7 overflow-hidden" style="background:#f4f4f5;">
+                        <img src="images/yash_doshi.webp" alt="Mr. Yash Doshi — Partner" class="object-cover object-top"
+                            loading="lazy">
+                    </div>
+                    <h3 class="font-display font-bold text-2xl tracking-wider mb-1">MR. YASH DOSHI</h3>
+                    <div class="section-label mb-5">Partner</div>
+                    <p class="text-sm text-zinc-500 leading-relaxed font-light">Carrying forward the Moldart legacy with
+                        modern strategy and vision, Mr. Yash Doshi drives expansion into domestic and international
+                        markets — combining deep technical knowledge of industrial materials with an eye for global
+                        business development.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values -->
+        <section class="bg-zinc-50 border-b border-zinc-100 fade-up">
+            <div class="max-w mx-auto px py-20">
+                <div class="section-label mb-14">Our Values</div>
+                <div class="grid md-grid-3 gap-6">
+                    <div class="bg-white border card-hover p-8">
+                        <div
+                            style="width:48px;height:48px;border-radius:50%;background:#f4f4f5;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+                            <svg style="width:22px;height:22px;" fill="none" stroke="#18181b" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <div class="font-display font-bold text-xl tracking-wider mb-1">QUALITY</div>
+                        <div class="section-label mb-5">European Standard</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Every material and process is
+                            benchmarked against the highest European quality standards — guaranteeing durability,
+                            consistency, and performance.</p>
+                    </div>
+                    <div class="bg-white border card-hover p-8">
+                        <div
+                            style="width:48px;height:48px;border-radius:50%;background:#f4f4f5;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+                            <svg style="width:22px;height:22px;" fill="none" stroke="#18181b" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div class="font-display font-bold text-xl tracking-wider mb-1">SERVICE</div>
+                        <div class="section-label mb-5">Responsive &amp; Agile</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Speed, responsiveness, and the
+                            agility of global sourcing networks — meeting tight project timelines and custom
+                            requirements reliably.</p>
+                    </div>
+                    <div class="bg-white border card-hover p-8">
+                        <div
+                            style="width:48px;height:48px;border-radius:50%;background:#f4f4f5;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+                            <svg style="width:22px;height:22px;" fill="none" stroke="#18181b" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                            </svg>
+                        </div>
+                        <div class="font-display font-bold text-xl tracking-wider mb-1">PRICE</div>
+                        <div class="section-label mb-5">Indian Value</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Competitive, transparent pricing
+                            through three decades of optimized procurement and deep manufacturer relationships across
+                            three continents.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w mx-auto px py-20 fade-up">
+            <div class="flex flex-col md-flex-row gap-8 items-center justify-between border p-12">
+                <div>
+                    <h3 class="font-display font-black text-3xl mb-2">READY TO WORK TOGETHER?</h3>
+                    <p class="text-sm text-zinc-500">Explore our product range or contact us to discuss your
+                        requirements.</p>
+                </div>
+                <a href="#contact" class="shrink-0 btn-primary btn-lg">Get in Touch →</a>
+            </div>
+        </section>
+        <footer class="border-t border-zinc-100">
+            <div class="max-w mx-auto px py-7 flex flex-col md-flex-row justify-between items-center gap-4">
+                <div class="font-display font-black tracking-widest text-sm">MOLDART</div>
+                <div class="section-label">© <span class="yr"></span> · All rights reserved</div>
+                <div class="flex gap-6"><a href="tel:+917208088788" class="link-line text-xs text-zinc-400">+91
+                        7208088788</a><a href="mailto:info@moldartindia.com"
+                        class="link-line text-xs text-zinc-400">info@moldartindia.com</a></div>
+            </div>
+        </footer>
+    </div>
+    <!-- ═══════════════════ INDUSTRY (MERGED) ═══════════════════ -->
+    <div id="page-industry" class="page pt-16">
+        <section class="max-w mx-auto px py-20 border-b border-zinc-100">
+            <div class="inline-flex items-center gap-3 mb-10"><span
+                    style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Our
+                    Products</span></div>
+            <h1 class="page-heading mb-6">INDUSTRY</h1>
+            <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed">Integrated supply chain across
+                wood-working and metallurgical industries — from raw lamination tooling to finished architectural
+                products.</p>
+        </section>
+
+        <!-- ── WOOD: 01 Lamination & Décor ── -->
+        <section class="max-w mx-auto px py-20 border-b border-zinc-100 fade-up">
+            <div class="inline-flex items-center gap-3 mb-3"><span
+                    style="width:1rem;height:2px;background:#18181b;"></span><span class="section-label"
+                    style="color:#18181b;font-weight:600;">WOOD</span></div>
+            <div class="section-label mb-2">01 / Raw Materials</div>
+            <h2 class="font-display font-bold text-3xl tracking-tight mb-14">LAMINATION &amp; DÉCOR INPUTS</h2>
+            <div class="grid md-grid-4 gap-4">
+                <div class="bg-white border card-hover overflow-hidden">
+                    <div class="img-hover h-52 bg-zinc-200"><img src="images/page5_img3.webp"
+                            alt="Press Plates — SS 304/420/630 for lamination" class="object-cover" loading="lazy">
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-display font-bold text-base tracking-wider mb-3">PRESS PLATES</h4>
+                        <ul class="text-xs text-zinc-400 font-light"
+                            style="display:flex;flex-direction:column;gap:6px;">
+                            <li>Grades: SS 304 · SS 420 · SS 630</li>
+                            <li>Core Hardness: ~40–45 HRC</li>
+                            <li>Chrome Surface: 65–70 HRC</li>
+                            <li>Texture fidelity &amp; wear resistance</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-white border card-hover overflow-hidden">
+                    <div class="img-hover h-52 bg-zinc-200"><img src="images/press_pad_new.webp"
+                            alt="Press Pads — silicone-copper composite" class="object-cover" loading="lazy"></div>
+                    <div class="p-5">
+                        <h4 class="font-display font-bold text-base tracking-wider mb-3">PRESS PADS</h4>
+                        <ul class="text-xs text-zinc-400 font-light"
+                            style="display:flex;flex-direction:column;gap:6px;">
+                            <li>Silicone–Copper composite</li>
+                            <li>~80,000–100,000 cycles</li>
+                            <li>Max width: 3300 mm</li>
+                            <li>Uniform heat &amp; pressure</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-white border card-hover overflow-hidden">
+                    <div class="img-hover h-52 bg-zinc-200"><img src="images/page5_img1.webp"
+                            alt="Engraved Cylinders — precision rotogravure" class="object-cover" loading="lazy"></div>
+                    <div class="p-5">
+                        <h4 class="font-display font-bold text-base tracking-wider mb-3">ENGRAVED CYLINDERS</h4>
+                        <ul class="text-xs text-zinc-400 font-light"
+                            style="display:flex;flex-direction:column;gap:6px;">
+                            <li>Precision rotogravure</li>
+                            <li>Engraving depth: 18–25 μm</li>
+                            <li>Roughness Ra: 0.2–0.3 μm</li>
+                            <li>HD pattern transfer</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-white border card-hover overflow-hidden">
+                    <div class="img-hover h-52 bg-zinc-200"><img src="images/page5_img2.webp"
+                            alt="Printed Décor Paper — melamine-impregnated" class="object-cover" loading="lazy"></div>
+                    <div class="p-5">
+                        <h4 class="font-display font-bold text-base tracking-wider mb-3">PRINTED DÉCOR PAPER</h4>
+                        <ul class="text-xs text-zinc-400 font-light"
+                            style="display:flex;flex-direction:column;gap:6px;">
+                            <li>Weight: 60–85 GSM</li>
+                            <li>Wet Tensile: &gt;6N</li>
+                            <li>Melamine impregnation</li>
+                            <li>Wood grain &amp; pattern designs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── WOOD: 02 Substrates ── -->
+        <section class="bg-zinc-50 border-b border-zinc-100 fade-up">
+            <div class="max-w mx-auto px py-20">
+                <div class="section-label mb-2">02 / Semi-Finished</div>
+                <h2 class="font-display font-bold text-3xl tracking-tight mb-14">ENGINEERED SUBSTRATES</h2>
+                <div class="grid md-grid-4 gap-4">
+                    <div class="bg-white border card-hover overflow-hidden">
+                        <div class="img-hover h-52 bg-zinc-200"><img src="images/page6_img1.webp"
+                                alt="Plywood — structural grade" class="object-cover" loading="lazy"></div>
+                        <div class="p-5">
+                            <h4 class="font-display font-bold text-base tracking-wider mb-3">PLYWOOD</h4>
+                            <ul class="text-xs text-zinc-400 font-light"
+                                style="display:flex;flex-direction:column;gap:6px;">
+                                <li>Density 500–700 kg/m³</li>
+                                <li>Thickness 3–40 mm</li>
+                                <li>Shear strength ≥1.5 MPa</li>
+                                <li>High-strength structural</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white border card-hover overflow-hidden">
+                        <div class="img-hover h-52 bg-zinc-200"><img src="images/page6_img2.webp"
+                                alt="OSB — oriented strand board" class="object-cover" loading="lazy"></div>
+                        <div class="p-5">
+                            <h4 class="font-display font-bold text-base tracking-wider mb-3">OSB</h4>
+                            <ul class="text-xs text-zinc-400 font-light"
+                                style="display:flex;flex-direction:column;gap:6px;">
+                                <li>Density 600–750 kg/m³</li>
+                                <li>Thickness 6–25 mm</li>
+                                <li>Bond strength ≥0.35 N/mm²</li>
+                                <li>Load-bearing construction</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white border card-hover overflow-hidden">
+                        <div class="img-hover h-52 bg-zinc-200"><img src="images/page6_img3.webp"
+                                alt="Fiberboard — MDF/HDF" class="object-cover" loading="lazy"></div>
+                        <div class="p-5">
+                            <h4 class="font-display font-bold text-base tracking-wider mb-3">FIBERBOARD</h4>
+                            <ul class="text-xs text-zinc-400 font-light"
+                                style="display:flex;flex-direction:column;gap:6px;">
+                                <li>MDF/HDF 720–1,000 kg/m³</li>
+                                <li>Thickness 2–25 mm</li>
+                                <li>Smooth for lamination</li>
+                                <li>Painting or overlay ready</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white border card-hover overflow-hidden">
+                        <div class="img-hover h-52 bg-zinc-200"><img src="images/page6_img4.webp"
+                                alt="Particleboard — furniture core" class="object-cover" loading="lazy"></div>
+                        <div class="p-5">
+                            <h4 class="font-display font-bold text-base tracking-wider mb-3">PARTICLEBOARD</h4>
+                            <ul class="text-xs text-zinc-400 font-light"
+                                style="display:flex;flex-direction:column;gap:6px;">
+                                <li>Density 600–750 kg/m³</li>
+                                <li>Thickness 4–44 mm</li>
+                                <li>Grades: E0 / E1 / CARB</li>
+                                <li>Standard furniture core</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── WOOD: 03 Finished Products ── -->
+        <section class="max-w mx-auto px py-20 border-b border-zinc-100 fade-up">
+            <div class="section-label mb-2">03 / Finished Products</div>
+            <h2 class="font-display font-bold text-3xl tracking-tight mb-14">ARCHITECTURAL WOOD PRODUCTS</h2>
+            <div class="grid md-grid-4 gap-4">
+                <div class="bg-white border card-hover overflow-hidden">
+                    <div class="img-hover h-52 bg-zinc-200"><img src="images/page7_img1.webp"
+                            alt="Wood Flooring — laminate click-lock" class="object-cover" loading="lazy"></div>
+                    <div class="p-5">
+                        <h4 class="font-display font-bold text-base tracking-wider mb-3">WOOD FLOORING</h4>
+                        <ul class="text-xs text-zinc-400 font-light"
+                            style="display:flex;flex-direction:column;gap:6px;">
+                            <li>HDF core &gt;850 kg/m³</li>
+                            <li>Wear: AC3–AC5 (EN 13329)</li>
+                            <li>Thickness swell &lt;18%</li>
+                            <li>Precision click-lock system</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-white border card-hover overflow-hidden">
+                    <div class="img-hover h-52 bg-zinc-200"><img src="images/page7_img2.webp"
+                            alt="Flooring Accessories — T-bar profiles" class="object-cover" loading="lazy"></div>
+                    <div class="p-5">
+                        <h4 class="font-display font-bold text-base tracking-wider mb-3">FLOORING ACCESSORIES</h4>
+                        <ul class="text-xs text-zinc-400 font-light"
+                            style="display:flex;flex-direction:column;gap:6px;">
+                            <li>T-bar · End cap · Stair nosing</li>
+                            <li>Coordinated with floor decor</li>
+                            <li>Aluminium / MDF / PVC</li>
+                            <li>Custom profiles available</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-white border card-hover overflow-hidden">
+                    <div class="img-hover h-52 bg-zinc-200"><img src="images/page7_img3.webp"
+                            alt="Ready-Made Furniture — modular office" class="object-cover" loading="lazy"></div>
+                    <div class="p-5">
+                        <h4 class="font-display font-bold text-base tracking-wider mb-3">READY-MADE FURNITURE</h4>
+                        <ul class="text-xs text-zinc-400 font-light"
+                            style="display:flex;flex-direction:column;gap:6px;">
+                            <li>Melamine / HPL faced</li>
+                            <li>Scratch &gt;3N · &gt;300 cycles</li>
+                            <li>CNC precision ±0.1 mm</li>
+                            <li>PVC/ABS edging 0.4–2.0 mm</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-white border card-hover overflow-hidden">
+                    <div class="img-hover h-52 bg-zinc-200"><img src="images/page7_img4.webp"
+                            alt="Custom Furniture — CAD/CNC engineered" class="object-cover" loading="lazy"></div>
+                    <div class="p-5">
+                        <h4 class="font-display font-bold text-base tracking-wider mb-3">CUSTOM FURNITURE</h4>
+                        <ul class="text-xs text-zinc-400 font-light"
+                            style="display:flex;flex-direction:column;gap:6px;">
+                            <li>CAD / CNC engineered</li>
+                            <li>MDF / HDF / Plywood core</li>
+                            <li>Bespoke to specification</li>
+                            <li>Hospitality · Retail · Residential</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── STEEL ── -->
+        <section class="bg-zinc-50 border-b border-zinc-100 fade-up">
+            <div class="max-w mx-auto px py-20">
+                <div class="inline-flex items-center gap-3 mb-3"><span
+                        style="width:1rem;height:2px;background:#18181b;"></span><span class="section-label"
+                        style="color:#18181b;font-weight:600;">STEEL</span></div>
+                <div class="section-label mb-2">Decorative &amp; Industrial</div>
+                <h2 class="font-display font-bold text-3xl tracking-tight mb-14">STAINLESS STEEL PRODUCTS</h2>
+                <div class="grid md-grid-4 gap-4">
+                    <div class="bg-white border card-hover overflow-hidden">
+                        <div class="img-hover h-52 bg-zinc-200"><img src="images/page9_img1.webp"
+                                alt="Decorative SS Panels — PVD coated" class="object-cover" loading="lazy"></div>
+                        <div class="p-5">
+                            <h4 class="font-display font-bold text-base tracking-wider mb-3">DECORATIVE PANELS</h4>
+                            <ul class="text-xs text-zinc-400 font-light"
+                                style="display:flex;flex-direction:column;gap:6px;">
+                                <li>Hammered · Water Ripple · 3D</li>
+                                <li>PVD: Gold · Rose · Black · Bronze</li>
+                                <li>Anti-fingerprint coating</li>
+                                <li>Elevator · Wall · Ceiling</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white border card-hover overflow-hidden">
+                        <div class="img-hover h-52 bg-zinc-200"><img src="images/page9_img2.webp"
+                                alt="SS Profiles — T-bar, L-bar, U-channel" class="object-cover" loading="lazy"></div>
+                        <div class="p-5">
+                            <h4 class="font-display font-bold text-base tracking-wider mb-3">SS PROFILES</h4>
+                            <ul class="text-xs text-zinc-400 font-light"
+                                style="display:flex;flex-direction:column;gap:6px;">
+                                <li>T-bar · U · L · C channels</li>
+                                <li>PVD in all finishes</li>
+                                <li>Sizes: 10–50 mm</li>
+                                <li>Custom cross-sections</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white border card-hover overflow-hidden">
+                        <div class="img-hover h-52 bg-zinc-200"><img src="images/page9_img3.webp"
+                                alt="SS Furniture — luxury gold dining set" class="object-cover" loading="lazy"></div>
+                        <div class="p-5">
+                            <h4 class="font-display font-bold text-base tracking-wider mb-3">SS FURNITURE</h4>
+                            <ul class="text-xs text-zinc-400 font-light"
+                                style="display:flex;flex-direction:column;gap:6px;">
+                                <li>Tables · Consoles · Partitions</li>
+                                <li>PVD &amp; electroplated finish</li>
+                                <li>Marble · Glass · MDF tops</li>
+                                <li>Custom design available</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white border card-hover overflow-hidden">
+                        <div class="img-hover h-52 bg-zinc-200"><img src="images/page9_img4.webp"
+                                alt="Industrial Press Plates — security and electronics" class="object-cover"
+                                loading="lazy"></div>
+                        <div class="p-5">
+                            <h4 class="font-display font-bold text-base tracking-wider mb-3">INDUSTRIAL PRESS PLATES
+                            </h4>
+                            <ul class="text-xs text-zinc-400 font-light"
+                                style="display:flex;flex-direction:column;gap:6px;">
+                                <li>Security: Card / passport lamination</li>
+                                <li>Electronics: PCB / CCL pressing</li>
+                                <li>Mirror finish ≤0.1 μm Ra</li>
+                                <li>Grade: SS 630 / 17-4PH</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="max-w mx-auto px py-20 fade-up">
+            <div class="flex flex-col md-flex-row gap-8 items-center justify-between border p-12">
+                <div>
+                    <h3 class="font-display font-black text-3xl mb-2">NEED SPECIFICATIONS OR PRICING?</h3>
+                    <p class="text-sm text-zinc-500">Download our catalog or schedule a meeting to discuss your
+                        requirements.</p>
+                </div>
+                <div class="flex gap-3"><a href="https://tinyurl.com/IntroductionToMoldart" target="_blank"
+                        class="shrink-0 btn-outline btn-lg">View Catalog</a><a href="#contact"
+                        class="shrink-0 btn-primary btn-lg">Contact Us →</a></div>
+            </div>
+        </section>
+        <footer class="border-t border-zinc-100">
+            <div class="max-w mx-auto px py-7 flex flex-col md-flex-row justify-between items-center gap-4">
+                <div class="font-display font-black tracking-widest text-sm">MOLDART</div>
+                <div class="section-label">© <span class="yr"></span> · All rights reserved</div>
+                <div class="flex gap-6"><a href="tel:+917208088788" class="link-line text-xs text-zinc-400">+91
+                        7208088788</a><a href="mailto:info@moldartindia.com"
+                        class="link-line text-xs text-zinc-400">info@moldartindia.com</a></div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ═══════════════════ CONTACT ═══════════════════ -->
+    <div id="page-contact" class="page pt-16">
+        <section class="max-w mx-auto px py-20 border-b border-zinc-100">
+            <div class="inline-flex items-center gap-3 mb-10"><span
+                    style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Get in
+                    Touch</span></div>
+            <h1 class="page-heading">LET'S WORK<br>TOGETHER.</h1>
+        </section>
+
+        <section class="max-w mx-auto px py-20 border-b border-zinc-100 fade-up">
+            <div class="grid md-grid-2 gap-20">
+                <div>
+                    <div class="section-label mb-6">Contact Us</div>
+                    <div class="flex flex-col gap-5">
+                        <a href="https://wa.me/917208088788?text=Hi%20Moldart%2C%20I%27m%20interested%20in%20your%20products."
+                            target="_blank" class="flex items-center gap-4 p-5 border card-hover transition-all"
+                            style="text-decoration:none;">
+                            <div
+                                style="width:40px;height:40px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <svg style="width:20px;height:20px;" fill="#fff" viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                                    <path
+                                        d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.66 0-3.203-.507-4.484-1.375l-.32-.195-2.867.852.852-2.867-.21-.336A7.963 7.963 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-display font-bold tracking-wider text-base">WHATSAPP</div>
+                                <div class="text-xs text-zinc-400 mt-1">+91 7208088788</div>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/thisisyashdoshi" target="_blank"
+                            class="flex items-center gap-4 p-5 border card-hover transition-all"
+                            style="text-decoration:none;">
+                            <div
+                                style="width:40px;height:40px;background:#0077b5;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <svg style="width:18px;height:18px;" fill="#fff" viewBox="0 0 24 24">
+                                    <path
+                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-display font-bold tracking-wider text-base">LINKEDIN</div>
+                                <div class="text-xs text-zinc-400 mt-1">Connect with Yash Doshi</div>
+                            </div>
+                        </a>
+                        <a href="https://outlook.office.com/bookwithme/user/a07f98546e1e4f7fbb0f12f091a6e3ec@moldartindia.com?anonymous&ep=plink"
+                            target="_blank" class="flex items-center gap-4 p-5 border card-hover transition-all"
+                            style="text-decoration:none;">
+                            <div
+                                style="width:40px;height:40px;background:#18181b;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <svg style="width:18px;height:18px;" fill="none" stroke="#fff" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                                    <path d="M16 3v4M8 3v4M3 9h18M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-display font-bold tracking-wider text-base">BOOK A MEETING</div>
+                                <div class="text-xs text-zinc-400 mt-1">Schedule via Microsoft Bookings</div>
+                            </div>
+                        </a>
+                        <a href="INTRODUCTION TO MOLDART.pdf" download
+                            class="flex items-center gap-4 p-5 border card-hover transition-all"
+                            style="text-decoration:none;">
+                            <div
+                                style="width:40px;height:40px;background:#f4f4f5;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <svg style="width:18px;height:18px;" fill="none" stroke="#18181b" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-display font-bold tracking-wider text-base">DOWNLOAD PDF</div>
+                                <div class="text-xs text-zinc-400 mt-1">Quick introduction to Moldart</div>
+                            </div>
+                        </a>
+                        <a href="https://tinyurl.com/IntroductionToMoldart" target="_blank"
+                            class="flex items-center gap-4 p-5 border card-hover transition-all"
+                            style="text-decoration:none;">
+                            <div
+                                style="width:40px;height:40px;background:#f4f4f5;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <svg style="width:18px;height:18px;" fill="none" stroke="#18181b" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path d="M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5A2.5 2.5 0 016.5 17H20" />
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-display font-bold tracking-wider text-base">PRODUCT CATALOG</div>
+                                <div class="text-xs text-zinc-400 mt-1">Detailed specifications &amp; range</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-label mb-6">Head Office</div>
+                    <div style="border-left:4px solid #18181b;padding-left:1.5rem;">
+                        <div class="font-display font-bold text-xl tracking-wider mb-2">MUMBAI</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light mb-4">#7, Building No. 1, New Sonal
+                            Link Industrial Estate,<br>Link Road, Malad (West), Mumbai — 400064<br>Maharashtra, India
+                        </p>
+                        <div class="flex flex-col gap-2">
+                            <a href="tel:+917208088788" class="link-line text-sm text-zinc-700 font-medium">+91
+                                7208088788</a>
+                            <a href="mailto:info@moldartindia.com"
+                                class="link-line text-sm text-zinc-700 font-medium">info@moldartindia.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dark footer -->
+        <footer class="bg-zinc-950 text-white">
+            <div class="max-w mx-auto px py-16">
+                <div class="grid md-grid-4 gap-10 mb-14">
+                    <div class="col-span-2">
+                        <div class="font-display font-black text-2xl tracking-wider mb-4">MOLDART</div>
+                        <p class="text-sm text-zinc-400 leading-relaxed font-light max-w-sm">Integrated industrial
+                            supply solutions for the wood-working and metallurgical industries. Setting the benchmark
+                            for quality since 1989.</p>
+                    </div>
+                    <div>
+                        <div class="section-label text-zinc-600 mb-5">Navigation</div>
+                        <div class="flex flex-col gap-3"><a href="#home"
+                                class="link-line text-sm text-zinc-400">Home</a><a href="#about"
+                                class="link-line text-sm text-zinc-400">About</a><a href="#industry"
+                                class="link-line text-sm text-zinc-400">Industry</a><a href="#contact"
+                                class="link-line text-sm text-zinc-400">Contact</a></div>
+                    </div>
+                    <div>
+                        <div class="section-label text-zinc-600 mb-5">Connect</div>
+                        <div class="flex flex-col gap-3">
+                            <a href="tel:+917208088788" class="link-line text-sm text-zinc-400">+91 7208088788</a>
+                            <a href="mailto:info@moldartindia.com"
+                                class="link-line text-sm text-zinc-400">info@moldartindia.com</a>
+                            <a href="https://wa.me/917208088788" target="_blank"
+                                class="link-line text-sm text-zinc-400">WhatsApp</a>
+                            <a href="https://www.linkedin.com/in/thisisyashdoshi" target="_blank"
+                                class="link-line text-sm text-zinc-400">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-zinc-800 pt-8 flex flex-col md-flex-row justify-between items-center gap-4">
+                    <div class="section-label text-zinc-600">© <span class="yr"></span> Moldart · All rights reserved &bull;·
+                        Mumbai, India</div>
+                    <div class="section-label text-zinc-700">Quality · Service · Price</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- WhatsApp FAB -->
+    <a href="https://wa.me/917208088788?text=Hi%20Moldart%2C%20I%27m%20interested%20in%20your%20products."
+        target="_blank" class="whatsapp-fab" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+            <path
+                d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.66 0-3.203-.507-4.484-1.375l-.32-.195-2.867.852.852-2.867-.21-.336A7.963 7.963 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" />
+        </svg>
+    </a>
+
+    <script>
+        (function () {
+            const pages = { home: 'page-home', about: 'page-about', industry: 'page-industry', contact: 'page-contact' };
+            const mobMenu = document.getElementById('mob-menu');
+
+            function closeMob() {
+                mobMenu.classList.remove('open');
+            }
+            // Expose globally for inline onclick handlers
+            window.closeMob = closeMob;
+
+            function nav(id) {
+                closeMob();
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                const el = document.getElementById(pages[id] || 'page-home');
+                if (el) { el.classList.add('active'); }
+                document.querySelectorAll('.nav-link').forEach(a => {
+                    a.classList.toggle('is-active', a.getAttribute('data-page') === id);
+                });
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                // Re-trigger fade-ups for the new page
+                setTimeout(() => {
+                    document.querySelectorAll('.page.active .fade-up').forEach(el => {
+                        observer.observe(el);
+                    });
+                }, 50);
+            }
+            function route() {
+                const hash = location.hash.replace('#', '') || 'home';
+                nav(hash);
+            }
+            window.addEventListener('hashchange', route);
+
+            // Close mobile menu on outside click
+            document.addEventListener('click', function (e) {
+                if (mobMenu.classList.contains('open') &&
+                    !mobMenu.contains(e.target) &&
+                    !e.target.closest('[aria-label="Menu"]')) {
+                    closeMob();
+                }
+            });
+
+            // Nav scroll shadow
+            const navEl = document.querySelector('nav');
+            window.addEventListener('scroll', function () {
+                navEl.classList.toggle('scrolled', window.scrollY > 10);
+            }, { passive: true });
+
+            // Scroll fade-in animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+            const trackables = document.querySelectorAll('a[href^="https://wa.me"], a[href*="linkedin.com"], a[href^="tel:"], a[href^="mailto:"], a[href*="bookwithme"], a[download]');
+            trackables.forEach((link) => {
+                link.addEventListener('click', () => {
+                    const label = link.getAttribute('href') || link.textContent.trim();
+                    console.info('[lead-click]', label);
+                }, { passive: true });
+            });
+
+            route();
+            document.querySelectorAll('.yr').forEach(el => el.textContent = new Date().getFullYear());
+        })();
+    </script>
+
 </body>
+
 </html>
+
