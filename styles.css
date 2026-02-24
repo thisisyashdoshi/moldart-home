@@ -703,27 +703,7 @@ ul {
    COMPONENT STYLES
    ═══════════════════════════════════════════════════════ */
 
-/* ── Page system ── */
-.page {
-   display: none;
-}
-
-.page.active {
-   display: block;
-   animation: pageFadeIn 0.35s ease forwards;
-}
-
-@keyframes pageFadeIn {
-   from {
-      opacity: 0;
-      transform: translateY(10px);
-   }
-
-   to {
-      opacity: 1;
-      transform: translateY(0);
-   }
-}
+/* ── Page system ── (defined in later section) */
 
 /* ── Section label ── */
 .section-label {
@@ -783,15 +763,7 @@ ul {
    border-bottom: none;
 }
 
-/* ── Card hover ── */
-.card-hover {
-   transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card-hover:hover {
-   border-color: #a1a1aa;
-   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-}
+/* ── Card hover ── (defined in later section) */
 
 /* ── Hero typography ── */
 .hero-heading {
@@ -851,13 +823,31 @@ ul {
    padding: 0.875rem 2rem;
 }
 
-/* ── Mobile menu ── */
-#mob-menu {
-   display: block;
+/* ── Hamburger to X animation ── */
+[aria-label="Menu"] span {
+   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease, width 0.2s ease;
 }
 
-#mob-menu:not(.open) {
-   display: none;
+[aria-label="Menu"].is-open span:nth-child(1) {
+   transform: translateY(3.5px) rotate(45deg);
+   width: 1.25rem;
+}
+
+[aria-label="Menu"].is-open span:nth-child(2) {
+   opacity: 0;
+   transform: scaleX(0);
+}
+
+[aria-label="Menu"].is-open span:nth-child(3) {
+   transform: translateY(-3.5px) rotate(-45deg);
+   width: 1.25rem;
+   align-self: flex-end;
+}
+
+/* ── Nav scroll shadow ── */
+nav.scrolled {
+   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.06);
+   border-bottom-color: transparent;
 }
 
 /* ── WhatsApp FAB ── */
@@ -931,22 +921,40 @@ ul {
 
 .page.active {
    display: block;
-   animation: pageIn 0.4s ease forwards;
+   animation: pageIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes pageIn {
    from {
       opacity: 0;
+      transform: translateY(8px);
    }
 
    to {
       opacity: 1;
+      transform: translateY(0);
    }
 }
 
 /* ── Nav hover refinement ── */
+.nav-link {
+   position: relative;
+   padding-bottom: 2px;
+}
+
 .nav-link:hover {
    color: #18181b;
+}
+
+.nav-link.is-active::after {
+   content: '';
+   position: absolute;
+   bottom: -2px;
+   left: 0;
+   width: 100%;
+   height: 1.5px;
+   background: #18181b;
+   border-radius: 1px;
 }
 
 /* ── Button press micro-animation ── */
@@ -958,17 +966,18 @@ ul {
 .btn-primary,
 .btn-outline {
    transition: all 0.15s ease;
+   border-radius: 1px;
 }
 
 /* ── Card lift on hover ── */
 .card-hover {
-   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+   transition: border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1), transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .card-hover:hover {
-   border-color: #a1a1aa;
-   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-   transform: translateY(-2px);
+   border-color: #d4d4d8;
+   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+   transform: translateY(-3px);
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -977,15 +986,19 @@ ul {
 
 /* ── Mobile menu transition ── */
 #mob-menu {
-   transition: max-height 0.3s ease, opacity 0.3s ease;
+   transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease, padding 0.3s ease;
    max-height: 0;
    overflow: hidden;
    opacity: 0;
+   padding-top: 0;
+   padding-bottom: 0;
 }
 
 #mob-menu.open {
-   max-height: 300px;
+   max-height: 320px;
    opacity: 1;
+   padding-top: 1.25rem;
+   padding-bottom: 1.25rem;
 }
 
 /* ── Small mobile (≤480px) ── */
@@ -1028,7 +1041,7 @@ ul {
    }
 
    .md-show {
-      display: flex !important;
+      display: block !important;
    }
 
    .md-grid-2,
@@ -1070,6 +1083,28 @@ ul {
 
    .col-span-2 {
       grid-column: span 1;
+   }
+
+   /* Better mobile footer alignment */
+   footer .flex {
+      text-align: center;
+   }
+
+   /* Ensure tap targets are at least 44px */
+   .nav-link,
+   .btn-primary,
+   .btn-outline {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+   }
+
+   /* Mobile menu links: comfortable tap targets */
+   #mob-menu a {
+      padding: 0.625rem 0;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
    }
 }
 
