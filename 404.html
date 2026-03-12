@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | MOLDART</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Return to Moldart's homepage.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#18181b">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/styles.css?v=2026.3">
+    <style>
+        :focus-visible {
+            outline: 2px solid #18181b;
+            outline-offset: 2px;
+            border-radius: 2px
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white-90 backdrop-blur border-b border-zinc-100">
+        <div class="max-w mx-auto px h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3">
+                <div class="font-display font-black text-xl" style="letter-spacing:0.15em;line-height:1;">MOLDART</div>
+            </a>
+            <div class="md-hidden items-center gap-7">
+                <a href="/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Home</a>
+                <a href="/about" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">About</a>
+                <a href="/industry" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Industry</a>
+                <a href="/contact" class="ml-2 btn-primary" style="padding:0.625rem 1.25rem;">Contact
+                    <svg style="width:0.75rem;height:0.75rem;" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path d="M7 17L17 7M17 7H7M17 7v10" />
+                    </svg>
+                </a>
+            </div>
+            <button class="md-show" style="flex-direction:column;gap:6px;padding:8px;"
+                onclick="document.getElementById('mob-menu').classList.toggle('open')" aria-label="Menu">
+                <span style="display:block;width:1.25rem;height:1px;background:#18181b;"></span>
+                <span style="display:block;width:1.25rem;height:1px;background:#18181b;"></span>
+                <span style="display:block;width:0.875rem;height:1px;background:#18181b;align-self:flex-end;"></span>
+            </button>
+        </div>
+        <div id="mob-menu" style="border-top:1px solid #f4f4f5;background:#fff;padding:1.25rem 1.5rem;" class="md-show">
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+                <a href="/" class="block text-sm font-medium text-zinc-600">Home</a>
+                <a href="/about" class="block text-sm font-medium text-zinc-600">About</a>
+                <a href="/industry" class="block text-sm font-medium text-zinc-600">Industry</a>
+                <a href="/contact" class="btn-primary" style="text-align:center;">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-16" style="display:block;">
+        <section class="max-w mx-auto px flex flex-col" style="justify-content:center;min-height:70vh;text-align:center;align-items:center;">
+            <div class="font-display font-black" style="font-size:clamp(6rem,20vw,12rem);line-height:1;color:#f4f4f5;">404</div>
+            <h1 class="font-display font-black text-3xl mb-4" style="margin-top:-1rem;">PAGE NOT FOUND</h1>
+            <p class="text-base text-zinc-500 font-light max-w-sm leading-relaxed mb-10">The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+            <div class="flex gap-3">
+                <a href="/" class="btn-primary btn-lg">Back to Home</a>
+                <a href="/contact" class="btn-outline btn-lg">Contact Us</a>
+            </div>
+        </section>
+
+        <footer class="border-t border-zinc-100">
+            <div class="max-w mx-auto px py-7 flex flex-col md-flex-row justify-between items-center gap-4">
+                <div class="font-display font-black tracking-widest text-sm">MOLDART</div>
+                <div class="section-label">&copy; <span id="yr-404"></span> · All rights reserved · Mumbai, India</div>
+                <div class="flex gap-6"><a href="tel:+917208088788"
+                        class="link-line text-xs text-zinc-400 transition-colors">+91 7208088788</a><a
+                        href="mailto:info@moldartindia.com"
+                        class="link-line text-xs text-zinc-400 transition-colors">info@moldartindia.com</a></div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('yr-404').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
