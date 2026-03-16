@@ -52,8 +52,5 @@
 /robots.txt
   Cache-Control: public, max-age=86400
 
-/*.pdf
-  Cache-Control: public, max-age=604800
-
 /downloads/*
   Cache-Control: public, max-age=604800
