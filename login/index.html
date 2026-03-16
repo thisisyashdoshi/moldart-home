@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48-v2.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="stylesheet" href="/styles.css?v=2026.5">
+    <link rel="stylesheet" href="/styles.css?v=2026.6">
 </head>
 <body data-route="login">
     <a href="#main-content" class="sr-only">Skip to content</a>
@@ -57,42 +57,85 @@
         <section class="max-w mx-auto px py-20 w-full">
             <div class="text-center mb-16 fade-up">
                 <div class="inline-flex items-center gap-3 mb-6">
-                    <span class="section-label text-zinc-900" style="background:#f4f4f5;padding:0.35rem 0.75rem;border-radius:var(--radius-full);">Trade Portal Preview</span>
+                    <span class="section-label text-zinc-900" style="background:#f4f4f5;padding:0.35rem 0.75rem;border-radius:var(--radius-full);display:inline-flex;align-items:center;gap:0.5rem;">
+                        <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:14px;height:14px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        Trade Portal Preview
+                    </span>
                 </div>
                 <h1 class="font-display font-black text-5xl mb-6">THE NEXT LAYER.</h1>
                 <p class="text-base text-zinc-500 font-light max-w-xl mx-auto leading-relaxed">We are building an end-to-end digital procurement platform to eliminate friction across international supply chains. Launching exclusively for verified Moldart trade partners.</p>
             </div>
 
-            <div class="grid md-grid-2 gap-8 max-w-3xl mx-auto mb-16 fade-up">
-                <div class="bg-white border p-8 rounded-xl card-hover relative overflow-hidden group">
+            <div class="grid md-grid-2 gap-8 max-w-3xl mx-auto mb-12 stagger-in">
+                <div class="bg-white border p-8 rounded-xl card-hover glow-border relative overflow-hidden group">
                     <div class="absolute inset-0 bg-zinc-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div class="relative z-10">
-                        <div style="width:48px;height:48px;background:#18181b;color:white;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;">
+                        <div class="login-feature-icon" style="background:#18181b;color:white;margin-bottom:1.5rem;">
                             <svg class="icon" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
                         </div>
                         <h3 class="font-display font-bold text-xl tracking-wider mb-2">BUYER WORKSPACE</h3>
                         <p class="text-sm text-zinc-500 leading-relaxed font-light mb-6">Manage global procurement natively from one unified dashboard.</p>
-                        <ul class="flex flex-col gap-3 text-sm text-zinc-600">
-                            <li class="flex items-start gap-2"><svg class="icon icon-sm shrink-0 mt-1" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Structured RFQs &amp; precise specification alignment.</li>
-                            <li class="flex items-start gap-2"><svg class="icon icon-sm shrink-0 mt-1" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Live production, QC, and delivery tracking.</li>
-                            <li class="flex items-start gap-2"><svg class="icon icon-sm shrink-0 mt-1" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Centralized document and compliance control.</li>
-                        </ul>
+                        <div class="flex flex-col">
+                            <div class="login-feature-row">
+                                <svg class="icon icon-sm shrink-0 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                                <span class="text-sm text-zinc-600">Structured RFQs &amp; specification alignment</span>
+                            </div>
+                            <div class="login-feature-row">
+                                <svg class="icon icon-sm shrink-0 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                                <span class="text-sm text-zinc-600">Live production, QC &amp; delivery tracking</span>
+                            </div>
+                            <div class="login-feature-row">
+                                <svg class="icon icon-sm shrink-0 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                <span class="text-sm text-zinc-600">Centralized document &amp; compliance control</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="bg-white border p-8 rounded-xl card-hover relative overflow-hidden group">
+                <div class="bg-white border p-8 rounded-xl card-hover glow-border relative overflow-hidden group">
                     <div class="absolute inset-0 bg-zinc-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div class="relative z-10">
-                        <div style="width:48px;height:48px;background:#f4f4f5;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;">
+                        <div class="login-feature-icon" style="background:#f4f4f5;margin-bottom:1.5rem;">
                             <svg class="icon" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
                         </div>
                         <h3 class="font-display font-bold text-xl tracking-wider mb-2">SELLER WORKFLOW</h3>
                         <p class="text-sm text-zinc-500 leading-relaxed font-light mb-6">Connect directly with vetted international buyers with zero ambiguity.</p>
-                        <ul class="flex flex-col gap-3 text-sm text-zinc-600">
-                            <li class="flex items-start gap-2"><svg class="icon icon-sm shrink-0 mt-1" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Clear, standardized quote submission formats.</li>
-                            <li class="flex items-start gap-2"><svg class="icon icon-sm shrink-0 mt-1" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Integrated QC coordination and sign-offs.</li>
-                            <li class="flex items-start gap-2"><svg class="icon icon-sm shrink-0 mt-1" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Automated commercial alignment pipelines.</li>
-                        </ul>
+                        <div class="flex flex-col">
+                            <div class="login-feature-row">
+                                <svg class="icon icon-sm shrink-0 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                <span class="text-sm text-zinc-600">Standardized quote submission formats</span>
+                            </div>
+                            <div class="login-feature-row">
+                                <svg class="icon icon-sm shrink-0 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                                <span class="text-sm text-zinc-600">Integrated QC coordination &amp; sign-offs</span>
+                            </div>
+                            <div class="login-feature-row">
+                                <svg class="icon icon-sm shrink-0 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+                                <span class="text-sm text-zinc-600">Automated commercial alignment pipelines</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platform capabilities -->
+            <div class="max-w-3xl mx-auto mb-16 fade-up">
+                <div class="grid grid-2 md-grid-4 gap-4 text-center">
+                    <div class="p-4 border rounded-xl bg-white">
+                        <svg class="icon mx-auto mb-2 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+                        <div class="text-xs font-display font-bold tracking-wider">MULTI-MATERIAL</div>
+                    </div>
+                    <div class="p-4 border rounded-xl bg-white">
+                        <svg class="icon mx-auto mb-2 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                        <div class="text-xs font-display font-bold tracking-wider">GLOBAL ACCESS</div>
+                    </div>
+                    <div class="p-4 border rounded-xl bg-white">
+                        <svg class="icon mx-auto mb-2 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        <div class="text-xs font-display font-bold tracking-wider">REAL-TIME</div>
+                    </div>
+                    <div class="p-4 border rounded-xl bg-white">
+                        <svg class="icon mx-auto mb-2 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <div class="text-xs font-display font-bold tracking-wider">SECURE</div>
                     </div>
                 </div>
             </div>
@@ -132,7 +175,7 @@
         </div>
     </div>
 
-    <script src="/main.js?v=2026.5" defer></script>
+    <script src="/main.js?v=2026.6" defer></script>
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_SITE_TAG_HERE"}'></script>
 </body>
 </html>

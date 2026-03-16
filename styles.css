@@ -1272,6 +1272,10 @@ nav.scrolled {
    transform: translateY(-2px);
 }
 
+.bento-box:hover img {
+   opacity: 0.35 !important;
+}
+
 .bento-content {
    position: relative;
    z-index: 10;
@@ -2324,8 +2328,6 @@ nav.scrolled {
    .md-col-span-3 {
       grid-column: span 3;
    }
-}
-
    /* Better mobile footer alignment */
    footer .flex {
       text-align: center;
@@ -2415,6 +2417,65 @@ nav.scrolled {
    .md-justify-end {
       justify-content: flex-end;
    }
+}
+
+/* ── Login page enhancements ── */
+.login-feature-icon {
+   width: 48px;
+   height: 48px;
+   border-radius: var(--radius-full);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-shrink: 0;
+}
+
+.login-feature-row {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+   padding: 0.625rem 0;
+   border-bottom: 1px solid #f4f4f5;
+}
+
+.login-feature-row:last-child {
+   border-bottom: none;
+}
+
+.stagger-in > * {
+   opacity: 0;
+   transform: translateY(12px);
+   animation: stagger-fade 0.5s ease forwards;
+}
+
+.stagger-in > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-in > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-in > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-in > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-in > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-in > *:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes stagger-fade {
+   to { opacity: 1; transform: translateY(0); }
+}
+
+.glow-border {
+   position: relative;
+}
+
+.glow-border::after {
+   content: '';
+   position: absolute;
+   inset: -1px;
+   border-radius: var(--radius-xl);
+   background: linear-gradient(135deg, #e4e4e7 0%, #d4d4d8 50%, #e4e4e7 100%);
+   z-index: -1;
+   opacity: 0;
+   transition: opacity 0.4s ease;
+}
+
+.glow-border:hover::after {
+   opacity: 1;
 }
 
 /* ── Accessibility: reduced motion ── */
