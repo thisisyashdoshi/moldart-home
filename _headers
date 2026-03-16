@@ -54,3 +54,6 @@
 
 /*.pdf
   Cache-Control: public, max-age=604800
+
+/downloads/*
+  Cache-Control: public, max-age=604800
