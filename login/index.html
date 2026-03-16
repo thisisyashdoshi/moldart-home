@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Login | Moldart</title>
+    <meta name="description" content="Access the Moldart trade portal.">
+    <!-- Noindex for the portal preview page -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#18181b">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48-v2.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/styles.css?v=2026.5">
+</head>
+<body data-route="login">
+    <a href="#main-content" class="sr-only">Skip to content</a>
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white-90 backdrop-blur border-b border-zinc-100">
+        <div class="max-w mx-auto px h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3">
+                <div class="font-display font-black text-xl" style="letter-spacing:0.15em;line-height:1;">MOLDART</div>
+            </a>
+            <div class="md-hidden items-center gap-7">
+                <button type="button" class="cmd-k-hint" onclick="document.dispatchEvent(new KeyboardEvent('keydown', {key: 'k', metaKey: true}))">Search <kbd>⌘K</kbd></button>
+                <a href="/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Home</a>
+                <a href="/about" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">About</a>
+                <a href="/industry" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Industry</a>
+                <a href="/login" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Login</a>
+                <a href="/contact" class="btn-primary" style="padding:0.625rem 1.25rem;">Contact
+                    <svg class="icon icon-sm" style="margin-left:0.375rem;" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <button type="button" class="md-show" style="flex-direction:column;gap:6px;padding:8px;" aria-label="Menu" id="mobile-menu-btn">
+                <span style="display:block;width:1.25rem;height:1px;background:#18181b;"></span>
+                <span style="display:block;width:1.25rem;height:1px;background:#18181b;"></span>
+                <span style="display:block;width:0.875rem;height:1px;background:#18181b;align-self:flex-end;"></span>
+            </button>
+        </div>
+        <div id="mob-menu" style="border-top:1px solid #f4f4f5;background:#fff;padding:1.25rem 1.5rem;" class="md-show">
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+                <label class="directory-search mb-2" onclick="document.dispatchEvent(new KeyboardEvent('keydown', {key: 'k', metaKey: true})); window.closeMob();">
+                    <input class="directory-search-input" type="search" placeholder="Search products... ⌘K" readonly style="cursor:pointer;">
+                </label>
+                <a href="/" class="block text-sm font-medium text-zinc-600">Home</a>
+                <a href="/about" class="block text-sm font-medium text-zinc-600">About</a>
+                <a href="/industry" class="block text-sm font-medium text-zinc-600">Industry</a>
+                <a href="/login" class="block text-sm font-medium text-zinc-600">Login</a>
+                <a href="/contact" class="btn-primary mt-2" style="text-align:center;">Contact →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content" class="pt-16 min-h-hero flex flex-col justify-center">
+        <section class="max-w mx-auto px py-20 w-full">
+            <div class="text-center mb-16 fade-up">
+                <div class="inline-flex items-center gap-3 mb-6">
+                    <span class="section-label text-zinc-900" style="background:#f4f4f5;padding:0.35rem 0.75rem;border-radius:var(--radius-full);">Trade Portal Preview</span>
+                </div>
+                <h1 class="font-display font-black text-5xl mb-6">THE NEXT LAYER.</h1>
+                <p class="text-base text-zinc-500 font-light max-w-xl mx-auto leading-relaxed">We are building an end-to-end digital procurement platform to eliminate friction across international supply chains. Launching exclusively for verified Moldart trade partners.</p>
+            </div>
+
+            <div class="grid md-grid-2 gap-8 max-w-3xl mx-auto mb-16 fade-up">
+                <div class="bg-white border p-8 rounded-xl card-hover relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-zinc-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <div style="width:48px;height:48px;background:#18181b;color:white;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;">
+                            <svg class="icon" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                        </div>
+                        <h3 class="font-display font-bold text-xl tracking-wider mb-2">BUYER WORKSPACE</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light mb-6">Manage global procurement natively from one unified dashboard.</p>
+                        <ul class="flex flex-col gap-3 text-sm text-zinc-600">
+                            <li class="flex items-start gap-2"><svg class="icon icon-sm shrink-0 mt-1" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Structured RFQs &amp; precise specification alignment.</li>
+                            <li class="flex items-start gap-2"><svg class="icon icon-sm shrink-0 mt-1" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Live production, QC, and delivery tracking.</li>
+                            <li class="flex items-start gap-2"><svg class="icon icon-sm shrink-0 mt-1" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Centralized document and compliance control.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white border p-8 rounded-xl card-hover relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-zinc-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <div style="width:48px;height:48px;background:#f4f4f5;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;">
+                            <svg class="icon" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                        </div>
+                        <h3 class="font-display font-bold text-xl tracking-wider mb-2">SELLER WORKFLOW</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light mb-6">Connect directly with vetted international buyers with zero ambiguity.</p>
+                        <ul class="flex flex-col gap-3 text-sm text-zinc-600">
+                            <li class="flex items-start gap-2"><svg class="icon icon-sm shrink-0 mt-1" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Clear, standardized quote submission formats.</li>
+                            <li class="flex items-start gap-2"><svg class="icon icon-sm shrink-0 mt-1" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Integrated QC coordination and sign-offs.</li>
+                            <li class="flex items-start gap-2"><svg class="icon icon-sm shrink-0 mt-1" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg> Automated commercial alignment pipelines.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center fade-up">
+                <p class="text-sm text-zinc-500 mb-6">Need to share a requirement today?</p>
+                <div class="flex gap-4 justify-center">
+                    <a href="/contact" class="btn-primary">Contact Us</a>
+                    <a href="/industry" class="btn-outline">View Catalog</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Light footer for login page -->
+        <footer class="border-t border-zinc-100 mt-auto">
+            <div class="max-w mx-auto px py-7 flex flex-col md-flex-row justify-between items-center gap-4">
+                <div class="font-display font-black tracking-widest text-sm">MOLDART</div>
+                <div class="section-label">© <span class="yr"></span> · All rights reserved · Mumbai, India</div>
+                <div class="flex gap-6"><a href="tel:+917208088788" class="link-line text-xs text-zinc-400">+91 7208088788</a><a href="mailto:info@moldartindia.com" class="link-line text-xs text-zinc-400">info@moldartindia.com</a></div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Command Palette HTML -->
+    <div id="command-palette" class="cmd-palette-overlay" aria-modal="true" role="dialog" aria-label="Command Palette">
+        <div class="cmd-palette">
+            <div class="cmd-palette-input-wrap">
+                <svg viewBox="0 0 24 24" class="icon"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" class="cmd-palette-input" id="cmd-input" placeholder="Search pages, products, or actions..." aria-autocomplete="list" autocomplete="off" spellcheck="false">
+            </div>
+            <div class="cmd-palette-results" id="cmd-results" role="listbox"></div>
+            <div class="cmd-palette-footer">
+                <div class="flex items-center gap-2"><kbd>↑</kbd><kbd>↓</kbd> <span class="text-xs text-zinc-500">to navigate</span></div>
+                <div class="flex items-center gap-2"><kbd>↵</kbd> <span class="text-xs text-zinc-500">to select</span></div>
+                <div class="flex items-center gap-2"><kbd>ESC</kbd> <span class="text-xs text-zinc-500">to close</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/main.js?v=2026.5" defer></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_SITE_TAG_HERE"}'></script>
+</body>
+</html>
