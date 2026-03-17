@@ -506,7 +506,7 @@ ul {
 }
 
 .font-light {
-   font-weight: 300;
+   font-weight: 400;
 }
 
 .font-medium {
@@ -514,7 +514,7 @@ ul {
 }
 
 .font-semibold {
-   font-weight: 600;
+   font-weight: 500;
 }
 
 .font-bold {
@@ -627,6 +627,14 @@ ul {
 
 .max-w-lg {
    max-width: 32rem;
+}
+
+.max-w-xl {
+   max-width: 36rem;
+}
+
+.max-w-3xl {
+   max-width: 48rem;
 }
 
 /* ── COLORS ── */
@@ -2166,7 +2174,7 @@ nav.scrolled {
 }
 
 #mob-menu.open {
-   max-height: 320px;
+   max-height: 420px;
    opacity: 1;
    padding-top: 1.25rem;
    padding-bottom: 1.25rem;
@@ -2537,6 +2545,23 @@ nav.scrolled {
 /* ── Body scroll lock ── */
 body.scroll-locked {
    overflow: hidden;
+}
+
+#mob-menu,
+.cmd-palette-overlay {
+   overscroll-behavior: contain;
+}
+
+/* ── About stats mobile fix ── */
+@media (max-width: 640px) {
+   .about-stats {
+      flex-wrap: wrap;
+      gap: 1rem !important;
+      justify-content: center;
+   }
+   .about-stats .stat-divider {
+      display: none;
+   }
 }
 
 /* ── Mobile-specific fixes ── */

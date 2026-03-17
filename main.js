@@ -15,7 +15,8 @@ const initMobileMenu = () => {
     mobileMenu.classList.remove('open');
     menuButton.classList.remove('is-open');
     menuButton.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('scroll-locked');
+    const paletteOpen = document.getElementById('command-palette')?.classList.contains('is-open');
+    if (!paletteOpen) document.body.classList.remove('scroll-locked');
   };
 
   window.closeMob = closeMenu;
@@ -259,7 +260,7 @@ const initIndustryExplorer = async () => {
         </div>
         <div class="product-directory-grid" id="directory-grid"></div>
       </div>
-      <div class="mt-10 display-flex flex-col gap-10">
+      <div class="mt-10 flex flex-col gap-10">
         <section class="matrix-card fade-up visible mt-10">
           <div class="section-label mb-4">Application Matrix</div>
           <div style="overflow-x:auto;" id="application-matrix"></div>
