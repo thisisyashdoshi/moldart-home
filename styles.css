@@ -2214,10 +2214,6 @@ nav.scrolled {
       justify-content: center;
    }
 
-   .grid-2 {
-      grid-template-columns: 1fr;
-   }
-
    .divide-x>*+* {
       border-left: none;
       border-top: 1px solid #f4f4f5;
@@ -2260,7 +2256,7 @@ nav.scrolled {
    }
 
    .md-show {
-      display: block !important;
+      display: flex !important;
    }
 
    .md-grid-2,
@@ -2541,8 +2537,110 @@ nav.scrolled {
 /* ── Body scroll lock ── */
 body.scroll-locked {
    overflow: hidden;
-   position: fixed;
-   width: 100%;
+}
+
+/* ── Mobile-specific fixes ── */
+@media (max-width: 768px) {
+   /* Hide bento background images on mobile — text only */
+   .bento-box img {
+      display: none;
+   }
+
+   /* Show bento pills by default on touch devices (no hover) */
+   .bento-footer {
+      opacity: 1;
+      transform: translateY(0);
+   }
+
+   /* Bento box minimum height for readability */
+   .bento-box {
+      min-height: auto;
+      padding: 1.25rem;
+   }
+
+   /* Collapse 2-col form grids on phones */
+   .grid-2 {
+      grid-template-columns: 1fr;
+   }
+
+   /* Stack trust stats properly */
+   .trust-stat {
+      padding: 0.75rem;
+   }
+
+   /* Fix contact dark footer on mobile */
+   .bg-zinc-950 .md-grid-4 {
+      grid-template-columns: 1fr;
+   }
+
+   .bg-zinc-950 .col-span-2 {
+      grid-column: span 1;
+   }
+
+   /* Better padding on mobile */
+   .py-24 { padding-top: 3rem; padding-bottom: 3rem; }
+   .py-20 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+   .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
+   .gap-20 { gap: 2rem; }
+   .gap-14 { gap: 2rem; }
+   .gap-10 { gap: 1.5rem; }
+   .mb-14 { margin-bottom: 2rem; }
+   .mb-12 { margin-bottom: 1.5rem; }
+
+   /* Fix skeleton grid on mobile */
+   .skeleton-grid {
+      grid-template-columns: 1fr;
+   }
+
+   /* Readable text sizes on mobile */
+   .text-3xl { font-size: 1.5rem; }
+   .text-4xl { font-size: 1.875rem; }
+   .text-5xl { font-size: 2.25rem; }
+
+   /* Ensure all CTA buttons are full-width */
+   .flex.gap-4.justify-center { flex-direction: column; }
+   .flex.gap-4.md-justify-end { flex-direction: column; }
+   .btn-lg { width: 100%; text-align: center; justify-content: center; }
+
+   /* WhatsApp FAB smaller on mobile */
+   .whatsapp-fab {
+      width: 48px;
+      height: 48px;
+      bottom: 1rem;
+      right: 1rem;
+   }
+
+   .whatsapp-fab svg {
+      width: 24px;
+      height: 24px;
+   }
+
+   /* Login page mobile adjustments */
+   .min-h-hero { min-height: auto; }
+}
+
+/* ── Small phones (≤400px) ── */
+@media (max-width: 400px) {
+   .px { padding-left: 1rem; padding-right: 1rem; }
+   .hero-heading { font-size: 2.2rem; }
+   .page-heading { font-size: 2rem; }
+   .text-2xl { font-size: 1.25rem; }
+}
+
+/* ── Touch device hover fix ── */
+@media (hover: none) {
+   .bento-footer {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+   }
+
+   .bento-box:hover {
+      transform: none;
+   }
+
+   .card-hover:hover {
+      transform: none;
+   }
 }
 
 /* ── Accessibility: reduced motion ── */
