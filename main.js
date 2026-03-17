@@ -73,9 +73,14 @@ const initFadeUps = () => {
       entry.target.classList.add('visible');
       observer.unobserve(entry.target);
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.05 });
 
   items.forEach((item) => observer.observe(item));
+
+  // Safety net: reveal all fade-ups after 3s in case observer fails
+  setTimeout(() => {
+    items.forEach((item) => item.classList.add('visible'));
+  }, 3000);
 };
 
 const initFormSuccess = () => {
