@@ -322,10 +322,6 @@ ul {
    transition-duration: 300ms;
 }
 
-.duration-500 {
-   transition-duration: 500ms;
-}
-
 .opacity-0 {
    opacity: 0;
 }
@@ -465,13 +461,6 @@ ul {
 
 .rounded-xl {
    border-radius: var(--radius-xl);
-}
-
-.inset-0 {
-   top: 0;
-   right: 0;
-   bottom: 0;
-   left: 0;
 }
 
 /* ── GRID ── */
@@ -1205,7 +1194,7 @@ nav.scrolled {
 
 .btn-primary,
 .btn-outline {
-   transition: all var(--transition-fast) ease;
+   transition: background-color var(--transition-fast) ease, border-color var(--transition-fast) ease, color var(--transition-fast) ease, transform var(--transition-fast) ease;
    border-radius: var(--radius-md);
 }
 
@@ -1263,7 +1252,7 @@ nav.scrolled {
    border-radius: var(--radius-xl);
    overflow: hidden;
    text-decoration: none;
-   transition: all 0.3s ease;
+   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .bento-box:hover {
@@ -2476,6 +2465,84 @@ nav.scrolled {
 
 .glow-border:hover::after {
    opacity: 1;
+}
+
+/* ── Loading skeleton ── */
+.skeleton-grid {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 1rem;
+}
+
+.skeleton-card {
+   border: 1px solid #f4f4f5;
+   border-radius: var(--radius-xl);
+   overflow: hidden;
+}
+
+.skeleton-card-image {
+   height: 14rem;
+   background: linear-gradient(90deg, #f4f4f5 25%, #e4e4e7 50%, #f4f4f5 75%);
+   background-size: 200% 100%;
+   animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton-card-body {
+   padding: 1.25rem;
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+}
+
+.skeleton-line {
+   height: 0.75rem;
+   border-radius: 4px;
+   background: linear-gradient(90deg, #f4f4f5 25%, #e4e4e7 50%, #f4f4f5 75%);
+   background-size: 200% 100%;
+   animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton-line-sm { width: 40%; }
+.skeleton-line-md { width: 65%; }
+.skeleton-line-lg { width: 85%; }
+
+@keyframes skeleton-shimmer {
+   0% { background-position: 200% 0; }
+   100% { background-position: -200% 0; }
+}
+
+/* ── Print styles ── */
+@media print {
+   nav, .whatsapp-fab, #command-palette, .sticky-cta, .cmd-k-hint,
+   .btn-primary, .btn-outline, .btn-ghost { display: none !important; }
+
+   body { color: #000; background: #fff; font-size: 12pt; }
+
+   .bg-zinc-50, .bg-zinc-100, .bg-zinc-900, .bg-zinc-950 { background: #fff !important; color: #000 !important; }
+
+   .text-white, .text-zinc-300, .text-zinc-400, .text-zinc-500, .text-zinc-600 { color: #333 !important; }
+
+   a[href]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #666; }
+   a[href^="/"]::after { content: " (moldartindia.com" attr(href) ")"; }
+   a[href^="tel:"]::after, a[href^="mailto:"]::after { content: none; }
+
+   .fade-up { opacity: 1 !important; transform: none !important; }
+
+   .max-w { max-width: 100%; }
+   .py-24, .py-20 { padding-top: 1rem; padding-bottom: 1rem; }
+
+   img { max-width: 100% !important; }
+
+   .border-t, .border-b, .border { border-color: #ccc !important; }
+
+   @page { margin: 2cm; }
+}
+
+/* ── Body scroll lock ── */
+body.scroll-locked {
+   overflow: hidden;
+   position: fixed;
+   width: 100%;
 }
 
 /* ── Accessibility: reduced motion ── */

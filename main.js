@@ -15,6 +15,7 @@ const initMobileMenu = () => {
     mobileMenu.classList.remove('open');
     menuButton.classList.remove('is-open');
     menuButton.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('scroll-locked');
   };
 
   window.closeMob = closeMenu;
@@ -24,6 +25,7 @@ const initMobileMenu = () => {
     menuButton.setAttribute('aria-expanded', String(!expanded));
     menuButton.classList.toggle('is-open');
     mobileMenu.classList.toggle('open');
+    document.body.classList.toggle('scroll-locked', !expanded);
   });
 
   mobileMenu.querySelectorAll('a').forEach((link) => {
@@ -34,6 +36,10 @@ const initMobileMenu = () => {
     if (!mobileMenu.classList.contains('open')) return;
     if (mobileMenu.contains(event.target) || menuButton.contains(event.target)) return;
     closeMenu();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
   });
 };
 
@@ -48,9 +54,11 @@ const initNavShadow = () => {
 const initNavActive = () => {
   const route = document.body.getAttribute('data-route');
   if (!route) return;
-  
-  document.querySelectorAll(`.nav-link[href="/${route === 'home' ? '' : route}"]`).forEach(link => {
+
+  const href = route === 'home' ? '/' : `/${route}/`;
+  document.querySelectorAll(`.nav-link[href="${href}"], .nav-link[href="/${route}"]`).forEach(link => {
     link.classList.add('is-active');
+    link.setAttribute('aria-current', 'page');
   });
 };
 
@@ -70,19 +78,42 @@ const initFadeUps = () => {
 };
 
 const initFormSuccess = () => {
-  if (window.location.search.includes('submitted=true')) {
+  const params = new URLSearchParams(window.location.search);
+
+  // Handle ?submitted=true
+  if (params.get('submitted') === 'true') {
     const alert = document.getElementById('form-success-alert');
     if (alert) {
       alert.classList.remove('hidden');
-      // Clean up URL without refreshing
       window.history.replaceState({}, document.title, window.location.pathname);
-      // Scroll to alert
       alert.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+  }
+
+  // Handle ?product= pre-fill on contact form
+  const product = params.get('product');
+  if (product) {
+    const select = document.querySelector('select[name="interest"]');
+    if (select) {
+      const options = Array.from(select.options);
+      const match = options.find(opt => opt.value.toLowerCase() === product.toLowerCase());
+      if (match) {
+        select.value = match.value;
+      }
+    }
+    window.history.replaceState({}, document.title, window.location.pathname);
   }
 };
 
 const unique = (values) => [...new Set(values.filter(Boolean))];
+
+const debounce = (fn, ms) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), ms);
+  };
+};
 
 const renderFilterGroup = (label, group, options) => `
   <div class="filter-group">
@@ -94,7 +125,7 @@ const renderFilterGroup = (label, group, options) => `
 `;
 
 const renderProductCard = (product) => {
-  const inquiryLink = `/contact?product=${encodeURIComponent(product.name)}`;
+  const inquiryLink = `/contact/?product=${encodeURIComponent(product.name)}`;
   return `
     <details class="directory-card card-hover">
       <summary>
@@ -145,7 +176,7 @@ const renderMatrix = (products) => `
           <td>${product.use}</td>
           <td>${product.industry.join(', ')}</td>
           <td>${product.customization}</td>
-          <td><a href="/contact?product=${encodeURIComponent(product.name)}">Contact</a></td>
+          <td><a href="/contact/?product=${encodeURIComponent(product.name)}">Contact</a></td>
         </tr>
       `).join('')}
     </tbody>
@@ -159,15 +190,36 @@ const syncFilterState = (root, state) => {
   });
 };
 
+const renderSkeleton = () => `
+  <div class="skeleton-grid">
+    ${Array.from({length: 4}, () => `
+      <div class="skeleton-card">
+        <div class="skeleton-card-image"></div>
+        <div class="skeleton-card-body">
+          <div class="skeleton-line skeleton-line-sm"></div>
+          <div class="skeleton-line skeleton-line-lg"></div>
+          <div class="skeleton-line skeleton-line-md"></div>
+        </div>
+      </div>
+    `).join('')}
+  </div>
+`;
+
 const initIndustryExplorer = async () => {
   const root = document.getElementById('product-directory-root');
   if (!root) return;
+
+  // Show loading skeleton while fetching
+  root.insertAdjacentHTML('afterbegin', `<div id="directory-skeleton" class="fade-up visible">${renderSkeleton()}</div>`);
 
   try {
     const [catalogResponse, faqResponse] = await Promise.all([
       fetch('/data/product-directory.json'),
       fetch('/data/faq.json')
     ]);
+
+    if (!catalogResponse.ok) throw new Error(`Catalog failed: ${catalogResponse.status}`);
+    if (!faqResponse.ok) throw new Error(`FAQ failed: ${faqResponse.status}`);
 
     const catalog = await catalogResponse.json();
     const faq = await faqResponse.json();
@@ -178,7 +230,11 @@ const initIndustryExplorer = async () => {
       industry: ['All', ...unique(catalog.products.flatMap((item) => item.industry))]
     };
 
-    root.innerHTML = `
+    // Remove skeleton
+    const skeleton = root.querySelector('#directory-skeleton');
+    if (skeleton) skeleton.remove();
+
+    root.insertAdjacentHTML('afterbegin', `
       <div class="directory-shell fade-up visible">
         <div class="directory-head">
           <div>
@@ -198,7 +254,7 @@ const initIndustryExplorer = async () => {
           ${renderFilterGroup('Industry', 'industry', filters.industry)}
         </div>
         <div class="directory-results-meta mb-6">
-          <div class="section-label" id="directory-count"></div>
+          <div class="section-label" id="directory-count" aria-live="polite"></div>
           <button class="btn-ghost" id="directory-reset" type="button">Reset filters</button>
         </div>
         <div class="product-directory-grid" id="directory-grid"></div>
@@ -218,7 +274,7 @@ const initIndustryExplorer = async () => {
           `).join('')}</div>
         </section>
       </div>
-    `;
+    `);
 
     const state = { material: 'All', stage: 'All', use: 'All', industry: 'All', search: '' };
     const search = root.querySelector('#directory-search');
@@ -226,7 +282,7 @@ const initIndustryExplorer = async () => {
     const matrix = root.querySelector('#application-matrix');
     const count = root.querySelector('#directory-count');
 
-    // Pre-fill search if navigating from contact form dropdown or cmd+k
+    // Pre-fill search if navigating from bento grid or cmd+k
     const urlParams = new URLSearchParams(window.location.search);
     const initialSearch = urlParams.get('q');
     if (initialSearch) {
@@ -269,16 +325,18 @@ const initIndustryExplorer = async () => {
       update();
     });
 
-    search.addEventListener('input', () => {
+    search.addEventListener('input', debounce(() => {
       state.search = search.value.trim().toLowerCase();
       update();
-    });
+    }, 150));
 
     syncFilterState(root, state);
     update();
   } catch (error) {
     console.error(error);
-    root.innerHTML = '<div class="p-8 text-center border rounded-xl"><p>The interactive directory is temporarily unavailable. Please use the catalog and contact section below for technical assistance.</p></div>';
+    const skeleton = root.querySelector('#directory-skeleton');
+    if (skeleton) skeleton.remove();
+    root.insertAdjacentHTML('afterbegin', '<div class="p-8 text-center border rounded-xl"><p>The interactive directory is temporarily unavailable. Please use the catalog and contact section below for technical assistance.</p></div>');
   }
 };
 
@@ -288,33 +346,30 @@ const initCommandPalette = () => {
   const resultsContainer = document.getElementById('cmd-results');
   if (!overlay || !input || !resultsContainer) return;
 
-  // Hardcoded index for speed + reliability (Zero dependencies)
   const cmdIndex = [
     { type: 'Page', title: 'Home', url: '/', icon: '<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>' },
-    { type: 'Page', title: 'About Moldart', url: '/about', icon: '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>' },
-    { type: 'Page', title: 'Product Directory', url: '/industry', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>' },
-    { type: 'Page', title: 'Contact & Inquiry', url: '/contact', icon: '<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>' },
-    { type: 'Page', title: 'Portal Login', url: '/login', icon: '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>' },
-    
-    // Core Products Quick Links
-    { type: 'Wood & Tooling', title: 'Press Plates', url: '/industry?q=press+plates', icon: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>' },
-    { type: 'Wood & Tooling', title: 'Press Pads', url: '/industry?q=press+pads', icon: '<rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>' },
-    { type: 'Wood & Tooling', title: 'Engraved Cylinders', url: '/industry?q=cylinders', icon: '<circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>' },
-    { type: 'Wood & Tooling', title: 'Printed Decor Paper', url: '/industry?q=decor+paper', icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>' },
-    { type: 'Wood Substrates', title: 'Plywood', url: '/industry?q=plywood', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18M9 21V9"/>' },
-    { type: 'Wood Substrates', title: 'Fiberboard (MDF/HDF)', url: '/industry?q=fiberboard', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18M9 21V9"/>' },
-    { type: 'Wood Substrates', title: 'Particleboard', url: '/industry?q=particleboard', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18M9 21V9"/>' },
-    { type: 'Wood Substrates', title: 'OSB', url: '/industry?q=osb', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18M9 21V9"/>' },
-    { type: 'Finished Wood', title: 'Wood Flooring', url: '/industry?q=flooring', icon: '<path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8l-4 4v14a2 2 0 002 2z"/>' },
-    { type: 'Finished Wood', title: 'Flooring Accessories', url: '/industry?q=accessories', icon: '<path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8l-4 4v14a2 2 0 002 2z"/>' },
-    { type: 'Finished Wood', title: 'Ready-Made Furniture', url: '/industry?q=ready-made', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>' },
-    { type: 'Finished Wood', title: 'Custom Furniture', url: '/industry?q=custom+furniture', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>' },
-    { type: 'Decorative Steel', title: 'Decorative SS Panels', url: '/industry?q=decorative+ss', icon: '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>' },
-    { type: 'Decorative Steel', title: 'SS Profiles', url: '/industry?q=profiles', icon: '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>' },
-    { type: 'Decorative Steel', title: 'SS Furniture', url: '/industry?q=ss+furniture', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>' },
-    { type: 'Industrial Steel', title: 'Industrial Press Plates', url: '/industry?q=industrial+press', icon: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>' },
+    { type: 'Page', title: 'About Moldart', url: '/about/', icon: '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>' },
+    { type: 'Page', title: 'Product Directory', url: '/industry/', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>' },
+    { type: 'Page', title: 'Contact & Inquiry', url: '/contact/', icon: '<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>' },
+    { type: 'Page', title: 'Trade Portal', url: '/login/', icon: '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>' },
 
-    // Action
+    { type: 'Lamination Tooling', title: 'Press Plates', url: '/industry/?q=press+plates', icon: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>' },
+    { type: 'Lamination Tooling', title: 'Press Pads', url: '/industry/?q=press+pads', icon: '<rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>' },
+    { type: 'Lamination Tooling', title: 'Engraved Cylinders', url: '/industry/?q=cylinders', icon: '<circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>' },
+    { type: 'Lamination Tooling', title: 'Printed Decor Paper', url: '/industry/?q=decor+paper', icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>' },
+    { type: 'Engineered Substrates', title: 'Plywood', url: '/industry/?q=plywood', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18M9 21V9"/>' },
+    { type: 'Engineered Substrates', title: 'Fiberboard (MDF/HDF)', url: '/industry/?q=fiberboard', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18M9 21V9"/>' },
+    { type: 'Engineered Substrates', title: 'Particleboard', url: '/industry/?q=particleboard', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18M9 21V9"/>' },
+    { type: 'Engineered Substrates', title: 'OSB', url: '/industry/?q=osb', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18M9 21V9"/>' },
+    { type: 'Finished Products', title: 'Wood Flooring', url: '/industry/?q=flooring', icon: '<path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8l-4 4v14a2 2 0 002 2z"/>' },
+    { type: 'Finished Products', title: 'Flooring Accessories', url: '/industry/?q=accessories', icon: '<path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8l-4 4v14a2 2 0 002 2z"/>' },
+    { type: 'Finished Products', title: 'Ready-Made Furniture', url: '/industry/?q=ready-made', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>' },
+    { type: 'Finished Products', title: 'Custom Furniture', url: '/industry/?q=custom+furniture', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>' },
+    { type: 'Architectural Steel', title: 'Decorative SS Panels', url: '/industry/?q=decorative+ss', icon: '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>' },
+    { type: 'Architectural Steel', title: 'SS Profiles', url: '/industry/?q=profiles', icon: '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>' },
+    { type: 'Architectural Steel', title: 'SS Furniture', url: '/industry/?q=ss+furniture', icon: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>' },
+    { type: 'Architectural Steel', title: 'Industrial Press Plates', url: '/industry/?q=industrial+press', icon: '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>' },
+
     { type: 'Action', title: 'Download Company Catalog (PDF)', url: '/downloads/INTRODUCTION TO MOLDART.pdf', icon: '<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>' }
   ];
 
@@ -323,6 +378,7 @@ const initCommandPalette = () => {
 
   const openCmd = () => {
     overlay.classList.add('is-open');
+    document.body.classList.add('scroll-locked');
     input.value = '';
     renderResults('');
     setTimeout(() => input.focus(), 50);
@@ -330,6 +386,7 @@ const initCommandPalette = () => {
 
   const closeCmd = () => {
     overlay.classList.remove('is-open');
+    document.body.classList.remove('scroll-locked');
     input.blur();
   };
 
@@ -338,17 +395,20 @@ const initCommandPalette = () => {
     if (!q) {
       currentResults = cmdIndex;
     } else {
-      currentResults = cmdIndex.filter(item => 
+      currentResults = cmdIndex.filter(item =>
         item.title.toLowerCase().includes(q) || item.type.toLowerCase().includes(q)
       );
     }
 
     if (currentResults.length === 0) {
+      selectedIndex = 0;
       resultsContainer.innerHTML = '<div class="p-4 text-center text-sm text-zinc-500">No results found.</div>';
       return;
     }
 
-    // Group results
+    // Clamp selectedIndex to valid range
+    selectedIndex = Math.min(selectedIndex, currentResults.length - 1);
+
     const groups = {};
     currentResults.forEach(item => {
       if (!groups[item.type]) groups[item.type] = [];
@@ -361,7 +421,6 @@ const initCommandPalette = () => {
     Object.entries(groups).forEach(([type, items]) => {
       html += `<div class="cmd-palette-group-label">${type}</div>`;
       items.forEach(item => {
-        // We inject globalIndex to match keyboard navigation state
         const isActive = globalIndex === selectedIndex ? ' is-active' : '';
         html += `
           <a href="${item.url}" class="cmd-palette-item${isActive}" data-index="${globalIndex}" tabindex="-1">
@@ -375,21 +434,19 @@ const initCommandPalette = () => {
 
     resultsContainer.innerHTML = html;
 
-    // Scroll active item into view
     const activeEl = resultsContainer.querySelector('.is-active');
     if (activeEl) {
       activeEl.scrollIntoView({ block: 'nearest' });
     }
   };
 
-  // Keyboard binding for Cmd+K
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
       e.preventDefault();
       if (overlay.classList.contains('is-open')) closeCmd();
       else openCmd();
     }
-    
+
     if (!overlay.classList.contains('is-open')) return;
 
     if (e.key === 'Escape') {
@@ -397,13 +454,13 @@ const initCommandPalette = () => {
       closeCmd();
     }
 
-    if (e.key === 'ArrowDown') {
+    if (e.key === 'ArrowDown' && currentResults.length) {
       e.preventDefault();
       selectedIndex = (selectedIndex + 1) % currentResults.length;
       renderResults(input.value);
     }
 
-    if (e.key === 'ArrowUp') {
+    if (e.key === 'ArrowUp' && currentResults.length) {
       e.preventDefault();
       selectedIndex = (selectedIndex - 1 + currentResults.length) % currentResults.length;
       renderResults(input.value);
@@ -416,9 +473,14 @@ const initCommandPalette = () => {
         window.location.href = activeEl.getAttribute('href');
       }
     }
+
+    // Trap Tab inside palette
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      input.focus();
+    }
   });
 
-  // Handle overlay click to close
   overlay.addEventListener('mousedown', (e) => {
     if (e.target === overlay) closeCmd();
   });
