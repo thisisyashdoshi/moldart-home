@@ -733,7 +733,7 @@ ul {
 }
 
 .border-l-4 {
-   border-left: 4px solid;
+   border-left: 4px solid #d4d4d8;
 }
 
 /* ── POSITION ── */
@@ -968,7 +968,7 @@ ul {
    letter-spacing: 0.2em;
    font-size: 0.65rem;
    text-transform: uppercase;
-   color: #a1a1aa;
+   color: #71717a;
    font-weight: 500;
 }
 
@@ -1030,7 +1030,7 @@ ul {
    line-height: 0.85;
    letter-spacing: -0.025em;
    color: #18181b;
-   font-size: clamp(3.8rem, 11vw, 9.5rem);
+   font-size: clamp(3.8rem, 11vw, 7.5rem);
 }
 
 .page-heading {

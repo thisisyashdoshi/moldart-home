@@ -91,7 +91,10 @@ const initFormSuccess = () => {
     const alert = document.getElementById('form-success-alert');
     if (alert) {
       alert.classList.remove('hidden');
-      window.history.replaceState({}, document.title, window.location.pathname);
+      params.delete('submitted');
+      const remaining = params.toString();
+      const cleanUrl = window.location.pathname + (remaining ? '?' + remaining : '');
+      window.history.replaceState({}, document.title, cleanUrl);
       alert.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
@@ -135,7 +138,7 @@ const renderProductCard = (product) => {
   return `
     <details class="directory-card card-hover">
       <summary>
-        <div class="directory-card-image img-hover"><img src="${product.image}" alt="${product.name}" loading="lazy"></div>
+        <div class="directory-card-image img-hover"><img src="${product.image}" alt="${product.name}" width="600" height="400" loading="lazy"></div>
         <div class="directory-card-body">
           <div class="directory-card-meta">
             <span class="directory-pill">${product.material}</span>
@@ -308,7 +311,13 @@ const initIndustryExplorer = async () => {
       });
 
       count.textContent = `${results.length} product option${results.length === 1 ? '' : 's'} shown`;
-      grid.innerHTML = results.map(renderProductCard).join('');
+      if (results.length === 0) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:4rem 1rem;"><p class="text-sm text-zinc-500">No products match your selected filters. Please adjust your search or <button type="button" id="empty-state-reset" class="link-line text-zinc-700 font-medium" style="background:none;border:none;cursor:pointer;font-size:inherit;">reset all filters</button>.</p></div>';
+        const resetBtn = grid.querySelector('#empty-state-reset');
+        if (resetBtn) resetBtn.addEventListener('click', () => root.querySelector('#directory-reset').click());
+      } else {
+        grid.innerHTML = results.map(renderProductCard).join('');
+      }
       matrix.innerHTML = renderMatrix(results);
     };
 
@@ -382,7 +391,10 @@ const initCommandPalette = () => {
   let selectedIndex = 0;
   let currentResults = cmdIndex;
 
+  let previousFocus = null;
+
   const openCmd = () => {
+    previousFocus = document.activeElement;
     overlay.classList.add('is-open');
     document.body.classList.add('scroll-locked');
     input.value = '';
@@ -394,6 +406,7 @@ const initCommandPalette = () => {
     overlay.classList.remove('is-open');
     document.body.classList.remove('scroll-locked');
     input.blur();
+    if (previousFocus) { previousFocus.focus(); previousFocus = null; }
   };
 
   const renderResults = (query) => {
@@ -506,4 +519,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initFormSuccess();
   initIndustryExplorer();
   initCommandPalette();
+
+  // OS-aware keyboard shortcut hints
+  const isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+  document.querySelectorAll('.cmd-k-hint kbd').forEach(kbd => {
+    if (kbd.textContent.trim() === '⌘K') kbd.textContent = isMac ? '⌘K' : 'Ctrl+K';
+  });
 });

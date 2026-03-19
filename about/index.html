@@ -33,9 +33,11 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="dns-prefetch" href="https://wa.me">
     <link rel="dns-prefetch" href="https://www.linkedin.com">
-    <link rel="stylesheet" href="/styles.css?v=2026.10">
+    <link rel="preload" href="/fonts/Montserrat-Black.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/DMSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/styles.css?v=2026.11">
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"WebPage","@id":"https://moldartindia.com/about/#webpage","url":"https://moldartindia.com/about/","name":"About Moldart | 35+ Years of Industrial Expertise","description":"Discover Moldart's heritage, leadership, and quality-first approach across wood-working and metallurgical industrial supply.","inLanguage":"en-IN"}
+    {"@context":"https://schema.org","@type":"WebPage","@id":"https://moldartindia.com/about/#webpage","url":"https://moldartindia.com/about/","name":"About Moldart | 35+ Years of Industrial Expertise","description":"Discover Moldart's heritage, leadership, and quality-first approach across wood-working and metallurgical industrial supply.","isPartOf":{"@id":"https://moldartindia.com/#website"},"inLanguage":"en-IN"}
     </script>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://moldartindia.com/"},{"@type":"ListItem","position":2,"name":"About","item":"https://moldartindia.com/about/"}]}
@@ -56,10 +58,10 @@
                 <a href="/industry/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Industry</a>
                 <a href="/login/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Login</a>
                 <a href="/contact/" class="btn-primary" style="padding:0.625rem 1.25rem;">Contact
-                    <svg class="icon icon-sm" style="margin-left:0.375rem;" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    <svg class="icon icon-sm" style="margin-left:0.375rem;" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
             </div>
-            <button type="button" class="md-show" style="flex-direction:column;gap:6px;padding:8px;" aria-label="Menu" id="mobile-menu-btn">
+            <button type="button" class="md-show" style="flex-direction:column;gap:6px;padding:8px;" aria-label="Menu" aria-controls="mob-menu" id="mobile-menu-btn">
                 <span style="display:block;width:1.25rem;height:1px;background:#18181b;"></span>
                 <span style="display:block;width:1.25rem;height:1px;background:#18181b;"></span>
                 <span style="display:block;width:0.875rem;height:1px;background:#18181b;align-self:flex-end;"></span>
@@ -241,7 +243,7 @@
                 <div class="grid md-grid-3 gap-6">
                     <div class="bg-white border card-hover p-8">
                         <div style="width:48px;height:48px;border-radius:50%;background:#f4f4f5;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
-                            <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z"/></svg>
+                            <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z"/></svg>
                         </div>
                         <div class="font-display font-bold text-xl tracking-wider mb-1">QUALITY</div>
                         <div class="section-label mb-5">Global Standard</div>
@@ -249,7 +251,7 @@
                     </div>
                     <div class="bg-white border card-hover p-8">
                         <div style="width:48px;height:48px;border-radius:50%;background:#f4f4f5;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
-                            <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         </div>
                         <div class="font-display font-bold text-xl tracking-wider mb-1">SERVICE</div>
                         <div class="section-label mb-5">Responsive &amp; Agile</div>
@@ -257,7 +259,7 @@
                     </div>
                     <div class="bg-white border card-hover p-8">
                         <div style="width:48px;height:48px;border-radius:50%;background:#f4f4f5;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
-                            <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                            <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
                         </div>
                         <div class="font-display font-bold text-xl tracking-wider mb-1">PRICE</div>
                         <div class="section-label mb-5">Competitive Value</div>
@@ -314,7 +316,7 @@
         </div>
     </div>
 
-    <script src="/main.js?v=2026.10" defer></script>
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_SITE_TAG_HERE"}'></script>
+    <script src="/main.js?v=2026.11" defer></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "f6d93d7003db408894839c492c46acb9"}'></script>
 </body>
 </html>
