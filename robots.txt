@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
+Disallow: /data/
+Disallow: /.tmp/
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
 Sitemap: https://moldartindia.com/sitemap.xml
 Sitemap: https://moldartindia.com/sitemap-images.xml

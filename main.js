@@ -1,3 +1,11 @@
+'use strict';
+
+const escapeHTML = (str) => {
+  const div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
 const updateYear = () => {
   document.querySelectorAll('.yr').forEach((node) => {
     node.textContent = new Date().getFullYear();
@@ -19,6 +27,7 @@ const initMobileMenu = () => {
     if (!paletteOpen) document.body.classList.remove('scroll-locked');
   };
 
+  document.addEventListener('moldart:closemob', closeMenu);
   window.closeMob = closeMenu;
 
   menuButton.addEventListener('click', () => {
@@ -128,7 +137,7 @@ const renderFilterGroup = (label, group, options) => `
   <div class="filter-group">
     <div class="section-label mb-3">${label}</div>
     <div class="filter-chip-row">
-      ${options.map((option) => `<button type="button" class="filter-chip${option === 'All' ? ' is-active' : ''}" data-group="${group}" data-value="${option}">${option}</button>`).join('')}
+      ${options.map((option) => `<button type="button" class="filter-chip${option === 'All' ? ' is-active' : ''}" data-group="${group}" data-value="${option}" aria-pressed="${option === 'All'}">${option}</button>`).join('')}
     </div>
   </div>
 `;
@@ -138,28 +147,28 @@ const renderProductCard = (product) => {
   return `
     <details class="directory-card card-hover">
       <summary>
-        <div class="directory-card-image img-hover"><img src="${product.image}" alt="${product.name}" width="600" height="400" loading="lazy"></div>
+        <div class="directory-card-image img-hover"><img src="${escapeHTML(product.image)}" alt="${escapeHTML(product.name)}" width="600" height="400" loading="lazy"></div>
         <div class="directory-card-body">
           <div class="directory-card-meta">
-            <span class="directory-pill">${product.material}</span>
-            <span class="directory-pill">${product.stage}</span>
+            <span class="directory-pill">${escapeHTML(product.material)}</span>
+            <span class="directory-pill">${escapeHTML(product.stage)}</span>
           </div>
-          <h3>${product.name}</h3>
-          <p>${product.summary}</p>
+          <h3>${escapeHTML(product.name)}</h3>
+          <p>${escapeHTML(product.summary)}</p>
           <span class="directory-toggle">View technical notes</span>
         </div>
       </summary>
       <div class="directory-card-panel">
         <div>
           <div class="section-label mb-3">Key Specifications</div>
-          <ul class="directory-list">${product.specs.map((item) => `<li>${item}</li>`).join('')}</ul>
+          <ul class="directory-list">${product.specs.map((item) => `<li>${escapeHTML(item)}</li>`).join('')}</ul>
         </div>
         <div>
           <div class="section-label mb-3">Typical Applications</div>
-          <ul class="directory-list">${product.applications.map((item) => `<li>${item}</li>`).join('')}</ul>
+          <ul class="directory-list">${product.applications.map((item) => `<li>${escapeHTML(item)}</li>`).join('')}</ul>
         </div>
         <div class="directory-card-footer">
-          <p class="text-sm text-zinc-500">${product.customization}</p>
+          <p class="text-sm text-zinc-500">${escapeHTML(product.customization)}</p>
           <a class="btn-primary" href="${inquiryLink}">Share Requirement</a>
         </div>
       </div>
@@ -181,10 +190,10 @@ const renderMatrix = (products) => `
     <tbody>
       ${products.map((product) => `
         <tr>
-          <td><strong>${product.name}</strong></td>
-          <td>${product.use}</td>
-          <td>${product.industry.join(', ')}</td>
-          <td>${product.customization}</td>
+          <td><strong>${escapeHTML(product.name)}</strong></td>
+          <td>${escapeHTML(product.use)}</td>
+          <td>${product.industry.map(i => escapeHTML(i)).join(', ')}</td>
+          <td>${escapeHTML(product.customization)}</td>
           <td><a href="/contact/?product=${encodeURIComponent(product.name)}">Contact</a></td>
         </tr>
       `).join('')}
@@ -196,6 +205,7 @@ const syncFilterState = (root, state) => {
   root.querySelectorAll('.filter-chip').forEach((button) => {
     const active = state[button.dataset.group] === button.dataset.value;
     button.classList.toggle('is-active', active);
+    button.setAttribute('aria-pressed', String(active));
   });
 };
 
@@ -440,9 +450,9 @@ const initCommandPalette = () => {
     Object.entries(groups).forEach(([type, items]) => {
       html += `<div class="cmd-palette-group-label">${type}</div>`;
       items.forEach(item => {
-        const isActive = globalIndex === selectedIndex ? ' is-active' : '';
+        const isActive = globalIndex === selectedIndex;
         html += `
-          <a href="${item.url}" class="cmd-palette-item${isActive}" data-index="${globalIndex}" tabindex="-1">
+          <a href="${item.url}" class="cmd-palette-item${isActive ? ' is-active' : ''}" data-index="${globalIndex}" tabindex="-1" role="option" aria-selected="${isActive}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${item.icon}</svg>
             ${item.title}
           </a>
