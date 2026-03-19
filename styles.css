@@ -2410,6 +2410,10 @@ nav.scrolled {
    .md-justify-end {
       justify-content: flex-end;
    }
+
+   .md-text-left {
+      text-align: left;
+   }
 }
 
 /* ── Login page enhancements ── */

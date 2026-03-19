@@ -12,8 +12,8 @@
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48-v2.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="preload" href="/fonts/Montserrat-Black.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/DMSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/styles.css?v=2026.11">
 </head>
 <body data-route="404">
@@ -68,7 +68,7 @@
     </main>
 
     <footer class="border-t border-zinc-100">
-        <div class="max-w mx-auto px py-7 flex flex-col md-flex-row justify-between items-center gap-4">
+        <div class="max-w mx-auto px py-7 flex flex-col md-flex-row justify-between items-center gap-4 text-center md-text-left">
             <div class="font-display font-black tracking-widest text-sm">MOLDART</div>
             <div class="section-label">© <span class="yr"></span> · All rights reserved · Mumbai, India</div>
             <div class="flex gap-6"><a href="tel:+917208088788" class="link-line text-xs text-zinc-400">+91 7208088788</a><a href="mailto:info@moldartindia.com" class="link-line text-xs text-zinc-400">info@moldartindia.com</a></div>
@@ -87,7 +87,7 @@
     <div id="command-palette" class="cmd-palette-overlay" aria-modal="true" role="dialog" aria-label="Command Palette">
         <div class="cmd-palette">
             <div class="cmd-palette-input-wrap">
-                <svg viewBox="0 0 24 24" class="icon"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 <input type="text" class="cmd-palette-input" id="cmd-input" placeholder="Search pages, products, or actions..." aria-autocomplete="list" autocomplete="off" spellcheck="false">
             </div>
             <div class="cmd-palette-results" id="cmd-results" role="listbox"></div>
