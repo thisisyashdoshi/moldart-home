@@ -1,0 +1,110 @@
+const sharp = require('sharp');
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+
+const WORK = __dirname;
+const IMG = path.join(WORK, 'images');
+
+async function generateAVIF() {
+  const files = fs.readdirSync(IMG).filter(f => f.endsWith('.webp'));
+  console.log(`Converting ${files.length} WebP images to AVIF...`);
+
+  for (const file of files) {
+    const src = path.join(IMG, file);
+    const dest = path.join(IMG, file.replace('.webp', '.avif'));
+    const stats = fs.statSync(src);
+
+    try {
+      await sharp(src)
+        .avif({ quality: 50, effort: 6 })
+        .toFile(dest);
+
+      const newStats = fs.statSync(dest);
+      const savings = ((1 - newStats.size / stats.size) * 100).toFixed(1);
+      console.log(`  ${file} → ${path.basename(dest)} (${(newStats.size/1024).toFixed(0)}KB, ${savings}% smaller)`);
+    } catch (err) {
+      console.error(`  FAIL ${file}: ${err.message}`);
+    }
+  }
+}
+
+async function compressOversized() {
+  const targets = [
+    { file: 'page6_img4.webp', maxKB: 60 },
+    { file: 'page6_img2.webp', maxKB: 60 },
+  ];
+
+  console.log('\nCompressing oversized images...');
+  for (const { file, maxKB } of targets) {
+    const src = path.join(IMG, file);
+    if (!fs.existsSync(src)) continue;
+
+    const origSize = fs.statSync(src).size;
+    if (origSize <= maxKB * 1024) {
+      console.log(`  ${file} already under ${maxKB}KB`);
+      continue;
+    }
+
+    const tmp = src + '.tmp';
+    // Try progressive quality reduction
+    for (let q = 70; q >= 30; q -= 10) {
+      await sharp(src).webp({ quality: q }).toFile(tmp);
+      const newSize = fs.statSync(tmp).size;
+      if (newSize <= maxKB * 1024 || q === 30) {
+        fs.renameSync(tmp, src);
+        console.log(`  ${file}: ${(origSize/1024).toFixed(0)}KB → ${(newSize/1024).toFixed(0)}KB (q=${q})`);
+        break;
+      }
+      fs.unlinkSync(tmp);
+    }
+  }
+}
+
+async function convertJPGtoWebP() {
+  const jpgFiles = fs.readdirSync(IMG).filter(f => f.endsWith('.jpg') || f.endsWith('.jpeg'));
+  console.log(`\nConverting ${jpgFiles.length} JPG files to WebP...`);
+  for (const file of jpgFiles) {
+    const src = path.join(IMG, file);
+    const dest = path.join(IMG, file.replace(/\.jpe?g$/, '.webp'));
+    if (fs.existsSync(dest)) {
+      console.log(`  ${file} → already has WebP version`);
+      continue;
+    }
+    await sharp(src).webp({ quality: 80 }).toFile(dest);
+    const newSize = fs.statSync(dest).size;
+    console.log(`  ${file} → ${path.basename(dest)} (${(newSize/1024).toFixed(0)}KB)`);
+  }
+}
+
+function minifyCSS() {
+  console.log('\nMinifying CSS...');
+  const src = path.join(WORK, 'styles.css');
+  const origSize = fs.statSync(src).size;
+  execSync(`npx cleancss -o "${src}" "${src}"`, { cwd: WORK });
+  const newSize = fs.statSync(src).size;
+  console.log(`  styles.css: ${(origSize/1024).toFixed(1)}KB → ${(newSize/1024).toFixed(1)}KB (${((1-newSize/origSize)*100).toFixed(1)}% savings)`);
+}
+
+function minifyJS() {
+  console.log('\nMinifying JS...');
+  const src = path.join(WORK, 'main.js');
+  const origSize = fs.statSync(src).size;
+  execSync(`npx terser "${src}" -o "${src}" -c -m`, { cwd: WORK });
+  const newSize = fs.statSync(src).size;
+  console.log(`  main.js: ${(origSize/1024).toFixed(1)}KB → ${(newSize/1024).toFixed(1)}KB (${((1-newSize/origSize)*100).toFixed(1)}% savings)`);
+}
+
+async function main() {
+  console.log('=== Moldart Build Pipeline ===\n');
+
+  await generateAVIF();
+  await compressOversized();
+  await convertJPGtoWebP();
+  minifyCSS();
+  minifyJS();
+
+  console.log('\n=== Build complete ===');
+}
+
+main().catch(console.error);

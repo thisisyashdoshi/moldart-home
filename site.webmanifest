@@ -11,6 +11,7 @@
   "lang": "en",
   "dir": "ltr",
   "categories": ["business", "industrial"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/favicon-32x32.png",
@@ -44,6 +45,22 @@
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/press_pad_new.webp",
+      "sizes": "1200x630",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "Moldart homepage showcasing industrial supply solutions"
+    },
+    {
+      "src": "/images/page5_img3.webp",
+      "sizes": "600x400",
+      "type": "image/webp",
+      "form_factor": "narrow",
+      "label": "Moldart product directory on mobile"
     }
   ]
 }
