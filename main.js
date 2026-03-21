@@ -88,6 +88,7 @@ const initNavActive = () => {
     "applications": "applications",
     "resources": "resources",
     "faq": "faq",
+    "process": "process",
     "about": "about",
     "contact": "contact",
     "home": "home"
@@ -414,6 +415,7 @@ const initCommandPalette = () => {
     { type: "Page", title: "Resources & Downloads", url: "/resources/", icon: iconBook },
     { type: "Page", title: "Contact & Inquiry", url: "/contact/", icon: iconPhone },
     { type: "Page", title: "FAQ", url: "/faq/", icon: iconQuestion },
+    { type: "Page", title: "How We Work", url: "/process/", icon: iconActivity },
 
     // Lamination Tooling
     { type: "Lamination Tooling", title: "Press Plates", url: "/products/press-plates/", icon: iconBox },

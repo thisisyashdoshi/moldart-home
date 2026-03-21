@@ -609,6 +609,7 @@ function footer() {
                     <div class="section-label text-zinc-600 mb-5">Company</div>
                     <div class="flex flex-col gap-3">
                         <a href="/about/" class="link-line text-sm text-zinc-400">About</a>
+                        <a href="/process/" class="link-line text-sm text-zinc-400">Process</a>
                         <a href="/applications/" class="link-line text-sm text-zinc-400">Applications</a>
                         <a href="/resources/" class="link-line text-sm text-zinc-400">Resources</a>
                         <a href="/faq/" class="link-line text-sm text-zinc-400">FAQ</a>
@@ -1229,7 +1230,8 @@ function generateContactPage() {
                             </fieldset>
                             <label class="form-group"><span class="form-label">Application / End Use</span><input type="text" name="application" class="form-input" placeholder="e.g. Furniture manufacturing, Flooring..."></label>
                         </div>
-                        <label class="form-group"><span class="form-label">Message *</span><textarea name="message" class="form-textarea" required aria-required="true" placeholder="Please describe your requirement: application, dimensions, finishes, expected volume, or any specific questions..."></textarea></label>
+                        <label class="form-group"><span class="form-label">Approximate Quantity / Project Scale</span><input type="text" name="quantity" class="form-input" placeholder="e.g. 500 sheets/month, one-time project, trial order..."></label>
+                        <label class="form-group"><span class="form-label">Message *</span><textarea name="message" class="form-textarea" required aria-required="true" placeholder="Please describe your requirement: application, dimensions, finishes, or any specific questions..."></textarea></label>
                         <button type="submit" class="btn-primary btn-lg" style="width:100%;justify-content:center;">Submit Inquiry</button>
                         <p class="text-xs text-zinc-400 text-center">Your data is secure and will only be used to process your commercial inquiry.</p>
                     </form>
@@ -1402,6 +1404,107 @@ function generateAboutPage() {
     ${closingElements()}`;
 }
 
+function generateProcessPage() {
+  const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Process' }]);
+  const schemas = [
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/process/#webpage', url: SITE + '/process/', name: 'How Moldart Works | Sourcing & Supply Process', description: 'From requirement to delivery: how Moldart coordinates sourcing, quality control, and supply across its product ecosystem.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    bc.schema
+  ];
+
+  return headTag({
+    title: 'How Moldart Works | Sourcing, Quality & Supply Process',
+    desc: 'From first inquiry to final delivery — how Moldart coordinates sourcing, quality control, production oversight, and logistics across press plates, substrates, flooring, and decorative steel.',
+    canonical: '/process/',
+    schemas
+  }) + '\n' + nav('process') + `
+
+    <main id="main-content" class="pt-16">
+        <section class="max-w mx-auto px py-20 border-b border-zinc-100">
+            ${bc.html}
+            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Our Process</span></div>
+            <h1 class="page-heading">FROM REQUIREMENT<br>TO DELIVERY.</h1>
+            <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed mt-6">Moldart operates as a sourcing and supply partner — not a marketplace. Every inquiry follows a structured process designed to align material selection with your actual application needs.</p>
+        </section>
+
+        <section class="max-w mx-auto px py-20 border-b border-zinc-100 fade-up">
+            <div class="section-label mb-6">The Six Stages</div>
+            <h2 class="font-display font-black text-3xl mb-14">HOW ENGAGEMENTS WORK.</h2>
+            <div class="grid md-grid-2 gap-10">
+                <div class="flex flex-col gap-8">
+                    <div style="border-left:4px solid #18181b;padding-left:1.5rem;">
+                        <div class="font-display font-bold tracking-wider text-sm mb-2">01 — REQUIREMENT DISCUSSION</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Every engagement starts with understanding your specific need: the application, required finish, volume, timeline, and destination market. This conversation shapes everything that follows — material grade, build-up, surface specification, and supply path.</p>
+                    </div>
+                    <div style="border-left:4px solid #18181b;padding-left:1.5rem;">
+                        <div class="font-display font-bold tracking-wider text-sm mb-2">02 — MATERIAL RECOMMENDATION</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Based on your requirement, Moldart recommends the right product category, grade, and specification. This includes material selection, surface or pattern coordination, compliance alignment (where applicable), and preliminary pricing guidance.</p>
+                    </div>
+                    <div style="border-left:4px solid #18181b;padding-left:1.5rem;">
+                        <div class="font-display font-bold tracking-wider text-sm mb-2">03 — SAMPLE COORDINATION</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Where required, physical samples are coordinated to validate finish, dimensions, and material characteristics before committing to production. This step is particularly important for surface-critical products like press plates, decorative panels, and flooring.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <div style="border-left:4px solid #d4d4d8;padding-left:1.5rem;">
+                        <div class="font-display font-bold tracking-wider text-sm mb-2">04 — PRODUCTION & QUALITY OVERSIGHT</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Once confirmed, production is coordinated through Moldart's established manufacturing network. Quality checkpoints are applied throughout — from raw material verification to in-process inspection and final quality validation against your agreed specifications.</p>
+                    </div>
+                    <div style="border-left:4px solid #d4d4d8;padding-left:1.5rem;">
+                        <div class="font-display font-bold tracking-wider text-sm mb-2">05 — DOCUMENTATION & PACKING</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Materials are prepared with appropriate commercial documentation, quality certificates, and packing specifications. Export documentation is handled where applicable, including compliance certificates aligned to destination market requirements.</p>
+                    </div>
+                    <div style="border-left:4px solid #d4d4d8;padding-left:1.5rem;">
+                        <div class="font-display font-bold tracking-wider text-sm mb-2">06 — DELIVERY & ONGOING SUPPORT</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Logistics coordination from manufacturing facility to your destination. Post-delivery support includes technical follow-up, reorder facilitation, and ongoing supply relationship management.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-zinc-50 border-b border-zinc-100 fade-up">
+            <div class="max-w mx-auto px py-20">
+                <div class="section-label mb-6">What Sets Us Apart</div>
+                <h2 class="font-display font-black text-3xl mb-10">NOT A MARKETPLACE.</h2>
+                <div class="grid md-grid-3 gap-8">
+                    <div>
+                        <h3 class="font-display font-bold text-base tracking-wider mb-3">TECHNICAL ALIGNMENT</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Every recommendation is reviewed commercially and technically before being presented. Moldart does not simply quote from a catalog — the team evaluates whether a material is genuinely suited to your stated application.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-bold text-base tracking-wider mb-3">SINGLE-POINT COORDINATION</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Across 16 product categories and two industrial sectors, buyers work with one sourcing partner. This reduces procurement complexity, consolidates quality oversight, and simplifies commercial relationships.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-bold text-base tracking-wider mb-3">QUALITY-FIRST CULTURE</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Materials are benchmarked against the standards required by the destination market — not the minimum acceptable standard. Quality checkpoints are embedded at every stage from sourcing through delivery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w mx-auto px py-20 border-b border-zinc-100 fade-up">
+            <div class="section-label mb-6">Across Product Categories</div>
+            <h2 class="font-display font-black text-3xl mb-10">ONE PROCESS. MANY MATERIALS.</h2>
+            <p class="text-sm text-zinc-500 leading-relaxed max-w-2xl mb-10">The same structured approach applies whether you are sourcing lamination tooling, engineered substrates, decorative steel, or finished products. The depth of coordination varies by category — surface-critical products require additional quality checkpoints — but the fundamental process remains consistent.</p>
+            <div class="grid md-grid-2 gap-6">
+                <a href="/products/" class="flex items-center gap-4 p-6 border rounded-xl card-hover">
+                    <svg class="icon flex-shrink-0" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                    <div><div class="font-display font-bold tracking-wider text-sm">EXPLORE PRODUCTS</div><div class="text-xs text-zinc-500 mt-1">Browse all 16 product categories</div></div>
+                </a>
+                <a href="/applications/" class="flex items-center gap-4 p-6 border rounded-xl card-hover">
+                    <svg class="icon flex-shrink-0" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                    <div><div class="font-display font-bold tracking-wider text-sm">VIEW APPLICATIONS</div><div class="text-xs text-zinc-500 mt-1">See how our products are used</div></div>
+                </a>
+            </div>
+        </section>
+
+        ${ctaBlock('READY TO START?', 'Share your requirement and we will align the right material, specification, and supply path to your application.', 'Share Your Requirement', '/contact/', 'Download Catalog', '/downloads/INTRODUCTION TO MOLDART.pdf')}
+    </main>
+
+    ${footer()}
+    ${closingElements()}`;
+}
+
 function generateLoginPage() {
   // Keep existing login page but with updated nav (no Login link)
   return headTag({
@@ -1475,7 +1578,8 @@ function generateSitemap() {
     { url: '/about/', priority: '0.8', freq: 'monthly' },
     { url: '/resources/', priority: '0.7', freq: 'monthly' },
     { url: '/contact/', priority: '0.8', freq: 'monthly' },
-    { url: '/faq/', priority: '0.6', freq: 'monthly' }
+    { url: '/faq/', priority: '0.6', freq: 'monthly' },
+    { url: '/process/', priority: '0.7', freq: 'monthly' }
   ];
   // Add product pages
   for (const pid of Object.keys(productMeta)) {
@@ -1523,6 +1627,7 @@ function generateRedirects() {
 /applications             /applications/            301
 /resources                /resources/               301
 /faq                      /faq/                     301
+/process                  /process/                 301
 /*                        /404.html                 404`;
 }
 
@@ -1555,10 +1660,11 @@ function main() {
     writeFile(path.join(WORK, `applications/${app.slug}/index.html`), generateApplicationPage(app));
   }
 
-  // Resources, FAQ
+  // Resources, FAQ, Process
   console.log('\nGenerating utility pages...');
   writeFile(path.join(WORK, 'resources/index.html'), generateResourcesPage());
   writeFile(path.join(WORK, 'faq/index.html'), generateFAQPage());
+  writeFile(path.join(WORK, 'process/index.html'), generateProcessPage());
 
   // Industry redirect
   writeFile(path.join(WORK, 'industry/index.html'), generateIndustryRedirect());
