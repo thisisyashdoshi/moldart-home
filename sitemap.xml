@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://moldartindia.com/</loc><lastmod>2026-03-20</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://moldartindia.com/about/</loc><lastmod>2026-03-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://moldartindia.com/industry/</loc><lastmod>2026-03-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://moldartindia.com/contact/</loc><lastmod>2026-03-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://moldartindia.com/login/</loc><lastmod>2026-03-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://moldartindia.com/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://moldartindia.com/products/</loc><lastmod>2026-03-21</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://moldartindia.com/applications/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moldartindia.com/about/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moldartindia.com/resources/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/contact/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://moldartindia.com/faq/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://moldartindia.com/products/press-plates/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/press-pads/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/engraved-cylinders/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/printed-decor-paper/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/plywood/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/fiberboard/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/osb/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/particleboard/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/wood-flooring/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/flooring-accessories/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/ready-made-furniture/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/custom-furniture/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/decorative-ss-panels/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/ss-profiles/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/ss-furniture/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/products/industrial-press-plates/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/applications/lamination/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/applications/furniture/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/applications/flooring/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/applications/architecture/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/applications/metal-finishing/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://moldartindia.com/applications/pcb-ccl/</loc><lastmod>2026-03-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

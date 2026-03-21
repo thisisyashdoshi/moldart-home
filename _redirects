@@ -4,7 +4,12 @@
 /contact.html             /contact/                 301
 /login.html               /login/                   301
 /about                    /about/                   301
-/industry                 /industry/                301
+/industry                 /products/                301
+/industry/                /products/                301
 /contact                  /contact/                 301
 /login                    /login/                   301
+/products                 /products/                301
+/applications             /applications/            301
+/resources                /resources/               301
+/faq                      /faq/                     301
 /*                        /404.html                 404

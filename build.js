@@ -79,11 +79,15 @@ async function convertJPGtoWebP() {
 
 function minifyCSS() {
   console.log('\nMinifying CSS...');
-  const src = path.join(WORK, 'styles.css');
-  const origSize = fs.statSync(src).size;
-  execSync(`npx cleancss -o "${src}" "${src}"`, { cwd: WORK });
-  const newSize = fs.statSync(src).size;
-  console.log(`  styles.css: ${(origSize/1024).toFixed(1)}KB → ${(newSize/1024).toFixed(1)}KB (${((1-newSize/origSize)*100).toFixed(1)}% savings)`);
+  const files = ['styles.css', 'pages.css'];
+  for (const file of files) {
+    const src = path.join(WORK, file);
+    if (!fs.existsSync(src)) continue;
+    const origSize = fs.statSync(src).size;
+    execSync(`npx cleancss -o "${src}" "${src}"`, { cwd: WORK });
+    const newSize = fs.statSync(src).size;
+    console.log(`  ${file}: ${(origSize/1024).toFixed(1)}KB → ${(newSize/1024).toFixed(1)}KB (${((1-newSize/origSize)*100).toFixed(1)}% savings)`);
+  }
 }
 
 function minifyJS() {
@@ -95,9 +99,21 @@ function minifyJS() {
   console.log(`  main.js: ${(origSize/1024).toFixed(1)}KB → ${(newSize/1024).toFixed(1)}KB (${((1-newSize/origSize)*100).toFixed(1)}% savings)`);
 }
 
+function generatePages() {
+  console.log('\nGenerating HTML pages...');
+  const genScript = path.join(WORK, 'generate.js');
+  if (!fs.existsSync(genScript)) {
+    console.log('  generate.js not found, skipping');
+    return;
+  }
+  execSync(`node "${genScript}"`, { cwd: WORK, stdio: 'inherit' });
+  console.log('  Pages generated successfully');
+}
+
 async function main() {
   console.log('=== Moldart Build Pipeline ===\n');
 
+  generatePages();
   await generateAVIF();
   await compressOversized();
   await convertJPGtoWebP();

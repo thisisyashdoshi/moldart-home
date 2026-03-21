@@ -1,0 +1,89 @@
+/* ============================================================
+   Moldart — Supplementary page styles
+   For product pages, application pages, resource center, etc.
+   ============================================================ */
+
+/* Product card grid */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.product-card:hover {
+  border-color: #d4d4d8;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.product-card-img img {
+  transition: transform 0.4s ease;
+}
+.product-card:hover .product-card-img img {
+  transform: scale(1.03);
+}
+.product-card .p-4 {
+  padding: 1rem;
+}
+
+/* Spec items on product pages */
+.spec-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.spec-item svg {
+  margin-top: 2px;
+}
+
+/* FAQ accordion */
+.faq-item summary {
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item summary::marker {
+  display: none;
+}
+.faq-chevron {
+  transition: transform 0.2s ease;
+}
+.faq-item[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+
+/* Resource download items hover */
+.transition-colors:hover {
+  background-color: #fafafa;
+}
+
+/* Additional utilities not in critical CSS */
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+.mt-0\.5 { margin-top: 0.125rem; }
+
+/* Card hover (duplicated from styles.css for safety) */
+.card-hover {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  border-color: #d4d4d8;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { opacity: 1; animation: none !important; }
+  .product-card-img img { transition: none; }
+  .whatsapp-fab { animation: none; }
+  .faq-chevron { transition: none; }
+  * { scroll-behavior: auto !important; }
+}
+
+/* Print styles */
+@media print {
+  nav, .whatsapp-fab, .scroll-top-btn, .lightbox-overlay, #command-palette, footer { display: none !important; }
+  .fade-up { opacity: 1 !important; }
+  body { color: #000; }
+  a { text-decoration: underline; }
+}
