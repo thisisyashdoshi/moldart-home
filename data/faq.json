@@ -1,24 +1,105 @@
 {
-  "items": [
+  "categories": [
     {
-      "question": "What product categories does Moldart supply?",
-      "answer": "Moldart works across wood-working and metallurgical supply, including lamination tooling, engineered substrates, flooring and furniture systems, decorative stainless steel, and industrial press plates."
+      "name": "Products & Capabilities",
+      "items": [
+        {
+          "question": "What product categories does Moldart supply?",
+          "answer": "Moldart supplies 15+ product families across two industrial sectors. The wood ecosystem covers lamination tooling (press plates, press pads, engraved cylinders, decor paper), engineered substrates (plywood, MDF/HDF, OSB, particleboard), and finished products (wood flooring, flooring accessories, ready-made furniture, custom furniture). The steel division covers decorative SS panels, SS profiles, SS furniture, and industrial press plates for HPL/CCL/PCB manufacturing."
+        },
+        {
+          "question": "What stainless steel grades are available for press plates?",
+          "answer": "Moldart supplies press plates in SS 301, SS 420, and SS 630/633 grades. SS 630/633 is the preferred grade for high-performance applications requiring superior hardness and cycle life. SS 420 offers excellent wear resistance for standard lamination. SS 301 provides a cost-effective option for less demanding applications. Grade selection depends on required surface hardness, production volume, and laminate specification."
+        },
+        {
+          "question": "What is the difference between MDF and HDF?",
+          "answer": "MDF (Medium Density Fiberboard) has a density range of 700–820 kg/m³ and is suited for furniture fronts, door skins, and painted surfaces. HDF (High Density Fiberboard) has a density of 780–900 kg/m³ and is used where higher structural strength and moisture resistance are required, such as flooring cores and heavy-duty panel systems. Both are available in EU E1, TSCA Title VI, and Japan F4 star emission standards."
+        },
+        {
+          "question": "Do you supply decorative stainless steel with PVD coating?",
+          "answer": "Yes. Moldart supplies decorative SS panels in SS 304 and SS 316L grades with a full range of PVD finishes including Gold, Rose Gold, Black, Bronze, and Champagne. Surface finishes include Hairline, Mirror No.8, Vibration, Bead Blast, Etched, and Embossed (5WL). Optional Anti-Fingerprint (AFP) coating is available for high-touch architectural surfaces."
+        }
+      ]
     },
     {
-      "question": "Do you support custom sizes and technical specifications?",
-      "answer": "Yes. Many product families can be aligned to customer dimensions, finish requirements, application needs, and production constraints."
+      "name": "Quality & Certifications",
+      "items": [
+        {
+          "question": "What quality certifications do your products carry?",
+          "answer": "Certifications vary by product family. Engineered substrates comply with EU E1, TSCA Title VI, CARB-NAF, EPA-NAF, and Japan F4 star (JAS) emission standards. OSB products are FSC certified and EN 13986/EN 300 compliant. Wood flooring meets EN 13329 standards. Press plates follow EN 438 and ISO 4586 specifications. Decorative steel products meet ASTM A240 and EN 10088 standards. Specific certificates are provided with each shipment."
+        },
+        {
+          "question": "How does Moldart ensure product quality?",
+          "answer": "Every order follows a structured 6-stage quality process: requirement understanding, material recommendation, sample coordination (where needed), production and quality oversight, documentation and packing, and delivery with ongoing support. Quality checkpoints are embedded at each stage — from raw material verification through in-process inspection to final quality validation against agreed specifications. Materials are benchmarked against destination market standards, not minimum acceptable standards."
+        },
+        {
+          "question": "Can you provide test reports and material certificates?",
+          "answer": "Yes. All shipments include relevant test reports, material certificates, and compliance documentation. For export orders, this includes certificates aligned to destination market requirements (CE marking, EN standards, JIS/JAS compliance, CARB/TSCA certification as applicable). Specific documentation requirements can be discussed during the requirement stage."
+        }
+      ]
     },
     {
-      "question": "Can Moldart support export-oriented or international requirements?",
-      "answer": "Yes. The business model already positions Moldart around European quality expectations, coordinated sourcing, and project-driven supply support."
+      "name": "Pricing & Payment",
+      "items": [
+        {
+          "question": "How is pricing determined?",
+          "answer": "Pricing depends on the product family, specification, grade, finish, volume, and customization level. Moldart reviews each requirement commercially and technically before providing pricing guidance. This ensures the quoted material is genuinely suited to your application. For indicative pricing, share your requirement details including dimensions, grade, finish, volume, and destination."
+        },
+        {
+          "question": "What payment terms are available?",
+          "answer": "Payment terms are discussed on a case-by-case basis depending on the product category, order value, and relationship stage. Standard options include advance payment, letter of credit (L/C), and negotiated credit terms for established accounts. Specific payment terms are confirmed during the commercial proposal stage."
+        },
+        {
+          "question": "Can I request samples before placing an order?",
+          "answer": "Yes. Physical samples can be coordinated to validate finish, dimensions, and material characteristics before committing to production. This step is particularly important for surface-critical products like press plates, decorative panels, flooring, and printed decor paper. Sample availability and lead times vary by product family."
+        }
+      ]
     },
     {
-      "question": "How are MOQ and lead times decided?",
-      "answer": "MOQ and lead times depend on the product family, customization level, finish, and production planning. Moldart reviews these commercially after understanding the requirement."
+      "name": "Ordering & Logistics",
+      "items": [
+        {
+          "question": "What are typical lead times?",
+          "answer": "Lead times vary by product family and customization: Press plates and industrial plates typically require 8–12 weeks. Engineered substrates (plywood, MDF, OSB, particleboard) usually ship in 3–5 weeks. Flooring and accessories take 4–6 weeks. Decorative stainless steel panels and profiles require 3–6 weeks. Custom furniture projects need 6–10 weeks depending on complexity. All timelines are confirmed after requirement review."
+        },
+        {
+          "question": "What are the minimum order quantities (MOQ)?",
+          "answer": "MOQs depend on the product category: Press plates and industrial plates start from 1 set. Engineered substrates are typically ordered by the container (20ft). Decorative steel panels start from 50 sheets. SS profiles from 100 pieces. Custom and ready-made furniture is ordered on a project basis. Specific MOQs are confirmed during the commercial proposal stage based on your requirement."
+        },
+        {
+          "question": "Do you support international shipping and export?",
+          "answer": "Yes. Moldart's operating model is built around international sourcing and supply. Export documentation, compliance certificates aligned to destination market requirements, and logistics coordination from manufacturing facility to your destination are included as part of the supply relationship. The business model already positions Moldart around European quality expectations and coordinated global sourcing."
+        },
+        {
+          "question": "Can Moldart handle custom specifications and sizes?",
+          "answer": "Yes. Many product families support customization including custom dimensions, grades, finishes, surface patterns, density profiles, and emission standard alignment. Press plates support custom surface patterns and chrome thickness specifications. Decorative steel supports exact color matching and bespoke etching patterns. Substrates can be matched to specific density and emission requirements. Custom furniture is designed and built to project-specific layouts."
+        }
+      ]
     },
     {
-      "question": "Can we request technical and pricing support before finalizing?",
-      "answer": "Yes. Buyers can share use-case details, required specifications, finish direction, and expected volumes to receive the right commercial and technical guidance."
+      "name": "Working with Moldart",
+      "items": [
+        {
+          "question": "How does the engagement process work?",
+          "answer": "Moldart operates as a sourcing and supply partner — not a marketplace. The typical engagement follows six stages: (1) Share your requirement, (2) Receive a material recommendation, (3) Sample coordination where needed, (4) Production and quality oversight, (5) Documentation and packing, (6) Delivery with ongoing support. Every inquiry is reviewed commercially and technically before a recommendation is made."
+        },
+        {
+          "question": "How quickly does Moldart respond to inquiries?",
+          "answer": "Standard commercial inquiries receive a same-day response during business hours (Mon–Sat, 10 AM – 6 PM IST). Technical specification requests that require detailed review typically take 1–2 business days. For immediate assistance, WhatsApp is the fastest channel: +91 7208088788 or +91 7208188788."
+        },
+        {
+          "question": "Is there a trade portal for existing partners?",
+          "answer": "Moldart is building a digital procurement platform for verified trade partners. The portal will include buyer and seller dashboards with order tracking, documentation access, and reorder facilitation. It is currently in development. For immediate needs, please contact us directly via WhatsApp, email, or the contact form."
+        },
+        {
+          "question": "What industries does Moldart serve?",
+          "answer": "Moldart serves manufacturers (lamination, furniture, flooring production), architects and interior designers (decorative steel, substrates, custom furniture), distributors (panels, flooring, steel products), project teams (custom furniture, interior fit-outs), and electronics manufacturers (PCB and CCL press plates). The product portfolio spans wood-working and metallurgical industries."
+        },
+        {
+          "question": "Where is Moldart located?",
+          "answer": "Moldart's head office is located at #7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West), Mumbai — 400064, Maharashtra, India. Founded in 1989, the company operates from Mumbai with a global sourcing and supply network across Asia and Europe."
+        }
+      ]
     }
   ]
 }

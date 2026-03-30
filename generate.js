@@ -13,6 +13,7 @@ const VER = '2026.14';
 // ============================================================
 const rawProducts = JSON.parse(fs.readFileSync(path.join(WORK, 'data/product-directory.json'), 'utf8'));
 const rawFaq = JSON.parse(fs.readFileSync(path.join(WORK, 'data/faq.json'), 'utf8'));
+const rawInsights = JSON.parse(fs.readFileSync(path.join(WORK, 'data/insights.json'), 'utf8'));
 
 // ============================================================
 // EXTENDED PRODUCT METADATA
@@ -21,10 +22,10 @@ const productMeta = {
   'press-plates': {
     slug: 'press-plates',
     seoTitle: 'Press Plates Supplier | Lamination Press Plates — Moldart India',
-    metaDesc: 'Lamination press plates in SS 304, SS 420, SS 630, and SS 633 grades. Custom surface patterns and chrome specifications for decorative laminate manufacturing.',
+    metaDesc: 'Lamination press plates in SS 301, SS 420, and SS 630/633 grades. Custom surface patterns and chrome specifications for decorative laminate manufacturing.',
     overview: 'Moldart supplies surface-critical press plates engineered for texture fidelity, wear resistance, and repeatable finish quality in decorative laminate production. Available in multiple stainless steel grades with custom chrome surface specifications, these plates are a core tooling component in short-cycle and multi-daylight lamination presses.',
     workflow: 'Press plates are the tooling surface in lamination presses. They transfer texture and finish to laminate surfaces during the pressing cycle, making them critical to final product quality.',
-    commercialNotes: 'Available in 1S and 2S configurations. Custom surface patterns and chrome thickness (μm) specifications supported. Grades range from SS 304 for standard use to SS 633 for high-performance applications requiring superior hardness.',
+    commercialNotes: 'Available in 1S and 2S configurations. Custom surface patterns and chrome thickness (μm) specifications supported. Grades range from SS 301 for standard use to SS 630/633 (preferred) for high-performance applications requiring superior hardness.',
     relatedProducts: ['press-pads', 'engraved-cylinders', 'industrial-press-plates'],
     relatedApps: ['lamination', 'furniture'],
     downloads: [
@@ -228,10 +229,10 @@ const productMeta = {
   'industrial-press-plates': {
     slug: 'industrial-press-plates',
     seoTitle: 'Industrial Press Plates | HPL, CCL & PCB Press Plates — Moldart India',
-    metaDesc: 'Heavy-duty industrial press plates in SS 630 and SS 304 for HPL, CCL, and PCB manufacturing. Strict flatness and parallelism tolerances. Demagnetization control.',
+    metaDesc: 'Heavy-duty industrial press plates in SS 420, SS 630/633 (preferred), and SS 301 for HPL, CCL, and PCB manufacturing. Strict flatness and parallelism tolerances. Demagnetization control.',
     overview: 'Moldart supplies heavy-duty steel plates engineered for high-pressure technical laminates, copper-clad laminates (CCL), and printed circuit board (PCB) manufacturing. These plates require strict dimensional tolerances and controlled magnetic properties.',
     workflow: 'Industrial press plates are used in high-pressure presses for manufacturing technical laminates, CCL, and PCB substrates. They must maintain precise flatness, parallelism, and thermal conductivity under extreme pressing conditions.',
-    commercialNotes: 'Grades: SS 630, SS 304. Strict tolerances for flatness, parallelism, and thickness. High thermal conductivity. Demagnetization (residual magnetism) control available for PCB/CCL applications. Machined to exact specifications.',
+    commercialNotes: 'Grades: SS 420, SS 630/633 (preferred), SS 301. Strict tolerances for flatness, parallelism, and thickness. High thermal conductivity. Demagnetization (residual magnetism) control available for PCB/CCL applications. Machined to exact specifications.',
     relatedProducts: ['press-plates', 'press-pads'],
     relatedApps: ['lamination', 'pcb-ccl'],
     downloads: [
@@ -551,6 +552,7 @@ function nav(route) {
                 <a href="/products/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Products</a>
                 <a href="/applications/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Applications</a>
                 <a href="/about/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">About</a>
+                <a href="/insights/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Insights</a>
                 <a href="/resources/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Resources</a>
                 <a href="/contact/" class="btn-primary" style="padding:0.625rem 1.25rem;">Contact
                     <svg class="icon icon-sm" style="margin-left:0.375rem;" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -571,6 +573,7 @@ function nav(route) {
                 <a href="/products/" class="block text-sm font-medium text-zinc-600">Products</a>
                 <a href="/applications/" class="block text-sm font-medium text-zinc-600">Applications</a>
                 <a href="/about/" class="block text-sm font-medium text-zinc-600">About</a>
+                <a href="/insights/" class="block text-sm font-medium text-zinc-600">Insights</a>
                 <a href="/resources/" class="block text-sm font-medium text-zinc-600">Resources</a>
                 <a href="/contact/" class="btn-primary mt-2" style="text-align:center;">Contact →</a>
             </div>
@@ -579,7 +582,7 @@ function nav(route) {
 }
 
 function footer() {
-  return `<footer class="bg-zinc-950 text-white">
+    return `<footer class="bg-zinc-950 text-white">
         <div class="max-w mx-auto px py-16">
             <div class="grid md-grid-4 gap-10 mb-14">
                 <div class="col-span-2">
@@ -587,39 +590,45 @@ function footer() {
                     <p class="text-sm text-zinc-400 leading-relaxed font-light max-w-sm">Integrated supply solutions for the wood-working and metallurgical industries since 1989. Press plates, engineered substrates, flooring, decorative steel.</p>
                     <div class="mt-6 flex flex-col gap-2">
                         <a href="tel:+917208088788" class="link-line text-sm text-zinc-400">+91 7208088788</a>
+                        <a href="tel:+917208188788" class="link-line text-sm text-zinc-400">+91 7208188788</a>
                         <a href="mailto:info@moldartindia.com" class="link-line text-sm text-zinc-400">info@moldartindia.com</a>
                         <div class="flex gap-4 mt-2">
                             <a href="https://wa.me/917208088788" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-500">WhatsApp</a>
                             <a href="https://www.linkedin.com/in/thisisyashdoshi" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-500">LinkedIn</a>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <div class="section-label text-zinc-600 mb-5">Products</div>
-                    <div class="flex flex-col gap-3">
-                        <a href="/products/press-plates/" class="link-line text-sm text-zinc-400">Press Plates</a>
-                        <a href="/products/fiberboard/" class="link-line text-sm text-zinc-400">Fiberboard (MDF/HDF)</a>
-                        <a href="/products/wood-flooring/" class="link-line text-sm text-zinc-400">Wood Flooring</a>
-                        <a href="/products/decorative-ss-panels/" class="link-line text-sm text-zinc-400">Decorative Steel</a>
-                        <a href="/products/industrial-press-plates/" class="link-line text-sm text-zinc-400">Industrial Plates</a>
-                        <a href="/products/" class="link-line text-sm text-zinc-500 mt-1">All Products →</a>
+                    <div class="mt-6" style="border-left:3px solid #3f3f46;padding-left:1rem;">
+                        <div class="text-xs text-zinc-500 leading-relaxed">#7, Building No. 1, New Sonal Link Industrial Estate,<br>Link Road, Malad (West), Mumbai — 400064<br>Maharashtra, India</div>
+                        <div class="text-xs text-zinc-600 mt-2">Mon–Sat, 10 AM – 6 PM IST</div>
                     </div>
                 </div>
                 <div>
-                    <div class="section-label text-zinc-600 mb-5">Company</div>
-                    <div class="flex flex-col gap-3">
-                        <a href="/about/" class="link-line text-sm text-zinc-400">About</a>
-                        <a href="/process/" class="link-line text-sm text-zinc-400">Process</a>
-                        <a href="/applications/" class="link-line text-sm text-zinc-400">Applications</a>
-                        <a href="/resources/" class="link-line text-sm text-zinc-400">Resources</a>
-                        <a href="/faq/" class="link-line text-sm text-zinc-400">FAQ</a>
-                        <a href="/contact/" class="link-line text-sm text-zinc-400">Contact</a>
+                    <div class="section-label text-zinc-600 mb-5">Products</div>
+                    <div class="flex flex-col gap-2">
+                        ${rawProducts.products.map(p => {
+                          const m = productMeta[p.id];
+                          return m ? `<a href="/products/${m.slug}/" class="link-line text-xs text-zinc-400">${p.name}</a>` : '';
+                        }).filter(Boolean).join('\n                        ')}
+                    </div>
+                </div>
+                <div>
+                    <div class="section-label text-zinc-600 mb-5">Navigate</div>
+                    <div class="flex flex-col gap-2">
+                        <a href="/products/" class="link-line text-xs text-zinc-400">All Products</a>
+                        <a href="/applications/" class="link-line text-xs text-zinc-400">Applications</a>
+                        <a href="/about/" class="link-line text-xs text-zinc-400">About</a>
+                        <a href="/process/" class="link-line text-xs text-zinc-400">Process</a>
+                        <a href="/insights/" class="link-line text-xs text-zinc-400">Insights</a>
+                        <a href="/resources/" class="link-line text-xs text-zinc-400">Resources</a>
+                        <a href="/faq/" class="link-line text-xs text-zinc-400">FAQ</a>
+                        <a href="/contact/" class="link-line text-xs text-zinc-400">Contact</a>
+                        <a href="/login/" class="link-line text-xs text-zinc-500">Trade Portal</a>
                     </div>
                 </div>
             </div>
             <div class="border-t border-zinc-800 pt-8 flex flex-col md-flex-row justify-between items-center gap-4">
                 <div class="section-label text-zinc-600">© <span class="yr">2026</span> Moldart · All rights reserved · Mumbai, India</div>
-                <div class="section-label text-zinc-700">Quality · Service · Price</div>
+                <div class="section-label text-zinc-700">Precision · Service · Supply</div>
             </div>
         </div>
     </footer>`;
@@ -656,7 +665,30 @@ function closingElements() {
             </div>
         </div>
     </div>
+    <button type="button" class="chatbot-toggle" id="chatbot-toggle" aria-label="Open chat assistant">
+        <svg class="chat-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <svg class="close-icon" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="chatbot-window" id="chatbot-window">
+        <div class="chatbot-header">
+            <div>
+                <div class="chatbot-header-title">Moldart Assistant</div>
+                <div class="chatbot-header-subtitle">Ask about products, specs, or supply</div>
+            </div>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chatbot-msg bot">Hello! I can help you find the right product, understand specifications, or guide you through our supply process. What are you looking for?</div>
+        </div>
+        <div class="chatbot-input-wrap">
+            <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Ask about products, grades, specs..." autocomplete="off">
+            <button type="button" class="chatbot-send" id="chatbot-send" aria-label="Send message">
+                <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>
+            </button>
+        </div>
+        <div class="chatbot-rate-limit">Powered by AI. Responses may be approximate.</div>
+    </div>
     <script src="/main.js?v=${VER}" defer></script>
+    <script src="/chatbot.js?v=${VER}" defer></script>
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "f6d93d7003db408894839c492c46acb9"}' crossorigin="anonymous"></script>
 </body>
 </html>`;
@@ -819,11 +851,10 @@ function generateHomepage() {
         </section>
 
         <section class="max-w mx-auto px py-16 fade-up">
-            <div class="grid grid-2 md-grid-4 gap-4">
-                <div class="trust-stat"><div class="trust-stat-value">35+</div><div class="trust-stat-label">Years Experience</div></div>
-                <div class="trust-stat"><div class="trust-stat-value">16</div><div class="trust-stat-label">Product Categories</div></div>
-                <div class="trust-stat"><div class="trust-stat-value">1989</div><div class="trust-stat-label">Founded, Mumbai</div></div>
-                <div class="trust-stat"><div class="trust-stat-value">2</div><div class="trust-stat-label">Core Sectors</div></div>
+            <div class="grid md-grid-3 gap-4">
+                <div class="trust-stat"><div class="trust-stat-value">35+</div><div class="trust-stat-label">Years in Business</div></div>
+                <div class="trust-stat"><div class="trust-stat-value">15+</div><div class="trust-stat-label">Product Families</div></div>
+                <div class="trust-stat"><div class="trust-stat-value">60+</div><div class="trust-stat-label">Countries Served</div></div>
             </div>
         </section>
 
@@ -948,6 +979,24 @@ function generateProductPage(productId) {
                     <p class="text-sm text-zinc-500 leading-relaxed">${escHtml(m.commercialNotes)}</p>
 
                     ${downloadsHtml}
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-zinc-50 border-b border-zinc-100 fade-up">
+            <div class="max-w mx-auto px py-16">
+                <div class="grid md-grid-2 gap-10 items-center">
+                    <div>
+                        <div class="section-label mb-6">Supply Process</div>
+                        <h2 class="font-display font-black text-3xl mb-4">HOW TO SOURCE.</h2>
+                        <p class="text-sm text-zinc-500 leading-relaxed">From initial requirement to final delivery, we coordinate the complete supply process for ${escHtml(p.name.toLowerCase())}.</p>
+                    </div>
+                    <div class="process-timeline" style="margin-top:0;">
+                        <div class="process-timeline-step"><div class="process-timeline-dot">01</div><div><div class="process-timeline-label">Share Requirement</div><div class="process-timeline-desc">Application, specifications, volume, and timeline.</div></div></div>
+                        <div class="process-timeline-step"><div class="process-timeline-dot">02</div><div><div class="process-timeline-label">Technical Review</div><div class="process-timeline-desc">Grade selection, material alignment, and supply path.</div></div></div>
+                        <div class="process-timeline-step"><div class="process-timeline-dot">03</div><div><div class="process-timeline-label">Sourcing & QC</div><div class="process-timeline-desc">Manufacturing coordination and quality validation.</div></div></div>
+                        <div class="process-timeline-step"><div class="process-timeline-dot">04</div><div><div class="process-timeline-label">Delivery</div><div class="process-timeline-desc">Logistics, documentation, and delivery support.</div></div></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1116,21 +1165,26 @@ function generateResourcesPage() {
 
 function generateFAQPage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'FAQ' }]);
-  const faqItems = rawFaq.items;
+  // Flatten categories for schema
+  const allFaqItems = rawFaq.categories.flatMap(c => c.items);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqItems.map(q => ({ '@type': 'Question', name: q.question, acceptedAnswer: { '@type': 'Answer', text: q.answer } })) },
+    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: allFaqItems.map(q => ({ '@type': 'Question', name: q.question, acceptedAnswer: { '@type': 'Answer', text: q.answer } })) },
     { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/faq/#webpage', url: SITE + '/faq/', name: 'FAQ — Moldart India', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
-  const faqHtml = faqItems.map(q => `
-            <details class="faq-item border-b border-zinc-100 py-6">
-                <summary class="font-display font-bold text-base tracking-wider cursor-pointer flex items-center justify-between gap-4">
-                    <span>${escHtml(q.question)}</span>
-                    <svg class="icon icon-sm text-zinc-400 flex-shrink-0 faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9l6 6 6-6"/></svg>
-                </summary>
-                <p class="text-sm text-zinc-500 leading-relaxed mt-4">${escHtml(q.answer)}</p>
-            </details>`).join('\n');
+  const faqHtml = rawFaq.categories.map(cat => `
+            <div class="mb-10">
+                <div class="section-label mb-6">${escHtml(cat.name)}</div>
+                ${cat.items.map(q => `
+                <details class="faq-item border-b border-zinc-100 py-6">
+                    <summary class="font-display font-bold text-base tracking-wider cursor-pointer flex items-center justify-between gap-4">
+                        <span>${escHtml(q.question)}</span>
+                        <svg class="icon icon-sm text-zinc-400 flex-shrink-0 faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9l6 6 6-6"/></svg>
+                    </summary>
+                    <p class="text-sm text-zinc-500 leading-relaxed mt-4">${escHtml(q.answer)}</p>
+                </details>`).join('\n')}
+            </div>`).join('\n');
 
   return headTag({
     title: 'Frequently Asked Questions — Moldart India',
@@ -1144,6 +1198,7 @@ function generateFAQPage() {
             ${bc.html}
             <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Common Questions</span></div>
             <h1 class="page-heading mb-6">FAQ.</h1>
+            <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed">${allFaqItems.length} answers across ${rawFaq.categories.length} categories to help you source with clarity.</p>
         </section>
         <section class="max-w mx-auto px py-8" style="max-width:48rem;">
             ${faqHtml}
@@ -1154,6 +1209,7 @@ function generateFAQPage() {
     ${footer()}
     ${closingElements()}`;
 }
+
 
 function generateContactPage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Contact' }]);
@@ -1232,8 +1288,9 @@ function generateContactPage() {
                         </div>
                         <label class="form-group"><span class="form-label">Approximate Quantity / Project Scale</span><input type="text" name="quantity" class="form-input" placeholder="e.g. 500 sheets/month, one-time project, trial order..."></label>
                         <label class="form-group"><span class="form-label">Message *</span><textarea name="message" class="form-textarea" required aria-required="true" placeholder="Please describe your requirement: application, dimensions, finishes, or any specific questions..."></textarea></label>
+                        <p class="text-xs text-zinc-400 text-center mb-4">Your information is sent directly to our team and not shared with third parties.</p>
                         <button type="submit" class="btn-primary btn-lg" style="width:100%;justify-content:center;">Submit Inquiry</button>
-                        <p class="text-xs text-zinc-400 text-center">Your data is secure and will only be used to process your commercial inquiry.</p>
+                        <p class="text-xs text-zinc-500 text-center mt-4">Same-day response for standard inquiries. Technical specifications: 1–2 business days.</p>
                     </form>
                 </div>
 
@@ -1568,6 +1625,139 @@ function generateIndustryRedirect() {
 }
 
 // ============================================================
+// INSIGHTS
+// ============================================================
+function markdownToHtml(md) {
+  // Simple markdown→HTML for insights articles
+  let html = md;
+  // Headers
+  html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+  html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+  // Bold
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  // Unordered lists
+  html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+  html = html.replace(/(<li>.*<\/li>\n?)+/g, (m) => '<ul>' + m.trim() + '</ul>');
+  // Ordered lists
+  html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+  // Tables (simple)
+  html = html.replace(/^\|(.+)\|$/gm, (match, content) => {
+    const cells = content.split('|').map(c => c.trim());
+    if (cells.every(c => /^[-:]+$/.test(c))) return '';
+    const tag = cells.some(c => /\*\*/.test(c)) ? 'td' : 'td';
+    return '<tr>' + cells.map(c => `<${tag}>${c.replace(/\*\*/g, '')}</${tag}>`).join('') + '</tr>';
+  });
+  html = html.replace(/(<tr>.*<\/tr>\n?)+/g, (m) => '<table>' + m.trim() + '</table>');
+  // Paragraphs
+  html = html.split('\n\n').map(block => {
+    block = block.trim();
+    if (!block) return '';
+    if (block.startsWith('<h') || block.startsWith('<ul') || block.startsWith('<ol') || block.startsWith('<table') || block.startsWith('<li')) return block;
+    return '<p>' + block + '</p>';
+  }).join('\n');
+  return html;
+}
+
+function generateInsightsHub() {
+  const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Insights' }]);
+  const articles = rawInsights.articles;
+  const categories = [...new Set(articles.map(a => a.categoryLabel))];
+
+  const schemas = [
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/insights/#webpage', url: SITE + '/insights/', name: 'Insights — Technical Articles & Industry Guides | Moldart', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    bc.schema
+  ];
+
+  const filterBtns = `<div class="insights-filter-row">
+    <button class="insights-filter-btn is-active" data-filter="all">All</button>
+    ${categories.map(c => `<button class="insights-filter-btn" data-filter="${c}">${c}</button>`).join('\n    ')}
+  </div>`;
+
+  const cardsHtml = articles.map(a => `
+    <a href="/insights/${a.slug}/" class="insight-card" data-category="${escHtml(a.categoryLabel)}">
+        <div class="insight-card-type">${escHtml(a.type)}</div>
+        <div class="insight-card-title">${escHtml(a.title)}</div>
+        <div class="insight-card-excerpt">${escHtml(a.excerpt).substring(0, 160)}...</div>
+        <div class="insight-card-meta">
+            <span>${a.date}</span>
+            <span>${a.readTime} read</span>
+        </div>
+    </a>`).join('\n');
+
+  return headTag({
+    title: 'Insights — Technical Articles & Industry Guides | Moldart',
+    desc: `${articles.length} technical articles covering product specifications, application guides, quality standards, and procurement strategies for industrial materials.`,
+    canonical: '/insights/',
+    schemas
+  }) + '\n' + nav('insights') + `
+
+    <main id="main-content" class="pt-16">
+        <section class="max-w mx-auto px py-20 border-b border-zinc-100">
+            ${bc.html}
+            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Technical Library</span></div>
+            <h1 class="page-heading">${articles.length} TECHNICAL<br>ARTICLES.</h1>
+            <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed mt-6">In-depth guides on product specifications, application best practices, quality standards, and procurement strategies — written by the Moldart technical team.</p>
+        </section>
+        <section class="max-w mx-auto px py-12 fade-up">
+            ${filterBtns}
+            <div class="insights-grid" id="insights-grid">
+                ${cardsHtml}
+            </div>
+        </section>
+        ${ctaBlock('NEED SPECIFIC<br>GUIDANCE?', 'Our technical team offers specification support tailored to your project requirements.', 'Contact Us', '/contact/', 'View Products', '/products/')}
+    </main>
+
+    ${footer()}
+    ${closingElements()}`;
+}
+
+function generateInsightArticle(article) {
+  const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Insights', url: '/insights/' }, { name: article.title.length > 50 ? article.title.substring(0, 47) + '...' : article.title }]);
+  const schemas = [
+    { '@context': 'https://schema.org', '@type': 'Article', headline: article.title, author: { '@type': 'Organization', name: 'Moldart' }, datePublished: article.date, publisher: { '@type': 'Organization', name: 'Moldart', url: SITE } },
+    bc.schema
+  ];
+
+  const contentHtml = markdownToHtml(article.content);
+
+  return headTag({
+    title: `${article.title} | Moldart Insights`,
+    desc: article.excerpt.substring(0, 155),
+    canonical: `/insights/${article.slug}/`,
+    schemas
+  }) + '\n' + nav('insights') + `
+
+    <main id="main-content" class="pt-16">
+        <section class="max-w mx-auto px py-20 border-b border-zinc-100">
+            ${bc.html}
+            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">${escHtml(article.categoryLabel)} · ${escHtml(article.type)}</span></div>
+            <h1 class="page-heading" style="font-size:clamp(1.5rem,4vw,2.5rem);">${escHtml(article.title)}</h1>
+            <div class="flex items-center gap-4 mt-6 text-sm text-zinc-500">
+                <span>${article.date}</span>
+                <span>·</span>
+                <span>${article.readTime} read</span>
+                <span>·</span>
+                <span>${escHtml(article.author)}</span>
+            </div>
+        </section>
+        <section class="max-w mx-auto px py-12">
+            <div class="insight-article">
+                ${contentHtml}
+            </div>
+        </section>
+        <section class="max-w mx-auto px py-12 border-t border-zinc-100 fade-up">
+            <div class="flex flex-col md-flex-row gap-4 justify-between items-center">
+                <a href="/insights/" class="btn-outline">← Back to Insights</a>
+                <a href="/contact/?product=${encodeURIComponent(article.category)}" class="btn-primary">Discuss This Product →</a>
+            </div>
+        </section>
+    </main>
+
+    ${footer()}
+    ${closingElements()}`;
+}
+
+// ============================================================
 // SITEMAP, ROBOTS, REDIRECTS
 // ============================================================
 function generateSitemap() {
@@ -1576,19 +1766,21 @@ function generateSitemap() {
     { url: '/products/', priority: '0.9', freq: 'weekly' },
     { url: '/applications/', priority: '0.8', freq: 'monthly' },
     { url: '/about/', priority: '0.8', freq: 'monthly' },
+    { url: '/insights/', priority: '0.8', freq: 'weekly' },
     { url: '/resources/', priority: '0.7', freq: 'monthly' },
     { url: '/contact/', priority: '0.8', freq: 'monthly' },
     { url: '/faq/', priority: '0.6', freq: 'monthly' },
     { url: '/process/', priority: '0.7', freq: 'monthly' }
   ];
-  // Add product pages
   for (const pid of Object.keys(productMeta)) {
     const m = productMeta[pid];
     pages.push({ url: `/products/${m.slug}/`, priority: '0.7', freq: 'monthly' });
   }
-  // Add application pages
   for (const app of applications) {
     pages.push({ url: `/applications/${app.slug}/`, priority: '0.7', freq: 'monthly' });
+  }
+  for (const article of rawInsights.articles) {
+    pages.push({ url: `/insights/${article.slug}/`, priority: '0.5', freq: 'monthly' });
   }
 
   const urls = pages.map(p => `  <url><loc>${SITE}${p.url}</loc><lastmod>${NOW}</lastmod><changefreq>${p.freq}</changefreq><priority>${p.priority}</priority></url>`).join('\n');
@@ -1628,6 +1820,7 @@ function generateRedirects() {
 /resources                /resources/               301
 /faq                      /faq/                     301
 /process                  /process/                 301
+/insights                 /insights/                301
 /*                        /404.html                 404`;
 }
 
@@ -1666,6 +1859,13 @@ function main() {
   writeFile(path.join(WORK, 'faq/index.html'), generateFAQPage());
   writeFile(path.join(WORK, 'process/index.html'), generateProcessPage());
 
+  // Insights hub + article pages
+  console.log('\nGenerating insights pages...');
+  writeFile(path.join(WORK, 'insights/index.html'), generateInsightsHub());
+  for (const article of rawInsights.articles) {
+    writeFile(path.join(WORK, `insights/${article.slug}/index.html`), generateInsightArticle(article));
+  }
+
   // Industry redirect
   writeFile(path.join(WORK, 'industry/index.html'), generateIndustryRedirect());
 
@@ -1676,7 +1876,7 @@ function main() {
   writeFile(path.join(WORK, '_redirects'), generateRedirects());
 
   // Count generated pages
-  const totalPages = 5 + Object.keys(productMeta).length + applications.length + 3 + 1; // core + products + apps + utility + industry redirect
+  const totalPages = 5 + Object.keys(productMeta).length + applications.length + 3 + 1 + 1 + rawInsights.articles.length;
   console.log(`\n=== Generated ${totalPages} pages ===`);
 }
 

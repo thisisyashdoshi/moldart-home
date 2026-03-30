@@ -15,9 +15,16 @@
       "industry": ["Lamination", "Flooring", "Furniture"],
       "image": "/images/page5_img3.webp",
       "summary": "Surface-critical lamination plates for texture fidelity, wear resistance, and repeatable finish quality.",
-      "specs": ["Grades: SS 304, SS 420, SS 630, SS 633 (High-performance)", "Core hardness: 40-45 HRC", "Chrome surface: 65-70 HRC", "Available in 1S or 2S configurations"],
+      "specs": ["Grades: SS 301, SS 420, SS 630/633 (Preferred)", "Core hardness: 40-45 HRC", "Chrome surface: 65-70 HRC", "Available in 1S or 2S configurations"],
       "applications": ["Decorative laminates", "Panel surfacing", "Furniture panels"],
-      "customization": "Custom surface patterns, specified chrome thickness (μm), and plate configurations available."
+      "customization": "Custom surface patterns, specified chrome thickness (μm), and plate configurations available.",
+      "technical": {
+        "grades": ["SS 301", "SS 420", "SS 630/633"],
+        "certifications": ["EN 438", "ISO 4586"],
+        "leadTime": "8–12 weeks",
+        "moq": "1 set",
+        "origin": "Europe / Asia"
+      }
     },
     {
       "id": "press-pads",
@@ -30,7 +37,14 @@
       "summary": "Silicone-copper composite pads engineered for uniform heat transfer and reliable pressure distribution.",
       "specs": ["Silicone-copper composite", "Approx. 80,000-100,000 cycles", "Maximum width: 3300 mm", "Supports uniform heat and pressure"],
       "applications": ["Short-cycle lamination", "High-volume pressing", "Decorative board manufacturing"],
-      "customization": "Widths and construction can be aligned to the press line."
+      "customization": "Widths and construction can be aligned to the press line.",
+      "technical": {
+        "grades": ["Silicone-copper composite"],
+        "certifications": ["OEM standard"],
+        "leadTime": "6–10 weeks",
+        "moq": "1 piece",
+        "origin": "Asia"
+      }
     },
     {
       "id": "engraved-cylinders",
@@ -41,9 +55,16 @@
       "industry": ["Lamination", "Furniture"],
       "image": "/images/page5_img1.webp",
       "summary": "Precision rotogravure cylinders for high-definition pattern transfer and repeat accuracy.",
-      "specs": ["Precision rotogravure", "Engraving depth: 18-25 um", "Surface roughness: Ra 0.2-0.3 um", "Built for HD pattern transfer"],
+      "specs": ["Precision rotogravure", "Engraving depth: 18-25 μm", "Surface roughness: Ra 0.2-0.3 μm", "Built for HD pattern transfer"],
       "applications": ["Decor paper printing", "Pattern development", "Woodgrain reproduction"],
-      "customization": "Pattern-specific engraving support available."
+      "customization": "Pattern-specific engraving support available.",
+      "technical": {
+        "grades": ["Chrome-plated steel"],
+        "certifications": ["ISO 12637"],
+        "leadTime": "6–8 weeks",
+        "moq": "1 cylinder",
+        "origin": "Europe / Asia"
+      }
     },
     {
       "id": "decor-paper",
@@ -56,7 +77,14 @@
       "summary": "Melamine-ready decor papers designed for stable print quality and production consistency.",
       "specs": ["Weight: 60-85 GSM", "Wet tensile: over 6N", "Melamine impregnation compatible", "Woodgrain and custom pattern options"],
       "applications": ["Decorative laminates", "Flooring overlays", "Furniture surfaces"],
-      "customization": "Design, finish, and decor coordination supported."
+      "customization": "Design, finish, and decor coordination supported.",
+      "technical": {
+        "grades": ["Decorative base paper"],
+        "certifications": ["EN 438", "ISO 4586"],
+        "leadTime": "4–6 weeks",
+        "moq": "500 kg",
+        "origin": "Asia"
+      }
     },
     {
       "id": "plywood",
@@ -67,9 +95,16 @@
       "industry": ["Furniture", "Architecture"],
       "image": "/images/page6_img1.webp",
       "summary": "Structural and furniture-grade plywood for high-strength panel applications.",
-      "specs": ["Density: 500-700 kg/m3", "Thickness: 3-40 mm", "Shear strength: at least 1.5 MPa", "High-strength structural base"],
+      "specs": ["Density: 500-700 kg/m³", "Thickness: 3-40 mm", "Shear strength: at least 1.5 MPa", "High-strength structural base"],
       "applications": ["Furniture carcasses", "Interior fit-outs", "Architectural panels"],
-      "customization": "Core build-up and thickness can be aligned to project needs."
+      "customization": "Core build-up and thickness can be aligned to project needs.",
+      "technical": {
+        "grades": ["BWP", "MR", "Commercial"],
+        "certifications": ["IS 710", "IS 303", "CE"],
+        "leadTime": "3–5 weeks",
+        "moq": "100 sheets",
+        "origin": "Asia"
+      }
     },
     {
       "id": "fiberboard",
@@ -80,9 +115,16 @@
       "industry": ["Furniture", "Flooring", "Architecture"],
       "image": "/images/page6_img3.webp",
       "summary": "MDF and HDF engineered options with exceptionally smooth surfaces for high-gloss lamination, painting, and precision conversion.",
-      "specs": ["MDF density: 700-820 kg/m3", "HDF density: 780-900 kg/m3", "EU E1, TSCA Title VI, and Japan F4 star", "Moisture Resistant (MR) grades available"],
+      "specs": ["MDF density: 700-820 kg/m³", "HDF density: 780-900 kg/m³", "EU E1, TSCA Title VI, and Japan F4 star", "Moisture Resistant (MR) grades available"],
       "applications": ["Furniture fronts", "Door skins", "Decorative panel systems", "Flooring cores"],
-      "customization": "Density profiles and emission standards can be perfectly matched to destination market."
+      "customization": "Density profiles and emission standards can be perfectly matched to destination market.",
+      "technical": {
+        "grades": ["E0", "E1", "MR", "HMR"],
+        "certifications": ["EU E1", "TSCA Title VI", "JIS F4★", "CE", "FSC"],
+        "leadTime": "3–5 weeks",
+        "moq": "1 container (20ft)",
+        "origin": "Europe / Asia"
+      }
     },
     {
       "id": "wood-flooring",
@@ -95,7 +137,14 @@
       "summary": "Engineered flooring systems compliant with EN 13329 standards, focused on wear resistance and dimensional stability.",
       "specs": ["HDF E1 or Hydro HDF (Water-resistant) core", "Wear class: AC3-AC5 (Class 31-33)", "Embossed, Woodgrain, or EIR (Deep Emboss)", "Precision Unilin / Valinge click-lock"],
       "applications": ["Residential flooring", "Commercial interiors", "Hospitality projects"],
-      "customization": "Decor matching, wear class scaling, and full accessory coordination (skirting, profiles)."
+      "customization": "Decor matching, wear class scaling, and full accessory coordination (skirting, profiles).",
+      "technical": {
+        "grades": ["AC3", "AC4", "AC5"],
+        "certifications": ["EN 13329", "CE", "ISO 10582"],
+        "leadTime": "4–6 weeks",
+        "moq": "500 sqm",
+        "origin": "Europe / Asia"
+      }
     },
     {
       "id": "custom-furniture",
@@ -108,7 +157,14 @@
       "summary": "CAD/CNC-driven furniture development for hospitality, residential, and retail environments.",
       "specs": ["CAD/CNC engineered", "MDF, HDF, and plywood cores", "Built to bespoke specifications", "Suitable for hospitality, retail, and residential use"],
       "applications": ["Hospitality furniture", "Retail fixtures", "Custom interior packages"],
-      "customization": "Designed and built to project-specific layouts and finishes."
+      "customization": "Designed and built to project-specific layouts and finishes.",
+      "technical": {
+        "grades": ["Project-specific"],
+        "certifications": ["FIRA", "BIFMA (on request)"],
+        "leadTime": "6–10 weeks",
+        "moq": "Project basis",
+        "origin": "Asia"
+      }
     },
     {
       "id": "osb",
@@ -121,7 +177,14 @@
       "summary": "High-strength oriented strand board compliant with EN 13986 and EN 300 standards for structural and heavy-duty load bearing.",
       "specs": ["OSB/3 and Fine OSB (F-OSB)", "ENF grade (No Added Formaldehyde)", "CARB-NAF & EPA-NAF certified", "FSC certified & Japan F4 star (JAS)"],
       "applications": ["Load-bearing construction", "Furniture frameworks", "Packaging"],
-      "customization": "Available in 6mm, 9mm, 15mm, and custom cut-to-size formats."
+      "customization": "Available in 6mm, 9mm, 15mm, and custom cut-to-size formats.",
+      "technical": {
+        "grades": ["OSB/3", "F-OSB", "ENF"],
+        "certifications": ["EN 13986", "EN 300", "CARB-NAF", "EPA-NAF", "FSC", "JAS F4★"],
+        "leadTime": "3–5 weeks",
+        "moq": "1 container (20ft)",
+        "origin": "Europe"
+      }
     },
     {
       "id": "particleboard",
@@ -132,9 +195,16 @@
       "industry": ["Furniture", "Architecture"],
       "image": "/images/page6_img4.webp",
       "summary": "Cost-effective, highly workable particleboard cores engineered for commercial furniture manufacturing.",
-      "specs": ["Density: 650-760 kg/m3", "Thickness: 9-38 mm", "E1, TSCA Title VI, and Japan F4 star compliant", "MR and EN 312 P6 grades available"],
+      "specs": ["Density: 650-760 kg/m³", "Thickness: 9-38 mm", "E1, TSCA Title VI, and Japan F4 star compliant", "MR and EN 312 P6 grades available"],
       "applications": ["Office furniture", "Cabinetry", "Shelving systems"],
-      "customization": "Custom thicknesses, moisture resistance scaling, and lamination prep."
+      "customization": "Custom thicknesses, moisture resistance scaling, and lamination prep.",
+      "technical": {
+        "grades": ["P2", "P6", "MR"],
+        "certifications": ["EN 312", "E1", "TSCA Title VI", "JIS F4★"],
+        "leadTime": "3–5 weeks",
+        "moq": "1 container (20ft)",
+        "origin": "Europe / Asia"
+      }
     },
     {
       "id": "flooring-accessories",
@@ -147,7 +217,14 @@
       "summary": "Coordinated transition profiles, skirting, and stair nosing to complete laminate flooring installations.",
       "specs": ["T-bar, End cap, Stair nosing", "Coordinated with floor decor", "Base material: Aluminium, MDF, or PVC", "Durable wear surface"],
       "applications": ["Room transitions", "Wall skirting", "Staircases"],
-      "customization": "Profiles custom matched to any specific floor decor."
+      "customization": "Profiles custom matched to any specific floor decor.",
+      "technical": {
+        "grades": ["Aluminium", "MDF", "PVC"],
+        "certifications": ["EN 13329"],
+        "leadTime": "4–6 weeks",
+        "moq": "200 pieces",
+        "origin": "Europe / Asia"
+      }
     },
     {
       "id": "ready-made-furniture",
@@ -160,7 +237,14 @@
       "summary": "Precision-manufactured modular furniture components and assemblies for commercial and residential use.",
       "specs": ["Melamine or HPL faced", "Scratch resistance over 3N", "CNC precision within 0.1 mm", "PVC/ABS edging 0.4-2.0 mm"],
       "applications": ["Office workstations", "Modular kitchens", "Wardrobe systems"],
-      "customization": "Flat-pack or assembled delivery based on project requirements."
+      "customization": "Flat-pack or assembled delivery based on project requirements.",
+      "technical": {
+        "grades": ["Melamine", "HPL-faced"],
+        "certifications": ["FIRA", "EN 14322"],
+        "leadTime": "4–8 weeks",
+        "moq": "50 units",
+        "origin": "Asia"
+      }
     },
     {
       "id": "decorative-panels",
@@ -173,7 +257,14 @@
       "summary": "Premium stainless steel panels with custom finishes and color profiles for high-end architectural and interior use.",
       "specs": ["Grades: SS 304, SS 316L (on request)", "Finishes: Hairline, Mirror No.8, Vibration, Bead Blast, Etched, Embossed (5WL)", "PVD: Gold, Rose Gold, Black, Bronze, Champagne", "Optional Anti-Fingerprint (AFP) coating"],
       "applications": ["Elevator cabins", "Wall cladding", "Retail displays"],
-      "customization": "Exact color matching, bespoke etching patterns, and protective film options."
+      "customization": "Exact color matching, bespoke etching patterns, and protective film options.",
+      "technical": {
+        "grades": ["SS 304", "SS 316L"],
+        "certifications": ["ASTM A240", "EN 10088"],
+        "leadTime": "4–6 weeks",
+        "moq": "50 sheets",
+        "origin": "Asia"
+      }
     },
     {
       "id": "ss-profiles",
@@ -186,7 +277,14 @@
       "summary": "Precision-formed stainless steel profiles, trims, and inlays for seamless architectural transitions and edge protection.",
       "specs": ["Types: T-Profile (Inlay), U, L, C, and Box-profiles", "Finishes: Hairline, Mirror, and PVD color matched", "Grades: SS 304 / 316", "Length: Up to 3000 mm"],
       "applications": ["Wall panel trims", "Floor transitions", "Furniture inlay accents"],
-      "customization": "Custom folding geometries, grooving, and exact color matching to panels."
+      "customization": "Custom folding geometries, grooving, and exact color matching to panels.",
+      "technical": {
+        "grades": ["SS 304", "SS 316"],
+        "certifications": ["ASTM A240", "EN 10088"],
+        "leadTime": "3–5 weeks",
+        "moq": "100 pieces",
+        "origin": "Asia"
+      }
     },
     {
       "id": "ss-furniture",
@@ -199,7 +297,14 @@
       "summary": "Decorative stainless-steel furniture with plated finishes and mixed-material top options.",
       "specs": ["Tables, consoles, and partitions", "PVD and electroplated finish options", "Marble, glass, and MDF tops", "Custom design support"],
       "applications": ["Luxury furniture", "Lobby features", "Retail and hospitality interiors"],
-      "customization": "Structure, finish, and top material can be customized."
+      "customization": "Structure, finish, and top material can be customized.",
+      "technical": {
+        "grades": ["SS 304", "SS 316"],
+        "certifications": ["BIFMA (on request)"],
+        "leadTime": "6–10 weeks",
+        "moq": "5 pieces",
+        "origin": "Asia"
+      }
     },
     {
       "id": "industrial-press-plates",
@@ -207,12 +312,19 @@
       "material": "Steel",
       "stage": "Raw Materials",
       "use": "Tooling",
-      "industry": ["Lamination", "Architecture"],
+      "industry": ["Lamination", "Architecture", "PCB/CCL"],
       "image": "/images/page9_img4.webp",
       "summary": "Heavy-duty steel plates engineered for high-pressure technical laminates, CCL, and PCB manufacturing.",
-      "specs": ["Grades: SS 630, SS 304", "Strict tolerances for Flatness, Parallelism, and Thickness", "High thermal conductivity", "Demagnetization (Residual Magnetism) control for PCB/CCL"],
+      "specs": ["Grades: SS 420, SS 630/633 (Preferred), SS 301", "Strict tolerances for Flatness, Parallelism, and Thickness", "High thermal conductivity", "Demagnetization (Residual Magnetism) control for PCB/CCL"],
       "applications": ["Copper-clad laminates (CCL)", "Printed circuit boards (PCB)", "Industrial high-pressure laminates (HPL)"],
-      "customization": "Machined to exact parallel tolerances and demagnetized per specific technical requirements."
+      "customization": "Machined to exact parallel tolerances and demagnetized per specific technical requirements.",
+      "technical": {
+        "grades": ["SS 420", "SS 630/633", "SS 301"],
+        "certifications": ["EN 438", "IPC-4101"],
+        "leadTime": "8–12 weeks",
+        "moq": "1 set",
+        "origin": "Europe / Asia"
+      }
     }
   ]
 }

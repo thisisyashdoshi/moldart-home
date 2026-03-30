@@ -201,7 +201,9 @@ const renderMatrix = (products) => `
         <th>Product</th>
         <th>Main Function</th>
         <th>Typical Industries</th>
-        <th>Customization</th>
+        <th>Material Grades</th>
+        <th>Certifications</th>
+        <th>Lead Time</th>
         <th>Inquiry Route</th>
       </tr>
     </thead>
@@ -211,7 +213,9 @@ const renderMatrix = (products) => `
           <td><strong>${escapeHTML(p.name)}</strong></td>
           <td>${escapeHTML(p.use)}</td>
           <td>${p.industry.map((i) => escapeHTML(i)).join(", ")}</td>
-          <td>${escapeHTML(p.customization)}</td>
+          <td>${p.technical?.grades ? p.technical.grades.join(", ") : "-"}</td>
+          <td>${p.technical?.certifications ? p.technical.certifications.join(", ") : "-"}</td>
+          <td>${escapeHTML(p.technical?.leadTime || "-")}</td>
           <td><a href="/contact/?product=${encodeURIComponent(p.name)}">Contact</a></td>
         </tr>
       `).join("")}
@@ -301,7 +305,7 @@ const initIndustryExplorer = async () => {
         </section>
         <section class="faq-shell fade-up visible mt-10">
           <div class="section-label mb-4">Commercial FAQ</div>
-          <div id="directory-faq">${faq.items.map((item, idx) => `
+          <div id="directory-faq">${(faq.categories ? faq.categories.flatMap(c => c.items) : faq.items || []).map((item, idx) => `
             <details class="faq-item"${idx === 0 ? " open" : ""}>
               <summary>${item.question}</summary>
               <p>${item.answer}</p>
@@ -416,6 +420,8 @@ const initCommandPalette = () => {
     { type: "Page", title: "Contact & Inquiry", url: "/contact/", icon: iconPhone },
     { type: "Page", title: "FAQ", url: "/faq/", icon: iconQuestion },
     { type: "Page", title: "How We Work", url: "/process/", icon: iconActivity },
+    { type: "Page", title: "Insights", url: "/insights/", icon: iconFile },
+    { type: "Page", title: "Trade Portal", url: "/login/", icon: iconGlobe },
 
     // Lamination Tooling
     { type: "Lamination Tooling", title: "Press Plates", url: "/products/press-plates/", icon: iconBox },
@@ -623,6 +629,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollToTop();
   initLightbox();
   initFormLoading();
+  initChatbot();
+  initInsightsFilter();
 
   const isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
   document.querySelectorAll(".cmd-k-hint kbd").forEach((kbd) => {
