@@ -1,6 +1,8 @@
-name = "moldart-india"
+name = "moldart-website"
+compatibility_date = "2024-12-01"
 pages_build_output_dir = "."
-compatibility_date = "2024-03-30"
 
-[vars]
-# Provide OPENROUTER_API_KEY in Cloudflare Pages Dashboard for API authentication
+# Environment variables are set in the Cloudflare Pages dashboard:
+# OPENROUTER_API_KEY = your OpenRouter API key
+# LLM_BASE_URL = https://openrouter.ai/api/v1 (optional)
+# CHAT_MODEL = google/gemini-2.0-flash-001 (optional)

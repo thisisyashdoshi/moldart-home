@@ -1,7 +1,7 @@
 "use strict";
 
-/* Chatbot Widget */
-(function() {
+/* Chatbot Widget — exposes initChatbot() for main.js */
+function initChatbot() {
   var toggle = document.getElementById("chatbot-toggle");
   var win = document.getElementById("chatbot-window");
   var input = document.getElementById("chatbot-input");
@@ -9,7 +9,7 @@
   var messages = document.getElementById("chatbot-messages");
   if (!toggle || !win) return;
 
-  var history = [{ role: "system", content: "You are Moldart Assistant for Moldart India. Moldart supplies press plates (SS 301/420/630-633), press pads, engraved cylinders, decor paper, plywood, MDF/HDF, OSB, particleboard, wood flooring, flooring accessories, ready-made furniture, custom furniture, decorative SS panels, SS profiles, SS furniture, and industrial press plates for HPL/CCL/PCB. Founded 1989, Mumbai. Be concise and helpful. If unsure, suggest contacting info@moldartindia.com or +91 7208088788." }];
+  var history = [{ role: "system", content: "You are Moldart Assistant for Moldart India — a B2B sourcing and supply partner for industrial materials. Moldart supplies: press plates (SS 301/420/630-633), press pads, engraved cylinders, decor paper, plywood, MDF/HDF, OSB, particleboard, wood flooring, flooring accessories, ready-made furniture, custom furniture, decorative SS panels (304/316L), SS profiles, SS furniture, and industrial press plates for HPL/CCL/PCB. Founded 1989, head office in Mumbai. Export to 60+ countries. Be concise, factual, and helpful. For pricing or custom specs, suggest contacting info@moldartindia.com or WhatsApp +91 7208088788. Never fabricate specifications." }];
 
   function esc(s) { var d = document.createElement("div"); d.appendChild(document.createTextNode(s)); return d.innerHTML; }
 
@@ -57,6 +57,10 @@
     .then(function(res) {
       hideTyping();
       if (!res.ok) {
+        if (res.status === 429) {
+          addMsg("Daily message limit reached. Please contact <a href='mailto:info@moldartindia.com'>info@moldartindia.com</a> or WhatsApp +91 7208088788.", "bot");
+          return;
+        }
         addMsg("Connection issue. Please contact <a href='mailto:info@moldartindia.com'>info@moldartindia.com</a>.", "bot");
         return;
       }
@@ -76,10 +80,12 @@
 
   if (send) send.addEventListener("click", doSend);
   if (input) input.addEventListener("keydown", function(e) { if (e.key === "Enter") doSend(); });
-})();
 
-/* Insights Filter */
-(function() {
+  addMsg("Hello! I'm the Moldart Assistant. How can I help you today? I can answer questions about our products, specifications, and services.", "bot");
+}
+
+/* Insights Filter — exposes initInsightsFilter() for main.js */
+function initInsightsFilter() {
   var grid = document.getElementById("insights-grid");
   if (!grid) return;
   var btns = document.querySelectorAll(".insights-filter-btn");
@@ -94,4 +100,4 @@
       });
     });
   });
-})();
+}
