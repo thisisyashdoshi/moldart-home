@@ -4,7 +4,10 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "build": "node build.js",
+    "dev": "node preview-server.js",
+    "build": "node generate.js && node build.js",
+    "generate": "node generate.js",
+    "preview": "node preview-server.js",
     "minify:css": "cleancss -o styles.css styles.css",
     "minify:js": "terser main.js -o main.js -c -m"
   },

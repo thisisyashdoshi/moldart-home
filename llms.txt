@@ -1,0 +1,15 @@
+# Moldart
+
+## Primary Pages
+- Home: https://moldartindia.com/
+- Solutions: https://moldartindia.com/solutions/
+- Resources: https://moldartindia.com/resources/
+- Insights: https://moldartindia.com/insights/
+- Contact: https://moldartindia.com/contact/
+- About: https://moldartindia.com/about/
+
+## Key Topics
+- Solution systems and product stacks
+- Product sheets and technical references
+- Technical guides, buyer notes, and comparison articles
+- Downloadable catalogues, finish decks, and PDFs

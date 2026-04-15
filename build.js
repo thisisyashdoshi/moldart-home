@@ -6,6 +6,16 @@ const { execSync } = require('child_process');
 const WORK = __dirname;
 const IMG = path.join(WORK, 'images');
 
+function replaceFile(src, dest) {
+  try {
+    fs.renameSync(src, dest);
+  } catch (err) {
+    if (err.code !== 'EPERM' && err.code !== 'EACCES') throw err;
+    fs.copyFileSync(src, dest);
+    fs.unlinkSync(src);
+  }
+}
+
 async function generateAVIF() {
   const files = fs.readdirSync(IMG).filter(f => f.endsWith('.webp'));
   console.log(`Converting ${files.length} WebP images to AVIF...`);
@@ -52,8 +62,13 @@ async function compressOversized() {
       await sharp(src).webp({ quality: q }).toFile(tmp);
       const newSize = fs.statSync(tmp).size;
       if (newSize <= maxKB * 1024 || q === 30) {
-        fs.renameSync(tmp, src);
-        console.log(`  ${file}: ${(origSize/1024).toFixed(0)}KB → ${(newSize/1024).toFixed(0)}KB (q=${q})`);
+        try {
+          replaceFile(tmp, src);
+          console.log(`  ${file}: ${(origSize/1024).toFixed(0)}KB → ${(newSize/1024).toFixed(0)}KB (q=${q})`);
+        } catch (err) {
+          if (fs.existsSync(tmp)) fs.unlinkSync(tmp);
+          console.warn(`  WARN ${file}: could not replace original file (${err.code || err.message}), keeping existing asset`);
+        }
         break;
       }
       fs.unlinkSync(tmp);

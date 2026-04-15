@@ -6,7 +6,30 @@ const path = require('path');
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.14';
+const VER = '2026.25';
+const FOUNDING_YEAR = 1989;
+const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
+const FEATURED_INSIGHT_LIMIT = 24;
+const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
+const BRAND_LINE = 'Verified sourcing and supply for wood and steel programmes.';
+const NAV_SEARCH_META = 'Solutions • Product sheets • Resources • Guides • Contact • About';
+const VERIFICATION_DISCLOSURE = 'Verified against the internal company profile, the company LinkedIn page, and public business listings. Exact commercial values are confirmed per enquiry.';
+const VERIFIED_SOURCE_ITEMS = [
+  { title: 'Internal company profile', detail: 'Primary source for company history, sectors, and the most reliable technical reference points used on this site.' },
+  { title: 'Company LinkedIn page', detail: 'Secondary public verification for founded year, Mumbai HQ, sectors served, and the sourcing-led operating model.' },
+  { title: 'Public business listings', detail: 'Used only as secondary cross-checks for address and long-running company presence; not for unsupported superlatives.' }
+];
+const VERIFIED_FACT_ITEMS = [
+  { label: 'Founded', value: '1989', note: 'Used consistently across internal and public sources' },
+  { label: 'Headquarters', value: 'Mumbai', note: 'Malad West office presented as primary contact point' },
+  { label: 'Model', value: 'Source → Verify → Supply', note: 'The site now presents Moldart as a sourcing-and-supply partner, not a marketplace' },
+  { label: 'Core route', value: 'India + China', note: 'Mumbai-led coordination with programme-led sourcing support' }
+];
+const SUPPLY_FLOW_ITEMS = [
+  { step: '01', title: 'Source', detail: 'Start from the actual requirement, then align the likely supply route instead of quoting a generic equivalent.' },
+  { step: '02', title: 'Verify', detail: 'Use the profile PDF, reference decks, and samples to validate fit before volume or price becomes the only conversation.' },
+  { step: '03', title: 'Supply', detail: 'Confirm grade, finish, commercial route, and documentation only after the technical path is clear.' }
+];
 
 // ============================================================
 // READ EXISTING DATA
@@ -14,6 +37,7 @@ const VER = '2026.14';
 const rawProducts = JSON.parse(fs.readFileSync(path.join(WORK, 'data/product-directory.json'), 'utf8'));
 const rawFaq = JSON.parse(fs.readFileSync(path.join(WORK, 'data/faq.json'), 'utf8'));
 const rawInsights = JSON.parse(fs.readFileSync(path.join(WORK, 'data/insights.json'), 'utf8'));
+const getTotalResourceItems = () => resourceGroups.reduce((total, group) => total + group.items.length, 0);
 
 // ============================================================
 // EXTENDED PRODUCT METADATA
@@ -22,16 +46,16 @@ const productMeta = {
   'press-plates': {
     slug: 'press-plates',
     seoTitle: 'Press Plates Supplier | Lamination Press Plates — Moldart India',
-    metaDesc: 'Lamination press plates in SS 301, SS 420, and SS 630/633 grades. Custom surface patterns and chrome specifications for decorative laminate manufacturing.',
-    overview: 'Moldart supplies surface-critical press plates engineered for texture fidelity, wear resistance, and repeatable finish quality in decorative laminate production. Available in multiple stainless steel grades with custom chrome surface specifications, these plates are a core tooling component in short-cycle and multi-daylight lamination presses.',
+    metaDesc: 'Lamination press plates in SS 304, SS 420, and SS 630 grades with hard-chrome working surfaces for decorative laminate production.',
+    overview: 'Moldart supplies surface-critical press plates for decorative laminate production where texture fidelity, wear resistance, and repeatable finish quality matter. The reference position presented on this site keeps the focus on supported grades, hardness ranges, and application-led confirmation.',
     workflow: 'Press plates are the tooling surface in lamination presses. They transfer texture and finish to laminate surfaces during the pressing cycle, making them critical to final product quality.',
-    commercialNotes: 'Available in 1S and 2S configurations. Custom surface patterns and chrome thickness (μm) specifications supported. Grades range from SS 301 for standard use to SS 630/633 (preferred) for high-performance applications requiring superior hardness.',
+    commercialNotes: 'Available in 1S and 2S configurations on request. Final grade, surface pattern, chrome route, and quantity are confirmed against the actual programme rather than assumed in public copy.',
     relatedProducts: ['press-pads', 'engraved-cylinders', 'industrial-press-plates'],
     relatedApps: ['lamination', 'furniture'],
     downloads: [
-      { title: 'Press Plate — Basic Collection', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' },
-      { title: 'Press Plate — Texture Collection', url: '/downloads/PRESS PLATE - TEXTURE COLLECTION.pdf' },
-      { title: 'Press Plate — Shuttering Plywood', url: '/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf' }
+      { title: 'Press Plate Standard Collection', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' },
+      { title: 'Press Plate Texture Portfolio', url: '/downloads/PRESS PLATE - TEXTURE COLLECTION.pdf' },
+      { title: 'Press Plates for Shuttering Plywood', url: '/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf' }
     ]
   },
   'press-pads': {
@@ -44,7 +68,7 @@ const productMeta = {
     relatedProducts: ['press-plates', 'engraved-cylinders'],
     relatedApps: ['lamination'],
     downloads: [
-      { title: 'Introduction to Moldart', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
+      { title: 'Moldart Company Profile', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
     ]
   },
   'engraved-cylinders': {
@@ -57,7 +81,7 @@ const productMeta = {
     relatedProducts: ['decor-paper', 'press-plates'],
     relatedApps: ['lamination'],
     downloads: [
-      { title: 'Gravure Cylinder & Printed Decor Paper', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf' }
+      { title: 'Rotogravure Cylinders & Printed Decor Paper', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf' }
     ]
   },
   'decor-paper': {
@@ -70,9 +94,9 @@ const productMeta = {
     relatedProducts: ['engraved-cylinders', 'fiberboard', 'plywood'],
     relatedApps: ['lamination', 'furniture'],
     downloads: [
-      { title: 'Gravure Cylinder & Printed Decor Paper', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf' },
-      { title: 'LPL — GB Collection', url: '/downloads/LPL - GB - 01.pdf' },
-      { title: 'HPL — OL Collection 1', url: '/downloads/HPL - OL - 1.pdf' }
+      { title: 'Rotogravure Cylinders & Printed Decor Paper', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf' },
+      { title: 'LPL Decorative Collection GB-01', url: '/downloads/LPL - GB - 01.pdf' },
+      { title: 'HPL Overlay Collection OL-01', url: '/downloads/HPL - OL - 1.pdf' }
     ]
   },
   'plywood': {
@@ -85,8 +109,8 @@ const productMeta = {
     relatedProducts: ['fiberboard', 'particleboard', 'osb'],
     relatedApps: ['furniture', 'architecture'],
     downloads: [
-      { title: 'Press Plate — Shuttering Plywood', url: '/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf' },
-      { title: 'Introduction to Moldart', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
+      { title: 'Press Plates for Shuttering Plywood', url: '/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf' },
+      { title: 'Moldart Company Profile', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
     ]
   },
   'fiberboard': {
@@ -99,7 +123,7 @@ const productMeta = {
     relatedProducts: ['plywood', 'particleboard', 'wood-flooring'],
     relatedApps: ['furniture', 'flooring', 'architecture'],
     downloads: [
-      { title: 'Introduction to Moldart', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
+      { title: 'Moldart Company Profile', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
     ]
   },
   'osb': {
@@ -112,7 +136,7 @@ const productMeta = {
     relatedProducts: ['plywood', 'particleboard', 'fiberboard'],
     relatedApps: ['architecture', 'furniture'],
     downloads: [
-      { title: 'Introduction to Moldart', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
+      { title: 'Moldart Company Profile', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
     ]
   },
   'particleboard': {
@@ -125,7 +149,7 @@ const productMeta = {
     relatedProducts: ['plywood', 'fiberboard', 'osb'],
     relatedApps: ['furniture'],
     downloads: [
-      { title: 'Introduction to Moldart', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
+      { title: 'Moldart Company Profile', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
     ]
   },
   'wood-flooring': {
@@ -138,7 +162,7 @@ const productMeta = {
     relatedProducts: ['flooring-accessories', 'fiberboard'],
     relatedApps: ['flooring', 'architecture'],
     downloads: [
-      { title: 'Wood Flooring Catalog', url: '/downloads/WOOD - FLOORING.pdf' }
+      { title: 'Engineered Wood Flooring Catalog', url: '/downloads/WOOD - FLOORING.pdf' }
     ]
   },
   'flooring-accessories': {
@@ -151,7 +175,7 @@ const productMeta = {
     relatedProducts: ['wood-flooring'],
     relatedApps: ['flooring'],
     downloads: [
-      { title: 'Wood Flooring Catalog', url: '/downloads/WOOD - FLOORING.pdf' }
+      { title: 'Engineered Wood Flooring Catalog', url: '/downloads/WOOD - FLOORING.pdf' }
     ]
   },
   'ready-made-furniture': {
@@ -164,8 +188,8 @@ const productMeta = {
     relatedProducts: ['custom-furniture', 'plywood', 'fiberboard'],
     relatedApps: ['furniture'],
     downloads: [
-      { title: 'Furniture Catalog 1', url: '/downloads/WOOD - FURNITURE - 1.pdf' },
-      { title: 'Furniture Catalog 2', url: '/downloads/WOOD - FURNITURE - 2.pdf' }
+      { title: 'Furniture Program Catalog 01', url: '/downloads/WOOD - FURNITURE - 1.pdf' },
+      { title: 'Furniture Program Catalog 02', url: '/downloads/WOOD - FURNITURE - 2.pdf' }
     ]
   },
   'custom-furniture': {
@@ -178,38 +202,38 @@ const productMeta = {
     relatedProducts: ['ready-made-furniture', 'plywood', 'fiberboard'],
     relatedApps: ['furniture', 'architecture'],
     downloads: [
-      { title: 'Furniture Catalog 1', url: '/downloads/WOOD - FURNITURE - 1.pdf' },
-      { title: 'Furniture Catalog 3', url: '/downloads/WOOD - FURNITURE - 3.pdf' }
+      { title: 'Furniture Program Catalog 01', url: '/downloads/WOOD - FURNITURE - 1.pdf' },
+      { title: 'Furniture Program Catalog 03', url: '/downloads/WOOD - FURNITURE - 3.pdf' }
     ]
   },
   'decorative-panels': {
     slug: 'decorative-ss-panels',
     seoTitle: 'Decorative Stainless Steel Panels | PVD SS Sheets — Moldart India',
-    metaDesc: 'Premium decorative stainless steel panels in SS 304 and SS 316L. PVD finishes: Gold, Rose Gold, Black, Bronze. Hairline, Mirror, Etched, Embossed surfaces.',
-    overview: 'Moldart supplies premium decorative stainless steel panels with an extensive range of surface finishes and PVD color profiles for high-end architectural and interior applications. Available in SS 304 and SS 316L grades with optional anti-fingerprint coating.',
-    workflow: 'Decorative SS panels are used as wall cladding, elevator cabin interiors, retail displays, and architectural accent surfaces. They are cut to size, finished with the specified surface treatment and PVD color, then installed.',
-    commercialNotes: 'Grades: SS 304, SS 316L (on request). Surface finishes: Hairline, Mirror No.8, Vibration, Bead Blast, Etched, Embossed (5WL). PVD colors: Gold, Rose Gold, Black, Bronze, Champagne. Optional Anti-Fingerprint (AFP) coating. Custom color matching and etching patterns available.',
+    metaDesc: 'Decorative stainless steel panels for architectural interiors with SS 201 / 304 routes, Hairline, Mirror, and selected PVD finishes.',
+    overview: 'Moldart supplies decorative stainless steel panels for architectural and interior programmes where finish control, consistency, and application fit matter more than long finish lists. The public framing stays focused on the routes most clearly supported in the available material.',
+    workflow: 'Decorative SS panels are used as wall cladding, elevator cabin interiors, retail displays, and architectural accent surfaces. They are cut to size, finished with the specified surface treatment and approved finish route, then installed.',
+    commercialNotes: 'Common public reference points include SS 201 / 304 routes, Hairline, Mirror, and selected PVD finishes. Higher-corrosion environments, anti-fingerprint needs, and final finish approval are confirmed per enquiry.',
     relatedProducts: ['ss-profiles', 'ss-furniture'],
     relatedApps: ['architecture', 'metal-finishing'],
     downloads: [
-      { title: 'Antique Finishes', url: '/downloads/ANTIQUE.pdf' },
-      { title: 'Stamped Finishes', url: '/downloads/STAMPED.pdf' },
-      { title: 'Heat Printed Finishes', url: '/downloads/HEAT PRINTED.pdf' },
-      { title: 'Mosaic Finishes', url: '/downloads/MOSAIC.pdf' }
+      { title: 'Decorative SS Antique Finishes', url: '/downloads/ANTIQUE.pdf' },
+      { title: 'Decorative SS Stamped Finishes', url: '/downloads/STAMPED.pdf' },
+      { title: 'Decorative SS Heat-Printed Finishes', url: '/downloads/HEAT PRINTED.pdf' },
+      { title: 'Decorative SS Mosaic Finishes', url: '/downloads/MOSAIC.pdf' }
     ]
   },
   'ss-profiles': {
     slug: 'ss-profiles',
     seoTitle: 'Stainless Steel Profiles Supplier | SS Trims & Inlays — Moldart India',
-    metaDesc: 'Precision-formed SS profiles and trims in T, U, L, C, and Box types. SS 304/316 in Hairline, Mirror, and PVD finishes. Lengths up to 3000 mm.',
-    overview: 'Moldart supplies precision-formed stainless steel profiles, trims, and inlays for seamless architectural transitions and edge protection. Available in multiple profile types with finishes coordinated to decorative panel specifications.',
+    metaDesc: 'Precision-formed stainless steel profiles and trims in common architectural shapes, coordinated to decorative panel finish routes.',
+    overview: 'Moldart supplies stainless steel profiles, trims, and inlays for cleaner architectural transitions and edge detailing. The public-facing description keeps the emphasis on profile coordination, finish matching, and project-led confirmation.',
     workflow: 'SS profiles are used as transition trims, panel edging, floor-to-wall junctions, and decorative inlays in architectural interiors. They are typically installed alongside decorative stainless steel panels.',
-    commercialNotes: 'Profile types: T-Profile (Inlay), U, L, C, and Box-profiles. Finishes: Hairline, Mirror, and PVD color matched. Grades: SS 304 / 316. Length: Up to 3000 mm. Custom folding geometries and grooving available.',
+    commercialNotes: 'Common profile routes include T, U, L, C, and box forms with finish coordination to the selected panel programme. Final grade, length, folding geometry, and groove detail are confirmed per enquiry.',
     relatedProducts: ['decorative-panels', 'ss-furniture'],
     relatedApps: ['architecture'],
     downloads: [
-      { title: 'Profiles Catalog', url: '/downloads/PROFILE.pdf' },
-      { title: 'Divider Catalog', url: '/downloads/DIVIDER.pdf' }
+      { title: 'Stainless Steel Profiles Catalog', url: '/downloads/PROFILE.pdf' },
+      { title: 'Stainless Steel Divider Systems', url: '/downloads/DIVIDER.pdf' }
     ]
   },
   'ss-furniture': {
@@ -222,21 +246,21 @@ const productMeta = {
     relatedProducts: ['decorative-panels', 'ss-profiles'],
     relatedApps: ['architecture', 'furniture', 'metal-finishing'],
     downloads: [
-      { title: 'Antique Finishes', url: '/downloads/ANTIQUE.pdf' },
-      { title: 'Heat Printed Finishes', url: '/downloads/HEAT PRINTED.pdf' }
+      { title: 'Decorative SS Antique Finishes', url: '/downloads/ANTIQUE.pdf' },
+      { title: 'Decorative SS Heat-Printed Finishes', url: '/downloads/HEAT PRINTED.pdf' }
     ]
   },
   'industrial-press-plates': {
     slug: 'industrial-press-plates',
     seoTitle: 'Industrial Press Plates | HPL, CCL & PCB Press Plates — Moldart India',
-    metaDesc: 'Heavy-duty industrial press plates in SS 420, SS 630/633 (preferred), and SS 301 for HPL, CCL, and PCB manufacturing. Strict flatness and parallelism tolerances. Demagnetization control.',
-    overview: 'Moldart supplies heavy-duty steel plates engineered for high-pressure technical laminates, copper-clad laminates (CCL), and printed circuit board (PCB) manufacturing. These plates require strict dimensional tolerances and controlled magnetic properties.',
-    workflow: 'Industrial press plates are used in high-pressure presses for manufacturing technical laminates, CCL, and PCB substrates. They must maintain precise flatness, parallelism, and thermal conductivity under extreme pressing conditions.',
-    commercialNotes: 'Grades: SS 420, SS 630/633 (preferred), SS 301. Strict tolerances for flatness, parallelism, and thickness. High thermal conductivity. Demagnetization (residual magnetism) control available for PCB/CCL applications. Machined to exact specifications.',
+    metaDesc: 'Industrial press plates for CCL, PCB, and technical laminate pressing where flatness, parallelism, and surface discipline are critical.',
+    overview: 'Moldart supplies heavy-duty steel plates for high-pressure technical laminate, CCL, and PCB programmes where dimensional tolerance and surface discipline are more demanding than standard decorative lamination work.',
+    workflow: 'Industrial press plates are used in high-pressure presses for manufacturing technical laminates, CCL, and PCB substrates. They must maintain precise flatness, parallelism, and surface behaviour under demanding pressing conditions.',
+    commercialNotes: 'The public reference points stay focused on tolerance-led supply: flatness, parallelism, surface condition, and application fit. Final grade, magnetism control, and supporting documentation are confirmed per enquiry.',
     relatedProducts: ['press-plates', 'press-pads'],
     relatedApps: ['lamination', 'pcb-ccl'],
     downloads: [
-      { title: 'Press Plate — Basic Collection', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' }
+      { title: 'Press Plate Standard Collection', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' }
     ]
   }
 };
@@ -260,9 +284,9 @@ const applications = [
     ],
     products: ['press-plates', 'press-pads', 'engraved-cylinders', 'decor-paper', 'industrial-press-plates'],
     downloads: [
-      { title: 'Press Plate — Basic Collection', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' },
-      { title: 'Press Plate — Texture Collection', url: '/downloads/PRESS PLATE - TEXTURE COLLECTION.pdf' },
-      { title: 'Gravure Cylinder & Printed Decor Paper', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf' }
+      { title: 'Press Plate Standard Collection', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' },
+      { title: 'Press Plate Texture Portfolio', url: '/downloads/PRESS PLATE - TEXTURE COLLECTION.pdf' },
+      { title: 'Rotogravure Cylinders & Printed Decor Paper', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf' }
     ]
   },
   {
@@ -280,9 +304,9 @@ const applications = [
     ],
     products: ['plywood', 'fiberboard', 'particleboard', 'ready-made-furniture', 'custom-furniture', 'decor-paper'],
     downloads: [
-      { title: 'Furniture Catalog 1', url: '/downloads/WOOD - FURNITURE - 1.pdf' },
-      { title: 'Furniture Catalog 2', url: '/downloads/WOOD - FURNITURE - 2.pdf' },
-      { title: 'Furniture Catalog 3', url: '/downloads/WOOD - FURNITURE - 3.pdf' }
+      { title: 'Furniture Program Catalog 01', url: '/downloads/WOOD - FURNITURE - 1.pdf' },
+      { title: 'Furniture Program Catalog 02', url: '/downloads/WOOD - FURNITURE - 2.pdf' },
+      { title: 'Furniture Program Catalog 03', url: '/downloads/WOOD - FURNITURE - 3.pdf' }
     ]
   },
   {
@@ -300,7 +324,7 @@ const applications = [
     ],
     products: ['wood-flooring', 'flooring-accessories', 'fiberboard'],
     downloads: [
-      { title: 'Wood Flooring Catalog', url: '/downloads/WOOD - FLOORING.pdf' }
+      { title: 'Engineered Wood Flooring Catalog', url: '/downloads/WOOD - FLOORING.pdf' }
     ]
   },
   {
@@ -310,7 +334,7 @@ const applications = [
     metaDesc: 'Decorative stainless steel panels, profiles, and engineered wood substrates for architectural interiors. PVD finishes, structural panels, and custom fabrication.',
     overview: 'Moldart supplies materials for architectural interior projects — from decorative stainless steel panels and profiles to engineered wood substrates and custom furniture. The portfolio serves architects, interior designers, and project contractors who need premium materials with reliable technical specifications.',
     considerations: [
-      'Decorative SS panel grade selection (304 vs 316L) depends on environment and corrosion exposure',
+      'Decorative stainless-steel grade selection depends on environment, corrosion exposure, and the project finish route',
       'PVD color consistency across batches should be confirmed for large-area installations',
       'Structural panel selection depends on load, span, and environmental conditions',
       'Custom furniture lead times depend on complexity, finish, and production scheduling',
@@ -318,30 +342,30 @@ const applications = [
     ],
     products: ['decorative-panels', 'ss-profiles', 'ss-furniture', 'plywood', 'fiberboard', 'osb'],
     downloads: [
-      { title: 'Antique Finishes', url: '/downloads/ANTIQUE.pdf' },
-      { title: 'Profiles Catalog', url: '/downloads/PROFILE.pdf' },
-      { title: 'Mosaic Finishes', url: '/downloads/MOSAIC.pdf' }
+      { title: 'Decorative SS Antique Finishes', url: '/downloads/ANTIQUE.pdf' },
+      { title: 'Stainless Steel Profiles Catalog', url: '/downloads/PROFILE.pdf' },
+      { title: 'Decorative SS Mosaic Finishes', url: '/downloads/MOSAIC.pdf' }
     ]
   },
   {
     slug: 'metal-finishing',
     name: 'Metal Finishing',
     seoTitle: 'Decorative Metal Finishing | PVD Stainless Steel — Moldart India',
-    metaDesc: 'PVD-coated and electroplated stainless steel panels, profiles, and furniture. Custom finishes including Gold, Rose Gold, Black, Bronze, and Champagne.',
+    metaDesc: 'Decorative-finished stainless steel panels, profiles, and furniture for premium interiors, with finish approval confirmed per programme.',
     overview: 'Moldart supplies decorative stainless steel products with advanced surface finishing for premium interior and architectural applications. The metal finishing portfolio includes PVD coating, electroplating, etching, and embossing across panels, profiles, and furniture.',
     considerations: [
       'PVD coating provides superior durability and color consistency compared to electroplating',
       'Anti-fingerprint (AFP) coating is recommended for high-traffic surfaces',
       'Color matching across large orders requires production batch coordination',
       'Surface preparation (hairline, mirror, bead blast) affects the final PVD appearance',
-      'SS 316L should be specified for marine or high-humidity environments'
+      'Higher-corrosion environments require the grade and finish route to be confirmed early'
     ],
     products: ['decorative-panels', 'ss-profiles', 'ss-furniture'],
     downloads: [
-      { title: 'Antique Finishes', url: '/downloads/ANTIQUE.pdf' },
-      { title: 'Stamped Finishes', url: '/downloads/STAMPED.pdf' },
-      { title: 'Heat Printed Finishes', url: '/downloads/HEAT PRINTED.pdf' },
-      { title: 'Mosaic Finishes', url: '/downloads/MOSAIC.pdf' }
+      { title: 'Decorative SS Antique Finishes', url: '/downloads/ANTIQUE.pdf' },
+      { title: 'Decorative SS Stamped Finishes', url: '/downloads/STAMPED.pdf' },
+      { title: 'Decorative SS Heat-Printed Finishes', url: '/downloads/HEAT PRINTED.pdf' },
+      { title: 'Decorative SS Mosaic Finishes', url: '/downloads/MOSAIC.pdf' }
     ]
   },
   {
@@ -359,62 +383,143 @@ const applications = [
     ],
     products: ['industrial-press-plates'],
     downloads: [
-      { title: 'Press Plate — Basic Collection', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' }
+      { title: 'Press Plate Standard Collection', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' }
     ]
   }
 ];
+
+const SOLUTION_PRODUCT_ROLES = {
+  lamination: {
+    'press-plates': 'Defines the visible press surface, texture transfer, and finish repeatability in decorative lamination lines.',
+    'press-pads': 'Helps stabilise heat transfer and pressure equalisation across the press build-up.',
+    'engraved-cylinders': 'Creates the printed decor pattern that later becomes the visible surface language of the panel.',
+    'decor-paper': 'Carries the approved printed design into impregnation and pressing.',
+    'industrial-press-plates': 'Steps in when the programme moves into tighter-tolerance technical laminate, PCB, or CCL routes.'
+  },
+  furniture: {
+    plywood: 'Supports structural furniture parts where strength, screw holding, or substrate stability matter.',
+    fiberboard: 'Provides the smoother core route when paint, foil, melamine, or decorative facing needs a more uniform base.',
+    particleboard: 'Supports commercial furniture programmes where cost control and repeat conversion matter.',
+    'ready-made-furniture': 'Moves the conversation from raw board supply into finished modular or assembled output.',
+    'custom-furniture': 'Turns layouts, finish intent, and site conditions into a build-to-brief furniture route.',
+    'decor-paper': 'Supports décor alignment where the furniture programme depends on laminated visual surfaces.'
+  },
+  flooring: {
+    'wood-flooring': 'Acts as the finished walking surface and the main performance layer of the flooring system.',
+    'flooring-accessories': 'Closes the installation properly through skirting, stair nosing, and transition details.',
+    fiberboard: 'Supports the core build where density, lock precision, and surface readiness affect floor performance.'
+  },
+  architecture: {
+    'decorative-panels': 'Creates the visible stainless-steel surface language for cladding, lifts, features, and interiors.',
+    'ss-profiles': 'Finishes edges, transitions, joints, and inlay conditions so the panel route looks intentional and complete.',
+    'ss-furniture': 'Adds fabricated decorative pieces where the project needs furniture or feature elements in the same finish family.',
+    plywood: 'Supports backing, carcass, or hidden structural routes behind visible interior finishes.',
+    fiberboard: 'Supports smoother painted or laminated interior build-ups where face quality matters.',
+    osb: 'Supports selected structural or non-visible build-up conditions where panel strength matters more than a refined face.'
+  },
+  'metal-finishing': {
+    'decorative-panels': 'Acts as the main decorative sheet route when finish, reflection, and surface approval drive the decision.',
+    'ss-profiles': 'Keeps trims and divider details aligned with the approved decorative finish route.',
+    'ss-furniture': 'Extends the same finish logic into fabricated furniture or feature pieces.'
+  },
+  'pcb-ccl': {
+    'industrial-press-plates': 'Carries the tolerance-critical plate role for electronics lamination work where flatness, parallelism, and surface discipline are not optional.'
+  }
+};
+
+const SOLUTION_AUDIENCES = {
+  lamination: ['Procurement', 'Production teams', 'Quality teams', 'Technical buyers'],
+  furniture: ['Procurement', 'OEM teams', 'Design teams', 'Production teams'],
+  flooring: ['Category buyers', 'Project teams', 'Installation partners', 'Procurement'],
+  architecture: ['Architects', 'Interior teams', 'Procurement', 'Fabricators'],
+  'metal-finishing': ['Architects', 'Finish approvers', 'Procurement', 'Fabricators'],
+  'pcb-ccl': ['Technical buyers', 'Production engineers', 'Quality teams', 'Operations']
+};
+
+const SOLUTION_FLOWS = {
+  lamination: [
+    { title: 'Define the target surface', detail: 'Lock the finish language, plate condition expectations, and press context before asking for a generic quote.' },
+    { title: 'Align the tooling stack', detail: 'Confirm whether the programme needs only plates, or also pads, cylinders, decor paper, or industrial plate support.' },
+    { title: 'Approve the reference route', detail: 'Texture, pattern, and replacement expectations should be agreed before production scales.' }
+  ],
+  furniture: [
+    { title: 'Start from the end use', detail: 'Cabinetry, modular programmes, hospitality work, and custom fit-outs do not all need the same substrate route.' },
+    { title: 'Lock the board logic', detail: 'Strength, surface readiness, compliance, and finish route should be aligned before price comparison dominates.' },
+    { title: 'Move into finished output only when ready', detail: 'Ready-made or custom furniture works best after the board, finish, and layout logic are already clear.' }
+  ],
+  flooring: [
+    { title: 'Choose the floor system', detail: 'Traffic level, core build, and moisture exposure shape the right flooring route.' },
+    { title: 'Coordinate the accessories', detail: 'Skirting, transitions, and stair details should follow the floor decision, not appear as an afterthought.' },
+    { title: 'Confirm installation conditions', detail: 'Subfloor readiness, lock profile, and site conditions affect the final performance.' }
+  ],
+  architecture: [
+    { title: 'Begin with the visible surface', detail: 'The finish approval route matters because large-area stainless programmes expose inconsistency quickly.' },
+    { title: 'Align trims and support materials', detail: 'Profiles, backing materials, and fabricated pieces should follow the same approved route.' },
+    { title: 'Approve before scale', detail: 'Sample-backed finish approval is safer than assuming a brochure image will translate to project quantity.' }
+  ],
+  'metal-finishing': [
+    { title: 'Fix the finish family early', detail: 'Hairline, mirror, etched, stamped, or PVD routes should be narrowed before commercial negotiation.' },
+    { title: 'Coordinate decorative parts together', detail: 'Panels, trims, and furniture are easier to approve when they are treated as one finish system.' },
+    { title: 'Keep final approval sample-led', detail: 'Visual acceptance should be tied to the approved route, not only to a catalogue description.' }
+  ],
+  'pcb-ccl': [
+    { title: 'Start from tolerance, not only grade', detail: 'Electronics lamination decisions fail when the discussion stays too broad and grade-only.' },
+    { title: 'Match the line condition', detail: 'Flatness, parallelism, surface behaviour, and documentation should all align with the actual production line.' },
+    { title: 'Confirm incoming checks', detail: 'Inspection discipline at receipt matters because the downstream process is less forgiving.' }
+  ]
+};
 
 // ============================================================
 // RESOURCE/DOWNLOAD GROUPS
 // ============================================================
 const resourceGroups = [
   {
-    title: 'Company Introduction',
+    title: 'Company Overview',
     items: [
-      { title: 'Introduction to Moldart', desc: 'Company overview, capabilities, and product portfolio summary', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
+      { title: 'Moldart Company Profile', desc: 'Overview of operating model, sectors served, and product portfolio.', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
     ]
   },
   {
     title: 'Press Plates & Tooling',
     items: [
-      { title: 'Press Plate — Basic Collection', desc: 'Standard press plate patterns and specifications', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' },
-      { title: 'Press Plate — Texture Collection', desc: 'Textured surface press plate portfolio', url: '/downloads/PRESS PLATE - TEXTURE COLLECTION.pdf' },
-      { title: 'Press Plate — Shuttering Plywood', desc: 'Press plates for shuttering plywood production', url: '/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf' }
+      { title: 'Press Plate Standard Collection', desc: 'Standard lamination press plate patterns and technical references.', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' },
+      { title: 'Press Plate Texture Portfolio', desc: 'Textured press plate finishes for decorative laminate production.', url: '/downloads/PRESS PLATE - TEXTURE COLLECTION.pdf' },
+      { title: 'Press Plates for Shuttering Plywood', desc: 'Press plate collection aligned to shuttering plywood production.', url: '/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf' }
     ]
   },
   {
     title: 'Decor & Lamination',
     items: [
-      { title: 'Gravure Cylinder & Decor Paper', desc: 'Rotogravure cylinders and printed decor paper for HPL and LPL', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf' },
-      { title: 'LPL — GB Collection 01', desc: 'Low-pressure laminate decor samples', url: '/downloads/LPL - GB - 01.pdf' },
-      { title: 'LPL — GB Collection 02', desc: 'Low-pressure laminate decor samples', url: '/downloads/LPL - GB - 02.pdf' },
-      { title: 'LPL — PET Board', desc: 'PET board laminate collection', url: '/downloads/LPL - PET BOARD.pdf' },
-      { title: 'LPL — Specialty Decorative Panels', desc: 'Specialty decorative panel collection', url: '/downloads/LPL - SPECIALTY DECORATIVE PANELS.pdf' },
-      { title: 'HPL — OL Collection 1', desc: 'High-pressure laminate overlay samples', url: '/downloads/HPL - OL - 1.pdf' },
-      { title: 'HPL — OL Collection 2', desc: 'High-pressure laminate overlay samples', url: '/downloads/HPL - OL - 2.pdf' },
-      { title: 'HPL — OL Collection 3', desc: 'High-pressure laminate overlay samples', url: '/downloads/HPL - OL - 3.pdf' },
-      { title: 'HPL — OL Collection 4', desc: 'High-pressure laminate overlay samples', url: '/downloads/HPL - OL - 4.pdf' }
+      { title: 'Rotogravure Cylinders & Printed Decor Paper', desc: 'Decor printing references for HPL and LPL programmes.', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf' },
+      { title: 'LPL Decorative Collection GB-01', desc: 'Low-pressure laminate decor reference set.', url: '/downloads/LPL - GB - 01.pdf' },
+      { title: 'LPL Decorative Collection GB-02', desc: 'Low-pressure laminate decor reference set.', url: '/downloads/LPL - GB - 02.pdf' },
+      { title: 'LPL PET Board Collection', desc: 'PET-faced decorative board reference deck.', url: '/downloads/LPL - PET BOARD.pdf' },
+      { title: 'LPL Specialty Decorative Panels', desc: 'Special decorative panel collection for interior programmes.', url: '/downloads/LPL - SPECIALTY DECORATIVE PANELS.pdf' },
+      { title: 'HPL Overlay Collection OL-01', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 1.pdf' },
+      { title: 'HPL Overlay Collection OL-02', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 2.pdf' },
+      { title: 'HPL Overlay Collection OL-03', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 3.pdf' },
+      { title: 'HPL Overlay Collection OL-04', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 4.pdf' }
     ]
   },
   {
     title: 'Wood & Flooring Products',
     items: [
-      { title: 'Wood Flooring', desc: 'Engineered laminate flooring systems and specifications', url: '/downloads/WOOD - FLOORING.pdf' },
-      { title: 'Wood Doors', desc: 'Engineered wood door catalog', url: '/downloads/WOOD - DOOR.pdf' },
-      { title: 'Furniture Catalog 1', desc: 'Modular and ready-made furniture', url: '/downloads/WOOD - FURNITURE - 1.pdf' },
-      { title: 'Furniture Catalog 2', desc: 'Furniture components and assemblies', url: '/downloads/WOOD - FURNITURE - 2.pdf' },
-      { title: 'Furniture Catalog 3', desc: 'Custom and project furniture', url: '/downloads/WOOD - FURNITURE - 3.pdf' }
+      { title: 'Engineered Wood Flooring Catalog', desc: 'Flooring systems, constructions, and coordinated accessories.', url: '/downloads/WOOD - FLOORING.pdf' },
+      { title: 'Engineered Wood Doors Catalog', desc: 'Wood door references and build options.', url: '/downloads/WOOD - DOOR.pdf' },
+      { title: 'Furniture Program Catalog 01', desc: 'Ready-made and modular furniture references.', url: '/downloads/WOOD - FURNITURE - 1.pdf' },
+      { title: 'Furniture Program Catalog 02', desc: 'Furniture assemblies, components, and range extension.', url: '/downloads/WOOD - FURNITURE - 2.pdf' },
+      { title: 'Furniture Program Catalog 03', desc: 'Custom furniture and project-specific references.', url: '/downloads/WOOD - FURNITURE - 3.pdf' }
     ]
   },
   {
     title: 'Decorative Stainless Steel',
     items: [
-      { title: 'Antique Finishes', desc: 'Antique-style stainless steel surface treatments', url: '/downloads/ANTIQUE.pdf' },
-      { title: 'Stamped Finishes', desc: 'Stamped pattern stainless steel panels', url: '/downloads/STAMPED.pdf' },
-      { title: 'Heat Printed Finishes', desc: 'Heat transfer printed stainless steel', url: '/downloads/HEAT PRINTED.pdf' },
-      { title: 'Mosaic Finishes', desc: 'Mosaic pattern stainless steel panels', url: '/downloads/MOSAIC.pdf' },
-      { title: 'Profiles', desc: 'Stainless steel trim and profile catalog', url: '/downloads/PROFILE.pdf' },
-      { title: 'Dividers', desc: 'Stainless steel divider and partition catalog', url: '/downloads/DIVIDER.pdf' }
+      { title: 'Decorative SS Antique Finishes', desc: 'Antique-finish stainless steel reference sheet.', url: '/downloads/ANTIQUE.pdf' },
+      { title: 'Decorative SS Stamped Finishes', desc: 'Stamped surface treatments and pattern references.', url: '/downloads/STAMPED.pdf' },
+      { title: 'Decorative SS Heat-Printed Finishes', desc: 'Heat-printed decorative stainless steel references.', url: '/downloads/HEAT PRINTED.pdf' },
+      { title: 'Decorative SS Mosaic Finishes', desc: 'Mosaic surface references for premium interiors.', url: '/downloads/MOSAIC.pdf' },
+      { title: 'Stainless Steel Profiles Catalog', desc: 'Trim, inlay, and architectural profile references.', url: '/downloads/PROFILE.pdf' },
+      { title: 'Stainless Steel Divider Systems', desc: 'Divider and partition references for interior applications.', url: '/downloads/DIVIDER.pdf' }
     ]
   }
 ];
@@ -450,6 +555,102 @@ const productCategories = [
   }
 ];
 
+const portfolioFamilies = [
+  {
+    title: 'Lamination Tooling',
+    intro: 'Surface-transfer tooling and decor inputs for laminate production where repeatability, finish fidelity, and press stability matter.',
+    products: ['press-plates', 'press-pads', 'engraved-cylinders', 'decor-paper'],
+    highlights: ['SS 304 / 420 / 630', 'Hard-chrome surfaces approx. 65-70 HRC', 'Decor printing and texture-transfer tooling'],
+    sectors: ['HPL / LPL', 'Furniture surfacing', 'Flooring overlays']
+  },
+  {
+    title: 'Engineered Wood Substrates',
+    intro: 'Panel substrates for furniture, interior fit-outs, and technical build-ups with emission, density, and structural performance control.',
+    products: ['plywood', 'fiberboard', 'osb', 'particleboard'],
+    highlights: ['E1 / TSCA Title VI / F4 star', 'MDF, HDF, plywood, OSB, particleboard', 'Structural and decorative panel programmes'],
+    sectors: ['Furniture manufacturing', 'Interiors', 'Construction support']
+  },
+  {
+    title: 'Flooring & Furniture Programmes',
+    intro: 'Engineered flooring systems and furniture programmes coordinated around finish consistency, fit-out speed, and repeat production control.',
+    products: ['wood-flooring', 'flooring-accessories', 'ready-made-furniture', 'custom-furniture'],
+    highlights: ['AC3-AC5 wear classes', 'Click-lock and coordinated accessory systems', 'CAD / CNC-led furniture development'],
+    sectors: ['Residential interiors', 'Commercial spaces', 'Hospitality fit-outs']
+  },
+  {
+    title: 'Decorative Stainless Steel',
+    intro: 'Architectural stainless steel surfaces, trims, and fabricated pieces where finish control, corrosion resistance, and visual consistency are critical.',
+    products: ['decorative-panels', 'ss-profiles', 'ss-furniture'],
+    highlights: ['SS 201 / 304 platforms', 'No.4, Hairline, Mirror, and PVD routes', 'Panels, profiles, and fabricated pieces'],
+    sectors: ['Architecture', 'Retail interiors', 'Hospitality and premium fit-outs']
+  },
+  {
+    title: 'Industrial Press Plates',
+    intro: 'Heavy-duty press plates for technical laminate lines where tolerance discipline, heat behaviour, and magnetism control affect yield and product stability.',
+    products: ['industrial-press-plates'],
+    highlights: ['SUS 301 / 420 / 630', 'Flatness below 0.05 mm/m', 'PCB, CCL, security, and technical laminate support'],
+    sectors: ['PCB & CCL', 'Technical laminates', 'Security laminate programmes']
+  }
+];
+
+const applicationVisuals = {
+  'lamination': {
+    image: '/images/page5_img3.webp',
+    alt: 'Lamination tooling and press surfaces',
+    eyebrow: 'Texture transfer and press-line control'
+  },
+  'furniture': {
+    image: '/images/page7_img4.webp',
+    alt: 'Furniture manufacturing and engineered panels',
+    eyebrow: 'Panels, decorative inputs, and finished programmes'
+  },
+  'flooring': {
+    image: '/images/page7_img1.webp',
+    alt: 'Engineered flooring systems',
+    eyebrow: 'Flooring systems with coordinated accessories'
+  },
+  'architecture': {
+    image: '/images/page9_img1.webp',
+    alt: 'Decorative stainless steel for architectural interiors',
+    eyebrow: 'Architectural finishes and material coordination'
+  },
+  'metal-finishing': {
+    image: '/images/page9_img2.webp',
+    alt: 'Metal finishing and stainless steel detailing',
+    eyebrow: 'Surface treatments, trims, and premium detailing'
+  },
+  'pcb-ccl': {
+    image: '/images/page9_img4.webp',
+    alt: 'Industrial press plates for PCB and CCL manufacturing',
+    eyebrow: 'Tolerance-critical tooling for technical laminate lines'
+  }
+};
+
+const companyMilestones = [
+  { year: '1989', title: 'Foundation', detail: 'Moldart begins operations in Mumbai as a trading and industrial sourcing partner.' },
+  { year: '1990s', title: 'Tooling & Panels', detail: 'The wood-working supply base expands into press tooling, substrates, and decor-linked material coordination.' },
+  { year: '2000s', title: 'Global Sourcing Model', detail: 'International manufacturing relationships strengthen the quality-and-sourcing model across Asia and export markets.' },
+  { year: '2010s', title: 'Decorative Steel Expansion', detail: 'Decorative stainless steel, profiles, and fabricated programmes are added for architectural and interior buyers.' },
+  { year: 'Today', title: 'Integrated Supply Partner', detail: 'Moldart operates across tooling, substrates, flooring, furniture, and decorative steel with one technical-commercial interface.' }
+];
+
+const primaryPages = [
+  { title: 'Solutions', url: '/solutions/', meta: 'Combined systems, product stacks, and product sheets', keywords: ['solutions', 'systems', 'product stack'] },
+  { title: 'Resources', url: '/resources/', meta: 'Catalogues, decks, and references', keywords: ['resources', 'downloads', 'catalogs'] },
+  { title: 'Insights', url: '/insights/', meta: 'Technical guides and notes', keywords: ['insights', 'guides', 'notes'] },
+  { title: 'Contact', url: '/contact/', meta: 'Inquiry, WhatsApp, and meetings', keywords: ['contact', 'whatsapp', 'email'] },
+  { title: 'About', url: '/about/', meta: 'Company, team, and sourcing model', keywords: ['about', 'company', 'leadership'] },
+  { title: 'Explore', url: '/explore/', meta: 'Search the full portfolio', keywords: ['explore', 'search', 'product sheets'] }
+];
+
+const familyVisuals = {
+  'Lamination Tooling': { image: '/images/page5_img3.webp', alt: 'Lamination tooling surfaces', label: 'Surface transfer and press-line control' },
+  'Engineered Wood Substrates': { image: '/images/page6_img1.webp', alt: 'Engineered wood panel substrates', label: 'Panel performance and lamination readiness' },
+  'Flooring & Furniture Programmes': { image: '/images/page7_img1.webp', alt: 'Flooring and furniture programmes', label: 'System fit, finish, and project execution' },
+  'Decorative Stainless Steel': { image: '/images/page9_img1.webp', alt: 'Decorative stainless steel surfaces', label: 'Architectural finish consistency' },
+  'Industrial Press Plates': { image: '/images/page9_img4.webp', alt: 'Industrial press plates', label: 'Tolerance-critical pressing support' }
+};
+
 // ============================================================
 // HELPERS
 // ============================================================
@@ -468,14 +669,351 @@ function writeFile(filePath, content) {
   console.log(`  ✓ ${path.relative(WORK, filePath)}`);
 }
 function escHtml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+// safeJson() removed — search data now written to external JSON file
+
+function getApplicationVisual(slug) {
+  return applicationVisuals[slug] || {
+    image: '/images/page5_img3.webp',
+    alt: 'Moldart application visual',
+    eyebrow: 'Application overview'
+  };
+}
+
+function safeProductMetaDesc(product) {
+  const uses = (product.applications || []).slice(0, 3).join(', ');
+  return `${product.name} from Moldart. Verified overview, core specification references, and enquiry-led supply support${uses ? ` for ${uses}` : ''}.`;
+}
+
+function standardsText(technical = {}) {
+  const standards = (technical.certifications || []).filter(Boolean);
+  return standards.length ? standards.join(', ') : 'Confirmed per enquiry';
+}
+
+function slugify(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
+function glyph(name, className = 'icon') {
+  const icons = {
+    spark: '<path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"/><path d="M5 18l1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2z"/><path d="M19 15l.8 1.7 1.7.8-1.7.8-.8 1.7-.8-1.7-1.7-.8 1.7-.8.8-1.7z"/>',
+    layers: '<path d="M12 3 3 8l9 5 9-5-9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/>',
+    compass: '<circle cx="12" cy="12" r="9"/><path d="m16 8-5.5 2.5L8 16l5.5-2.5L16 8z"/>',
+    book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
+    message: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+    shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>',
+    route: '<circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h4a4 4 0 0 0 4-4V7"/>',
+    map: '<path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15"/><path d="M15 6v15"/>',
+    factory: '<path d="M3 21h18"/><path d="M5 21V9l5 3V9l5 3V6l4 3v12"/><path d="M9 21v-4h2v4"/>',
+    building: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h1"/><path d="M12 7h1"/><path d="M16 7h1"/><path d="M8 11h1"/><path d="M12 11h1"/><path d="M16 11h1"/><path d="M8 15h1"/><path d="M12 15h1"/><path d="M16 15h1"/>',
+    globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18"/><path d="M12 3a15 15 0 0 0 0 18"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',
+    mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/>',
+    phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.61a2 2 0 0 1-.45 2.11L8 9.62a16 16 0 0 0 6.38 6.38l1.18-1.23a2 2 0 0 1 2.11-.45c.84.29 1.71.5 2.61.62A2 2 0 0 1 22 16.92z"/>',
+    calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/>',
+    'linkedin-brand': '<circle cx="4" cy="4" r="1.25"/><rect x="2.75" y="8" width="2.5" height="10" rx="1"/><path d="M9 8h2.5v1.8A3.3 3.3 0 0 1 14.3 8C17 8 18 9.7 18 12.3V18h-2.6v-5.1c0-1.4-.5-2.3-1.9-2.3-1 0-1.7.7-2 1.5-.1.2-.1.6-.1.9V18H9z"/>',
+    'whatsapp-brand': '<path d="M20 11.2A8.8 8.8 0 0 1 7.3 19l-3.3.8.9-3.1A8.8 8.8 0 1 1 20 11.2Z"/><path d="M9 8.8c.2 1.8 1.7 3.8 3.8 5.1"/><path d="m12.7 13 1.3-.5"/><path d="m10.1 10.2.8-1"/>',
+    'x-brand': '<path d="M4 4l16 16"/><path d="M20 4 4 20"/>',
+    'facebook-brand': '<path d="M14 21v-7h3l1-4h-4V8.4c0-1.1.4-2.1 2.1-2.1H18V3.1c-.3 0-1.4-.1-2.7-.1-2.8 0-4.8 1.7-4.8 4.9V10H7v4h3.5v7"/>',
+    copy: '<rect x="9" y="9" width="11" height="11" rx="2"/><rect x="4" y="4" width="11" height="11" rx="2"/>',
+    file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>',
+    search: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    menu: '<path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/>',
+    close: '<path d="M6 6l12 12"/><path d="M18 6 6 18"/>',
+    arrow: '<path d="M7 17 17 7"/><path d="M9 7h8v8"/>'
+  };
+  return `<svg class="${className}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name] || icons.spark}</svg>`;
+}
+
+function familyIconName(title) {
+  if (title === 'Lamination Tooling') return 'layers';
+  if (title === 'Engineered Wood Substrates') return 'factory';
+  if (title === 'Flooring & Furniture Programmes') return 'compass';
+  if (title === 'Decorative Stainless Steel') return 'spark';
+  return 'shield';
+}
+
+function applicationIconName(slug) {
+  if (slug === 'lamination') return 'layers';
+  if (slug === 'furniture') return 'factory';
+  if (slug === 'flooring') return 'compass';
+  if (slug === 'architecture') return 'building';
+  if (slug === 'metal-finishing') return 'spark';
+  return 'shield';
+}
+
+function renderMetricCard({ icon, label, value, note = '', suffix = '', animate = false }) {
+  const isNumeric = animate && Number.isFinite(Number(value));
+  const finalValue = `${value}${suffix}`;
+  const valueMarkup = isNumeric
+    ? `<span data-count-to="${Number(value)}" data-count-suffix="${escHtml(suffix)}">${escHtml(finalValue)}</span>`
+    : escHtml(finalValue);
+
+  return `<article class="ui-metric-card">
+      <div class="ui-metric-head">
+          <div class="ui-metric-icon">${glyph(icon)}</div>
+          <div class="section-label">${escHtml(label)}</div>
+      </div>
+      <div class="ui-metric-value">${valueMarkup}</div>
+      <div class="ui-metric-label">${escHtml(label)}</div>
+      <p class="ui-metric-note">${escHtml(note)}</p>
+  </article>`;
+}
+
+function renderActionCard({ href, title, detail, meta, icon }) {
+  return `<a href="${href}" class="ui-action-card">
+      <div class="ui-action-icon">${glyph(icon)}</div>
+      <div>
+          <div class="ui-action-title">${escHtml(title)}</div>
+          <p class="ui-action-copy mt-2">${escHtml(detail)}</p>
+      </div>
+      <div class="ui-action-meta">${escHtml(meta)} →</div>
+  </a>`;
+}
+
+function renderCompactFamilyCard(family) {
+  return `<a href="/solutions/#product-sheets" class="ui-proof-card">
+      <div class="ui-proof-label">${glyph(familyIconName(family.title), 'icon icon-sm')} ${escHtml(family.title)}</div>
+      <div class="ui-proof-value">${escHtml(family.highlights[0])}</div>
+      <p class="ui-proof-copy">${escHtml(family.intro)}</p>
+  </a>`;
+}
+
+function getInsightSlugs() {
+  return new Set(rawInsights.articles.map((article) => article.slug));
+}
+
+function getSearchEntries() {
+  const pageEntries = [
+    { group: 'Page', title: 'Home', url: '/', meta: 'Home and overview', keywords: ['home', 'overview'] },
+    ...primaryPages.map((page) => ({ group: 'Page', ...page }))
+  ];
+
+  const familyEntries = portfolioFamilies.map((family) => ({
+    group: 'Product Family',
+    title: family.title,
+    url: '/solutions/#product-sheets',
+    meta: family.highlights[0],
+    keywords: [...family.products, ...family.sectors]
+  }));
+
+  const productEntries = rawProducts.products.map((product) => {
+    const meta = getMeta(product.id);
+    return {
+      group: 'Product',
+      title: product.name,
+      url: meta ? `/products/${meta.slug}/` : '/products/',
+      meta: `${product.stage} · ${product.use}`,
+      keywords: [product.material, product.stage, product.use, ...product.industry, ...product.applications, ...product.specs]
+    };
+  });
+
+  const appEntries = applications.map((app) => ({
+    group: 'Solution',
+    title: app.name,
+    url: getSolutionHref(app.slug),
+    meta: getApplicationVisual(app.slug).eyebrow,
+    keywords: [...app.products, ...app.considerations]
+  }));
+
+  const resourceEntries = resourceGroups.flatMap((group) => group.items.map((item) => ({
+    group: 'Resource',
+    title: item.title,
+    url: item.url,
+    meta: group.title,
+    keywords: [group.title, item.desc, 'download', 'catalog', 'pdf']
+  })));
+
+  const insightEntries = rawInsights.articles.map((article) => ({
+    group: 'Insight',
+    title: article.title,
+    url: `/insights/${article.slug}/`,
+    meta: `${article.categoryLabel} · ${article.type}`,
+    keywords: [article.categoryLabel, article.type, ...article.tags, article.excerpt]
+  }));
+
+  return [...pageEntries, ...familyEntries, ...productEntries, ...appEntries, ...resourceEntries, ...insightEntries];
+}
+
+function renderHeroNetworkMap() {
+  return `<div class="hero-network-card" aria-label="Sourcing and supply map">
+      <svg class="hero-network-svg" viewBox="0 0 560 420" role="img" aria-label="Mumbai headquarters with India and China sourcing routes">
+          <defs>
+              <linearGradient id="routeFade" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#18181b" stop-opacity="0.85"></stop>
+                  <stop offset="100%" stop-color="#a1a1aa" stop-opacity="0.15"></stop>
+              </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="560" height="420" rx="28" fill="#fafafa"></rect>
+          <g class="hero-network-grid">
+              <path d="M40 90H520"></path>
+              <path d="M40 170H520"></path>
+              <path d="M40 250H520"></path>
+              <path d="M40 330H520"></path>
+              <path d="M110 40V380"></path>
+              <path d="M220 40V380"></path>
+              <path d="M330 40V380"></path>
+              <path d="M440 40V380"></path>
+          </g>
+          <g class="hero-route-group">
+              <path class="hero-route hero-route-long" d="M152 236C210 216 258 206 304 188C348 170 396 132 454 108"></path>
+              <path class="hero-route hero-route-mid" d="M152 236C220 230 292 234 356 250C406 262 440 284 484 308"></path>
+              <path class="hero-route hero-route-short" d="M152 236C198 196 230 170 266 148"></path>
+          </g>
+          <g class="hero-node-group">
+              <circle class="hero-node hero-node-primary" cx="152" cy="236" r="10"></circle>
+              <circle class="hero-node" cx="454" cy="108" r="8"></circle>
+              <circle class="hero-node" cx="484" cy="308" r="8"></circle>
+              <circle class="hero-node" cx="266" cy="148" r="7"></circle>
+          </g>
+          <g class="hero-label-group">
+              <text x="152" y="266" class="hero-node-label hero-node-label-primary">Mumbai</text>
+              <text x="152" y="287" class="hero-node-meta">HQ</text>
+              <text x="454" y="90" class="hero-node-label">China</text>
+              <text x="454" y="76" class="hero-node-meta">Sourcing</text>
+              <text x="484" y="340" class="hero-node-label">Domestic + Export</text>
+              <text x="484" y="356" class="hero-node-meta">Supply</text>
+              <text x="266" y="126" class="hero-node-label">India</text>
+              <text x="266" y="112" class="hero-node-meta">Sourcing</text>
+          </g>
+      </svg>
+  </div>`;
+}
+
+function renderHomepageFamilyBento(family, index) {
+  const visual = familyVisuals[family.title] || familyVisuals['Lamination Tooling'];
+  const productLinks = family.products.slice(0, 4).map((productId) => productTextLink(productId)).filter(Boolean).join('');
+  const large = index === 0 || index === 3;
+  return `<article class="home-family-bento${large ? ' home-family-bento-large' : ''}">
+      <div class="home-family-media">
+          <picture>
+              <source srcset="${visual.image.replace('.webp', '.avif')}" type="image/avif">
+              <img src="${visual.image}" alt="${escHtml(visual.alt)}" width="720" height="520" ${large ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} class="w-full h-full object-cover">
+          </picture>
+          <div class="home-family-media-overlay"></div>
+          <div class="home-family-media-label">${escHtml(visual.label)}</div>
+      </div>
+      <div class="home-family-content">
+          <h3 class="font-display font-bold text-2xl mb-3">${escHtml(family.title)}</h3>
+          <p class="text-sm text-zinc-500 leading-relaxed mb-5">${escHtml(family.intro)}</p>
+          <div class="home-family-facts mb-5">
+              ${family.highlights.slice(0, 3).map((item) => `<span>${escHtml(item)}</span>`).join('')}
+          </div>
+          <div class="portfolio-link-row">${productLinks}</div>
+      </div>
+  </article>`;
+}
+
+function renderApplicationMosaic(app) {
+  const cards = app.products.slice(0, 4).map((productId) => {
+    const product = getProduct(productId);
+    return product ? `<div class="application-mosaic-tile"><img src="${product.image}" alt="${escHtml(product.name)}" width="320" height="240" loading="eager"><span>${escHtml(product.name)}</span></div>` : '';
+  }).filter(Boolean).join('');
+  return `<div class="application-mosaic">${cards}</div>`;
+}
+
+function specToRow(spec, index = 0) {
+  const parts = spec.split(':');
+  if (parts.length > 1) {
+    return {
+      label: parts[0].trim(),
+      value: parts.slice(1).join(':').trim()
+    };
+  }
+  const fallback = spec.split(',')[0].trim();
+  const shortLabel = fallback.split(' ').slice(0, 4).join(' ');
+  return {
+    label: shortLabel || `Reference ${index + 1}`,
+    value: spec
+  };
+}
+
+function stripMarkdownInline(value = '') {
+  return String(value)
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/`(.+?)`/g, '$1')
+    .replace(/\[(.+?)\]\(.+?\)/g, '$1')
+    .trim();
+}
+
+function estimateReadTime(article, renderedHtml = '') {
+  const plain = stripMarkdownInline((renderedHtml || article.content || article.excerpt || '').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+  const words = plain ? plain.split(' ').length : 0;
+  const minutes = Math.max(3, Math.ceil(words / 180));
+  return `${minutes} min`;
+}
+
+function renderShareBar(title, canonicalPath) {
+  const fullUrl = `${SITE}${canonicalPath}`;
+  const encodedUrl = encodeURIComponent(fullUrl);
+  const encodedTitle = encodeURIComponent(title);
+  return `<div class="share-bar" data-share-url="${fullUrl}" data-share-title="${escHtml(title)}">
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener noreferrer" class="share-chip">${glyph('linkedin-brand', 'icon icon-sm')} LinkedIn</a>
+      <a href="https://wa.me/?text=${encodedTitle}%20${encodedUrl}" target="_blank" rel="noopener noreferrer" class="share-chip">${glyph('whatsapp-brand', 'icon icon-sm')} WhatsApp</a>
+      <a href="https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}" target="_blank" rel="noopener noreferrer" class="share-chip">${glyph('x-brand', 'icon icon-sm')} X</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}" target="_blank" rel="noopener noreferrer" class="share-chip">${glyph('facebook-brand', 'icon icon-sm')} Facebook</a>
+      <a href="mailto:?subject=${encodedTitle}&body=${encodedUrl}" class="share-chip">${glyph('mail', 'icon icon-sm')} Email</a>
+      <button type="button" class="share-chip share-copy-btn" data-copy-link="${fullUrl}">${glyph('copy', 'icon icon-sm')} Copy link</button>
+  </div>`;
 }
 
 // ============================================================
 // CRITICAL CSS (shared across all pages)
 // ============================================================
+// ============================================================
+// CRITICAL CSS (shared across all pages)
+// ============================================================
 function criticalCSS() {
-  return `@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/dm-sans-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/dm-sans-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Montserrat';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/montserrat-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Montserrat';font-style:normal;font-weight:900;font-display:swap;src:url(/fonts/montserrat-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{font-family:'DM Sans',sans-serif;background:#fff;color:#18181b;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;line-height:1.5}:root{--font-display:'Montserrat',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Geist Mono',ui-monospace,'Cascadia Code','Source Code Pro',monospace;--radius:10px;--radius-sm:6px;--radius-md:8px;--radius-lg:12px;--radius-xl:14px;--radius-full:9999px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);--transition-fast:150ms;--transition-normal:200ms}img{display:block;max-width:100%;height:auto}button{cursor:pointer;font:inherit;border:none;background:none}a{color:inherit;text-decoration:none}ul{list-style:none}.mx-auto{margin-left:auto;margin-right:auto}.max-w{max-width:80rem}.px{padding-left:1.5rem;padding-right:1.5rem}.pt-16{padding-top:4rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-14{margin-bottom:3.5rem}.mt-2{margin-top:.5rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.mt-10{margin-top:2.5rem}.flex{display:flex}.inline-flex{display:inline-flex}.flex-col{flex-direction:column}.items-center{align-items:center}.items-start{align-items:start}.justify-between{justify-content:space-between}.justify-center{justify-content:center}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-7{gap:1.75rem}.gap-8{gap:2rem}.gap-10{gap:2.5rem}.flex-wrap{flex-wrap:wrap}.grid{display:grid}.grid-2{grid-template-columns:repeat(2,1fr)}.col-span-2{grid-column:span 2}.font-display{font-family:'Montserrat',sans-serif}.font-light{font-weight:400}.font-medium{font-weight:500}.font-bold{font-weight:700}.font-black{font-weight:900}.text-xs{font-size:.75rem;line-height:1rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.leading-relaxed{line-height:1.625}.tracking-wider{letter-spacing:.05em}.tracking-widest{letter-spacing:.1em}.max-w-lg{max-width:32rem}.max-w-sm{max-width:24rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.text-center{text-align:center}.text-white{color:#fff}.text-zinc-300{color:#a1a1aa}.text-zinc-400{color:#a1a1aa}.text-zinc-500{color:#71717a}.text-zinc-600{color:#52525b}.text-zinc-700{color:#3f3f46}.text-zinc-900{color:#18181b}.bg-white{background:#fff}.bg-zinc-50{background:#fafafa}.bg-zinc-100{background:#f4f4f5}.border{border:1px solid #f4f4f5}.border-b{border-bottom:1px solid #f4f4f5}.border-t{border-top:1px solid #f4f4f5}.border-y{border-top:1px solid #f4f4f5;border-bottom:1px solid #f4f4f5}.border-zinc-100{border-color:#f4f4f5}.rounded-xl{border-radius:var(--radius-xl)}.rounded-lg{border-radius:var(--radius-lg)}.fixed{position:fixed}.relative{position:relative}.absolute{position:absolute}.top-0{top:0}.left-0{left:0}.right-0{right:0}.z-50{z-index:50}.z-10{z-index:10}.z-0{z-index:0}.inset-0{top:0;right:0;bottom:0;left:0}.block{display:block}.hidden{display:none}.overflow-hidden{overflow:hidden}.w-full{width:100%}.h-full{height:100%}.h-16{height:4rem}.object-cover{object-fit:cover;width:100%;height:100%}.transition-colors{transition:color .15s ease,background-color .15s ease,border-color .15s ease}.transition-opacity{transition:opacity .5s ease}.backdrop-blur{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}.bg-white-90{background:rgba(255,255,255,0.9)}.section-label{font-family:var(--font-mono);letter-spacing:.2em;font-size:.65rem;text-transform:uppercase;color:#71717a;font-weight:500}.hero-heading{font-family:'Montserrat',sans-serif;font-weight:900;line-height:.85;letter-spacing:-.025em;color:#18181b;font-size:clamp(3.8rem,11vw,7.5rem)}.page-heading{font-family:'Montserrat',sans-serif;font-weight:900;line-height:.85;letter-spacing:-.025em;font-size:clamp(3.5rem,10vw,8rem)}.link-line{position:relative;display:inline-block}.link-line::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:currentColor;transition:width .3s ease}.link-line:hover::after{width:100%}.nav-link{position:relative;padding-bottom:2px}.nav-link:hover{color:#18181b}.nav-link.is-active{color:#18181b;font-weight:600}.nav-link.is-active::after{content:'';position:absolute;bottom:-2px;left:0;width:100%;height:1.5px;background:#18181b;border-radius:1px}.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;background:#18181b;color:#fff;font-size:.875rem;font-weight:500;padding:.625rem 1.25rem;transition:background-color var(--transition-fast) ease,transform var(--transition-fast) ease;border-radius:var(--radius-md)}.btn-primary:hover{background:#3f3f46}.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;border:1px solid #e4e4e7;font-size:.875rem;font-weight:500;padding:.625rem 1.25rem;transition:all .2s ease;border-radius:var(--radius-md)}.btn-outline:hover{border-color:#18181b;background:#18181b;color:#fff}.btn-lg{padding:.875rem 2rem}.icon{width:20px;height:20px;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none;flex-shrink:0}.icon-sm{width:16px;height:16px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.sr-only:focus{position:fixed;top:.5rem;left:.5rem;z-index:200;width:auto;height:auto;clip:auto;padding:.75rem 1.25rem;background:#18181b;color:#fff;font-size:.875rem;font-weight:600;border-radius:var(--radius-md)}:focus-visible{outline:2px solid #18181b;outline-offset:2px;border-radius:2px}nav.scrolled{box-shadow:0 1px 12px rgba(0,0,0,0.06);border-bottom-color:transparent}.whatsapp-fab{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,0.4);transition:transform .2s ease,box-shadow .2s ease;animation:fabPulse 3s ease-in-out infinite}.whatsapp-fab svg{width:28px;height:28px;fill:#fff}@keyframes fabPulse{0%,100%{box-shadow:0 4px 16px rgba(37,211,102,0.4)}50%{box-shadow:0 4px 24px rgba(37,211,102,0.6)}}@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}.fade-up{opacity:0}.fade-up.visible{animation:fadeUp .7s cubic-bezier(.22,1,.36,1) forwards}#mob-menu{transition:max-height .35s cubic-bezier(.22,1,.36,1),opacity .3s ease,padding .3s ease;max-height:0;overflow:hidden;opacity:0;padding-top:0;padding-bottom:0}#mob-menu.open{max-height:420px;opacity:1;padding-top:1.25rem;padding-bottom:1.25rem}body.scroll-locked{overflow:hidden}.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.75rem;margin-bottom:2rem;color:#71717a}.breadcrumb a{color:#71717a;transition:color .15s}.breadcrumb a:hover{color:#18181b}.breadcrumb-sep{color:#d4d4d8}@media(max-width:768px){.md-hidden{display:none!important}.md-show{display:flex!important}.md-grid-2,.md-grid-3,.md-grid-4{grid-template-columns:1fr}.col-span-2{grid-column:span 1}.hero-heading{font-size:clamp(2.6rem,10vw,4.5rem)}.page-heading{font-size:clamp(2.8rem,11vw,4.5rem)}.py-24{padding-top:3rem;padding-bottom:3rem}.whatsapp-fab{width:48px;height:48px;bottom:1rem;right:1rem}.whatsapp-fab svg{width:24px;height:24px}}@media(min-width:769px){.md-hidden{display:flex}.md-show{display:none!important}.md-grid-2{grid-template-columns:repeat(2,1fr)}.md-grid-3{grid-template-columns:repeat(3,1fr)}.md-grid-4{grid-template-columns:repeat(4,1fr)}.md-flex-row{flex-direction:row}.md-text-left{text-align:left}}`;
+  return `@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/dm-sans-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/dm-sans-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Montserrat';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/montserrat-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Montserrat';font-style:normal;font-weight:900;font-display:swap;src:url(/fonts/montserrat-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{font-family:'DM Sans',sans-serif;background:#fff;color:#18181b;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;line-height:1.5}:root{--font-display:'Montserrat',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Geist Mono',ui-monospace,'Cascadia Code','Source Code Pro',monospace;--radius:10px;--radius-sm:6px;--radius-md:8px;--radius-lg:12px;--radius-xl:14px;--radius-full:9999px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);--transition-fast:150ms;--transition-normal:200ms}img{display:block;max-width:100%;height:auto}button{cursor:pointer;font:inherit;border:none;background:none}a{color:inherit;text-decoration:none}ul{list-style:none}.mx-auto{margin-left:auto;margin-right:auto}.max-w{max-width:80rem}.px{padding-left:1.5rem;padding-right:1.5rem}.pt-16{padding-top:4rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-14{margin-bottom:3.5rem}.mt-2{margin-top:.5rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.mt-10{margin-top:2.5rem}.flex{display:flex}.inline-flex{display:inline-flex}.flex-col{flex-direction:column}.items-center{align-items:center}.items-start{align-items:start}.justify-between{justify-content:space-between}.justify-center{justify-content:center}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-7{gap:1.75rem}.gap-8{gap:2rem}.gap-10{gap:2.5rem}.flex-wrap{flex-wrap:wrap}.grid{display:grid}.grid-2{grid-template-columns:repeat(2,1fr)}.col-span-2{grid-column:span 2}.font-display{font-family:'Montserrat',sans-serif}.font-light{font-weight:400}.font-medium{font-weight:500}.font-bold{font-weight:700}.font-black{font-weight:900}.text-xs{font-size:.75rem;line-height:1rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.leading-relaxed{line-height:1.625}.tracking-wider{letter-spacing:.05em}.tracking-widest{letter-spacing:.1em}.max-w-lg{max-width:32rem}.max-w-sm{max-width:24rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.text-center{text-align:center}.text-white{color:#fff}.text-zinc-300{color:#a1a1aa}.text-zinc-400{color:#a1a1aa}.text-zinc-500{color:#71717a}.text-zinc-600{color:#52525b}.text-zinc-700{color:#3f3f46}.text-zinc-900{color:#18181b}.bg-white{background:#fff}.bg-zinc-50{background:#fafafa}.bg-zinc-100{background:#f4f4f5}.border{border:1px solid #f4f4f5}.border-b{border-bottom:1px solid #f4f4f5}.border-t{border-top:1px solid #f4f4f5}.border-y{border-top:1px solid #f4f4f5;border-bottom:1px solid #f4f4f5}.border-zinc-100{border-color:#f4f4f5}.rounded-xl{border-radius:var(--radius-xl)}.rounded-lg{border-radius:var(--radius-lg)}.fixed{position:fixed}.relative{position:relative}.absolute{position:absolute}.top-0{top:0}.left-0{left:0}.right-0{right:0}.z-50{z-index:50}.z-10{z-index:10}.z-0{z-index:0}.inset-0{top:0;right:0;bottom:0;left:0}.block{display:block}.hidden{display:none}.overflow-hidden{overflow:hidden}.w-full{width:100%}.h-full{height:100%}.h-16{height:4rem}.object-cover{object-fit:cover;width:100%;height:100%}.transition-colors{transition:color .15s ease,background-color .15s ease,border-color .15s ease}.transition-opacity{transition:opacity .5s ease}.backdrop-blur{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}.bg-white-90{background:rgba(255,255,255,0.9)}.section-label{font-family:var(--font-mono);letter-spacing:.2em;font-size:.65rem;text-transform:uppercase;color:#71717a;font-weight:500}.hero-heading{font-family:'Montserrat',sans-serif;font-weight:900;line-height:.85;letter-spacing:-.025em;color:#18181b;font-size:clamp(3.8rem,11vw,7.5rem)}.page-heading{font-family:'Montserrat',sans-serif;font-weight:900;line-height:.85;letter-spacing:-.025em;font-size:clamp(3.5rem,10vw,8rem)}.link-line{position:relative;display:inline-block}.link-line::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:currentColor;transition:width .3s ease}.link-line:hover::after{width:100%}.nav-link{position:relative;padding-bottom:2px}.nav-link:hover{color:#18181b}.nav-link.is-active{color:#18181b;font-weight:600}.nav-link.is-active::after{content:'';position:absolute;bottom:-2px;left:0;width:100%;height:1.5px;background:#18181b;border-radius:1px}.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;background:#18181b;color:#fff;font-size:.875rem;font-weight:500;padding:.625rem 1.25rem;transition:background-color var(--transition-fast) ease,transform var(--transition-fast) ease;border-radius:var(--radius-md)}.btn-primary:hover{background:#3f3f46}.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;border:1px solid #e4e4e7;font-size:.875rem;font-weight:500;padding:.625rem 1.25rem;transition:all .2s ease;border-radius:var(--radius-md)}.btn-outline:hover{border-color:#18181b;background:#18181b;color:#fff}.btn-lg{padding:.875rem 2rem}.icon{width:20px;height:20px;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none;flex-shrink:0}.icon-sm{width:16px;height:16px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.sr-only:focus{position:fixed;top:.5rem;left:.5rem;z-index:200;width:auto;height:auto;clip:auto;padding:.75rem 1.25rem;background:#18181b;color:#fff;font-size:.875rem;font-weight:600;border-radius:var(--radius-md)}:focus-visible{outline:2px solid #18181b;outline-offset:2px;border-radius:2px}nav.scrolled{box-shadow:0 1px 12px rgba(0,0,0,0.06);border-bottom-color:transparent}.whatsapp-fab{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,0.4);transition:transform .2s ease,box-shadow .2s ease;animation:fabPulse 3s ease-in-out infinite}.whatsapp-fab svg{width:28px;height:28px;fill:#fff}@keyframes fabPulse{0%,100%{box-shadow:0 4px 16px rgba(37,211,102,0.4)}50%{box-shadow:0 4px 24px rgba(37,211,102,0.6)}}@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}.fade-up{opacity:0}.fade-up.is-visible{animation:fadeUp .7s cubic-bezier(.22,1,.36,1) forwards}#mob-menu{transition:max-height .35s cubic-bezier(.22,1,.36,1),opacity .3s ease,padding .3s ease;max-height:0;overflow:hidden;opacity:0;padding-top:0;padding-bottom:0}#mob-menu.open{max-height:420px;opacity:1;padding-top:1.25rem;padding-bottom:1.25rem}body.scroll-locked{overflow:hidden}.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.75rem;margin-bottom:2rem;color:#71717a}.breadcrumb a{color:#71717a;transition:color .15s}.breadcrumb a:hover{color:#18181b}.breadcrumb-sep{color:#d4d4d8}@media(max-width:768px){.md-hidden{display:none!important}.md-show{display:flex!important}.md-grid-2,.md-grid-3,.md-grid-4{grid-template-columns:1fr}.col-span-2{grid-column:span 1}.hero-heading{font-size:clamp(2.6rem,10vw,4.5rem)}.page-heading{font-size:clamp(2.8rem,11vw,4.5rem)}.py-24{padding-top:3rem;padding-bottom:3rem}.whatsapp-fab{width:48px;height:48px;bottom:1rem;right:1rem}.whatsapp-fab svg{width:24px;height:24px}}@media(min-width:769px){.md-hidden{display:flex}.md-show{display:none!important}.md-grid-2{grid-template-columns:repeat(2,1fr)}.md-grid-3{grid-template-columns:repeat(3,1fr)}.md-grid-4{grid-template-columns:repeat(4,1fr)}.md-flex-row{flex-direction:row}.md-text-left{text-align:left}}`;
+}
+
+function pageEnhancementCSS() {
+  return `
+  .site-nav-links{display:flex;align-items:center;gap:1rem;margin-left:1rem}
+  .site-nav-link{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#71717a}
+  .site-nav-link:hover,.site-nav-link.is-active{color:#18181b}
+  .verified-chip-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.25rem}
+  .verified-chip{display:inline-flex;align-items:center;padding:.42rem .72rem;border-radius:9999px;border:1px solid #e4e4e7;background:#fff;font-size:.72rem;color:#3f3f46}
+  .verified-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+  .verified-card{border:1px solid #f4f4f5;border-radius:20px;background:#fff;padding:1.35rem}
+  .verified-label{font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#71717a;margin-bottom:.65rem}
+  .verified-value{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.6rem,4vw,2.4rem);line-height:1;color:#18181b;margin-bottom:.45rem}
+  .verified-note{font-size:.82rem;line-height:1.6;color:#52525b}
+  .flow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  .flow-card{border:1px solid #f4f4f5;border-radius:20px;background:#fff;padding:1.35rem}
+  .flow-step{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#71717a;margin-bottom:.85rem}
+  .source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  .source-card{border:1px solid #f4f4f5;border-radius:20px;background:#fff;padding:1.25rem}
+  .source-title{font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.04em;color:#18181b;margin-bottom:.45rem}
+  .source-detail{font-size:.82rem;line-height:1.6;color:#52525b}
+  .site-header{box-shadow:0 1px 0 rgba(0,0,0,.03)}
+  .site-search-trigger-compact{max-width:32rem;margin-left:auto;padding:.55rem .8rem;border-radius:9999px;background:#fafafa;border:1px solid #e4e4e7;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+  .site-search-trigger-compact:hover{border-color:#18181b;background:#fff;box-shadow:0 12px 30px rgba(0,0,0,.06)}
+  .site-search-trigger-label{font-size:.82rem;font-weight:600;color:#18181b}.site-search-trigger-meta{font-size:.68rem;color:#71717a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .site-search-trigger-shortcut kbd{border:1px solid #e4e4e7;border-radius:9999px;padding:.2rem .45rem;background:#fff;color:#71717a;font-size:.66rem}
+  .home-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center}.page-heading-home{font-size:clamp(3rem,8vw,5.4rem);line-height:.94}.home-hero-copy{max-width:34rem;font-size:1rem;line-height:1.85;color:#52525b}
+  .hero-network-card{border:1px solid #f4f4f5;border-radius:24px;overflow:hidden;background:#fff;min-height:24rem}.hero-network-svg{width:100%;height:100%}.hero-network-grid path{stroke:#e4e4e7;stroke-width:1}.hero-route{fill:none;stroke:url(#routeFade);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:8 10;animation:routeFlow 10s linear infinite}.hero-route-mid{animation-duration:12s}.hero-route-short{animation-duration:8s}.hero-node{fill:#fff;stroke:#18181b;stroke-width:2}.hero-node-primary{fill:#18181b}.hero-label-group text{font-family:'DM Sans',sans-serif}.hero-node-label{font-size:15px;font-weight:600;fill:#18181b;text-anchor:middle}.hero-node-label-primary{fill:#18181b}.hero-node-meta{font-size:11px;fill:#71717a;text-anchor:middle;letter-spacing:.08em;text-transform:uppercase}
+  .home-family-bento-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}.home-family-bento{display:flex;flex-direction:column;border:1px solid #f4f4f5;border-radius:22px;overflow:hidden;background:#fff}.home-family-bento-large{grid-column:span 1}.home-family-media{position:relative;height:16rem}.home-family-media img{width:100%;height:100%;object-fit:cover}.home-family-media-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(255,255,255,.92),rgba(255,255,255,.15))}.home-family-media-label{position:absolute;left:1rem;bottom:1rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#18181b;background:rgba(255,255,255,.92);padding:.35rem .6rem;border-radius:9999px;border:1px solid #e4e4e7}.home-family-content{padding:1.25rem 1.25rem 1.4rem}.home-family-facts{display:flex;flex-wrap:wrap;gap:.5rem}.home-family-facts span{padding:.38rem .65rem;border:1px solid #e4e4e7;border-radius:9999px;font-size:.73rem;color:#3f3f46}
+  .signal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.signal-card,.portal-status-card,.resource-access-note,.product-story-card,.product-summary-card,.spec-table-card,.milestone-card,.insight-side-card{border:1px solid #f4f4f5;border-radius:20px;background:#fff}.signal-card{padding:1.35rem}.signal-card-soft{background:#fafafa}.signal-title{font-family:'Montserrat',sans-serif;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:#18181b;margin-bottom:.9rem}
+  .portfolio-link-row{display:flex;flex-wrap:wrap;gap:.5rem}.portfolio-link-chip{display:inline-flex;align-items:center;padding:.42rem .72rem;border-radius:9999px;border:1px solid #e4e4e7;font-size:.74rem;color:#3f3f46;transition:border-color .2s ease,background .2s ease}.portfolio-link-chip:hover{border-color:#18181b;background:#fafafa}
+  .product-sheet-grid,.application-hero-grid,.insight-layout,.site-footer-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:1.5rem;align-items:start}.product-sheet-image{height:min(26rem,52vw)}.product-sheet-image,.application-hero-media{border-radius:20px;overflow:hidden;background:#f4f4f5}.product-summary-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}.product-summary-card,.product-story-card,.spec-table-card,.insight-side-card{padding:1.15rem}.product-summary-label,.insight-side-label{font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#71717a;margin-bottom:.65rem}.product-summary-list{display:flex;flex-direction:column;gap:.45rem;padding-left:1rem}.product-summary-list li{font-size:.86rem;line-height:1.6;color:#52525b}
+  .application-mosaic{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}.application-mosaic-tile{position:relative;border-radius:18px;overflow:hidden;background:#f4f4f5;min-height:12rem}.application-mosaic-tile img{width:100%;height:100%;object-fit:cover}.application-mosaic-tile span{position:absolute;left:.75rem;bottom:.75rem;padding:.35rem .55rem;background:rgba(255,255,255,.92);border:1px solid #e4e4e7;border-radius:9999px;font-size:.68rem;color:#18181b}
+  .resource-access-note{padding:1rem 1.25rem}.resource-access-note-title,.share-chip{font-family:'Montserrat',sans-serif}.resource-access-note-grid{display:flex;flex-wrap:wrap;gap:.6rem}.resource-access-note-grid span{padding:.38rem .62rem;border:1px solid #e4e4e7;border-radius:9999px;font-size:.72rem;color:#52525b}
+  .contact-card-grid{display:grid;grid-template-columns:1fr;gap:1rem}.contact-social-row{display:flex;flex-wrap:wrap;gap:.75rem}.contact-social-chip{display:inline-flex;align-items:center;padding:.5rem .8rem;border-radius:9999px;border:1px solid #e4e4e7;color:#18181b;font-size:.78rem;background:#fff}.contact-social-chip:hover{border-color:#18181b;background:#fafafa}.contact-sla-pill{display:inline-flex;align-items:center;padding:.55rem .85rem;border-radius:9999px;background:#edfdf2;border:1px solid #bbf7d0;color:#166534;font-size:.78rem;font-weight:600}
+  .site-footer-grid{grid-template-columns:1fr .9fr .8fr;margin-bottom:2.5rem}.site-footer-search-note{font-size:.72rem;line-height:1.7;color:#71717a;max-width:24rem}.site-footer-address{margin-top:1rem;padding-left:1rem;border-left:3px solid #3f3f46}.site-inline-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.84rem;color:#18181b}.site-inline-link:hover{color:#3f3f46}
+  .portal-status-card{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.2rem 1.3rem;background:#fff}.portal-status-copy{max-width:32rem}
+  .insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.insight-card{display:flex;flex-direction:column;border:1px solid #f4f4f5;border-radius:20px;padding:1.2rem;background:#fff;transition:border-color .2s ease,box-shadow .2s ease}.insight-card:hover{border-color:#18181b;box-shadow:0 16px 36px rgba(0,0,0,.06)}.insight-card-type{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#71717a;margin-bottom:.7rem}.insight-card-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1rem;line-height:1.4;margin-bottom:.75rem}.insight-card-excerpt{font-size:.84rem;line-height:1.65;color:#52525b;flex:1}.insight-card-meta{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem;font-size:.72rem;color:#71717a}.insight-layout{align-items:start}.insight-side-panel{position:sticky;top:5.5rem}.insight-side-value{font-size:.92rem;line-height:1.5;color:#18181b}.share-bar{display:flex;flex-wrap:wrap;gap:.6rem;padding:0 0 1.2rem;margin-bottom:1.2rem;border-bottom:1px solid #f4f4f5}.share-chip{display:inline-flex;align-items:center;justify-content:center;padding:.45rem .75rem;border:1px solid #e4e4e7;border-radius:9999px;background:#fff;font-size:.72rem;color:#3f3f46;transition:border-color .2s ease,background .2s ease}.share-chip:hover{border-color:#18181b;background:#fafafa}
+  .cmd-palette{width:min(42rem,calc(100vw - 1.5rem));border-radius:22px;border:1px solid #e4e4e7;overflow:hidden;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.2)}.cmd-palette-input-wrap{display:flex;align-items:center;gap:.75rem;padding:1rem 1.15rem;border-bottom:1px solid #f4f4f5}.cmd-palette-input{width:100%;border:none;outline:none;font-size:1rem;background:transparent}.cmd-palette-results{max-height:28rem;overflow:auto;padding:.5rem}.cmd-palette-item{display:flex;align-items:center;gap:.85rem;padding:.75rem .85rem;border-radius:14px;color:#18181b}.cmd-palette-item.is-active,.cmd-palette-item:hover{background:#fafafa}.cmd-palette-item svg{width:1rem;height:1rem;color:#71717a;flex-shrink:0}.cmd-palette-item-copy{display:flex;flex-direction:column;min-width:0}.cmd-palette-item-meta{font-size:.72rem;color:#71717a;margin-top:.12rem}.cmd-palette-empty{padding:1.5rem;color:#71717a;font-size:.84rem}.cmd-palette-footer{padding:.8rem 1.15rem;border-top:1px solid #f4f4f5;background:#fafafa}
+  .resource-gate-dialog{width:min(52rem,100%);display:grid;grid-template-columns:.95fr 1.05fr;gap:1rem;padding:1rem;border-radius:24px;background:#fff;position:relative}.resource-gate-copy,.resource-gate-form{border:1px solid #f4f4f5;border-radius:18px;padding:1.1rem}.resource-gate-copy{background:#fafafa}.resource-gate-list{display:flex;flex-direction:column;gap:.7rem}.resource-gate-list div{position:relative;padding-left:1rem;font-size:.86rem;line-height:1.6;color:#52525b}.resource-gate-list div:before{content:'';position:absolute;left:0;top:.55rem;width:.35rem;height:.35rem;border-radius:9999px;background:#18181b}.resource-gate-close{position:absolute;top:1rem;right:1rem;width:2.1rem;height:2.1rem;border:1px solid #e4e4e7;border-radius:9999px;display:flex;align-items:center;justify-content:center}.resource-gate-close svg{width:1rem;height:1rem;fill:none;stroke:currentColor;stroke-width:2}.resource-gate-overlay{position:fixed;inset:0;background:rgba(24,24,27,.46);display:none;align-items:center;justify-content:center;z-index:120;padding:1rem}.resource-gate-overlay.is-open{display:flex}
+  @keyframes routeFlow{from{stroke-dashoffset:0}to{stroke-dashoffset:-180}}
+  @media (max-width:1024px){.home-hero-grid,.product-sheet-grid,.application-hero-grid,.insight-layout,.site-footer-grid,.signal-grid,.insights-grid,.resource-gate-dialog,.verified-grid,.flow-grid,.source-grid{grid-template-columns:1fr}.home-family-bento-grid{grid-template-columns:1fr}.product-summary-card-grid,.application-mosaic{grid-template-columns:1fr 1fr}.insight-side-panel{position:static}}
+  @media (max-width:768px){.site-search-trigger-compact{max-width:none}.site-search-trigger-meta,.site-search-trigger-shortcut{display:none}.product-summary-card-grid,.application-mosaic,.insights-grid{grid-template-columns:1fr}.hero-network-card{min-height:18rem}.home-family-media{height:13rem}.product-sheet-image{height:15rem}.portal-status-card{flex-direction:column;align-items:flex-start}.resource-gate-dialog{grid-template-columns:1fr;padding:.75rem}}
+  `;
 }
 
 // ============================================================
@@ -496,7 +1034,7 @@ function fontPreloads() {
     <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>`;
 }
 
-function headTag({ title, desc, canonical, ogType = 'website', ogImage = '/images/press_pad_new.webp', ogImageAlt = 'Moldart industrial supply', noindex = false, schemas = [], prefetch = [] }) {
+function headTag({ title, desc, canonical, ogType = 'website', ogImage = '/images/page5_img3.webp', ogImageAlt = 'Moldart industrial supply', noindex = false, schemas = [], prefetch = [] }) {
   const robotsMeta = noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
   const schemaScripts = schemas.map(s => `<script type="application/ld+json">\n    ${JSON.stringify(s)}\n    </script>`).join('\n    ');
   const prefetchLinks = prefetch.map(p => `<link rel="prefetch" href="${p}">`).join('\n    ');
@@ -514,23 +1052,25 @@ function headTag({ title, desc, canonical, ogType = 'website', ogImage = '/image
     <meta property="og:url" content="${SITE}${canonical}">
     <meta property="og:locale" content="en_IN">
     <meta property="og:site_name" content="Moldart">
-    <meta property="og:image" content="${SITE}${ogImage}">
+    <meta property="og:image" content="${SITE}${ogImage.replace(/\.webp$/, '.jpg')}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="${escHtml(ogImageAlt)}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${escHtml(title)}">
     <meta name="twitter:description" content="${escHtml(desc)}">
-    <meta name="twitter:image" content="${SITE}${ogImage}">
+    <meta name="twitter:image" content="${SITE}${ogImage.replace(/\.webp$/, '.jpg')}">
     <meta name="theme-color" content="#18181b">
     <link rel="canonical" href="${SITE}${canonical}">
     <link rel="alternate" hreflang="en-IN" href="${SITE}${canonical}">
     <link rel="alternate" hreflang="x-default" href="${SITE}${canonical}">
     ${favicons()}
     <link rel="dns-prefetch" href="https://wa.me">
-    <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin>
+    <link rel="preconnect" href="https://moldartindia.com">
+    <link rel="dns-prefetch" href="https://formsubmit.co">
     ${fontPreloads()}
     <style>${criticalCSS()}</style>
+    <style>${pageEnhancementCSS()}</style>
     <link rel="stylesheet" href="/styles.css?v=${VER}">
     <link rel="stylesheet" href="/pages.css?v=${VER}">
     ${prefetchLinks}
@@ -539,100 +1079,93 @@ function headTag({ title, desc, canonical, ogType = 'website', ogImage = '/image
 }
 
 function nav(route) {
+  const navItems = [
+    { href: '/solutions/', label: 'Solutions', route: 'solutions' },
+    { href: '/resources/', label: 'Resources', route: 'resources' },
+    { href: '/insights/', label: 'Insights', route: 'insights' },
+    { href: '/about/', label: 'About', route: 'about' },
+    { href: '/contact/', label: 'Contact', route: 'contact' }
+  ];
   return `<body data-route="${route}">
     <a href="#main-content" class="sr-only">Skip to content</a>
-    <nav aria-label="Main navigation" class="fixed top-0 left-0 right-0 z-50 bg-white-90 backdrop-blur border-b border-zinc-100">
-        <div class="max-w mx-auto px h-16 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-3">
-                <div class="font-display font-black text-xl" style="letter-spacing:0.15em;line-height:1;">MOLDART</div>
+    <nav aria-label="Site header" class="site-header fixed top-0 left-0 right-0 z-50 bg-white-90 backdrop-blur border-b border-zinc-100">
+        <div class="max-w mx-auto px h-16 flex items-center gap-4">
+            <a href="/" class="site-brand flex items-center gap-3" aria-label="Moldart home">
+                <div>
+                    <div class="font-display font-black text-base" style="letter-spacing:0.14em;line-height:1;">MOLDART</div>
+                    <div class="text-xs text-zinc-500 md-hidden" style="margin-top:.18rem;">Since 1989 · Mumbai</div>
+                </div>
             </a>
-            <div class="md-hidden items-center gap-7">
-                <button type="button" class="cmd-k-hint" onclick="document.dispatchEvent(new KeyboardEvent('keydown', {key: 'k', metaKey: true}))">Search <kbd>Ctrl/⌘ K</kbd></button>
-                <a href="/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Home</a>
-                <a href="/products/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Products</a>
-                <a href="/applications/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Applications</a>
-                <a href="/about/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">About</a>
-                <a href="/insights/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Insights</a>
-                <a href="/resources/" class="nav-link link-line text-sm font-medium text-zinc-500 transition-colors">Resources</a>
-                <a href="/contact/" class="btn-primary" style="padding:0.625rem 1.25rem;">Contact
-                    <svg class="icon icon-sm" style="margin-left:0.375rem;" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
+            <div class="site-nav-links md-hidden">
+                ${navItems.map((item) => `<a href="${item.href}" class="site-nav-link${route === item.route ? ' is-active' : ''}">${item.label}</a>`).join('')}
             </div>
-            <button type="button" class="md-show" style="flex-direction:column;gap:6px;padding:8px;" aria-label="Menu" aria-controls="mob-menu" id="mobile-menu-btn" aria-expanded="false">
-                <span style="display:block;width:1.25rem;height:1px;background:#18181b;" aria-hidden="true"></span>
-                <span style="display:block;width:1.25rem;height:1px;background:#18181b;" aria-hidden="true"></span>
-                <span style="display:block;width:0.875rem;height:1px;background:#18181b;align-self:flex-end;" aria-hidden="true"></span>
+            <button type="button" class="site-search-trigger site-search-trigger-compact" data-open-command-palette aria-label="Search the website">
+                ${glyph('search', 'icon site-search-trigger-icon')}
+                <span class="site-search-trigger-copy">
+                    <span class="site-search-trigger-label">Search</span>
+                    <span class="site-search-trigger-meta">${NAV_SEARCH_META}</span>
+                </span>
+                <span class="site-search-trigger-shortcut cmd-k-hint"><kbd>Ctrl/⌘ K</kbd></span>
+            </button>
+            <button type="button" class="ui-mobile-toggle md-show" data-mobile-menu-toggle aria-label="Menu" aria-expanded="false" aria-controls="mob-menu">
+                ${glyph('menu', 'ui-mobile-icon ui-mobile-icon-menu')}
+                ${glyph('close', 'ui-mobile-icon ui-mobile-icon-close')}
             </button>
         </div>
-        <div id="mob-menu" style="border-top:1px solid #f4f4f5;background:#fff;padding:1.25rem 1.5rem;" class="md-show">
-            <div style="display:flex;flex-direction:column;gap:1rem;">
-                <button type="button" class="directory-search mb-2" onclick="document.dispatchEvent(new KeyboardEvent('keydown', {key: 'k', metaKey: true})); if(window.closeMob) window.closeMob();" style="cursor:pointer;text-align:left;">
-                    <span class="directory-search-input" style="cursor:pointer;display:block;padding:0.5rem 0.75rem;border:1px solid #e4e4e7;border-radius:var(--radius-md);font-size:0.875rem;color:#71717a;">Search products… Ctrl/⌘ K</span>
-                </button>
-                <a href="/" class="block text-sm font-medium text-zinc-600">Home</a>
-                <a href="/products/" class="block text-sm font-medium text-zinc-600">Products</a>
-                <a href="/applications/" class="block text-sm font-medium text-zinc-600">Applications</a>
-                <a href="/about/" class="block text-sm font-medium text-zinc-600">About</a>
-                <a href="/insights/" class="block text-sm font-medium text-zinc-600">Insights</a>
-                <a href="/resources/" class="block text-sm font-medium text-zinc-600">Resources</a>
-                <a href="/contact/" class="btn-primary mt-2" style="text-align:center;">Contact →</a>
+        <div id="mob-menu" class="ui-mobile-menu md-show" aria-hidden="true">
+            <div class="ui-mobile-menu-panel">
+                ${navItems.map((item) => `<a href="${item.href}" class="${route === item.route ? 'font-medium' : ''}"><span>${item.label}</span>${glyph('arrow', 'icon icon-sm')}</a>`).join('')}
             </div>
         </div>
     </nav>`;
 }
 
+
 function footer() {
-    return `<footer class="bg-zinc-950 text-white">
+    return `<footer class="ui-footer">
         <div class="max-w mx-auto px py-16">
-            <div class="grid md-grid-4 gap-10 mb-14">
-                <div class="col-span-2">
-                    <div class="font-display font-black text-2xl tracking-wider mb-4">MOLDART</div>
-                    <p class="text-sm text-zinc-400 leading-relaxed font-light max-w-sm">Integrated supply solutions for the wood-working and metallurgical industries since 1989. Press plates, engineered substrates, flooring, decorative steel.</p>
-                    <div class="mt-6 flex flex-col gap-2">
-                        <a href="tel:+917208088788" class="link-line text-sm text-zinc-400">+91 7208088788</a>
-                        <a href="tel:+917208188788" class="link-line text-sm text-zinc-400">+91 7208188788</a>
-                        <a href="mailto:info@moldartindia.com" class="link-line text-sm text-zinc-400">info@moldartindia.com</a>
-                        <div class="flex gap-4 mt-2">
-                            <a href="https://wa.me/917208088788" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-500">WhatsApp</a>
-                            <a href="https://www.linkedin.com/in/thisisyashdoshi" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-500">LinkedIn</a>
-                        </div>
-                    </div>
-                    <div class="mt-6" style="border-left:3px solid #3f3f46;padding-left:1rem;">
-                        <div class="text-xs text-zinc-500 leading-relaxed">#7, Building No. 1, New Sonal Link Industrial Estate,<br>Link Road, Malad (West), Mumbai — 400064<br>Maharashtra, India</div>
-                        <div class="text-xs text-zinc-600 mt-2">Mon–Sat, 10 AM – 6 PM IST</div>
+            <div class="ui-footer-grid">
+                <div class="ui-footer-card">
+                    <div class="font-display font-black text-xl tracking-wider mb-4">MOLDART</div>
+                    <p class="text-sm text-zinc-400 leading-relaxed font-light mb-5">${BRAND_LINE}</p>
+                    <div class="ui-footer-meta">
+                        <span class="ui-footer-pill">${glyph('clock', 'icon icon-sm')} Since 1989</span>
+                        <span class="ui-footer-pill">${glyph('building', 'icon icon-sm')} Mumbai</span>
+                        <span class="ui-footer-pill">${glyph('route', 'icon icon-sm')} India + China</span>
                     </div>
                 </div>
-                <div>
-                    <div class="section-label text-zinc-600 mb-5">Products</div>
-                    <div class="flex flex-col gap-2">
-                        ${rawProducts.products.map(p => {
-                          const m = productMeta[p.id];
-                          return m ? `<a href="/products/${m.slug}/" class="link-line text-xs text-zinc-400">${p.name}</a>` : '';
-                        }).filter(Boolean).join('\n                        ')}
-                    </div>
-                </div>
-                <div>
+                <div class="ui-footer-card">
                     <div class="section-label text-zinc-600 mb-5">Navigate</div>
-                    <div class="flex flex-col gap-2">
-                        <a href="/products/" class="link-line text-xs text-zinc-400">All Products</a>
-                        <a href="/applications/" class="link-line text-xs text-zinc-400">Applications</a>
-                        <a href="/about/" class="link-line text-xs text-zinc-400">About</a>
-                        <a href="/process/" class="link-line text-xs text-zinc-400">Process</a>
-                        <a href="/insights/" class="link-line text-xs text-zinc-400">Insights</a>
-                        <a href="/resources/" class="link-line text-xs text-zinc-400">Resources</a>
-                        <a href="/faq/" class="link-line text-xs text-zinc-400">FAQ</a>
-                        <a href="/contact/" class="link-line text-xs text-zinc-400">Contact</a>
-                        <a href="/login/" class="link-line text-xs text-zinc-500">Trade Portal</a>
+                    <div class="ui-footer-nav">
+                        <a href="/" class="ui-footer-link">Home</a>
+                        <a href="/solutions/" class="ui-footer-link">Solutions</a>
+                        <a href="/resources/" class="ui-footer-link">Resources</a>
+                        <a href="/insights/" class="ui-footer-link">Insights</a>
+                        <a href="/about/" class="ui-footer-link">About</a>
+                        <a href="/contact/" class="ui-footer-link">Contact</a>
+                        <a href="/faq/" class="ui-footer-link">FAQ</a>
+                        <a href="/process/" class="ui-footer-link">Process</a>
                     </div>
+                </div>
+                <div class="ui-footer-card">
+                    <div class="section-label text-zinc-600 mb-5">Talk to Moldart</div>
+                    <div class="flex flex-col gap-3">
+                        <a href="mailto:info@moldartindia.com" class="ui-footer-link">${glyph('mail', 'icon icon-sm')} info@moldartindia.com</a>
+                        <a href="https://wa.me/917208088788" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('whatsapp-brand', 'icon icon-sm')} WhatsApp</a>
+                        <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('linkedin-brand', 'icon icon-sm')} LinkedIn</a>
+                        <a href="/contact/" class="ui-footer-link">${glyph('message', 'icon icon-sm')} Share your requirement</a>
+                    </div>
+                    <p class="text-xs text-zinc-500 leading-relaxed mt-5">Address, meetings, and enquiry handling stay on the Contact page so operational details live in one place.</p>
                 </div>
             </div>
-            <div class="border-t border-zinc-800 pt-8 flex flex-col md-flex-row justify-between items-center gap-4">
-                <div class="section-label text-zinc-600">© <span class="yr">2026</span> Moldart · All rights reserved · Mumbai, India</div>
-                <div class="section-label text-zinc-700">Precision · Service · Supply</div>
+            <div class="ui-footer-bottom mt-8 flex flex-col md-flex-row justify-between items-center gap-4">
+                <div>© <span class="yr">2026</span> Moldart · Mumbai, India</div>
+                <div>${BRAND_LINE}</div>
             </div>
         </div>
     </footer>`;
 }
+
 
 function closingElements() {
   return `
@@ -655,41 +1188,48 @@ function closingElements() {
         <div class="cmd-palette">
             <div class="cmd-palette-input-wrap">
                 <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                <input type="text" class="cmd-palette-input" id="cmd-input" placeholder="Search pages, products, or actions..." aria-autocomplete="list" autocomplete="off" spellcheck="false">
+                <input type="text" class="cmd-palette-input" id="cmd-input" placeholder="Search pages, products, resources, and notes..." aria-autocomplete="list" autocomplete="off" spellcheck="false">
             </div>
             <div class="cmd-palette-results" id="cmd-results" role="listbox"></div>
             <div class="cmd-palette-footer">
-                <div class="flex items-center gap-2"><kbd>↑</kbd><kbd>↓</kbd> <span class="text-xs text-zinc-500">to navigate</span></div>
-                <div class="flex items-center gap-2"><kbd>↵</kbd> <span class="text-xs text-zinc-500">to select</span></div>
-                <div class="flex items-center gap-2"><kbd>ESC</kbd> <span class="text-xs text-zinc-500">to close</span></div>
+                <div class="text-xs text-zinc-500">Pages shown first. Type to go deeper into products, resources, and articles.</div>
             </div>
         </div>
     </div>
-    <button type="button" class="chatbot-toggle" id="chatbot-toggle" aria-label="Open chat assistant">
-        <svg class="chat-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-        <svg class="close-icon" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-    </button>
-    <div class="chatbot-window" id="chatbot-window">
-        <div class="chatbot-header">
-            <div>
-                <div class="chatbot-header-title">Moldart Assistant</div>
-                <div class="chatbot-header-subtitle">Ask about products, specs, or supply</div>
-            </div>
-        </div>
-        <div class="chatbot-messages" id="chatbot-messages">
-            <div class="chatbot-msg bot">Hello! I can help you find the right product, understand specifications, or guide you through our supply process. What are you looking for?</div>
-        </div>
-        <div class="chatbot-input-wrap">
-            <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Ask about products, grades, specs..." autocomplete="off">
-            <button type="button" class="chatbot-send" id="chatbot-send" aria-label="Send message">
-                <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>
+    <div id="resource-gate" class="resource-gate-overlay" aria-hidden="true">
+        <div class="resource-gate-dialog" role="dialog" aria-modal="true" aria-labelledby="resource-gate-title">
+            <button type="button" class="resource-gate-close" data-resource-gate-close aria-label="Close resource form">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
             </button>
+            <div class="resource-gate-copy">
+                <div class="section-label mb-4">Resource Access</div>
+                <h2 id="resource-gate-title" class="font-display font-black text-3xl mb-4">ONE-TIME ACCESS.</h2>
+                <p class="text-sm text-zinc-500 leading-relaxed mb-6">Share your contact details once to download Moldart catalogs, finish references, and technical documents without repeated prompts on this browser.</p>
+                <div class="resource-gate-list">
+                    <div>Catalogs and finish references</div>
+                    <div>Technical PDFs and collection decks</div>
+                    <div>Future downloads unlocked on this device</div>
+                </div>
+            </div>
+            <form action="https://formsubmit.co/info@moldartindia.com" method="POST" class="resource-gate-form" id="resource-gate-form" target="resource-download-frame">
+                <input type="hidden" name="_subject" value="Moldart Resource Download Lead">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="download_title" id="resource-download-title-field" value="">
+                <input type="hidden" name="download_url" id="resource-download-url-field" value="">
+                <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <label class="form-group"><span class="form-label">Full Name *</span><input type="text" name="name" class="form-input" required placeholder="Your name"></label>
+                <label class="form-group"><span class="form-label">Company *</span><input type="text" name="company" class="form-input" required placeholder="Company name"></label>
+                <label class="form-group"><span class="form-label">Email Address *</span><input type="email" name="email" class="form-input" required placeholder="name@company.com"></label>
+                <label class="form-group"><span class="form-label">Phone / WhatsApp *</span><input type="tel" name="phone" class="form-input" required placeholder="+91 ..."></label>
+                <button type="submit" class="btn-primary btn-lg" style="width:100%;justify-content:center;">Continue to Download</button>
+                <p class="text-xs text-zinc-400 text-center">Used only for document sharing and technical-commercial follow-up.</p>
+            </form>
+            <iframe title="Resource lead capture" name="resource-download-frame" style="display:none;"></iframe>
         </div>
-        <div class="chatbot-rate-limit">Powered by AI. Responses may be approximate.</div>
     </div>
+
     <script src="/main.js?v=${VER}" defer></script>
-    <script src="/chatbot.js?v=${VER}" defer></script>
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "f6d93d7003db408894839c492c46acb9"}' crossorigin="anonymous"></script>
 </body>
 </html>`;
 }
@@ -712,13 +1252,361 @@ function breadcrumb(items) {
 }
 
 function downloadLink(dl) {
-  return `<a href="${dl.url}" target="_blank" rel="noopener noreferrer" download class="flex items-center justify-between p-3 rounded-lg transition-colors group" style="border:1px solid #f4f4f5;">
+  return `<a href="${dl.url}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(dl.title)}" class="flex items-center justify-between p-3 rounded-lg transition-colors group resource-download-link" style="border:1px solid #f4f4f5;">
     <div class="flex items-center gap-3">
         <svg class="icon text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
         <span class="text-sm font-medium text-zinc-700">${escHtml(dl.title)}</span>
     </div>
     <svg class="icon icon-sm text-zinc-300" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
 </a>`;
+}
+
+function productTextLink(productId) {
+  const product = getProduct(productId);
+  const meta = getMeta(productId);
+  if (!product || !meta) return '';
+  return `<a href="/products/${meta.slug}/" class="portfolio-link-chip">${escHtml(product.name)}</a>`;
+}
+
+function renderPortfolioFamilyCard(family, options = {}) {
+  const visual = familyVisuals[family.title] || familyVisuals['Lamination Tooling'];
+  const productLinks = family.products.map((productId) => productTextLink(productId)).filter(Boolean).join('');
+  const anchor = `family-${slugify(family.title)}`;
+  return `<article id="${anchor}" class="ui-family-card">
+      <div class="ui-family-media">
+          <picture>
+              <source srcset="${visual.image.replace('.webp', '.avif')}" type="image/avif">
+              <img src="${visual.image}" alt="${escHtml(visual.alt)}" width="720" height="520" loading="lazy">
+          </picture>
+          <div class="ui-family-overlay"></div>
+          <div class="ui-family-badge">${glyph(familyIconName(family.title), 'icon icon-sm')} ${family.products.length} routes</div>
+      </div>
+      <div class="ui-family-body">
+          <div class="ui-meta-list mb-4">${family.highlights.slice(0, 3).map((item) => `<span class="ui-meta-pill">${escHtml(item)}</span>`).join('')}</div>
+          <h3 class="ui-family-title">${escHtml(family.title)}</h3>
+          <p class="ui-family-copy">${escHtml(family.intro)}</p>
+          <div class="ui-data-grid mb-4">
+              <div class="ui-data-card">
+                  <div class="ui-data-label">Key signal</div>
+                  <div class="ui-data-value">${escHtml(family.highlights[0])}</div>
+                  <p class="ui-data-note">${escHtml(family.highlights[1] || '')}</p>
+              </div>
+              <div class="ui-data-card">
+                  <div class="ui-data-label">Best fit</div>
+                  <div class="ui-data-value">${escHtml(family.sectors[0])}</div>
+                  <p class="ui-data-note">${escHtml(family.sectors.slice(1, 3).join(' • '))}</p>
+              </div>
+          </div>
+          <div class="ui-link-row">${productLinks}</div>
+      </div>
+  </article>`;
+}
+
+
+function getSolutionHref(slug) {
+  return `/solutions/${slug}/`;
+}
+
+function renderProductPillLink(productId, className = 'ui-link-pill') {
+  const product = getProduct(productId);
+  const meta = getMeta(productId);
+  if (!product || !meta) return '';
+  return `<a href="/products/${meta.slug}/" class="${className}">${escHtml(product.name)}</a>`;
+}
+
+function relatedSolutionsForProduct(productId) {
+  return applications.filter((app) => app.products.includes(productId));
+}
+
+function productRoleForSolution(slug, productId) {
+  const mapped = SOLUTION_PRODUCT_ROLES[slug]?.[productId];
+  if (mapped) return mapped;
+  return getMeta(productId)?.workflow?.split('. ')[0] || 'Use the product sheet as the reference point, then confirm the final route against the programme.';
+}
+
+function solutionAudienceFor(slug) {
+  return SOLUTION_AUDIENCES[slug] || ['Procurement', 'Technical teams'];
+}
+
+function solutionFlowFor(slug) {
+  return SOLUTION_FLOWS[slug] || [];
+}
+
+function relatedInsightsForSolution(app, limit = 3) {
+  const productIds = new Set(app.products);
+  return rawInsights.articles.filter((article) => productIds.has(article.category)).slice(0, limit);
+}
+
+function articleAudienceFor(article) {
+  const merged = relatedSolutionsForProduct(article.category).flatMap((app) => solutionAudienceFor(app.slug));
+  const unique = [...new Set(merged)];
+  return unique.length ? unique.slice(0, 4) : ['Procurement', 'Technical teams'];
+}
+
+function renderApplicationPreviewCard(app, options = {}) {
+  const { compact = false } = options;
+  const visual = getApplicationVisual(app.slug);
+  const productLinks = app.products.slice(0, compact ? 4 : 5).map((productId) => renderProductPillLink(productId)).filter(Boolean).join('');
+  const checkpoints = app.considerations.slice(0, compact ? 2 : 3).map((item) => `<li>${escHtml(item)}</li>`).join('');
+  const audienceBadges = solutionAudienceFor(app.slug).slice(0, compact ? 2 : 4).map((item) => `<span>${escHtml(item)}</span>`).join('');
+  const summary = compact ? `${app.overview.substring(0, 160).trim()}...` : `${app.overview.substring(0, 220).trim()}...`;
+  return `<article class="ui-solution-card${compact ? ' ui-solution-card-compact' : ''}">
+      <div class="ui-solution-media">
+          <picture>
+              <source srcset="${visual.image.replace('.webp', '.avif')}" type="image/avif">
+              <img src="${visual.image}" alt="${escHtml(visual.alt)}" width="800" height="520" loading="lazy" class="w-full h-full object-cover">
+          </picture>
+          <div class="ui-solution-overlay"></div>
+      </div>
+      <div class="ui-solution-body">
+          <div class="ui-kicker mb-3">${glyph(applicationIconName(app.slug), 'icon icon-sm')} ${escHtml(visual.eyebrow)}</div>
+          <h3 class="ui-family-title">${escHtml(app.name)}</h3>
+          <p class="ui-family-copy">${escHtml(summary)}</p>
+          <div class="ui-solution-stack-label">Relevant product stack</div>
+          <div class="ui-link-row mt-4">${productLinks}</div>
+          <div class="ui-app-badges mt-5">${audienceBadges}</div>
+          ${compact ? '' : `<ul class="ui-stack-list mt-5">${checkpoints}</ul>`}
+          <div class="mt-6"><a href="${getSolutionHref(app.slug)}" class="btn-outline">Explore ${escHtml(app.name)} system</a></div>
+      </div>
+  </article>`;
+}
+
+function renderSolutionProductCard(app, productId) {
+  const product = getProduct(productId);
+  const meta = getMeta(productId);
+  if (!product || !meta) return '';
+  return `<article class="ui-stack-product-card">
+      <div class="ui-stack-product-head">
+          <div>
+              <div class="ui-data-label">Product sheet</div>
+              <h3 class="font-display font-bold text-xl mt-2">${escHtml(product.name)}</h3>
+          </div>
+          <span class="ui-meta-pill">${escHtml(product.stage)}</span>
+      </div>
+      <p class="text-sm text-zinc-500 leading-relaxed mt-4">${escHtml(productRoleForSolution(app.slug, productId))}</p>
+      <div class="ui-app-badges mt-5">${(product.applications || []).slice(0, 3).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
+      <div class="mt-6"><a href="/products/${meta.slug}/" class="btn-outline">Open product sheet</a></div>
+  </article>`;
+}
+
+function renderProductSolutionCard(productId, appSlug) {
+  const app = applications.find((item) => item.slug === appSlug);
+  if (!app) return '';
+  return `<article class="ui-note-card ui-note-card-solid">
+      <div class="ui-data-label">Solution system</div>
+      <div class="ui-data-value">${escHtml(app.name)}</div>
+      <p class="ui-data-note">${escHtml(productRoleForSolution(app.slug, productId))}</p>
+      <div class="mt-6"><a href="${getSolutionHref(app.slug)}" class="btn-outline">Explore system</a></div>
+  </article>`;
+}
+
+function renderMilestone(milestone) {
+  return `<article class="ui-timeline-card">
+      <div class="ui-timeline-year">${escHtml(milestone.year)}</div>
+      <div>
+          <h3 class="font-display font-bold text-lg mb-2">${escHtml(milestone.title)}</h3>
+          <p class="text-sm text-zinc-500 leading-relaxed">${escHtml(milestone.detail)}</p>
+      </div>
+  </article>`;
+}
+
+
+function renderMilestone(milestone) {
+  return `<article class="ui-timeline-card">
+      <div class="ui-timeline-year">${escHtml(milestone.year)}</div>
+      <div>
+          <h3 class="font-display font-bold text-lg mb-2">${escHtml(milestone.title)}</h3>
+          <p class="text-sm text-zinc-500 leading-relaxed">${escHtml(milestone.detail)}</p>
+      </div>
+  </article>`;
+}
+
+
+function articleProductContext(article) {
+  const product = getProduct(article.category);
+  const meta = getMeta(article.category);
+  return product && meta ? { product, meta } : null;
+}
+
+function extractComparisonOptions(title, product) {
+  const beforeColon = title.split(':')[0];
+  const normalized = beforeColon.includes(' for ') ? beforeColon.split(' for ').slice(1).join(' for ') : beforeColon;
+  const hasVs = beforeColon.includes(' vs ');
+  const titleOptions = hasVs ? normalized.split(' vs ').map((part) => part.trim()).filter(Boolean) : [];
+  if (titleOptions.length >= 2) return titleOptions.slice(0, 4);
+  if (product.technical?.grades?.length >= 2) return product.technical.grades.slice(0, 4);
+  return product.specs.slice(0, 3).map((spec) => spec.split(':')[0].trim()).filter(Boolean);
+}
+
+function renderInsightArticleBody(article) {
+  const context = articleProductContext(article);
+  if (!context) return markdownToHtml(article.content);
+
+  const { product, meta } = context;
+  const specRows = product.specs.map((spec, index) => specToRow(spec, index));
+
+  const commercialRows = [
+    ['Lead time', product.technical?.leadTime || 'On request'],
+    ['MOQ', product.technical?.moq || 'On request'],
+    ['Origin', product.technical?.origin || 'On request'],
+    ['Standards', (product.technical?.certifications || []).join(', ') || 'On request']
+  ];
+
+  const checklist = [
+    'Define the application, finish expectation, and end-use environment before requesting a quote.',
+    'Lock dimensional requirements, grade, and compliance expectations in the RFQ.',
+    'Confirm sampling or reference approval when finish fidelity or surface consistency matters.',
+    'Review supply timing, documentation, and packing requirements before order confirmation.'
+  ];
+
+  const safeOverview = `${product.summary} ${product.customization || ''}`.trim();
+  const safeWorkflow = meta.workflow || product.summary;
+  const safeCommercial = `${product.customization || 'Final configuration is confirmed per enquiry.'} Lead time, MOQ, origin, and supporting documents are confirmed against the actual programme.`;
+
+  if (article.type === 'Buyer\'s Guide') {
+    return `
+      <h2>Why This Matters</h2>
+      <p>${escHtml(product.name)} buying decisions affect not only landed cost, but also finish quality, production stability, and downstream rework. The strongest RFQs align technical expectations, commercial timing, and inspection checkpoints before production begins.</p>
+      <h2>Commercial Baseline</h2>
+      <table>
+        <tr><th>Parameter</th><th>Reference</th></tr>
+        ${commercialRows.map(([label, value]) => `<tr><td>${escHtml(label)}</td><td>${escHtml(value)}</td></tr>`).join('')}
+      </table>
+      <h2>What To Lock Before Inquiry</h2>
+      <ul>${specRows.map((row) => `<li><strong>${escHtml(row.label)}:</strong> ${escHtml(row.value)}</li>`).join('')}</ul>
+      <h2>Supplier Evaluation Frame</h2>
+      <ul>
+        <li><strong>Technical fit:</strong> Can the supplier align grade, build-up, finish, and application performance instead of quoting a generic equivalent?</li>
+        <li><strong>Quality controls:</strong> Are inspections, approvals, and reference documents defined before dispatch?</li>
+        <li><strong>Commercial discipline:</strong> Are lead time assumptions, quantity expectations, and logistics responsibilities clear?</li>
+        <li><strong>Communication speed:</strong> Does the supplier respond fast enough for iterative specification work?</li>
+      </ul>
+      <h2>RFQ Checklist</h2>
+      <ol>${checklist.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ol>
+      <h2>How Moldart Usually Engages</h2>
+      <p>${escHtml(safeOverview)}</p>
+      <p>${escHtml(safeCommercial)}</p>`;
+  }
+
+  if (article.type === 'Quality & Standards') {
+    return `
+      <h2>Quality Scope</h2>
+      <p>${escHtml(product.name)} quality should be reviewed through the combined lens of dimensional control, surface acceptance, certification support, and consistency against the approved reference.</p>
+      <h2>Applicable Standards</h2>
+      <table>
+        <tr><th>Control Area</th><th>Reference</th></tr>
+        <tr><td>Primary standards</td><td>${escHtml((product.technical?.certifications || []).join(', ') || 'Project-specific')}</td></tr>
+        <tr><td>Material platform</td><td>${escHtml((product.technical?.grades || []).join(', ') || product.material)}</td></tr>
+        <tr><td>Typical supply route</td><td>${escHtml(product.technical?.origin || 'On request')}</td></tr>
+      </table>
+      <h2>Inspection Priorities</h2>
+      <ul>${specRows.map((row) => `<li><strong>${escHtml(row.label)}:</strong> Verify against approved technical reference and supply documentation.</li>`).join('')}</ul>
+      <h2>Receiving Checklist</h2>
+      <ol>
+        <li>Match order line, product description, and quantity against shipping documents.</li>
+        <li>Confirm surface condition, dimensional integrity, and pack protection immediately on receipt.</li>
+        <li>Review material certificates, compliance references, and any special quality commitments.</li>
+        <li>Escalate deviations before installation, conversion, or production release.</li>
+      </ol>
+      <h2>Common Quality Risks</h2>
+      <p>The most common failures happen when reference approval is weak, specifications are incomplete, or incoming inspection is delayed until after processing begins.</p>`;
+  }
+
+  if (article.type === 'Application Guide') {
+    return `
+      <h2>Application Context</h2>
+      <p>${escHtml(safeWorkflow)}</p>
+      <h2>Typical Use Cases</h2>
+      <ul>${product.applications.map((application) => `<li><strong>${escHtml(application)}:</strong> Evaluate the product against finish requirement, production load, and installation or conversion method.</li>`).join('')}</ul>
+      <h2>Selection Priorities</h2>
+      <ul>${specRows.map((row) => `<li><strong>${escHtml(row.label)}:</strong> ${escHtml(row.value)}</li>`).join('')}</ul>
+      <h2>Common Mistakes</h2>
+      <ol>
+        <li>Choosing on price before aligning the technical requirement.</li>
+        <li>Skipping reference validation when finish or tolerance is surface-critical.</li>
+        <li>Ignoring production timing, storage, or handling conditions before use.</li>
+        <li>Under-specifying documentation for export, compliance, or customer approval.</li>
+      </ol>
+      <h2>Execution Note</h2>
+      <p>${escHtml(safeCommercial)}</p>`;
+  }
+
+  if (article.type === 'Technical Deep-Dive') {
+    return `
+      <h2>Technical Scope</h2>
+      <p>${escHtml(safeOverview)}</p>
+      <h2>Specification Reference</h2>
+      <table>
+        <tr><th>Technical item</th><th>Reference</th></tr>
+        ${specRows.map((row) => `<tr><td>${escHtml(row.label)}</td><td>${escHtml(row.value)}</td></tr>`).join('')}
+        <tr><td>Material grades</td><td>${escHtml((product.technical?.grades || []).join(', ') || product.material)}</td></tr>
+        <tr><td>Standards</td><td>${escHtml((product.technical?.certifications || []).join(', ') || 'Project-specific')}</td></tr>
+      </table>
+      <h2>Engineering Notes</h2>
+      <ul>
+        <li>Specifications should be reviewed against the actual end-use and not copied from unrelated historical orders.</li>
+        <li>Dimensional and surface requirements should be documented alongside the commercial quote request.</li>
+        <li>Where relevant, destination-market compliance should be validated before production scheduling.</li>
+      </ul>
+      <h2>Practical Qualification Questions</h2>
+      <ol>
+        <li>Which of these technical requirements are mandatory versus preferred?</li>
+        <li>What reference sample or approved finish defines acceptance?</li>
+        <li>Which documents must ship with the order?</li>
+        <li>What is the tolerance for batch-to-batch variation?</li>
+      </ol>`;
+  }
+
+  if (article.type === 'Comparative Analysis') {
+    const options = extractComparisonOptions(article.title, product);
+    const comparisonRows = options.map((option, index) => {
+      const note = index === 0
+        ? 'Best when commercial efficiency and broad availability are the primary drivers.'
+        : index === 1
+          ? 'Best when performance, finish control, or service life justify the tighter specification.'
+          : 'Best when the requirement is application-specific or tied to an existing approval route.';
+      return `<tr><td>${escHtml(option)}</td><td>${escHtml(product.applications[index % product.applications.length] || product.use)}</td><td>${escHtml(note)}</td></tr>`;
+    }).join('');
+    return `
+      <h2>Decision Frame</h2>
+      <p>${escHtml(product.name)} comparisons are rarely just material-versus-material decisions. The right answer depends on tolerance, finish expectation, conversion route, volume, and commercial timing.</p>
+      <h2>Comparison Table</h2>
+      <table>
+        <tr><th>Option</th><th>Typical fit</th><th>Decision note</th></tr>
+        ${comparisonRows}
+      </table>
+      <h2>Shared Evaluation Criteria</h2>
+      <ul>${specRows.map((row) => `<li><strong>${escHtml(row.label)}:</strong> Use this as a like-for-like comparison checkpoint.</li>`).join('')}</ul>
+      <h2>Commercial Overlay</h2>
+      <p>Even when multiple options are technically viable, lead time, MOQ, origin, documentation, and approval risk can materially change the best commercial choice.</p>
+      <table>
+        <tr><th>Commercial item</th><th>Reference</th></tr>
+        ${commercialRows.map(([label, value]) => `<tr><td>${escHtml(label)}</td><td>${escHtml(value)}</td></tr>`).join('')}
+      </table>`;
+  }
+
+  if (article.type === 'Comprehensive Guide') {
+    return `
+      <h2>Overview</h2>
+      <p>${escHtml(safeOverview)}</p>
+      <h2>Where It Fits</h2>
+      <p>${escHtml(safeWorkflow)}</p>
+      <h2>Core Technical References</h2>
+      <table>
+        <tr><th>Reference area</th><th>Details</th></tr>
+        ${specRows.map((row) => `<tr><td>${escHtml(row.label)}</td><td>${escHtml(row.value)}</td></tr>`).join('')}
+      </table>
+      <h2>Typical Applications</h2>
+      <ul>${product.applications.map((application) => `<li>${escHtml(application)}</li>`).join('')}</ul>
+      <h2>Commercial Notes</h2>
+      <p>${escHtml(safeCommercial)}</p>
+      <h2>Selection Checklist</h2>
+      <ol>${checklist.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ol>
+      <h2>When To Talk To Moldart</h2>
+      <p>Bring Moldart in early when the programme involves finish-sensitive approvals, multi-step sourcing, compliance-sensitive exports, or recurring supply that needs a stable technical-commercial reference.</p>`;
+  }
+
+  return markdownToHtml(article.content);
 }
 
 function productCard(productId) {
@@ -744,18 +1632,19 @@ function productCard(productId) {
 
 function ctaBlock(heading, subtext, primaryLabel, primaryHref, secondaryLabel, secondaryHref) {
   return `<section class="max-w mx-auto px py-24 fade-up">
-    <div class="grid md-grid-2 gap-10 items-center">
-        <div>
-            <h2 class="font-display font-black text-4xl mb-4" style="line-height:1;">${heading}</h2>
-            <p class="text-sm text-zinc-500 leading-relaxed max-w-sm">${subtext}</p>
+    <div class="ui-cta-band">
+        <div class="ui-cta-copy">
+            <h2 class="font-display font-black text-3xl mb-3" style="line-height:1;">${heading}</h2>
+            <p>${subtext}</p>
         </div>
-        <div class="flex gap-4 md-justify-end flex-wrap">
+        <div class="ui-cta-actions">
             <a href="${primaryHref}" class="btn-primary btn-lg">${primaryLabel} →</a>
             ${secondaryLabel ? `<a href="${secondaryHref}" class="btn-outline btn-lg">${secondaryLabel}</a>` : ''}
         </div>
     </div>
 </section>`;
 }
+
 
 // ============================================================
 // PAGE GENERATORS
@@ -764,362 +1653,470 @@ function ctaBlock(heading, subtext, primaryLabel, primaryHref, secondaryLabel, s
 function generateHomepage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'Organization', name: 'Moldart', url: SITE + '/', logo: { '@type': 'ImageObject', url: SITE + '/favicon-192x192.png', width: 192, height: 192 }, foundingDate: '1989', sameAs: ['https://www.linkedin.com/in/thisisyashdoshi'], address: { '@type': 'PostalAddress', streetAddress: '#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West)', addressLocality: 'Mumbai', addressRegion: 'Maharashtra', postalCode: '400064', addressCountry: 'IN' }, contactPoint: { '@type': 'ContactPoint', telephone: '+917208088788', contactType: 'sales', email: 'info@moldartindia.com', areaServed: 'IN', availableLanguage: ['English', 'Hindi'] }, description: 'Integrated industrial supply solutions for the wood-working and metallurgical industries since 1989.' },
+    { '@context': 'https://schema.org', '@type': 'Organization', name: 'Moldart', url: SITE + '/', logo: { '@type': 'ImageObject', url: SITE + '/favicon-192x192.png', width: 192, height: 192 }, foundingDate: '1989', sameAs: [COMPANY_LINKEDIN], address: { '@type': 'PostalAddress', streetAddress: '#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West)', addressLocality: 'Mumbai', addressRegion: 'Maharashtra', postalCode: '400064', addressCountry: 'IN' }, contactPoint: { '@type': 'ContactPoint', telephone: '+917208088788', contactType: 'sales', email: 'info@moldartindia.com', areaServed: 'IN', availableLanguage: ['English', 'Hindi'] }, description: 'Verified sourcing and supply for lamination tooling, engineered panels, flooring, decorative stainless steel, furniture programmes, and industrial press surfaces since 1989.' },
     { '@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE + '/#website', name: 'Moldart', url: SITE + '/', inLanguage: 'en-IN' },
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/#webpage', url: SITE + '/', name: 'Moldart India | Press Plates, Engineered Wood & Decorative Steel Since 1989', description: 'Moldart — 35+ years of integrated supply solutions for wood-working and metallurgical industries. Press plates, substrates, flooring, decorative steel.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/#webpage', url: SITE + '/', name: 'Moldart India | Verified sourcing and supply since 1989', description: 'Moldart supplies lamination tooling, engineered panels, flooring systems, decorative stainless steel, furniture programmes, and industrial press surfaces from a Mumbai-led sourcing and supply model.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
+  const solutionCards = applications.map((app) => renderApplicationPreviewCard(app, { compact: true })).join('');
+  const featuredDocs = resourceGroups.flatMap((group) => group.items.map((item) => ({ ...item, group: group.title }))).slice(0, 4);
+  const featuredArticles = rawInsights.articles.slice(0, 4);
+
   return headTag({
-    title: 'Moldart India | Press Plates, Engineered Wood & Decorative Steel Since 1989',
-    desc: 'Moldart supplies press plates, lamination tooling, engineered wood substrates, flooring systems, and decorative stainless steel from Mumbai, India. 35+ years serving manufacturers, architects, and distributors.',
+    title: 'Moldart India | Lamination Tooling, Panels, Flooring & Decorative Stainless Steel',
+    desc: 'Moldart supplies lamination tooling, engineered panels, flooring systems, decorative stainless steel, furniture programmes, and industrial press surfaces from Mumbai-led sourcing and supply coordination.',
     canonical: '/',
     schemas,
-    prefetch: ['/products/', '/contact/', '/data/product-directory.json']
+    prefetch: ['/solutions/', '/resources/', '/insights/', '/contact/']
   }) + '\n' + nav('home') + `
 
     <main id="main-content" class="pt-16">
-        <section class="max-w mx-auto px py-16 fade-up">
-            <div class="flex flex-col" style="max-width:52rem;">
-                <div class="inline-flex items-center gap-3 mb-10">
-                    <span style="width:2rem;height:1px;background:#d4d4d8;"></span>
-                    <span class="section-label">Est. 1989 · Mumbai, India</span>
-                </div>
-                <h1 class="hero-heading mb-10">PRESS PLATES.<br>SUBSTRATES.<br><span class="text-zinc-300">SURFACES.</span></h1>
-                <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed mb-8">Moldart supplies lamination tooling, engineered wood panels, flooring systems, and decorative stainless steel to manufacturers, architects, and distributors. 35+ years of integrated industrial supply from Mumbai.</p>
-                <div class="flex gap-4 flex-wrap">
-                    <a href="/products/" class="btn-primary btn-lg">Explore Products →</a>
-                    <a href="/contact/" class="btn-outline btn-lg">Share a Requirement</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="bg-zinc-50 border-y border-zinc-100 fade-up">
-            <div class="max-w mx-auto px py-12">
-                <div class="section-label mb-6 text-center">Who We Supply</div>
-                <div class="grid grid-2 md-grid-4 gap-4 text-center">
-                    <div class="p-4"><div class="font-display font-bold text-sm tracking-wider">MANUFACTURERS</div><div class="text-xs text-zinc-500 mt-1">Lamination, furniture, flooring</div></div>
-                    <div class="p-4"><div class="font-display font-bold text-sm tracking-wider">ARCHITECTS</div><div class="text-xs text-zinc-500 mt-1">Decorative steel, substrates, custom</div></div>
-                    <div class="p-4"><div class="font-display font-bold text-sm tracking-wider">DISTRIBUTORS</div><div class="text-xs text-zinc-500 mt-1">Panels, flooring, steel products</div></div>
-                    <div class="p-4"><div class="font-display font-bold text-sm tracking-wider">PROJECT TEAMS</div><div class="text-xs text-zinc-500 mt-1">Custom furniture, fit-outs</div></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="max-w mx-auto px py-24 fade-up">
-            <div class="section-label mb-4">Product Categories</div>
-            <h2 class="font-display font-black text-3xl mb-12">WHAT WE SUPPLY.</h2>
-            <div class="grid md-grid-3 gap-4 bento-grid">
-                <a href="/products/press-plates/" class="bento-box col-span-2 group overflow-hidden bg-zinc-50 relative">
-                    <picture><source srcset="/images/page5_img3.avif" type="image/avif"><img src="/images/page5_img3.webp" alt="Precision press plates for lamination" width="800" height="480" loading="eager" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover transition-opacity z-0" style="opacity:0.10;"></picture>
-                    <div class="bento-content z-10"><div class="bento-header flex justify-between items-start"><h3 class="font-display font-bold text-2xl">Lamination Tooling</h3><svg class="icon icon-sm opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><p class="text-sm text-zinc-500 mt-2 mb-6">Press plates, press pads, engraved cylinders, and printed decor paper for laminate manufacturing.</p><div class="flex gap-2 flex-wrap"><span class="directory-pill">SS 420 / SS 633</span><span class="directory-pill">65–70 HRC Chrome</span></div></div>
-                </a>
-                <a href="/products/plywood/" class="bento-box group relative overflow-hidden">
-                    <picture><source srcset="/images/page6_img1.avif" type="image/avif"><img src="/images/page6_img1.webp" alt="Engineered wood substrate panels" width="600" height="480" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-opacity z-0" style="opacity:0.12;"></picture>
-                    <div class="bento-content z-10"><div class="bento-header flex justify-between items-start"><h3 class="font-display font-bold text-2xl">Engineered Substrates</h3><svg class="icon icon-sm opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><p class="text-sm text-zinc-500 mt-2 mb-6">Plywood, OSB, MDF, HDF, and particleboard — EN, CARB-NAF, and JIS certified.</p><div class="flex gap-2 flex-wrap"><span class="directory-pill">E1 / NAF</span><span class="directory-pill">FSC Certified</span></div></div>
-                </a>
-                <a href="/products/wood-flooring/" class="bento-box group relative overflow-hidden">
-                    <picture><source srcset="/images/page7_img1.avif" type="image/avif"><img src="/images/page7_img1.webp" alt="Engineered wood flooring" width="600" height="480" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-opacity z-0" style="opacity:0.12;"></picture>
-                    <div class="bento-content z-10"><div class="bento-header flex justify-between items-start"><h3 class="font-display font-bold text-2xl">Flooring & Furniture</h3><svg class="icon icon-sm opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><p class="text-sm text-zinc-500 mt-2 mb-6">Engineered flooring systems, transition profiles, and architectural furniture solutions.</p><div class="flex gap-2 flex-wrap"><span class="directory-pill">AC3–AC5</span><span class="directory-pill">Click-Lock</span></div></div>
-                </a>
-                <a href="/products/decorative-ss-panels/" class="bento-box col-span-2 group overflow-hidden bg-zinc-50 relative">
-                    <picture><source srcset="/images/page9_img1.avif" type="image/avif"><img src="/images/page9_img1.webp" alt="PVD decorative stainless steel panels" width="800" height="480" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-opacity z-0" style="opacity:0.15;"></picture>
-                    <div class="bento-content z-10"><div class="bento-header flex justify-between items-start"><h3 class="font-display font-bold text-2xl">Decorative Steel</h3><svg class="icon icon-sm opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><p class="text-sm text-zinc-500 mt-2 mb-6">PVD-coated panels, precision profiles, and stainless steel furniture for premium interiors.</p><div class="flex gap-2 flex-wrap"><span class="directory-pill">SS 304 / 316L</span><span class="directory-pill">PVD Coating</span><span class="directory-pill">Anti-Fingerprint</span></div></div>
-                </a>
-            </div>
-            <div class="mt-12 text-center">
-                <a href="/products/" class="btn-outline">View All 16 Products →</a>
-            </div>
-        </section>
-
-        <section class="bg-zinc-50 border-y border-zinc-100 fade-up">
-            <div class="max-w mx-auto px py-16">
-                <div class="grid md-grid-2 gap-10 items-center">
-                    <div>
-                        <div class="section-label mb-6">How We Work</div>
-                        <h2 class="font-display font-black text-3xl mb-4">REQUIREMENT TO DELIVERY.</h2>
-                        <p class="text-sm text-zinc-500 leading-relaxed">Every material follows a structured execution flow — from requirement understanding through technical review, sourcing coordination, quality validation, and delivery oversight.</p>
+        <section class="max-w mx-auto px py-20 fade-up">
+            <div class="ui-hero">
+                <div>
+                    <div class="ui-kicker mb-6">${glyph('shield', 'icon icon-sm')} Since 1989 · Mumbai</div>
+                    <h1 class="page-heading page-heading-home mb-6">VERIFIED SOURCING AND SUPPLY<br>FOR WOOD + STEEL PROGRAMMES.</h1>
+                    <p class="ui-intro">Moldart supplies lamination tooling, printed decor inputs, engineered panels, flooring systems, furniture programmes, decorative stainless steel, and industrial press plates through a Mumbai-led sourcing and supply model.</p>
+                    <div class="ui-chip-row mt-8">
+                        <span class="ui-chip">${glyph('layers', 'icon icon-sm')} Press plates, pads, cylinders, decor paper</span>
+                        <span class="ui-chip">${glyph('factory', 'icon icon-sm')} Plywood, fiberboard, OSB, particleboard</span>
+                        <span class="ui-chip">${glyph('compass', 'icon icon-sm')} Flooring, accessories, furniture programmes</span>
+                        <span class="ui-chip">${glyph('spark', 'icon icon-sm')} Decorative stainless steel + industrial press surfaces</span>
                     </div>
-                    <div class="process-timeline" style="margin-top:0;">
-                        <div class="process-timeline-step"><div class="process-timeline-dot">01</div><div><div class="process-timeline-label">Share Requirement</div><div class="process-timeline-desc">Application, specifications, volume, and timeline.</div></div></div>
-                        <div class="process-timeline-step"><div class="process-timeline-dot">02</div><div><div class="process-timeline-label">Technical Review</div><div class="process-timeline-desc">Grade selection, material alignment, and supply path.</div></div></div>
-                        <div class="process-timeline-step"><div class="process-timeline-dot">03</div><div><div class="process-timeline-label">Sourcing & QC</div><div class="process-timeline-desc">Manufacturing coordination and quality validation.</div></div></div>
-                        <div class="process-timeline-step"><div class="process-timeline-dot">04</div><div><div class="process-timeline-label">Delivery</div><div class="process-timeline-desc">Logistics, documentation, and delivery support.</div></div></div>
+                    <div class="flex gap-4 flex-wrap mt-8 hero-cta-wrap">
+                        <a href="/solutions/" class="btn-primary btn-lg">Explore Solutions →</a>
+                        <a href="/contact/" class="btn-outline btn-lg">Share your requirement</a>
+                    </div>
+                </div>
+                <div class="ui-panel ui-panel-soft">
+                    <div class="ui-panel-inner">
+                        <div class="ui-kicker mb-4">${glyph('map', 'icon icon-sm')} Mumbai-led coordination</div>
+                        ${renderHeroNetworkMap()}
+                        <div class="ui-map-caption">Mumbai remains the operating contact point, while India and China supply routes are aligned per programme.</div>
+                        <div class="ui-proof-grid mt-4">
+                            <article class="ui-proof-card"><div class="ui-proof-label">Product sheets</div><div class="ui-proof-value">${rawProducts.products.length} live sheets</div><p class="ui-proof-copy">Reference-led product pages remain available once the right system is clear.</p></article>
+                            <article class="ui-proof-card"><div class="ui-proof-label">Guides</div><div class="ui-proof-value">${rawInsights.articles.length} technical guides</div><p class="ui-proof-copy">Longer-form notes support buyers, production teams, and technical reviewers.</p></article>
+                            <article class="ui-proof-card"><div class="ui-proof-label">Operating model</div><div class="ui-proof-value">Source → Verify → Supply</div><p class="ui-proof-copy">The site mirrors the way the business is actually presented in the verified source material.</p></article>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="max-w mx-auto px py-16 fade-up">
-            <div class="grid md-grid-3 gap-4">
-                <div class="trust-stat"><div class="trust-stat-value">35+</div><div class="trust-stat-label">Years in Business</div></div>
-                <div class="trust-stat"><div class="trust-stat-value">15+</div><div class="trust-stat-label">Product Families</div></div>
-                <div class="trust-stat"><div class="trust-stat-value">60+</div><div class="trust-stat-label">Countries Served</div></div>
+        <section class="bg-zinc-50 border-y border-zinc-100 fade-up">
+            <div class="max-w mx-auto px py-20">
+                <div class="ui-section-head mb-12">
+                    <div class="ui-kicker mb-4">${glyph('compass', 'icon icon-sm')} Combined systems</div>
+                    <h2 class="ui-section-title">WHAT MOLDART SUPPLIES.</h2>
+                    <p class="ui-section-subtitle">Each live system below combines the application view with the relevant product stack, so important products are not hidden in a side panel or on a separate route.</p>
+                </div>
+                <div class="ui-solution-grid">${solutionCards}</div>
             </div>
         </section>
 
-        ${ctaBlock('NEED SPECIFICATIONS<br>OR PRICING?', 'Share your requirement and our team will respond with the right technical and commercial guidance.', 'Share Requirement', '/contact/', 'Download Catalog', '/resources/')}
+        <section class="max-w mx-auto px py-20 fade-up">
+            <div class="ui-spotlight">
+                <div class="ui-stack-card">
+                    <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} How a programme moves</div>
+                    <div class="ui-flow-band">
+                        ${SUPPLY_FLOW_ITEMS.map((item) => `<div class="ui-flow-pill"><div class="ui-flow-step">${escHtml(item.step)}</div><div class="ui-flow-title">${escHtml(item.title)}</div><p class="ui-flow-copy">${escHtml(item.detail)}</p></div>`).join('')}
+                    </div>
+                </div>
+                <div class="ui-stack-card">
+                    <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Use one source of truth</div>
+                    <div class="ui-proof-grid">
+                        <article class="ui-proof-card"><div class="ui-proof-label">Solutions</div><div class="ui-proof-value">System-first view</div><p class="ui-proof-copy">Use Solutions when you need the application logic and the relevant product stack together.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Resources</div><div class="ui-proof-value">Documents once</div><p class="ui-proof-copy">Catalogues, finish decks, and reference PDFs stay centralised in one library.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Contact</div><div class="ui-proof-value">Requirement-led follow-up</div><p class="ui-proof-copy">Exact grade, finish, quantity, timing, and documentation are confirmed after the requirement is reviewed.</p></article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w mx-auto px py-20 border-t border-zinc-100 fade-up">
+            <div class="ui-section-head mb-10">
+                <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Guides and references</div>
+                <h2 class="ui-section-title">TECHNICAL GUIDES,<br>NOT CONTENT NOISE.</h2>
+                <p class="ui-section-subtitle">Guides stay technical but readable, and documents stay in one library so the same information does not have to be repeated across multiple pages.</p>
+            </div>
+            <div class="ui-library-grid">
+                <article class="ui-library-card">
+                    <div class="ui-kicker mb-2">${glyph('file', 'icon icon-sm')} Reference library</div>
+                    <div class="ui-list-compact mt-4">
+                        ${featuredDocs.map((item) => `<div class="ui-list-row"><div class="ui-list-copy"><div class="ui-list-title">${escHtml(item.title)}</div><div class="ui-list-meta">${escHtml(item.group)} · ${escHtml(item.desc)}</div></div><a href="${item.url}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(item.title)}" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`).join('')}
+                    </div>
+                    <div class="mt-8"><a href="/resources/" class="btn-outline">Open Resources</a></div>
+                </article>
+                <article class="ui-library-card">
+                    <div class="ui-kicker mb-2">${glyph('spark', 'icon icon-sm')} Technical guides & notes</div>
+                    <div class="ui-list-compact mt-4">
+                        ${featuredArticles.map((article) => `<div class="ui-list-row"><div class="ui-list-copy"><div class="ui-list-title">${escHtml(article.title)}</div><div class="ui-list-meta">${escHtml(article.categoryLabel)} · ${escHtml(article.type)}</div></div><a href="/insights/${article.slug}/" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`).join('')}
+                    </div>
+                    <div class="mt-8"><a href="/insights/" class="btn-outline">Open Insights</a></div>
+                </article>
+            </div>
+        </section>
+
+        ${ctaBlock('READY TO START<br>FROM THE RIGHT SYSTEM?', 'Use Solutions for the full stack, open the product sheets that matter, or send the requirement directly for review.', 'Explore Solutions', '/solutions/', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
     ${closingElements()}`;
 }
 
-function generateProductsHub() {
-  const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Products' }]);
+
+function generateExplorePage() {
+  const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Explore' }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/products/#webpage', url: SITE + '/products/', name: 'Products — Moldart India', description: 'Complete product portfolio: lamination tooling, engineered substrates, flooring, furniture, and decorative stainless steel.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
-    bc.schema,
-    { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Moldart Products', numberOfItems: rawProducts.products.length, itemListElement: rawProducts.products.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.name, url: SITE + '/products/' + (productMeta[p.id]?.slug || p.id) + '/' })) }
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/explore/#webpage', url: SITE + '/explore/', name: 'Explore Moldart | Search the full portfolio', description: 'Search solutions, product sheets, technical guides, and resources across the full Moldart portfolio.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    bc.schema
   ];
 
-  let categoryHtml = '';
-  for (const cat of productCategories) {
-    const cards = cat.products.map(pid => productCard(pid)).join('\n');
-    categoryHtml += `
-        <div class="mb-16 fade-up">
-            <h2 class="font-display font-bold text-2xl tracking-wider mb-2">${escHtml(cat.title.toUpperCase())}</h2>
-            <p class="text-sm text-zinc-500 leading-relaxed mb-8 max-w-2xl">${escHtml(cat.desc)}</p>
-            <div class="grid md-grid-${Math.min(cat.products.length, 4)} gap-4">${cards}</div>
-        </div>`;
-  }
+  const quickRoutes = [
+    { href: '/solutions/', title: 'Solutions', detail: 'Combined system views with the relevant product stack already attached.', meta: `${applications.length} systems`, icon: 'compass' },
+    { href: '/solutions/#product-sheets', title: 'Product sheets', detail: 'Open the individual product pages when you already know the category.', meta: `${rawProducts.products.length} sheets`, icon: 'layers' },
+    { href: '/resources/', title: 'Resources', detail: 'Document-first discovery for catalogues, finishes, and reference PDFs.', meta: `${getTotalResourceItems()} references`, icon: 'book' },
+    { href: '/insights/', title: 'Technical guides', detail: 'Longer-form guidance for buyers, technical teams, and project stakeholders.', meta: `${rawInsights.articles.length} guides`, icon: 'spark' }
+  ];
 
   return headTag({
-    title: 'Products | Press Plates, Substrates, Flooring & Steel — Moldart India',
-    desc: 'Explore Moldart\'s complete product portfolio: lamination press plates, engineered wood substrates, flooring systems, and decorative stainless steel for industrial and architectural use.',
-    canonical: '/products/',
-    ogImage: '/images/page5_img3.webp',
-    ogImageAlt: 'Moldart product portfolio',
-    schemas
-  }) + '\n' + nav('products') + `
+    title: 'Explore Moldart | Search solutions, product sheets, and guides',
+    desc: 'Search and filter Moldart solutions, product sheets, technical resources, and guides from one discovery page.',
+    canonical: '/explore/',
+    schemas,
+    prefetch: ['/data/product-directory.json', '/resources/', '/solutions/']
+  }) + '\n' + nav('explore') + `
 
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             ${bc.html}
-            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Full Portfolio</span></div>
-            <h1 class="page-heading mb-6">PRODUCTS.</h1>
-            <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed">16 product categories across lamination tooling, engineered substrates, flooring, furniture, and decorative stainless steel.</p>
+            <div class="ui-page-hero">
+                <div class="ui-page-hero-copy">
+                    <div class="ui-kicker mb-4">${glyph('search', 'icon icon-sm')} Search the full portfolio</div>
+                    <h1 class="ui-section-title">SEARCH SOLUTIONS,<br>PRODUCT SHEETS, AND GUIDES.</h1>
+                    <p class="ui-section-subtitle">Use Explore when you do not care which page type the answer lives on. Search by product, application, spec language, or category and jump directly to the right sheet.</p>
+                    <div class="ui-chip-row mt-8">
+                        <span class="ui-chip">${glyph('search', 'icon icon-sm')} Search on-page</span>
+                        <span class="ui-chip">${glyph('spark', 'icon icon-sm')} Ctrl/⌘ K palette</span>
+                        <span class="ui-chip">${glyph('layers', 'icon icon-sm')} Solutions + sheets + guides</span>
+                    </div>
+                </div>
+                <div class="ui-page-hero-panel">
+                    <div class="ui-metric-grid">
+                        ${renderMetricCard({ icon: 'compass', label: 'Solutions', value: applications.length, note: 'System views that already include the relevant product stack.', animate: true })}
+                        ${renderMetricCard({ icon: 'layers', label: 'Product sheets', value: rawProducts.products.length, note: 'Reference-led pages for individual products and categories.', animate: true })}
+                        ${renderMetricCard({ icon: 'book', label: 'Resources', value: getTotalResourceItems(), note: 'One library for catalogues, finish decks, and PDFs.', animate: true })}
+                        ${renderMetricCard({ icon: 'spark', label: 'Guides', value: rawInsights.articles.length, note: 'Technical guides and notes kept live because they add value.', animate: true })}
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="max-w mx-auto px py-16">
-            ${categoryHtml}
+        <section class="max-w mx-auto px py-16 fade-up">
+            <div id="product-directory-root"></div>
         </section>
 
-        ${ctaBlock('LOOKING FOR<br>SOMETHING SPECIFIC?', 'Share your application details, specifications, or volume requirements.', 'Share Requirement', '/contact/', 'Download Catalog', '/resources/')}
+        <section class="bg-zinc-50 border-y border-zinc-100 fade-up">
+            <div class="max-w mx-auto px py-20">
+                <div class="ui-section-head mb-10">
+                    <div class="ui-kicker mb-4">${glyph('compass', 'icon icon-sm')} Quick routes</div>
+                    <h2 class="ui-section-title">FOUR FAST LANES.</h2>
+                    <p class="ui-section-subtitle">If you already know how you want to browse, jump directly into the right route below.</p>
+                </div>
+                <div class="ui-action-grid">${quickRoutes.map((card) => renderActionCard(card)).join('')}</div>
+            </div>
+        </section>
+
+        ${ctaBlock('NEED A HUMAN<br>SHORTLIST?', 'If search gets you close but not all the way there, send the requirement and let the team align the right path directly.', 'Share your requirement', '/contact/', 'Explore Solutions', '/solutions/')}
     </main>
 
     ${footer()}
     ${closingElements()}`;
 }
+
+
+function generateSolutionsHub() {
+  const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Solutions' }]);
+  const schemas = [
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/solutions/#webpage', url: SITE + '/solutions/', name: 'Solutions — Moldart India', description: 'Combined solution views across lamination, furniture, flooring, architecture, decorative metal finishing, and PCB / CCL programmes.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    bc.schema
+  ];
+
+  const solutionCards = applications.map((app) => renderApplicationPreviewCard(app)).join('\n');
+  const categoryHtml = portfolioFamilies.map((family) => renderPortfolioFamilyCard(family)).join('\n');
+
+  return headTag({
+    title: 'Solutions | Moldart India',
+    desc: 'Combined system views across lamination, furniture, flooring, decorative stainless steel, and industrial press applications — with the relevant product sheets attached.',
+    canonical: '/solutions/',
+    ogImage: '/images/page5_img3.webp',
+    ogImageAlt: 'Moldart solutions overview',
+    schemas
+  }) + '\n' + nav('solutions') + `
+
+    <main id="main-content" class="pt-16">
+        <section class="max-w mx-auto px py-20 border-b border-zinc-100">
+            ${bc.html}
+            <div class="ui-page-hero">
+                <div class="ui-page-hero-copy">
+                    <div class="ui-kicker mb-4">${glyph('compass', 'icon icon-sm')} Combined systems</div>
+                    <h1 class="ui-section-title">SOLUTIONS.</h1>
+                    <p class="ui-section-subtitle">This page combines the old product-first and application-first routes into one cleaner structure. Start from the system, see the relevant product stack immediately, then open the specific product sheet only when you need detail.</p>
+                    <div class="ui-chip-row mt-8">
+                        <span class="ui-chip">${glyph('compass', 'icon icon-sm')} ${applications.length} live systems</span>
+                        <span class="ui-chip">${glyph('layers', 'icon icon-sm')} ${rawProducts.products.length} product sheets</span>
+                        <span class="ui-chip">${glyph('book', 'icon icon-sm')} Resources stay centralised</span>
+                    </div>
+                </div>
+                <div class="ui-page-hero-panel">
+                    <div class="ui-proof-grid">
+                        <article class="ui-proof-card"><div class="ui-proof-label">Why this changed</div><div class="ui-proof-value">Less switching between pages</div><p class="ui-proof-copy">The application story and the relevant products now live together instead of forcing users to hop between separate hubs.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">What stays separate</div><div class="ui-proof-value">Product detail pages</div><p class="ui-proof-copy">Use the product sheet when you want the narrow technical reference for a specific item.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Where documents live</div><div class="ui-proof-value">Resources once</div><p class="ui-proof-copy">Catalogues, finish decks, and PDFs remain centralised in Resources to avoid repetition.</p></article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w mx-auto px py-16 fade-up">
+            <div class="ui-solution-grid">${solutionCards}</div>
+        </section>
+
+        <section id="product-sheets" class="bg-zinc-50 border-y border-zinc-100 fade-up">
+            <div class="max-w mx-auto px py-20">
+                <div class="ui-section-head mb-10">
+                    <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Product sheets by family</div>
+                    <h2 class="ui-section-title">OPEN THE RIGHT SHEET<br>ONLY WHEN YOU NEED IT.</h2>
+                    <p class="ui-section-subtitle">Use the family cards below when the system is already clear and you want to jump into the narrow product reference pages.</p>
+                </div>
+                <div class="ui-family-grid">${categoryHtml}</div>
+            </div>
+        </section>
+
+        ${ctaBlock('NEED A CLEANER<br>SHORTLIST?', 'Start with the solution system, open the product sheets that matter, and send the requirement when the brief is ready.', 'Share your requirement', '/contact/', 'Open Resources', '/resources/')}
+    </main>
+
+    ${footer()}
+    ${closingElements()}`;
+}
+
+
+function generateProductsHub() {
+  return generatePageRedirect('/solutions/', 'Redirecting to Solutions — Moldart', 'Explore solutions');
+}
+
 
 function generateProductPage(productId) {
   const p = getProduct(productId);
   const m = getMeta(productId);
   if (!p || !m) { console.error(`Missing data for ${productId}`); return; }
 
-  const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Products', url: '/products/' }, { name: p.name }]);
+  const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Solutions', url: '/solutions/' }, { name: p.name }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${SITE}/products/${m.slug}/#webpage`, url: `${SITE}/products/${m.slug}/`, name: m.seoTitle, description: m.metaDesc, isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${SITE}/products/${m.slug}/#webpage`, url: `${SITE}/products/${m.slug}/`, name: m.seoTitle, description: safeProductMetaDesc(p), isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema,
     { '@context': 'https://schema.org', '@type': 'Product', name: p.name, description: p.summary, image: SITE + p.image, brand: { '@type': 'Brand', name: 'Moldart' }, manufacturer: { '@type': 'Organization', name: 'Moldart' }, category: `${p.stage} / ${p.use}` }
   ];
 
-  const specsHtml = p.specs.map(s => `<li class="spec-item"><svg class="icon icon-sm text-zinc-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><span class="text-sm text-zinc-600">${escHtml(s)}</span></li>`).join('\n');
-  const appsHtml = p.applications.map(a => `<li class="text-sm text-zinc-600" style="padding:0.25rem 0;">• ${escHtml(a)}</li>`).join('\n');
-  const downloadsHtml = m.downloads.length > 0 ? `<div class="mt-10"><h3 class="font-display font-bold text-lg tracking-wider mb-4">DOWNLOADS</h3><div class="flex flex-col gap-2">${m.downloads.map(d => downloadLink(d)).join('\n')}</div></div>` : '';
+  const specTableRows = [
+    ...p.specs.map((spec, index) => {
+      const row = specToRow(spec, index);
+      return `<tr><td>${escHtml(row.label)}</td><td>${escHtml(row.value)}</td></tr>`;
+    }),
+    `<tr><td>Material grades</td><td>${escHtml((p.technical?.grades || []).join(', ') || p.material)}</td></tr>`,
+    `<tr><td>Reference standard</td><td>${escHtml(standardsText(p.technical))}</td></tr>`,
+    `<tr><td>Supply route</td><td>${escHtml(p.technical?.origin || 'Programme-dependent')}</td></tr>`,
+    `<tr><td>Commercial schedule</td><td>${escHtml(p.technical?.leadTime || 'On request')}</td></tr>`
+  ].join('');
 
-  const relatedHtml = m.relatedProducts.map(rid => productCard(rid)).filter(Boolean).join('\n');
-  const relatedAppsHtml = m.relatedApps.map(slug => {
-    const app = applications.find(a => a.slug === slug);
-    return app ? `<a href="/applications/${app.slug}/" class="btn-outline text-sm">${escHtml(app.name)}</a>` : '';
-  }).filter(Boolean).join('\n');
+  const relatedSolutions = m.relatedApps.map((slug) => applications.find((item) => item.slug === slug)).filter(Boolean);
+  const relatedSolutionPills = relatedSolutions.map((app) => `<a href="${getSolutionHref(app.slug)}" class="ui-link-pill">${escHtml(app.name)}</a>`).join('');
+  const relatedSolutionCards = relatedSolutions.map((app) => renderProductSolutionCard(productId, app.slug)).join('');
 
   return headTag({
     title: m.seoTitle,
-    desc: m.metaDesc,
+    desc: safeProductMetaDesc(p),
     canonical: `/products/${m.slug}/`,
     ogImage: p.image,
     ogImageAlt: p.name + ' — Moldart',
     schemas
-  }) + '\n' + nav('products') + `
+  }) + '\n' + nav('solutions') + `
 
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             ${bc.html}
-            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">${escHtml(p.stage)} · ${escHtml(p.use)}</span></div>
-            <h1 class="page-heading mb-6">${escHtml(p.name.toUpperCase())}.</h1>
-            <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed">${escHtml(p.summary)}</p>
-        </section>
-
-        <section class="max-w mx-auto px py-12 border-b border-zinc-100 fade-up">
-            <div class="process-bar">
-                <div class="process-bar-step"><span class="process-bar-num">01</span><span class="process-bar-label">Share Requirement</span></div>
-                <div class="process-bar-step"><span class="process-bar-num">02</span><span class="process-bar-label">Technical Review</span></div>
-                <div class="process-bar-step"><span class="process-bar-num">03</span><span class="process-bar-label">Sample Approval</span></div>
-                <div class="process-bar-step"><span class="process-bar-num">04</span><span class="process-bar-label">Production</span></div>
-                <div class="process-bar-step"><span class="process-bar-num">05</span><span class="process-bar-label">Quality Check</span></div>
-                <div class="process-bar-step"><span class="process-bar-num">06</span><span class="process-bar-label">Delivery</span></div>
+            <div class="ui-product-hero">
+                <div class="ui-product-media overflow-hidden">
+                    <picture>
+                        <source srcset="${p.image.replace('.webp','.avif')}" type="image/avif">
+                        <img src="${p.image}" alt="${escHtml(p.name)}" width="900" height="700" loading="eager" class="w-full h-full object-cover">
+                    </picture>
+                </div>
+                <div class="ui-product-side">
+                    <div class="ui-page-hero-copy">
+                        <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} ${escHtml(p.stage)} · ${escHtml(p.use)}</div>
+                        <h1 class="ui-section-title">${escHtml(p.name)}.</h1>
+                        <p class="ui-section-subtitle">${escHtml(p.summary)}</p>
+                        <div class="ui-chip-row mt-8">
+                            ${p.applications.slice(0, 3).map((application) => `<span class="ui-chip">${glyph('check', 'icon icon-sm')} ${escHtml(application)}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="ui-fact-grid">
+                        <article class="ui-fact-card">
+                            <div class="ui-data-label">Where it fits</div>
+                            <div class="ui-data-value">${escHtml(p.applications[0] || 'Project-specific')}</div>
+                            <p class="ui-data-note">${escHtml(p.applications.slice(1, 3).join(' • ') || 'Fit is confirmed against the final application.')}</p>
+                        </article>
+                        <article class="ui-fact-card">
+                            <div class="ui-data-label">What it does</div>
+                            <div class="ui-data-value">${escHtml((m.workflow || '').split('. ')[0] || 'Supports the process')}</div>
+                            <p class="ui-data-note">${escHtml(m.workflow)}</p>
+                        </article>
+                        <article class="ui-fact-card">
+                            <div class="ui-data-label">Key checks</div>
+                            <div class="ui-data-value">${escHtml(specToRow(p.specs[0] || 'Confirmed per enquiry').value || 'Confirmed per enquiry')}</div>
+                            <p class="ui-data-note">${escHtml(p.specs.slice(1, 3).join(' • '))}</p>
+                        </article>
+                        <article class="ui-fact-card">
+                            <div class="ui-data-label">Public scope</div>
+                            <div class="ui-data-value">Reference sheet only</div>
+                            <p class="ui-data-note">${escHtml(`${p.customization} Final grade, finish, quantity, and commercial route are confirmed directly.`)}</p>
+                        </article>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
-            <div class="grid md-grid-2 gap-16">
-                <div>
-                    <div class="overflow-hidden rounded-xl bg-zinc-100 mb-8" style="height:min(22rem, 50vw);">
-                        <picture>
-                            <source srcset="${p.image.replace('.webp','.avif')}" type="image/avif">
-                            <img src="${p.image}" alt="${escHtml(p.name)}" width="800" height="600" loading="eager" class="w-full h-full object-cover">
-                        </picture>
-                    </div>
-                    <h2 class="font-display font-bold text-xl tracking-wider mb-4">OVERVIEW</h2>
-                    <p class="text-sm text-zinc-600 leading-relaxed mb-6">${escHtml(m.overview)}</p>
-                    <h3 class="font-display font-bold text-base tracking-wider mb-3">WHERE IT FITS</h3>
-                    <p class="text-sm text-zinc-500 leading-relaxed">${escHtml(m.workflow)}</p>
+            <div class="ui-spotlight">
+                <div class="ui-table-card">
+                    <div class="ui-kicker mb-4">${glyph('file', 'icon icon-sm')} Technical reference</div>
+                    <table class="ui-table">
+                        <tr><th>Reference</th><th>Details</th></tr>
+                        ${specTableRows}
+                    </table>
                 </div>
-                <div>
-                    <h2 class="font-display font-bold text-xl tracking-wider mb-6">KEY SPECIFICATIONS</h2>
-                    <ul class="flex flex-col gap-3 mb-10">${specsHtml}</ul>
-
-                    <h3 class="font-display font-bold text-base tracking-wider mb-3">TYPICAL APPLICATIONS</h3>
-                    <ul class="mb-8">${appsHtml}</ul>
-
-                    <h3 class="font-display font-bold text-base tracking-wider mb-3">CUSTOMIZATION</h3>
-                    <p class="text-sm text-zinc-500 leading-relaxed mb-8">${escHtml(p.customization)}</p>
-
-                    <h3 class="font-display font-bold text-base tracking-wider mb-3">COMMERCIAL NOTES</h3>
-                    <p class="text-sm text-zinc-500 leading-relaxed">${escHtml(m.commercialNotes)}</p>
-
-                    ${downloadsHtml}
+                <div class="ui-stack-card">
+                    <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Reference pack</div>
+                    <p class="text-sm text-zinc-500 leading-relaxed">Use the related documents as the first filter. This public page stays intentionally narrow so the final specification can be confirmed against the real programme.</p>
+                    <div class="flex flex-col gap-2 mt-6">${m.downloads.slice(0, 3).map((download) => downloadLink(download)).join('')}</div>
+                    ${relatedSolutionPills ? `<div class="mt-8"><div class="ui-data-label mb-3">Used in systems</div><div class="ui-related-row">${relatedSolutionPills}</div></div>` : ''}
                 </div>
             </div>
         </section>
 
-        <section class="bg-zinc-50 border-b border-zinc-100 fade-up">
-            <div class="max-w mx-auto px py-16">
-                <div class="grid md-grid-2 gap-10 items-center">
-                    <div>
-                        <div class="section-label mb-6">Supply Process</div>
-                        <h2 class="font-display font-black text-3xl mb-4">HOW TO SOURCE.</h2>
-                        <p class="text-sm text-zinc-500 leading-relaxed">From initial requirement to final delivery, we coordinate the complete supply process for ${escHtml(p.name.toLowerCase())}.</p>
-                    </div>
-                    <div class="process-timeline" style="margin-top:0;">
-                        <div class="process-timeline-step"><div class="process-timeline-dot">01</div><div><div class="process-timeline-label">Share Requirement</div><div class="process-timeline-desc">Application, specifications, volume, and timeline.</div></div></div>
-                        <div class="process-timeline-step"><div class="process-timeline-dot">02</div><div><div class="process-timeline-label">Technical Review</div><div class="process-timeline-desc">Grade selection, material alignment, and supply path.</div></div></div>
-                        <div class="process-timeline-step"><div class="process-timeline-dot">03</div><div><div class="process-timeline-label">Sourcing & QC</div><div class="process-timeline-desc">Manufacturing coordination and quality validation.</div></div></div>
-                        <div class="process-timeline-step"><div class="process-timeline-dot">04</div><div><div class="process-timeline-label">Delivery</div><div class="process-timeline-desc">Logistics, documentation, and delivery support.</div></div></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        ${relatedSolutionCards ? `<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up"><div class="ui-section-head mb-8"><div class="ui-kicker mb-4">${glyph('compass', 'icon icon-sm')} System fit</div><h2 class="ui-section-title">WHERE THIS PRODUCT FITS.</h2><p class="ui-section-subtitle">Use the solution views below when the requirement is still being narrowed at the system level.</p></div><div class="ui-library-grid">${relatedSolutionCards}</div></section>` : ''}
 
-        ${relatedAppsHtml ? `<section class="max-w mx-auto px py-12 border-b border-zinc-100 fade-up">
-            <h2 class="font-display font-bold text-lg tracking-wider mb-6">RELATED APPLICATIONS</h2>
-            <div class="flex gap-3 flex-wrap">${relatedAppsHtml}</div>
-        </section>` : ''}
-
-        ${relatedHtml ? `<section class="max-w mx-auto px py-16 fade-up">
-            <h2 class="font-display font-bold text-xl tracking-wider mb-8">RELATED PRODUCTS</h2>
-            <div class="grid md-grid-3 gap-4">${relatedHtml}</div>
-        </section>` : ''}
-
-        ${ctaBlock(`NEED ${escHtml(p.name.toUpperCase())}<br>SPECS OR PRICING?`, 'Share your requirements and our technical team will respond with the right guidance.', 'Request Information', '/contact/', 'View All Products', '/products/')}
+        ${ctaBlock(`NEED ${escHtml(p.name.toUpperCase())}<br>SPECS OR PRICING?`, 'Share the application, finish expectation, quantity context, and timing for a faster recommendation.', 'Share your requirement', '/contact/', 'Back to Solutions', '/solutions/')}
     </main>
 
     ${footer()}
     ${closingElements()}`;
 }
+
 
 function generateApplicationsHub() {
-  const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Applications' }]);
+  return generatePageRedirect('/solutions/', 'Redirecting to Solutions — Moldart', 'Explore solutions');
+}
+
+
+function generateSolutionPage(app) {
+  const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Solutions', url: '/solutions/' }, { name: app.name }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/applications/#webpage', url: SITE + '/applications/', name: 'Applications — Moldart India', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${SITE}${getSolutionHref(app.slug)}#webpage`, url: `${SITE}${getSolutionHref(app.slug)}`, name: `${app.name} Solution — Moldart`, description: app.metaDesc, isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
-  const appCards = applications.map(app => `
-        <a href="/applications/${app.slug}/" class="border rounded-xl p-6 transition-colors group" style="display:block;">
-            <h3 class="font-display font-bold text-xl tracking-wider mb-2">${escHtml(app.name.toUpperCase())}</h3>
-            <p class="text-sm text-zinc-500 leading-relaxed mb-4">${escHtml(app.overview.substring(0, 180))}…</p>
-            <div class="flex gap-2 flex-wrap">
-                ${app.products.slice(0, 3).map(pid => { const pr = getProduct(pid); return pr ? `<span class="directory-pill">${escHtml(pr.name)}</span>` : ''; }).join('')}
-            </div>
-            <div class="mt-4 text-sm font-medium text-zinc-900">Learn more →</div>
-        </a>`).join('\n');
+  const flowItems = solutionFlowFor(app.slug).map((item, index) => `<div class="ui-flow-pill"><div class="ui-flow-step">${String(index + 1).padStart(2, '0')}</div><div class="ui-flow-title">${escHtml(item.title)}</div><p class="ui-flow-copy">${escHtml(item.detail)}</p></div>`).join('');
+  const stackCards = app.products.map((productId) => renderSolutionProductCard(app, productId)).join('');
+  const guideCards = relatedInsightsForSolution(app, 3).map((article) => `<div class="ui-list-row"><div class="ui-list-copy"><div class="ui-list-title">${escHtml(article.title)}</div><div class="ui-list-meta">${escHtml(article.categoryLabel)} · ${escHtml(article.type)}</div></div><a href="/insights/${article.slug}/" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`).join('');
+  const downloads = app.downloads.map((download) => downloadLink(download)).join('');
+  const audience = solutionAudienceFor(app.slug).map((item) => `<span>${escHtml(item)}</span>`).join('');
+  const visual = getApplicationVisual(app.slug);
 
   return headTag({
-    title: 'Applications | Lamination, Furniture, Flooring, Architecture — Moldart',
-    desc: 'Moldart supplies materials for lamination, furniture manufacturing, flooring, architecture, metal finishing, and PCB/CCL production. Find the right products for your application.',
-    canonical: '/applications/',
+    title: `${app.name} Solution | Moldart`,
+    desc: app.metaDesc,
+    canonical: getSolutionHref(app.slug),
+    ogImage: visual.image,
+    ogImageAlt: visual.alt,
     schemas
-  }) + '\n' + nav('applications') + `
+  }) + '\n' + nav('solutions') + `
 
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             ${bc.html}
-            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">By Application</span></div>
-            <h1 class="page-heading mb-6">APPLICATIONS.</h1>
-            <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed">Find the right Moldart products for your application, industry, or production process.</p>
+            <div class="ui-page-hero">
+                <div class="ui-page-hero-copy">
+                    <div class="ui-kicker mb-4">${glyph(applicationIconName(app.slug), 'icon icon-sm')} ${escHtml(visual.eyebrow)}</div>
+                    <h1 class="ui-section-title">${escHtml(app.name)}.</h1>
+                    <p class="ui-section-subtitle">${escHtml(app.overview)}</p>
+                    <div class="ui-app-badges mt-8">${audience}</div>
+                    <div class="flex gap-4 flex-wrap mt-8">
+                        <a href="/contact/" class="btn-primary btn-lg">Share your requirement →</a>
+                        <a href="/resources/" class="btn-outline btn-lg">Open Resources</a>
+                    </div>
+                </div>
+                <div class="ui-map-card ui-panel">
+                    <div class="ui-panel-inner">
+                        <picture>
+                            <source srcset="${visual.image.replace('.webp', '.avif')}" type="image/avif">
+                            <img src="${visual.image}" alt="${escHtml(visual.alt)}" width="900" height="600" loading="eager" class="w-full h-full object-cover">
+                        </picture>
+                        <div class="ui-map-caption">The solution page keeps the application logic, the relevant products, and the next-step references together so nothing critical is hidden or easy to miss.</div>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section class="max-w mx-auto px py-16">
-            <div class="grid md-grid-2 gap-6">${appCards}</div>
+
+        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+            <div class="ui-section-head mb-8">
+                <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Relevant product stack</div>
+                <h2 class="ui-section-title">START WITH THE RIGHT STACK.</h2>
+                <p class="ui-section-subtitle">Each card below explains why the product belongs in this system and links directly to the narrower product sheet when you need the detail.</p>
+            </div>
+            <div class="ui-stack-product-grid">${stackCards}</div>
         </section>
-        ${ctaBlock('NOT SURE WHICH<br>PRODUCTS YOU NEED?', 'Tell us about your application and we will recommend the right materials.', 'Share Requirement', '/contact/', 'View Products', '/products/')}
+
+        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+            <div class="ui-spotlight">
+                <div class="ui-stack-card">
+                    <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Decision flow</div>
+                    <div class="ui-flow-band">${flowItems}</div>
+                </div>
+                <div class="ui-stack-card">
+                    <div class="ui-kicker mb-4">${glyph('check', 'icon icon-sm')} What to confirm</div>
+                    <ul class="ui-stack-list">${app.considerations.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w mx-auto px py-16 fade-up">
+            <div class="ui-library-grid">
+                <article class="ui-library-card">
+                    <div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Related guides</div>
+                    <div class="ui-list-compact">${guideCards || '<p class="text-sm text-zinc-500 leading-relaxed">Related guides are added only when they improve the decision, not to fill the page.</p>'}</div>
+                </article>
+                <article class="ui-library-card">
+                    <div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} Reference downloads</div>
+                    <div class="flex flex-col gap-2">${downloads}</div>
+                </article>
+            </div>
+        </section>
+
+        ${ctaBlock(`READY TO DISCUSS<br>${escHtml(app.name.toUpperCase())}?`, 'Share the requirement, finish logic, quantity, and timing and Moldart can align the right system and product sheet path directly.', 'Share your requirement', '/contact/', 'Back to Solutions', '/solutions/')}
     </main>
 
     ${footer()}
     ${closingElements()}`;
 }
+
 
 function generateApplicationPage(app) {
-  const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Applications', url: '/applications/' }, { name: app.name }]);
-  const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${SITE}/applications/${app.slug}/#webpage`, url: `${SITE}/applications/${app.slug}/`, name: app.seoTitle, description: app.metaDesc, isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
-    bc.schema
-  ];
-
-  const productCards = app.products.map(pid => productCard(pid)).filter(Boolean).join('\n');
-  const considHtml = app.considerations.map(c => `<li class="flex gap-3 items-start"><svg class="icon icon-sm text-zinc-400 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z"/></svg><span class="text-sm text-zinc-600">${escHtml(c)}</span></li>`).join('\n');
-  const dlHtml = app.downloads.map(d => downloadLink(d)).join('\n');
-
-  return headTag({
-    title: app.seoTitle,
-    desc: app.metaDesc,
-    canonical: `/applications/${app.slug}/`,
-    schemas
-  }) + '\n' + nav('applications') + `
-
-    <main id="main-content" class="pt-16">
-        <section class="max-w mx-auto px py-20 border-b border-zinc-100">
-            ${bc.html}
-            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Application</span></div>
-            <h1 class="page-heading mb-6">${escHtml(app.name.toUpperCase())}.</h1>
-            <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed">${escHtml(app.overview)}</p>
-        </section>
-
-        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
-            <h2 class="font-display font-bold text-xl tracking-wider mb-8">RELEVANT PRODUCTS</h2>
-            <div class="grid md-grid-3 gap-4">${productCards}</div>
-        </section>
-
-        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
-            <div class="grid md-grid-2 gap-16">
-                <div>
-                    <h2 class="font-display font-bold text-xl tracking-wider mb-6">TECHNICAL CONSIDERATIONS</h2>
-                    <ul class="flex flex-col gap-4">${considHtml}</ul>
-                </div>
-                <div>
-                    <h2 class="font-display font-bold text-xl tracking-wider mb-6">REFERENCE DOWNLOADS</h2>
-                    <div class="flex flex-col gap-3">${dlHtml}</div>
-                </div>
-            </div>
-        </section>
-
-        ${ctaBlock(`DISCUSS YOUR<br>${escHtml(app.name.toUpperCase())} NEEDS`, 'Share your application details and our team will recommend the right products and specifications.', 'Share Requirement', '/contact/', 'View All Applications', '/applications/')}
-    </main>
-
-    ${footer()}
-    ${closingElements()}`;
+  return generatePageRedirect(getSolutionHref(app.slug), `Redirecting to ${app.name} — Moldart`, `Open ${app.name}`);
 }
+
 
 function generateResourcesPage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Resources' }]);
@@ -1128,24 +2125,19 @@ function generateResourcesPage() {
     bc.schema
   ];
 
-  const groupsHtml = resourceGroups.map(g => {
-    const items = g.items.map(item => `
-                <a href="${item.url}" target="_blank" rel="noopener noreferrer" download class="flex items-center justify-between p-4 rounded-lg transition-colors group" style="border:1px solid #f4f4f5;">
-                    <div class="flex items-center gap-3">
-                        <svg class="icon text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
-                        <div>
-                            <div class="text-sm font-medium text-zinc-700">${escHtml(item.title)}</div>
-                            <div class="text-xs text-zinc-500 mt-0.5">${escHtml(item.desc)}</div>
-                        </div>
-                    </div>
-                    <svg class="icon icon-sm text-zinc-300 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                </a>`).join('\n');
-    return `
-            <div class="mb-12 fade-up">
-                <h2 class="font-display font-bold text-lg tracking-wider mb-4">${escHtml(g.title.toUpperCase())}</h2>
-                <div class="flex flex-col gap-2">${items}</div>
-            </div>`;
-  }).join('\n');
+  const groupsHtml = resourceGroups.map((group) => `
+      <article id="${slugify(group.title)}" class="ui-resource-card fade-up">
+          <div class="ui-resource-head">
+              <div>
+                  <div class="ui-kicker mb-3">${glyph('file', 'icon icon-sm')} ${escHtml(group.title)}</div>
+                  <p class="text-sm text-zinc-500 leading-relaxed">${escHtml(group.items[0]?.desc || 'Reference documents.')}</p>
+              </div>
+              <span class="ui-resource-count">${group.items.length}</span>
+          </div>
+          <div class="ui-resource-list mt-6">
+              ${group.items.map((item) => `<div class="ui-list-row"><div class="ui-list-copy"><div class="ui-list-title">${escHtml(item.title)}</div><div class="ui-list-meta">${escHtml(item.desc)}</div></div><a href="${item.url}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(item.title)}" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`).join('')}
+          </div>
+      </article>`).join('\n');
 
   return headTag({
     title: 'Resources & Downloads | Product Catalogs — Moldart India',
@@ -1157,45 +2149,62 @@ function generateResourcesPage() {
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             ${bc.html}
-            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Downloads</span></div>
-            <h1 class="page-heading mb-6">RESOURCES.</h1>
-            <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed">Download structured product catalogs, material specifications, and finish references.</p>
+            <div class="ui-page-hero">
+                <div class="ui-page-hero-copy">
+                    <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Reference library</div>
+                    <h1 class="ui-section-title">RESOURCES.</h1>
+                    <p class="ui-section-subtitle">This page is the single public home for catalogues, finish decks, and technical PDFs. Each item is described once and grouped by the way buyers usually search for it.</p>
+                </div>
+                <div class="ui-page-hero-panel">
+                    <div class="ui-metric-grid">
+                        ${renderMetricCard({ icon: 'file', label: 'Documents', value: getTotalResourceItems(), note: 'Grouped into fewer, clearer library sections.', animate: true })}
+                        ${renderMetricCard({ icon: 'layers', label: 'Sections', value: resourceGroups.length, note: 'Each section maps to a buying route, not a keyword dump.', animate: true })}
+                        ${renderMetricCard({ icon: 'shield', label: 'Access model', value: 'One-time', note: 'Downloads unlock on the device after one short form.' })}
+                        ${renderMetricCard({ icon: 'message', label: 'Missing document?', value: 'Ask us', note: 'Use contact for test references or commercial documents not listed here.' })}
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="max-w mx-auto px py-16">
-            ${groupsHtml}
+            <div class="ui-resource-group">${groupsHtml}</div>
         </section>
-        <section class="max-w mx-auto px py-12 text-center fade-up" style="border-top:1px solid #f4f4f5;">
-            <p class="text-sm text-zinc-500 mb-4">Need a specific data sheet or technical document not listed here?</p>
-            <a href="/contact/" class="btn-primary">Request a Document →</a>
-        </section>
+        ${ctaBlock('NEED A SPECIFIC<br>DATA SHEET?', 'If the document is not listed here, ask the team directly and reference the product or application so the right file can be shared.', 'Request a Document', '/contact/', 'Explore Solutions', '/solutions/')}
     </main>
 
     ${footer()}
     ${closingElements()}`;
 }
 
+
 function generateFAQPage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'FAQ' }]);
-  // Flatten categories for schema
-  const allFaqItems = rawFaq.categories.flatMap(c => c.items);
+  const allFaqItems = rawFaq.categories.flatMap((category) => category.items);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: allFaqItems.map(q => ({ '@type': 'Question', name: q.question, acceptedAnswer: { '@type': 'Answer', text: q.answer } })) },
+    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: allFaqItems.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })) },
     { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/faq/#webpage', url: SITE + '/faq/', name: 'FAQ — Moldart India', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
-  const faqHtml = rawFaq.categories.map(cat => `
-            <div class="mb-10">
-                <div class="section-label mb-6">${escHtml(cat.name)}</div>
-                ${cat.items.map(q => `
-                <details class="faq-item border-b border-zinc-100 py-6">
-                    <summary class="font-display font-bold text-base tracking-wider cursor-pointer flex items-center justify-between gap-4">
-                        <span>${escHtml(q.question)}</span>
-                        <svg class="icon icon-sm text-zinc-400 flex-shrink-0 faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9l6 6 6-6"/></svg>
+  const faqHtml = rawFaq.categories.map((category) => `
+      <article class="ui-faq-card">
+          <div class="ui-faq-head">
+              <div>
+                  <div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} ${escHtml(category.name)}</div>
+                  <p class="text-sm text-zinc-500 leading-relaxed">${escHtml(category.items[0]?.question || 'Frequently asked questions.')}</p>
+              </div>
+              <span class="ui-resource-count">${category.items.length}</span>
+          </div>
+          <div class="ui-faq-list mt-6">
+              ${category.items.map((item) => `
+                <details class="ui-faq-item">
+                    <summary>
+                        <span>${escHtml(item.question)}</span>
+                        ${glyph('arrow', 'icon icon-sm')}
                     </summary>
-                    <p class="text-sm text-zinc-500 leading-relaxed mt-4">${escHtml(q.answer)}</p>
-                </details>`).join('\n')}
-            </div>`).join('\n');
+                    <p>${escHtml(item.answer)}</p>
+                </details>`).join('')}
+          </div>
+      </article>`).join('\n');
 
   return headTag({
     title: 'Frequently Asked Questions — Moldart India',
@@ -1207,14 +2216,25 @@ function generateFAQPage() {
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             ${bc.html}
-            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Common Questions</span></div>
-            <h1 class="page-heading mb-6">FAQ.</h1>
-            <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed">${allFaqItems.length} answers across ${rawFaq.categories.length} categories to help you source with clarity.</p>
+            <div class="ui-page-hero">
+                <div class="ui-page-hero-copy">
+                    <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} FAQ</div>
+                    <h1 class="ui-section-title">QUESTIONS,<br>KEPT TIGHT.</h1>
+                    <p class="ui-section-subtitle">The FAQ is where repeated operational questions live so they do not have to be restated across every page. That keeps the main experience cleaner and the answers easier to maintain.</p>
+                </div>
+                <div class="ui-page-hero-panel">
+                    <div class="ui-proof-grid">
+                        <article class="ui-proof-card"><div class="ui-proof-label">Questions</div><div class="ui-proof-value">${allFaqItems.length} answers</div><p class="ui-proof-copy">Grouped to reduce repetition across the rest of the website.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Categories</div><div class="ui-proof-value">${rawFaq.categories.length} sections</div><p class="ui-proof-copy">Commercial, sourcing, products, and website-structure questions live here once.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">When this is not enough</div><div class="ui-proof-value">Ask directly</div><p class="ui-proof-copy">Move to contact when the answer depends on the real programme, route, or quantity context.</p></article>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section class="max-w mx-auto px py-8" style="max-width:48rem;">
-            ${faqHtml}
+        <section class="max-w mx-auto px py-16 fade-up">
+            <div class="ui-resource-group">${faqHtml}</div>
         </section>
-        ${ctaBlock('HAVE A SPECIFIC<br>QUESTION?', 'Our team can provide detailed technical and commercial guidance for your requirements.', 'Contact Us', '/contact/', 'View Products', '/products/')}
+        ${ctaBlock('HAVE A SPECIFIC<br>QUESTION?', 'If the answer depends on the exact requirement, move from FAQ to a direct review with the team.', 'Share your requirement', '/contact/', 'Explore Solutions', '/solutions/')}
     </main>
 
     ${footer()}
@@ -1230,7 +2250,7 @@ function generateContactPage() {
     { '@context': 'https://schema.org', '@type': 'ContactPage', mainEntity: { '@type': 'Organization', name: 'Moldart', url: SITE + '/', contactPoint: { '@type': 'ContactPoint', telephone: '+917208088788', contactType: 'sales', email: 'info@moldartindia.com' } } }
   ];
 
-  const productOptions = rawProducts.products.map(p => `<option value="${escHtml(p.name)}">${escHtml(p.name)}</option>`).join('\n                                ');
+  const productOptions = rawProducts.products.map((p) => `<option value="${escHtml(p.name)}">${escHtml(p.name)}</option>`).join('\n                                ');
 
   return headTag({
     title: 'Contact Moldart | Inquiry Form, WhatsApp, Phone & Meeting Booking',
@@ -1242,26 +2262,67 @@ function generateContactPage() {
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             ${bc.html}
-            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Get in Touch</span></div>
-            <h1 class="page-heading">LET'S WORK<br>TOGETHER.</h1>
-            <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed mt-6">Share your requirement below, or reach us directly via WhatsApp, phone, or email. We typically respond within one business day.</p>
+            <div class="ui-page-hero">
+                <div class="ui-page-hero-copy">
+                    <div class="ui-kicker mb-4">${glyph('message', 'icon icon-sm')} Contact Moldart</div>
+                    <h1 class="ui-section-title">ONE FORM.<br>CLEAR ROUTES.</h1>
+                    <p class="ui-section-subtitle">Use the short form for the fastest structured handoff, or choose the direct channel that matches the kind of conversation you need to start.</p>
+                    <div class="ui-chip-row mt-8">
+                        <span class="ui-chip">${glyph('whatsapp-brand', 'icon icon-sm')} WhatsApp</span>
+                        <span class="ui-chip">${glyph('mail', 'icon icon-sm')} Email</span>
+                        <span class="ui-chip">${glyph('calendar', 'icon icon-sm')} Meetings</span>
+                        <span class="ui-chip">${glyph('linkedin-brand', 'icon icon-sm')} LinkedIn</span>
+                    </div>
+                </div>
+                <div class="ui-page-hero-panel">
+                    <div class="ui-proof-grid">
+                        <article class="ui-proof-card"><div class="ui-proof-label">Best for</div><div class="ui-proof-value">Specifications and pricing</div><p class="ui-proof-copy">Share the application, finish expectation, quantity, and timing so the team can route the enquiry well.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Public promise</div><div class="ui-proof-value">No guessed timings</div><p class="ui-proof-copy">Commercial schedules and response timing are confirmed directly, not hard-coded into public copy.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Head office</div><div class="ui-proof-value">Malad West, Mumbai</div><p class="ui-proof-copy">Full address details stay on this page so contact information lives in one operational place.</p></article>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="form-success-alert" class="max-w mx-auto px py-6 hidden">
             <div class="form-success-banner">
                 <div class="flex items-center gap-3">
-                    <svg class="icon" viewBox="0 0 24 24" stroke="currentColor"><path d="M22 11.08V12a10 10 0 11-5.93-9.14M22 4L12 14.01l-3-3"/></svg>
+                    ${glyph('check', 'icon')}
                     <strong>Inquiry Submitted Successfully.</strong>
                 </div>
-                <p class="mt-2 text-sm">Thank you for reaching out. A member of our team will review your requirement and contact you shortly.</p>
+                <p class="mt-2 text-sm">Thank you for reaching out. A member of the team will review your requirement and contact you directly.</p>
             </div>
         </section>
 
-        <section class="max-w mx-auto px py-20 border-b border-zinc-100 fade-up">
-            <div class="grid md-grid-2 gap-20">
-                <div>
-                    <div class="section-label mb-6">Share a Requirement</div>
-                    <form action="https://formsubmit.co/info@moldartindia.com" method="POST" class="flex flex-col gap-6" id="inquiry-form">
+        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+            <div class="ui-contact-grid">
+                <div class="ui-contact-routes">
+                    <article class="ui-contact-route">
+                        <div class="ui-contact-route-head"><div class="ui-contact-route-icon">${glyph('whatsapp-brand')}</div><div><div class="ui-data-label">WhatsApp</div><div class="ui-data-value">Fastest first touch</div></div></div>
+                        <p class="text-sm text-zinc-500 leading-relaxed mb-4">Best for initial commercial checks, product routing, and quick follow-up.</p>
+                        <div class="flex flex-col gap-2"><a href="https://wa.me/917208088788" target="_blank" rel="noopener noreferrer" class="site-inline-link">${glyph('whatsapp-brand', 'icon icon-sm')} +91 7208088788</a><a href="https://wa.me/917208188788" target="_blank" rel="noopener noreferrer" class="site-inline-link">${glyph('whatsapp-brand', 'icon icon-sm')} +91 7208188788</a></div>
+                    </article>
+                    <article class="ui-contact-route">
+                        <div class="ui-contact-route-head"><div class="ui-contact-route-icon">${glyph('mail')}</div><div><div class="ui-data-label">Email</div><div class="ui-data-value">Best for documents</div></div></div>
+                        <p class="text-sm text-zinc-500 leading-relaxed mb-4">Use email when drawings, specifications, and reference files matter from the start.</p>
+                        <a href="mailto:info@moldartindia.com" class="site-inline-link">${glyph('mail', 'icon icon-sm')} info@moldartindia.com</a>
+                    </article>
+                    <article class="ui-contact-route">
+                        <div class="ui-contact-route-head"><div class="ui-contact-route-icon">${glyph('calendar')}</div><div><div class="ui-data-label">Meetings</div><div class="ui-data-value">Scheduled reviews</div></div></div>
+                        <p class="text-sm text-zinc-500 leading-relaxed mb-4">Use a meeting slot when the requirement needs detailed technical-commercial discussion.</p>
+                        <a href="https://outlook.office.com/bookwithme/user/a07f98546e1e4f7fbb0f12f091a6e3ec@moldartindia.com?anonymous&ep=plink" target="_blank" rel="noopener noreferrer" class="site-inline-link">${glyph('calendar', 'icon icon-sm')} Schedule a meeting</a>
+                    </article>
+                    <article class="ui-office-card">
+                        <div class="ui-kicker mb-4">${glyph('building', 'icon icon-sm')} Head office</div>
+                        <div class="font-display font-bold text-xl tracking-wider mb-3">MUMBAI</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light mb-4">#7, Building No. 1, New Sonal Link Industrial Estate,<br>Link Road, Malad (West), Mumbai — 400064<br>Maharashtra, India</p>
+                        <div class="flex flex-col gap-2 mb-4"><a href="tel:+917208088788" class="link-line text-sm text-zinc-700 font-medium">+91 7208088788</a><a href="mailto:info@moldartindia.com" class="link-line text-sm text-zinc-700 font-medium">info@moldartindia.com</a></div>
+                        <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip">${glyph('linkedin-brand', 'icon icon-sm')} Moldart India on LinkedIn</a>
+                    </article>
+                </div>
+                <div class="ui-contact-form">
+                    <div class="ui-kicker mb-6">${glyph('message', 'icon icon-sm')} Share a requirement</div>
+                    <form action="https://formsubmit.co/info@moldartindia.com" method="POST" class="flex flex-col gap-5 contact-form-compact" id="inquiry-form">
                         <input type="hidden" name="_subject" value="New Moldart Web Inquiry">
                         <input type="hidden" name="_next" value="${SITE}/contact/?submitted=true">
                         <input type="hidden" name="_captcha" value="false">
@@ -1269,14 +2330,13 @@ function generateContactPage() {
 
                         <div class="grid grid-2 gap-4">
                             <label class="form-group"><span class="form-label">Full Name *</span><input type="text" name="name" class="form-input" required aria-required="true" placeholder="John Doe"></label>
-                            <label class="form-group"><span class="form-label">Company</span><input type="text" name="company" class="form-input" placeholder="Acme Industries"></label>
+                            <label class="form-group"><span class="form-label">Company *</span><input type="text" name="company" class="form-input" required aria-required="true" placeholder="Company name"></label>
                         </div>
                         <div class="grid grid-2 gap-4">
                             <label class="form-group"><span class="form-label">Email Address *</span><input type="email" name="email" class="form-input" required aria-required="true" placeholder="john@example.com"></label>
-                            <label class="form-group"><span class="form-label">Phone / WhatsApp</span><input type="tel" name="phone" class="form-input" placeholder="+91 ..."></label>
+                            <label class="form-group"><span class="form-label">Phone / WhatsApp *</span><input type="tel" name="phone" class="form-input" required aria-required="true" placeholder="+91 ..."></label>
                         </div>
                         <div class="grid grid-2 gap-4">
-                            <label class="form-group"><span class="form-label">Country</span><input type="text" name="country" class="form-input" placeholder="India"></label>
                             <label class="form-group">
                                 <span class="form-label">Primary Interest</span>
                                 <select name="interest" class="form-select">
@@ -1284,66 +2344,13 @@ function generateContactPage() {
                                     ${productOptions}
                                 </select>
                             </label>
+                            <label class="form-group"><span class="form-label">Requirement Focus</span><input type="text" name="application" class="form-input" placeholder="Pricing, specs, samples, project brief..."></label>
                         </div>
-                        <div class="grid grid-2 gap-4">
-                            <fieldset class="form-group" style="border:none;padding:0;margin:0;">
-                                <legend class="form-label">Requirement Type</legend>
-                                <div class="form-radio-group">
-                                    <label><input type="radio" name="requirement_type" value="Pricing" checked> Pricing</label>
-                                    <label><input type="radio" name="requirement_type" value="Specifications"> Specifications</label>
-                                    <label><input type="radio" name="requirement_type" value="Samples"> Samples</label>
-                                    <label><input type="radio" name="requirement_type" value="Custom Project"> Custom Project</label>
-                                </div>
-                            </fieldset>
-                            <label class="form-group"><span class="form-label">Application / End Use</span><input type="text" name="application" class="form-input" placeholder="e.g. Furniture manufacturing, Flooring..."></label>
-                        </div>
-                        <label class="form-group"><span class="form-label">Approximate Quantity / Project Scale</span><input type="text" name="quantity" class="form-input" placeholder="e.g. 500 sheets/month, one-time project, trial order..."></label>
-                        <label class="form-group"><span class="form-label">Message *</span><textarea name="message" class="form-textarea" required aria-required="true" placeholder="Please describe your requirement: application, dimensions, finishes, or any specific questions..."></textarea></label>
-                        <p class="text-xs text-zinc-400 text-center mb-4">Your information is sent directly to our team and not shared with third parties.</p>
+                        <label class="form-group"><span class="form-label">Message *</span><textarea name="message" class="form-textarea" required aria-required="true" placeholder="Share the application, dimensions, finish expectations, quantity, and timing."></textarea></label>
+                        <p class="text-xs text-zinc-400">Your information is sent directly to the Moldart team and is not shared with third parties.</p>
                         <button type="submit" class="btn-primary btn-lg" style="width:100%;justify-content:center;">Submit Inquiry</button>
-                        <p class="text-xs text-zinc-500 text-center mt-4">Same-day response for standard inquiries. Technical specifications: 1–2 business days.</p>
+                        <p class="text-xs text-zinc-500">Commercial schedules and response timing depend on the requirement and are confirmed directly during follow-up.</p>
                     </form>
-                </div>
-
-                <div>
-                    <div class="section-label mb-6">Direct Contact</div>
-                    <div class="flex flex-col gap-4 mb-10">
-                        <div class="flex flex-col border rounded-xl overflow-hidden">
-                            <div class="flex items-center gap-4 p-4 border-b border-zinc-100 bg-zinc-50">
-                                <div style="width:40px;height:40px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                    <svg style="width:20px;height:20px;" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.66 0-3.203-.507-4.484-1.375l-.32-.195-2.867.852.852-2.867-.21-.336A7.963 7.963 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
-                                </div>
-                                <div><div class="font-display font-bold tracking-wider text-sm">WHATSAPP</div><div class="text-xs text-zinc-500 mt-1">Quick commercial inquiry</div></div>
-                            </div>
-                            <div class="grid grid-2 p-3 gap-3 bg-white">
-                                <a href="https://wa.me/917208088788" target="_blank" rel="noopener noreferrer" class="btn-outline text-xs justify-center" style="padding:0.5rem;">+91 7208088788</a>
-                                <a href="https://wa.me/917208188788" target="_blank" rel="noopener noreferrer" class="btn-outline text-xs justify-center" style="padding:0.5rem;">+91 7208188788</a>
-                            </div>
-                        </div>
-                        <a href="https://www.linkedin.com/in/thisisyashdoshi" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 border rounded-xl" style="background:#fff;">
-                            <div style="width:40px;height:40px;background:#0077b5;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                <svg style="width:18px;height:18px;" fill="#fff" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                            </div>
-                            <div><div class="font-display font-bold tracking-wider text-sm">LINKEDIN</div><div class="text-xs text-zinc-500 mt-1">Connect with Yash Doshi</div></div>
-                        </a>
-                        <a href="https://outlook.office.com/bookwithme/user/a07f98546e1e4f7fbb0f12f091a6e3ec@moldartindia.com?anonymous&ep=plink" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 border rounded-xl" style="background:#fff;">
-                            <div style="width:40px;height:40px;background:#18181b;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                <svg class="icon icon-sm" stroke="#fff" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M16 3v4M8 3v4M3 9h18M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01"/></svg>
-                            </div>
-                            <div><div class="font-display font-bold tracking-wider text-sm">BOOK A MEETING</div><div class="text-xs text-zinc-500 mt-1">Schedule via Microsoft Bookings</div></div>
-                        </a>
-                    </div>
-
-                    <div class="section-label mb-6">Head Office</div>
-                    <div style="border-left:4px solid #18181b;padding-left:1.5rem;margin-bottom:2.5rem;">
-                        <div class="font-display font-bold text-xl tracking-wider mb-2">MUMBAI</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed font-light mb-4">#7, Building No. 1, New Sonal Link Industrial Estate,<br>Link Road, Malad (West), Mumbai — 400064<br>Maharashtra, India</p>
-                        <div class="flex flex-col gap-2">
-                            <a href="tel:+917208088788" class="link-line text-sm text-zinc-700 font-medium">+91 7208088788</a>
-                            <a href="mailto:info@moldartindia.com" class="link-line text-sm text-zinc-700 font-medium">info@moldartindia.com</a>
-                        </div>
-                    </div>
-                    <div class="text-xs text-zinc-400">Business hours: Mon–Sat, 10:00 AM – 6:00 PM IST</div>
                 </div>
             </div>
         </section>
@@ -1353,16 +2360,17 @@ function generateContactPage() {
     ${closingElements()}`;
 }
 
+
 function generateAboutPage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'About' }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/about/#webpage', url: SITE + '/about/', name: 'About Moldart | Integrated Industrial Supply Since 1989', description: 'Moldart: 35+ years of integrated supply for wood-working and metallurgical industries. Mumbai HQ, global sourcing, quality-first approach.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/about/#webpage', url: SITE + '/about/', name: 'About Moldart | Verified Supply Model Since 1989', description: `Moldart: ${YEARS_ACTIVE}+ years of sourcing-and-supply support from Mumbai across wood and steel programmes.`, isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
   return headTag({
-    title: 'About Moldart | Integrated Industrial Supply Since 1989',
-    desc: 'Moldart has operated from Mumbai since 1989, supplying press plates, engineered substrates, flooring, and decorative steel. Learn about our sourcing model, leadership, and quality approach.',
+    title: 'About Moldart | Verified Supply Model Since 1989',
+    desc: 'Moldart from Mumbai, India: founded in 1989, source-led across wood and steel programmes, and presented here with fewer, better-supported claims.',
     canonical: '/about/',
     schemas
   }) + '\n' + nav('about') + `
@@ -1370,113 +2378,108 @@ function generateAboutPage() {
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             ${bc.html}
-            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Our Heritage</span></div>
-            <h1 class="page-heading">35+ YEARS<br>OF PRECISION.</h1>
-        </section>
-
-        <section class="max-w mx-auto px py-20 border-b border-zinc-100 fade-up">
-            <div class="grid md-grid-2 gap-20">
-                <div>
-                    <div class="section-label mb-6">Company Background</div>
-                    <p class="text-zinc-600 leading-relaxed mb-6 font-light">Founded in 1989, Moldart has built an integrated supply ecosystem across two industrial sectors — wood-working and metallurgical. Operating from Mumbai, the company coordinates sourcing, quality control, and supply across a global manufacturing network.</p>
-                    <p class="text-zinc-600 leading-relaxed mb-6 font-light">The operating model positions Moldart between Asian manufacturing capability and the quality expectations of end markets — aligning material selection, production coordination, and commercial support into a unified sourcing experience.</p>
-                    <div class="flex items-center gap-6 mt-10 about-stats">
-                        <div><div class="font-display font-black text-4xl">1989</div><div class="section-label mt-1">Founded</div></div>
-                        <div class="w-px h-12 bg-zinc-200 stat-divider"></div>
-                        <div><div class="font-display font-black text-4xl">Mumbai</div><div class="section-label mt-1">Headquarters</div></div>
-                        <div class="w-px h-12 bg-zinc-200 stat-divider"></div>
-                        <div><div class="font-display font-black text-4xl">16</div><div class="section-label mt-1">Product Categories</div></div>
+            <div class="ui-page-hero">
+                <div class="ui-page-hero-copy">
+                    <div class="ui-kicker mb-4">${glyph('shield', 'icon icon-sm')} About Moldart</div>
+                    <h1 class="ui-section-title">MUMBAI-LED SOURCING<br>& SUPPLY SINCE 1989.</h1>
+                    <p class="ui-section-subtitle">This page keeps the company story inside the facts that could be checked cleanly: when the business started, where it is based, how the sourcing model works, and who is presented as leadership.</p>
+                    <div class="ui-chip-row mt-8">
+                        <span class="ui-chip">${glyph('clock', 'icon icon-sm')} Founded 1989</span>
+                        <span class="ui-chip">${glyph('building', 'icon icon-sm')} Malad West, Mumbai</span>
+                        <span class="ui-chip">${glyph('route', 'icon icon-sm')} Source → Verify → Supply</span>
                     </div>
                 </div>
-                <div style="display:flex;flex-direction:column;gap:1.5rem;">
-                    <div style="border-left:4px solid #18181b;padding-left:1.5rem;padding-top:0.25rem;padding-bottom:0.25rem;">
-                        <div class="font-display font-bold text-xl tracking-wide mb-2">WOOD ECOSYSTEM</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Precision lamination tooling (press plates, press pads, engraved cylinders), decor inputs, engineered panel substrates (plywood, MDF, HDF, OSB, particleboard), and finished products (flooring, furniture).</p>
+                <div class="ui-map-card ui-panel">
+                    <div class="ui-panel-inner">${renderHeroNetworkMap()}<div class="ui-map-caption">The strongest publicly supportable framing is Mumbai-led coordination with India and China sourcing routes, then final supply alignment per programme.</div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+            <div class="ui-proof-grid mb-12">
+                <article class="ui-proof-card"><div class="ui-proof-label">Who</div><div class="ui-proof-value">Mumbai-led sourcing partner</div><p class="ui-proof-copy">Presented as a technical-commercial interface rather than a broad marketplace claim.</p></article>
+                <article class="ui-proof-card"><div class="ui-proof-label">What</div><div class="ui-proof-value">Wood + steel programmes</div><p class="ui-proof-copy">The site keeps the story to the product families that are supported across internal and public references.</p></article>
+                <article class="ui-proof-card"><div class="ui-proof-label">When</div><div class="ui-proof-value">Since 1989</div><p class="ui-proof-copy">Used consistently across internal company material and public company presence.</p></article>
+                <article class="ui-proof-card"><div class="ui-proof-label">Where</div><div class="ui-proof-value">Mumbai, India</div><p class="ui-proof-copy">The Malad West office is presented as the operating contact point.</p></article>
+                <article class="ui-proof-card"><div class="ui-proof-label">Why</div><div class="ui-proof-value">Reduce guesswork</div><p class="ui-proof-copy">The redesign favours clarity and evidence instead of repeating unsupported scale claims.</p></article>
+                <article class="ui-proof-card"><div class="ui-proof-label">How</div><div class="ui-proof-value">Source → Verify → Supply</div><p class="ui-proof-copy">That process is the most defensible way to describe the business model publicly.</p></article>
+            </div>
+            <div class="ui-section-head mb-10">
+                <div class="ui-kicker mb-4">${glyph('clock', 'icon icon-sm')} Timeline</div>
+                <h2 class="ui-section-title">THE VERIFIED ARC.</h2>
+                <p class="ui-section-subtitle">The timeline stays intentionally simple. It reflects the internal company profile and public company presence without turning each decade into a slogan.</p>
+                <p class="text-xs text-zinc-500 leading-relaxed mt-4">${escHtml(VERIFICATION_DISCLOSURE)}</p>
+            </div>
+            <div class="ui-timeline">
+                ${companyMilestones.map((milestone) => renderMilestone(milestone)).join('')}
+            </div>
+        </section>
+
+        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+            <div class="ui-spotlight">
+                <div class="ui-stack-card">
+                    <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Operating model</div>
+                    <div class="ui-flow-band">
+                        ${SUPPLY_FLOW_ITEMS.map((item) => `<div class="ui-flow-pill"><div class="ui-flow-step">${escHtml(item.step)}</div><div class="ui-flow-title">${escHtml(item.title)}</div><p class="ui-flow-copy">${escHtml(item.detail)}</p></div>`).join('')}
                     </div>
-                    <div style="border-left:4px solid #e4e4e7;padding-left:1.5rem;padding-top:0.25rem;padding-bottom:0.25rem;">
-                        <div class="font-display font-bold text-xl tracking-wide mb-2">STEEL DIVISION</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Industrial press plates for HPL/CCL/PCB manufacturing, decorative PVD-coated stainless steel panels, precision profiles and trims, and stainless steel furniture.</p>
+                </div>
+                <div class="ui-stack-card">
+                    <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Source basis</div>
+                    <div class="ui-source-grid">
+                        ${VERIFIED_SOURCE_ITEMS.map((item) => `<article class="ui-source-card"><div class="ui-proof-label">${escHtml(item.title)}</div><div class="ui-proof-value">${escHtml(item.title)}</div><p class="ui-proof-copy">${escHtml(item.detail)}</p></article>`).join('')}
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="bg-zinc-50 border-b border-zinc-100 fade-up">
-            <div class="max-w mx-auto px py-20">
-                <div class="section-label mb-6">How We Operate</div>
-                <h2 class="font-display font-black text-3xl mb-8">SOURCING & COORDINATION MODEL.</h2>
-                <div class="grid md-grid-3 gap-8">
-                    <div>
-                        <h3 class="font-display font-bold text-base tracking-wider mb-3">MATERIAL SOURCING</h3>
-                        <p class="text-sm text-zinc-500 leading-relaxed">Deep manufacturing relationships across Asia enable competitive pricing without compromising on quality specifications. Each material category is sourced through established, quality-verified supply partners.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-display font-bold text-base tracking-wider mb-3">QUALITY COORDINATION</h3>
-                        <p class="text-sm text-zinc-500 leading-relaxed">Every order follows a structured review process — from specification alignment through production oversight to final quality validation. Materials are benchmarked against the standards required by the destination market.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-display font-bold text-base tracking-wider mb-3">COMMERCIAL SUPPORT</h3>
-                        <p class="text-sm text-zinc-500 leading-relaxed">Technical guidance, sample coordination, documentation, and logistics support are included as part of the supply relationship. The goal is to reduce procurement friction across the entire order cycle.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="max-w mx-auto px py-20 border-b border-zinc-100 fade-up">
-            <div class="section-label mb-14">Leadership</div>
-            <div class="grid md-grid-2 gap-14">
-                <div>
-                    <div class="mb-7 overflow-hidden rounded-xl bg-zinc-100" style="height:min(18rem, 50vw);">
+        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+            <div class="ui-kicker mb-6">${glyph('building', 'icon icon-sm')} Leadership</div>
+            <div class="ui-profile-grid">
+                <article class="ui-family-card">
+                    <div class="ui-family-media" style="height:min(18rem,50vw);">
                         <picture><source srcset="/images/lalit_doshi.avif" type="image/avif"><img src="/images/lalit_doshi.webp" alt="Mr. Lalit Doshi — Founder and Partner at Moldart" class="w-full h-full object-cover" style="object-position:top;" loading="lazy" width="600" height="400"></picture>
                     </div>
-                    <h3 class="font-display font-bold text-2xl tracking-wider mb-1">MR. LALIT DOSHI</h3>
-                    <div class="section-label mb-5">Founder & Partner</div>
-                    <p class="text-sm text-zinc-500 leading-relaxed font-light">The architect of Moldart's foundation, Mr. Lalit Doshi built the company across three and a half decades, establishing benchmark standards of quality and technical precision across the wood and steel supply industries.</p>
-                </div>
-                <div>
-                    <div class="mb-7 overflow-hidden rounded-xl bg-zinc-100" style="height:min(18rem, 50vw);">
+                    <div class="ui-family-body">
+                        <h3 class="ui-family-title">MR. LALIT DOSHI</h3>
+                        <div class="ui-proof-label mb-3">Founder & Partner</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Presented here as the founder who established the company’s long-running base in Mumbai and built the commercial foundation behind the business.</p>
+                    </div>
+                </article>
+                <article class="ui-family-card">
+                    <div class="ui-family-media" style="height:min(18rem,50vw);">
                         <picture><source srcset="/images/yash_doshi.avif" type="image/avif"><img src="/images/yash_doshi.webp" alt="Mr. Yash Doshi — Partner at Moldart" class="w-full h-full object-cover" style="object-position:top;" loading="lazy" width="600" height="400"></picture>
                     </div>
-                    <h3 class="font-display font-bold text-2xl tracking-wider mb-1">MR. YASH DOSHI</h3>
-                    <div class="section-label mb-5">Partner</div>
-                    <p class="text-sm text-zinc-500 leading-relaxed font-light">Carrying forward the Moldart legacy with modern strategy and vision, Mr. Yash Doshi drives expansion into domestic and international markets — combining deep technical knowledge of industrial materials with an eye for global business development.</p>
-                </div>
+                    <div class="ui-family-body">
+                        <h3 class="ui-family-title">MR. YASH DOSHI</h3>
+                        <div class="ui-proof-label mb-3">Partner</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Presented more narrowly and defensibly as part of the current technical-commercial leadership driving sourcing, market development, and category expansion.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <section class="bg-zinc-50 border-b border-zinc-100 fade-up">
-            <div class="max-w mx-auto px py-20">
-                <div class="section-label mb-6">How Engagement Works</div>
-                <h2 class="font-display font-black text-3xl mb-8">WORKING WITH MOLDART.</h2>
-                <div class="grid md-grid-2 gap-8">
-                    <div>
-                        <p class="text-sm text-zinc-500 leading-relaxed mb-6">Moldart operates as a sourcing and supply partner — not a marketplace. Every inquiry is reviewed commercially and technically before a recommendation is made. This means buyers receive guidance aligned to their actual application, not just a product list.</p>
-                        <p class="text-sm text-zinc-500 leading-relaxed">The typical engagement starts with a requirement discussion, moves through material recommendation and sample coordination where needed, and progresses to confirmed orders with documented quality specifications.</p>
-                    </div>
-                    <div>
-                        <div class="process-timeline" style="margin-top:0;">
-                            <div class="process-timeline-step"><div class="process-timeline-dot">01</div><div><div class="process-timeline-label">Share Requirement</div><div class="process-timeline-desc">Application, finish, volume, and timeline.</div></div></div>
-                            <div class="process-timeline-step"><div class="process-timeline-dot">02</div><div><div class="process-timeline-label">Receive Recommendation</div><div class="process-timeline-desc">Grade, build-up, and supply path.</div></div></div>
-                            <div class="process-timeline-step"><div class="process-timeline-dot">03</div><div><div class="process-timeline-label">Confirm & Produce</div><div class="process-timeline-desc">Sourcing, manufacturing, QC.</div></div></div>
-                            <div class="process-timeline-step"><div class="process-timeline-dot">04</div><div><div class="process-timeline-label">Deliver</div><div class="process-timeline-desc">Documentation, packing, dispatch.</div></div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        ${ctaBlock('READY TO<br>WORK TOGETHER?', 'Explore our product range or contact us to discuss your specific requirements.', 'Get in Touch', '/contact/', 'View Products', '/products/')}
+        ${ctaBlock('READY TO WORK<br>FROM A CLEANER BRIEF?', 'Browse the product families, open the reference library, or send the exact requirement for direct confirmation.', 'Explore Solutions', '/solutions/', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
     ${closingElements()}`;
 }
 
+
 function generateProcessPage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Process' }]);
   const schemas = [
     { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/process/#webpage', url: SITE + '/process/', name: 'How Moldart Works | Sourcing & Supply Process', description: 'From requirement to delivery: how Moldart coordinates sourcing, quality control, and supply across its product ecosystem.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
+  ];
+
+  const stages = [
+    { number: '01', title: 'Requirement discussion', detail: 'Start from the application, finish expectation, volume, timeline, and destination context.' },
+    { number: '02', title: 'Material recommendation', detail: 'Align the likely category, grade, and finish route before broad commercial promises are made.' },
+    { number: '03', title: 'Reference or sample check', detail: 'Use documents, visuals, or samples where finish fidelity or tolerance approval matters.' },
+    { number: '04', title: 'Production & quality follow-through', detail: 'Coordinate the manufacturing route and quality checkpoints against the agreed brief.' },
+    { number: '05', title: 'Documentation & packing', detail: 'Match commercial documents, pack condition, and export or compliance requirements to the order.' },
+    { number: '06', title: 'Delivery & next-step support', detail: 'Keep follow-up close enough that repeat supply is easier and approval drift is reduced.' }
   ];
 
   return headTag({
@@ -1489,95 +2492,55 @@ function generateProcessPage() {
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             ${bc.html}
-            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Our Process</span></div>
-            <h1 class="page-heading">FROM REQUIREMENT<br>TO DELIVERY.</h1>
-            <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed mt-6">Moldart operates as a sourcing and supply partner — not a marketplace. Every inquiry follows a structured process designed to align material selection with your actual application needs.</p>
+            <div class="ui-page-hero">
+                <div class="ui-page-hero-copy">
+                    <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Process</div>
+                    <h1 class="ui-section-title">FROM REQUIREMENT<br>TO DELIVERY.</h1>
+                    <p class="ui-section-subtitle">Moldart is framed on this site as a sourcing-and-supply partner, not a marketplace. The process below explains why: the real work is in aligning the requirement before the quote becomes the whole conversation.</p>
+                </div>
+                <div class="ui-page-hero-panel">
+                    <div class="ui-proof-grid">
+                        <article class="ui-proof-card"><div class="ui-proof-label">Model</div><div class="ui-proof-value">Source → Verify → Supply</div><p class="ui-proof-copy">The public experience mirrors the actual commercial process instead of hiding it behind generic sales copy.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Why it matters</div><div class="ui-proof-value">Less rework later</div><p class="ui-proof-copy">Earlier alignment reduces finish, tolerance, documentation, and timing surprises downstream.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Best use</div><div class="ui-proof-value">Complex or repeat programmes</div><p class="ui-proof-copy">The more approval-sensitive the programme, the more valuable a disciplined process becomes.</p></article>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="max-w mx-auto px py-20 border-b border-zinc-100 fade-up">
-            <div class="section-label mb-6">The Six Stages</div>
-            <h2 class="font-display font-black text-3xl mb-14">HOW ENGAGEMENTS WORK.</h2>
-            <div class="grid md-grid-2 gap-10">
-                <div class="flex flex-col gap-8">
-                    <div style="border-left:4px solid #18181b;padding-left:1.5rem;">
-                        <div class="font-display font-bold tracking-wider text-sm mb-2">01 — REQUIREMENT DISCUSSION</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed">Every engagement starts with understanding your specific need: the application, required finish, volume, timeline, and destination market. This conversation shapes everything that follows — material grade, build-up, surface specification, and supply path.</p>
-                    </div>
-                    <div style="border-left:4px solid #18181b;padding-left:1.5rem;">
-                        <div class="font-display font-bold tracking-wider text-sm mb-2">02 — MATERIAL RECOMMENDATION</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed">Based on your requirement, Moldart recommends the right product category, grade, and specification. This includes material selection, surface or pattern coordination, compliance alignment (where applicable), and preliminary pricing guidance.</p>
-                    </div>
-                    <div style="border-left:4px solid #18181b;padding-left:1.5rem;">
-                        <div class="font-display font-bold tracking-wider text-sm mb-2">03 — SAMPLE COORDINATION</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed">Where required, physical samples are coordinated to validate finish, dimensions, and material characteristics before committing to production. This step is particularly important for surface-critical products like press plates, decorative panels, and flooring.</p>
-                    </div>
-                </div>
-                <div class="flex flex-col gap-8">
-                    <div style="border-left:4px solid #d4d4d8;padding-left:1.5rem;">
-                        <div class="font-display font-bold tracking-wider text-sm mb-2">04 — PRODUCTION & QUALITY OVERSIGHT</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed">Once confirmed, production is coordinated through Moldart's established manufacturing network. Quality checkpoints are applied throughout — from raw material verification to in-process inspection and final quality validation against your agreed specifications.</p>
-                    </div>
-                    <div style="border-left:4px solid #d4d4d8;padding-left:1.5rem;">
-                        <div class="font-display font-bold tracking-wider text-sm mb-2">05 — DOCUMENTATION & PACKING</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed">Materials are prepared with appropriate commercial documentation, quality certificates, and packing specifications. Export documentation is handled where applicable, including compliance certificates aligned to destination market requirements.</p>
-                    </div>
-                    <div style="border-left:4px solid #d4d4d8;padding-left:1.5rem;">
-                        <div class="font-display font-bold tracking-wider text-sm mb-2">06 — DELIVERY & ONGOING SUPPORT</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed">Logistics coordination from manufacturing facility to your destination. Post-delivery support includes technical follow-up, reorder facilitation, and ongoing supply relationship management.</p>
-                    </div>
-                </div>
+        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+            <div class="ui-section-head mb-10">
+                <div class="ui-kicker mb-4">${glyph('clock', 'icon icon-sm')} Six stages</div>
+                <h2 class="ui-section-title">HOW THE WORK MOVES.</h2>
+                <p class="ui-section-subtitle">The stage count stays simple. The goal is not to dramatise the process, only to make it easier for a buyer to understand what should happen next.</p>
+            </div>
+            <div class="ui-stage-grid">
+                ${stages.map((stage) => `<article class="ui-stage-card"><div class="ui-stage-num">${stage.number}</div><h3 class="font-display font-bold text-lg mb-3">${escHtml(stage.title)}</h3><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(stage.detail)}</p></article>`).join('')}
             </div>
         </section>
 
         <section class="bg-zinc-50 border-b border-zinc-100 fade-up">
             <div class="max-w mx-auto px py-20">
-                <div class="section-label mb-6">What Sets Us Apart</div>
-                <h2 class="font-display font-black text-3xl mb-10">NOT A MARKETPLACE.</h2>
-                <div class="grid md-grid-3 gap-8">
-                    <div>
-                        <h3 class="font-display font-bold text-base tracking-wider mb-3">TECHNICAL ALIGNMENT</h3>
-                        <p class="text-sm text-zinc-500 leading-relaxed">Every recommendation is reviewed commercially and technically before being presented. Moldart does not simply quote from a catalog — the team evaluates whether a material is genuinely suited to your stated application.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-display font-bold text-base tracking-wider mb-3">SINGLE-POINT COORDINATION</h3>
-                        <p class="text-sm text-zinc-500 leading-relaxed">Across 16 product categories and two industrial sectors, buyers work with one sourcing partner. This reduces procurement complexity, consolidates quality oversight, and simplifies commercial relationships.</p>
-                    </div>
-                    <div>
-                        <h3 class="font-display font-bold text-base tracking-wider mb-3">QUALITY-FIRST CULTURE</h3>
-                        <p class="text-sm text-zinc-500 leading-relaxed">Materials are benchmarked against the standards required by the destination market — not the minimum acceptable standard. Quality checkpoints are embedded at every stage from sourcing through delivery.</p>
-                    </div>
+                <div class="ui-proof-grid">
+                    <article class="ui-proof-card"><div class="ui-proof-label">Surface-critical products</div><div class="ui-proof-value">Need stronger reference control</div><p class="ui-proof-copy">Press plates, decorative steel, and flooring finish routes should not skip sample or finish reference discipline.</p></article>
+                    <article class="ui-proof-card"><div class="ui-proof-label">Panel and substrate routes</div><div class="ui-proof-value">Need fit-for-use clarity</div><p class="ui-proof-copy">Application, density, compliance, and conversion route should be aligned before price comparisons dominate.</p></article>
+                    <article class="ui-proof-card"><div class="ui-proof-label">Repeat supply</div><div class="ui-proof-value">Needs stable documentation</div><p class="ui-proof-copy">The longer the programme runs, the more important it is to keep approvals, references, and expectations stable.</p></article>
                 </div>
             </div>
         </section>
 
-        <section class="max-w mx-auto px py-20 border-b border-zinc-100 fade-up">
-            <div class="section-label mb-6">Across Product Categories</div>
-            <h2 class="font-display font-black text-3xl mb-10">ONE PROCESS. MANY MATERIALS.</h2>
-            <p class="text-sm text-zinc-500 leading-relaxed max-w-2xl mb-10">The same structured approach applies whether you are sourcing lamination tooling, engineered substrates, decorative steel, or finished products. The depth of coordination varies by category — surface-critical products require additional quality checkpoints — but the fundamental process remains consistent.</p>
-            <div class="grid md-grid-2 gap-6">
-                <a href="/products/" class="flex items-center gap-4 p-6 border rounded-xl card-hover">
-                    <svg class="icon flex-shrink-0" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-                    <div><div class="font-display font-bold tracking-wider text-sm">EXPLORE PRODUCTS</div><div class="text-xs text-zinc-500 mt-1">Browse all 16 product categories</div></div>
-                </a>
-                <a href="/applications/" class="flex items-center gap-4 p-6 border rounded-xl card-hover">
-                    <svg class="icon flex-shrink-0" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-                    <div><div class="font-display font-bold tracking-wider text-sm">VIEW APPLICATIONS</div><div class="text-xs text-zinc-500 mt-1">See how our products are used</div></div>
-                </a>
-            </div>
-        </section>
-
-        ${ctaBlock('READY TO START?', 'Share your requirement and we will align the right material, specification, and supply path to your application.', 'Share Your Requirement', '/contact/', 'Download Catalog', '/downloads/INTRODUCTION TO MOLDART.pdf')}
+        ${ctaBlock('READY TO START?', 'Share your requirement and the team will align the right material, reference path, and next step for your programme.', 'Share Your Requirement', '/contact/', 'Open Resources', '/resources/')}
     </main>
 
     ${footer()}
     ${closingElements()}`;
 }
 
+
 function generateLoginPage() {
-  // Keep existing login page but with updated nav (no Login link)
   return headTag({
     title: 'Trade Portal Preview | Moldart',
-    desc: 'Moldart trade portal preview — coming soon for verified trade partners.',
+    desc: 'Buyer access and supply partner access previews for the Moldart trade portal.',
     canonical: '/login/',
     noindex: true,
     schemas: []
@@ -1585,9 +2548,51 @@ function generateLoginPage() {
 
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
-            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Trade Portal Preview</span></div>
-            <h1 class="page-heading">COMING<br>SOON.</h1>
-            <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed mt-6">We are building a digital procurement platform for verified Moldart trade partners. This portal is not yet available. For immediate assistance, please <a href="/contact/" class="link-line text-zinc-700 font-medium">contact us directly</a>.</p>
+            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Portal Preview</span></div>
+            <h1 class="page-heading">BUYER AND PARTNER<br>ACCESS.</h1>
+            <p class="text-base text-zinc-500 font-light max-w-2xl leading-relaxed mt-6">The Moldart portal is being built as a disciplined operational layer for repeat buyers and verified supply partners. Until launch, this page works as an access preview and routing point.</p>
+        </section>
+
+        <section class="max-w mx-auto px py-16 fade-up">
+            <div class="signal-grid signal-grid-portal">
+                <article class="signal-card portal-card">
+                    <div class="section-label mb-4">Buyer Access</div>
+                    <h2 class="font-display font-black text-2xl mb-4">BUYER WORKSPACE.</h2>
+                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">For manufacturers, project buyers, and procurement teams who want a cleaner route for specifications, documentation, downloads, and repeat requirement handling.</p>
+                    <ul class="product-summary-list mb-6">
+                        <li>Structured RFQ and specification intake</li>
+                        <li>Reference documents and approval tracking</li>
+                        <li>Repeat-order visibility and coordinated follow-up</li>
+                    </ul>
+                    <a href="/contact/" class="btn-primary">Request Buyer Access</a>
+                </article>
+                <article class="signal-card portal-card">
+                    <div class="section-label mb-4">Supply Partner Access</div>
+                    <h2 class="font-display font-black text-2xl mb-4">SELLER WORKFLOW.</h2>
+                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">For verified manufacturing and supply partners who need a cleaner lane for quote alignment, documentation exchange, and production-linked communication.</p>
+                    <ul class="product-summary-list mb-6">
+                        <li>Standardised quote and document flow</li>
+                        <li>Quality checkpoints and approval visibility</li>
+                        <li>Operational coordination for repeat programmes</li>
+                    </ul>
+                    <a href="/contact/" class="btn-outline">Request Partner Access</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="bg-zinc-50 border-y border-zinc-100 fade-up">
+            <div class="max-w mx-auto px py-16">
+                <div class="portal-status-card">
+                    <div class="portal-status-copy">
+                        <div class="section-label mb-3">Current Status</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Portal access is not live yet, but buyer and supplier onboarding can still begin through the contact flow.</p>
+                    </div>
+                    <div class="flex gap-3 flex-wrap">
+                        <a href="/contact/" class="btn-primary">Share your requirement</a>
+                        <a href="https://wa.me/917208088788" target="_blank" rel="noopener noreferrer" class="btn-outline">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -1610,8 +2615,8 @@ function generate404() {
             <p class="text-base text-zinc-500 mb-8">This page could not be found.</p>
             <div class="flex gap-4 justify-center flex-wrap">
                 <a href="/" class="btn-primary">Go Home</a>
-                <a href="/products/" class="btn-outline">View Products</a>
-                <a href="/contact/" class="btn-outline">Contact Us</a>
+                <a href="/solutions/" class="btn-outline">View Solutions</a>
+                <a href="/contact/" class="btn-outline">Share your requirement</a>
             </div>
         </section>
     </main>
@@ -1620,84 +2625,133 @@ function generate404() {
     ${closingElements()}`;
 }
 
-function generateIndustryRedirect() {
+function generatePageRedirect(target, title, label, noindex = false) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0;url=/products/">
-    <link rel="canonical" href="${SITE}/products/">
-    <title>Redirecting to Products — Moldart</title>
+    ${noindex ? '<meta name="robots" content="noindex, nofollow">' : ''}
+    <meta http-equiv="refresh" content="0;url=${target}">
+    <link rel="canonical" href="${SITE}${target}">
+    <title>${escHtml(title)}</title>
 </head>
 <body>
-    <p>This page has moved. <a href="/products/">View our products</a>.</p>
+    <p>This page has moved. <a href="${target}">${escHtml(label)}</a>.</p>
 </body>
 </html>`;
+}
+
+function generateIndustryRedirect() {
+  return generatePageRedirect('/solutions/', 'Redirecting to Solutions — Moldart', 'Explore solutions');
+}
+
+function generateInsightRedirect(slug) {
+  return generatePageRedirect('/insights/', 'Redirecting to Insights — Moldart', 'Open the current insights library', true);
 }
 
 // ============================================================
 // INSIGHTS
 // ============================================================
-function markdownToHtml(md) {
-  // Simple markdown→HTML for insights articles
-  let html = md;
-  // Headers
-  html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
-  html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
-  // Bold
-  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-  // Unordered lists
-  html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
-  html = html.replace(/(<li>.*<\/li>\n?)+/g, (m) => '<ul>' + m.trim() + '</ul>');
-  // Ordered lists
-  html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
-  // Tables (simple)
-  html = html.replace(/^\|(.+)\|$/gm, (match, content) => {
-    const cells = content.split('|').map(c => c.trim());
-    if (cells.every(c => /^[-:]+$/.test(c))) return '';
-    const tag = cells.some(c => /\*\*/.test(c)) ? 'td' : 'td';
-    return '<tr>' + cells.map(c => `<${tag}>${c.replace(/\*\*/g, '')}</${tag}>`).join('') + '</tr>';
-  });
-  html = html.replace(/(<tr>.*<\/tr>\n?)+/g, (m) => '<table>' + m.trim() + '</table>');
-  // Paragraphs
-  html = html.split('\n\n').map(block => {
-    block = block.trim();
-    if (!block) return '';
-    if (block.startsWith('<h') || block.startsWith('<ul') || block.startsWith('<ol') || block.startsWith('<table') || block.startsWith('<li')) return block;
-    return '<p>' + block + '</p>';
-  }).join('\n');
-  return html;
+// ============================================================
+// INSIGHTS
+// ============================================================
+function extractArticleHeadings(md) {
+  return String(md || '')
+    .replace(/\r/g, '')
+    .split('\n')
+    .map((line) => line.trim())
+    .map((line) => {
+      const match = line.match(/^(#{2,3})\s+(.*)$/);
+      if (!match) return null;
+      const text = stripMarkdownInline(match[2]);
+      return { level: match[1].length, text, id: slugify(text) };
+    })
+    .filter(Boolean);
 }
+
+function markdownToHtml(md) {
+  const source = String(md || '').replace(/\r/g, '');
+  const lines = source.split('\n');
+  const html = [];
+  let listMode = null;
+
+  const formatInline = (value) => escHtml(value)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/`(.+?)`/g, '<code>$1</code>');
+
+  const closeList = () => {
+    if (listMode === 'ul') html.push('</ul>');
+    if (listMode === 'ol') html.push('</ol>');
+    listMode = null;
+  };
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const raw = lines[index];
+    const line = raw.trim();
+
+    if (!line) {
+      closeList();
+      continue;
+    }
+
+    const heading = line.match(/^(#{2,3})\s+(.*)$/);
+    if (heading) {
+      closeList();
+      const level = heading[1].length === 2 ? 'h2' : 'h3';
+      const id = slugify(stripMarkdownInline(heading[2]));
+      html.push(`<${level} id="${id}">${formatInline(heading[2])}</${level}>`);
+      continue;
+    }
+
+    const unordered = line.match(/^[-*]\s+(.*)$/);
+    if (unordered) {
+      if (listMode !== 'ul') {
+        closeList();
+        html.push('<ul>');
+        listMode = 'ul';
+      }
+      html.push(`<li>${formatInline(unordered[1])}</li>`);
+      continue;
+    }
+
+    const ordered = line.match(/^\d+\.\s+(.*)$/);
+    if (ordered) {
+      if (listMode !== 'ol') {
+        closeList();
+        html.push('<ol>');
+        listMode = 'ol';
+      }
+      html.push(`<li>${formatInline(ordered[1])}</li>`);
+      continue;
+    }
+
+    closeList();
+    html.push(`<p>${formatInline(line)}</p>`);
+  }
+
+  closeList();
+  return html.join('\n');
+}
+
 
 function generateInsightsHub() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Insights' }]);
   const articles = rawInsights.articles;
-  const categories = [...new Set(articles.map(a => a.categoryLabel))];
+  const categories = [...new Set(articles.map((a) => a.categoryLabel))];
+  const [featuredArticle, ...otherArticles] = articles;
 
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/insights/#webpage', url: SITE + '/insights/', name: 'Insights — Technical Articles & Industry Guides | Moldart', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/insights/#webpage', url: SITE + '/insights/', name: 'Insights — Technical Guides & Notes | Moldart', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
-  const filterBtns = `<div class="insights-filter-row">
-    <button class="insights-filter-btn is-active" data-filter="all">All</button>
-    ${categories.map(c => `<button class="insights-filter-btn" data-filter="${c}">${c}</button>`).join('\n    ')}
-  </div>`;
-
-  const cardsHtml = articles.map(a => `
-    <a href="/insights/${a.slug}/" class="insight-card" data-category="${escHtml(a.categoryLabel)}">
-        <div class="insight-card-type">${escHtml(a.type)}</div>
-        <div class="insight-card-title">${escHtml(a.title)}</div>
-        <div class="insight-card-excerpt">${escHtml(a.excerpt).substring(0, 160)}...</div>
-        <div class="insight-card-meta">
-            <span>${a.date}</span>
-            <span>${a.readTime} read</span>
-        </div>
-    </a>`).join('\n');
+  const filterBtns = `<div class="insights-filter-row"><button class="insights-filter-btn is-active" data-filter="all">All</button>${categories.map((c) => `<button class="insights-filter-btn" data-filter="${c}">${c}</button>`).join('')}</div>`;
+  const featureHtml = featuredArticle ? `<a href="/insights/${featuredArticle.slug}/" class="ui-insight-feature insight-card" data-category="${escHtml(featuredArticle.categoryLabel)}"><div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Featured guide</div><div class="font-display font-black text-3xl mb-3" style="line-height:1.05;">${escHtml(featuredArticle.title)}</div><p class="text-sm text-zinc-500 leading-relaxed mb-6">${escHtml(featuredArticle.excerpt)}</p><div class="ui-meta-inline"><span>${escHtml(featuredArticle.type)}</span><span>${escHtml(featuredArticle.categoryLabel)}</span><span>${featuredArticle.date}</span></div></a>` : '';
+  const cardsHtml = otherArticles.map((article) => `<a href="/insights/${article.slug}/" class="ui-insight-card insight-card" data-category="${escHtml(article.categoryLabel)}"><div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} ${escHtml(article.type)}</div><div class="font-display font-bold text-xl mb-3" style="line-height:1.25;">${escHtml(article.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(article.excerpt)}</p><div class="ui-meta-inline mt-5"><span>${escHtml(article.categoryLabel)}</span><span>${article.date}</span></div></a>`).join('');
 
   return headTag({
-    title: 'Insights — Technical Articles & Industry Guides | Moldart',
-    desc: `${articles.length} technical articles covering product specifications, application guides, quality standards, and procurement strategies for industrial materials.`,
+    title: 'Insights — Technical Guides & Notes | Moldart',
+    desc: 'Technical guides and notes for buyers, procurement teams, project stakeholders, and production teams across Moldart product systems.',
     canonical: '/insights/',
     schemas
   }) + '\n' + nav('insights') + `
@@ -1705,22 +2759,35 @@ function generateInsightsHub() {
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             ${bc.html}
-            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Technical Library</span></div>
-            <h1 class="page-heading">${articles.length} TECHNICAL<br>ARTICLES.</h1>
-            <p class="text-base text-zinc-500 font-light max-w-lg leading-relaxed mt-6">In-depth guides on product specifications, application best practices, quality standards, and procurement strategies — written by the Moldart technical team.</p>
+            <div class="ui-page-hero">
+                <div class="ui-page-hero-copy">
+                    <div class="ui-kicker mb-4">${glyph('spark', 'icon icon-sm')} Technical Guides & Notes</div>
+                    <h1 class="ui-section-title">BUYER GUIDES,<br>FIELD NOTES, AND TECHNICAL CONTEXT.</h1>
+                    <p class="ui-section-subtitle">These articles are written to help buyers, technical teams, project stakeholders, and procurement teams understand what actually changes a decision — without turning the page into thin SEO filler.</p>
+                </div>
+                <div class="ui-page-hero-panel">
+                    <div class="ui-proof-grid">
+                        <article class="ui-proof-card"><div class="ui-proof-label">Live now</div><div class="ui-proof-value">${articles.length} guides</div><p class="ui-proof-copy">Only live articles that add a real decision-making role are kept visible.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Tone</div><div class="ui-proof-value">Technical, but readable</div><p class="ui-proof-copy">The writing is meant to help buyers, sellers, production teams, and project stakeholders at the same time.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Next step</div><div class="ui-proof-value">Move to requirement review</div><p class="ui-proof-copy">Use a guide to orient the discussion, then share the real programme for confirmation.</p></article>
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="max-w mx-auto px py-12 fade-up">
             ${filterBtns}
-            <div class="insights-grid" id="insights-grid">
+            <div class="ui-insight-grid" id="insights-grid">
+                ${featureHtml}
                 ${cardsHtml}
             </div>
         </section>
-        ${ctaBlock('NEED SPECIFIC<br>GUIDANCE?', 'Our technical team offers specification support tailored to your project requirements.', 'Contact Us', '/contact/', 'View Products', '/products/')}
+        ${ctaBlock('NEED SPECIFIC<br>GUIDANCE?', 'Use a guide as the starting point, then send the actual requirement for a product-aligned review.', 'Share your requirement', '/contact/', 'Open Resources', '/resources/')}
     </main>
 
     ${footer()}
     ${closingElements()}`;
 }
+
 
 function generateInsightArticle(article) {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Insights', url: '/insights/' }, { name: article.title.length > 50 ? article.title.substring(0, 47) + '...' : article.title }]);
@@ -1729,7 +2796,21 @@ function generateInsightArticle(article) {
     bc.schema
   ];
 
-  const contentHtml = markdownToHtml(article.content);
+  const contentHtml = renderInsightArticleBody(article);
+  const context = articleProductContext(article);
+  const readTime = estimateReadTime(article, contentHtml);
+  const audiences = articleAudienceFor(article);
+  const headings = extractArticleHeadings(article.content);
+  const relatedSolutions = relatedSolutionsForProduct(article.category);
+  const tocHtml = headings.length ? `<div class="insight-side-card mb-4"><div class="insight-side-label mb-2">In this guide</div>${headings.map((heading) => `<a href="#${heading.id}" class="article-toc-link${heading.level === 3 ? ' is-sub' : ''}">${escHtml(heading.text)}</a>`).join('')}</div>` : '';
+  const insightSidebar = `
+      <aside class="insight-side-panel">
+          ${tocHtml}
+          ${context ? `<div class="insight-side-card mb-4"><div class="insight-side-label">Product</div><div class="insight-side-value">${escHtml(context.product.name)}</div></div>` : ''}
+          ${relatedSolutions.length ? `<div class="insight-side-card mb-4"><div class="insight-side-label mb-2">Related solutions</div>${relatedSolutions.map((app) => `<a href="${getSolutionHref(app.slug)}" class="article-toc-link">${escHtml(app.name)}</a>`).join('')}</div>` : ''}
+          <div class="insight-side-card mb-4"><div class="insight-side-label">Approx. reading time</div><div class="insight-side-value">${escHtml(readTime)}</div></div>
+          ${context ? `<div class="insight-side-card"><div class="insight-side-label mb-3">Reference downloads</div><div class="flex flex-col gap-2">${context.meta.downloads.slice(0, 3).map((download) => downloadLink(download)).join('')}</div></div>` : ''}
+      </aside>`;
 
   return headTag({
     title: `${article.title} | Moldart Insights`,
@@ -1741,25 +2822,34 @@ function generateInsightArticle(article) {
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             ${bc.html}
-            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">${escHtml(article.categoryLabel)} · ${escHtml(article.type)}</span></div>
-            <h1 class="page-heading" style="font-size:clamp(1.5rem,4vw,2.5rem);">${escHtml(article.title)}</h1>
+            <div class="inline-flex items-center gap-3 mb-8"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">${escHtml(article.categoryLabel)} · ${escHtml(article.type)}</span></div>
+            <h1 class="page-heading" style="font-size:clamp(1.8rem,4vw,3rem);line-height:.95;">${escHtml(article.title)}</h1>
             <div class="flex items-center gap-4 mt-6 text-sm text-zinc-500">
                 <span>${article.date}</span>
                 <span>·</span>
-                <span>${article.readTime} read</span>
+                <span>${escHtml(readTime)}</span>
                 <span>·</span>
                 <span>${escHtml(article.author)}</span>
             </div>
+            <p class="text-base text-zinc-500 font-light max-w-3xl leading-relaxed mt-6">${escHtml(article.excerpt)}</p>
+            <div class="ui-chip-row mt-6">
+                <span class="ui-chip">${glyph('shield', 'icon icon-sm')} Source-backed</span>
+                ${audiences.map((item) => `<span class="ui-chip">${glyph('check', 'icon icon-sm')} ${escHtml(item)}</span>`).join('')}
+            </div>
         </section>
         <section class="max-w mx-auto px py-12">
-            <div class="insight-article">
-                ${contentHtml}
+            <div class="insight-layout">
+                <div class="insight-article">
+                    ${renderShareBar(article.title, `/insights/${article.slug}/`)}
+                    ${contentHtml}
+                </div>
+                ${insightSidebar}
             </div>
         </section>
         <section class="max-w mx-auto px py-12 border-t border-zinc-100 fade-up">
             <div class="flex flex-col md-flex-row gap-4 justify-between items-center">
                 <a href="/insights/" class="btn-outline">← Back to Insights</a>
-                <a href="/contact/?product=${encodeURIComponent(article.category)}" class="btn-primary">Discuss This Product →</a>
+                <a href="/contact/?product=${encodeURIComponent(context?.product?.name || article.category)}" class="btn-primary">Share your requirement →</a>
             </div>
         </section>
     </main>
@@ -1771,11 +2861,14 @@ function generateInsightArticle(article) {
 // ============================================================
 // SITEMAP, ROBOTS, REDIRECTS
 // ============================================================
+// ============================================================
+// SITEMAP, ROBOTS, REDIRECTS
+// ============================================================
 function generateSitemap() {
   const pages = [
     { url: '/', priority: '1.0', freq: 'monthly' },
-    { url: '/products/', priority: '0.9', freq: 'weekly' },
-    { url: '/applications/', priority: '0.8', freq: 'monthly' },
+    { url: '/explore/', priority: '0.8', freq: 'weekly' },
+    { url: '/solutions/', priority: '0.9', freq: 'weekly' },
     { url: '/about/', priority: '0.8', freq: 'monthly' },
     { url: '/insights/', priority: '0.8', freq: 'weekly' },
     { url: '/resources/', priority: '0.7', freq: 'monthly' },
@@ -1788,24 +2881,45 @@ function generateSitemap() {
     pages.push({ url: `/products/${m.slug}/`, priority: '0.7', freq: 'monthly' });
   }
   for (const app of applications) {
-    pages.push({ url: `/applications/${app.slug}/`, priority: '0.7', freq: 'monthly' });
+    pages.push({ url: getSolutionHref(app.slug), priority: '0.7', freq: 'monthly' });
   }
   for (const article of rawInsights.articles) {
     pages.push({ url: `/insights/${article.slug}/`, priority: '0.5', freq: 'monthly' });
   }
 
   const urls = pages.map(p => `  <url><loc>${SITE}${p.url}</loc><lastmod>${NOW}</lastmod><changefreq>${p.freq}</changefreq><priority>${p.priority}</priority></url>`).join('\n');
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>`;
 }
+
 
 function generateRobots() {
   return `User-agent: *
 Allow: /
 Disallow: /data/
+Disallow: /sw.js
+Disallow: /offline.html
 Disallow: /login/
 Disallow: /.tmp/
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
 User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
 Disallow: /
 
 User-agent: CCBot
@@ -1815,6 +2929,46 @@ Sitemap: ${SITE}/sitemap.xml
 Sitemap: ${SITE}/sitemap-images.xml`;
 }
 
+function generateLlmsTxt() {
+  return `# Moldart
+
+## Primary Pages
+- Home: ${SITE}/
+- Solutions: ${SITE}/solutions/
+- Resources: ${SITE}/resources/
+- Insights: ${SITE}/insights/
+- Contact: ${SITE}/contact/
+- About: ${SITE}/about/
+
+## Key Topics
+- Solution systems and product stacks
+- Product sheets and technical references
+- Technical guides, buyer notes, and comparison articles
+- Downloadable catalogues, finish decks, and PDFs
+`;
+}
+
+function generateLlmsFullTxt() {
+  const productLines = Object.keys(productMeta).map((pid) => `- ${getProduct(pid)?.name}: ${SITE}/products/${productMeta[pid].slug}/`).join('\n');
+  const solutionLines = applications.map((app) => `- ${app.name}: ${SITE}${getSolutionHref(app.slug)}`).join('\n');
+  return `# Moldart Full Index
+
+## Pages
+- ${SITE}/
+- ${SITE}/solutions/
+- ${SITE}/resources/
+- ${SITE}/insights/
+- ${SITE}/contact/
+- ${SITE}/about/
+
+## Solutions
+${solutionLines}
+
+## Products
+${productLines}
+`;
+}
+
 function generateRedirects() {
   return `/index.html               /                         301
 /about.html               /about/                   301
@@ -1822,12 +2976,17 @@ function generateRedirects() {
 /contact.html             /contact/                 301
 /login.html               /login/                   301
 /about                    /about/                   301
-/industry                 /products/                301
-/industry/                /products/                301
+/industry                 /solutions/               301
+/industry/                /solutions/               301
 /contact                  /contact/                 301
 /login                    /login/                   301
-/products                 /products/                301
-/applications             /applications/            301
+/explore                  /explore/                 301
+/solutions                /solutions/               301
+/products                 /solutions/               301
+/products/                /solutions/               301
+/applications             /solutions/               301
+/applications/            /solutions/               301
+/applications/*           /solutions/:splat/        301
 /resources                /resources/               301
 /faq                      /faq/                     301
 /process                  /process/                 301
@@ -1841,15 +3000,20 @@ function generateRedirects() {
 function main() {
   console.log('=== Moldart Page Generator ===\n');
 
-  // Core pages
   console.log('Generating core pages...');
   writeFile(path.join(WORK, 'index.html'), generateHomepage());
+  writeFile(path.join(WORK, 'explore/index.html'), generateExplorePage());
   writeFile(path.join(WORK, 'about/index.html'), generateAboutPage());
   writeFile(path.join(WORK, 'contact/index.html'), generateContactPage());
   writeFile(path.join(WORK, 'login/index.html'), generateLoginPage());
   writeFile(path.join(WORK, '404.html'), generate404());
 
-  // Products hub + product pages
+  console.log('\nGenerating solution pages...');
+  writeFile(path.join(WORK, 'solutions/index.html'), generateSolutionsHub());
+  for (const app of applications) {
+    writeFile(path.join(WORK, `solutions/${app.slug}/index.html`), generateSolutionPage(app));
+  }
+
   console.log('\nGenerating product pages...');
   writeFile(path.join(WORK, 'products/index.html'), generateProductsHub());
   for (const pid of Object.keys(productMeta)) {
@@ -1857,37 +3021,45 @@ function main() {
     writeFile(path.join(WORK, `products/${m.slug}/index.html`), generateProductPage(pid));
   }
 
-  // Applications hub + application pages
-  console.log('\nGenerating application pages...');
+  console.log('\nGenerating legacy application redirects...');
   writeFile(path.join(WORK, 'applications/index.html'), generateApplicationsHub());
   for (const app of applications) {
     writeFile(path.join(WORK, `applications/${app.slug}/index.html`), generateApplicationPage(app));
   }
 
-  // Resources, FAQ, Process
   console.log('\nGenerating utility pages...');
   writeFile(path.join(WORK, 'resources/index.html'), generateResourcesPage());
   writeFile(path.join(WORK, 'faq/index.html'), generateFAQPage());
   writeFile(path.join(WORK, 'process/index.html'), generateProcessPage());
 
-  // Insights hub + article pages
   console.log('\nGenerating insights pages...');
   writeFile(path.join(WORK, 'insights/index.html'), generateInsightsHub());
   for (const article of rawInsights.articles) {
     writeFile(path.join(WORK, `insights/${article.slug}/index.html`), generateInsightArticle(article));
   }
+  const currentInsightSlugs = getInsightSlugs();
+  const insightsDir = path.join(WORK, 'insights');
+  if (fs.existsSync(insightsDir)) {
+    for (const entry of fs.readdirSync(insightsDir, { withFileTypes: true })) {
+      if (entry.isDirectory() && !currentInsightSlugs.has(entry.name)) {
+        writeFile(path.join(insightsDir, entry.name, 'index.html'), generateInsightRedirect(entry.name));
+      }
+    }
+  }
 
-  // Industry redirect
   writeFile(path.join(WORK, 'industry/index.html'), generateIndustryRedirect());
 
-  // Sitemap, robots, redirects
+  console.log('\nGenerating search index...');
+  writeFile(path.join(WORK, 'data/search-index.json'), JSON.stringify(getSearchEntries()));
+
   console.log('\nGenerating config files...');
   writeFile(path.join(WORK, 'sitemap.xml'), generateSitemap());
   writeFile(path.join(WORK, 'robots.txt'), generateRobots());
+  writeFile(path.join(WORK, 'llms.txt'), generateLlmsTxt());
+  writeFile(path.join(WORK, 'llms-full.txt'), generateLlmsFullTxt());
   writeFile(path.join(WORK, '_redirects'), generateRedirects());
 
-  // Count generated pages
-  const totalPages = 5 + Object.keys(productMeta).length + applications.length + 3 + 1 + 1 + rawInsights.articles.length;
+  const totalPages = 6 + (1 + applications.length) + (1 + Object.keys(productMeta).length) + (1 + applications.length) + 3 + 1 + 1 + rawInsights.articles.length;
   console.log(`\n=== Generated ${totalPages} pages ===`);
 }
 
