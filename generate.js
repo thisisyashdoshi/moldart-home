@@ -6,28 +6,15 @@ const path = require('path');
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.26';
+const VER = '2026.27';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
-const FEATURED_INSIGHT_LIMIT = 24;
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
 const BRAND_LINE = 'Wood and steel supply programmes from Mumbai, aligned to the requirement.';
 const NAV_SEARCH_META = 'Solutions • Product sheets • Resources • Guides • Contact • About';
-const VERIFICATION_DISCLOSURE = 'Verified against the internal company profile, the company LinkedIn page, and public business listings. Exact commercial values are confirmed per enquiry.';
-const VERIFIED_SOURCE_ITEMS = [
-  { title: 'Internal company profile', detail: 'Primary source for company history, sectors, and the most reliable technical reference points used on this site.' },
-  { title: 'Company LinkedIn page', detail: 'Secondary public verification for founded year, Mumbai HQ, sectors served, and the sourcing-led operating model.' },
-  { title: 'Public business listings', detail: 'Used only as secondary cross-checks for address and long-running company presence; not for unsupported superlatives.' }
-];
-const VERIFIED_FACT_ITEMS = [
-  { label: 'Founded', value: '1989', note: 'Used consistently across internal and public sources' },
-  { label: 'Headquarters', value: 'Mumbai', note: 'Malad West office presented as primary contact point' },
-  { label: 'Model', value: 'Source → Verify → Supply', note: 'The site now presents Moldart as a sourcing-and-supply partner, not a marketplace' },
-  { label: 'Core route', value: 'India + China', note: 'Mumbai-led coordination with programme-led sourcing support' }
-];
 const SUPPLY_FLOW_ITEMS = [
   { step: '01', title: 'Source', detail: 'Start from the actual requirement, then align the likely supply route instead of quoting a generic equivalent.' },
-  { step: '02', title: 'Verify', detail: 'Use the profile PDF, reference decks, and samples to validate fit before volume or price becomes the only conversation.' },
+  { step: '02', title: 'Verify', detail: 'Use reference decks and samples to validate fit before volume or price becomes the only conversation.' },
   { step: '03', title: 'Supply', detail: 'Confirm grade, finish, commercial route, and documentation only after the technical path is clear.' }
 ];
 
@@ -47,9 +34,9 @@ const productMeta = {
     slug: 'press-plates',
     seoTitle: 'Press Plates Supplier | Lamination Press Plates — Moldart India',
     metaDesc: 'Lamination press plates in SS 304, SS 420, and SS 630 grades with hard-chrome working surfaces for decorative laminate production.',
-    overview: 'Moldart supplies surface-critical press plates for decorative laminate production where texture fidelity, wear resistance, and repeatable finish quality matter. The reference position presented on this site keeps the focus on supported grades, hardness ranges, and application-led confirmation.',
+    overview: 'Moldart supplies surface-critical press plates for decorative laminate production where texture fidelity, wear resistance, and repeatable finish quality matter. The focus stays on supported grades, hardness ranges, and application-led confirmation.',
     workflow: 'Press plates are the tooling surface in lamination presses. They transfer texture and finish to laminate surfaces during the pressing cycle, making them critical to final product quality.',
-    commercialNotes: 'Available in 1S and 2S configurations on request. Final grade, surface pattern, chrome route, and quantity are confirmed against the actual programme rather than assumed in public copy.',
+    commercialNotes: 'Available in 1S and 2S configurations on request. Final grade, surface pattern, chrome route, and quantity are confirmed against the actual programme.',
     relatedProducts: ['press-pads', 'engraved-cylinders', 'industrial-press-plates'],
     relatedApps: ['lamination', 'furniture'],
     downloads: [
@@ -208,9 +195,9 @@ const productMeta = {
     slug: 'decorative-ss-panels',
     seoTitle: 'Decorative Stainless Steel Panels | PVD SS Sheets — Moldart India',
     metaDesc: 'Decorative stainless steel panels for architectural interiors with SS 201 / 304 routes, Hairline, Mirror, and selected PVD finishes.',
-    overview: 'Moldart supplies decorative stainless steel panels for architectural and interior programmes where finish control, consistency, and application fit matter more than long finish lists. The public framing stays focused on the routes most clearly supported in the available material.',
+    overview: 'Moldart supplies decorative stainless steel panels for architectural and interior programmes where finish control, consistency, and application fit matter more than long finish lists. The focus stays on the finish routes most clearly supported in the available material.',
     workflow: 'Decorative SS panels are used as wall cladding, elevator cabin interiors, retail displays, and architectural accent surfaces. They are cut to size, finished with the specified surface treatment and approved finish route, then installed.',
-    commercialNotes: 'Common public reference points include SS 201 / 304 routes, Hairline, Mirror, and selected PVD finishes. Higher-corrosion environments, anti-fingerprint needs, and final finish approval are confirmed per enquiry.',
+    commercialNotes: 'Common working reference points include SS 201 / 304 routes, Hairline, Mirror, and selected PVD finishes. Higher-corrosion environments, anti-fingerprint needs, and final finish approval are confirmed per enquiry.',
     relatedProducts: ['ss-profiles', 'ss-furniture'],
     relatedApps: ['architecture', 'metal-finishing'],
     downloads: [
@@ -224,7 +211,7 @@ const productMeta = {
     slug: 'ss-profiles',
     seoTitle: 'Stainless Steel Profiles Supplier | SS Trims & Inlays — Moldart India',
     metaDesc: 'Precision-formed stainless steel profiles and trims in common architectural shapes, coordinated to decorative panel finish routes.',
-    overview: 'Moldart supplies stainless steel profiles, trims, and inlays for cleaner architectural transitions and edge detailing. The public-facing description keeps the emphasis on profile coordination, finish matching, and project-led confirmation.',
+    overview: 'Moldart supplies stainless steel profiles, trims, and inlays for cleaner architectural transitions and edge detailing, with emphasis on profile coordination, finish matching, and project-led confirmation.',
     workflow: 'SS profiles are used as transition trims, panel edging, floor-to-wall junctions, and decorative inlays in architectural interiors. They are typically installed alongside decorative stainless steel panels.',
     commercialNotes: 'Common profile routes include T, U, L, C, and box forms with finish coordination to the selected panel programme. Final grade, length, folding geometry, and groove detail are confirmed per enquiry.',
     relatedProducts: ['decorative-panels', 'ss-furniture'],
@@ -254,7 +241,7 @@ const productMeta = {
     metaDesc: 'Industrial press plates for CCL, PCB, and technical laminate pressing where flatness, parallelism, and surface discipline are critical.',
     overview: 'Moldart supplies heavy-duty steel plates for high-pressure technical laminate, CCL, and PCB programmes where dimensional tolerance and surface discipline are more demanding than standard decorative lamination work.',
     workflow: 'Industrial press plates are used in high-pressure presses for manufacturing technical laminates, CCL, and PCB substrates. They must maintain precise flatness, parallelism, and surface behaviour under demanding pressing conditions.',
-    commercialNotes: 'The public reference points stay focused on tolerance-led supply: flatness, parallelism, surface condition, and application fit. Final grade, magnetism control, and supporting documentation are confirmed per enquiry.',
+    commercialNotes: 'Reference points stay focused on tolerance-led supply: flatness, parallelism, surface condition, and application fit. Final grade, magnetism control, and supporting documentation are confirmed per enquiry.',
     relatedProducts: ['press-plates', 'press-pads'],
     relatedApps: ['lamination', 'pcb-ccl'],
     downloads: [
@@ -489,7 +476,6 @@ const resourceGroups = [
       { title: 'HPL Overlay Collection OL-01', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 1.pdf' },
       { title: 'LPL Decorative Collection GB-02', desc: 'Low-pressure laminate decor reference set.', url: '/downloads/LPL - GB - 02.pdf' },
       { title: 'LPL PET Board Collection', desc: 'PET-faced decorative board reference deck.', url: '/downloads/LPL - PET BOARD.pdf' },
-      { title: 'HPL Overlay Collection OL-01', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 1.pdf' },
       { title: 'HPL Overlay Collection OL-02', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 2.pdf' },
       { title: 'HPL Overlay Collection OL-03', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 3.pdf' },
     ]
@@ -867,12 +853,21 @@ function getSearchEntries() {
     icon: insightIcon(article)
   }));
 
-  return [...pageEntries, ...familyEntries, ...productEntries, ...appEntries, ...resourceEntries, ...insightEntries];
+  const allEntries = [...pageEntries, ...familyEntries, ...productEntries, ...appEntries, ...resourceEntries, ...insightEntries];
+  const dedupedEntries = [];
+  const seen = new Set();
+  for (const entry of allEntries) {
+    const key = `${entry.group}|${entry.title}|${entry.url}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    dedupedEntries.push(entry);
+  }
+  return dedupedEntries;
 }
 
 function renderHeroNetworkMap() {
-  return `<div class="hero-network-card hero-world-map" aria-label="Global programme map">
-      <svg class="hero-network-svg" viewBox="0 0 560 420" role="img" aria-label="World map showing Mumbai coordination with sourcing from India and China">
+  return `<div class="hero-network-card hero-world-map" aria-label="Illustrative global programme map">
+      <svg class="hero-network-svg" viewBox="0 0 560 420" role="img" aria-label="Illustrative world map showing Mumbai coordination, sourcing from India and China, and representative trade-region routes">
           <defs>
               <linearGradient id="routeFade" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stop-color="#18181b" stop-opacity="0.88"></stop>
@@ -930,6 +925,17 @@ function renderHeroNetworkMap() {
               <text x="344" y="170" class="hero-node-meta">Sourcing</text>
               <text x="448" y="160" class="hero-node-label">China</text>
               <text x="448" y="146" class="hero-node-meta">Sourcing</text>
+          </g>
+          <g class="hero-world-region-labels">
+              <text x="70" y="112" class="hero-world-region-label">Americas</text>
+              <text x="256" y="124" class="hero-world-region-label">Europe</text>
+              <text x="286" y="173" class="hero-world-region-label">Middle East</text>
+              <text x="272" y="300" class="hero-world-region-label">Africa</text>
+              <text x="432" y="292" class="hero-world-region-label">East Asia</text>
+          </g>
+          <g class="hero-world-callouts">
+              <text x="76" y="350" class="hero-world-small">Representative trade regions shown illustratively</text>
+              <text x="330" y="84" class="hero-world-small hero-world-small-strong">India + China remain the sourcing anchors</text>
           </g>
       </svg>
   </div>`;
@@ -1744,8 +1750,14 @@ function generateHomepage() {
                     <div class="ui-panel-inner">
                         <div class="ui-kicker mb-4">${glyph('globe', 'icon icon-sm')} Programme geography</div>
                         ${renderHeroNetworkMap()}
-                        <div class="ui-map-caption">Mumbai coordinates the requirement. India and China remain the sourcing anchors, with domestic and export routes aligned to the programme.</div>
+                        <div class="ui-map-caption">Mumbai coordinates the brief. India and China remain the sourcing anchors, while final domestic or export lanes are aligned to the category, documentation, and destination.</div>
+                        <div class="ui-world-map-legend mt-4">
+                            <span class="ui-world-map-legend-item is-primary"><strong>Mumbai</strong><span>Commercial coordination</span></span>
+                            <span class="ui-world-map-legend-item"><strong>India + China</strong><span>Core sourcing routes</span></span>
+                            <span class="ui-world-map-legend-item"><strong>Representative regions</strong><span>Trade lanes vary by programme</span></span>
+                        </div>
                         <div class="ui-app-badges mt-4"><span>Asia</span><span>Middle East</span><span>Africa</span><span>Europe</span><span>Americas</span></div>
+                        <div class="ui-world-map-note mt-3">Illustrative trade-region view only. The map is intended to clarify sourcing geography, not to imply office locations outside Mumbai.</div>
                     </div>
                 </div>
             </div>
@@ -1836,7 +1848,7 @@ function generateExplorePage() {
                         ${renderMetricCard({ icon: 'compass', label: 'Solutions', value: applications.length, note: 'System views that already include the relevant product stack.', animate: true })}
                         ${renderMetricCard({ icon: 'layers', label: 'Product sheets', value: rawProducts.products.length, note: 'Reference-led pages for individual products and categories.', animate: true })}
                         ${renderMetricCard({ icon: 'book', label: 'Resources', value: getTotalResourceItems(), note: 'One library for catalogues, finish decks, and PDFs.', animate: true })}
-                        ${renderMetricCard({ icon: 'spark', label: 'Guides', value: rawInsights.articles.length, note: 'Technical guides and notes kept live because they add value.', animate: true })}
+                        ${renderMetricCard({ icon: 'spark', label: 'Guides', value: rawInsights.articles.length, note: 'Technical guides covering product, quality, and procurement decisions.', animate: true })}
                     </div>
                 </div>
             </div>
@@ -1996,7 +2008,7 @@ function generateProductPage(productId) {
                             <p class="ui-data-note">${escHtml(p.specs.slice(1, 3).join(' • '))}</p>
                         </article>
                         <article class="ui-fact-card">
-                            <div class="ui-data-label">Public scope</div>
+                            <div class="ui-data-label">Commercial scope</div>
                             <div class="ui-data-value">Reference sheet only</div>
                             <p class="ui-data-note">${escHtml(`${p.customization} Final grade, finish, quantity, and commercial route are confirmed directly.`)}</p>
                         </article>
@@ -2016,7 +2028,7 @@ function generateProductPage(productId) {
                 </div>
                 <div class="ui-stack-card">
                     <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Reference pack</div>
-                    <p class="text-sm text-zinc-500 leading-relaxed">Use the related documents as the first filter. This public page stays intentionally narrow so the final specification can be confirmed against the real programme.</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed">Use the related documents as the first filter, then confirm the final specification against the real programme.</p>
                     <div class="flex flex-col gap-2 mt-6">${m.downloads.slice(0, 3).map((download) => downloadLink(download)).join('')}</div>
                     ${relatedSolutionPills ? `<div class="mt-8"><div class="ui-data-label mb-3">Used in systems</div><div class="ui-related-row">${relatedSolutionPills}</div></div>` : ''}
                 </div>
@@ -2205,12 +2217,49 @@ function generateFAQPage() {
     bc.schema
   ];
 
-  const faqHtml = rawFaq.categories.map((category) => `
-      <article class="ui-faq-card">
+  const faqMeta = {
+    'Company & Reach': {
+      icon: 'building',
+      intro: 'Location, company background, sourcing geography, and how Moldart supports domestic and export programmes.'
+    },
+    'Product Fit & Customisation': {
+      icon: 'layers',
+      intro: 'How to approach product selection when multiple categories, finishes, or custom routes could fit the requirement.'
+    },
+    'Samples, Approvals & Documents': {
+      icon: 'book',
+      intro: 'Catalogues, finish decks, samples, approvals, and why some specifications stay requirement-led instead of fixed across every programme.'
+    },
+    'Orders, Timing & Logistics': {
+      icon: 'route',
+      intro: 'How lead time, MOQ, route planning, and dispatch expectations are handled once the requirement becomes specific.'
+    },
+    'Enquiries & Next Steps': {
+      icon: 'message',
+      intro: 'What to include in the first enquiry, which contact route to use, and what usually happens after the brief is shared.'
+    }
+  };
+
+  const quickStarts = [
+    { href: '/contact/', title: 'Need a fast first response?', detail: 'Use the enquiry form for a structured brief, or WhatsApp when the first step is simply getting routed correctly.', meta: 'Contact', icon: 'message' },
+    { href: '/solutions/', title: 'Comparing more than one route?', detail: 'Open Solutions first when the requirement could move across multiple products or finish systems.', meta: 'Solutions', icon: 'compass' },
+    { href: '/resources/', title: 'Need documents before deciding?', detail: 'Open the reference library for catalogues, finish decks, and shortlist material before the commercial discussion.', meta: 'Resources', icon: 'book' },
+    { href: '/insights/', title: 'Need practical technical context?', detail: 'Use the guide library when the decision depends on approval logic, finish behaviour, or product fit.', meta: 'Insights', icon: 'spark' }
+  ];
+
+  const jumpLinks = rawFaq.categories.map((category) => {
+    const meta = faqMeta[category.name] || { icon: 'book' };
+    return `<a href="#${slugify(category.name)}" class="ui-faq-jump-link">${glyph(meta.icon, 'icon icon-sm')} <span>${escHtml(category.name)}</span><strong>${category.items.length}</strong></a>`;
+  }).join('');
+
+  const faqHtml = rawFaq.categories.map((category) => {
+    const meta = faqMeta[category.name] || { icon: 'book', intro: 'Frequently asked questions.' };
+    return `
+      <article class="ui-faq-card" id="${slugify(category.name)}">
           <div class="ui-faq-head">
               <div>
-                  <div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} ${escHtml(category.name)}</div>
-                  <p class="text-sm text-zinc-500 leading-relaxed">${escHtml(category.items[0]?.question || 'Frequently asked questions.')}</p>
+                  <div class="ui-kicker mb-3">${glyph(meta.icon, 'icon icon-sm')} ${escHtml(category.name)}</div>
+                  <p class="text-sm text-zinc-500 leading-relaxed">${escHtml(meta.intro)}</p>
               </div>
               <span class="ui-resource-count">${category.items.length}</span>
           </div>
@@ -2224,11 +2273,12 @@ function generateFAQPage() {
                     <p>${escHtml(item.answer)}</p>
                 </details>`).join('')}
           </div>
-      </article>`).join('');
+      </article>`;
+  }).join('');
 
   return headTag({
     title: 'FAQ | Moldart India',
-    desc: 'Quick answers on Moldart product groups, documents, enquiries, and commercial confirmations.',
+    desc: 'Buyer-facing answers on Moldart product groups, documents, enquiries, order planning, and next-step review.',
     canonical: '/faq/',
     schemas
   }) + '\n' + nav('faq') + `
@@ -2240,18 +2290,27 @@ function generateFAQPage() {
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} FAQ</div>
                     <h1 class="ui-section-title">QUICK ANSWERS,<br>CLEARER NEXT STEPS.</h1>
-                    <p class="ui-section-subtitle">Use this page for common questions on products, documents, enquiries, and commercial confirmations before moving into direct discussion.</p>
+                    <p class="ui-section-subtitle">Use this page when you need a fast answer on product fit, samples, documents, timing, or the best way to start the requirement discussion.</p>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-proof-grid">
-                        <article class="ui-proof-card"><div class="ui-proof-label">Questions</div><div class="ui-proof-value">${allFaqItems.length} answers</div><p class="ui-proof-copy">Grouped into clearer categories so key buying questions are easier to scan.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Categories</div><div class="ui-proof-value">${rawFaq.categories.length} sections</div><p class="ui-proof-copy">Company, products, documents, and enquiry questions live here.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Still need help?</div><div class="ui-proof-value">Ask directly</div><p class="ui-proof-copy">Move to Contact when the answer depends on the real requirement, route, or quantity context.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Questions</div><div class="ui-proof-value">${allFaqItems.length} answers</div><p class="ui-proof-copy">Grouped by the practical stage of the buying conversation so the right answers are easier to scan.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Categories</div><div class="ui-proof-value">${rawFaq.categories.length} sections</div><p class="ui-proof-copy">Company, product fit, approvals, order planning, and first-contact questions all live here.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Still depends on the brief?</div><div class="ui-proof-value">Ask directly</div><p class="ui-proof-copy">Move to Contact when the right answer depends on the actual grade, finish, quantity, route, or destination.</p></article>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="max-w mx-auto px py-16 fade-up">
+
+        <section class="max-w mx-auto px py-10 fade-up">
+            <div class="ui-faq-jump-row">${jumpLinks}</div>
+        </section>
+
+        <section class="max-w mx-auto px pb-16 fade-up">
+            <div class="ui-action-grid">${quickStarts.map((card) => renderActionCard(card)).join('')}</div>
+        </section>
+
+        <section class="max-w mx-auto px py-16 border-t border-zinc-100 fade-up">
             <div class="ui-resource-group">${faqHtml}</div>
         </section>
         ${ctaBlock('HAVE A SPECIFIC<br>QUESTION?', 'If the answer depends on the exact requirement, move from FAQ to a direct review with the team.', 'Share your requirement', '/contact/', 'Explore Solutions', '/solutions/')}
@@ -2297,7 +2356,7 @@ function generateContactPage() {
                 <div class="ui-page-hero-panel">
                     <div class="ui-proof-grid">
                         <article class="ui-proof-card"><div class="ui-proof-label">Best for</div><div class="ui-proof-value">Specifications and pricing</div><p class="ui-proof-copy">Share the application, finish expectation, quantity, and timing so the team can route the enquiry clearly.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Reply route</div><div class="ui-proof-value">Requirement-led follow-up</div><p class="ui-proof-copy">The next step depends on the real requirement, not on a fixed public promise.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Reply route</div><div class="ui-proof-value">Requirement-led follow-up</div><p class="ui-proof-copy">The next step depends on the real requirement, not on a one-size-fits-all answer.</p></article>
                         <article class="ui-proof-card"><div class="ui-proof-label">Head office</div><div class="ui-proof-value">Malad West, Mumbai</div><p class="ui-proof-copy">Address, phone, email, and meeting links are kept together on this page.</p></article>
                     </div>
                 </div>
@@ -2415,7 +2474,7 @@ function generateAboutPage() {
                         <article class="ui-proof-card"><div class="ui-proof-label">Head office</div><div class="ui-proof-value">Mumbai</div><p class="ui-proof-copy">The Malad West office remains the primary commercial and technical contact point.</p></article>
                         <article class="ui-proof-card"><div class="ui-proof-label">Founded</div><div class="ui-proof-value">1989</div><p class="ui-proof-copy">A long-running trading and sourcing base across wood and steel product routes.</p></article>
                         <article class="ui-proof-card"><div class="ui-proof-label">Core sourcing</div><div class="ui-proof-value">India + China</div><p class="ui-proof-copy">Sourcing routes are aligned to the category, finish route, and programme context.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Portfolio</div><div class="ui-proof-value">Wood + steel</div><p class="ui-proof-copy">The public site focuses on the product groups that matter most to active enquiries.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Portfolio</div><div class="ui-proof-value">Wood + steel</div><p class="ui-proof-copy">Wood and steel categories are coordinated through one commercial and technical interface.</p></article>
                     </div>
                 </div>
             </div>
@@ -2459,7 +2518,7 @@ function generateAboutPage() {
                     <div class="ui-family-body">
                         <h3 class="ui-family-title">MR. LALIT DOSHI</h3>
                         <div class="ui-proof-label mb-3">Founder & Partner</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Presented as the founder who established the company’s long-running base in Mumbai and built the commercial foundation behind the business.</p>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Founder who established the company’s Mumbai base and long-running commercial relationships across wood and steel programmes.</p>
                     </div>
                 </article>
                 <article class="ui-family-card">
@@ -2469,7 +2528,7 @@ function generateAboutPage() {
                     <div class="ui-family-body">
                         <h3 class="ui-family-title">MR. YASH DOSHI</h3>
                         <div class="ui-proof-label mb-3">Partner</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Presented as part of the current commercial and category leadership across sourcing, market development, and programme follow-through.</p>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Partner working across category development, customer coordination, and programme follow-through.</p>
                     </div>
                 </article>
             </div>
@@ -2491,12 +2550,67 @@ function generateProcessPage() {
   ];
 
   const stages = [
-    { number: '01', title: 'Requirement discussion', detail: 'Start from the application, finish expectation, volume, timeline, and destination context.' },
-    { number: '02', title: 'Material recommendation', detail: 'Align the likely category, grade, and finish route before broad commercial promises are made.' },
-    { number: '03', title: 'Reference or sample check', detail: 'Use documents, visuals, or samples where finish fidelity or tolerance approval matters.' },
-    { number: '04', title: 'Production & quality follow-through', detail: 'Coordinate the manufacturing route and quality checkpoints against the agreed brief.' },
-    { number: '05', title: 'Documentation & packing', detail: 'Match commercial documents, pack condition, and export or compliance requirements to the order.' },
-    { number: '06', title: 'Delivery & next-step support', detail: 'Keep follow-up close enough that repeat supply is easier and approval drift is reduced.' }
+    {
+      number: '01',
+      title: 'Requirement brief',
+      detail: 'Start from the real requirement rather than from a generic equivalent. Application, finish expectation, quantity, timing, and destination all influence the right route.',
+      share: 'Product or application, dimensions, finish expectation, quantity, destination, and timing.',
+      output: 'A clearer shortlist of the likely category, supporting references, and next commercial step.'
+    },
+    {
+      number: '02',
+      title: 'Category and route alignment',
+      detail: 'The first review narrows the likely product family, grade direction, finish family, and sourcing lane before price discussion takes over.',
+      share: 'What matters most: visual finish, tolerance, compliance, conversion, or replacement planning.',
+      output: 'A cleaner recommendation on whether the route should stay broad or move into a product-specific discussion.'
+    },
+    {
+      number: '03',
+      title: 'Reference, document, or sample check',
+      detail: 'Where approvals matter, catalogues, finish decks, drawings, or physical references should be aligned before the order hardens into an assumption.',
+      share: 'Approved sample, drawing, pattern, finish family, or the closest available technical reference.',
+      output: 'Fewer late-stage finish, tolerance, and specification changes.'
+    },
+    {
+      number: '04',
+      title: 'Production and quality follow-through',
+      detail: 'Once the route is agreed, the work moves into the manufacturing path, incoming quality logic, and any checkpoints needed for the specific programme.',
+      share: 'Critical acceptance points such as grade, flatness, finish, compliance, or packing sensitivity.',
+      output: 'A more stable handoff between approval, supply, and dispatch preparation.'
+    },
+    {
+      number: '05',
+      title: 'Documentation and packing',
+      detail: 'Commercial documents, packing expectations, and domestic or export handling should match the approved order instead of being treated as an afterthought.',
+      share: 'Destination, documentation needs, pack condition expectations, and any handling or storage sensitivity.',
+      output: 'A dispatch route that is easier to receive, inspect, and release on arrival.'
+    },
+    {
+      number: '06',
+      title: 'Delivery and repeat-programme support',
+      detail: 'Follow-through matters after delivery as well. Repeat programmes work better when the approval logic, document trail, and reorder reference stay stable.',
+      share: 'Receiving feedback, repeat order timing, and any change in application or route between one order and the next.',
+      output: 'Cleaner repeat supply with less approval drift.'
+    }
+  ];
+
+  const prepCards = [
+    { title: 'What helps first review move faster', detail: 'Application, dimensions, finish expectation, quantity, timing, and destination are the strongest first inputs.' },
+    { title: 'When drawings or samples matter', detail: 'Decorative stainless, flooring, furniture, press tooling, and tolerance-led products all benefit from clearer reference alignment before order confirmation.' },
+    { title: 'When timing becomes critical', detail: 'Replacement tooling, repeat supply, export documents, and site-linked deliveries should be discussed before the old plan becomes a line-risk.' }
+  ];
+
+  const programmeCareCards = [
+    { label: 'Surface-critical routes', value: 'Need stronger approval control', copy: 'Press plates, decorative stainless steel, and flooring systems should not skip finish, sample, or reference discipline.' },
+    { label: 'Panel and substrate routes', value: 'Need fit-for-use clarity', copy: 'Plywood, fiberboard, OSB, and particleboard should be compared against the actual end use, not only against a price line.' },
+    { label: 'Repeat programmes', value: 'Need stable references', copy: 'The longer a programme runs, the more important it is to keep drawings, approval samples, and reorder logic consistent.' }
+  ];
+
+  const afterSupplyCards = [
+    { title: 'Before dispatch', detail: 'Lock the approved version, documentation set, and packing expectation before the order moves into the delivery lane.' },
+    { title: 'At receiving', detail: 'Check the supply against the approved route quickly so any mismatch is caught before the material enters production or installation.' },
+    { title: 'For repeat orders', detail: 'Reorder from the last approved reference, not from memory. The repeat route should stay tied to what was actually accepted.' },
+    { title: 'For mixed-category enquiries', detail: 'Where one project touches tooling, panels, finishes, and furniture together, the best results come from aligning the whole requirement early.' }
   ];
 
   return headTag({
@@ -2513,13 +2627,19 @@ function generateProcessPage() {
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Process</div>
                     <h1 class="ui-section-title">FROM REQUIREMENT<br>TO DELIVERY.</h1>
-                    <p class="ui-section-subtitle">Moldart is framed on this site as a sourcing-and-supply partner, not a marketplace. The process below explains why: the real work is in aligning the requirement before the quote becomes the whole conversation.</p>
+                    <p class="ui-section-subtitle">The strongest supply decisions usually happen when the application, approval route, and commercial path are aligned early rather than corrected late.</p>
+                    <div class="ui-chip-row mt-8">
+                        <span class="ui-chip">${glyph('message', 'icon icon-sm')} Start from the brief</span>
+                        <span class="ui-chip">${glyph('book', 'icon icon-sm')} Align references early</span>
+                        <span class="ui-chip">${glyph('shield', 'icon icon-sm')} Match quality checkpoints</span>
+                        <span class="ui-chip">${glyph('route', 'icon icon-sm')} Plan delivery clearly</span>
+                    </div>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-proof-grid">
-                        <article class="ui-proof-card"><div class="ui-proof-label">Model</div><div class="ui-proof-value">Source → Verify → Supply</div><p class="ui-proof-copy">The public experience mirrors the actual commercial process instead of hiding it behind generic sales copy.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Why it matters</div><div class="ui-proof-value">Less rework later</div><p class="ui-proof-copy">Earlier alignment reduces finish, tolerance, documentation, and timing surprises downstream.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Best use</div><div class="ui-proof-value">Complex or repeat programmes</div><p class="ui-proof-copy">The more approval-sensitive the programme, the more valuable a disciplined process becomes.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Working model</div><div class="ui-proof-value">Source → Verify → Supply</div><p class="ui-proof-copy">A cleaner process keeps the product route, approval logic, and documentation path linked from the start.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Why it matters</div><div class="ui-proof-value">Fewer late corrections</div><p class="ui-proof-copy">Earlier alignment reduces finish surprises, tolerance mismatch, documentation gaps, and repeat-order confusion.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Best fit</div><div class="ui-proof-value">Mixed or approval-sensitive programmes</div><p class="ui-proof-copy">The more complex the category mix or approval route, the more valuable a disciplined handoff becomes.</p></article>
                     </div>
                 </div>
             </div>
@@ -2527,26 +2647,51 @@ function generateProcessPage() {
 
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
             <div class="ui-section-head mb-10">
+                <div class="ui-kicker mb-4">${glyph('check', 'icon icon-sm')} Before the first review</div>
+                <h2 class="ui-section-title">WHAT HELPS THE REVIEW MOVE FASTER.</h2>
+                <p class="ui-section-subtitle">A few inputs early can remove a lot of guesswork later. These are the questions that usually sharpen the first conversation.</p>
+            </div>
+            <div class="ui-proof-grid">
+                ${prepCards.map((card) => `<article class="ui-proof-card"><div class="ui-proof-label">Checklist</div><div class="ui-proof-value">${escHtml(card.title)}</div><p class="ui-proof-copy">${escHtml(card.detail)}</p></article>`).join('')}
+            </div>
+        </section>
+
+        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+            <div class="ui-section-head mb-10">
                 <div class="ui-kicker mb-4">${glyph('clock', 'icon icon-sm')} Six stages</div>
                 <h2 class="ui-section-title">HOW THE WORK MOVES.</h2>
-                <p class="ui-section-subtitle">This page shows how a requirement typically moves from first brief through sourcing, quality, documentation, and delivery.</p>
+                <p class="ui-section-subtitle">This is the typical path from first brief through route alignment, approval, quality follow-through, documentation, and delivery.</p>
             </div>
             <div class="ui-stage-grid">
-                ${stages.map((stage) => `<article class="ui-stage-card"><div class="ui-stage-num">${stage.number}</div><h3 class="font-display font-bold text-lg mb-3">${escHtml(stage.title)}</h3><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(stage.detail)}</p></article>`).join('')}
+                ${stages.map((stage) => `<article class="ui-stage-card"><div class="ui-stage-num">${stage.number}</div><h3 class="font-display font-bold text-lg mb-3">${escHtml(stage.title)}</h3><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(stage.detail)}</p><div class="ui-stage-meta"><div class="ui-stage-meta-block"><div class="ui-stage-meta-label">What to share</div><p>${escHtml(stage.share)}</p></div><div class="ui-stage-meta-block"><div class="ui-stage-meta-label">What comes out</div><p>${escHtml(stage.output)}</p></div></div></article>`).join('')}
             </div>
         </section>
 
         <section class="bg-zinc-50 border-b border-zinc-100 fade-up">
             <div class="max-w mx-auto px py-20">
+                <div class="ui-section-head mb-10">
+                    <div class="ui-kicker mb-4">${glyph('shield', 'icon icon-sm')} Where approvals matter most</div>
+                    <h2 class="ui-section-title">KEEP THE SENSITIVE POINTS VISIBLE.</h2>
+                    <p class="ui-section-subtitle">Different product families fail in different ways. These are the checkpoints worth protecting before the order is locked.</p>
+                </div>
                 <div class="ui-proof-grid">
-                    <article class="ui-proof-card"><div class="ui-proof-label">Surface-critical products</div><div class="ui-proof-value">Need stronger reference control</div><p class="ui-proof-copy">Press plates, decorative steel, and flooring finish routes should not skip sample or finish reference discipline.</p></article>
-                    <article class="ui-proof-card"><div class="ui-proof-label">Panel and substrate routes</div><div class="ui-proof-value">Need fit-for-use clarity</div><p class="ui-proof-copy">Application, density, compliance, and conversion route should be aligned before price comparisons dominate.</p></article>
-                    <article class="ui-proof-card"><div class="ui-proof-label">Repeat supply</div><div class="ui-proof-value">Needs stable documentation</div><p class="ui-proof-copy">The longer the programme runs, the more important it is to keep approvals, references, and expectations stable.</p></article>
+                    ${programmeCareCards.map((card) => `<article class="ui-proof-card"><div class="ui-proof-label">${escHtml(card.label)}</div><div class="ui-proof-value">${escHtml(card.value)}</div><p class="ui-proof-copy">${escHtml(card.copy)}</p></article>`).join('')}
                 </div>
             </div>
         </section>
 
-        ${ctaBlock('READY TO START?', 'Share your requirement and the team will align the right material, reference path, and next step for your programme.', 'Share Your Requirement', '/contact/', 'Open Resources', '/resources/')}
+        <section class="max-w mx-auto px py-16 fade-up">
+            <div class="ui-section-head mb-10">
+                <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} After supply starts</div>
+                <h2 class="ui-section-title">PROTECT THE HANDOFF.</h2>
+                <p class="ui-section-subtitle">Receiving, dispatch planning, and repeat-order discipline all matter if the programme is meant to stay stable after the first delivery.</p>
+            </div>
+            <div class="ui-library-grid">
+                ${afterSupplyCards.map((card) => `<article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('check', 'icon icon-sm')} ${escHtml(card.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(card.detail)}</p></article>`).join('')}
+            </div>
+        </section>
+
+        ${ctaBlock('READY TO START?', 'Share your requirement and the team will align the right material, reference path, and next step for your programme.', 'Share your requirement', '/contact/', 'Open Resources', '/resources/')}
     </main>
 
     ${footer()}
@@ -2762,8 +2907,23 @@ function generateInsightsHub() {
     bc.schema
   ];
 
+  const topicMeta = {
+    'Lamination Tooling': { icon: 'layers', intro: 'Press plates, press pads, cylinders, and decor-paper decisions for running laminate lines.' },
+    'Industrial Tooling': { icon: 'shield', intro: 'Tolerance-led guidance for PCB, CCL, and other more demanding technical laminate routes.' },
+    'Decorative Steel': { icon: 'spark', intro: 'Grades, finish approvals, profiles, and decorative stainless programmes for interiors.' },
+    'Panel Systems': { icon: 'factory', intro: 'Substrate, panel, and formwork notes for plywood, fiberboard, OSB, and particleboard.' },
+    'Flooring Systems': { icon: 'compass', intro: 'Wear class, core build, and accessory coordination for flooring-led programmes.' },
+    'Furniture Programmes': { icon: 'building', intro: 'Procurement, briefing, and approval guidance for ready-made and custom furniture work.' }
+  };
+
   const filterBtns = `<div class="insights-filter-row"><button class="insights-filter-btn is-active" data-filter="all">All</button>${categories.map((c) => `<button class="insights-filter-btn" data-filter="${c}">${c}</button>`).join('')}</div>`;
-  const featureHtml = featuredArticle ? `<a href="/insights/${featuredArticle.slug}/" class="ui-insight-feature insight-card" data-category="${escHtml(featuredArticle.categoryLabel)}"><div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Featured guide</div><div class="font-display font-black text-3xl mb-3" style="line-height:1.05;">${escHtml(featuredArticle.title)}</div><p class="text-sm text-zinc-500 leading-relaxed mb-6">${escHtml(featuredArticle.excerpt)}</p><div class="ui-meta-inline"><span>${escHtml(featuredArticle.type)}</span><span>${escHtml(featuredArticle.categoryLabel)}</span><span>${featuredArticle.date}</span></div></a>` : '';
+  const topicCards = categories.map((category) => {
+    const categoryArticles = articles.filter((article) => article.categoryLabel === category);
+    const meta = topicMeta[category] || { icon: 'book', intro: 'Guides and notes grouped by category.' };
+    const formats = [...new Set(categoryArticles.map((article) => article.type.replace('Verified ', '')))].slice(0, 3).join(' · ');
+    return `<article class="ui-topic-card"><div class="ui-topic-card-head"><div class="ui-kicker mb-3">${glyph(meta.icon, 'icon icon-sm')} ${escHtml(category)}</div><span class="ui-resource-count">${categoryArticles.length}</span></div><p class="ui-topic-copy">${escHtml(meta.intro)}</p><div class="ui-meta-inline mt-4"><span>${escHtml(formats)}</span></div></article>`;
+  }).join('');
+  const featureHtml = featuredArticle ? `<a href="/insights/${featuredArticle.slug}/" class="ui-insight-feature insight-card" data-category="${escHtml(featuredArticle.categoryLabel)}"><div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Start here</div><div class="font-display font-black text-3xl mb-3" style="line-height:1.05;">${escHtml(featuredArticle.title)}</div><p class="text-sm text-zinc-500 leading-relaxed mb-6">${escHtml(featuredArticle.excerpt)}</p><div class="ui-meta-inline"><span>${escHtml(featuredArticle.type)}</span><span>${escHtml(featuredArticle.categoryLabel)}</span><span>${featuredArticle.date}</span></div></a>` : '';
   const cardsHtml = otherArticles.map((article) => `<a href="/insights/${article.slug}/" class="ui-insight-card insight-card" data-category="${escHtml(article.categoryLabel)}"><div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} ${escHtml(article.type)}</div><div class="font-display font-bold text-xl mb-3" style="line-height:1.25;">${escHtml(article.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(article.excerpt)}</p><div class="ui-meta-inline mt-5"><span>${escHtml(article.categoryLabel)}</span><span>${article.date}</span></div></a>`).join('');
 
   return headTag({
@@ -2780,18 +2940,24 @@ function generateInsightsHub() {
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('spark', 'icon icon-sm')} Technical Guides & Notes</div>
                     <h1 class="ui-section-title">BUYER GUIDES,<br>FIELD NOTES, AND TECHNICAL CONTEXT.</h1>
-                    <p class="ui-section-subtitle">Use these notes when a requirement needs practical decision support before it moves into direct review with the Moldart team.</p>
+                    <p class="ui-section-subtitle">Use these guides when the next decision depends on approval logic, product fit, quality checkpoints, or procurement timing before the requirement moves into direct review.</p>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-proof-grid">
-                        <article class="ui-proof-card"><div class="ui-proof-label">Coverage</div><div class="ui-proof-value">${articles.length} live guides</div><p class="ui-proof-copy">Articles are grouped by product family and buying context so they are easier to scan.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Formats</div><div class="ui-proof-value">Guides, notes, comparisons</div><p class="ui-proof-copy">Each format is meant to help a different stage of product, quality, or procurement review.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Next step</div><div class="ui-proof-value">Move into requirement review</div><p class="ui-proof-copy">Use the article to orient the question, then send the real requirement for confirmation.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Coverage</div><div class="ui-proof-value">${articles.length} live guides</div><p class="ui-proof-copy">Grouped by category so the library is easier to scan from broad programme questions down to product-specific decisions.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Formats</div><div class="ui-proof-value">Guides, notes, comparisons</div><p class="ui-proof-copy">Different formats are used because a buyer checklist, a field note, and a comparison do not solve the same problem.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Best use</div><div class="ui-proof-value">Before approval or pricing</div><p class="ui-proof-copy">Use the article to sharpen the question first, then move to Contact for the final requirement-led answer.</p></article>
                     </div>
                 </div>
             </div>
         </section>
+
         <section class="max-w mx-auto px py-12 fade-up">
+            <div class="ui-topic-grid">${topicCards}</div>
+        </section>
+
+        <section class="max-w mx-auto px pb-12 fade-up">
+            <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Filter the library</div>
             ${filterBtns}
             <div class="ui-insight-grid" id="insights-grid">
                 ${featureHtml}
@@ -2850,7 +3016,7 @@ function generateInsightArticle(article) {
             </div>
             <p class="text-base text-zinc-500 font-light max-w-3xl leading-relaxed mt-6">${escHtml(article.excerpt)}</p>
             <div class="ui-chip-row mt-6">
-                <span class="ui-chip">${glyph('shield', 'icon icon-sm')} Source-backed</span>
+                <span class="ui-chip">${glyph(article.categoryLabel === 'Lamination Tooling' ? 'layers' : article.categoryLabel === 'Industrial Tooling' ? 'shield' : article.categoryLabel === 'Decorative Steel' ? 'spark' : article.categoryLabel === 'Panel Systems' ? 'factory' : article.categoryLabel === 'Flooring Systems' ? 'compass' : 'building', 'icon icon-sm')} ${escHtml(article.categoryLabel)}</span>
                 ${audiences.map((item) => `<span class="ui-chip">${glyph('check', 'icon icon-sm')} ${escHtml(item)}</span>`).join('')}
             </div>
         </section>
