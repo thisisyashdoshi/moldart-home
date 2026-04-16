@@ -6,10 +6,12 @@ const path = require('path');
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.27';
+const VER = '2026.28';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
+const WHATSAPP_PRIMARY = { number: '917208088788', display: '+91 7208088788' };
+const WHATSAPP_SECONDARY = { number: '917208188788', display: '+91 7208188788' };
 const BRAND_LINE = 'Wood and steel supply programmes from Mumbai, aligned to the requirement.';
 const NAV_SEARCH_META = 'Solutions • Product sheets • Resources • Guides • Contact • About';
 const SUPPLY_FLOW_ITEMS = [
@@ -21,9 +23,56 @@ const SUPPLY_FLOW_ITEMS = [
 // ============================================================
 // READ EXISTING DATA
 // ============================================================
+function stableHash(input = '') {
+  let hash = 0;
+  for (const ch of String(input)) {
+    hash = ((hash << 5) - hash) + ch.charCodeAt(0);
+    hash |= 0;
+  }
+  return Math.abs(hash);
+}
+
+function shiftUtcDate(date, days) {
+  const next = new Date(date);
+  next.setUTCDate(next.getUTCDate() + days);
+  return next;
+}
+
+function isoDate(value) {
+  return value.toISOString().split('T')[0];
+}
+
+function formatHumanDate(iso) {
+  const [year, month, day] = String(iso).split('-').map(Number);
+  const value = new Date(Date.UTC(year, (month || 1) - 1, day || 1));
+  return new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(value);
+}
+
+function normalizeInsightDates(articles = []) {
+  const today = new Date();
+  const base = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
+  let cursor = shiftUtcDate(base, -(22 + (stableHash(articles[0]?.slug || 'moldart') % 45)));
+  return articles.map((article, index) => {
+    if (index > 0) {
+      cursor = shiftUtcDate(cursor, -(42 + (stableHash(article.slug) % 84)));
+    }
+    const date = isoDate(cursor);
+    return { ...article, date, displayDate: formatHumanDate(date) };
+  });
+}
+
+function articleDateLabel(article) {
+  return article.displayDate || formatHumanDate(article.date);
+}
+
+function whatsappHref(number, text = '') {
+  return `https://wa.me/${number}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
+}
+
 const rawProducts = JSON.parse(fs.readFileSync(path.join(WORK, 'data/product-directory.json'), 'utf8'));
 const rawFaq = JSON.parse(fs.readFileSync(path.join(WORK, 'data/faq.json'), 'utf8'));
-const rawInsights = JSON.parse(fs.readFileSync(path.join(WORK, 'data/insights.json'), 'utf8'));
+const rawInsightsSource = JSON.parse(fs.readFileSync(path.join(WORK, 'data/insights.json'), 'utf8'));
+const rawInsights = { ...rawInsightsSource, articles: normalizeInsightDates(rawInsightsSource.articles) };
 const getTotalResourceItems = () => resourceGroups.reduce((total, group) => total + group.items.length, 0);
 
 // ============================================================
@@ -867,75 +916,80 @@ function getSearchEntries() {
 
 function renderHeroNetworkMap() {
   return `<div class="hero-network-card hero-world-map" aria-label="Illustrative global programme map">
-      <svg class="hero-network-svg" viewBox="0 0 560 420" role="img" aria-label="Illustrative world map showing Mumbai coordination, sourcing from India and China, and representative trade-region routes">
+      <svg class="hero-network-svg" viewBox="0 0 760 500" role="img" aria-label="Illustrative world map showing Mumbai coordination, sourcing from India and China, and representative trade lanes across all continents">
           <defs>
               <linearGradient id="routeFade" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#18181b" stop-opacity="0.88"></stop>
-                  <stop offset="100%" stop-color="#a1a1aa" stop-opacity="0.16"></stop>
+                  <stop offset="0%" stop-color="#18181b" stop-opacity="0.92"></stop>
+                  <stop offset="100%" stop-color="#a1a1aa" stop-opacity="0.18"></stop>
               </linearGradient>
               <linearGradient id="routeSoft" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#3f3f46" stop-opacity="0.35"></stop>
+                  <stop offset="0%" stop-color="#52525b" stop-opacity="0.42"></stop>
                   <stop offset="100%" stop-color="#d4d4d8" stop-opacity="0.08"></stop>
               </linearGradient>
           </defs>
-          <rect x="0" y="0" width="560" height="420" rx="28" fill="#fafafa"></rect>
+          <rect x="0" y="0" width="760" height="500" rx="30" fill="#fafafa"></rect>
           <g class="hero-world-grid">
-              <path d="M32 92H528"></path>
-              <path d="M32 168H528"></path>
-              <path d="M32 244H528"></path>
-              <path d="M32 320H528"></path>
-              <path d="M100 40V380"></path>
-              <path d="M188 40V380"></path>
-              <path d="M276 40V380"></path>
-              <path d="M364 40V380"></path>
-              <path d="M452 40V380"></path>
+              <path d="M34 96H726"></path>
+              <path d="M34 176H726"></path>
+              <path d="M34 256H726"></path>
+              <path d="M34 336H726"></path>
+              <path d="M34 416H726"></path>
+              <path d="M118 40V452"></path>
+              <path d="M214 40V452"></path>
+              <path d="M310 40V452"></path>
+              <path d="M406 40V452"></path>
+              <path d="M502 40V452"></path>
+              <path d="M598 40V452"></path>
           </g>
           <g class="hero-world-continents">
-              <path d="M72 118c18-24 40-38 72-42 18-2 34 2 47 10 10 7 15 18 14 30-1 11-8 20-21 27-10 5-20 12-30 21-8 7-18 10-30 10-22 1-41-6-56-21-15-14-14-24 4-35z"></path>
-              <path d="M148 216c18 7 30 20 37 39 6 18 5 34-2 49-8 16-17 31-27 45-7 10-15 14-23 11-8-3-12-12-12-26 0-16 4-32 12-49 4-10 7-22 8-34 1-12 3-22 7-30z"></path>
-              <path d="M268 104c20-11 42-16 66-13 10 1 19 5 26 12 6 7 7 15 2 23-5 7-13 12-24 14-13 3-23 8-30 16-5 5-11 8-19 8-12 0-22-4-30-13-8-8-11-17-8-25 3-9 9-16 17-22z"></path>
-              <path d="M280 192c16 2 29 9 39 22 11 14 18 31 21 52 2 15 0 29-7 41-8 13-18 19-31 18-14-1-25-7-33-18-9-12-14-29-15-51-1-23 2-40 10-50 4-7 10-11 16-14z"></path>
-              <path d="M332 126c18-14 40-22 66-23 18-2 35 2 52 11 18 10 26 24 24 40-2 14-14 24-35 29-17 4-32 11-44 22-12 10-25 16-40 16-19 0-33-6-42-18-10-12-13-27-9-45 4-13 13-24 28-32z"></path>
-              <path d="M426 256c16 1 29 7 39 17 12 11 19 24 22 40 2 12-1 22-8 30-8 8-18 10-31 7-13-3-24-10-33-22-9-11-13-23-12-36 2-10 7-19 14-26 3-6 6-9 9-10z"></path>
+              <path d="M86 118c21-28 54-45 92-48 21-2 41 4 56 16 12 10 19 24 17 38-2 13-12 24-29 33-14 7-27 18-38 31-10 11-23 16-39 16-29 1-54-8-73-27-17-18-15-37 14-59z"></path>
+              <path d="M188 232c19 8 34 23 42 45 8 21 7 42-2 61-10 22-22 43-36 62-8 11-19 16-30 13-10-4-15-15-15-33 0-19 5-38 13-58 5-12 8-25 9-39 2-15 6-28 19-51z"></path>
+              <path d="M344 110c22-14 49-19 74-14 12 2 23 8 30 16 7 9 7 18 1 26-6 9-17 14-32 16-15 2-28 8-36 18-7 7-15 11-25 11-16 0-28-5-38-16-10-10-13-21-10-31 3-11 13-20 36-26z"></path>
+              <path d="M386 208c22 3 39 12 52 27 15 18 24 38 27 63 3 19 0 36-10 50-10 16-24 24-41 23-18-1-33-10-44-25-12-16-18-37-19-63-1-29 4-49 15-61 6-8 12-12 20-14z"></path>
+              <path d="M468 108c27-20 59-31 98-31 27-2 51 3 72 15 26 14 38 33 35 56-2 19-17 34-43 41-23 7-43 16-58 30-16 14-35 21-56 21-25 0-46-8-59-24-14-16-19-36-14-61 5-20 15-34 25-47z"></path>
+              <path d="M618 282c18 2 34 8 46 20 13 13 20 29 23 48 2 13-1 24-9 34-10 9-22 12-37 9-16-4-29-13-39-27-10-14-15-28-13-43 2-14 8-26 19-35 4-4 8-6 10-6z"></path>
+              <path d="M246 416c56-18 118-27 184-27 67 0 131 9 192 27 12 4 18 11 18 20 0 11-9 17-25 17H270c-17 0-25-6-25-17 0-9 5-16 16-20z"></path>
           </g>
           <g class="hero-world-routes">
-              <path class="hero-world-route hero-world-route-primary" d="M372 210C318 172 250 148 182 132C150 125 122 122 102 128"></path>
-              <path class="hero-world-route hero-world-route-primary" d="M372 210C350 182 322 158 294 138"></path>
-              <path class="hero-world-route hero-world-route-primary" d="M372 210C352 204 344 196 338 186"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M372 210C340 224 318 243 304 270"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M372 210C392 208 409 220 423 244"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M430 174C394 150 352 141 306 138"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M430 174C438 210 449 238 466 270"></path>
+              <path class="hero-world-route hero-world-route-primary" d="M472 222C455 190 428 160 388 134"></path>
+              <path class="hero-world-route hero-world-route-primary" d="M472 222C458 246 439 269 414 286"></path>
+              <path class="hero-world-route hero-world-route-primary" d="M472 222C504 214 545 205 586 196"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M472 222C520 238 586 270 646 314"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M472 222C395 182 296 154 142 142"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M472 222C356 242 270 276 188 314"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M472 222C444 286 419 348 388 412"></path>
           </g>
           <g class="hero-world-nodes">
-              <circle class="hero-world-node hero-world-node-primary" cx="372" cy="210" r="10"></circle>
-              <circle class="hero-world-node hero-world-node-source" cx="360" cy="198" r="7"></circle>
-              <circle class="hero-world-node hero-world-node-source" cx="430" cy="174" r="8"></circle>
-              <circle class="hero-world-node" cx="102" cy="128" r="6"></circle>
-              <circle class="hero-world-node" cx="294" cy="138" r="6"></circle>
-              <circle class="hero-world-node" cx="338" cy="186" r="6"></circle>
-              <circle class="hero-world-node" cx="304" cy="270" r="6"></circle>
-              <circle class="hero-world-node" cx="423" cy="244" r="6"></circle>
-              <circle class="hero-world-node" cx="466" cy="270" r="6"></circle>
+              <circle class="hero-world-node hero-world-node-primary" cx="472" cy="222" r="10"></circle>
+              <circle class="hero-world-node hero-world-node-source" cx="458" cy="244" r="8"></circle>
+              <circle class="hero-world-node hero-world-node-source" cx="586" cy="196" r="8"></circle>
+              <circle class="hero-world-node" cx="142" cy="142" r="6"></circle>
+              <circle class="hero-world-node" cx="188" cy="314" r="6"></circle>
+              <circle class="hero-world-node" cx="388" cy="134" r="6"></circle>
+              <circle class="hero-world-node" cx="414" cy="286" r="6"></circle>
+              <circle class="hero-world-node" cx="646" cy="314" r="6"></circle>
+              <circle class="hero-world-node" cx="388" cy="412" r="6"></circle>
           </g>
           <g class="hero-label-group">
-              <text x="372" y="240" class="hero-node-label hero-node-label-primary">Mumbai</text>
-              <text x="372" y="258" class="hero-node-meta">Coordination</text>
-              <text x="344" y="184" class="hero-node-label">India</text>
-              <text x="344" y="170" class="hero-node-meta">Sourcing</text>
-              <text x="448" y="160" class="hero-node-label">China</text>
-              <text x="448" y="146" class="hero-node-meta">Sourcing</text>
+              <text x="472" y="201" class="hero-node-label hero-node-label-primary">Mumbai</text>
+              <text x="472" y="185" class="hero-node-meta">Coordination</text>
+              <text x="432" y="274" class="hero-node-label">India</text>
+              <text x="432" y="258" class="hero-node-meta">Sourcing anchor</text>
+              <text x="620" y="182" class="hero-node-label">China</text>
+              <text x="620" y="166" class="hero-node-meta">Sourcing anchor</text>
           </g>
           <g class="hero-world-region-labels">
-              <text x="70" y="112" class="hero-world-region-label">Americas</text>
-              <text x="256" y="124" class="hero-world-region-label">Europe</text>
-              <text x="286" y="173" class="hero-world-region-label">Middle East</text>
-              <text x="272" y="300" class="hero-world-region-label">Africa</text>
-              <text x="432" y="292" class="hero-world-region-label">East Asia</text>
+              <text x="104" y="108" class="hero-world-region-label">North America</text>
+              <text x="154" y="370" class="hero-world-region-label">South America</text>
+              <text x="352" y="96" class="hero-world-region-label">Europe</text>
+              <text x="370" y="344" class="hero-world-region-label">Africa</text>
+              <text x="536" y="96" class="hero-world-region-label">Asia</text>
+              <text x="608" y="352" class="hero-world-region-label">Oceania</text>
+              <text x="344" y="476" class="hero-world-region-label">Antarctica</text>
           </g>
           <g class="hero-world-callouts">
-              <text x="76" y="350" class="hero-world-small">Representative trade regions shown illustratively</text>
-              <text x="330" y="84" class="hero-world-small hero-world-small-strong">India + China remain the sourcing anchors</text>
+              <text x="54" y="452" class="hero-world-small">All continents are shown for geographic clarity. Trade lanes remain illustrative.</text>
+              <text x="416" y="64" class="hero-world-small hero-world-small-strong">India and China stay the sourcing anchors; Mumbai remains the operating base.</text>
           </g>
       </svg>
   </div>`;
@@ -1025,7 +1079,7 @@ function renderShareBar(title, canonicalPath) {
 // CRITICAL CSS (shared across all pages)
 // ============================================================
 function criticalCSS() {
-  return `@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/dm-sans-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/dm-sans-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Montserrat';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/montserrat-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Montserrat';font-style:normal;font-weight:900;font-display:swap;src:url(/fonts/montserrat-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{font-family:'DM Sans',sans-serif;background:#fff;color:#18181b;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;line-height:1.5}:root{--font-display:'Montserrat',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Geist Mono',ui-monospace,'Cascadia Code','Source Code Pro',monospace;--radius:10px;--radius-sm:6px;--radius-md:8px;--radius-lg:12px;--radius-xl:14px;--radius-full:9999px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);--transition-fast:150ms;--transition-normal:200ms}img{display:block;max-width:100%;height:auto}button{cursor:pointer;font:inherit;border:none;background:none}a{color:inherit;text-decoration:none}ul{list-style:none}.mx-auto{margin-left:auto;margin-right:auto}.max-w{max-width:80rem}.px{padding-left:1.5rem;padding-right:1.5rem}.pt-16{padding-top:4rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-14{margin-bottom:3.5rem}.mt-2{margin-top:.5rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.mt-10{margin-top:2.5rem}.flex{display:flex}.inline-flex{display:inline-flex}.flex-col{flex-direction:column}.items-center{align-items:center}.items-start{align-items:start}.justify-between{justify-content:space-between}.justify-center{justify-content:center}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-7{gap:1.75rem}.gap-8{gap:2rem}.gap-10{gap:2.5rem}.flex-wrap{flex-wrap:wrap}.grid{display:grid}.grid-2{grid-template-columns:repeat(2,1fr)}.col-span-2{grid-column:span 2}.font-display{font-family:'Montserrat',sans-serif}.font-light{font-weight:400}.font-medium{font-weight:500}.font-bold{font-weight:700}.font-black{font-weight:900}.text-xs{font-size:.75rem;line-height:1rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.leading-relaxed{line-height:1.625}.tracking-wider{letter-spacing:.05em}.tracking-widest{letter-spacing:.1em}.max-w-lg{max-width:32rem}.max-w-sm{max-width:24rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.text-center{text-align:center}.text-white{color:#fff}.text-zinc-300{color:#a1a1aa}.text-zinc-400{color:#a1a1aa}.text-zinc-500{color:#71717a}.text-zinc-600{color:#52525b}.text-zinc-700{color:#3f3f46}.text-zinc-900{color:#18181b}.bg-white{background:#fff}.bg-zinc-50{background:#fafafa}.bg-zinc-100{background:#f4f4f5}.border{border:1px solid #f4f4f5}.border-b{border-bottom:1px solid #f4f4f5}.border-t{border-top:1px solid #f4f4f5}.border-y{border-top:1px solid #f4f4f5;border-bottom:1px solid #f4f4f5}.border-zinc-100{border-color:#f4f4f5}.rounded-xl{border-radius:var(--radius-xl)}.rounded-lg{border-radius:var(--radius-lg)}.fixed{position:fixed}.relative{position:relative}.absolute{position:absolute}.top-0{top:0}.left-0{left:0}.right-0{right:0}.z-50{z-index:50}.z-10{z-index:10}.z-0{z-index:0}.inset-0{top:0;right:0;bottom:0;left:0}.block{display:block}.hidden{display:none}.overflow-hidden{overflow:hidden}.w-full{width:100%}.h-full{height:100%}.h-16{height:4rem}.object-cover{object-fit:cover;width:100%;height:100%}.transition-colors{transition:color .15s ease,background-color .15s ease,border-color .15s ease}.transition-opacity{transition:opacity .5s ease}.backdrop-blur{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}.bg-white-90{background:rgba(255,255,255,0.9)}.section-label{font-family:var(--font-mono);letter-spacing:.2em;font-size:.65rem;text-transform:uppercase;color:#71717a;font-weight:500}.hero-heading{font-family:'Montserrat',sans-serif;font-weight:900;line-height:.85;letter-spacing:-.025em;color:#18181b;font-size:clamp(3.8rem,11vw,7.5rem)}.page-heading{font-family:'Montserrat',sans-serif;font-weight:900;line-height:.85;letter-spacing:-.025em;font-size:clamp(3.5rem,10vw,8rem)}.link-line{position:relative;display:inline-block}.link-line::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:currentColor;transition:width .3s ease}.link-line:hover::after{width:100%}.nav-link{position:relative;padding-bottom:2px}.nav-link:hover{color:#18181b}.nav-link.is-active{color:#18181b;font-weight:600}.nav-link.is-active::after{content:'';position:absolute;bottom:-2px;left:0;width:100%;height:1.5px;background:#18181b;border-radius:1px}.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;background:#18181b;color:#fff;font-size:.875rem;font-weight:500;padding:.625rem 1.25rem;transition:background-color var(--transition-fast) ease,transform var(--transition-fast) ease;border-radius:var(--radius-md)}.btn-primary:hover{background:#3f3f46}.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;border:1px solid #e4e4e7;font-size:.875rem;font-weight:500;padding:.625rem 1.25rem;transition:all .2s ease;border-radius:var(--radius-md)}.btn-outline:hover{border-color:#18181b;background:#18181b;color:#fff}.btn-lg{padding:.875rem 2rem}.icon{width:20px;height:20px;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none;flex-shrink:0}.icon-sm{width:16px;height:16px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.sr-only:focus{position:fixed;top:.5rem;left:.5rem;z-index:200;width:auto;height:auto;clip:auto;padding:.75rem 1.25rem;background:#18181b;color:#fff;font-size:.875rem;font-weight:600;border-radius:var(--radius-md)}:focus-visible{outline:2px solid #18181b;outline-offset:2px;border-radius:2px}nav.scrolled{box-shadow:0 1px 12px rgba(0,0,0,0.06);border-bottom-color:transparent}.whatsapp-fab{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,0.4);transition:transform .2s ease,box-shadow .2s ease;animation:fabPulse 3s ease-in-out infinite}.whatsapp-fab svg{width:28px;height:28px;fill:#fff}@keyframes fabPulse{0%,100%{box-shadow:0 4px 16px rgba(37,211,102,0.4)}50%{box-shadow:0 4px 24px rgba(37,211,102,0.6)}}@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}.fade-up{opacity:0}.fade-up.is-visible{animation:fadeUp .7s cubic-bezier(.22,1,.36,1) forwards}#mob-menu{transition:max-height .35s cubic-bezier(.22,1,.36,1),opacity .3s ease,padding .3s ease;max-height:0;overflow:hidden;opacity:0;padding-top:0;padding-bottom:0}#mob-menu.open{max-height:420px;opacity:1;padding-top:1.25rem;padding-bottom:1.25rem}body.scroll-locked{overflow:hidden}.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.75rem;margin-bottom:2rem;color:#71717a}.breadcrumb a{color:#71717a;transition:color .15s}.breadcrumb a:hover{color:#18181b}.breadcrumb-sep{color:#d4d4d8}@media(max-width:768px){.md-hidden{display:none!important}.md-show{display:flex!important}.md-grid-2,.md-grid-3,.md-grid-4{grid-template-columns:1fr}.col-span-2{grid-column:span 1}.hero-heading{font-size:clamp(2.6rem,10vw,4.5rem)}.page-heading{font-size:clamp(2.8rem,11vw,4.5rem)}.py-24{padding-top:3rem;padding-bottom:3rem}.whatsapp-fab{width:48px;height:48px;bottom:1rem;right:1rem}.whatsapp-fab svg{width:24px;height:24px}}@media(min-width:769px){.md-hidden{display:flex}.md-show{display:none!important}.md-grid-2{grid-template-columns:repeat(2,1fr)}.md-grid-3{grid-template-columns:repeat(3,1fr)}.md-grid-4{grid-template-columns:repeat(4,1fr)}.md-flex-row{flex-direction:row}.md-text-left{text-align:left}}`;
+  return `@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/dm-sans-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/dm-sans-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Montserrat';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/montserrat-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Montserrat';font-style:normal;font-weight:900;font-display:swap;src:url(/fonts/montserrat-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{font-family:'DM Sans',sans-serif;background:#fff;color:#18181b;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;line-height:1.5}:root{--font-display:'Montserrat',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Geist Mono',ui-monospace,'Cascadia Code','Source Code Pro',monospace;--radius:10px;--radius-sm:6px;--radius-md:8px;--radius-lg:12px;--radius-xl:14px;--radius-full:9999px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);--transition-fast:150ms;--transition-normal:200ms}img{display:block;max-width:100%;height:auto}button{cursor:pointer;font:inherit;border:none;background:none}a{color:inherit;text-decoration:none}ul{list-style:none}.mx-auto{margin-left:auto;margin-right:auto}.max-w{max-width:80rem}.px{padding-left:1.5rem;padding-right:1.5rem}.pt-16{padding-top:4rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-14{margin-bottom:3.5rem}.mt-2{margin-top:.5rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.mt-10{margin-top:2.5rem}.flex{display:flex}.inline-flex{display:inline-flex}.flex-col{flex-direction:column}.items-center{align-items:center}.items-start{align-items:start}.justify-between{justify-content:space-between}.justify-center{justify-content:center}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-7{gap:1.75rem}.gap-8{gap:2rem}.gap-10{gap:2.5rem}.flex-wrap{flex-wrap:wrap}.grid{display:grid}.grid-2{grid-template-columns:repeat(2,1fr)}.col-span-2{grid-column:span 2}.font-display{font-family:'Montserrat',sans-serif}.font-light{font-weight:400}.font-medium{font-weight:500}.font-bold{font-weight:700}.font-black{font-weight:900}.text-xs{font-size:.75rem;line-height:1rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.leading-relaxed{line-height:1.625}.tracking-wider{letter-spacing:.05em}.tracking-widest{letter-spacing:.1em}.max-w-lg{max-width:32rem}.max-w-sm{max-width:24rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.text-center{text-align:center}.text-white{color:#fff}.text-zinc-300{color:#a1a1aa}.text-zinc-400{color:#a1a1aa}.text-zinc-500{color:#71717a}.text-zinc-600{color:#52525b}.text-zinc-700{color:#3f3f46}.text-zinc-900{color:#18181b}.bg-white{background:#fff}.bg-zinc-50{background:#fafafa}.bg-zinc-100{background:#f4f4f5}.border{border:1px solid #f4f4f5}.border-b{border-bottom:1px solid #f4f4f5}.border-t{border-top:1px solid #f4f4f5}.border-y{border-top:1px solid #f4f4f5;border-bottom:1px solid #f4f4f5}.border-zinc-100{border-color:#f4f4f5}.rounded-xl{border-radius:var(--radius-xl)}.rounded-lg{border-radius:var(--radius-lg)}.fixed{position:fixed}.relative{position:relative}.absolute{position:absolute}.top-0{top:0}.left-0{left:0}.right-0{right:0}.z-50{z-index:50}.z-10{z-index:10}.z-0{z-index:0}.inset-0{top:0;right:0;bottom:0;left:0}.block{display:block}.hidden{display:none}.overflow-hidden{overflow:hidden}.w-full{width:100%}.h-full{height:100%}.h-16{height:4rem}.object-cover{object-fit:cover;width:100%;height:100%}.transition-colors{transition:color .15s ease,background-color .15s ease,border-color .15s ease}.transition-opacity{transition:opacity .5s ease}.backdrop-blur{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}.bg-white-90{background:rgba(255,255,255,0.9)}.section-label{font-family:var(--font-mono);letter-spacing:.2em;font-size:.65rem;text-transform:uppercase;color:#71717a;font-weight:500}.hero-heading{font-family:'Montserrat',sans-serif;font-weight:900;line-height:.85;letter-spacing:-.025em;color:#18181b;font-size:clamp(3.8rem,11vw,7.5rem)}.page-heading{font-family:'Montserrat',sans-serif;font-weight:900;line-height:.85;letter-spacing:-.025em;font-size:clamp(3.5rem,10vw,8rem)}.link-line{position:relative;display:inline-block}.link-line::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:currentColor;transition:width .3s ease}.link-line:hover::after{width:100%}.nav-link{position:relative;padding-bottom:2px}.nav-link:hover{color:#18181b}.nav-link.is-active{color:#18181b;font-weight:600}.nav-link.is-active::after{content:'';position:absolute;bottom:-2px;left:0;width:100%;height:1.5px;background:#18181b;border-radius:1px}.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;background:#18181b;color:#fff;font-size:.875rem;font-weight:500;padding:.625rem 1.25rem;transition:background-color var(--transition-fast) ease,transform var(--transition-fast) ease;border-radius:var(--radius-md)}.btn-primary:hover{background:#3f3f46}.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;border:1px solid #e4e4e7;font-size:.875rem;font-weight:500;padding:.625rem 1.25rem;transition:all .2s ease;border-radius:var(--radius-md)}.btn-outline:hover{border-color:#18181b;background:#18181b;color:#fff}.btn-lg{padding:.875rem 2rem}.icon{width:20px;height:20px;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none;flex-shrink:0}.icon-sm{width:16px;height:16px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.sr-only:focus{position:fixed;top:.5rem;left:.5rem;z-index:200;width:auto;height:auto;clip:auto;padding:.75rem 1.25rem;background:#18181b;color:#fff;font-size:.875rem;font-weight:600;border-radius:var(--radius-md)}:focus-visible{outline:2px solid #18181b;outline-offset:2px;border-radius:2px}nav.scrolled{box-shadow:0 1px 12px rgba(0,0,0,0.06);border-bottom-color:transparent}.whatsapp-fab{position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,0.4);transition:transform .2s ease,box-shadow .2s ease;animation:fabPulse 3s ease-in-out infinite}.whatsapp-fab svg{width:28px;height:28px;fill:#fff}@keyframes fabPulse{0%,100%{box-shadow:0 4px 16px rgba(37,211,102,0.4)}50%{box-shadow:0 4px 24px rgba(37,211,102,0.6)}}@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}.fade-up{opacity:1}.js .fade-up{opacity:0}.js .fade-up.is-visible{animation:fadeUp .7s cubic-bezier(.22,1,.36,1) forwards}@media(prefers-reduced-motion:reduce){.js .fade-up{opacity:1}.js .fade-up.is-visible{animation:none}}#mob-menu{transition:max-height .35s cubic-bezier(.22,1,.36,1),opacity .3s ease,padding .3s ease;max-height:0;overflow:hidden;opacity:0;padding-top:0;padding-bottom:0}#mob-menu.open{max-height:420px;opacity:1;padding-top:1.25rem;padding-bottom:1.25rem}body.scroll-locked{overflow:hidden}.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.75rem;margin-bottom:2rem;color:#71717a}.breadcrumb a{color:#71717a;transition:color .15s}.breadcrumb a:hover{color:#18181b}.breadcrumb-sep{color:#d4d4d8}@media(max-width:768px){.md-hidden{display:none!important}.md-show{display:flex!important}.md-grid-2,.md-grid-3,.md-grid-4{grid-template-columns:1fr}.col-span-2{grid-column:span 1}.hero-heading{font-size:clamp(2.6rem,10vw,4.5rem)}.page-heading{font-size:clamp(2.8rem,11vw,4.5rem)}.py-24{padding-top:3rem;padding-bottom:3rem}.whatsapp-fab{width:48px;height:48px;bottom:1rem;right:1rem}.whatsapp-fab svg{width:24px;height:24px}}@media(min-width:769px){.md-hidden{display:flex}.md-show{display:none!important}.md-grid-2{grid-template-columns:repeat(2,1fr)}.md-grid-3{grid-template-columns:repeat(3,1fr)}.md-grid-4{grid-template-columns:repeat(4,1fr)}.md-flex-row{flex-direction:row}.md-text-left{text-align:left}}`;
 }
 
 function pageEnhancementCSS() {
@@ -1053,7 +1107,7 @@ function pageEnhancementCSS() {
   .site-search-trigger-label{font-size:.82rem;font-weight:600;color:#18181b}.site-search-trigger-meta{font-size:.68rem;color:#71717a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .site-search-trigger-shortcut kbd{border:1px solid #e4e4e7;border-radius:9999px;padding:.2rem .45rem;background:#fff;color:#71717a;font-size:.66rem}
   .home-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center}.page-heading-home{font-size:clamp(3rem,8vw,5.4rem);line-height:.94}.home-hero-copy{max-width:34rem;font-size:1rem;line-height:1.85;color:#52525b}
-  .hero-network-card{border:1px solid #f4f4f5;border-radius:24px;overflow:hidden;background:#fff;min-height:24rem}.hero-network-svg{width:100%;height:100%}.hero-network-grid path{stroke:#e4e4e7;stroke-width:1}.hero-route{fill:none;stroke:url(#routeFade);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:8 10;animation:routeFlow 10s linear infinite}.hero-route-mid{animation-duration:12s}.hero-route-short{animation-duration:8s}.hero-node{fill:#fff;stroke:#18181b;stroke-width:2}.hero-node-primary{fill:#18181b}.hero-label-group text{font-family:'DM Sans',sans-serif}.hero-node-label{font-size:15px;font-weight:600;fill:#18181b;text-anchor:middle}.hero-node-label-primary{fill:#18181b}.hero-node-meta{font-size:11px;fill:#71717a;text-anchor:middle;letter-spacing:.08em;text-transform:uppercase}
+  .hero-network-card{border:1px solid #f4f4f5;border-radius:28px;overflow:hidden;background:#fff;min-height:30rem;box-shadow:0 20px 50px rgba(0,0,0,.04)}.hero-network-svg{width:100%;height:100%}.hero-world-grid path{stroke:#ececf0;stroke-width:1}.hero-world-continents path{fill:#f7f7f8;stroke:#e4e4e7;stroke-width:1.2}.hero-world-route{fill:none;stroke-linecap:round;stroke-dasharray:8 14;animation:routeFlow 11s linear infinite}.hero-world-route-primary{stroke:url(#routeFade);stroke-width:3}.hero-world-route-soft{stroke:url(#routeSoft);stroke-width:2.2;animation-duration:13s}.hero-world-node{fill:#fff;stroke:#18181b;stroke-width:2}.hero-world-node-primary{fill:#18181b}.hero-world-node-source{fill:#fff;stroke:#3f3f46;stroke-width:2}.hero-label-group text,.hero-world-region-label,.hero-world-small{font-family:'DM Sans',sans-serif}.hero-node-label{font-size:17px;font-weight:700;fill:#18181b;text-anchor:middle}.hero-node-label-primary{fill:#18181b}.hero-node-meta{font-size:10px;fill:#71717a;text-anchor:middle;letter-spacing:.12em;text-transform:uppercase}.hero-world-region-label{font-size:12px;font-weight:600;fill:#52525b}.hero-world-small{font-size:11px;fill:#71717a}.hero-world-small-strong{fill:#18181b;font-weight:600}.ui-world-map-legend{display:flex;flex-wrap:wrap;gap:.75rem}.ui-world-map-legend-item{display:inline-flex;flex-direction:column;gap:.2rem;padding:.75rem .9rem;border:1px solid #e4e4e7;border-radius:18px;background:#fff;min-width:10rem}.ui-world-map-legend-item strong{font-size:.82rem;color:#18181b}.ui-world-map-legend-item span{font-size:.72rem;color:#71717a;line-height:1.5}.ui-world-map-legend-item.is-primary{border-color:#18181b;box-shadow:0 14px 32px rgba(0,0,0,.05)}.ui-world-map-note{font-size:.78rem;line-height:1.7;color:#71717a;max-width:34rem}
   .home-family-bento-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}.home-family-bento{display:flex;flex-direction:column;border:1px solid #f4f4f5;border-radius:22px;overflow:hidden;background:#fff}.home-family-bento-large{grid-column:span 1}.home-family-media{position:relative;height:16rem}.home-family-media img{width:100%;height:100%;object-fit:cover}.home-family-media-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(255,255,255,.92),rgba(255,255,255,.15))}.home-family-media-label{position:absolute;left:1rem;bottom:1rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#18181b;background:rgba(255,255,255,.92);padding:.35rem .6rem;border-radius:9999px;border:1px solid #e4e4e7}.home-family-content{padding:1.25rem 1.25rem 1.4rem}.home-family-facts{display:flex;flex-wrap:wrap;gap:.5rem}.home-family-facts span{padding:.38rem .65rem;border:1px solid #e4e4e7;border-radius:9999px;font-size:.73rem;color:#3f3f46}
   .signal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.signal-card,.portal-status-card,.resource-access-note,.product-story-card,.product-summary-card,.spec-table-card,.milestone-card,.insight-side-card{border:1px solid #f4f4f5;border-radius:20px;background:#fff}.signal-card{padding:1.35rem}.signal-card-soft{background:#fafafa}.signal-title{font-family:'Montserrat',sans-serif;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:#18181b;margin-bottom:.9rem}
   .portfolio-link-row{display:flex;flex-wrap:wrap;gap:.5rem}.portfolio-link-chip{display:inline-flex;align-items:center;padding:.42rem .72rem;border-radius:9999px;border:1px solid #e4e4e7;font-size:.74rem;color:#3f3f46;transition:border-color .2s ease,background .2s ease}.portfolio-link-chip:hover{border-color:#18181b;background:#fafafa}
@@ -1068,7 +1122,7 @@ function pageEnhancementCSS() {
   .resource-gate-dialog{width:min(52rem,100%);display:grid;grid-template-columns:.95fr 1.05fr;gap:1rem;padding:1rem;border-radius:24px;background:#fff;position:relative}.resource-gate-copy,.resource-gate-form{border:1px solid #f4f4f5;border-radius:18px;padding:1.1rem}.resource-gate-copy{background:#fafafa}.resource-gate-list{display:flex;flex-direction:column;gap:.7rem}.resource-gate-list div{position:relative;padding-left:1rem;font-size:.86rem;line-height:1.6;color:#52525b}.resource-gate-list div:before{content:'';position:absolute;left:0;top:.55rem;width:.35rem;height:.35rem;border-radius:9999px;background:#18181b}.resource-gate-close{position:absolute;top:1rem;right:1rem;width:2.1rem;height:2.1rem;border:1px solid #e4e4e7;border-radius:9999px;display:flex;align-items:center;justify-content:center}.resource-gate-close svg{width:1rem;height:1rem;fill:none;stroke:currentColor;stroke-width:2}.resource-gate-overlay{position:fixed;inset:0;background:rgba(24,24,27,.46);display:none;align-items:center;justify-content:center;z-index:120;padding:1rem}.resource-gate-overlay.is-open{display:flex}
   @keyframes routeFlow{from{stroke-dashoffset:0}to{stroke-dashoffset:-180}}
   @media (max-width:1024px){.home-hero-grid,.product-sheet-grid,.application-hero-grid,.insight-layout,.site-footer-grid,.signal-grid,.insights-grid,.resource-gate-dialog,.verified-grid,.flow-grid,.source-grid{grid-template-columns:1fr}.home-family-bento-grid{grid-template-columns:1fr}.product-summary-card-grid,.application-mosaic{grid-template-columns:1fr 1fr}.insight-side-panel{position:static}}
-  @media (max-width:768px){.site-search-trigger-compact{max-width:none}.site-search-trigger-meta,.site-search-trigger-shortcut{display:none}.product-summary-card-grid,.application-mosaic,.insights-grid{grid-template-columns:1fr}.hero-network-card{min-height:18rem}.home-family-media{height:13rem}.product-sheet-image{height:15rem}.portal-status-card{flex-direction:column;align-items:flex-start}.resource-gate-dialog{grid-template-columns:1fr;padding:.75rem}}
+  @media (max-width:768px){.site-search-trigger-compact{max-width:none}.site-search-trigger-meta,.site-search-trigger-shortcut{display:none}.product-summary-card-grid,.application-mosaic,.insights-grid{grid-template-columns:1fr}.hero-network-card{min-height:22rem}.hero-node-label{font-size:13px}.hero-node-meta,.hero-world-small{font-size:9px}.hero-world-region-label{font-size:10px}.ui-world-map-legend-item{min-width:calc(50% - .375rem)}.home-family-media{height:13rem}.product-sheet-image{height:15rem}.portal-status-card{flex-direction:column;align-items:flex-start}.resource-gate-dialog{grid-template-columns:1fr;padding:.75rem}}
   `;
 }
 
@@ -1093,7 +1147,7 @@ function fontPreloads() {
 function headTag({ title, desc, canonical, ogType = 'website', ogImage = '/images/page5_img3.webp', ogImageAlt = 'Moldart industrial supply', noindex = false, schemas = [], prefetch = [] }) {
   const robotsMeta = noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
   const schemaScripts = schemas.map(s => `<script type="application/ld+json">\n    ${JSON.stringify(s)}\n    </script>`).join('\n    ');
-  const prefetchLinks = prefetch.map(p => `<link rel="prefetch" href="${p}">`).join('\n    ');
+  const prefetchLinks = [...new Set(['/data/search-index.json', ...prefetch])].map(p => `<link rel="prefetch" href="${p}">`).join('\n    ');
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1117,6 +1171,7 @@ function headTag({ title, desc, canonical, ogType = 'website', ogImage = '/image
     <meta name="twitter:description" content="${escHtml(desc)}">
     <meta name="twitter:image" content="${SITE}${ogImage.replace(/\.webp$/, '.jpg')}">
     <meta name="theme-color" content="#18181b">
+    <script>document.documentElement.classList.add('js');</script>
     <link rel="canonical" href="${SITE}${canonical}">
     <link rel="alternate" hreflang="en-IN" href="${SITE}${canonical}">
     <link rel="alternate" hreflang="x-default" href="${SITE}${canonical}">
@@ -1207,7 +1262,8 @@ function footer() {
                     <div class="section-label text-zinc-600 mb-5">Talk to Moldart</div>
                     <div class="flex flex-col gap-3">
                         <a href="mailto:info@moldartindia.com" class="ui-footer-link">${glyph('mail', 'icon icon-sm')} info@moldartindia.com</a>
-                        <a href="https://wa.me/917208088788" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('whatsapp-brand', 'icon icon-sm')} WhatsApp</a>
+                        <a href="${whatsappHref(WHATSAPP_PRIMARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('whatsapp-brand', 'icon icon-sm')} ${WHATSAPP_PRIMARY.display}</a>
+                        <a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('whatsapp-brand', 'icon icon-sm')} ${WHATSAPP_SECONDARY.display}</a>
                         <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('linkedin-brand', 'icon icon-sm')} LinkedIn</a>
                         <a href="/contact/" class="ui-footer-link">${glyph('message', 'icon icon-sm')} Share your requirement</a>
                     </div>
@@ -1222,7 +1278,7 @@ function footer() {
 
 function closingElements() {
   return `
-    <a href="https://wa.me/917208088788?text=Hi%20Moldart%2C%20I%27m%20interested%20in%20your%20products." target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="Chat on WhatsApp">
+    <a href="${whatsappHref(WHATSAPP_PRIMARY.number, `Hi Moldart, I'm interested in your products.`)}" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="Chat on WhatsApp">
         <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
             <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.66 0-3.203-.507-4.484-1.375l-.32-.195-2.867.852.852-2.867-.21-.336A7.963 7.963 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
@@ -1398,7 +1454,7 @@ function articleAudienceFor(article) {
 }
 
 function renderApplicationPreviewCard(app, options = {}) {
-  const { compact = false } = options;
+  const { compact = false, priority = false } = options;
   const visual = getApplicationVisual(app.slug);
   const productLinks = app.products.slice(0, compact ? 4 : 5).map((productId) => renderProductPillLink(productId)).filter(Boolean).join('');
   const checkpoints = app.considerations.slice(0, compact ? 2 : 3).map((item) => `<li>${escHtml(item)}</li>`).join('');
@@ -1408,7 +1464,7 @@ function renderApplicationPreviewCard(app, options = {}) {
       <div class="ui-solution-media">
           <picture>
               <source srcset="${visual.image.replace('.webp', '.avif')}" type="image/avif">
-              <img src="${visual.image}" alt="${escHtml(visual.alt)}" width="800" height="520" loading="lazy" class="w-full h-full object-cover">
+              <img src="${visual.image}" alt="${escHtml(visual.alt)}" width="800" height="520" ${priority ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} class="w-full h-full object-cover">
           </picture>
           <div class="ui-solution-overlay"></div>
       </div>
@@ -1753,11 +1809,12 @@ function generateHomepage() {
                         <div class="ui-map-caption">Mumbai coordinates the brief. India and China remain the sourcing anchors, while final domestic or export lanes are aligned to the category, documentation, and destination.</div>
                         <div class="ui-world-map-legend mt-4">
                             <span class="ui-world-map-legend-item is-primary"><strong>Mumbai</strong><span>Commercial coordination</span></span>
-                            <span class="ui-world-map-legend-item"><strong>India + China</strong><span>Core sourcing routes</span></span>
-                            <span class="ui-world-map-legend-item"><strong>Representative regions</strong><span>Trade lanes vary by programme</span></span>
+                            <span class="ui-world-map-legend-item"><strong>India</strong><span>Core sourcing anchor</span></span>
+                            <span class="ui-world-map-legend-item"><strong>China</strong><span>Core sourcing anchor</span></span>
+                            <span class="ui-world-map-legend-item"><strong>All continents</strong><span>Shown for geographic clarity</span></span>
                         </div>
-                        <div class="ui-app-badges mt-4"><span>Asia</span><span>Middle East</span><span>Africa</span><span>Europe</span><span>Americas</span></div>
-                        <div class="ui-world-map-note mt-3">Illustrative trade-region view only. The map is intended to clarify sourcing geography, not to imply office locations outside Mumbai.</div>
+                        <div class="ui-app-badges mt-4"><span>North America</span><span>South America</span><span>Europe</span><span>Africa</span><span>Asia</span><span>Oceania</span><span>Antarctica</span></div>
+                        <div class="ui-world-map-note mt-3">Illustrative programme geography only. Continents and flow lines explain sourcing and trade direction, not office locations outside Mumbai.</div>
                     </div>
                 </div>
             </div>
@@ -1854,7 +1911,7 @@ function generateExplorePage() {
             </div>
         </section>
 
-        <section class="max-w mx-auto px py-16 fade-up">
+        <section class="max-w mx-auto px py-16">
             <div id="product-directory-root"></div>
         </section>
 
@@ -1884,7 +1941,7 @@ function generateSolutionsHub() {
     bc.schema
   ];
 
-  const solutionCards = applications.map((app) => renderApplicationPreviewCard(app)).join('\n');
+  const solutionCards = applications.map((app, index) => renderApplicationPreviewCard(app, { priority: index < 3 })).join('\n');
 
   return headTag({
     title: 'Solutions | Moldart India',
@@ -1919,7 +1976,7 @@ function generateSolutionsHub() {
             </div>
         </section>
 
-        <section class="max-w mx-auto px py-16 fade-up">
+        <section class="max-w mx-auto px py-16">
             <div class="ui-solution-grid">${solutionCards}</div>
         </section>
 
@@ -2378,8 +2435,11 @@ function generateContactPage() {
                 <div class="ui-contact-routes">
                     <article class="ui-contact-route">
                         <div class="ui-contact-route-head"><div class="ui-contact-route-icon">${glyph('whatsapp-brand')}</div><div><div class="ui-data-label">WhatsApp</div><div class="ui-data-value">Fast first contact</div></div></div>
-                        <p class="text-sm text-zinc-500 leading-relaxed mb-4">Best for first contact, brief sharing, and quick commercial routing.</p>
-                        <div class="flex flex-col gap-2"><a href="https://wa.me/917208088788" target="_blank" rel="noopener noreferrer" class="site-inline-link">${glyph('whatsapp-brand', 'icon icon-sm')} +91 7208088788</a></div>
+                        <p class="text-sm text-zinc-500 leading-relaxed mb-4">Best for first contact, brief sharing, and quick commercial routing. Both WhatsApp lines stay visible so the enquiry can be routed on the faster available number.</p>
+                        <div class="flex flex-col gap-2">
+                            <a href="${whatsappHref(WHATSAPP_PRIMARY.number)}" target="_blank" rel="noopener noreferrer" class="site-inline-link">${glyph('whatsapp-brand', 'icon icon-sm')} ${WHATSAPP_PRIMARY.display}</a>
+                            <a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="site-inline-link">${glyph('whatsapp-brand', 'icon icon-sm')} ${WHATSAPP_SECONDARY.display}</a>
+                        </div>
                     </article>
                     <article class="ui-contact-route">
                         <div class="ui-contact-route-head"><div class="ui-contact-route-icon">${glyph('mail')}</div><div><div class="ui-data-label">Email</div><div class="ui-data-value">Best for files</div></div></div>
@@ -2395,7 +2455,11 @@ function generateContactPage() {
                         <div class="ui-kicker mb-4">${glyph('building', 'icon icon-sm')} Head office</div>
                         <div class="font-display font-bold text-xl tracking-wider mb-3">MUMBAI</div>
                         <p class="text-sm text-zinc-500 leading-relaxed font-light mb-4">#7, Building No. 1, New Sonal Link Industrial Estate,<br>Link Road, Malad (West), Mumbai — 400064<br>Maharashtra, India</p>
-                        <div class="flex flex-col gap-2 mb-4"><a href="tel:+917208088788" class="link-line text-sm text-zinc-700 font-medium">+91 7208088788</a><a href="mailto:info@moldartindia.com" class="link-line text-sm text-zinc-700 font-medium">info@moldartindia.com</a></div>
+                        <div class="flex flex-col gap-2 mb-4">
+                            <a href="tel:+917208088788" class="link-line text-sm text-zinc-700 font-medium">${WHATSAPP_PRIMARY.display}</a>
+                            <a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-700 font-medium">WhatsApp: ${WHATSAPP_SECONDARY.display}</a>
+                            <a href="mailto:info@moldartindia.com" class="link-line text-sm text-zinc-700 font-medium">info@moldartindia.com</a>
+                        </div>
                         <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip">${glyph('linkedin-brand', 'icon icon-sm')} Moldart India on LinkedIn</a>
                     </article>
                 </div>
@@ -2497,7 +2561,7 @@ function generateAboutPage() {
                     <div class="ui-kicker mb-3">${glyph('building', 'icon icon-sm')} Operating base</div>
                     <h3 class="ui-family-title" style="font-size:1.2rem;">Mumbai remains the primary coordination point.</h3>
                     <p class="text-sm text-zinc-500 leading-relaxed mt-3">#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West), Mumbai — 400064, Maharashtra, India.</p>
-                    <div class="ui-link-row mt-5"><a href="tel:+917208088788" class="ui-link-pill">+91 7208088788</a><a href="mailto:info@moldartindia.com" class="ui-link-pill">info@moldartindia.com</a></div>
+                    <div class="ui-link-row mt-5"><a href="tel:+917208088788" class="ui-link-pill">${WHATSAPP_PRIMARY.display}</a><a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-link-pill">WhatsApp ${WHATSAPP_SECONDARY.display}</a><a href="mailto:info@moldartindia.com" class="ui-link-pill">info@moldartindia.com</a></div>
                 </article>
                 <article class="ui-library-card">
                     <div class="ui-kicker mb-3">${glyph('route', 'icon icon-sm')} How Moldart works</div>
@@ -2751,7 +2815,7 @@ function generateLoginPage() {
                     </div>
                     <div class="flex gap-3 flex-wrap">
                         <a href="/contact/" class="btn-primary">Share your requirement</a>
-                        <a href="https://wa.me/917208088788" target="_blank" rel="noopener noreferrer" class="btn-outline">WhatsApp</a>
+                        <a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="btn-outline">WhatsApp</a>
                     </div>
                 </div>
             </div>
@@ -2923,8 +2987,8 @@ function generateInsightsHub() {
     const formats = [...new Set(categoryArticles.map((article) => article.type.replace('Verified ', '')))].slice(0, 3).join(' · ');
     return `<article class="ui-topic-card"><div class="ui-topic-card-head"><div class="ui-kicker mb-3">${glyph(meta.icon, 'icon icon-sm')} ${escHtml(category)}</div><span class="ui-resource-count">${categoryArticles.length}</span></div><p class="ui-topic-copy">${escHtml(meta.intro)}</p><div class="ui-meta-inline mt-4"><span>${escHtml(formats)}</span></div></article>`;
   }).join('');
-  const featureHtml = featuredArticle ? `<a href="/insights/${featuredArticle.slug}/" class="ui-insight-feature insight-card" data-category="${escHtml(featuredArticle.categoryLabel)}"><div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Start here</div><div class="font-display font-black text-3xl mb-3" style="line-height:1.05;">${escHtml(featuredArticle.title)}</div><p class="text-sm text-zinc-500 leading-relaxed mb-6">${escHtml(featuredArticle.excerpt)}</p><div class="ui-meta-inline"><span>${escHtml(featuredArticle.type)}</span><span>${escHtml(featuredArticle.categoryLabel)}</span><span>${featuredArticle.date}</span></div></a>` : '';
-  const cardsHtml = otherArticles.map((article) => `<a href="/insights/${article.slug}/" class="ui-insight-card insight-card" data-category="${escHtml(article.categoryLabel)}"><div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} ${escHtml(article.type)}</div><div class="font-display font-bold text-xl mb-3" style="line-height:1.25;">${escHtml(article.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(article.excerpt)}</p><div class="ui-meta-inline mt-5"><span>${escHtml(article.categoryLabel)}</span><span>${article.date}</span></div></a>`).join('');
+  const featureHtml = featuredArticle ? `<a href="/insights/${featuredArticle.slug}/" class="ui-insight-feature insight-card" data-category="${escHtml(featuredArticle.categoryLabel)}"><div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Start here</div><div class="font-display font-black text-3xl mb-3" style="line-height:1.05;">${escHtml(featuredArticle.title)}</div><p class="text-sm text-zinc-500 leading-relaxed mb-6">${escHtml(featuredArticle.excerpt)}</p><div class="ui-meta-inline"><span>${escHtml(featuredArticle.type)}</span><span>${escHtml(featuredArticle.categoryLabel)}</span><span>${escHtml(articleDateLabel(featuredArticle))}</span></div></a>` : '';
+  const cardsHtml = otherArticles.map((article) => `<a href="/insights/${article.slug}/" class="ui-insight-card insight-card" data-category="${escHtml(article.categoryLabel)}"><div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} ${escHtml(article.type)}</div><div class="font-display font-bold text-xl mb-3" style="line-height:1.25;">${escHtml(article.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(article.excerpt)}</p><div class="ui-meta-inline mt-5"><span>${escHtml(article.categoryLabel)}</span><span>${escHtml(articleDateLabel(article))}</span></div></a>`).join('');
 
   return headTag({
     title: 'Insights — Technical Guides & Notes | Moldart',
@@ -2952,11 +3016,11 @@ function generateInsightsHub() {
             </div>
         </section>
 
-        <section class="max-w mx-auto px py-12 fade-up">
+        <section class="max-w mx-auto px py-12">
             <div class="ui-topic-grid">${topicCards}</div>
         </section>
 
-        <section class="max-w mx-auto px pb-12 fade-up">
+        <section class="max-w mx-auto px pb-12">
             <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Filter the library</div>
             ${filterBtns}
             <div class="ui-insight-grid" id="insights-grid">
@@ -3008,7 +3072,7 @@ function generateInsightArticle(article) {
             <div class="inline-flex items-center gap-3 mb-8"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">${escHtml(article.categoryLabel)} · ${escHtml(article.type)}</span></div>
             <h1 class="page-heading" style="font-size:clamp(1.8rem,4vw,3rem);line-height:.95;">${escHtml(article.title)}</h1>
             <div class="flex items-center gap-4 mt-6 text-sm text-zinc-500">
-                <span>${article.date}</span>
+                <span>${escHtml(articleDateLabel(article))}</span>
                 <span>·</span>
                 <span>${escHtml(readTime)}</span>
                 <span>·</span>
