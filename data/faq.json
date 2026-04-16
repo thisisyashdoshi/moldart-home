@@ -1,23 +1,23 @@
 {
   "categories": [
     {
-      "name": "Company & Sourcing",
+      "name": "Company & Reach",
       "items": [
         {
-          "question": "What is verified about Moldart as a company?",
-          "answer": "The clearest verified facts used on this site are: Moldart operates from Mumbai, was founded in 1989, works across wood and steel product lines, and uses a sourcing-and-supply model rather than a marketplace model. These points are supported by the internal company profile, the company LinkedIn page, and public business listings."
+          "question": "Where is Moldart based?",
+          "answer": "Moldart is based in Malad West, Mumbai, Maharashtra, India. The Mumbai office is the primary commercial and technical contact point shown on this website."
         },
         {
-          "question": "Does Moldart only sell products made in one place?",
-          "answer": "No. The site now uses the word 'supplies' deliberately. Moldart operates through Mumbai-led technical and commercial coordination, with supply relationships across India, China, and wider Asia depending on the product line and programme."
+          "question": "When was Moldart founded?",
+          "answer": "Moldart was founded in 1989 and continues to operate from Mumbai across wood and steel supply programmes."
         },
         {
-          "question": "Why does the site avoid some older broad claims?",
-          "answer": "Because this version of the site is intentionally source-led. If a number, superlative, or technical claim is not clearly supported by internal documents or a consistent public source, the site now uses more conservative wording instead of repeating it."
+          "question": "Does Moldart work only with one sourcing country?",
+          "answer": "No. Moldart coordinates requirements from Mumbai and aligns sourcing by programme. India and China are the core sourcing routes referred to on this website, while final supply alignment is confirmed against the actual requirement."
         },
         {
-          "question": "Where is Moldart located?",
-          "answer": "The primary office presented on this site is: #7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West), Mumbai — 400064, Maharashtra, India."
+          "question": "Can Moldart support domestic as well as export programmes?",
+          "answer": "Yes. Domestic and export supply can both be supported, with final route, documentation, and commercial conditions confirmed against the order."
         }
       ]
     },
@@ -26,53 +26,57 @@
       "items": [
         {
           "question": "What product groups does Moldart focus on?",
-          "answer": "The site is organised around two broad ecosystems: wood and steel. In practice that includes lamination tooling, decor inputs, engineered panels, flooring and furniture programmes, decorative stainless steel, and industrial press plates for more demanding technical lines."
+          "answer": "Moldart works across lamination tooling, engineered wood panels, flooring systems, furniture programmes, decorative stainless steel, and industrial press surfaces."
         },
         {
-          "question": "Are all specifications on the site fixed commercial promises?",
-          "answer": "No. The product pages are intended to work as verified reference sheets, not blanket promises. Exact grades, finishes, thicknesses, compliance requirements, MOQ, and delivery schedules are confirmed per enquiry."
+          "question": "Are the product pages blanket commercial promises?",
+          "answer": "No. The product pages are reference-led summaries. Final grade, finish, thickness, compliance requirement, MOQ, and schedule are confirmed per enquiry."
         },
         {
-          "question": "Why are some product pages now less detailed than before?",
-          "answer": "That change is intentional. The site now prefers fewer, more reliable technical points over longer pages filled with mixed or weakly sourced claims. If a detail needs project-level confirmation, the page says so."
+          "question": "Can custom requirements be handled?",
+          "answer": "Yes. Custom sizes, finish routes, grades, and project-led supply requirements can be reviewed directly with the Moldart team."
         },
         {
-          "question": "Can Moldart still support custom requirements?",
-          "answer": "Yes. Custom sizes, grades, finishes, and programme-specific supply routes are still part of the offer. The difference is that the site now presents customization as an enquiry-led process instead of assuming every option applies to every order."
+          "question": "How should I choose the right route if multiple products could fit?",
+          "answer": "Start with the application, finish expectation, quantity, and destination context. The Solutions pages are designed to show the relevant product stack before you move into a narrower product sheet."
         }
       ]
     },
     {
-      "name": "Commercial & Ordering",
+      "name": "Documents & Samples",
       "items": [
         {
-          "question": "Why are many MOQ and lead-time values no longer shown as exact numbers?",
-          "answer": "Because those values change by product, origin, customization level, and current supply condition. To avoid publishing misleading numbers, the site now treats MOQ and schedule as commercial values confirmed during enquiry."
+          "question": "Can I ask for a catalogue or technical reference before ordering?",
+          "answer": "Yes. The Resources page groups public catalogues, finish decks, and reference PDFs. If the exact document you need is not listed, you can request it directly."
         },
         {
-          "question": "Can I ask for a reference document before placing an order?",
-          "answer": "Yes. The resources section is now framed as a verified reference library. If the exact document you need is not listed there, you can request it directly through contact or WhatsApp."
+          "question": "Are samples or finish approvals possible?",
+          "answer": "Yes, where the programme requires it. Sample, finish, and reference approval should be aligned before final commercial confirmation on finish-sensitive or tolerance-sensitive work."
         },
         {
-          "question": "Does Moldart support export and international supply?",
-          "answer": "Yes, but the site now describes this carefully. Export support, documentation coordination, and international sourcing are part of the operating model, while final route, origin, and compliance are confirmed against the actual order."
+          "question": "Why are some specifications shown as \"on request\"?",
+          "answer": "Because not every grade, route, tolerance, or commercial value can be published as a fixed universal statement. Where the requirement is project-sensitive, the final value is confirmed directly."
         }
       ]
     },
     {
-      "name": "Website & Resources",
+      "name": "Enquiries & Orders",
       "items": [
         {
-          "question": "What changed in this version of the website?",
-          "answer": "The site was simplified around a less-is-more approach: fewer visible claims, fewer repetitive articles, more emphasis on verified facts, cleaner navigation, better use of visual data, and stronger links between products, resources, and actual enquiry paths."
+          "question": "What should I include in an enquiry?",
+          "answer": "The fastest enquiries include the product or application, finish expectation, dimensions, quantity, destination market, and required timing."
         },
         {
-          "question": "How is the insights section managed now?",
-          "answer": "The insights section now mixes deeper source-backed notes with structured buyer guides generated from the curated product reference data. Repetitive filler patterns are still excluded, but the library is larger again because each live article now has a clearer role."
+          "question": "How should I contact Moldart for the quickest response?",
+          "answer": "Use the enquiry form for a structured brief, WhatsApp for fast first contact, or email when drawings and documents need to be shared from the start."
         },
         {
-          "question": "What should I do if I need a precise answer that the site does not state openly?",
-          "answer": "Use the contact form, WhatsApp, or email and ask for the exact requirement review. This version of the site is designed to avoid guessing in public copy and move precise commercial or technical confirmation into a direct discussion."
+          "question": "Are lead time and MOQ fixed across all orders?",
+          "answer": "No. Lead time and MOQ depend on the product, origin, customization level, and current programme conditions. They are confirmed during enquiry."
+        },
+        {
+          "question": "What happens after I submit a requirement?",
+          "answer": "The Moldart team reviews the application, aligns the likely product and sourcing route, and then follows up directly on the next technical and commercial step."
         }
       ]
     }

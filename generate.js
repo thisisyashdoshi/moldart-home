@@ -6,12 +6,12 @@ const path = require('path');
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.25';
+const VER = '2026.26';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const FEATURED_INSIGHT_LIMIT = 24;
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
-const BRAND_LINE = 'Verified sourcing and supply for wood and steel programmes.';
+const BRAND_LINE = 'Wood and steel supply programmes from Mumbai, aligned to the requirement.';
 const NAV_SEARCH_META = 'Solutions • Product sheets • Resources • Guides • Contact • About';
 const VERIFICATION_DISCLOSURE = 'Verified against the internal company profile, the company LinkedIn page, and public business listings. Exact commercial values are confirmed per enquiry.';
 const VERIFIED_SOURCE_ITEMS = [
@@ -54,7 +54,6 @@ const productMeta = {
     relatedApps: ['lamination', 'furniture'],
     downloads: [
       { title: 'Press Plate Standard Collection', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' },
-      { title: 'Press Plate Texture Portfolio', url: '/downloads/PRESS PLATE - TEXTURE COLLECTION.pdf' },
       { title: 'Press Plates for Shuttering Plywood', url: '/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf' }
     ]
   },
@@ -81,7 +80,7 @@ const productMeta = {
     relatedProducts: ['decor-paper', 'press-plates'],
     relatedApps: ['lamination'],
     downloads: [
-      { title: 'Rotogravure Cylinders & Printed Decor Paper', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf' }
+      { title: 'Moldart Company Profile', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
     ]
   },
   'decor-paper': {
@@ -94,8 +93,7 @@ const productMeta = {
     relatedProducts: ['engraved-cylinders', 'fiberboard', 'plywood'],
     relatedApps: ['lamination', 'furniture'],
     downloads: [
-      { title: 'Rotogravure Cylinders & Printed Decor Paper', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf' },
-      { title: 'LPL Decorative Collection GB-01', url: '/downloads/LPL - GB - 01.pdf' },
+      { title: 'Moldart Company Profile', url: '/downloads/INTRODUCTION TO MOLDART.pdf' },
       { title: 'HPL Overlay Collection OL-01', url: '/downloads/HPL - OL - 1.pdf' }
     ]
   },
@@ -203,7 +201,7 @@ const productMeta = {
     relatedApps: ['furniture', 'architecture'],
     downloads: [
       { title: 'Furniture Program Catalog 01', url: '/downloads/WOOD - FURNITURE - 1.pdf' },
-      { title: 'Furniture Program Catalog 03', url: '/downloads/WOOD - FURNITURE - 3.pdf' }
+      { title: 'Furniture Program Catalog 02', url: '/downloads/WOOD - FURNITURE - 2.pdf' }
     ]
   },
   'decorative-panels': {
@@ -285,8 +283,8 @@ const applications = [
     products: ['press-plates', 'press-pads', 'engraved-cylinders', 'decor-paper', 'industrial-press-plates'],
     downloads: [
       { title: 'Press Plate Standard Collection', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' },
-      { title: 'Press Plate Texture Portfolio', url: '/downloads/PRESS PLATE - TEXTURE COLLECTION.pdf' },
-      { title: 'Rotogravure Cylinders & Printed Decor Paper', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf' }
+      { title: 'Press Plates for Shuttering Plywood', url: '/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf' },
+      { title: 'HPL Overlay Collection OL-01', url: '/downloads/HPL - OL - 1.pdf' }
     ]
   },
   {
@@ -305,8 +303,7 @@ const applications = [
     products: ['plywood', 'fiberboard', 'particleboard', 'ready-made-furniture', 'custom-furniture', 'decor-paper'],
     downloads: [
       { title: 'Furniture Program Catalog 01', url: '/downloads/WOOD - FURNITURE - 1.pdf' },
-      { title: 'Furniture Program Catalog 02', url: '/downloads/WOOD - FURNITURE - 2.pdf' },
-      { title: 'Furniture Program Catalog 03', url: '/downloads/WOOD - FURNITURE - 3.pdf' }
+      { title: 'Furniture Program Catalog 02', url: '/downloads/WOOD - FURNITURE - 2.pdf' }
     ]
   },
   {
@@ -354,11 +351,11 @@ const applications = [
     metaDesc: 'Decorative-finished stainless steel panels, profiles, and furniture for premium interiors, with finish approval confirmed per programme.',
     overview: 'Moldart supplies decorative stainless steel products with advanced surface finishing for premium interior and architectural applications. The metal finishing portfolio includes PVD coating, electroplating, etching, and embossing across panels, profiles, and furniture.',
     considerations: [
-      'PVD coating provides superior durability and color consistency compared to electroplating',
-      'Anti-fingerprint (AFP) coating is recommended for high-traffic surfaces',
-      'Color matching across large orders requires production batch coordination',
-      'Surface preparation (hairline, mirror, bead blast) affects the final PVD appearance',
-      'Higher-corrosion environments require the grade and finish route to be confirmed early'
+      'Finish route, colour approval, and surface preparation should be aligned before commercial comparison',
+      'Anti-fingerprint requirements should be confirmed for high-touch surfaces',
+      'Large-area or repeat orders should be reviewed for colour and finish consistency',
+      'Surface preparation affects the final decorative appearance and should be approved early',
+      'Grade, environment, and finish route should be aligned before approval is locked'
     ],
     products: ['decorative-panels', 'ss-profiles', 'ss-furniture'],
     downloads: [
@@ -375,11 +372,11 @@ const applications = [
     metaDesc: 'Industrial press plates for printed circuit board (PCB) and copper-clad laminate (CCL) manufacturing. Demagnetized plates with strict flatness and parallelism tolerances.',
     overview: 'Moldart supplies specialized industrial press plates for the PCB and CCL manufacturing sector. These plates require controlled magnetic properties, strict dimensional tolerances, and high thermal conductivity to meet the precision demands of electronic laminate production.',
     considerations: [
-      'Residual magnetism must be controlled to prevent interference with electronic laminate production',
-      'Flatness and parallelism tolerances are stricter than standard lamination press plates',
-      'Thermal conductivity uniformity affects laminate bond quality across the press area',
-      'Plate grade selection (SS 630 vs SS 304) depends on the specific pressing parameters',
-      'Regular demagnetization verification may be required during production cycles'
+      'Residual magnetism control should be confirmed for electronics pressing routes',
+      'Flatness and parallelism should be matched to the production requirement',
+      'Surface condition and plate consistency influence laminate results across the press area',
+      'Final plate grade should be confirmed against the process requirement',
+      'Incoming inspection and demagnetization checks should be agreed before production use'
     ],
     products: ['industrial-press-plates'],
     downloads: [
@@ -483,22 +480,18 @@ const resourceGroups = [
     title: 'Press Plates & Tooling',
     items: [
       { title: 'Press Plate Standard Collection', desc: 'Standard lamination press plate patterns and technical references.', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' },
-      { title: 'Press Plate Texture Portfolio', desc: 'Textured press plate finishes for decorative laminate production.', url: '/downloads/PRESS PLATE - TEXTURE COLLECTION.pdf' },
       { title: 'Press Plates for Shuttering Plywood', desc: 'Press plate collection aligned to shuttering plywood production.', url: '/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf' }
     ]
   },
   {
     title: 'Decor & Lamination',
     items: [
-      { title: 'Rotogravure Cylinders & Printed Decor Paper', desc: 'Decor printing references for HPL and LPL programmes.', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf' },
-      { title: 'LPL Decorative Collection GB-01', desc: 'Low-pressure laminate decor reference set.', url: '/downloads/LPL - GB - 01.pdf' },
+      { title: 'HPL Overlay Collection OL-01', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 1.pdf' },
       { title: 'LPL Decorative Collection GB-02', desc: 'Low-pressure laminate decor reference set.', url: '/downloads/LPL - GB - 02.pdf' },
       { title: 'LPL PET Board Collection', desc: 'PET-faced decorative board reference deck.', url: '/downloads/LPL - PET BOARD.pdf' },
-      { title: 'LPL Specialty Decorative Panels', desc: 'Special decorative panel collection for interior programmes.', url: '/downloads/LPL - SPECIALTY DECORATIVE PANELS.pdf' },
       { title: 'HPL Overlay Collection OL-01', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 1.pdf' },
       { title: 'HPL Overlay Collection OL-02', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 2.pdf' },
       { title: 'HPL Overlay Collection OL-03', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 3.pdf' },
-      { title: 'HPL Overlay Collection OL-04', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 4.pdf' }
     ]
   },
   {
@@ -508,7 +501,6 @@ const resourceGroups = [
       { title: 'Engineered Wood Doors Catalog', desc: 'Wood door references and build options.', url: '/downloads/WOOD - DOOR.pdf' },
       { title: 'Furniture Program Catalog 01', desc: 'Ready-made and modular furniture references.', url: '/downloads/WOOD - FURNITURE - 1.pdf' },
       { title: 'Furniture Program Catalog 02', desc: 'Furniture assemblies, components, and range extension.', url: '/downloads/WOOD - FURNITURE - 2.pdf' },
-      { title: 'Furniture Program Catalog 03', desc: 'Custom furniture and project-specific references.', url: '/downloads/WOOD - FURNITURE - 3.pdf' }
     ]
   },
   {
@@ -615,7 +607,7 @@ const applicationVisuals = {
     eyebrow: 'Architectural finishes and material coordination'
   },
   'metal-finishing': {
-    image: '/images/page9_img2.webp',
+    image: '/images/page9_img2_clean.webp',
     alt: 'Metal finishing and stainless steel detailing',
     eyebrow: 'Surface treatments, trims, and premium detailing'
   },
@@ -628,10 +620,10 @@ const applicationVisuals = {
 
 const companyMilestones = [
   { year: '1989', title: 'Foundation', detail: 'Moldart begins operations in Mumbai as a trading and industrial sourcing partner.' },
-  { year: '1990s', title: 'Tooling & Panels', detail: 'The wood-working supply base expands into press tooling, substrates, and decor-linked material coordination.' },
-  { year: '2000s', title: 'Global Sourcing Model', detail: 'International manufacturing relationships strengthen the quality-and-sourcing model across Asia and export markets.' },
+  { year: '1990s', title: 'Tooling & Panels', detail: 'The wood-focused portfolio expands into press tooling, substrates, and decor-linked material coordination.' },
+  { year: '2000s', title: 'Expanded Sourcing Network', detail: 'Long-term manufacturing relationships strengthen programme support across India, China, and export-led supply routes.' },
   { year: '2010s', title: 'Decorative Steel Expansion', detail: 'Decorative stainless steel, profiles, and fabricated programmes are added for architectural and interior buyers.' },
-  { year: 'Today', title: 'Integrated Supply Partner', detail: 'Moldart operates across tooling, substrates, flooring, furniture, and decorative steel with one technical-commercial interface.' }
+  { year: 'Today', title: 'Integrated Supply Partner', detail: 'Moldart works across tooling, substrates, flooring, furniture, and decorative steel through one commercial and technical interface.' }
 ];
 
 const primaryPages = [
@@ -696,6 +688,10 @@ function slugify(value) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '');
+}
+
+function safeHref(value = '') {
+  return encodeURI(value);
 }
 
 function glyph(name, className = 'icon') {
@@ -777,7 +773,7 @@ function renderActionCard({ href, title, detail, meta, icon }) {
 }
 
 function renderCompactFamilyCard(family) {
-  return `<a href="/solutions/#product-sheets" class="ui-proof-card">
+  return `<a href="/solutions/" class="ui-proof-card">
       <div class="ui-proof-label">${glyph(familyIconName(family.title), 'icon icon-sm')} ${escHtml(family.title)}</div>
       <div class="ui-proof-value">${escHtml(family.highlights[0])}</div>
       <p class="ui-proof-copy">${escHtml(family.intro)}</p>
@@ -789,17 +785,47 @@ function getInsightSlugs() {
 }
 
 function getSearchEntries() {
+  const pageIconMap = {
+    Home: 'home',
+    Solutions: 'compass',
+    Resources: 'book',
+    Insights: 'spark',
+    Contact: 'message',
+    About: 'building',
+    Explore: 'search'
+  };
+
+  const productIcon = (product) => {
+    if (product.id === 'industrial-press-plates') return 'shield';
+    if (product.material === 'Steel') return 'spark';
+    if (product.use === 'Tooling') return 'layers';
+    if (product.use === 'Panel') return 'factory';
+    if (product.use === 'Surface') return 'compass';
+    return 'layers';
+  };
+
+  const insightIcon = (article) => {
+    if (article.categoryLabel === 'Lamination Tooling') return 'layers';
+    if (article.categoryLabel === 'Industrial Tooling') return 'shield';
+    if (article.categoryLabel === 'Decorative Steel') return 'spark';
+    if (article.categoryLabel === 'Panel Systems') return 'factory';
+    if (article.categoryLabel === 'Flooring Systems') return 'compass';
+    if (article.categoryLabel === 'Furniture Programmes') return 'building';
+    return 'book';
+  };
+
   const pageEntries = [
-    { group: 'Page', title: 'Home', url: '/', meta: 'Home and overview', keywords: ['home', 'overview'] },
-    ...primaryPages.map((page) => ({ group: 'Page', ...page }))
+    { group: 'Page', title: 'Home', url: '/', meta: 'Home and overview', keywords: ['home', 'overview'], icon: pageIconMap.Home },
+    ...primaryPages.map((page) => ({ group: 'Page', ...page, icon: pageIconMap[page.title] || 'book' }))
   ];
 
   const familyEntries = portfolioFamilies.map((family) => ({
     group: 'Product Family',
     title: family.title,
-    url: '/solutions/#product-sheets',
+    url: '/solutions/',
     meta: family.highlights[0],
-    keywords: [...family.products, ...family.sectors]
+    keywords: [...family.products, ...family.sectors],
+    icon: familyIconName(family.title)
   }));
 
   const productEntries = rawProducts.products.map((product) => {
@@ -809,7 +835,8 @@ function getSearchEntries() {
       title: product.name,
       url: meta ? `/products/${meta.slug}/` : '/products/',
       meta: `${product.stage} · ${product.use}`,
-      keywords: [product.material, product.stage, product.use, ...product.industry, ...product.applications, ...product.specs]
+      keywords: [product.material, product.stage, product.use, ...product.industry, ...product.applications, ...product.specs],
+      icon: productIcon(product)
     };
   });
 
@@ -818,15 +845,17 @@ function getSearchEntries() {
     title: app.name,
     url: getSolutionHref(app.slug),
     meta: getApplicationVisual(app.slug).eyebrow,
-    keywords: [...app.products, ...app.considerations]
+    keywords: [...app.products, ...app.considerations],
+    icon: applicationIconName(app.slug)
   }));
 
   const resourceEntries = resourceGroups.flatMap((group) => group.items.map((item) => ({
     group: 'Resource',
     title: item.title,
-    url: item.url,
+    url: safeHref(item.url),
     meta: group.title,
-    keywords: [group.title, item.desc, 'download', 'catalog', 'pdf']
+    keywords: [group.title, item.desc, 'download', 'catalog', 'pdf'],
+    icon: 'file'
   })));
 
   const insightEntries = rawInsights.articles.map((article) => ({
@@ -834,52 +863,73 @@ function getSearchEntries() {
     title: article.title,
     url: `/insights/${article.slug}/`,
     meta: `${article.categoryLabel} · ${article.type}`,
-    keywords: [article.categoryLabel, article.type, ...article.tags, article.excerpt]
+    keywords: [article.categoryLabel, article.type, ...article.tags, article.excerpt],
+    icon: insightIcon(article)
   }));
 
   return [...pageEntries, ...familyEntries, ...productEntries, ...appEntries, ...resourceEntries, ...insightEntries];
 }
 
 function renderHeroNetworkMap() {
-  return `<div class="hero-network-card" aria-label="Sourcing and supply map">
-      <svg class="hero-network-svg" viewBox="0 0 560 420" role="img" aria-label="Mumbai headquarters with India and China sourcing routes">
+  return `<div class="hero-network-card hero-world-map" aria-label="Global programme map">
+      <svg class="hero-network-svg" viewBox="0 0 560 420" role="img" aria-label="World map showing Mumbai coordination with sourcing from India and China">
           <defs>
               <linearGradient id="routeFade" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#18181b" stop-opacity="0.85"></stop>
-                  <stop offset="100%" stop-color="#a1a1aa" stop-opacity="0.15"></stop>
+                  <stop offset="0%" stop-color="#18181b" stop-opacity="0.88"></stop>
+                  <stop offset="100%" stop-color="#a1a1aa" stop-opacity="0.16"></stop>
+              </linearGradient>
+              <linearGradient id="routeSoft" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#3f3f46" stop-opacity="0.35"></stop>
+                  <stop offset="100%" stop-color="#d4d4d8" stop-opacity="0.08"></stop>
               </linearGradient>
           </defs>
           <rect x="0" y="0" width="560" height="420" rx="28" fill="#fafafa"></rect>
-          <g class="hero-network-grid">
-              <path d="M40 90H520"></path>
-              <path d="M40 170H520"></path>
-              <path d="M40 250H520"></path>
-              <path d="M40 330H520"></path>
-              <path d="M110 40V380"></path>
-              <path d="M220 40V380"></path>
-              <path d="M330 40V380"></path>
-              <path d="M440 40V380"></path>
+          <g class="hero-world-grid">
+              <path d="M32 92H528"></path>
+              <path d="M32 168H528"></path>
+              <path d="M32 244H528"></path>
+              <path d="M32 320H528"></path>
+              <path d="M100 40V380"></path>
+              <path d="M188 40V380"></path>
+              <path d="M276 40V380"></path>
+              <path d="M364 40V380"></path>
+              <path d="M452 40V380"></path>
           </g>
-          <g class="hero-route-group">
-              <path class="hero-route hero-route-long" d="M152 236C210 216 258 206 304 188C348 170 396 132 454 108"></path>
-              <path class="hero-route hero-route-mid" d="M152 236C220 230 292 234 356 250C406 262 440 284 484 308"></path>
-              <path class="hero-route hero-route-short" d="M152 236C198 196 230 170 266 148"></path>
+          <g class="hero-world-continents">
+              <path d="M72 118c18-24 40-38 72-42 18-2 34 2 47 10 10 7 15 18 14 30-1 11-8 20-21 27-10 5-20 12-30 21-8 7-18 10-30 10-22 1-41-6-56-21-15-14-14-24 4-35z"></path>
+              <path d="M148 216c18 7 30 20 37 39 6 18 5 34-2 49-8 16-17 31-27 45-7 10-15 14-23 11-8-3-12-12-12-26 0-16 4-32 12-49 4-10 7-22 8-34 1-12 3-22 7-30z"></path>
+              <path d="M268 104c20-11 42-16 66-13 10 1 19 5 26 12 6 7 7 15 2 23-5 7-13 12-24 14-13 3-23 8-30 16-5 5-11 8-19 8-12 0-22-4-30-13-8-8-11-17-8-25 3-9 9-16 17-22z"></path>
+              <path d="M280 192c16 2 29 9 39 22 11 14 18 31 21 52 2 15 0 29-7 41-8 13-18 19-31 18-14-1-25-7-33-18-9-12-14-29-15-51-1-23 2-40 10-50 4-7 10-11 16-14z"></path>
+              <path d="M332 126c18-14 40-22 66-23 18-2 35 2 52 11 18 10 26 24 24 40-2 14-14 24-35 29-17 4-32 11-44 22-12 10-25 16-40 16-19 0-33-6-42-18-10-12-13-27-9-45 4-13 13-24 28-32z"></path>
+              <path d="M426 256c16 1 29 7 39 17 12 11 19 24 22 40 2 12-1 22-8 30-8 8-18 10-31 7-13-3-24-10-33-22-9-11-13-23-12-36 2-10 7-19 14-26 3-6 6-9 9-10z"></path>
           </g>
-          <g class="hero-node-group">
-              <circle class="hero-node hero-node-primary" cx="152" cy="236" r="10"></circle>
-              <circle class="hero-node" cx="454" cy="108" r="8"></circle>
-              <circle class="hero-node" cx="484" cy="308" r="8"></circle>
-              <circle class="hero-node" cx="266" cy="148" r="7"></circle>
+          <g class="hero-world-routes">
+              <path class="hero-world-route hero-world-route-primary" d="M372 210C318 172 250 148 182 132C150 125 122 122 102 128"></path>
+              <path class="hero-world-route hero-world-route-primary" d="M372 210C350 182 322 158 294 138"></path>
+              <path class="hero-world-route hero-world-route-primary" d="M372 210C352 204 344 196 338 186"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M372 210C340 224 318 243 304 270"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M372 210C392 208 409 220 423 244"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M430 174C394 150 352 141 306 138"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M430 174C438 210 449 238 466 270"></path>
+          </g>
+          <g class="hero-world-nodes">
+              <circle class="hero-world-node hero-world-node-primary" cx="372" cy="210" r="10"></circle>
+              <circle class="hero-world-node hero-world-node-source" cx="360" cy="198" r="7"></circle>
+              <circle class="hero-world-node hero-world-node-source" cx="430" cy="174" r="8"></circle>
+              <circle class="hero-world-node" cx="102" cy="128" r="6"></circle>
+              <circle class="hero-world-node" cx="294" cy="138" r="6"></circle>
+              <circle class="hero-world-node" cx="338" cy="186" r="6"></circle>
+              <circle class="hero-world-node" cx="304" cy="270" r="6"></circle>
+              <circle class="hero-world-node" cx="423" cy="244" r="6"></circle>
+              <circle class="hero-world-node" cx="466" cy="270" r="6"></circle>
           </g>
           <g class="hero-label-group">
-              <text x="152" y="266" class="hero-node-label hero-node-label-primary">Mumbai</text>
-              <text x="152" y="287" class="hero-node-meta">HQ</text>
-              <text x="454" y="90" class="hero-node-label">China</text>
-              <text x="454" y="76" class="hero-node-meta">Sourcing</text>
-              <text x="484" y="340" class="hero-node-label">Domestic + Export</text>
-              <text x="484" y="356" class="hero-node-meta">Supply</text>
-              <text x="266" y="126" class="hero-node-label">India</text>
-              <text x="266" y="112" class="hero-node-meta">Sourcing</text>
+              <text x="372" y="240" class="hero-node-label hero-node-label-primary">Mumbai</text>
+              <text x="372" y="258" class="hero-node-meta">Coordination</text>
+              <text x="344" y="184" class="hero-node-label">India</text>
+              <text x="344" y="170" class="hero-node-meta">Sourcing</text>
+              <text x="448" y="160" class="hero-node-label">China</text>
+              <text x="448" y="146" class="hero-node-meta">Sourcing</text>
           </g>
       </svg>
   </div>`;
@@ -1155,13 +1205,10 @@ function footer() {
                         <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('linkedin-brand', 'icon icon-sm')} LinkedIn</a>
                         <a href="/contact/" class="ui-footer-link">${glyph('message', 'icon icon-sm')} Share your requirement</a>
                     </div>
-                    <p class="text-xs text-zinc-500 leading-relaxed mt-5">Address, meetings, and enquiry handling stay on the Contact page so operational details live in one place.</p>
+                    <p class="text-xs text-zinc-500 leading-relaxed mt-5">Use Contact for enquiry forms, WhatsApp, meetings, and address details.</p>
                 </div>
             </div>
-            <div class="ui-footer-bottom mt-8 flex flex-col md-flex-row justify-between items-center gap-4">
-                <div>© <span class="yr">2026</span> Moldart · Mumbai, India</div>
-                <div>${BRAND_LINE}</div>
-            </div>
+            <div class="ui-footer-bottom mt-8">© <span class="yr">2026</span> Moldart · Mumbai, India</div>
         </div>
     </footer>`;
 }
@@ -1252,12 +1299,13 @@ function breadcrumb(items) {
 }
 
 function downloadLink(dl) {
-  return `<a href="${dl.url}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(dl.title)}" class="flex items-center justify-between p-3 rounded-lg transition-colors group resource-download-link" style="border:1px solid #f4f4f5;">
+  const href = safeHref(dl.url);
+  return `<a href="${href}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(dl.title)}" class="flex items-center justify-between p-3 rounded-lg transition-colors group resource-download-link" style="border:1px solid #f4f4f5;">
     <div class="flex items-center gap-3">
-        <svg class="icon text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+        <svg class="icon text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
         <span class="text-sm font-medium text-zinc-700">${escHtml(dl.title)}</span>
     </div>
-    <svg class="icon icon-sm text-zinc-300" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+    <svg class="icon icon-sm text-zinc-300" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
 </a>`;
 }
 
@@ -1439,6 +1487,9 @@ function extractComparisonOptions(title, product) {
 }
 
 function renderInsightArticleBody(article) {
+  const authoredContent = String(article.content || '').trim();
+  if (authoredContent) return markdownToHtml(authoredContent);
+
   const context = articleProductContext(article);
   if (!context) return markdownToHtml(article.content);
 
@@ -1653,19 +1704,19 @@ function ctaBlock(heading, subtext, primaryLabel, primaryHref, secondaryLabel, s
 function generateHomepage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'Organization', name: 'Moldart', url: SITE + '/', logo: { '@type': 'ImageObject', url: SITE + '/favicon-192x192.png', width: 192, height: 192 }, foundingDate: '1989', sameAs: [COMPANY_LINKEDIN], address: { '@type': 'PostalAddress', streetAddress: '#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West)', addressLocality: 'Mumbai', addressRegion: 'Maharashtra', postalCode: '400064', addressCountry: 'IN' }, contactPoint: { '@type': 'ContactPoint', telephone: '+917208088788', contactType: 'sales', email: 'info@moldartindia.com', areaServed: 'IN', availableLanguage: ['English', 'Hindi'] }, description: 'Verified sourcing and supply for lamination tooling, engineered panels, flooring, decorative stainless steel, furniture programmes, and industrial press surfaces since 1989.' },
+    { '@context': 'https://schema.org', '@type': 'Organization', name: 'Moldart', url: SITE + '/', logo: { '@type': 'ImageObject', url: SITE + '/favicon-192x192.png', width: 192, height: 192 }, foundingDate: '1989', sameAs: [COMPANY_LINKEDIN], address: { '@type': 'PostalAddress', streetAddress: '#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West)', addressLocality: 'Mumbai', addressRegion: 'Maharashtra', postalCode: '400064', addressCountry: 'IN' }, contactPoint: { '@type': 'ContactPoint', telephone: '+917208088788', contactType: 'sales', email: 'info@moldartindia.com', areaServed: 'IN', availableLanguage: ['English', 'Hindi'] }, description: 'Lamination tooling, panels, flooring, furniture programmes, decorative stainless steel, and industrial press surfaces from Mumbai since 1989.' },
     { '@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE + '/#website', name: 'Moldart', url: SITE + '/', inLanguage: 'en-IN' },
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/#webpage', url: SITE + '/', name: 'Moldart India | Verified sourcing and supply since 1989', description: 'Moldart supplies lamination tooling, engineered panels, flooring systems, decorative stainless steel, furniture programmes, and industrial press surfaces from a Mumbai-led sourcing and supply model.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/#webpage', url: SITE + '/', name: 'Moldart India | Lamination tooling, panels, flooring & decorative stainless steel', description: 'Moldart works from Mumbai across wood and steel programmes, aligning sourcing from India and China to the requirement.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
-  const solutionCards = applications.map((app) => renderApplicationPreviewCard(app, { compact: true })).join('');
   const featuredDocs = resourceGroups.flatMap((group) => group.items.map((item) => ({ ...item, group: group.title }))).slice(0, 4);
   const featuredArticles = rawInsights.articles.slice(0, 4);
+  const ecosystemCards = portfolioFamilies.map((family) => `<article class="ui-library-card ui-ecosystem-card"><div class="ui-kicker mb-3">${glyph(familyIconName(family.title), 'icon icon-sm')} ${escHtml(family.title)}</div><h3 class="ui-family-title" style="font-size:1.15rem;">${escHtml(family.highlights[0])}</h3><p class="text-sm text-zinc-500 leading-relaxed mt-3">${escHtml(family.intro)}</p><div class="ui-link-row mt-5">${family.products.slice(0, 4).map((productId) => productTextLink(productId)).filter(Boolean).join('')}</div></article>`).join('');
 
   return headTag({
-    title: 'Moldart India | Lamination Tooling, Panels, Flooring & Decorative Stainless Steel',
-    desc: 'Moldart supplies lamination tooling, engineered panels, flooring systems, decorative stainless steel, furniture programmes, and industrial press surfaces from Mumbai-led sourcing and supply coordination.',
+    title: 'Moldart India | Lamination tooling, panels, flooring & decorative stainless steel',
+    desc: 'Moldart works from Mumbai across wood and steel programmes, aligning sourcing from India and China to the application, finish, and commercial route.',
     canonical: '/',
     schemas,
     prefetch: ['/solutions/', '/resources/', '/insights/', '/contact/']
@@ -1676,13 +1727,13 @@ function generateHomepage() {
             <div class="ui-hero">
                 <div>
                     <div class="ui-kicker mb-6">${glyph('shield', 'icon icon-sm')} Since 1989 · Mumbai</div>
-                    <h1 class="page-heading page-heading-home mb-6">VERIFIED SOURCING AND SUPPLY<br>FOR WOOD + STEEL PROGRAMMES.</h1>
-                    <p class="ui-intro">Moldart supplies lamination tooling, printed decor inputs, engineered panels, flooring systems, furniture programmes, decorative stainless steel, and industrial press plates through a Mumbai-led sourcing and supply model.</p>
+                    <h1 class="page-heading page-heading-home mb-6">LAMINATION TOOLING, PANELS,<br>FLOORING, FURNITURE,<br>AND DECORATIVE STAINLESS STEEL.</h1>
+                    <p class="ui-intro">Moldart works from Mumbai across wood and steel programmes, aligning sourcing from India and China to the application, finish, and commercial route.</p>
                     <div class="ui-chip-row mt-8">
-                        <span class="ui-chip">${glyph('layers', 'icon icon-sm')} Press plates, pads, cylinders, decor paper</span>
-                        <span class="ui-chip">${glyph('factory', 'icon icon-sm')} Plywood, fiberboard, OSB, particleboard</span>
-                        <span class="ui-chip">${glyph('compass', 'icon icon-sm')} Flooring, accessories, furniture programmes</span>
-                        <span class="ui-chip">${glyph('spark', 'icon icon-sm')} Decorative stainless steel + industrial press surfaces</span>
+                        <span class="ui-chip">${glyph('clock', 'icon icon-sm')} Since 1989</span>
+                        <span class="ui-chip">${glyph('building', 'icon icon-sm')} Mumbai coordination</span>
+                        <span class="ui-chip">${glyph('route', 'icon icon-sm')} India + China sourcing</span>
+                        <span class="ui-chip">${glyph('message', 'icon icon-sm')} Requirement-led follow-up</span>
                     </div>
                     <div class="flex gap-4 flex-wrap mt-8 hero-cta-wrap">
                         <a href="/solutions/" class="btn-primary btn-lg">Explore Solutions →</a>
@@ -1691,60 +1742,38 @@ function generateHomepage() {
                 </div>
                 <div class="ui-panel ui-panel-soft">
                     <div class="ui-panel-inner">
-                        <div class="ui-kicker mb-4">${glyph('map', 'icon icon-sm')} Mumbai-led coordination</div>
+                        <div class="ui-kicker mb-4">${glyph('globe', 'icon icon-sm')} Programme geography</div>
                         ${renderHeroNetworkMap()}
-                        <div class="ui-map-caption">Mumbai remains the operating contact point, while India and China supply routes are aligned per programme.</div>
-                        <div class="ui-proof-grid mt-4">
-                            <article class="ui-proof-card"><div class="ui-proof-label">Product sheets</div><div class="ui-proof-value">${rawProducts.products.length} live sheets</div><p class="ui-proof-copy">Reference-led product pages remain available once the right system is clear.</p></article>
-                            <article class="ui-proof-card"><div class="ui-proof-label">Guides</div><div class="ui-proof-value">${rawInsights.articles.length} technical guides</div><p class="ui-proof-copy">Longer-form notes support buyers, production teams, and technical reviewers.</p></article>
-                            <article class="ui-proof-card"><div class="ui-proof-label">Operating model</div><div class="ui-proof-value">Source → Verify → Supply</div><p class="ui-proof-copy">The site mirrors the way the business is actually presented in the verified source material.</p></article>
-                        </div>
+                        <div class="ui-map-caption">Mumbai coordinates the requirement. India and China remain the sourcing anchors, with domestic and export routes aligned to the programme.</div>
+                        <div class="ui-app-badges mt-4"><span>Asia</span><span>Middle East</span><span>Africa</span><span>Europe</span><span>Americas</span></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="bg-zinc-50 border-y border-zinc-100 fade-up">
+        <section id="product-ecosystems" class="bg-zinc-50 border-y border-zinc-100 fade-up">
             <div class="max-w mx-auto px py-20">
                 <div class="ui-section-head mb-12">
-                    <div class="ui-kicker mb-4">${glyph('compass', 'icon icon-sm')} Combined systems</div>
-                    <h2 class="ui-section-title">WHAT MOLDART SUPPLIES.</h2>
-                    <p class="ui-section-subtitle">Each live system below combines the application view with the relevant product stack, so important products are not hidden in a side panel or on a separate route.</p>
+                    <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Product ecosystems</div>
+                    <h2 class="ui-section-title">START WITH THE CATEGORY,<br>THEN MOVE INTO THE PROGRAMME.</h2>
+                    <p class="ui-section-subtitle">Use this preview to understand the families Moldart works across. Open Solutions for the full application views, product stacks, and next-step references.</p>
                 </div>
-                <div class="ui-solution-grid">${solutionCards}</div>
-            </div>
-        </section>
-
-        <section class="max-w mx-auto px py-20 fade-up">
-            <div class="ui-spotlight">
-                <div class="ui-stack-card">
-                    <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} How a programme moves</div>
-                    <div class="ui-flow-band">
-                        ${SUPPLY_FLOW_ITEMS.map((item) => `<div class="ui-flow-pill"><div class="ui-flow-step">${escHtml(item.step)}</div><div class="ui-flow-title">${escHtml(item.title)}</div><p class="ui-flow-copy">${escHtml(item.detail)}</p></div>`).join('')}
-                    </div>
-                </div>
-                <div class="ui-stack-card">
-                    <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Use one source of truth</div>
-                    <div class="ui-proof-grid">
-                        <article class="ui-proof-card"><div class="ui-proof-label">Solutions</div><div class="ui-proof-value">System-first view</div><p class="ui-proof-copy">Use Solutions when you need the application logic and the relevant product stack together.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Resources</div><div class="ui-proof-value">Documents once</div><p class="ui-proof-copy">Catalogues, finish decks, and reference PDFs stay centralised in one library.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Contact</div><div class="ui-proof-value">Requirement-led follow-up</div><p class="ui-proof-copy">Exact grade, finish, quantity, timing, and documentation are confirmed after the requirement is reviewed.</p></article>
-                    </div>
-                </div>
+                <div class="ui-library-grid ui-ecosystem-grid">${ecosystemCards}</div>
+                <div class="mt-10"><a href="/solutions/" class="btn-outline">Open all solutions</a></div>
             </div>
         </section>
 
         <section class="max-w mx-auto px py-20 border-t border-zinc-100 fade-up">
             <div class="ui-section-head mb-10">
-                <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Guides and references</div>
-                <h2 class="ui-section-title">TECHNICAL GUIDES,<br>NOT CONTENT NOISE.</h2>
-                <p class="ui-section-subtitle">Guides stay technical but readable, and documents stay in one library so the same information does not have to be repeated across multiple pages.</p>
+                <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Technical library</div>
+                <h2 class="ui-section-title">GUIDES AND REFERENCES,<br>KEPT USEFUL.</h2>
+                <p class="ui-section-subtitle">Open catalogues, finish decks, and technical notes when they help a decision, then move into direct review for the final commercial and technical fit.</p>
             </div>
             <div class="ui-library-grid">
                 <article class="ui-library-card">
                     <div class="ui-kicker mb-2">${glyph('file', 'icon icon-sm')} Reference library</div>
                     <div class="ui-list-compact mt-4">
-                        ${featuredDocs.map((item) => `<div class="ui-list-row"><div class="ui-list-copy"><div class="ui-list-title">${escHtml(item.title)}</div><div class="ui-list-meta">${escHtml(item.group)} · ${escHtml(item.desc)}</div></div><a href="${item.url}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(item.title)}" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`).join('')}
+                        ${featuredDocs.map((item) => `<div class="ui-list-row"><div class="ui-list-copy"><div class="ui-list-title">${escHtml(item.title)}</div><div class="ui-list-meta">${escHtml(item.group)} · ${escHtml(item.desc)}</div></div><a href="${safeHref(item.url)}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(item.title)}" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`).join('')}
                     </div>
                     <div class="mt-8"><a href="/resources/" class="btn-outline">Open Resources</a></div>
                 </article>
@@ -1758,7 +1787,7 @@ function generateHomepage() {
             </div>
         </section>
 
-        ${ctaBlock('READY TO START<br>FROM THE RIGHT SYSTEM?', 'Use Solutions for the full stack, open the product sheets that matter, or send the requirement directly for review.', 'Explore Solutions', '/solutions/', 'Share your requirement', '/contact/')}
+        ${ctaBlock('READY TO START<br>FROM THE RIGHT ROUTE?', 'Use Solutions for the programme view, open references when needed, or send the requirement directly for review.', 'Explore Solutions', '/solutions/', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
@@ -1775,7 +1804,7 @@ function generateExplorePage() {
 
   const quickRoutes = [
     { href: '/solutions/', title: 'Solutions', detail: 'Combined system views with the relevant product stack already attached.', meta: `${applications.length} systems`, icon: 'compass' },
-    { href: '/solutions/#product-sheets', title: 'Product sheets', detail: 'Open the individual product pages when you already know the category.', meta: `${rawProducts.products.length} sheets`, icon: 'layers' },
+    { href: '/explore/#product-directory-root', title: 'Product sheets', detail: 'Open the individual product pages when you already know the category.', meta: `${rawProducts.products.length} sheets`, icon: 'layers' },
     { href: '/resources/', title: 'Resources', detail: 'Document-first discovery for catalogues, finishes, and reference PDFs.', meta: `${getTotalResourceItems()} references`, icon: 'book' },
     { href: '/insights/', title: 'Technical guides', detail: 'Longer-form guidance for buyers, technical teams, and project stakeholders.', meta: `${rawInsights.articles.length} guides`, icon: 'spark' }
   ];
@@ -1839,16 +1868,15 @@ function generateExplorePage() {
 function generateSolutionsHub() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Solutions' }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/solutions/#webpage', url: SITE + '/solutions/', name: 'Solutions — Moldart India', description: 'Combined solution views across lamination, furniture, flooring, architecture, decorative metal finishing, and PCB / CCL programmes.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/solutions/#webpage', url: SITE + '/solutions/', name: 'Solutions — Moldart India', description: 'Programme views across lamination, furniture, flooring, architecture, decorative stainless steel, and industrial press applications.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
   const solutionCards = applications.map((app) => renderApplicationPreviewCard(app)).join('\n');
-  const categoryHtml = portfolioFamilies.map((family) => renderPortfolioFamilyCard(family)).join('\n');
 
   return headTag({
     title: 'Solutions | Moldart India',
-    desc: 'Combined system views across lamination, furniture, flooring, decorative stainless steel, and industrial press applications — with the relevant product sheets attached.',
+    desc: 'Start with the programme and see the relevant product stack, guides, and downloads together.',
     canonical: '/solutions/',
     ogImage: '/images/page5_img3.webp',
     ogImageAlt: 'Moldart solutions overview',
@@ -1860,20 +1888,20 @@ function generateSolutionsHub() {
             ${bc.html}
             <div class="ui-page-hero">
                 <div class="ui-page-hero-copy">
-                    <div class="ui-kicker mb-4">${glyph('compass', 'icon icon-sm')} Combined systems</div>
-                    <h1 class="ui-section-title">SOLUTIONS.</h1>
-                    <p class="ui-section-subtitle">This page combines the old product-first and application-first routes into one cleaner structure. Start from the system, see the relevant product stack immediately, then open the specific product sheet only when you need detail.</p>
+                    <div class="ui-kicker mb-4">${glyph('compass', 'icon icon-sm')} Solutions</div>
+                    <h1 class="ui-section-title">START WITH THE PROGRAMME.</h1>
+                    <p class="ui-section-subtitle">Each solution page keeps the relevant products, practical checkpoints, related guides, and reference downloads together so the next step is easier to judge.</p>
                     <div class="ui-chip-row mt-8">
-                        <span class="ui-chip">${glyph('compass', 'icon icon-sm')} ${applications.length} live systems</span>
-                        <span class="ui-chip">${glyph('layers', 'icon icon-sm')} ${rawProducts.products.length} product sheets</span>
-                        <span class="ui-chip">${glyph('book', 'icon icon-sm')} Resources stay centralised</span>
+                        <span class="ui-chip">${glyph('compass', 'icon icon-sm')} ${applications.length} programme views</span>
+                        <span class="ui-chip">${glyph('layers', 'icon icon-sm')} Product sheets linked where needed</span>
+                        <span class="ui-chip">${glyph('book', 'icon icon-sm')} Guides and downloads attached</span>
                     </div>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-proof-grid">
-                        <article class="ui-proof-card"><div class="ui-proof-label">Why this changed</div><div class="ui-proof-value">Less switching between pages</div><p class="ui-proof-copy">The application story and the relevant products now live together instead of forcing users to hop between separate hubs.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">What stays separate</div><div class="ui-proof-value">Product detail pages</div><p class="ui-proof-copy">Use the product sheet when you want the narrow technical reference for a specific item.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Where documents live</div><div class="ui-proof-value">Resources once</div><p class="ui-proof-copy">Catalogues, finish decks, and PDFs remain centralised in Resources to avoid repetition.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Best for</div><div class="ui-proof-value">Application-first shortlisting</div><p class="ui-proof-copy">Use Solutions when the requirement is still being narrowed at the programme level.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">What you get</div><div class="ui-proof-value">Products, guides, and references together</div><p class="ui-proof-copy">Each route keeps the relevant stack visible instead of hiding it on separate hubs.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Next step</div><div class="ui-proof-value">Move to direct review</div><p class="ui-proof-copy">After shortlisting the route, use Contact for the final commercial and technical confirmation.</p></article>
                     </div>
                 </div>
             </div>
@@ -1883,18 +1911,7 @@ function generateSolutionsHub() {
             <div class="ui-solution-grid">${solutionCards}</div>
         </section>
 
-        <section id="product-sheets" class="bg-zinc-50 border-y border-zinc-100 fade-up">
-            <div class="max-w mx-auto px py-20">
-                <div class="ui-section-head mb-10">
-                    <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Product sheets by family</div>
-                    <h2 class="ui-section-title">OPEN THE RIGHT SHEET<br>ONLY WHEN YOU NEED IT.</h2>
-                    <p class="ui-section-subtitle">Use the family cards below when the system is already clear and you want to jump into the narrow product reference pages.</p>
-                </div>
-                <div class="ui-family-grid">${categoryHtml}</div>
-            </div>
-        </section>
-
-        ${ctaBlock('NEED A CLEANER<br>SHORTLIST?', 'Start with the solution system, open the product sheets that matter, and send the requirement when the brief is ready.', 'Share your requirement', '/contact/', 'Open Resources', '/resources/')}
+        ${ctaBlock('NEED A CLEANER<br>SHORTLIST?', 'Open the solution that matches the requirement, review the stack, and then move into direct discussion when the brief is ready.', 'Share your requirement', '/contact/', 'Open Resources', '/resources/')}
     </main>
 
     ${footer()}
@@ -2034,6 +2051,13 @@ function generateSolutionPage(app) {
   const downloads = app.downloads.map((download) => downloadLink(download)).join('');
   const audience = solutionAudienceFor(app.slug).map((item) => `<span>${escHtml(item)}</span>`).join('');
   const visual = getApplicationVisual(app.slug);
+  const heroVisualHtml = app.products.length > 1
+    ? `${renderApplicationMosaic(app)}<div class="ui-map-caption">Representative products commonly combined in this system.</div>`
+    : `<picture>
+                            <source srcset="${visual.image.replace('.webp', '.avif')}" type="image/avif">
+                            <img src="${visual.image}" alt="${escHtml(visual.alt)}" width="900" height="600" loading="eager" class="w-full h-full object-cover">
+                        </picture>
+                        <div class="ui-map-caption">Reference product view for this system.</div>`;
 
   return headTag({
     title: `${app.name} Solution | Moldart`,
@@ -2060,11 +2084,7 @@ function generateSolutionPage(app) {
                 </div>
                 <div class="ui-map-card ui-panel">
                     <div class="ui-panel-inner">
-                        <picture>
-                            <source srcset="${visual.image.replace('.webp', '.avif')}" type="image/avif">
-                            <img src="${visual.image}" alt="${escHtml(visual.alt)}" width="900" height="600" loading="eager" class="w-full h-full object-cover">
-                        </picture>
-                        <div class="ui-map-caption">The solution page keeps the application logic, the relevant products, and the next-step references together so nothing critical is hidden or easy to miss.</div>
+                        ${heroVisualHtml}
                     </div>
                 </div>
             </div>
@@ -2096,7 +2116,7 @@ function generateSolutionPage(app) {
             <div class="ui-library-grid">
                 <article class="ui-library-card">
                     <div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Related guides</div>
-                    <div class="ui-list-compact">${guideCards || '<p class="text-sm text-zinc-500 leading-relaxed">Related guides are added only when they improve the decision, not to fill the page.</p>'}</div>
+                    <div class="ui-list-compact">${guideCards || '<p class="text-sm text-zinc-500 leading-relaxed">Related guides are shown when they help the next decision.</p>'}</div>
                 </article>
                 <article class="ui-library-card">
                     <div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} Reference downloads</div>
@@ -2121,7 +2141,7 @@ function generateApplicationPage(app) {
 function generateResourcesPage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Resources' }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/resources/#webpage', url: SITE + '/resources/', name: 'Resources & Downloads — Moldart India', description: 'Download product catalogs, material specifications, and finish references from Moldart.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/resources/#webpage', url: SITE + '/resources/', name: 'Resources & Downloads — Moldart India', description: 'Download product catalogues, material references, and finish decks from Moldart.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
@@ -2135,13 +2155,13 @@ function generateResourcesPage() {
               <span class="ui-resource-count">${group.items.length}</span>
           </div>
           <div class="ui-resource-list mt-6">
-              ${group.items.map((item) => `<div class="ui-list-row"><div class="ui-list-copy"><div class="ui-list-title">${escHtml(item.title)}</div><div class="ui-list-meta">${escHtml(item.desc)}</div></div><a href="${item.url}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(item.title)}" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`).join('')}
+              ${group.items.map((item) => `<div class="ui-list-row"><div class="ui-list-copy"><div class="ui-list-title">${escHtml(item.title)}</div><div class="ui-list-meta">${escHtml(item.desc)}</div></div><a href="${safeHref(item.url)}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(item.title)}" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`).join('')}
           </div>
       </article>`).join('\n');
 
   return headTag({
-    title: 'Resources & Downloads | Product Catalogs — Moldart India',
-    desc: 'Download product catalogs, material specifications, and finish references for press plates, substrates, flooring, and decorative stainless steel.',
+    title: 'Resources & Downloads | Product Catalogues — Moldart India',
+    desc: 'Download product catalogues, material references, and finish decks for lamination tooling, panels, flooring, furniture, and decorative stainless steel.',
     canonical: '/resources/',
     schemas
   }) + '\n' + nav('resources') + `
@@ -2153,14 +2173,14 @@ function generateResourcesPage() {
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Reference library</div>
                     <h1 class="ui-section-title">RESOURCES.</h1>
-                    <p class="ui-section-subtitle">This page is the single public home for catalogues, finish decks, and technical PDFs. Each item is described once and grouped by the way buyers usually search for it.</p>
+                    <p class="ui-section-subtitle">Browse catalogues, finish decks, and technical PDFs grouped by buying route so the right reference is easier to find.</p>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-metric-grid">
                         ${renderMetricCard({ icon: 'file', label: 'Documents', value: getTotalResourceItems(), note: 'Grouped into fewer, clearer library sections.', animate: true })}
-                        ${renderMetricCard({ icon: 'layers', label: 'Sections', value: resourceGroups.length, note: 'Each section maps to a buying route, not a keyword dump.', animate: true })}
+                        ${renderMetricCard({ icon: 'layers', label: 'Sections', value: resourceGroups.length, note: 'Each section follows a buying route instead of a keyword dump.', animate: true })}
                         ${renderMetricCard({ icon: 'shield', label: 'Access model', value: 'One-time', note: 'Downloads unlock on the device after one short form.' })}
-                        ${renderMetricCard({ icon: 'message', label: 'Missing document?', value: 'Ask us', note: 'Use contact for test references or commercial documents not listed here.' })}
+                        ${renderMetricCard({ icon: 'message', label: 'Missing document?', value: 'Ask us', note: 'Use Contact for files or references not listed here.' })}
                     </div>
                 </div>
             </div>
@@ -2168,7 +2188,7 @@ function generateResourcesPage() {
         <section class="max-w mx-auto px py-16">
             <div class="ui-resource-group">${groupsHtml}</div>
         </section>
-        ${ctaBlock('NEED A SPECIFIC<br>DATA SHEET?', 'If the document is not listed here, ask the team directly and reference the product or application so the right file can be shared.', 'Request a Document', '/contact/', 'Explore Solutions', '/solutions/')}
+        ${ctaBlock('NEED A SPECIFIC<br>DATA SHEET?', 'If the exact document is not listed here, send the product or application and the team can route the right file directly.', 'Request a Document', '/contact/', 'Explore Solutions', '/solutions/')}
     </main>
 
     ${footer()}
@@ -2204,11 +2224,11 @@ function generateFAQPage() {
                     <p>${escHtml(item.answer)}</p>
                 </details>`).join('')}
           </div>
-      </article>`).join('\n');
+      </article>`).join('');
 
   return headTag({
-    title: 'Frequently Asked Questions — Moldart India',
-    desc: 'Answers to common questions about Moldart product categories, custom specifications, export support, MOQ, and lead times.',
+    title: 'FAQ | Moldart India',
+    desc: 'Quick answers on Moldart product groups, documents, enquiries, and commercial confirmations.',
     canonical: '/faq/',
     schemas
   }) + '\n' + nav('faq') + `
@@ -2219,14 +2239,14 @@ function generateFAQPage() {
             <div class="ui-page-hero">
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} FAQ</div>
-                    <h1 class="ui-section-title">QUESTIONS,<br>KEPT TIGHT.</h1>
-                    <p class="ui-section-subtitle">The FAQ is where repeated operational questions live so they do not have to be restated across every page. That keeps the main experience cleaner and the answers easier to maintain.</p>
+                    <h1 class="ui-section-title">QUICK ANSWERS,<br>CLEARER NEXT STEPS.</h1>
+                    <p class="ui-section-subtitle">Use this page for common questions on products, documents, enquiries, and commercial confirmations before moving into direct discussion.</p>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-proof-grid">
-                        <article class="ui-proof-card"><div class="ui-proof-label">Questions</div><div class="ui-proof-value">${allFaqItems.length} answers</div><p class="ui-proof-copy">Grouped to reduce repetition across the rest of the website.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Categories</div><div class="ui-proof-value">${rawFaq.categories.length} sections</div><p class="ui-proof-copy">Commercial, sourcing, products, and website-structure questions live here once.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">When this is not enough</div><div class="ui-proof-value">Ask directly</div><p class="ui-proof-copy">Move to contact when the answer depends on the real programme, route, or quantity context.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Questions</div><div class="ui-proof-value">${allFaqItems.length} answers</div><p class="ui-proof-copy">Grouped into clearer categories so key buying questions are easier to scan.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Categories</div><div class="ui-proof-value">${rawFaq.categories.length} sections</div><p class="ui-proof-copy">Company, products, documents, and enquiry questions live here.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Still need help?</div><div class="ui-proof-value">Ask directly</div><p class="ui-proof-copy">Move to Contact when the answer depends on the real requirement, route, or quantity context.</p></article>
                     </div>
                 </div>
             </div>
@@ -2254,7 +2274,7 @@ function generateContactPage() {
 
   return headTag({
     title: 'Contact Moldart | Inquiry Form, WhatsApp, Phone & Meeting Booking',
-    desc: 'Contact Moldart in Mumbai for product specifications, pricing, and industrial sourcing support. Reach us via form, WhatsApp, phone, email, or book a meeting.',
+    desc: 'Contact Moldart in Mumbai for product specifications, pricing, and sourcing support. Reach out by form, WhatsApp, phone, email, or meeting request.',
     canonical: '/contact/',
     schemas
   }) + '\n' + nav('contact') + `
@@ -2265,8 +2285,8 @@ function generateContactPage() {
             <div class="ui-page-hero">
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('message', 'icon icon-sm')} Contact Moldart</div>
-                    <h1 class="ui-section-title">ONE FORM.<br>CLEAR ROUTES.</h1>
-                    <p class="ui-section-subtitle">Use the short form for the fastest structured handoff, or choose the direct channel that matches the kind of conversation you need to start.</p>
+                    <h1 class="ui-section-title">SHARE THE REQUIREMENT,<br>THEN CHOOSE THE CHANNEL.</h1>
+                    <p class="ui-section-subtitle">Use the form for the clearest handoff, WhatsApp for a fast first conversation, or email when drawings and reference files need to be shared from the start.</p>
                     <div class="ui-chip-row mt-8">
                         <span class="ui-chip">${glyph('whatsapp-brand', 'icon icon-sm')} WhatsApp</span>
                         <span class="ui-chip">${glyph('mail', 'icon icon-sm')} Email</span>
@@ -2276,9 +2296,9 @@ function generateContactPage() {
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-proof-grid">
-                        <article class="ui-proof-card"><div class="ui-proof-label">Best for</div><div class="ui-proof-value">Specifications and pricing</div><p class="ui-proof-copy">Share the application, finish expectation, quantity, and timing so the team can route the enquiry well.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Public promise</div><div class="ui-proof-value">No guessed timings</div><p class="ui-proof-copy">Commercial schedules and response timing are confirmed directly, not hard-coded into public copy.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Head office</div><div class="ui-proof-value">Malad West, Mumbai</div><p class="ui-proof-copy">Full address details stay on this page so contact information lives in one operational place.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Best for</div><div class="ui-proof-value">Specifications and pricing</div><p class="ui-proof-copy">Share the application, finish expectation, quantity, and timing so the team can route the enquiry clearly.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Reply route</div><div class="ui-proof-value">Requirement-led follow-up</div><p class="ui-proof-copy">The next step depends on the real requirement, not on a fixed public promise.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Head office</div><div class="ui-proof-value">Malad West, Mumbai</div><p class="ui-proof-copy">Address, phone, email, and meeting links are kept together on this page.</p></article>
                     </div>
                 </div>
             </div>
@@ -2288,9 +2308,9 @@ function generateContactPage() {
             <div class="form-success-banner">
                 <div class="flex items-center gap-3">
                     ${glyph('check', 'icon')}
-                    <strong>Inquiry Submitted Successfully.</strong>
+                    <strong>Inquiry submitted successfully.</strong>
                 </div>
-                <p class="mt-2 text-sm">Thank you for reaching out. A member of the team will review your requirement and contact you directly.</p>
+                <p class="mt-2 text-sm">Thank you for reaching out. A member of the Moldart team will review the requirement and reply directly.</p>
             </div>
         </section>
 
@@ -2298,18 +2318,18 @@ function generateContactPage() {
             <div class="ui-contact-grid">
                 <div class="ui-contact-routes">
                     <article class="ui-contact-route">
-                        <div class="ui-contact-route-head"><div class="ui-contact-route-icon">${glyph('whatsapp-brand')}</div><div><div class="ui-data-label">WhatsApp</div><div class="ui-data-value">Fastest first touch</div></div></div>
-                        <p class="text-sm text-zinc-500 leading-relaxed mb-4">Best for initial commercial checks, product routing, and quick follow-up.</p>
-                        <div class="flex flex-col gap-2"><a href="https://wa.me/917208088788" target="_blank" rel="noopener noreferrer" class="site-inline-link">${glyph('whatsapp-brand', 'icon icon-sm')} +91 7208088788</a><a href="https://wa.me/917208188788" target="_blank" rel="noopener noreferrer" class="site-inline-link">${glyph('whatsapp-brand', 'icon icon-sm')} +91 7208188788</a></div>
+                        <div class="ui-contact-route-head"><div class="ui-contact-route-icon">${glyph('whatsapp-brand')}</div><div><div class="ui-data-label">WhatsApp</div><div class="ui-data-value">Fast first contact</div></div></div>
+                        <p class="text-sm text-zinc-500 leading-relaxed mb-4">Best for first contact, brief sharing, and quick commercial routing.</p>
+                        <div class="flex flex-col gap-2"><a href="https://wa.me/917208088788" target="_blank" rel="noopener noreferrer" class="site-inline-link">${glyph('whatsapp-brand', 'icon icon-sm')} +91 7208088788</a></div>
                     </article>
                     <article class="ui-contact-route">
-                        <div class="ui-contact-route-head"><div class="ui-contact-route-icon">${glyph('mail')}</div><div><div class="ui-data-label">Email</div><div class="ui-data-value">Best for documents</div></div></div>
-                        <p class="text-sm text-zinc-500 leading-relaxed mb-4">Use email when drawings, specifications, and reference files matter from the start.</p>
+                        <div class="ui-contact-route-head"><div class="ui-contact-route-icon">${glyph('mail')}</div><div><div class="ui-data-label">Email</div><div class="ui-data-value">Best for files</div></div></div>
+                        <p class="text-sm text-zinc-500 leading-relaxed mb-4">Use email when drawings, specifications, and reference files matter from the first message.</p>
                         <a href="mailto:info@moldartindia.com" class="site-inline-link">${glyph('mail', 'icon icon-sm')} info@moldartindia.com</a>
                     </article>
                     <article class="ui-contact-route">
-                        <div class="ui-contact-route-head"><div class="ui-contact-route-icon">${glyph('calendar')}</div><div><div class="ui-data-label">Meetings</div><div class="ui-data-value">Scheduled reviews</div></div></div>
-                        <p class="text-sm text-zinc-500 leading-relaxed mb-4">Use a meeting slot when the requirement needs detailed technical-commercial discussion.</p>
+                        <div class="ui-contact-route-head"><div class="ui-contact-route-icon">${glyph('calendar')}</div><div><div class="ui-data-label">Meetings</div><div class="ui-data-value">Scheduled review</div></div></div>
+                        <p class="text-sm text-zinc-500 leading-relaxed mb-4">Book a meeting when the requirement needs a detailed technical-commercial discussion.</p>
                         <a href="https://outlook.office.com/bookwithme/user/a07f98546e1e4f7fbb0f12f091a6e3ec@moldartindia.com?anonymous&ep=plink" target="_blank" rel="noopener noreferrer" class="site-inline-link">${glyph('calendar', 'icon icon-sm')} Schedule a meeting</a>
                     </article>
                     <article class="ui-office-card">
@@ -2324,17 +2344,18 @@ function generateContactPage() {
                     <div class="ui-kicker mb-6">${glyph('message', 'icon icon-sm')} Share a requirement</div>
                     <form action="https://formsubmit.co/info@moldartindia.com" method="POST" class="flex flex-col gap-5 contact-form-compact" id="inquiry-form">
                         <input type="hidden" name="_subject" value="New Moldart Web Inquiry">
+                        <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_next" value="${SITE}/contact/?submitted=true">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 
                         <div class="grid grid-2 gap-4">
-                            <label class="form-group"><span class="form-label">Full Name *</span><input type="text" name="name" class="form-input" required aria-required="true" placeholder="John Doe"></label>
-                            <label class="form-group"><span class="form-label">Company *</span><input type="text" name="company" class="form-input" required aria-required="true" placeholder="Company name"></label>
+                            <label class="form-group"><span class="form-label">Full Name *</span><input type="text" name="name" class="form-input" required aria-required="true" autocomplete="name" placeholder="John Doe"></label>
+                            <label class="form-group"><span class="form-label">Company *</span><input type="text" name="company" class="form-input" required aria-required="true" autocomplete="organization" placeholder="Company name"></label>
                         </div>
                         <div class="grid grid-2 gap-4">
-                            <label class="form-group"><span class="form-label">Email Address *</span><input type="email" name="email" class="form-input" required aria-required="true" placeholder="john@example.com"></label>
-                            <label class="form-group"><span class="form-label">Phone / WhatsApp *</span><input type="tel" name="phone" class="form-input" required aria-required="true" placeholder="+91 ..."></label>
+                            <label class="form-group"><span class="form-label">Email Address *</span><input type="email" name="email" class="form-input" required aria-required="true" autocomplete="email" placeholder="john@example.com"></label>
+                            <label class="form-group"><span class="form-label">Phone / WhatsApp *</span><input type="tel" name="phone" class="form-input" required aria-required="true" autocomplete="tel" placeholder="+91 ..."></label>
                         </div>
                         <div class="grid grid-2 gap-4">
                             <label class="form-group">
@@ -2347,9 +2368,9 @@ function generateContactPage() {
                             <label class="form-group"><span class="form-label">Requirement Focus</span><input type="text" name="application" class="form-input" placeholder="Pricing, specs, samples, project brief..."></label>
                         </div>
                         <label class="form-group"><span class="form-label">Message *</span><textarea name="message" class="form-textarea" required aria-required="true" placeholder="Share the application, dimensions, finish expectations, quantity, and timing."></textarea></label>
-                        <p class="text-xs text-zinc-400">Your information is sent directly to the Moldart team and is not shared with third parties.</p>
+                        <p class="text-xs text-zinc-500">Your details are used only to review the requirement and respond with the relevant next step.</p>
                         <button type="submit" class="btn-primary btn-lg" style="width:100%;justify-content:center;">Submit Inquiry</button>
-                        <p class="text-xs text-zinc-500">Commercial schedules and response timing depend on the requirement and are confirmed directly during follow-up.</p>
+                        <p class="text-xs text-zinc-500">Lead time, MOQ, and final commercial timing are confirmed after the requirement is reviewed.</p>
                     </form>
                 </div>
             </div>
@@ -2364,13 +2385,13 @@ function generateContactPage() {
 function generateAboutPage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'About' }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/about/#webpage', url: SITE + '/about/', name: 'About Moldart | Verified Supply Model Since 1989', description: `Moldart: ${YEARS_ACTIVE}+ years of sourcing-and-supply support from Mumbai across wood and steel programmes.`, isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/about/#webpage', url: SITE + '/about/', name: 'About Moldart | Since 1989', description: `Moldart works from Mumbai across wood and steel supply programmes, with sourcing aligned per requirement.`, isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
   return headTag({
-    title: 'About Moldart | Verified Supply Model Since 1989',
-    desc: 'Moldart from Mumbai, India: founded in 1989, source-led across wood and steel programmes, and presented here with fewer, better-supported claims.',
+    title: 'About Moldart | Since 1989',
+    desc: 'Founded in 1989 and based in Mumbai, Moldart works across lamination tooling, panels, flooring, furniture, decorative stainless steel, and industrial press surfaces.',
     canonical: '/about/',
     schemas
   }) + '\n' + nav('about') + `
@@ -2381,34 +2402,30 @@ function generateAboutPage() {
             <div class="ui-page-hero">
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('shield', 'icon icon-sm')} About Moldart</div>
-                    <h1 class="ui-section-title">MUMBAI-LED SOURCING<br>& SUPPLY SINCE 1989.</h1>
-                    <p class="ui-section-subtitle">This page keeps the company story inside the facts that could be checked cleanly: when the business started, where it is based, how the sourcing model works, and who is presented as leadership.</p>
+                    <h1 class="ui-section-title">MUMBAI-LED SUPPLY<br>SINCE 1989.</h1>
+                    <p class="ui-section-subtitle">Moldart works from Mumbai across wood and steel programmes, aligning sourcing by category and requirement rather than treating every order as a generic equivalent.</p>
                     <div class="ui-chip-row mt-8">
                         <span class="ui-chip">${glyph('clock', 'icon icon-sm')} Founded 1989</span>
                         <span class="ui-chip">${glyph('building', 'icon icon-sm')} Malad West, Mumbai</span>
-                        <span class="ui-chip">${glyph('route', 'icon icon-sm')} Source → Verify → Supply</span>
+                        <span class="ui-chip">${glyph('route', 'icon icon-sm')} India + China sourcing</span>
                     </div>
                 </div>
-                <div class="ui-map-card ui-panel">
-                    <div class="ui-panel-inner">${renderHeroNetworkMap()}<div class="ui-map-caption">The strongest publicly supportable framing is Mumbai-led coordination with India and China sourcing routes, then final supply alignment per programme.</div></div>
+                <div class="ui-page-hero-panel">
+                    <div class="ui-proof-grid">
+                        <article class="ui-proof-card"><div class="ui-proof-label">Head office</div><div class="ui-proof-value">Mumbai</div><p class="ui-proof-copy">The Malad West office remains the primary commercial and technical contact point.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Founded</div><div class="ui-proof-value">1989</div><p class="ui-proof-copy">A long-running trading and sourcing base across wood and steel product routes.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Core sourcing</div><div class="ui-proof-value">India + China</div><p class="ui-proof-copy">Sourcing routes are aligned to the category, finish route, and programme context.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Portfolio</div><div class="ui-proof-value">Wood + steel</div><p class="ui-proof-copy">The public site focuses on the product groups that matter most to active enquiries.</p></article>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
-            <div class="ui-proof-grid mb-12">
-                <article class="ui-proof-card"><div class="ui-proof-label">Who</div><div class="ui-proof-value">Mumbai-led sourcing partner</div><p class="ui-proof-copy">Presented as a technical-commercial interface rather than a broad marketplace claim.</p></article>
-                <article class="ui-proof-card"><div class="ui-proof-label">What</div><div class="ui-proof-value">Wood + steel programmes</div><p class="ui-proof-copy">The site keeps the story to the product families that are supported across internal and public references.</p></article>
-                <article class="ui-proof-card"><div class="ui-proof-label">When</div><div class="ui-proof-value">Since 1989</div><p class="ui-proof-copy">Used consistently across internal company material and public company presence.</p></article>
-                <article class="ui-proof-card"><div class="ui-proof-label">Where</div><div class="ui-proof-value">Mumbai, India</div><p class="ui-proof-copy">The Malad West office is presented as the operating contact point.</p></article>
-                <article class="ui-proof-card"><div class="ui-proof-label">Why</div><div class="ui-proof-value">Reduce guesswork</div><p class="ui-proof-copy">The redesign favours clarity and evidence instead of repeating unsupported scale claims.</p></article>
-                <article class="ui-proof-card"><div class="ui-proof-label">How</div><div class="ui-proof-value">Source → Verify → Supply</div><p class="ui-proof-copy">That process is the most defensible way to describe the business model publicly.</p></article>
-            </div>
             <div class="ui-section-head mb-10">
                 <div class="ui-kicker mb-4">${glyph('clock', 'icon icon-sm')} Timeline</div>
-                <h2 class="ui-section-title">THE VERIFIED ARC.</h2>
-                <p class="ui-section-subtitle">The timeline stays intentionally simple. It reflects the internal company profile and public company presence without turning each decade into a slogan.</p>
-                <p class="text-xs text-zinc-500 leading-relaxed mt-4">${escHtml(VERIFICATION_DISCLOSURE)}</p>
+                <h2 class="ui-section-title">THE COMPANY ARC.</h2>
+                <p class="ui-section-subtitle">A concise view of how the company moved from a Mumbai trading base into a broader wood and steel supply programme.</p>
             </div>
             <div class="ui-timeline">
                 ${companyMilestones.map((milestone) => renderMilestone(milestone)).join('')}
@@ -2416,19 +2433,19 @@ function generateAboutPage() {
         </section>
 
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
-            <div class="ui-spotlight">
-                <div class="ui-stack-card">
-                    <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Operating model</div>
+            <div class="ui-library-grid">
+                <article class="ui-library-card">
+                    <div class="ui-kicker mb-3">${glyph('building', 'icon icon-sm')} Operating base</div>
+                    <h3 class="ui-family-title" style="font-size:1.2rem;">Mumbai remains the primary coordination point.</h3>
+                    <p class="text-sm text-zinc-500 leading-relaxed mt-3">#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West), Mumbai — 400064, Maharashtra, India.</p>
+                    <div class="ui-link-row mt-5"><a href="tel:+917208088788" class="ui-link-pill">+91 7208088788</a><a href="mailto:info@moldartindia.com" class="ui-link-pill">info@moldartindia.com</a></div>
+                </article>
+                <article class="ui-library-card">
+                    <div class="ui-kicker mb-3">${glyph('route', 'icon icon-sm')} How Moldart works</div>
                     <div class="ui-flow-band">
                         ${SUPPLY_FLOW_ITEMS.map((item) => `<div class="ui-flow-pill"><div class="ui-flow-step">${escHtml(item.step)}</div><div class="ui-flow-title">${escHtml(item.title)}</div><p class="ui-flow-copy">${escHtml(item.detail)}</p></div>`).join('')}
                     </div>
-                </div>
-                <div class="ui-stack-card">
-                    <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Source basis</div>
-                    <div class="ui-source-grid">
-                        ${VERIFIED_SOURCE_ITEMS.map((item) => `<article class="ui-source-card"><div class="ui-proof-label">${escHtml(item.title)}</div><div class="ui-proof-value">${escHtml(item.title)}</div><p class="ui-proof-copy">${escHtml(item.detail)}</p></article>`).join('')}
-                    </div>
-                </div>
+                </article>
             </div>
         </section>
 
@@ -2442,7 +2459,7 @@ function generateAboutPage() {
                     <div class="ui-family-body">
                         <h3 class="ui-family-title">MR. LALIT DOSHI</h3>
                         <div class="ui-proof-label mb-3">Founder & Partner</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Presented here as the founder who established the company’s long-running base in Mumbai and built the commercial foundation behind the business.</p>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Presented as the founder who established the company’s long-running base in Mumbai and built the commercial foundation behind the business.</p>
                     </div>
                 </article>
                 <article class="ui-family-card">
@@ -2452,13 +2469,13 @@ function generateAboutPage() {
                     <div class="ui-family-body">
                         <h3 class="ui-family-title">MR. YASH DOSHI</h3>
                         <div class="ui-proof-label mb-3">Partner</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Presented more narrowly and defensibly as part of the current technical-commercial leadership driving sourcing, market development, and category expansion.</p>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Presented as part of the current commercial and category leadership across sourcing, market development, and programme follow-through.</p>
                     </div>
                 </article>
             </div>
         </section>
 
-        ${ctaBlock('READY TO WORK<br>FROM A CLEANER BRIEF?', 'Browse the product families, open the reference library, or send the exact requirement for direct confirmation.', 'Explore Solutions', '/solutions/', 'Share your requirement', '/contact/')}
+        ${ctaBlock('READY TO WORK<br>FROM A CLEARER BRIEF?', 'Open Solutions, review the relevant references, or send the requirement directly for confirmation.', 'Explore Solutions', '/solutions/', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
@@ -2512,7 +2529,7 @@ function generateProcessPage() {
             <div class="ui-section-head mb-10">
                 <div class="ui-kicker mb-4">${glyph('clock', 'icon icon-sm')} Six stages</div>
                 <h2 class="ui-section-title">HOW THE WORK MOVES.</h2>
-                <p class="ui-section-subtitle">The stage count stays simple. The goal is not to dramatise the process, only to make it easier for a buyer to understand what should happen next.</p>
+                <p class="ui-section-subtitle">This page shows how a requirement typically moves from first brief through sourcing, quality, documentation, and delivery.</p>
             </div>
             <div class="ui-stage-grid">
                 ${stages.map((stage) => `<article class="ui-stage-card"><div class="ui-stage-num">${stage.number}</div><h3 class="font-display font-bold text-lg mb-3">${escHtml(stage.title)}</h3><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(stage.detail)}</p></article>`).join('')}
@@ -2763,13 +2780,13 @@ function generateInsightsHub() {
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('spark', 'icon icon-sm')} Technical Guides & Notes</div>
                     <h1 class="ui-section-title">BUYER GUIDES,<br>FIELD NOTES, AND TECHNICAL CONTEXT.</h1>
-                    <p class="ui-section-subtitle">These articles are written to help buyers, technical teams, project stakeholders, and procurement teams understand what actually changes a decision — without turning the page into thin SEO filler.</p>
+                    <p class="ui-section-subtitle">Use these notes when a requirement needs practical decision support before it moves into direct review with the Moldart team.</p>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-proof-grid">
-                        <article class="ui-proof-card"><div class="ui-proof-label">Live now</div><div class="ui-proof-value">${articles.length} guides</div><p class="ui-proof-copy">Only live articles that add a real decision-making role are kept visible.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Tone</div><div class="ui-proof-value">Technical, but readable</div><p class="ui-proof-copy">The writing is meant to help buyers, sellers, production teams, and project stakeholders at the same time.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Next step</div><div class="ui-proof-value">Move to requirement review</div><p class="ui-proof-copy">Use a guide to orient the discussion, then share the real programme for confirmation.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Coverage</div><div class="ui-proof-value">${articles.length} live guides</div><p class="ui-proof-copy">Articles are grouped by product family and buying context so they are easier to scan.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Formats</div><div class="ui-proof-value">Guides, notes, comparisons</div><p class="ui-proof-copy">Each format is meant to help a different stage of product, quality, or procurement review.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Next step</div><div class="ui-proof-value">Move into requirement review</div><p class="ui-proof-copy">Use the article to orient the question, then send the real requirement for confirmation.</p></article>
                     </div>
                 </div>
             </div>
