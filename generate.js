@@ -6,14 +6,14 @@ const path = require('path');
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.29';
+const VER = '2026.30';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
 const WHATSAPP_PRIMARY = { number: '917208088788', display: '+91 7208088788' };
 const WHATSAPP_SECONDARY = { number: '917208188788', display: '+91 7208188788' };
 const BRAND_LINE = 'Wood and steel supply programmes from Mumbai, aligned to the requirement.';
-const NAV_SEARCH_META = 'Pages • Resources • Guides • FAQ • Process';
+const NAV_SEARCH_META = 'Explore • Solutions • Resources • Insights • FAQ • Process';
 const SUPPLY_FLOW_ITEMS = [
   { step: '01', title: 'Source', detail: 'Start from the actual requirement, then align the likely supply route instead of quoting a generic equivalent.' },
   { step: '02', title: 'Verify', detail: 'Use reference decks and samples to validate fit before volume or price becomes the only conversation.' },
@@ -72,7 +72,7 @@ function whatsappHref(number, text = '') {
 const rawProducts = JSON.parse(fs.readFileSync(path.join(WORK, 'data/product-directory.json'), 'utf8'));
 const rawFaq = JSON.parse(fs.readFileSync(path.join(WORK, 'data/faq.json'), 'utf8'));
 const rawInsightsSource = JSON.parse(fs.readFileSync(path.join(WORK, 'data/insights.json'), 'utf8'));
-const rawInsights = { ...rawInsightsSource, articles: normalizeInsightDates(rawInsightsSource.articles) };
+let rawInsights = { ...rawInsightsSource, editorial: normalizeInsightDates(rawInsightsSource.articles), generated: [], articles: normalizeInsightDates(rawInsightsSource.articles) };
 const getAllResourceItems = () => resourceGroups.flatMap((group) => group.items.map((item) => ({ ...item, group: group.title })));
 const getTotalResourceItems = () => getAllResourceItems().length;
 const getInstantResourceItems = () => getAllResourceItems().filter((item) => item.access !== 'request');
@@ -681,8 +681,8 @@ const companyMilestones = [
 ];
 
 const primaryPages = [
-  { title: 'Solutions', url: '/solutions/', meta: 'Combined systems, product stacks, and product sheets', keywords: ['solutions', 'systems', 'product stack'] },
   { title: 'Explore', url: '/explore/', meta: 'Search the full portfolio', keywords: ['explore', 'search', 'product sheets'] },
+  { title: 'Solutions', url: '/solutions/', meta: 'Combined systems, product stacks, and product sheets', keywords: ['solutions', 'systems', 'product stack'] },
   { title: 'Resources', url: '/resources/', meta: 'Catalogues, decks, and references', keywords: ['resources', 'downloads', 'catalogs'] },
   { title: 'Insights', url: '/insights/', meta: 'Technical guides and notes', keywords: ['insights', 'guides', 'notes'] },
   { title: 'FAQ', url: '/faq/', meta: 'Quick answers on products, documents, timing, and first contact', keywords: ['faq', 'questions', 'answers'] },
@@ -698,6 +698,290 @@ const familyVisuals = {
   'Decorative Stainless Steel': { image: '/images/page9_img1.webp', alt: 'Decorative stainless steel surfaces', label: 'Architectural finish consistency' },
   'Industrial Press Plates': { image: '/images/page9_img4.webp', alt: 'Industrial press plates', label: 'Tolerance-critical pressing support' }
 };
+
+function insightCategoryLabelForProduct(productId) {
+  const family = portfolioFamilies.find((item) => item.products.includes(productId));
+  if (!family) return 'Technical Guides';
+  if (family.title === 'Decorative Stainless Steel') return 'Decorative Steel';
+  if (family.title === 'Industrial Press Plates') return 'Industrial Tooling';
+  if (family.title === 'Engineered Wood Substrates') return 'Panel Systems';
+  if (family.title === 'Flooring & Furniture Programmes') {
+    return ['wood-flooring', 'flooring-accessories'].includes(productId) ? 'Flooring Systems' : 'Furniture Programmes';
+  }
+  return 'Lamination Tooling';
+}
+
+function generatedInsightPatterns() {
+  return [
+    {
+      suffix: 'guide',
+      type: 'Technical Guide',
+      title: (product) => `${product.name}: technical guide for approvals, route fit, and enquiry planning`,
+      excerpt: (product) => `A product-specific technical guide to how ${product.name.toLowerCase()} should be read by buyers, technical teams, and approval stakeholders.`
+    },
+    {
+      suffix: 'applications',
+      type: 'Application Guide',
+      title: (product) => `${product.name}: application fit, buyer use cases, and where the route makes sense`,
+      excerpt: (product) => `A practical application note for ${product.name.toLowerCase()}, focused on where the route fits well and what should be checked before approval.`
+    },
+    {
+      suffix: 'buyers-guide',
+      type: "Buyer's Guide",
+      title: (product) => `${product.name}: buyer checklist before the first RFQ or reorder`,
+      excerpt: (product) => `A buyer-focused checklist for ${product.name.toLowerCase()}, covering RFQ inputs, approval logic, receiving discipline, and reorder risk.`
+    },
+    {
+      suffix: 'comparison',
+      type: 'Comparative Analysis',
+      title: (product) => `${product.name}: comparison checkpoints before choosing the final route`,
+      excerpt: (product) => `A comparison-led article for ${product.name.toLowerCase()} that shows what should stay like-for-like before commercial selection begins.`
+    },
+    {
+      suffix: 'quality',
+      type: 'Quality & Standards',
+      title: (product) => `${product.name}: quality checks, receiving priorities, and approval discipline`,
+      excerpt: (product) => `A quality-led note on ${product.name.toLowerCase()}, focusing on incoming checks, surface or dimensional review, and approval stability.`
+    },
+    {
+      suffix: 'specifications',
+      type: 'Specification Note',
+      title: (product) => `${product.name}: specification notes, technical checkpoints, and document structure`,
+      excerpt: (product) => `A specification-focused note for ${product.name.toLowerCase()}, built around the technical checkpoints that matter before quoting and dispatch.`
+    }
+  ];
+}
+
+function buildGeneratedInsightContent(product, meta, pattern) {
+  const specs = product.specs.slice(0, 4).map((spec) => `- ${spec}`).join('\n');
+  const applications = (product.applications || []).slice(0, 4).map((application) => `- ${application}`).join('\n');
+  const grades = (product.technical?.grades || []).length ? (product.technical.grades || []).join(', ') : product.material;
+  const standards = (product.technical?.certifications || []).length ? product.technical.certifications.join(', ') : 'Project-specific or enquiry-led';
+  const relatedRoutes = relatedSolutionsForProduct(product.id).map((app) => app.name).join(', ') || insightCategoryLabelForProduct(product.id);
+  const commercial = meta.commercialNotes || product.customization || 'Final route, documents, and commercial timing are confirmed per enquiry.';
+
+  if (pattern.suffix === 'guide') {
+    return `## What the product is doing
+
+${product.summary} ${meta.workflow || ''}
+
+## Technical signals buyers should not skip
+
+${specs}
+
+## Where it usually adds value
+
+${applications}
+
+## What to lock before quoting
+
+- Confirm the real application and end-use environment.
+- Match the approved reference, drawing, or finish expectation before price comparison begins.
+- Keep quantity, lead time, and destination in the same conversation as the technical route.
+- Use ${grades} only as part of the decision, not as the full decision.
+
+## Related programme routes
+
+${relatedRoutes}
+
+## Final takeaway
+
+${commercial}`;
+  }
+
+  if (pattern.suffix === 'applications') {
+    return `## Where the route usually fits
+
+${product.name} works best when the actual end use matches the performance expectation, conversion path, and approval logic instead of being treated as a broad equivalent.
+
+## Typical application directions
+
+${applications}
+
+## What makes the fit stronger
+
+- The application is already clear.
+- The approval route is tied to a drawing, sample, or accepted benchmark.
+- The receiving team knows what should be checked on arrival.
+- The order is being reviewed in the context of the final production or installation route.
+
+## Where the fit becomes weaker
+
+- The product is being compared outside its real end use.
+- The brief is missing size, finish, tolerance, or destination detail.
+- The order is trying to solve a process problem with a generic substitute.
+- The reference approval is weaker than the commercial urgency.
+
+## Technical pointers for the first review
+
+${specs}
+
+## Final takeaway
+
+${commercial}`;
+  }
+
+  if (pattern.suffix === 'buyers-guide') {
+    return `## Why buyers still lose time on this route
+
+${product.name} enquiries slow down when the first RFQ is missing the real application, approval reference, or receiving logic.
+
+## What the buyer should bring into the first RFQ
+
+- Application or use case
+- Dimensions, size range, or build requirement
+- Finish, grade, or visible acceptance criteria
+- Quantity, timing, and destination
+- Any document or compliance expectation
+
+## Core checkpoints
+
+${specs}
+
+## Commercial frame
+
+- Lead time: ${product.technical?.leadTime || 'On request'}
+- MOQ: ${product.technical?.moq || 'On request'}
+- Origin route: ${product.technical?.origin || 'On request'}
+- Standards or compliance: ${standards}
+
+## Reorder discipline
+
+- Reorder from the last approved record, not from memory.
+- Keep the sample, drawing, or accepted finish tied to the PO.
+- Reconfirm whether the route, plant condition, or destination changed.
+- Check whether the receiving team needs updated document support.
+
+## Final takeaway
+
+${commercial}`;
+  }
+
+  if (pattern.suffix === 'comparison') {
+    const comparisonOptions = (product.technical?.grades || product.applications || []).slice(0, 3);
+    const optionLines = comparisonOptions.length ? comparisonOptions.map((option) => `- ${option}`).join('\n') : `- ${product.name} vs a generic equivalent should only be judged against the same technical and commercial brief.`;
+    return `## The comparison should stay like-for-like
+
+${product.name} comparisons become misleading when buyers compare only price, only grade, or only brochure language.
+
+## Useful comparison options or checkpoints
+
+${optionLines}
+
+## What should stay constant in the comparison
+
+- The same application and end-use environment
+- The same approval reference or finish expectation
+- The same dimensional and receiving requirements
+- The same documentation, timing, and destination context
+
+## Where commercial selection usually goes wrong
+
+- A broader available option is treated as equivalent without checking the real fit.
+- The receiving and approval costs are ignored while only unit rate is compared.
+- A process-sensitive route is judged like a generic material line.
+- The plant or project consequence of the wrong choice is not priced into the decision.
+
+## Technical baseline
+
+${specs}
+
+## Final takeaway
+
+${commercial}`;
+  }
+
+  if (pattern.suffix === 'quality') {
+    return `## Quality starts before release into use
+
+${product.name} quality becomes easier to protect when receiving, approval, and handling are treated as one sequence.
+
+## What should be checked on receipt
+
+${specs}
+
+## What quality teams should document
+
+- Order reference and batch or dispatch linkage
+- Surface or dimensional condition on arrival
+- Pack integrity and handling observations
+- Any deviation before production or installation release
+
+## Common reasons the route drifts later
+
+- Weak reference matching between approval and actual supply
+- Late inspection after the material has already moved into use
+- Missing storage or handling discipline
+- Commercial urgency overriding the agreed checkpoint list
+
+## Standards or supporting references
+
+${standards}
+
+## Final takeaway
+
+${commercial}`;
+  }
+
+  return `## Specification baseline
+
+${product.summary}
+
+## Technical checkpoints that should appear on the brief
+
+${specs}
+
+## Document structure that helps the route stay clean
+
+- Product and application clearly named
+- Grade, build, finish, or tolerance references written down
+- Approved benchmark attached where relevant
+- Quantity, timing, destination, and pack sensitivity included
+
+## When the specification needs tightening
+
+- When the product is surface-critical or tolerance-sensitive
+- When the route moves across more than one sourcing lane
+- When the order depends on export or compliance documents
+- When the project or line cannot absorb a late substitution
+
+## Supporting technical frame
+
+- Material or grade platform: ${grades}
+- Standards or compliance: ${standards}
+- Related programme routes: ${relatedRoutes}
+
+## Final takeaway
+
+${commercial}`;
+}
+
+function generateTechnicalLibraryInsights() {
+  const patterns = generatedInsightPatterns();
+  return rawProducts.products.flatMap((product) => {
+    const meta = productMeta[product.id];
+    if (!meta) return [];
+    return patterns.map((pattern) => ({
+      id: `${product.id}-${pattern.suffix}`,
+      slug: `${product.id}-${pattern.suffix}`,
+      title: pattern.title(product),
+      category: product.id,
+      categoryLabel: insightCategoryLabelForProduct(product.id),
+      tags: [product.name, product.use, product.stage, pattern.suffix.replace(/-/g, ' '), ...(product.industry || []), ...(product.applications || [])].filter(Boolean),
+      type: pattern.type,
+      date: NOW,
+      readTime: '7 min',
+      excerpt: pattern.excerpt(product),
+      author: 'Moldart Technical Team',
+      generated: true,
+      content: buildGeneratedInsightContent(product, meta, pattern)
+    }));
+  });
+}
+
+const editorialInsights = normalizeInsightDates(rawInsightsSource.articles);
+const generatedInsights = normalizeInsightDates(generateTechnicalLibraryInsights());
+rawInsights = { ...rawInsightsSource, editorial: editorialInsights, generated: generatedInsights, articles: [...editorialInsights, ...generatedInsights] };
 
 // ============================================================
 // HELPERS
@@ -956,102 +1240,90 @@ function getSearchEntries() {
 
 function renderHeroNetworkMap() {
   return `<div class="hero-network-card hero-world-map" aria-label="Illustrative global programme map">
-      <svg class="hero-network-svg" viewBox="0 0 820 520" role="img" aria-label="Illustrative world map showing Mumbai separately from India, with India and China as sourcing anchors and representative trade lanes across all continents">
+      <svg class="hero-network-svg" viewBox="0 0 960 580" role="img" aria-label="Illustrative world map showing Mumbai separately from India, with India and China as sourcing anchors and animated representative trade lanes across all continents">
           <defs>
               <linearGradient id="routeFade" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stop-color="#18181b" stop-opacity="0.94"></stop>
-                  <stop offset="100%" stop-color="#a1a1aa" stop-opacity="0.18"></stop>
+                  <stop offset="100%" stop-color="#a1a1aa" stop-opacity="0.14"></stop>
               </linearGradient>
               <linearGradient id="routeSoft" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#52525b" stop-opacity="0.4"></stop>
-                  <stop offset="100%" stop-color="#d4d4d8" stop-opacity="0.08"></stop>
-              </linearGradient>
-              <linearGradient id="indiaFill" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#f5f5f5"></stop>
-                  <stop offset="100%" stop-color="#e4e4e7"></stop>
+                  <stop offset="0%" stop-color="#52525b" stop-opacity="0.34"></stop>
+                  <stop offset="100%" stop-color="#e4e4e7" stop-opacity="0.08"></stop>
               </linearGradient>
           </defs>
-          <rect x="0" y="0" width="820" height="520" rx="32" fill="#fafafa"></rect>
+          <rect x="0" y="0" width="960" height="580" rx="34" fill="#fafafa"></rect>
           <g class="hero-world-grid">
-              <path d="M36 94H784"></path>
-              <path d="M36 174H784"></path>
-              <path d="M36 254H784"></path>
-              <path d="M36 334H784"></path>
-              <path d="M36 414H784"></path>
-              <path d="M122 42V472"></path>
-              <path d="M222 42V472"></path>
-              <path d="M322 42V472"></path>
-              <path d="M422 42V472"></path>
-              <path d="M522 42V472"></path>
-              <path d="M622 42V472"></path>
-              <path d="M722 42V472"></path>
+              <path d="M42 96H918"></path>
+              <path d="M42 176H918"></path>
+              <path d="M42 256H918"></path>
+              <path d="M42 336H918"></path>
+              <path d="M42 416H918"></path>
+              <path d="M42 496H918"></path>
+              <path d="M126 42V532"></path>
+              <path d="M230 42V532"></path>
+              <path d="M334 42V532"></path>
+              <path d="M438 42V532"></path>
+              <path d="M542 42V532"></path>
+              <path d="M646 42V532"></path>
+              <path d="M750 42V532"></path>
+              <path d="M854 42V532"></path>
           </g>
           <g class="hero-world-continents">
-              <path d="M90 132c24-30 58-47 98-50 23-2 43 4 58 16 13 10 20 24 19 39-2 14-12 26-30 35-15 8-29 19-40 33-10 12-24 17-41 17-31 1-57-9-78-29-18-18-16-38 14-61z"></path>
-              <path d="M198 250c20 9 35 24 43 46 8 22 7 43-2 63-10 23-23 45-37 64-8 11-19 16-31 13-10-4-15-15-15-34 0-19 5-39 13-59 5-12 8-26 9-40 2-15 7-29 20-53z"></path>
-              <path d="M350 118c24-15 52-20 78-15 12 2 24 8 31 17 7 9 7 18 1 27-6 9-18 15-34 17-16 2-28 9-37 19-7 8-16 12-26 12-16 0-30-6-40-17s-13-22-10-33c4-12 15-21 37-27z"></path>
-              <path d="M398 220c22 3 41 13 55 29 15 18 24 39 28 65 3 19 0 37-10 52-11 17-25 25-43 24-19-1-34-10-46-26-12-17-18-38-19-65-1-29 4-50 16-62 6-8 13-13 19-15z"></path>
-              <path d="M476 114c30-21 64-32 106-33 28-1 54 3 77 15 27 14 40 34 39 58-1 17-10 30-28 39-20 10-39 17-55 31-12 10-20 22-24 35-4 15-13 24-28 30-20 7-38 4-55-8-16-12-26-28-29-47-4-24 1-46 15-66 13-18 20-33 26-41 2-4 7-9 12-13z"></path>
-              <path d="M664 296c19 3 35 10 48 22 14 14 22 31 24 51 1 13-2 25-10 34-10 10-23 13-39 10-16-4-30-13-40-28-11-14-16-29-14-45 2-15 9-27 21-37 4-4 7-6 10-7z"></path>
-              <path d="M258 430c60-18 126-27 196-27 71 0 138 9 202 27 13 4 20 11 20 21 0 12-10 18-28 18H282c-19 0-28-6-28-18 0-9 6-16 18-21z"></path>
+              <path d="M112 162c24-35 63-55 114-58 30-2 57 5 78 21 18 13 27 31 27 49 0 15-8 28-24 38-24 16-43 32-58 48-17 19-39 28-66 28-39 0-72-12-97-36-22-22-19-49 26-90z"></path>
+              <path d="M236 312c23 10 41 29 52 56 11 28 10 56-2 82-11 24-25 47-41 69-10 14-23 20-37 17-13-5-19-19-19-42 0-26 7-52 20-77 8-16 12-32 14-49 2-20 8-38 13-56z"></path>
+              <path d="M392 122c22-13 52-20 82-18 20 1 37 8 49 20 12 12 14 26 6 40-8 14-23 23-43 27-20 3-36 11-47 24-9 10-20 14-33 14-20 0-37-7-50-21-13-14-17-29-11-44 5-17 19-30 47-42z"></path>
+              <path d="M456 242c25 4 47 15 64 34 19 21 31 47 35 78 4 24 0 45-12 63-13 20-30 30-52 29-23-2-42-13-57-33-15-21-22-47-22-79 0-34 5-59 17-76 8-9 16-14 27-16z"></path>
+              <path d="M542 106c31-21 70-32 121-33 34 0 64 5 90 18 31 15 48 38 49 66 1 22-8 39-26 50-26 16-48 33-64 52-14 18-31 28-52 31-24 4-46-2-65-18-18-15-29-36-34-62-5-28 0-54 17-78 12-16 21-31 32-42 6-7 12-12 18-16z"></path>
+              <path d="M760 328c21 2 40 10 56 24 18 15 28 35 31 59 2 17-2 31-12 42-13 12-29 16-49 11-21-4-38-16-51-34-13-18-19-37-16-57 2-18 10-33 24-45 6-5 12-8 17-8z"></path>
+              <path d="M292 468c66-22 139-33 221-33 81 0 157 11 228 33 15 5 23 13 23 24 0 13-11 20-31 20H322c-21 0-31-7-31-20 0-10 7-18 21-24z"></path>
           </g>
-          <g class="hero-world-india-detail">
-              <path class="hero-india-shape" d="M523 200c9 6 15 15 18 28 2 9 8 17 18 24 2 2 3 6 0 10-7 7-14 14-21 22-7 8-10 17-9 28 0 8-4 12-10 10-7-2-13-8-18-18-5-10-10-18-16-24-5-4-6-10-3-16 4-6 9-12 14-20 5-8 8-16 10-25 2-10 8-16 17-19z"></path>
-              <path class="hero-world-focus-route" d="M507 247C548 287 590 324 637 362"></path>
+          <g class="hero-world-india-shape-group">
+              <path class="hero-india-shape" d="M607 214c9 6 15 15 18 28 2 11 8 20 19 28 3 2 4 6 1 10-8 9-16 17-24 27-7 8-10 18-9 30 1 8-3 13-10 11-8-2-15-8-21-19-5-11-11-20-17-27-5-5-6-11-3-17 4-7 9-14 15-22 6-8 9-17 11-27 2-11 8-18 20-22z"></path>
           </g>
           <g class="hero-world-routes">
-              <path class="hero-world-route hero-world-route-primary" d="M505 247C505 238 510 230 520 223"></path>
-              <path class="hero-world-route hero-world-route-primary" d="M505 247C532 236 567 223 610 209"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M505 247C434 204 340 169 146 152"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M505 247C397 244 301 272 203 330"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M505 247C465 213 429 180 390 153"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M505 247C470 270 448 296 430 319"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M505 247C574 258 637 289 694 327"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M505 247C470 316 449 384 421 431"></path>
+              <path class="hero-world-route hero-world-route-primary" d="M592 262C600 244 608 232 621 223"></path>
+              <path class="hero-world-route hero-world-route-primary" d="M592 262C620 252 657 236 706 216"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M592 262C498 222 374 185 176 164"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M592 262C454 268 335 309 236 370"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M592 262C536 228 493 189 452 156"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M592 262C550 293 521 326 505 350"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M592 262C666 276 737 312 814 356"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M592 262C556 336 537 415 513 470"></path>
           </g>
           <g class="hero-world-nodes">
-              <circle class="hero-world-node hero-world-node-primary" cx="505" cy="247" r="9"></circle>
-              <circle class="hero-world-node hero-world-node-source" cx="520" cy="223" r="7"></circle>
-              <circle class="hero-world-node hero-world-node-source" cx="610" cy="209" r="7"></circle>
-              <circle class="hero-world-node" cx="146" cy="152" r="6"></circle>
-              <circle class="hero-world-node" cx="203" cy="330" r="6"></circle>
-              <circle class="hero-world-node" cx="390" cy="153" r="6"></circle>
-              <circle class="hero-world-node" cx="430" cy="319" r="6"></circle>
-              <circle class="hero-world-node" cx="694" cy="327" r="6"></circle>
-              <circle class="hero-world-node" cx="421" cy="431" r="6"></circle>
+              <circle class="hero-world-pulse" cx="592" cy="262" r="22"></circle>
+              <circle class="hero-world-node hero-world-node-primary" cx="592" cy="262" r="9"></circle>
+              <circle class="hero-world-node hero-world-node-source" cx="621" cy="223" r="8"></circle>
+              <circle class="hero-world-node hero-world-node-source" cx="706" cy="216" r="8"></circle>
+              <circle class="hero-world-node" cx="176" cy="164" r="6"></circle>
+              <circle class="hero-world-node" cx="236" cy="370" r="6"></circle>
+              <circle class="hero-world-node" cx="452" cy="156" r="6"></circle>
+              <circle class="hero-world-node" cx="505" cy="350" r="6"></circle>
+              <circle class="hero-world-node" cx="814" cy="356" r="6"></circle>
+              <circle class="hero-world-node" cx="513" cy="470" r="6"></circle>
           </g>
           <g class="hero-label-group">
-              <path class="hero-node-pointer" d="M505 230l-16-20"></path>
-              <text x="466" y="200" class="hero-node-label hero-node-label-primary">Mumbai</text>
-              <text x="466" y="184" class="hero-node-meta">Operating base</text>
-              <path class="hero-node-pointer" d="M520 223l18-18"></path>
-              <text x="566" y="194" class="hero-node-label">India</text>
-              <text x="566" y="178" class="hero-node-meta">Sourcing anchor</text>
-              <path class="hero-node-pointer" d="M610 209l18-14"></path>
-              <text x="668" y="188" class="hero-node-label">China</text>
-              <text x="668" y="172" class="hero-node-meta">Sourcing anchor</text>
+              <path class="hero-node-pointer" d="M592 246l-28-32"></path>
+              <text x="538" y="198" class="hero-node-label hero-node-label-primary">Mumbai</text>
+              <text x="538" y="181" class="hero-node-meta">Operating base</text>
+              <path class="hero-node-pointer" d="M621 223l20-30"></path>
+              <text x="666" y="176" class="hero-node-label">India</text>
+              <text x="666" y="159" class="hero-node-meta">Sourcing anchor</text>
+              <path class="hero-node-pointer" d="M706 216l28-24"></path>
+              <text x="792" y="174" class="hero-node-label">China</text>
+              <text x="792" y="157" class="hero-node-meta">Sourcing anchor</text>
           </g>
           <g class="hero-world-region-labels">
-              <text x="108" y="118" class="hero-world-region-label">North America</text>
-              <text x="164" y="388" class="hero-world-region-label">South America</text>
-              <text x="356" y="102" class="hero-world-region-label">Europe</text>
-              <text x="382" y="360" class="hero-world-region-label">Africa</text>
-              <text x="546" y="96" class="hero-world-region-label">Asia</text>
-              <text x="648" y="370" class="hero-world-region-label">Oceania</text>
-              <text x="360" y="494" class="hero-world-region-label">Antarctica</text>
-          </g>
-          <g class="hero-world-focus" transform="translate(610 342)">
-              <rect x="0" y="0" width="156" height="108" rx="18" class="hero-world-focus-card"></rect>
-              <text x="16" y="22" class="hero-world-small hero-world-small-strong">India focus</text>
-              <text x="16" y="38" class="hero-world-small">Mumbai is shown separately for clearer geography.</text>
-              <path class="hero-india-inset-outline" d="M64 28c8 5 13 12 15 22 2 7 7 13 14 18 2 2 2 5 0 8-5 5-11 10-16 16-6 6-8 13-7 21 1 6-2 9-7 8-5-2-10-6-14-13-4-8-8-13-13-18-4-3-4-7-2-11 3-5 7-10 11-15 4-6 6-12 8-19 2-8 5-13 11-17z"></path>
-              <circle class="hero-world-node hero-world-node-primary" cx="73" cy="63" r="5"></circle>
-              <text x="88" y="60" class="hero-focus-label">Mumbai</text>
-              <text x="88" y="74" class="hero-focus-note">West-coast operating base</text>
-              <text x="18" y="92" class="hero-focus-note">India stays distinct from the broader Asia outline.</text>
+              <text x="142" y="138" class="hero-world-region-label">North America</text>
+              <text x="196" y="420" class="hero-world-region-label">South America</text>
+              <text x="394" y="100" class="hero-world-region-label">Europe</text>
+              <text x="442" y="390" class="hero-world-region-label">Africa</text>
+              <text x="628" y="102" class="hero-world-region-label">Asia</text>
+              <text x="760" y="404" class="hero-world-region-label">Oceania</text>
+              <text x="414" y="540" class="hero-world-region-label">Antarctica</text>
           </g>
           <g class="hero-world-callouts">
-              <text x="54" y="468" class="hero-world-small">All continents are shown for geographic clarity. Flow lines remain illustrative.</text>
+              <text x="58" y="540" class="hero-world-small">All continents are shown for geographic clarity. Flow lines remain illustrative.</text>
           </g>
       </svg>
   </div>`;
@@ -1252,16 +1524,6 @@ function headTag({ title, desc, canonical, ogType = 'website', ogImage = '/image
 }
 
 function nav(route) {
-  const navItems = [
-    { href: '/solutions/', label: 'Solutions', route: 'solutions' },
-    { href: '/explore/', label: 'Explore', route: 'explore' },
-    { href: '/resources/', label: 'Resources', route: 'resources' },
-    { href: '/insights/', label: 'Insights', route: 'insights' },
-    { href: '/faq/', label: 'FAQ', route: 'faq' },
-    { href: '/process/', label: 'Process', route: 'process' },
-    { href: '/about/', label: 'About', route: 'about' },
-    { href: '/contact/', label: 'Contact', route: 'contact' }
-  ];
   return `<body data-route="${route}">
     <a href="#main-content" class="sr-only">Skip to content</a>
     <nav aria-label="Site header" class="site-header fixed top-0 left-0 right-0 z-50 bg-white-90 backdrop-blur border-b border-zinc-100">
@@ -1272,9 +1534,6 @@ function nav(route) {
                     <div class="text-xs text-zinc-500 md-hidden" style="margin-top:.18rem;">Since 1989 · Mumbai</div>
                 </div>
             </a>
-            <div class="site-nav-links md-hidden">
-                ${navItems.map((item) => `<a href="${item.href}" class="site-nav-link${route === item.route ? ' is-active' : ''}">${item.label}</a>`).join('')}
-            </div>
             <button type="button" class="site-search-trigger site-search-trigger-compact" data-open-command-palette aria-label="Search the website">
                 ${glyph('search', 'icon site-search-trigger-icon')}
                 <span class="site-search-trigger-copy">
@@ -1283,15 +1542,6 @@ function nav(route) {
                 </span>
                 <span class="site-search-trigger-shortcut cmd-k-hint"><kbd>Ctrl/⌘ K</kbd></span>
             </button>
-            <button type="button" class="ui-mobile-toggle md-show" data-mobile-menu-toggle aria-label="Menu" aria-expanded="false" aria-controls="mob-menu">
-                ${glyph('menu', 'ui-mobile-icon ui-mobile-icon-menu')}
-                ${glyph('close', 'ui-mobile-icon ui-mobile-icon-close')}
-            </button>
-        </div>
-        <div id="mob-menu" class="ui-mobile-menu md-show" aria-hidden="true">
-            <div class="ui-mobile-menu-panel">
-                ${navItems.map((item) => `<a href="${item.href}" class="${route === item.route ? 'font-medium' : ''}"><span>${item.label}</span>${glyph('arrow', 'icon icon-sm')}</a>`).join('')}
-            </div>
         </div>
     </nav>`;
 }
@@ -1314,8 +1564,8 @@ function footer() {
                     <div class="section-label text-zinc-600 mb-5">Navigate</div>
                     <div class="ui-footer-nav">
                         <a href="/" class="ui-footer-link">Home</a>
-                        <a href="/solutions/" class="ui-footer-link">Solutions</a>
                         <a href="/explore/" class="ui-footer-link">Explore</a>
+                        <a href="/solutions/" class="ui-footer-link">Solutions</a>
                         <a href="/resources/" class="ui-footer-link">Resources</a>
                         <a href="/insights/" class="ui-footer-link">Insights</a>
                         <a href="/faq/" class="ui-footer-link">FAQ</a>
@@ -1363,11 +1613,11 @@ function closingElements() {
         <div class="cmd-palette">
             <div class="cmd-palette-input-wrap">
                 <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                <input type="text" class="cmd-palette-input" id="cmd-input" placeholder="Search pages, products, resources, and notes..." aria-autocomplete="list" autocomplete="off" spellcheck="false">
+                <input type="text" class="cmd-palette-input" id="cmd-input" placeholder="Search pages, products, resources, insights, FAQ, and process..." aria-autocomplete="list" autocomplete="off" spellcheck="false">
             </div>
             <div class="cmd-palette-results" id="cmd-results" role="listbox"></div>
             <div class="cmd-palette-footer">
-                <div class="text-xs text-zinc-500">Pages shown first. Type to go deeper into products, resources, and articles.</div>
+                <div class="text-xs text-zinc-500">Use search as the primary navigation layer. Page routes appear first, then products, resources, and articles.</div>
             </div>
         </div>
     </div>
@@ -1523,7 +1773,9 @@ function solutionFlowFor(slug) {
 
 function relatedInsightsForSolution(app, limit = 3) {
   const productIds = new Set(app.products);
-  return rawInsights.articles.filter((article) => productIds.has(article.category)).slice(0, limit);
+  const editorial = rawInsights.editorial.filter((article) => productIds.has(article.category));
+  const generated = rawInsights.generated.filter((article) => productIds.has(article.category));
+  return [...editorial, ...generated].slice(0, limit);
 }
 
 function articleAudienceFor(article) {
@@ -1979,21 +2231,77 @@ function generateHomepage() {
                         <a href="/contact/" class="btn-outline btn-lg">Share your requirement</a>
                     </div>
                 </div>
-                <div class="ui-panel ui-panel-soft">
+                <div class="ui-panel ui-panel-soft home-hero-panel-compact">
                     <div class="ui-panel-inner">
-                        <div class="ui-kicker mb-4">${glyph('globe', 'icon icon-sm')} Programme geography</div>
-                        ${renderHeroNetworkMap()}
-                        <div class="ui-map-caption">Mumbai is shown separately from India so the operating base and the sourcing anchor do not collapse into one marker. India and China remain the sourcing anchors, while final domestic or export lanes depend on the category, documentation, and destination.</div>
-                        <div class="ui-world-map-legend mt-4">
-                            <span class="ui-world-map-legend-item is-primary"><strong>Mumbai</strong><span>Operating base and commercial coordination</span></span>
-                            <span class="ui-world-map-legend-item"><strong>India</strong><span>Shown separately inside the Asia route</span></span>
-                            <span class="ui-world-map-legend-item"><strong>China</strong><span>Second sourcing anchor where relevant</span></span>
-                            <span class="ui-world-map-legend-item"><strong>Illustrative lanes</strong><span>Programme geography, not office locations</span></span>
+                        <div class="ui-kicker mb-4">${glyph('search', 'icon icon-sm')} Start from the shortest route</div>
+                        <div class="ui-metric-grid">
+                            ${renderMetricCard({ icon: 'search', label: 'Explore', value: 'Start here', note: 'Use the search-led route when you want the fastest jump into the right page.' })}
+                            ${renderMetricCard({ icon: 'compass', label: 'Solutions', value: applications.length, note: 'Application-led programme views with the product stack already attached.', animate: true })}
+                            ${renderMetricCard({ icon: 'book', label: 'Resources', value: getTotalResourceItems(), note: 'Reference decks and product documents grouped into one library.', animate: true })}
+                            ${renderMetricCard({ icon: 'spark', label: 'Insights', value: rawInsights.articles.length, note: 'Editorial and product-level technical pages built for buyer decisions.', animate: true })}
                         </div>
-                        <div class="ui-app-badges mt-4"><span>North America</span><span>South America</span><span>Europe</span><span>Africa</span><span>Asia</span><span>Oceania</span><span>Antarctica</span></div>
-                        <div class="ui-world-map-note mt-3">Illustrative programme geography only. The map is there to clarify sourcing direction and reach, not to imply offices outside Mumbai.</div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section class="max-w mx-auto px pb-20 fade-up">
+            <div class="ui-section-head mb-10">
+                <div class="ui-kicker mb-4">${glyph('globe', 'icon icon-sm')} Programme geography</div>
+                <h2 class="ui-section-title">A CLEANER VIEW OF THE ROUTE.</h2>
+                <p class="ui-section-subtitle">The map is intentionally minimal: Mumbai is shown separately from India, India and China remain the sourcing anchors, and the wider lanes stay illustrative rather than overstated.</p>
+            </div>
+            <div class="ui-world-stage">
+                <div class="ui-world-stage-map">${renderHeroNetworkMap()}</div>
+                <aside class="ui-world-stage-copy">
+                    <div class="ui-map-caption">Mumbai is the operating base. India and China remain the sourcing anchors. The wider lines simply describe programme geography and trade direction.</div>
+                    <div class="ui-world-map-legend mt-4">
+                        <span class="ui-world-map-legend-item is-primary"><strong>Mumbai</strong><span>Operating base and commercial coordination</span></span>
+                        <span class="ui-world-map-legend-item"><strong>India</strong><span>Shown separately from Mumbai inside the Asia route</span></span>
+                        <span class="ui-world-map-legend-item"><strong>China</strong><span>Second sourcing anchor where relevant</span></span>
+                        <span class="ui-world-map-legend-item"><strong>Animated lanes</strong><span>Illustrative trade direction, not office claims</span></span>
+                    </div>
+                    <div class="ui-app-badges mt-4"><span>North America</span><span>South America</span><span>Europe</span><span>Africa</span><span>Asia</span><span>Oceania</span><span>Antarctica</span></div>
+                    <div class="ui-world-map-note mt-3">Illustrative programme geography only. The map clarifies sourcing direction and reach, not physical office locations outside Mumbai.</div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="product-ecosystems" class="bg-zinc-50 border-y border-zinc-100 fade-up">
+            <div class="max-w mx-auto px py-20">
+                <div class="ui-section-head mb-12">
+                    <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Product ecosystems</div>
+                    <h2 class="ui-section-title">START WITH THE CATEGORY,<br>THEN MOVE INTO THE PROGRAMME.</h2>
+                    <p class="ui-section-subtitle">Use this preview to understand the families Moldart works across. Open Solutions for the full application views, product stacks, and next-step references.</p>
+                </div>
+                <div class="ui-library-grid ui-ecosystem-grid">${ecosystemCards}</div>
+                <div class="mt-10"><a href="/solutions/" class="btn-outline">Open all solutions</a></div>
+            </div>
+        </section>
+
+        <section class="max-w mx-auto px py-20 border-t border-zinc-100 fade-up">
+            <div class="ui-section-head mb-10">
+                <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Technical library</div>
+                <h2 class="ui-section-title">GUIDES AND REFERENCES,<br>KEPT USEFUL.</h2>
+                <p class="ui-section-subtitle">Open catalogues, finish decks, and technical notes when they help a decision, then move into direct review for the final commercial and technical fit.</p>
+            </div>
+            <div class="ui-library-grid">
+                <article class="ui-library-card">
+                    <div class="ui-kicker mb-2">${glyph('file', 'icon icon-sm')} Reference library</div>
+                    <div class="ui-list-compact mt-4">
+                        ${featuredDocs.map((item) => `<div class="ui-list-row"><div class="ui-list-copy"><div class="ui-list-title">${escHtml(item.title)}</div><div class="ui-list-meta">${escHtml(item.group)} · ${escHtml(item.desc)}</div></div><a href="${safeHref(item.url)}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(item.title)}" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`).join('')}
+                    </div>
+                    <div class="mt-8"><a href="/resources/" class="btn-outline">Open Resources</a></div>
+                </article>
+                <article class="ui-library-card">
+                    <div class="ui-kicker mb-2">${glyph('spark', 'icon icon-sm')} Technical guides & notes</div>
+                    <div class="ui-list-compact mt-4">
+                        ${featuredArticles.map((article) => `<div class="ui-list-row"><div class="ui-list-copy"><div class="ui-list-title">${escHtml(article.title)}</div><div class="ui-list-meta">${escHtml(article.categoryLabel)} · ${escHtml(article.type)}</div></div><a href="/insights/${article.slug}/" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`).join('')}
+                    </div>
+                    <div class="mt-8"><a href="/insights/" class="btn-outline">Open Insights</a></div>
+                </article>
+            </div>
+        </section>
             </div>
         </section>
 
@@ -3104,8 +3412,10 @@ function markdownToHtml(md) {
 function generateInsightsHub() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Insights' }]);
   const articles = rawInsights.articles;
-  const categories = [...new Set(articles.map((a) => a.categoryLabel))];
-  const [featuredArticle, ...otherArticles] = articles;
+  const editorialArticles = rawInsights.editorial;
+  const generatedArticles = rawInsights.generated;
+  const categories = [...new Set(editorialArticles.map((a) => a.categoryLabel))];
+  const [featuredArticle, ...otherArticles] = editorialArticles;
 
   const schemas = [
     { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/insights/#webpage', url: SITE + '/insights/', name: 'Insights — Technical Guides & Notes | Moldart', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
@@ -3125,11 +3435,21 @@ function generateInsightsHub() {
   const topicCards = categories.map((category) => {
     const categoryArticles = articles.filter((article) => article.categoryLabel === category);
     const meta = topicMeta[category] || { icon: 'book', intro: 'Guides and notes grouped by category.' };
-    const formats = [...new Set(categoryArticles.map((article) => article.type.replace('Verified ', '')))].slice(0, 3).join(' · ');
+    const formats = [...new Set(categoryArticles.map((article) => article.type.replace('Verified ', '')))].slice(0, 4).join(' · ');
     return `<article class="ui-topic-card"><div class="ui-topic-card-head"><div class="ui-kicker mb-3">${glyph(meta.icon, 'icon icon-sm')} ${escHtml(category)}</div><span class="ui-resource-count">${categoryArticles.length}</span></div><p class="ui-topic-copy">${escHtml(meta.intro)}</p><div class="ui-meta-inline mt-4"><span>${escHtml(formats)}</span></div></article>`;
   }).join('');
   const featureHtml = featuredArticle ? `<a href="/insights/${featuredArticle.slug}/" class="ui-insight-feature insight-card" data-category="${escHtml(featuredArticle.categoryLabel)}"><div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Start here</div><div class="font-display font-black text-3xl mb-3" style="line-height:1.05;">${escHtml(featuredArticle.title)}</div><p class="text-sm text-zinc-500 leading-relaxed mb-6">${escHtml(featuredArticle.excerpt)}</p><div class="ui-meta-inline"><span>${escHtml(featuredArticle.type)}</span><span>${escHtml(featuredArticle.categoryLabel)}</span><span>${escHtml(articleDateLabel(featuredArticle))}</span></div></a>` : '';
   const cardsHtml = otherArticles.map((article) => `<a href="/insights/${article.slug}/" class="ui-insight-card insight-card" data-category="${escHtml(article.categoryLabel)}"><div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} ${escHtml(article.type)}</div><div class="font-display font-bold text-xl mb-3" style="line-height:1.25;">${escHtml(article.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(article.excerpt)}</p><div class="ui-meta-inline mt-5"><span>${escHtml(article.categoryLabel)}</span><span>${escHtml(articleDateLabel(article))}</span></div></a>`).join('');
+  const technicalLibraryHtml = portfolioFamilies.map((family) => {
+    const productCards = family.products.map((productId) => {
+      const product = getProduct(productId);
+      const meta = getMeta(productId);
+      const productArticles = generatedArticles.filter((article) => article.category === productId);
+      if (!product || !meta || !productArticles.length) return '';
+      return `<article class="ui-library-card ui-technical-product-card"><div class="ui-kicker mb-3">${glyph(familyIconName(family.title), 'icon icon-sm')} ${escHtml(product.name)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(product.summary)}</p><div class="ui-app-badges mt-4">${product.specs.slice(0, 2).map((spec) => `<span>${escHtml(spec)}</span>`).join('')}</div><div class="ui-technical-link-grid mt-5">${productArticles.map((article) => `<a href="/insights/${article.slug}/" class="ui-technical-link"><strong>${escHtml(article.type)}</strong><span>${escHtml(article.title)}</span></a>`).join('')}</div><div class="mt-6"><a href="/products/${meta.slug}/" class="btn-outline">Open product sheet</a></div></article>`;
+    }).filter(Boolean).join('');
+    return `<section class="ui-technical-family-section"><div class="ui-section-head mb-8"><div class="ui-kicker mb-3">${glyph(familyIconName(family.title), 'icon icon-sm')} ${escHtml(family.title)}</div><h2 class="ui-family-title" style="font-size:1.5rem;">${escHtml(family.highlights[0])}</h2><p class="text-sm text-zinc-500 leading-relaxed mt-3">${escHtml(family.intro)}</p></div><div class="ui-library-grid ui-technical-product-grid">${productCards}</div></section>`;
+  }).join('');
 
   return headTag({
     title: 'Insights — Technical Guides & Notes | Moldart',
@@ -3144,14 +3464,14 @@ function generateInsightsHub() {
             <div class="ui-page-hero">
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('spark', 'icon icon-sm')} Technical Guides & Notes</div>
-                    <h1 class="ui-section-title">BUYER GUIDES,<br>FIELD NOTES, AND TECHNICAL CONTEXT.</h1>
-                    <p class="ui-section-subtitle">Use these guides when the next decision depends on approval logic, product fit, quality checkpoints, or procurement timing before the requirement moves into direct review.</p>
+                    <h1 class="ui-section-title">DEEPER TECHNICAL<br>GUIDANCE FOR BUYERS.</h1>
+                    <p class="ui-section-subtitle">Insights now combines editorial articles with a larger product-level technical library so buyers can move from broad approval questions into product-specific checkpoints, RFQ inputs, receiving discipline, and route comparison.</p>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-proof-grid">
-                        <article class="ui-proof-card"><div class="ui-proof-label">Coverage</div><div class="ui-proof-value">${articles.length} live guides</div><p class="ui-proof-copy">Grouped by category so the library is easier to scan from broad programme questions down to product-specific decisions.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Formats</div><div class="ui-proof-value">Guides, notes, comparisons</div><p class="ui-proof-copy">Different formats are used because a buyer checklist, a field note, and a comparison do not solve the same problem.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Best use</div><div class="ui-proof-value">Before approval or pricing</div><p class="ui-proof-copy">Use the article to sharpen the question first, then move to Contact for the final requirement-led answer.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Total coverage</div><div class="ui-proof-value">${articles.length} live pages</div><p class="ui-proof-copy">Editorial insights and a deeper technical library now sit in one place.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Editorial insights</div><div class="ui-proof-value">${editorialArticles.length}</div><p class="ui-proof-copy">Longer-form articles designed to be shareable, readable, and commercially useful.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Technical library</div><div class="ui-proof-value">${generatedArticles.length}</div><p class="ui-proof-copy">Product-level articles built around applications, quality, specifications, RFQ structure, and comparison checkpoints.</p></article>
                     </div>
                 </div>
             </div>
@@ -3161,13 +3481,22 @@ function generateInsightsHub() {
             <div class="ui-topic-grid">${topicCards}</div>
         </section>
 
-        <section class="max-w mx-auto px pb-12">
-            <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Filter the library</div>
+        <section class="max-w mx-auto px pb-12 border-b border-zinc-100">
+            <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Editorial insights</div>
             ${filterBtns}
             <div class="ui-insight-grid" id="insights-grid">
                 ${featureHtml}
                 ${cardsHtml}
             </div>
+        </section>
+
+        <section class="max-w mx-auto px py-16 fade-up">
+            <div class="ui-section-head mb-10">
+                <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Expanded technical library</div>
+                <h2 class="ui-section-title">PRODUCT-LEVEL<br>TECHNICAL PAGES.</h2>
+                <p class="ui-section-subtitle">Use this section when the question is no longer general and the buyer needs tighter product-level value: where the route fits, what quality teams should check, what should appear in the RFQ, and which specification points matter before dispatch.</p>
+            </div>
+            <div class="ui-technical-family-stack">${technicalLibraryHtml}</div>
         </section>
         ${ctaBlock('NEED SPECIFIC<br>GUIDANCE?', 'Use a guide as the starting point, then send the actual requirement for a product-aligned review.', 'Share your requirement', '/contact/', 'Open Resources', '/resources/')}
     </main>
