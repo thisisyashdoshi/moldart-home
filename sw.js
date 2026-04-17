@@ -1,9 +1,9 @@
-const CACHE = 'moldart-v2026.22';
+const CACHE = 'moldart-v2026.29';
 const PRECACHE = [
   '/',
-  '/styles.css?v=2026.22',
-  '/pages.css?v=2026.22',
-  '/main.js?v=2026.22',
+  '/styles.css?v=2026.29',
+  '/pages.css?v=2026.29',
+  '/main.js?v=2026.29',
   '/fonts/montserrat-latin.woff2',
   '/fonts/dm-sans-latin.woff2',
   '/offline.html'
@@ -31,6 +31,7 @@ self.addEventListener('fetch', (e) => {
   if (url.origin !== self.location.origin) return;
 
   const isStatic = /\.(css|js|woff2|webp|avif|png|jpg|jpeg|svg|ico)(\?.*)?$/.test(url.pathname);
+  const isDataJson = url.pathname.startsWith('/data/') && url.pathname.endsWith('.json');
 
   if (isStatic) {
     e.respondWith(
@@ -39,6 +40,17 @@ self.addEventListener('fetch', (e) => {
         caches.open(CACHE).then((cache) => cache.put(request, clone));
         return res;
       }))
+    );
+    return;
+  }
+
+  if (isDataJson) {
+    e.respondWith(
+      fetch(request).then((res) => {
+        const clone = res.clone();
+        caches.open(CACHE).then((cache) => cache.put(request, clone));
+        return res;
+      }).catch(() => caches.match(request))
     );
     return;
   }
