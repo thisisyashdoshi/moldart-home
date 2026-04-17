@@ -13,7 +13,7 @@ const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
 const WHATSAPP_PRIMARY = { number: '917208088788', display: '+91 7208088788' };
 const WHATSAPP_SECONDARY = { number: '917208188788', display: '+91 7208188788' };
 const BRAND_LINE = 'Wood and steel supply programmes from Mumbai, aligned to the requirement.';
-const NAV_SEARCH_META = 'Solutions • Product sheets • Resources • Guides • Contact • About';
+const NAV_SEARCH_META = 'Pages • Resources • Guides • FAQ • Process';
 const SUPPLY_FLOW_ITEMS = [
   { step: '01', title: 'Source', detail: 'Start from the actual requirement, then align the likely supply route instead of quoting a generic equivalent.' },
   { step: '02', title: 'Verify', detail: 'Use reference decks and samples to validate fit before volume or price becomes the only conversation.' },
@@ -73,7 +73,10 @@ const rawProducts = JSON.parse(fs.readFileSync(path.join(WORK, 'data/product-dir
 const rawFaq = JSON.parse(fs.readFileSync(path.join(WORK, 'data/faq.json'), 'utf8'));
 const rawInsightsSource = JSON.parse(fs.readFileSync(path.join(WORK, 'data/insights.json'), 'utf8'));
 const rawInsights = { ...rawInsightsSource, articles: normalizeInsightDates(rawInsightsSource.articles) };
-const getTotalResourceItems = () => resourceGroups.reduce((total, group) => total + group.items.length, 0);
+const getAllResourceItems = () => resourceGroups.flatMap((group) => group.items.map((item) => ({ ...item, group: group.title })));
+const getTotalResourceItems = () => getAllResourceItems().length;
+const getInstantResourceItems = () => getAllResourceItems().filter((item) => item.access !== 'request');
+const getRequestResourceItems = () => getAllResourceItems().filter((item) => item.access === 'request');
 
 // ============================================================
 // EXTENDED PRODUCT METADATA
@@ -90,7 +93,8 @@ const productMeta = {
     relatedApps: ['lamination', 'furniture'],
     downloads: [
       { title: 'Press Plate Standard Collection', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' },
-      { title: 'Press Plates for Shuttering Plywood', url: '/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf' }
+      { title: 'Press Plates for Shuttering Plywood', url: '/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf' },
+      { title: 'Press Plate Texture Collection', url: '/downloads/PRESS PLATE - TEXTURE COLLECTION.pdf', access: 'request', note: 'Large reference deck shared on request.' }
     ]
   },
   'press-pads': {
@@ -116,7 +120,8 @@ const productMeta = {
     relatedProducts: ['decor-paper', 'press-plates'],
     relatedApps: ['lamination'],
     downloads: [
-      { title: 'Moldart Company Profile', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
+      { title: 'Moldart Company Profile', url: '/downloads/INTRODUCTION TO MOLDART.pdf' },
+      { title: 'Gravure Cylinder & Printed Decor Paper Deck', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf', access: 'request', note: 'Large reference deck shared on request.' }
     ]
   },
   'decor-paper': {
@@ -130,7 +135,8 @@ const productMeta = {
     relatedApps: ['lamination', 'furniture'],
     downloads: [
       { title: 'Moldart Company Profile', url: '/downloads/INTRODUCTION TO MOLDART.pdf' },
-      { title: 'HPL Overlay Collection OL-01', url: '/downloads/HPL - OL - 1.pdf' }
+      { title: 'HPL Overlay Collection OL-01', url: '/downloads/HPL - OL - 1.pdf' },
+      { title: 'Gravure Cylinder & Printed Decor Paper Deck', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf', access: 'request', note: 'Large reference deck shared on request.' }
     ]
   },
   'plywood': {
@@ -223,7 +229,8 @@ const productMeta = {
     relatedApps: ['furniture'],
     downloads: [
       { title: 'Furniture Program Catalog 01', url: '/downloads/WOOD - FURNITURE - 1.pdf' },
-      { title: 'Furniture Program Catalog 02', url: '/downloads/WOOD - FURNITURE - 2.pdf' }
+      { title: 'Furniture Program Catalog 02', url: '/downloads/WOOD - FURNITURE - 2.pdf' },
+      { title: 'Furniture Program Catalog 03', url: '/downloads/WOOD - FURNITURE - 3.pdf', access: 'request', note: 'Large reference deck shared on request.' }
     ]
   },
   'custom-furniture': {
@@ -237,7 +244,8 @@ const productMeta = {
     relatedApps: ['furniture', 'architecture'],
     downloads: [
       { title: 'Furniture Program Catalog 01', url: '/downloads/WOOD - FURNITURE - 1.pdf' },
-      { title: 'Furniture Program Catalog 02', url: '/downloads/WOOD - FURNITURE - 2.pdf' }
+      { title: 'Furniture Program Catalog 02', url: '/downloads/WOOD - FURNITURE - 2.pdf' },
+      { title: 'Furniture Program Catalog 03', url: '/downloads/WOOD - FURNITURE - 3.pdf', access: 'request', note: 'Large reference deck shared on request.' }
     ]
   },
   'decorative-panels': {
@@ -509,44 +517,55 @@ const resourceGroups = [
   {
     title: 'Company Overview',
     items: [
-      { title: 'Moldart Company Profile', desc: 'Overview of operating model, sectors served, and product portfolio.', url: '/downloads/INTRODUCTION TO MOLDART.pdf' }
+      { title: 'Moldart Company Profile', desc: 'Overview of operating model, sectors served, and product portfolio.', url: '/downloads/INTRODUCTION TO MOLDART.pdf', access: 'instant' }
     ]
   },
   {
     title: 'Press Plates & Tooling',
     items: [
-      { title: 'Press Plate Standard Collection', desc: 'Standard lamination press plate patterns and technical references.', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf' },
-      { title: 'Press Plates for Shuttering Plywood', desc: 'Press plate collection aligned to shuttering plywood production.', url: '/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf' }
+      { title: 'Press Plate Standard Collection', desc: 'Standard lamination press plate patterns and technical references.', url: '/downloads/PRESS PLATE - BASIC COLLECTION.pdf', access: 'instant' },
+      { title: 'Press Plates for Shuttering Plywood', desc: 'Press plate collection aligned to shuttering plywood production.', url: '/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf', access: 'instant' },
+      { title: 'Press Plate Texture Collection', desc: 'Extended texture deck for surface-led approval work and pattern comparison.', url: '/downloads/PRESS PLATE - TEXTURE COLLECTION.pdf', access: 'request', note: 'Large reference deck shared on request.' }
     ]
   },
   {
     title: 'Decor & Lamination',
     items: [
-      { title: 'HPL Overlay Collection OL-01', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 1.pdf' },
-      { title: 'LPL Decorative Collection GB-02', desc: 'Low-pressure laminate decor reference set.', url: '/downloads/LPL - GB - 02.pdf' },
-      { title: 'LPL PET Board Collection', desc: 'PET-faced decorative board reference deck.', url: '/downloads/LPL - PET BOARD.pdf' },
-      { title: 'HPL Overlay Collection OL-02', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 2.pdf' },
-      { title: 'HPL Overlay Collection OL-03', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 3.pdf' },
+      { title: 'HPL Overlay Collection OL-01', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 1.pdf', access: 'instant' },
+      { title: 'HPL Overlay Collection OL-02', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 2.pdf', access: 'instant' },
+      { title: 'HPL Overlay Collection OL-03', desc: 'High-pressure laminate overlay reference set.', url: '/downloads/HPL - OL - 3.pdf', access: 'instant' },
+      { title: 'HPL Overlay Collection OL-04', desc: 'Expanded overlay set for deeper texture and finish matching.', url: '/downloads/HPL - OL - 4.pdf', access: 'request', note: 'Large reference deck shared on request.' },
+      { title: 'LPL Decorative Collection GB-01', desc: 'Low-pressure laminate decor reference set for broad visual matching.', url: '/downloads/LPL - GB - 01.pdf', access: 'request', note: 'Large reference deck shared on request.' },
+      { title: 'LPL Decorative Collection GB-02', desc: 'Low-pressure laminate decor reference set.', url: '/downloads/LPL - GB - 02.pdf', access: 'instant' },
+      { title: 'LPL PET Board Collection', desc: 'PET-faced decorative board reference deck.', url: '/downloads/LPL - PET BOARD.pdf', access: 'instant' },
+      { title: 'LPL Specialty Decorative Panels', desc: 'Specialty decorative panel deck for broader LPL finish programmes.', url: '/downloads/LPL - SPECIALTY DECORATIVE PANELS.pdf', access: 'request', note: 'Large reference deck shared on request.' }
     ]
   },
   {
-    title: 'Wood & Flooring Products',
+    title: 'Decor Paper & Gravure',
     items: [
-      { title: 'Engineered Wood Flooring Catalog', desc: 'Flooring systems, constructions, and coordinated accessories.', url: '/downloads/WOOD - FLOORING.pdf' },
-      { title: 'Engineered Wood Doors Catalog', desc: 'Wood door references and build options.', url: '/downloads/WOOD - DOOR.pdf' },
-      { title: 'Furniture Program Catalog 01', desc: 'Ready-made and modular furniture references.', url: '/downloads/WOOD - FURNITURE - 1.pdf' },
-      { title: 'Furniture Program Catalog 02', desc: 'Furniture assemblies, components, and range extension.', url: '/downloads/WOOD - FURNITURE - 2.pdf' },
+      { title: 'Gravure Cylinder & Printed Decor Paper Deck', desc: 'Combined reference deck for gravure cylinders and decor paper programmes.', url: '/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf', access: 'request', note: 'Large reference deck shared on request.' }
+    ]
+  },
+  {
+    title: 'Wood, Flooring & Furniture',
+    items: [
+      { title: 'Engineered Wood Flooring Catalog', desc: 'Flooring systems, constructions, and coordinated accessories.', url: '/downloads/WOOD - FLOORING.pdf', access: 'instant' },
+      { title: 'Engineered Wood Doors Catalog', desc: 'Wood door references and build options.', url: '/downloads/WOOD - DOOR.pdf', access: 'instant' },
+      { title: 'Furniture Program Catalog 01', desc: 'Ready-made and modular furniture references.', url: '/downloads/WOOD - FURNITURE - 1.pdf', access: 'instant' },
+      { title: 'Furniture Program Catalog 02', desc: 'Furniture assemblies, components, and range extension.', url: '/downloads/WOOD - FURNITURE - 2.pdf', access: 'instant' },
+      { title: 'Furniture Program Catalog 03', desc: 'Expanded furniture deck covering additional ranges and layouts.', url: '/downloads/WOOD - FURNITURE - 3.pdf', access: 'request', note: 'Large reference deck shared on request.' }
     ]
   },
   {
     title: 'Decorative Stainless Steel',
     items: [
-      { title: 'Decorative SS Antique Finishes', desc: 'Antique-finish stainless steel reference sheet.', url: '/downloads/ANTIQUE.pdf' },
-      { title: 'Decorative SS Stamped Finishes', desc: 'Stamped surface treatments and pattern references.', url: '/downloads/STAMPED.pdf' },
-      { title: 'Decorative SS Heat-Printed Finishes', desc: 'Heat-printed decorative stainless steel references.', url: '/downloads/HEAT PRINTED.pdf' },
-      { title: 'Decorative SS Mosaic Finishes', desc: 'Mosaic surface references for premium interiors.', url: '/downloads/MOSAIC.pdf' },
-      { title: 'Stainless Steel Profiles Catalog', desc: 'Trim, inlay, and architectural profile references.', url: '/downloads/PROFILE.pdf' },
-      { title: 'Stainless Steel Divider Systems', desc: 'Divider and partition references for interior applications.', url: '/downloads/DIVIDER.pdf' }
+      { title: 'Decorative SS Antique Finishes', desc: 'Antique-finish stainless steel reference sheet.', url: '/downloads/ANTIQUE.pdf', access: 'instant' },
+      { title: 'Decorative SS Stamped Finishes', desc: 'Stamped surface treatments and pattern references.', url: '/downloads/STAMPED.pdf', access: 'instant' },
+      { title: 'Decorative SS Heat-Printed Finishes', desc: 'Heat-printed decorative stainless steel references.', url: '/downloads/HEAT PRINTED.pdf', access: 'instant' },
+      { title: 'Decorative SS Mosaic Finishes', desc: 'Mosaic surface references for premium interiors.', url: '/downloads/MOSAIC.pdf', access: 'instant' },
+      { title: 'Stainless Steel Profiles Catalog', desc: 'Trim, inlay, and architectural profile references.', url: '/downloads/PROFILE.pdf', access: 'instant' },
+      { title: 'Stainless Steel Divider Systems', desc: 'Divider and partition references for interior applications.', url: '/downloads/DIVIDER.pdf', access: 'instant' }
     ]
   }
 ];
@@ -663,11 +682,13 @@ const companyMilestones = [
 
 const primaryPages = [
   { title: 'Solutions', url: '/solutions/', meta: 'Combined systems, product stacks, and product sheets', keywords: ['solutions', 'systems', 'product stack'] },
+  { title: 'Explore', url: '/explore/', meta: 'Search the full portfolio', keywords: ['explore', 'search', 'product sheets'] },
   { title: 'Resources', url: '/resources/', meta: 'Catalogues, decks, and references', keywords: ['resources', 'downloads', 'catalogs'] },
   { title: 'Insights', url: '/insights/', meta: 'Technical guides and notes', keywords: ['insights', 'guides', 'notes'] },
-  { title: 'Contact', url: '/contact/', meta: 'Inquiry, WhatsApp, and meetings', keywords: ['contact', 'whatsapp', 'email'] },
+  { title: 'FAQ', url: '/faq/', meta: 'Quick answers on products, documents, timing, and first contact', keywords: ['faq', 'questions', 'answers'] },
+  { title: 'Process', url: '/process/', meta: 'How the enquiry moves from brief to delivery', keywords: ['process', 'workflow', 'delivery'] },
   { title: 'About', url: '/about/', meta: 'Company, team, and sourcing model', keywords: ['about', 'company', 'leadership'] },
-  { title: 'Explore', url: '/explore/', meta: 'Search the full portfolio', keywords: ['explore', 'search', 'product sheets'] }
+  { title: 'Contact', url: '/contact/', meta: 'Inquiry, WhatsApp, and meetings', keywords: ['contact', 'whatsapp', 'email'] }
 ];
 
 const familyVisuals = {
@@ -727,6 +748,22 @@ function slugify(value) {
 
 function safeHref(value = '') {
   return encodeURI(value);
+}
+
+function isRequestOnlyResource(item = {}) {
+  return item.access === 'request';
+}
+
+function requestDocumentHref(item = {}) {
+  const title = item.title || 'Document request';
+  const message = item.note
+    ? `Please share the resource: ${title}. ${item.note}`
+    : `Please share the resource: ${title}.`;
+  return `/contact/?product=${encodeURIComponent(title)}&focus=document-request&message=${encodeURIComponent(message)}`;
+}
+
+function resourceHref(item = {}) {
+  return isRequestOnlyResource(item) ? requestDocumentHref(item) : safeHref(item.url || '');
 }
 
 function glyph(name, className = 'icon') {
@@ -823,11 +860,13 @@ function getSearchEntries() {
   const pageIconMap = {
     Home: 'home',
     Solutions: 'compass',
+    Explore: 'search',
     Resources: 'book',
     Insights: 'spark',
-    Contact: 'message',
+    FAQ: 'message',
+    Process: 'route',
     About: 'building',
-    Explore: 'search'
+    Contact: 'message'
   };
 
   const productIcon = (product) => {
@@ -887,10 +926,11 @@ function getSearchEntries() {
   const resourceEntries = resourceGroups.flatMap((group) => group.items.map((item) => ({
     group: 'Resource',
     title: item.title,
-    url: safeHref(item.url),
-    meta: group.title,
-    keywords: [group.title, item.desc, 'download', 'catalog', 'pdf'],
-    icon: 'file'
+    url: resourceHref(item),
+    meta: `${group.title} · ${isRequestOnlyResource(item) ? 'Request file' : 'PDF'}`,
+    keywords: [group.title, item.desc, item.note || '', isRequestOnlyResource(item) ? 'request file' : 'download', 'catalog', 'pdf'],
+    icon: 'file',
+    downloadable: !isRequestOnlyResource(item)
   })));
 
   const insightEntries = rawInsights.articles.map((article) => ({
@@ -916,80 +956,102 @@ function getSearchEntries() {
 
 function renderHeroNetworkMap() {
   return `<div class="hero-network-card hero-world-map" aria-label="Illustrative global programme map">
-      <svg class="hero-network-svg" viewBox="0 0 760 500" role="img" aria-label="Illustrative world map showing Mumbai coordination, sourcing from India and China, and representative trade lanes across all continents">
+      <svg class="hero-network-svg" viewBox="0 0 820 520" role="img" aria-label="Illustrative world map showing Mumbai separately from India, with India and China as sourcing anchors and representative trade lanes across all continents">
           <defs>
               <linearGradient id="routeFade" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#18181b" stop-opacity="0.92"></stop>
+                  <stop offset="0%" stop-color="#18181b" stop-opacity="0.94"></stop>
                   <stop offset="100%" stop-color="#a1a1aa" stop-opacity="0.18"></stop>
               </linearGradient>
               <linearGradient id="routeSoft" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#52525b" stop-opacity="0.42"></stop>
+                  <stop offset="0%" stop-color="#52525b" stop-opacity="0.4"></stop>
                   <stop offset="100%" stop-color="#d4d4d8" stop-opacity="0.08"></stop>
               </linearGradient>
+              <linearGradient id="indiaFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f5f5f5"></stop>
+                  <stop offset="100%" stop-color="#e4e4e7"></stop>
+              </linearGradient>
           </defs>
-          <rect x="0" y="0" width="760" height="500" rx="30" fill="#fafafa"></rect>
+          <rect x="0" y="0" width="820" height="520" rx="32" fill="#fafafa"></rect>
           <g class="hero-world-grid">
-              <path d="M34 96H726"></path>
-              <path d="M34 176H726"></path>
-              <path d="M34 256H726"></path>
-              <path d="M34 336H726"></path>
-              <path d="M34 416H726"></path>
-              <path d="M118 40V452"></path>
-              <path d="M214 40V452"></path>
-              <path d="M310 40V452"></path>
-              <path d="M406 40V452"></path>
-              <path d="M502 40V452"></path>
-              <path d="M598 40V452"></path>
+              <path d="M36 94H784"></path>
+              <path d="M36 174H784"></path>
+              <path d="M36 254H784"></path>
+              <path d="M36 334H784"></path>
+              <path d="M36 414H784"></path>
+              <path d="M122 42V472"></path>
+              <path d="M222 42V472"></path>
+              <path d="M322 42V472"></path>
+              <path d="M422 42V472"></path>
+              <path d="M522 42V472"></path>
+              <path d="M622 42V472"></path>
+              <path d="M722 42V472"></path>
           </g>
           <g class="hero-world-continents">
-              <path d="M86 118c21-28 54-45 92-48 21-2 41 4 56 16 12 10 19 24 17 38-2 13-12 24-29 33-14 7-27 18-38 31-10 11-23 16-39 16-29 1-54-8-73-27-17-18-15-37 14-59z"></path>
-              <path d="M188 232c19 8 34 23 42 45 8 21 7 42-2 61-10 22-22 43-36 62-8 11-19 16-30 13-10-4-15-15-15-33 0-19 5-38 13-58 5-12 8-25 9-39 2-15 6-28 19-51z"></path>
-              <path d="M344 110c22-14 49-19 74-14 12 2 23 8 30 16 7 9 7 18 1 26-6 9-17 14-32 16-15 2-28 8-36 18-7 7-15 11-25 11-16 0-28-5-38-16-10-10-13-21-10-31 3-11 13-20 36-26z"></path>
-              <path d="M386 208c22 3 39 12 52 27 15 18 24 38 27 63 3 19 0 36-10 50-10 16-24 24-41 23-18-1-33-10-44-25-12-16-18-37-19-63-1-29 4-49 15-61 6-8 12-12 20-14z"></path>
-              <path d="M468 108c27-20 59-31 98-31 27-2 51 3 72 15 26 14 38 33 35 56-2 19-17 34-43 41-23 7-43 16-58 30-16 14-35 21-56 21-25 0-46-8-59-24-14-16-19-36-14-61 5-20 15-34 25-47z"></path>
-              <path d="M618 282c18 2 34 8 46 20 13 13 20 29 23 48 2 13-1 24-9 34-10 9-22 12-37 9-16-4-29-13-39-27-10-14-15-28-13-43 2-14 8-26 19-35 4-4 8-6 10-6z"></path>
-              <path d="M246 416c56-18 118-27 184-27 67 0 131 9 192 27 12 4 18 11 18 20 0 11-9 17-25 17H270c-17 0-25-6-25-17 0-9 5-16 16-20z"></path>
+              <path d="M90 132c24-30 58-47 98-50 23-2 43 4 58 16 13 10 20 24 19 39-2 14-12 26-30 35-15 8-29 19-40 33-10 12-24 17-41 17-31 1-57-9-78-29-18-18-16-38 14-61z"></path>
+              <path d="M198 250c20 9 35 24 43 46 8 22 7 43-2 63-10 23-23 45-37 64-8 11-19 16-31 13-10-4-15-15-15-34 0-19 5-39 13-59 5-12 8-26 9-40 2-15 7-29 20-53z"></path>
+              <path d="M350 118c24-15 52-20 78-15 12 2 24 8 31 17 7 9 7 18 1 27-6 9-18 15-34 17-16 2-28 9-37 19-7 8-16 12-26 12-16 0-30-6-40-17s-13-22-10-33c4-12 15-21 37-27z"></path>
+              <path d="M398 220c22 3 41 13 55 29 15 18 24 39 28 65 3 19 0 37-10 52-11 17-25 25-43 24-19-1-34-10-46-26-12-17-18-38-19-65-1-29 4-50 16-62 6-8 13-13 19-15z"></path>
+              <path d="M476 114c30-21 64-32 106-33 28-1 54 3 77 15 27 14 40 34 39 58-1 17-10 30-28 39-20 10-39 17-55 31-12 10-20 22-24 35-4 15-13 24-28 30-20 7-38 4-55-8-16-12-26-28-29-47-4-24 1-46 15-66 13-18 20-33 26-41 2-4 7-9 12-13z"></path>
+              <path d="M664 296c19 3 35 10 48 22 14 14 22 31 24 51 1 13-2 25-10 34-10 10-23 13-39 10-16-4-30-13-40-28-11-14-16-29-14-45 2-15 9-27 21-37 4-4 7-6 10-7z"></path>
+              <path d="M258 430c60-18 126-27 196-27 71 0 138 9 202 27 13 4 20 11 20 21 0 12-10 18-28 18H282c-19 0-28-6-28-18 0-9 6-16 18-21z"></path>
+          </g>
+          <g class="hero-world-india-detail">
+              <path class="hero-india-shape" d="M523 200c9 6 15 15 18 28 2 9 8 17 18 24 2 2 3 6 0 10-7 7-14 14-21 22-7 8-10 17-9 28 0 8-4 12-10 10-7-2-13-8-18-18-5-10-10-18-16-24-5-4-6-10-3-16 4-6 9-12 14-20 5-8 8-16 10-25 2-10 8-16 17-19z"></path>
+              <path class="hero-world-focus-route" d="M507 247C548 287 590 324 637 362"></path>
           </g>
           <g class="hero-world-routes">
-              <path class="hero-world-route hero-world-route-primary" d="M472 222C455 190 428 160 388 134"></path>
-              <path class="hero-world-route hero-world-route-primary" d="M472 222C458 246 439 269 414 286"></path>
-              <path class="hero-world-route hero-world-route-primary" d="M472 222C504 214 545 205 586 196"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M472 222C520 238 586 270 646 314"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M472 222C395 182 296 154 142 142"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M472 222C356 242 270 276 188 314"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M472 222C444 286 419 348 388 412"></path>
+              <path class="hero-world-route hero-world-route-primary" d="M505 247C505 238 510 230 520 223"></path>
+              <path class="hero-world-route hero-world-route-primary" d="M505 247C532 236 567 223 610 209"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M505 247C434 204 340 169 146 152"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M505 247C397 244 301 272 203 330"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M505 247C465 213 429 180 390 153"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M505 247C470 270 448 296 430 319"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M505 247C574 258 637 289 694 327"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M505 247C470 316 449 384 421 431"></path>
           </g>
           <g class="hero-world-nodes">
-              <circle class="hero-world-node hero-world-node-primary" cx="472" cy="222" r="10"></circle>
-              <circle class="hero-world-node hero-world-node-source" cx="458" cy="244" r="8"></circle>
-              <circle class="hero-world-node hero-world-node-source" cx="586" cy="196" r="8"></circle>
-              <circle class="hero-world-node" cx="142" cy="142" r="6"></circle>
-              <circle class="hero-world-node" cx="188" cy="314" r="6"></circle>
-              <circle class="hero-world-node" cx="388" cy="134" r="6"></circle>
-              <circle class="hero-world-node" cx="414" cy="286" r="6"></circle>
-              <circle class="hero-world-node" cx="646" cy="314" r="6"></circle>
-              <circle class="hero-world-node" cx="388" cy="412" r="6"></circle>
+              <circle class="hero-world-node hero-world-node-primary" cx="505" cy="247" r="9"></circle>
+              <circle class="hero-world-node hero-world-node-source" cx="520" cy="223" r="7"></circle>
+              <circle class="hero-world-node hero-world-node-source" cx="610" cy="209" r="7"></circle>
+              <circle class="hero-world-node" cx="146" cy="152" r="6"></circle>
+              <circle class="hero-world-node" cx="203" cy="330" r="6"></circle>
+              <circle class="hero-world-node" cx="390" cy="153" r="6"></circle>
+              <circle class="hero-world-node" cx="430" cy="319" r="6"></circle>
+              <circle class="hero-world-node" cx="694" cy="327" r="6"></circle>
+              <circle class="hero-world-node" cx="421" cy="431" r="6"></circle>
           </g>
           <g class="hero-label-group">
-              <text x="472" y="201" class="hero-node-label hero-node-label-primary">Mumbai</text>
-              <text x="472" y="185" class="hero-node-meta">Coordination</text>
-              <text x="432" y="274" class="hero-node-label">India</text>
-              <text x="432" y="258" class="hero-node-meta">Sourcing anchor</text>
-              <text x="620" y="182" class="hero-node-label">China</text>
-              <text x="620" y="166" class="hero-node-meta">Sourcing anchor</text>
+              <path class="hero-node-pointer" d="M505 230l-16-20"></path>
+              <text x="466" y="200" class="hero-node-label hero-node-label-primary">Mumbai</text>
+              <text x="466" y="184" class="hero-node-meta">Operating base</text>
+              <path class="hero-node-pointer" d="M520 223l18-18"></path>
+              <text x="566" y="194" class="hero-node-label">India</text>
+              <text x="566" y="178" class="hero-node-meta">Sourcing anchor</text>
+              <path class="hero-node-pointer" d="M610 209l18-14"></path>
+              <text x="668" y="188" class="hero-node-label">China</text>
+              <text x="668" y="172" class="hero-node-meta">Sourcing anchor</text>
           </g>
           <g class="hero-world-region-labels">
-              <text x="104" y="108" class="hero-world-region-label">North America</text>
-              <text x="154" y="370" class="hero-world-region-label">South America</text>
-              <text x="352" y="96" class="hero-world-region-label">Europe</text>
-              <text x="370" y="344" class="hero-world-region-label">Africa</text>
-              <text x="536" y="96" class="hero-world-region-label">Asia</text>
-              <text x="608" y="352" class="hero-world-region-label">Oceania</text>
-              <text x="344" y="476" class="hero-world-region-label">Antarctica</text>
+              <text x="108" y="118" class="hero-world-region-label">North America</text>
+              <text x="164" y="388" class="hero-world-region-label">South America</text>
+              <text x="356" y="102" class="hero-world-region-label">Europe</text>
+              <text x="382" y="360" class="hero-world-region-label">Africa</text>
+              <text x="546" y="96" class="hero-world-region-label">Asia</text>
+              <text x="648" y="370" class="hero-world-region-label">Oceania</text>
+              <text x="360" y="494" class="hero-world-region-label">Antarctica</text>
+          </g>
+          <g class="hero-world-focus" transform="translate(610 342)">
+              <rect x="0" y="0" width="156" height="108" rx="18" class="hero-world-focus-card"></rect>
+              <text x="16" y="22" class="hero-world-small hero-world-small-strong">India focus</text>
+              <text x="16" y="38" class="hero-world-small">Mumbai is shown separately for clearer geography.</text>
+              <path class="hero-india-inset-outline" d="M64 28c8 5 13 12 15 22 2 7 7 13 14 18 2 2 2 5 0 8-5 5-11 10-16 16-6 6-8 13-7 21 1 6-2 9-7 8-5-2-10-6-14-13-4-8-8-13-13-18-4-3-4-7-2-11 3-5 7-10 11-15 4-6 6-12 8-19 2-8 5-13 11-17z"></path>
+              <circle class="hero-world-node hero-world-node-primary" cx="73" cy="63" r="5"></circle>
+              <text x="88" y="60" class="hero-focus-label">Mumbai</text>
+              <text x="88" y="74" class="hero-focus-note">West-coast operating base</text>
+              <text x="18" y="92" class="hero-focus-note">India stays distinct from the broader Asia outline.</text>
           </g>
           <g class="hero-world-callouts">
-              <text x="54" y="452" class="hero-world-small">All continents are shown for geographic clarity. Trade lanes remain illustrative.</text>
-              <text x="416" y="64" class="hero-world-small hero-world-small-strong">India and China stay the sourcing anchors; Mumbai remains the operating base.</text>
+              <text x="54" y="468" class="hero-world-small">All continents are shown for geographic clarity. Flow lines remain illustrative.</text>
           </g>
       </svg>
   </div>`;
@@ -1192,8 +1254,11 @@ function headTag({ title, desc, canonical, ogType = 'website', ogImage = '/image
 function nav(route) {
   const navItems = [
     { href: '/solutions/', label: 'Solutions', route: 'solutions' },
+    { href: '/explore/', label: 'Explore', route: 'explore' },
     { href: '/resources/', label: 'Resources', route: 'resources' },
     { href: '/insights/', label: 'Insights', route: 'insights' },
+    { href: '/faq/', label: 'FAQ', route: 'faq' },
+    { href: '/process/', label: 'Process', route: 'process' },
     { href: '/about/', label: 'About', route: 'about' },
     { href: '/contact/', label: 'Contact', route: 'contact' }
   ];
@@ -1250,12 +1315,13 @@ function footer() {
                     <div class="ui-footer-nav">
                         <a href="/" class="ui-footer-link">Home</a>
                         <a href="/solutions/" class="ui-footer-link">Solutions</a>
+                        <a href="/explore/" class="ui-footer-link">Explore</a>
                         <a href="/resources/" class="ui-footer-link">Resources</a>
                         <a href="/insights/" class="ui-footer-link">Insights</a>
-                        <a href="/about/" class="ui-footer-link">About</a>
-                        <a href="/contact/" class="ui-footer-link">Contact</a>
                         <a href="/faq/" class="ui-footer-link">FAQ</a>
                         <a href="/process/" class="ui-footer-link">Process</a>
+                        <a href="/about/" class="ui-footer-link">About</a>
+                        <a href="/contact/" class="ui-footer-link">Contact</a>
                     </div>
                 </div>
                 <div class="ui-footer-card">
@@ -1361,6 +1427,19 @@ function breadcrumb(items) {
 }
 
 function downloadLink(dl) {
+  if (isRequestOnlyResource(dl)) {
+    const href = requestDocumentHref(dl);
+    return `<a href="${href}" class="flex items-center justify-between p-3 rounded-lg transition-colors group resource-download-link resource-download-link-request" style="border:1px solid #f4f4f5;">
+      <div class="flex items-center gap-3">
+          <svg class="icon text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          <span>
+              <span class="text-sm font-medium text-zinc-700 block">${escHtml(dl.title)}</span>
+              <span class="text-xs text-zinc-500 block">${escHtml(dl.note || 'Shared on request')}</span>
+          </span>
+      </div>
+      <span class="resource-download-badge">Request</span>
+  </a>`;
+  }
   const href = safeHref(dl.url);
   return `<a href="${href}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(dl.title)}" class="flex items-center justify-between p-3 rounded-lg transition-colors group resource-download-link" style="border:1px solid #f4f4f5;">
     <div class="flex items-center gap-3">
@@ -1548,11 +1627,109 @@ function extractComparisonOptions(title, product) {
   return product.specs.slice(0, 3).map((spec) => spec.split(':')[0].trim()).filter(Boolean);
 }
 
-function renderInsightArticleBody(article) {
-  const authoredContent = String(article.content || '').trim();
-  if (authoredContent) return markdownToHtml(authoredContent);
+function articleDecisionLens(article) {
+  if (article.type.includes('Comparative')) return 'Compare like-for-like before choosing a route.';
+  if (article.type.includes('Quality')) return 'Inspect the approval-critical points before release.';
+  if (article.type.includes('Buyer')) return 'Lock the RFQ inputs before asking for a quote.';
+  if (article.type.includes('Technical')) return 'Read the specification against the actual process.';
+  if (article.type.includes('Field')) return 'Use operating symptoms, not brochure language, to diagnose the issue.';
+  return 'Match the product route to the real application before the commercial step.';
+}
 
+function articleChecklistLabel(article) {
+  if (article.type.includes('Quality')) return 'Inspection checklist';
+  if (article.type.includes('Comparative')) return 'Comparison checklist';
+  if (article.type.includes('Buyer')) return 'RFQ checklist';
+  if (article.type.includes('Technical')) return 'Technical review checklist';
+  return 'Approval checklist';
+}
+
+function articleChecklistItems(article, context = null) {
+  const product = context?.product;
+  const base = [
+    'Confirm the actual application, finish expectation, quantity, and timing before comparing prices.',
+    'Keep the approved sample, drawing, or accepted technical record tied to the order.',
+    'Check how the receiving team will inspect the material before production or installation release.'
+  ];
+  if (article.type.includes('Quality')) base.unshift('Define the acceptance points before the goods reach receiving.');
+  if (article.type.includes('Comparative')) base.unshift('Match both options against the same end use, tolerance, and approval benchmark.');
+  if (article.type.includes('Technical')) base.unshift('Treat the process condition as part of the specification, not as a separate discussion.');
+  if (article.type.includes('Buyer')) base.unshift('Write down the non-negotiables so the first quote is not built on assumptions.');
+  if (product?.specs?.length) base.push(`Use ${stripMarkdownInline(product.specs[0])} as one of the first comparison checkpoints.`);
+  return base.slice(0, 4);
+}
+
+function articleRiskItems(article, context = null) {
+  const product = context?.product;
+  const risks = [
+    'Generic equivalents replacing a product-specific route too early.',
+    'Weak reference control between the approved sample and the actual supply.',
+    'Late-stage corrections caused by missing receiving or dispatch discipline.'
+  ];
+  if (article.category === 'industrial-press-plates') risks.unshift('Flatness, parallelism, or surface condition being reduced to grade-only discussion.');
+  if (article.category === 'decorative-panels' || article.category === 'ss-profiles') risks.unshift('Visual approval happening without a real sample or environment context.');
+  if (article.category === 'press-pads' || article.category === 'press-plates') risks.unshift('Process drift being blamed on one layer when the stack should be reviewed together.');
+  if (product?.applications?.length) risks.push(`The route being judged outside its actual use case, such as ${product.applications[0]}.`);
+  return risks.slice(0, 4);
+}
+
+function renderInsightSignalStrip(article, context) {
+  const product = context?.product;
+  const meta = context?.meta;
+  const specRows = product ? product.specs.slice(0, 2).map((spec, index) => specToRow(spec, index)) : [];
+  const related = relatedSolutionsForProduct(article.category);
+  const cards = [
+    { label: 'Decision lens', value: articleDecisionLens(article), note: article.type },
+    { label: 'Critical signal', value: specRows[0] ? `${specRows[0].label}: ${specRows[0].value}` : article.excerpt, note: product ? product.name : article.categoryLabel },
+    { label: 'Best fit', value: product?.applications?.[0] || article.categoryLabel, note: product?.applications?.slice(1, 3).join(' • ') || 'Requirement-led review' },
+    { label: 'Linked references', value: meta ? `${Math.min(3, meta.downloads.length)} file${meta.downloads.length === 1 ? '' : 's'}` : `${related.length} solution view${related.length === 1 ? '' : 's'}`, note: meta ? 'Downloads and routes are attached on this page.' : 'Use the linked routes for the next step.' }
+  ];
+  return `<div class="article-signal-grid mt-8">${cards.map((card) => `<article class="article-signal-card"><div class="article-signal-label">${escHtml(card.label)}</div><div class="article-signal-value">${escHtml(card.value)}</div><p class="article-signal-note">${escHtml(card.note)}</p></article>`).join('')}</div>`;
+}
+
+function renderInsightTechnicalAppendix(article, context) {
+  if (!context) return '';
+  const { product, meta } = context;
+  const specRows = product.specs.slice(0, 4).map((spec, index) => specToRow(spec, index));
+  const related = relatedSolutionsForProduct(article.category).slice(0, 3);
+  const checklist = articleChecklistItems(article, context);
+  const risks = articleRiskItems(article, context);
+  const downloads = meta.downloads.slice(0, 3).map((download) => downloadLink(download)).join('');
+  return `
+    <section class="article-appendix">
+      <h2 id="technical-checkpoints-at-a-glance">Technical checkpoints at a glance</h2>
+      <div class="article-appendix-grid">
+        <article class="article-panel">
+          <div class="article-panel-label">Technical reference</div>
+          <table>
+            <tr><th>Checkpoint</th><th>Reference</th></tr>
+            ${specRows.map((row) => `<tr><td>${escHtml(row.label)}</td><td>${escHtml(row.value)}</td></tr>`).join('')}
+            <tr><td>Lead time</td><td>${escHtml(product.technical?.leadTime || 'On request')}</td></tr>
+            <tr><td>Origin route</td><td>${escHtml(product.technical?.origin || 'On request')}</td></tr>
+          </table>
+        </article>
+        <article class="article-panel">
+          <div class="article-panel-label">${escHtml(articleChecklistLabel(article))}</div>
+          <ul>${checklist.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul>
+        </article>
+        <article class="article-panel">
+          <div class="article-panel-label">Where mistakes happen</div>
+          <ul>${risks.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul>
+        </article>
+        <article class="article-panel">
+          <div class="article-panel-label">Use with these routes</div>
+          <div class="article-panel-chip-row">${related.length ? related.map((app) => `<a href="${getSolutionHref(app.slug)}" class="article-panel-chip">${escHtml(app.name)}</a>`).join('') : `<span class="article-panel-chip">${escHtml(article.categoryLabel)}</span>`}</div>
+          ${downloads ? `<div class="article-panel-links mt-4">${downloads}</div>` : `<p class="text-sm text-zinc-500 leading-relaxed mt-4">Use Contact when the relevant reference deck needs to be routed manually.</p>`}
+        </article>
+      </div>
+    </section>`;
+}
+
+function renderInsightArticleBody(article) {
   const context = articleProductContext(article);
+  const authoredContent = String(article.content || '').trim();
+  if (authoredContent) return markdownToHtml(authoredContent) + renderInsightTechnicalAppendix(article, context);
+
   if (!context) return markdownToHtml(article.content);
 
   const { product, meta } = context;
@@ -1772,7 +1949,7 @@ function generateHomepage() {
     bc.schema
   ];
 
-  const featuredDocs = resourceGroups.flatMap((group) => group.items.map((item) => ({ ...item, group: group.title }))).slice(0, 4);
+  const featuredDocs = getInstantResourceItems().slice(0, 4);
   const featuredArticles = rawInsights.articles.slice(0, 4);
   const ecosystemCards = portfolioFamilies.map((family) => `<article class="ui-library-card ui-ecosystem-card"><div class="ui-kicker mb-3">${glyph(familyIconName(family.title), 'icon icon-sm')} ${escHtml(family.title)}</div><h3 class="ui-family-title" style="font-size:1.15rem;">${escHtml(family.highlights[0])}</h3><p class="text-sm text-zinc-500 leading-relaxed mt-3">${escHtml(family.intro)}</p><div class="ui-link-row mt-5">${family.products.slice(0, 4).map((productId) => productTextLink(productId)).filter(Boolean).join('')}</div></article>`).join('');
 
@@ -1806,15 +1983,15 @@ function generateHomepage() {
                     <div class="ui-panel-inner">
                         <div class="ui-kicker mb-4">${glyph('globe', 'icon icon-sm')} Programme geography</div>
                         ${renderHeroNetworkMap()}
-                        <div class="ui-map-caption">Mumbai coordinates the brief. India and China remain the sourcing anchors, while final domestic or export lanes are aligned to the category, documentation, and destination.</div>
+                        <div class="ui-map-caption">Mumbai is shown separately from India so the operating base and the sourcing anchor do not collapse into one marker. India and China remain the sourcing anchors, while final domestic or export lanes depend on the category, documentation, and destination.</div>
                         <div class="ui-world-map-legend mt-4">
-                            <span class="ui-world-map-legend-item is-primary"><strong>Mumbai</strong><span>Commercial coordination</span></span>
-                            <span class="ui-world-map-legend-item"><strong>India</strong><span>Core sourcing anchor</span></span>
-                            <span class="ui-world-map-legend-item"><strong>China</strong><span>Core sourcing anchor</span></span>
-                            <span class="ui-world-map-legend-item"><strong>All continents</strong><span>Shown for geographic clarity</span></span>
+                            <span class="ui-world-map-legend-item is-primary"><strong>Mumbai</strong><span>Operating base and commercial coordination</span></span>
+                            <span class="ui-world-map-legend-item"><strong>India</strong><span>Shown separately inside the Asia route</span></span>
+                            <span class="ui-world-map-legend-item"><strong>China</strong><span>Second sourcing anchor where relevant</span></span>
+                            <span class="ui-world-map-legend-item"><strong>Illustrative lanes</strong><span>Programme geography, not office locations</span></span>
                         </div>
                         <div class="ui-app-badges mt-4"><span>North America</span><span>South America</span><span>Europe</span><span>Africa</span><span>Asia</span><span>Oceania</span><span>Antarctica</span></div>
-                        <div class="ui-world-map-note mt-3">Illustrative programme geography only. Continents and flow lines explain sourcing and trade direction, not office locations outside Mumbai.</div>
+                        <div class="ui-world-map-note mt-3">Illustrative programme geography only. The map is there to clarify sourcing direction and reach, not to imply offices outside Mumbai.</div>
                     </div>
                 </div>
             </div>
@@ -2214,19 +2391,25 @@ function generateResourcesPage() {
     bc.schema
   ];
 
-  const groupsHtml = resourceGroups.map((group) => `
+  const groupsHtml = resourceGroups.map((group) => {
+    const requestCount = group.items.filter(isRequestOnlyResource).length;
+    return `
       <article id="${slugify(group.title)}" class="ui-resource-card fade-up">
           <div class="ui-resource-head">
               <div>
                   <div class="ui-kicker mb-3">${glyph('file', 'icon icon-sm')} ${escHtml(group.title)}</div>
                   <p class="text-sm text-zinc-500 leading-relaxed">${escHtml(group.items[0]?.desc || 'Reference documents.')}</p>
               </div>
-              <span class="ui-resource-count">${group.items.length}</span>
+              <div class="ui-resource-head-meta">
+                  <span class="ui-resource-count">${group.items.length}</span>
+                  <span class="ui-resource-status${requestCount ? ' is-request' : ''}">${requestCount ? `${requestCount} request-only` : 'All instant'}</span>
+              </div>
           </div>
           <div class="ui-resource-list mt-6">
-              ${group.items.map((item) => `<div class="ui-list-row"><div class="ui-list-copy"><div class="ui-list-title">${escHtml(item.title)}</div><div class="ui-list-meta">${escHtml(item.desc)}</div></div><a href="${safeHref(item.url)}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(item.title)}" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`).join('')}
+              ${group.items.map((item) => `<div class="ui-list-row${isRequestOnlyResource(item) ? ' is-request' : ''}"><div class="ui-list-copy"><div class="ui-list-title-row"><div class="ui-list-title">${escHtml(item.title)}</div><span class="ui-resource-item-badge${isRequestOnlyResource(item) ? ' is-request' : ''}">${isRequestOnlyResource(item) ? 'Request file' : 'Instant PDF'}</span></div><div class="ui-list-meta">${escHtml(item.desc)}</div>${item.note ? `<div class="ui-list-note">${escHtml(item.note)}</div>` : ''}</div>${isRequestOnlyResource(item) ? `<a href="${requestDocumentHref(item)}" class="ui-list-link ui-list-link-request">${glyph('message', 'icon icon-sm')}</a>` : `<a href="${safeHref(item.url)}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(item.title)}" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a>`}</div>`).join('')}
           </div>
-      </article>`).join('\n');
+      </article>`;
+  }).join('\n');
 
   return headTag({
     title: 'Resources & Downloads | Product Catalogues — Moldart India',
@@ -2242,22 +2425,25 @@ function generateResourcesPage() {
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Reference library</div>
                     <h1 class="ui-section-title">RESOURCES.</h1>
-                    <p class="ui-section-subtitle">Browse catalogues, finish decks, and technical PDFs grouped by buying route so the right reference is easier to find.</p>
+                    <p class="ui-section-subtitle">Browse the full reference library in one place. Instant PDFs unlock after one short form, while larger decks stay visible and can be requested directly instead of disappearing from the library.</p>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-metric-grid">
-                        ${renderMetricCard({ icon: 'file', label: 'Documents', value: getTotalResourceItems(), note: 'Grouped into fewer, clearer library sections.', animate: true })}
-                        ${renderMetricCard({ icon: 'layers', label: 'Sections', value: resourceGroups.length, note: 'Each section follows a buying route instead of a keyword dump.', animate: true })}
-                        ${renderMetricCard({ icon: 'shield', label: 'Access model', value: 'One-time', note: 'Downloads unlock on the device after one short form.' })}
-                        ${renderMetricCard({ icon: 'message', label: 'Missing document?', value: 'Ask us', note: 'Use Contact for files or references not listed here.' })}
+                        ${renderMetricCard({ icon: 'file', label: 'Documents', value: getTotalResourceItems(), note: 'Every reference currently available in the public library.', animate: true })}
+                        ${renderMetricCard({ icon: 'arrow', label: 'Instant PDFs', value: getInstantResourceItems().length, note: 'Open directly after one short form unlock on the device.', animate: true })}
+                        ${renderMetricCard({ icon: 'message', label: 'Request-only', value: getRequestResourceItems().length, note: 'Larger decks stay listed and route through Contact when needed.', animate: true })}
+                        ${renderMetricCard({ icon: 'layers', label: 'Sections', value: resourceGroups.length, note: 'Grouped by buying route instead of by file name alone.', animate: true })}
                     </div>
                 </div>
             </div>
         </section>
+        <section class="max-w mx-auto px py-12 fade-up">
+            <div class="ui-resource-library-note">${getTotalResourceItems()} references are listed here: ${getInstantResourceItems().length} open as instant PDFs and ${getRequestResourceItems().length} larger decks remain visible as request-routed files so the library stays complete.</div>
+        </section>
         <section class="max-w mx-auto px py-16">
             <div class="ui-resource-group">${groupsHtml}</div>
         </section>
-        ${ctaBlock('NEED A SPECIFIC<br>DATA SHEET?', 'If the exact document is not listed here, send the product or application and the team can route the right file directly.', 'Request a Document', '/contact/', 'Explore Solutions', '/solutions/')}
+        ${ctaBlock('NEED A SPECIFIC<br>DATA SHEET?', 'If the exact document is not listed here, send the product, application, or finish route and the team can route the right file directly.', 'Request a Document', '/contact/?focus=document-request', 'Explore Solutions', '/solutions/')}
     </main>
 
     ${footer()}
@@ -2456,8 +2642,8 @@ function generateContactPage() {
                         <div class="font-display font-bold text-xl tracking-wider mb-3">MUMBAI</div>
                         <p class="text-sm text-zinc-500 leading-relaxed font-light mb-4">#7, Building No. 1, New Sonal Link Industrial Estate,<br>Link Road, Malad (West), Mumbai — 400064<br>Maharashtra, India</p>
                         <div class="flex flex-col gap-2 mb-4">
-                            <a href="tel:+917208088788" class="link-line text-sm text-zinc-700 font-medium">${WHATSAPP_PRIMARY.display}</a>
-                            <a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-700 font-medium">WhatsApp: ${WHATSAPP_SECONDARY.display}</a>
+                            <a href="${whatsappHref(WHATSAPP_PRIMARY.number)}" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-700 font-medium">Primary WhatsApp: ${WHATSAPP_PRIMARY.display}</a>
+                            <a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-700 font-medium">Alternate WhatsApp: ${WHATSAPP_SECONDARY.display}</a>
                             <a href="mailto:info@moldartindia.com" class="link-line text-sm text-zinc-700 font-medium">info@moldartindia.com</a>
                         </div>
                         <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip">${glyph('linkedin-brand', 'icon icon-sm')} Moldart India on LinkedIn</a>
@@ -2561,7 +2747,7 @@ function generateAboutPage() {
                     <div class="ui-kicker mb-3">${glyph('building', 'icon icon-sm')} Operating base</div>
                     <h3 class="ui-family-title" style="font-size:1.2rem;">Mumbai remains the primary coordination point.</h3>
                     <p class="text-sm text-zinc-500 leading-relaxed mt-3">#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West), Mumbai — 400064, Maharashtra, India.</p>
-                    <div class="ui-link-row mt-5"><a href="tel:+917208088788" class="ui-link-pill">${WHATSAPP_PRIMARY.display}</a><a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-link-pill">WhatsApp ${WHATSAPP_SECONDARY.display}</a><a href="mailto:info@moldartindia.com" class="ui-link-pill">info@moldartindia.com</a></div>
+                    <div class="ui-link-row mt-5"><a href="${whatsappHref(WHATSAPP_PRIMARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-link-pill">Primary WhatsApp ${WHATSAPP_PRIMARY.display}</a><a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-link-pill">Alternate WhatsApp ${WHATSAPP_SECONDARY.display}</a><a href="mailto:info@moldartindia.com" class="ui-link-pill">info@moldartindia.com</a></div>
                 </article>
                 <article class="ui-library-card">
                     <div class="ui-kicker mb-3">${glyph('route', 'icon icon-sm')} How Moldart works</div>
@@ -2609,77 +2795,50 @@ function generateAboutPage() {
 function generateProcessPage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Process' }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/process/#webpage', url: SITE + '/process/', name: 'How Moldart Works | Sourcing & Supply Process', description: 'From requirement to delivery: how Moldart coordinates sourcing, quality control, and supply across its product ecosystem.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/process/#webpage', url: SITE + '/process/', name: 'How Moldart Works | Sourcing & Supply Process', description: 'A concise view of how Moldart moves from requirement brief to aligned supply and repeat support.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
   const stages = [
     {
       number: '01',
-      title: 'Requirement brief',
-      detail: 'Start from the real requirement rather than from a generic equivalent. Application, finish expectation, quantity, timing, and destination all influence the right route.',
-      share: 'Product or application, dimensions, finish expectation, quantity, destination, and timing.',
-      output: 'A clearer shortlist of the likely category, supporting references, and next commercial step.'
+      title: 'Share the brief',
+      detail: 'Application, finish expectation, size, quantity, timing, and destination define the route faster than a generic product name ever can.',
+      share: 'Application, drawing, sample, quantity, destination, and timeline.',
+      output: 'A practical shortlist of the likely category, references, and next discussion.'
     },
     {
       number: '02',
-      title: 'Category and route alignment',
-      detail: 'The first review narrows the likely product family, grade direction, finish family, and sourcing lane before price discussion takes over.',
-      share: 'What matters most: visual finish, tolerance, compliance, conversion, or replacement planning.',
-      output: 'A cleaner recommendation on whether the route should stay broad or move into a product-specific discussion.'
+      title: 'Align the route',
+      detail: 'The first review narrows the product family, grade direction, finish family, and sourcing lane before price comparison becomes misleading.',
+      share: 'Must-have technical points, approvals, compliance needs, and replacement rhythm.',
+      output: 'A cleaner recommendation on the right route and the right reference pack.'
     },
     {
       number: '03',
-      title: 'Reference, document, or sample check',
-      detail: 'Where approvals matter, catalogues, finish decks, drawings, or physical references should be aligned before the order hardens into an assumption.',
-      share: 'Approved sample, drawing, pattern, finish family, or the closest available technical reference.',
-      output: 'Fewer late-stage finish, tolerance, and specification changes.'
+      title: 'Lock the reference',
+      detail: 'Samples, drawings, finish decks, or previous approved records should be matched before production or dispatch planning begins.',
+      share: 'Approved sample, drawing, finish family, pattern, or the closest accepted benchmark.',
+      output: 'Fewer finish, tolerance, and documentation surprises later in the programme.'
     },
     {
       number: '04',
-      title: 'Production and quality follow-through',
-      detail: 'Once the route is agreed, the work moves into the manufacturing path, incoming quality logic, and any checkpoints needed for the specific programme.',
-      share: 'Critical acceptance points such as grade, flatness, finish, compliance, or packing sensitivity.',
-      output: 'A more stable handoff between approval, supply, and dispatch preparation.'
-    },
-    {
-      number: '05',
-      title: 'Documentation and packing',
-      detail: 'Commercial documents, packing expectations, and domestic or export handling should match the approved order instead of being treated as an afterthought.',
-      share: 'Destination, documentation needs, pack condition expectations, and any handling or storage sensitivity.',
-      output: 'A dispatch route that is easier to receive, inspect, and release on arrival.'
-    },
-    {
-      number: '06',
-      title: 'Delivery and repeat-programme support',
-      detail: 'Follow-through matters after delivery as well. Repeat programmes work better when the approval logic, document trail, and reorder reference stay stable.',
-      share: 'Receiving feedback, repeat order timing, and any change in application or route between one order and the next.',
-      output: 'Cleaner repeat supply with less approval drift.'
+      title: 'Supply, receive, repeat',
+      detail: 'Documentation, packing, dispatch, receiving, and repeat-order logic stay tied to the approved route instead of being rebuilt each time.',
+      share: 'Document needs, pack handling notes, receiving feedback, and reorder references.',
+      output: 'Cleaner delivery now and a more stable repeat route later.'
     }
   ];
 
-  const prepCards = [
-    { title: 'What helps first review move faster', detail: 'Application, dimensions, finish expectation, quantity, timing, and destination are the strongest first inputs.' },
-    { title: 'When drawings or samples matter', detail: 'Decorative stainless, flooring, furniture, press tooling, and tolerance-led products all benefit from clearer reference alignment before order confirmation.' },
-    { title: 'When timing becomes critical', detail: 'Replacement tooling, repeat supply, export documents, and site-linked deliveries should be discussed before the old plan becomes a line-risk.' }
-  ];
-
-  const programmeCareCards = [
-    { label: 'Surface-critical routes', value: 'Need stronger approval control', copy: 'Press plates, decorative stainless steel, and flooring systems should not skip finish, sample, or reference discipline.' },
-    { label: 'Panel and substrate routes', value: 'Need fit-for-use clarity', copy: 'Plywood, fiberboard, OSB, and particleboard should be compared against the actual end use, not only against a price line.' },
-    { label: 'Repeat programmes', value: 'Need stable references', copy: 'The longer a programme runs, the more important it is to keep drawings, approval samples, and reorder logic consistent.' }
-  ];
-
-  const afterSupplyCards = [
-    { title: 'Before dispatch', detail: 'Lock the approved version, documentation set, and packing expectation before the order moves into the delivery lane.' },
-    { title: 'At receiving', detail: 'Check the supply against the approved route quickly so any mismatch is caught before the material enters production or installation.' },
-    { title: 'For repeat orders', detail: 'Reorder from the last approved reference, not from memory. The repeat route should stay tied to what was actually accepted.' },
-    { title: 'For mixed-category enquiries', detail: 'Where one project touches tooling, panels, finishes, and furniture together, the best results come from aligning the whole requirement early.' }
+  const quickCards = [
+    { title: 'What speeds up the first review', detail: 'A real brief with application, size, finish, quantity, timing, and destination always beats a generic equivalent request.' },
+    { title: 'Where approvals need more care', detail: 'Surface-critical products such as press plates, decorative stainless, flooring finishes, and industrial tooling need stronger reference control.' },
+    { title: 'What protects repeat supply', detail: 'Keep the last approved sample, drawing, and document trail linked to the next order instead of reordering from memory.' }
   ];
 
   return headTag({
     title: 'How Moldart Works | Sourcing, Quality & Supply Process',
-    desc: 'From first inquiry to final delivery — how Moldart coordinates sourcing, quality control, production oversight, and logistics across press plates, substrates, flooring, and decorative steel.',
+    desc: 'A concise view of how Moldart moves from requirement brief through route alignment, approval, supply, and repeat support.',
     canonical: '/process/',
     schemas
   }) + '\n' + nav('process') + `
@@ -2690,20 +2849,20 @@ function generateProcessPage() {
             <div class="ui-page-hero">
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Process</div>
-                    <h1 class="ui-section-title">FROM REQUIREMENT<br>TO DELIVERY.</h1>
-                    <p class="ui-section-subtitle">The strongest supply decisions usually happen when the application, approval route, and commercial path are aligned early rather than corrected late.</p>
+                    <h1 class="ui-section-title">FROM BRIEF<br>TO DELIVERY.</h1>
+                    <p class="ui-section-subtitle">This page stays intentionally concise: share the brief, align the route, lock the reference, and keep supply tied to what was actually approved.</p>
                     <div class="ui-chip-row mt-8">
-                        <span class="ui-chip">${glyph('message', 'icon icon-sm')} Start from the brief</span>
-                        <span class="ui-chip">${glyph('book', 'icon icon-sm')} Align references early</span>
-                        <span class="ui-chip">${glyph('shield', 'icon icon-sm')} Match quality checkpoints</span>
-                        <span class="ui-chip">${glyph('route', 'icon icon-sm')} Plan delivery clearly</span>
+                        <span class="ui-chip">${glyph('message', 'icon icon-sm')} Start with the real brief</span>
+                        <span class="ui-chip">${glyph('book', 'icon icon-sm')} Match the reference</span>
+                        <span class="ui-chip">${glyph('shield', 'icon icon-sm')} Protect the approval</span>
+                        <span class="ui-chip">${glyph('route', 'icon icon-sm')} Keep repeat supply stable</span>
                     </div>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-proof-grid">
-                        <article class="ui-proof-card"><div class="ui-proof-label">Working model</div><div class="ui-proof-value">Source → Verify → Supply</div><p class="ui-proof-copy">A cleaner process keeps the product route, approval logic, and documentation path linked from the start.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Why it matters</div><div class="ui-proof-value">Fewer late corrections</div><p class="ui-proof-copy">Earlier alignment reduces finish surprises, tolerance mismatch, documentation gaps, and repeat-order confusion.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Best fit</div><div class="ui-proof-value">Mixed or approval-sensitive programmes</div><p class="ui-proof-copy">The more complex the category mix or approval route, the more valuable a disciplined handoff becomes.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Stages</div><div class="ui-proof-value">4</div><p class="ui-proof-copy">The process is intentionally shown as a shorter commercial path rather than a long internal checklist.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Best outcome</div><div class="ui-proof-value">Fewer late corrections</div><p class="ui-proof-copy">Early route and reference alignment reduce avoidable changes later.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Best fit</div><div class="ui-proof-value">Approval-sensitive programmes</div><p class="ui-proof-copy">The more surface, tolerance, or document control matters, the more useful this discipline becomes.</p></article>
                     </div>
                 </div>
             </div>
@@ -2711,51 +2870,22 @@ function generateProcessPage() {
 
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
             <div class="ui-section-head mb-10">
-                <div class="ui-kicker mb-4">${glyph('check', 'icon icon-sm')} Before the first review</div>
-                <h2 class="ui-section-title">WHAT HELPS THE REVIEW MOVE FASTER.</h2>
-                <p class="ui-section-subtitle">A few inputs early can remove a lot of guesswork later. These are the questions that usually sharpen the first conversation.</p>
-            </div>
-            <div class="ui-proof-grid">
-                ${prepCards.map((card) => `<article class="ui-proof-card"><div class="ui-proof-label">Checklist</div><div class="ui-proof-value">${escHtml(card.title)}</div><p class="ui-proof-copy">${escHtml(card.detail)}</p></article>`).join('')}
-            </div>
-        </section>
-
-        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
-            <div class="ui-section-head mb-10">
-                <div class="ui-kicker mb-4">${glyph('clock', 'icon icon-sm')} Six stages</div>
+                <div class="ui-kicker mb-4">${glyph('clock', 'icon icon-sm')} Four stages</div>
                 <h2 class="ui-section-title">HOW THE WORK MOVES.</h2>
-                <p class="ui-section-subtitle">This is the typical path from first brief through route alignment, approval, quality follow-through, documentation, and delivery.</p>
+                <p class="ui-section-subtitle">A compact view of how the requirement usually moves from the first message to aligned supply.</p>
             </div>
-            <div class="ui-stage-grid">
+            <div class="ui-stage-grid ui-stage-grid-compact">
                 ${stages.map((stage) => `<article class="ui-stage-card"><div class="ui-stage-num">${stage.number}</div><h3 class="font-display font-bold text-lg mb-3">${escHtml(stage.title)}</h3><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(stage.detail)}</p><div class="ui-stage-meta"><div class="ui-stage-meta-block"><div class="ui-stage-meta-label">What to share</div><p>${escHtml(stage.share)}</p></div><div class="ui-stage-meta-block"><div class="ui-stage-meta-label">What comes out</div><p>${escHtml(stage.output)}</p></div></div></article>`).join('')}
             </div>
         </section>
 
-        <section class="bg-zinc-50 border-b border-zinc-100 fade-up">
-            <div class="max-w mx-auto px py-20">
-                <div class="ui-section-head mb-10">
-                    <div class="ui-kicker mb-4">${glyph('shield', 'icon icon-sm')} Where approvals matter most</div>
-                    <h2 class="ui-section-title">KEEP THE SENSITIVE POINTS VISIBLE.</h2>
-                    <p class="ui-section-subtitle">Different product families fail in different ways. These are the checkpoints worth protecting before the order is locked.</p>
-                </div>
-                <div class="ui-proof-grid">
-                    ${programmeCareCards.map((card) => `<article class="ui-proof-card"><div class="ui-proof-label">${escHtml(card.label)}</div><div class="ui-proof-value">${escHtml(card.value)}</div><p class="ui-proof-copy">${escHtml(card.copy)}</p></article>`).join('')}
-                </div>
-            </div>
-        </section>
-
         <section class="max-w mx-auto px py-16 fade-up">
-            <div class="ui-section-head mb-10">
-                <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} After supply starts</div>
-                <h2 class="ui-section-title">PROTECT THE HANDOFF.</h2>
-                <p class="ui-section-subtitle">Receiving, dispatch planning, and repeat-order discipline all matter if the programme is meant to stay stable after the first delivery.</p>
-            </div>
             <div class="ui-library-grid">
-                ${afterSupplyCards.map((card) => `<article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('check', 'icon icon-sm')} ${escHtml(card.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(card.detail)}</p></article>`).join('')}
+                ${quickCards.map((card) => `<article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('check', 'icon icon-sm')} ${escHtml(card.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(card.detail)}</p></article>`).join('')}
             </div>
         </section>
 
-        ${ctaBlock('READY TO START?', 'Share your requirement and the team will align the right material, reference path, and next step for your programme.', 'Share your requirement', '/contact/', 'Open Resources', '/resources/')}
+        ${ctaBlock('READY TO START?', 'Share the requirement and the team can align the route, reference, and next step against the actual programme.', 'Share your requirement', '/contact/', 'Open Resources', '/resources/')}
     </main>
 
     ${footer()}
@@ -2893,6 +3023,17 @@ function extractArticleHeadings(md) {
       return { level: match[1].length, text, id: slugify(text) };
     })
     .filter(Boolean);
+}
+
+function extractHtmlHeadings(html = '') {
+  const headings = [];
+  const regex = /<h([23])(?:[^>]*id="([^"]+)")?[^>]*>([\s\S]*?)<\/h\1>/g;
+  let match;
+  while ((match = regex.exec(String(html || '')))) {
+    const text = String(match[3] || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    headings.push({ level: Number(match[1]), text, id: match[2] || slugify(text) });
+  }
+  return headings;
 }
 
 function markdownToHtml(md) {
@@ -3047,7 +3188,7 @@ function generateInsightArticle(article) {
   const context = articleProductContext(article);
   const readTime = estimateReadTime(article, contentHtml);
   const audiences = articleAudienceFor(article);
-  const headings = extractArticleHeadings(article.content);
+  const headings = extractHtmlHeadings(contentHtml);
   const relatedSolutions = relatedSolutionsForProduct(article.category);
   const tocHtml = headings.length ? `<div class="insight-side-card mb-4"><div class="insight-side-label mb-2">In this guide</div>${headings.map((heading) => `<a href="#${heading.id}" class="article-toc-link${heading.level === 3 ? ' is-sub' : ''}">${escHtml(heading.text)}</a>`).join('')}</div>` : '';
   const insightSidebar = `
@@ -3083,6 +3224,7 @@ function generateInsightArticle(article) {
                 <span class="ui-chip">${glyph(article.categoryLabel === 'Lamination Tooling' ? 'layers' : article.categoryLabel === 'Industrial Tooling' ? 'shield' : article.categoryLabel === 'Decorative Steel' ? 'spark' : article.categoryLabel === 'Panel Systems' ? 'factory' : article.categoryLabel === 'Flooring Systems' ? 'compass' : 'building', 'icon icon-sm')} ${escHtml(article.categoryLabel)}</span>
                 ${audiences.map((item) => `<span class="ui-chip">${glyph('check', 'icon icon-sm')} ${escHtml(item)}</span>`).join('')}
             </div>
+            ${renderInsightSignalStrip(article, context)}
         </section>
         <section class="max-w mx-auto px py-12">
             <div class="insight-layout">
