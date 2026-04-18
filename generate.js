@@ -16,10 +16,11 @@ const { importedInsights, insightDossiers } = require('./insight-enhancements.js
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.31';
+const VER = '2026.32';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
+const YASH_LINKEDIN = 'https://www.linkedin.com/in/thisisyashdoshi';
 const WHATSAPP_PRIMARY = { number: '917208088788', display: '+91 7208088788' };
 const WHATSAPP_SECONDARY = { number: '917208188788', display: '+91 7208188788' };
 const BRAND_LINE = 'Wood and steel supply programmes from Mumbai, aligned to the requirement.';
@@ -115,7 +116,7 @@ const getRequestResourceItems = () => getAllResourceItems().filter((item) => isR
 const productMeta = {
   'press-plates': {
     slug: 'press-plates',
-    seoTitle: 'Press Plates Supplier | Lamination Press Plates — Moldart India',
+    seoTitle: 'Press Plates Supplier | Lamination Press Plates — Moldart',
     metaDesc: 'Lamination press plates in SS 304, SS 420, and SS 630 grades with hard-chrome working surfaces for decorative laminate production.',
     overview: 'Moldart supplies surface-critical press plates for decorative laminate production where texture fidelity, wear resistance, and repeatable finish quality matter. The focus stays on supported grades, hardness ranges, and application-led confirmation.',
     workflow: 'Press plates are the tooling surface in lamination presses. They transfer texture and finish to laminate surfaces during the pressing cycle, making them critical to final product quality.',
@@ -130,7 +131,7 @@ const productMeta = {
   },
   'press-pads': {
     slug: 'press-pads',
-    seoTitle: 'Press Pads Supplier | Silicone-Copper Lamination Pads — Moldart India',
+    seoTitle: 'Press Pads Supplier | Silicone-Copper Lamination Pads — Moldart',
     metaDesc: 'Silicone-copper composite press pads for uniform heat transfer and pressure distribution in lamination. Up to 100,000 cycles. Maximum width 3300 mm.',
     overview: 'Moldart supplies silicone-copper composite press pads engineered for uniform heat transfer and reliable pressure distribution across the full press area. Designed for high-volume lamination environments, these pads support consistent output quality over extended production cycles.',
     workflow: 'Press pads sit between the heating platen and the press plate in lamination presses. They ensure even heat and pressure distribution, which directly affects surface quality and lamination bond strength.',
@@ -157,7 +158,7 @@ const productMeta = {
   },
   'decor-paper': {
     slug: 'printed-decor-paper',
-    seoTitle: 'Printed Decor Paper Supplier | Melamine Decor Paper — Moldart India',
+    seoTitle: 'Printed Decor Paper Supplier | Melamine Decor Paper — Moldart',
     metaDesc: 'Melamine-ready printed decor papers at 60–85 GSM with wet tensile over 6N. Woodgrain and custom patterns for decorative laminates, flooring, and furniture.',
     overview: 'Moldart supplies melamine-ready decor papers designed for stable print quality and production consistency across decorative laminate, flooring, and furniture applications. Available in woodgrain and custom pattern options with reliable impregnation compatibility.',
     workflow: 'Printed decor paper is the decorative surface layer in laminated panels. After printing, the paper is impregnated with melamine resin and pressed onto substrate boards to create the finished decorative surface.',
@@ -172,7 +173,7 @@ const productMeta = {
   },
   'plywood': {
     slug: 'plywood',
-    seoTitle: 'Plywood Supplier | Structural & Furniture-Grade Plywood — Moldart India',
+    seoTitle: 'Plywood Supplier | Structural & Furniture-Grade Plywood — Moldart',
     metaDesc: 'Structural and furniture-grade plywood at 500–700 kg/m³ density, 3–40 mm thickness. High shear strength for furniture, interiors, and architectural panels.',
     overview: 'Moldart supplies structural and furniture-grade plywood engineered for high-strength panel applications. With controlled density profiles and reliable shear strength, these panels serve as core substrates in furniture manufacturing, interior fit-outs, and architectural panel systems.',
     workflow: 'Plywood is a cross-laminated wood panel used as a structural substrate. It is commonly laminated with decorative surfaces or used as-is in load-bearing and furniture carcass applications.',
@@ -186,7 +187,7 @@ const productMeta = {
   },
   'fiberboard': {
     slug: 'fiberboard',
-    seoTitle: 'Fiberboard Supplier | MDF & HDF Panels — Moldart India',
+    seoTitle: 'Fiberboard Supplier | MDF & HDF Panels — Moldart',
     metaDesc: 'MDF (700–820 kg/m³) and HDF (780–900 kg/m³) panels. EU E1, TSCA Title VI, Japan F4 star compliant. Moisture-resistant grades available for flooring and furniture.',
     overview: 'Moldart supplies MDF and HDF engineered panels with exceptionally smooth surfaces suited for high-gloss lamination, painting, and precision conversion. Available in multiple density profiles and emission standards to match destination market requirements.',
     workflow: 'Fiberboard panels serve as the core substrate in laminated furniture fronts, door skins, decorative panel systems, and flooring cores. Their smooth surface is critical for high-quality surface finishing.',
@@ -199,7 +200,7 @@ const productMeta = {
   },
   'osb': {
     slug: 'osb',
-    seoTitle: 'OSB Supplier | Oriented Strand Board — Moldart India',
+    seoTitle: 'OSB Supplier | Oriented Strand Board — Moldart',
     metaDesc: 'OSB/3 and Fine OSB panels. ENF grade (No Added Formaldehyde), CARB-NAF & EPA-NAF certified, FSC certified, Japan F4 star. Structural and load-bearing use.',
     overview: 'Moldart supplies high-strength oriented strand board compliant with EN 13986 and EN 300 standards. Available in OSB/3 and Fine OSB (F-OSB) grades, these panels are engineered for structural, load-bearing, and heavy-duty industrial applications.',
     workflow: 'OSB is a structural engineered wood panel used in construction, packaging, and furniture frameworks. Its oriented strand structure provides exceptional load-bearing performance.',
@@ -212,7 +213,7 @@ const productMeta = {
   },
   'particleboard': {
     slug: 'particleboard',
-    seoTitle: 'Particleboard Supplier | Commercial Furniture-Grade Panels — Moldart India',
+    seoTitle: 'Particleboard Supplier | Commercial Furniture-Grade Panels — Moldart',
     metaDesc: 'Particleboard panels at 650–760 kg/m³, 9–38 mm thickness. E1, TSCA Title VI, Japan F4 star compliant. MR and EN 312 P6 grades for furniture and cabinetry.',
     overview: 'Moldart supplies cost-effective, highly workable particleboard cores engineered for commercial furniture manufacturing. With reliable density profiles and multiple emission compliance options, these panels serve the core needs of office furniture, cabinetry, and shelving production.',
     workflow: 'Particleboard is used as the core substrate in laminated furniture panels, cabinetry, and shelving. It is typically faced with melamine, HPL, or veneer finishes before use in final products.',
@@ -225,7 +226,7 @@ const productMeta = {
   },
   'wood-flooring': {
     slug: 'wood-flooring',
-    seoTitle: 'Engineered Wood Flooring Supplier | Laminate Flooring — Moldart India',
+    seoTitle: 'Engineered Wood Flooring Supplier | Laminate Flooring — Moldart',
     metaDesc: 'Engineered laminate flooring systems compliant with EN 13329. Wear class AC3–AC5. HDF E1 or Hydro HDF core. Unilin/Valinge click-lock. EIR deep emboss available.',
     overview: 'Moldart supplies engineered flooring systems compliant with EN 13329 standards, focused on wear resistance and dimensional stability. Available with multiple core options, wear classes, and surface finishes including Embossed-in-Register (EIR) for authentic woodgrain texture.',
     workflow: 'Engineered wood flooring consists of a decorative surface layer bonded to an HDF core with integrated click-lock profiles. It is installed as a floating floor system over prepared subfloors in residential and commercial spaces.',
@@ -238,7 +239,7 @@ const productMeta = {
   },
   'flooring-accessories': {
     slug: 'flooring-accessories',
-    seoTitle: 'Flooring Accessories | Transition Profiles & Skirting — Moldart India',
+    seoTitle: 'Flooring Accessories | Transition Profiles & Skirting — Moldart',
     metaDesc: 'Coordinated flooring transition profiles, skirting, and stair nosing in aluminium, MDF, or PVC. Custom matched to floor decor for complete installations.',
     overview: 'Moldart supplies coordinated transition profiles, skirting, and stair nosing designed to complete laminate flooring installations. Available in aluminium, MDF, or PVC base materials with durable wear surfaces matched to the installed floor decor.',
     workflow: 'Flooring accessories are the finishing components installed alongside laminate flooring. They cover expansion gaps, transitions between rooms, wall-to-floor junctions, and staircase edges.',
@@ -251,7 +252,7 @@ const productMeta = {
   },
   'ready-made-furniture': {
     slug: 'ready-made-furniture',
-    seoTitle: 'Ready-Made Furniture Supplier | Modular Furniture — Moldart India',
+    seoTitle: 'Ready-Made Furniture Supplier | Modular Furniture — Moldart',
     metaDesc: 'Precision-manufactured modular furniture with melamine or HPL facing. CNC precision within 0.1 mm. Scratch resistance over 3N. Flat-pack or assembled delivery.',
     overview: 'Moldart supplies precision-manufactured modular furniture components and assemblies for commercial and residential use. Built with CNC accuracy and durable surface finishes, these products serve office, kitchen, and wardrobe applications.',
     workflow: 'Ready-made furniture is manufactured from engineered wood substrates faced with melamine or HPL, then precision-cut and edge-banded before assembly or flat-pack dispatch.',
@@ -281,7 +282,7 @@ const productMeta = {
   },
   'decorative-panels': {
     slug: 'decorative-ss-panels',
-    seoTitle: 'Decorative Stainless Steel Panels | PVD SS Sheets — Moldart India',
+    seoTitle: 'Decorative Stainless Steel Panels | PVD SS Sheets — Moldart',
     metaDesc: 'Decorative stainless steel panels for architectural interiors with SS 201 / 304 routes, Hairline, Mirror, and selected PVD finishes.',
     overview: 'Moldart supplies decorative stainless steel panels for architectural and interior programmes where finish control, consistency, and application fit matter more than long finish lists. The focus stays on the finish routes most clearly supported in the available material.',
     workflow: 'Decorative SS panels are used as wall cladding, elevator cabin interiors, retail displays, and architectural accent surfaces. They are cut to size, finished with the specified surface treatment and approved finish route, then installed.',
@@ -297,7 +298,7 @@ const productMeta = {
   },
   'ss-profiles': {
     slug: 'ss-profiles',
-    seoTitle: 'Stainless Steel Profiles Supplier | SS Trims & Inlays — Moldart India',
+    seoTitle: 'Stainless Steel Profiles Supplier | SS Trims & Inlays — Moldart',
     metaDesc: 'Precision-formed stainless steel profiles and trims in common architectural shapes, coordinated to decorative panel finish routes.',
     overview: 'Moldart supplies stainless steel profiles, trims, and inlays for cleaner architectural transitions and edge detailing, with emphasis on profile coordination, finish matching, and project-led confirmation.',
     workflow: 'SS profiles are used as transition trims, panel edging, floor-to-wall junctions, and decorative inlays in architectural interiors. They are typically installed alongside decorative stainless steel panels.',
@@ -311,7 +312,7 @@ const productMeta = {
   },
   'ss-furniture': {
     slug: 'ss-furniture',
-    seoTitle: 'Stainless Steel Furniture | PVD-Plated Luxury Furniture — Moldart India',
+    seoTitle: 'Stainless Steel Furniture | PVD-Plated Luxury Furniture — Moldart',
     metaDesc: 'Decorative stainless steel furniture with PVD and electroplated finishes. Tables, consoles, partitions. Marble, glass, and MDF tops. Custom design support.',
     overview: 'Moldart supplies decorative stainless steel furniture with plated finishes and mixed-material top options for luxury interior environments. From tables and consoles to partitions and lobby features, each piece combines structural precision with premium surface treatment.',
     workflow: 'SS furniture is fabricated from stainless steel frames, finished with PVD or electroplating, then assembled with selected top materials (marble, glass, MDF) before delivery to site.',
@@ -325,7 +326,7 @@ const productMeta = {
   },
   'industrial-press-plates': {
     slug: 'industrial-press-plates',
-    seoTitle: 'Industrial Press Plates | HPL, CCL & PCB Press Plates — Moldart India',
+    seoTitle: 'Industrial Press Plates | HPL, CCL & PCB Press Plates — Moldart',
     metaDesc: 'Industrial press plates for CCL, PCB, and technical laminate pressing where flatness, parallelism, and surface discipline are critical.',
     overview: 'Moldart supplies heavy-duty steel plates for high-pressure technical laminate, CCL, and PCB programmes where dimensional tolerance and surface discipline are more demanding than standard decorative lamination work.',
     workflow: 'Industrial press plates are used in high-pressure presses for manufacturing technical laminates, CCL, and PCB substrates. They must maintain precise flatness, parallelism, and surface behaviour under demanding pressing conditions.',
@@ -345,7 +346,7 @@ const applications = [
   {
     slug: 'lamination',
     name: 'Lamination',
-    seoTitle: 'Lamination Tooling & Materials Supplier — Moldart India',
+    seoTitle: 'Lamination Tooling & Materials Supplier — Moldart',
     metaDesc: 'Complete lamination supply chain: press plates, press pads, engraved cylinders, printed decor paper, and industrial press plates for HPL and LPL production.',
     overview: 'Moldart supports the full lamination supply chain — from the tooling that creates surface texture to the decorative inputs that define the final appearance. Whether you manufacture HPL, LPL, or technical laminates, Moldart supplies the critical components that determine surface quality, production efficiency, and finish consistency.',
     considerations: [
@@ -365,7 +366,7 @@ const applications = [
   {
     slug: 'furniture',
     name: 'Furniture Manufacturing',
-    seoTitle: 'Furniture Materials & Components Supplier — Moldart India',
+    seoTitle: 'Furniture Materials & Components Supplier — Moldart',
     metaDesc: 'Substrates, decor inputs, and finished furniture for commercial and residential manufacturing. Plywood, MDF, HDF, particleboard, and CNC-built furniture.',
     overview: 'Moldart supplies the materials and finished products that furniture manufacturers need — from substrate panels and decorative inputs to fully manufactured furniture components. The portfolio covers the full production chain, from raw boards to assembled, finish-ready products.',
     considerations: [
@@ -384,7 +385,7 @@ const applications = [
   {
     slug: 'flooring',
     name: 'Flooring',
-    seoTitle: 'Engineered Wood Flooring & Accessories Supplier — Moldart India',
+    seoTitle: 'Engineered Wood Flooring & Accessories Supplier — Moldart',
     metaDesc: 'Engineered laminate flooring systems (AC3–AC5) with coordinated accessories. HDF core, click-lock profiles, and transition trims for residential and commercial use.',
     overview: 'Moldart supplies engineered laminate flooring systems with coordinated accessories for complete installation packages. From the HDF core panel to transition profiles and skirting, the flooring portfolio covers everything needed for residential and commercial floor installations.',
     considerations: [
@@ -422,7 +423,7 @@ const applications = [
   {
     slug: 'metal-finishing',
     name: 'Metal Finishing',
-    seoTitle: 'Decorative Metal Finishing | PVD Stainless Steel — Moldart India',
+    seoTitle: 'Decorative Metal Finishing | PVD Stainless Steel — Moldart',
     metaDesc: 'Decorative-finished stainless steel panels, profiles, and furniture for premium interiors, with finish approval confirmed per programme.',
     overview: 'Moldart supplies decorative stainless steel products with advanced surface finishing for premium interior and architectural applications. The metal finishing portfolio includes PVD coating, electroplating, etching, and embossing across panels, profiles, and furniture.',
     considerations: [
@@ -443,7 +444,7 @@ const applications = [
   {
     slug: 'pcb-ccl',
     name: 'PCB & CCL Manufacturing',
-    seoTitle: 'Press Plates for PCB & CCL Manufacturing — Moldart India',
+    seoTitle: 'Press Plates for PCB & CCL Manufacturing — Moldart',
     metaDesc: 'Industrial press plates for printed circuit board (PCB) and copper-clad laminate (CCL) manufacturing. Demagnetized plates with strict flatness and parallelism tolerances.',
     overview: 'Moldart supplies specialized industrial press plates for the PCB and CCL manufacturing sector. These plates require controlled magnetic properties, strict dimensional tolerances, and high thermal conductivity to meet the precision demands of electronic laminate production.',
     considerations: [
@@ -1239,44 +1240,60 @@ function insightPosterOutputPath(article, ext = 'svg') {
   return path.join(WORK, 'images', 'insights', `${article.slug}.${ext}`);
 }
 function insightPreviewImage(article, context = null) {
-  if (!article.generated) return insightPosterRelativePath(article, 'svg');
-  return insightTheme(article, context).image;
+  return insightPosterRelativePath(article, 'svg');
 }
 function insightPreviewAlt(article, context = null) {
   return `${article.title} — Moldart insight cover`;
 }
-function wrapPosterText(text = '', limit = 22) {
+function clampText(text = '', max = 72) {
+  const value = String(text || '').replace(/\s+/g, ' ').trim();
+  if (!value || value.length <= max) return value;
+  const cut = value.slice(0, max - 1);
+  const safe = cut.includes(' ') ? cut.slice(0, cut.lastIndexOf(' ')).trim() : cut;
+  return `${safe || cut}…`;
+}
+function wrapPosterText(text = '', limit = 22, maxLines = 4) {
   const words = String(text || '').split(/\s+/).filter(Boolean);
   const lines = [];
   let line = '';
-  for (const word of words) {
+  for (let index = 0; index < words.length; index += 1) {
+    const word = words[index];
     const next = line ? `${line} ${word}` : word;
     if (next.length <= limit || !line) {
       line = next;
-    } else {
-      lines.push(line);
-      line = word;
+      continue;
     }
+    lines.push(line);
+    if (lines.length === maxLines - 1) {
+      const remaining = [word, ...words.slice(index + 1)].join(' ');
+      lines.push(clampText(remaining, limit));
+      return lines;
+    }
+    line = word;
   }
   if (line) lines.push(line);
-  return lines.slice(0, 4);
+  return lines.slice(0, maxLines);
 }
 function renderPosterMetricChips(cards = []) {
   return cards.slice(0, 3).map((card, index) => {
-    const x = 60 + (index * 198);
-    return `<rect x="${x}" y="486" width="176" height="60" rx="18" fill="rgba(255,255,255,0.92)" stroke="rgba(24,24,27,0.08)"/><text x="${x + 16}" y="510" font-family="Arial, sans-serif" font-size="13" fill="#71717a" letter-spacing="1.2">${escHtml(card.label.toUpperCase())}</text><text x="${x + 16}" y="537" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#18181b">${escHtml(card.value)}</text>`;
+    const x = 68 + (index * 204);
+    return `<rect x="${x}" y="496" width="182" height="64" rx="20" fill="rgba(255,255,255,0.94)" stroke="rgba(24,24,27,0.08)"/><text x="${x + 18}" y="520" font-family="Arial, sans-serif" font-size="12" fill="#71717a" letter-spacing="1.4">${escHtml(clampText(String(card.label || '').toUpperCase(), 18))}</text><text x="${x + 18}" y="546" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">${escHtml(clampText(card.value, 18))}</text>`;
   }).join('');
 }
 function buildInsightPosterSvg(article) {
-  const dossier = resolveInsightDossier(article, articleProductContext(article));
-  const theme = insightTheme(article, articleProductContext(article));
-  const titleLines = wrapPosterText(article.title, 24);
+  const context = articleProductContext(article);
+  const dossier = resolveInsightDossier(article, context);
+  const theme = insightTheme(article, context);
+  const titleLines = wrapPosterText(article.title, 20, 4);
+  const noteLines = wrapPosterText(clampText(dossier.posterNote || article.excerpt, 108), 42, 2);
   const chartItems = (dossier.chart?.items || []).slice(0, 3);
-  const titleHtml = titleLines.map((line, index) => `<text x="60" y="${172 + (index * 64)}" font-family="Arial, sans-serif" font-size="54" font-weight="700" fill="#18181b">${escHtml(line)}</text>`).join('');
+  const titleFont = titleLines.length > 3 ? 44 : 50;
+  const titleHtml = titleLines.map((line, index) => `<text x="68" y="${170 + (index * 58)}" font-family="Arial, sans-serif" font-size="${titleFont}" font-weight="700" fill="#18181b">${escHtml(line)}</text>`).join('');
+  const noteHtml = noteLines.map((line, index) => `<text x="68" y="${422 + (index * 28)}" font-family="Arial, sans-serif" font-size="22" fill="#52525b">${escHtml(line)}</text>`).join('');
   const chartHtml = chartItems.map((item, index) => {
-    const y = 170 + (index * 118);
-    const barWidth = Math.round(210 * ((item.score || 70) / 100));
-    return `<text x="760" y="${y - 18}" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">${escHtml(item.label)}</text><rect x="760" y="${y}" width="220" height="14" rx="7" fill="#e4e4e7"/><rect x="760" y="${y}" width="${barWidth}" height="14" rx="7" fill="${theme.primary}"/><text x="1000" y="${y + 12}" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">${escHtml(item.value || `${item.score}`)}</text><text x="760" y="${y + 40}" font-family="Arial, sans-serif" font-size="15" fill="#52525b">${escHtml(item.note || '')}</text>`;
+    const y = 180 + (index * 108);
+    const barWidth = Math.round(198 * ((item.score || 70) / 100));
+    return `<text x="776" y="${y - 20}" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#18181b">${escHtml(clampText(item.label, 26))}</text><rect x="776" y="${y}" width="214" height="12" rx="6" fill="#e4e4e7"/><rect x="776" y="${y}" width="${barWidth}" height="12" rx="6" fill="${theme.primary}"/><text x="1010" y="${y + 11}" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#18181b">${escHtml(clampText(item.value || `${item.score}`, 12))}</text><text x="776" y="${y + 38}" font-family="Arial, sans-serif" font-size="14" fill="#52525b">${escHtml(clampText(item.note || '', 44))}</text>`;
   }).join('');
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="${escHtml(article.title)}">
     <defs>
@@ -1286,17 +1303,20 @@ function buildInsightPosterSvg(article) {
       </linearGradient>
     </defs>
     <rect width="1200" height="630" rx="36" fill="url(#posterGrad-${escHtml(article.slug)})"/>
-    <rect x="38" y="38" width="1124" height="554" rx="30" fill="rgba(255,255,255,0.84)" stroke="rgba(24,24,27,0.06)"/>
-    <rect x="60" y="64" width="220" height="36" rx="18" fill="${theme.primary}" opacity="0.92"/>
-    <text x="84" y="88" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" letter-spacing="1.8">${escHtml((dossier.posterKicker || article.categoryLabel).toUpperCase())}</text>
+    <rect x="38" y="38" width="1124" height="554" rx="30" fill="rgba(255,255,255,0.9)" stroke="rgba(24,24,27,0.06)"/>
+    <circle cx="1072" cy="110" r="18" fill="${theme.glow}"/>
+    <circle cx="1036" cy="110" r="8" fill="${theme.primary}"/>
+    <rect x="68" y="74" width="292" height="38" rx="19" fill="${theme.primary}" opacity="0.94"/>
+    <text x="92" y="99" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff" letter-spacing="1.8">${escHtml(clampText((dossier.posterKicker || article.categoryLabel).toUpperCase(), 24))}</text>
     ${titleHtml}
-    <text x="60" y="446" font-family="Arial, sans-serif" font-size="24" fill="#52525b">${escHtml(dossier.posterNote || article.excerpt)}</text>
+    ${noteHtml}
     ${renderPosterMetricChips(dossier.cards || [])}
-    <rect x="720" y="96" width="396" height="438" rx="28" fill="#ffffff" stroke="rgba(24,24,27,0.06)"/>
-    <text x="760" y="136" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="${theme.primary}" letter-spacing="1.6">DASHBOARD SNAPSHOT</text>
+    <rect x="736" y="86" width="394" height="458" rx="30" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/>
+    <text x="776" y="128" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="${theme.primary}" letter-spacing="1.7">DASHBOARD SNAPSHOT</text>
     ${chartHtml}
-    <circle cx="1094" cy="112" r="14" fill="${theme.glow}"/>
-    <circle cx="1060" cy="112" r="8" fill="${theme.primary}"/>
+    <text x="776" y="504" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#71717a" letter-spacing="1.4">${escHtml(clampText(article.categoryLabel.toUpperCase(), 26))}</text>
+    <text x="776" y="536" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">MOLDART</text>
+    <text x="952" y="536" font-family="Arial, sans-serif" font-size="16" fill="#52525b">moldartindia.com</text>
   </svg>`;
 }
 async function rasterizeSvgSet(tasks = []) {
@@ -1311,11 +1331,11 @@ async function rasterizeSvgSet(tasks = []) {
   await browser.close();
 }
 async function generateInsightPosterAssets() {
-  const editorialArticles = rawInsights.editorial || [];
-  if (!editorialArticles.length) return;
+  const allArticles = rawInsights.articles || [];
+  if (!allArticles.length) return;
   mkdirp(path.join(WORK, 'images', 'insights'));
   const rasterTasks = [];
-  for (const article of editorialArticles) {
+  for (const article of allArticles) {
     const svg = buildInsightPosterSvg(article);
     const svgPath = insightPosterOutputPath(article, 'svg');
     writeFile(svgPath, svg);
@@ -1333,43 +1353,43 @@ const SITE_SOCIAL_POSTERS = [
   {
     name: 'moldart-default',
     kicker: 'Moldart',
-    title: 'Wood and steel supply programmes from Mumbai',
-    note: 'Lamination tooling, panel systems, flooring, furniture, decorative stainless steel, and industrial press surfaces.',
-    chips: ['Since 1989', 'Mumbai', 'India + China sourcing', 'Buyer-facing guidance']
+    title: 'Specification-led wood and steel supply',
+    note: 'Lamination tooling, panels, flooring, furniture, decorative stainless steel, and industrial press routes from Mumbai.',
+    chips: ['Since 1989', 'Mumbai', 'India + China', 'Requirement-led']
   },
   {
     name: 'moldart-home',
     kicker: 'Homepage preview',
-    title: 'Start from the route, not the generic product name',
-    note: 'Solutions, resources, insights, and enquiry-led supply support built around the actual requirement.',
+    title: 'Wood and steel supply, aligned to the brief',
+    note: 'Solutions, resources, insights, and contact kept under one cleaner Moldart layer.',
     chips: ['Solutions', 'Resources', 'Insights', 'Contact']
   },
   {
     name: 'moldart-solutions',
     kicker: 'Solutions',
-    title: 'Application-led product stacks and system views',
-    note: 'Use the solutions layer when the requirement is still being narrowed at the programme level.',
+    title: 'Application routes before product noise',
+    note: 'Use the solutions layer when the requirement is still being narrowed at programme level.',
     chips: ['Lamination', 'Furniture', 'Flooring', 'Architecture']
   },
   {
     name: 'moldart-resources',
     kicker: 'Resources',
-    title: 'Downloadable references for approvals and RFQs',
-    note: 'Reference decks, catalogues, and support files kept separate from the editorial guidance layer.',
-    chips: ['24 references', 'PDF library', 'Request-safe delivery', 'Searchable']
+    title: 'References, decks, and decision files',
+    note: 'A cleaner document layer for approvals, RFQs, and repeat technical checks.',
+    chips: ['24 references', 'Downloadable', 'Searchable', 'Support files']
   },
   {
     name: 'moldart-insights',
     kicker: 'Insights',
-    title: 'Technical guidance built for buyers and specifiers',
-    note: 'Long-form articles, route notes, dashboards, and public references designed to support real enquiries.',
-    chips: ['Editorial articles', 'Technical routes', 'Public references', 'Shareable covers']
+    title: 'Technical articles for buyers, teams, and partners',
+    note: 'Long-form guides, route notes, and public references built around real enquiries.',
+    chips: ['Editorial', 'Technical routes', 'Public references', 'Share-ready']
   },
   {
     name: 'moldart-process',
     kicker: 'Process',
-    title: 'From brief to aligned supply',
-    note: 'Share the brief, align the route, lock the reference, and keep repeat supply tied to what was approved.',
+    title: 'From brief to a stable supply route',
+    note: 'Share the brief, align the route, lock the reference, and carry that logic into repeat supply.',
     chips: ['Brief', 'Route', 'Reference', 'Supply']
   }
 ];
@@ -1381,34 +1401,29 @@ function siteSocialPosterOutputPath(name, ext = 'svg') {
 }
 function buildSiteSocialSvg(config) {
   const chips = (config.chips || []).slice(0, 4);
+  const titleLines = wrapPosterText(config.title, 26, 3);
+  const noteLines = wrapPosterText(clampText(config.note, 104), 38, 2);
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="${escHtml(config.title)}">
-    <rect width="1200" height="630" rx="36" fill="#fafafa"/>
-    <rect x="42" y="42" width="1116" height="546" rx="28" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/>
-    <g opacity="0.55">
-      <path d="M84 132H1116" stroke="#ededf0"/>
-      <path d="M84 232H1116" stroke="#ededf0"/>
-      <path d="M84 332H1116" stroke="#ededf0"/>
-      <path d="M84 432H1116" stroke="#ededf0"/>
-      <path d="M84 532H1116" stroke="#ededf0"/>
-      <path d="M220 84V560" stroke="#ededf0"/>
-      <path d="M420 84V560" stroke="#ededf0"/>
-      <path d="M620 84V560" stroke="#ededf0"/>
-      <path d="M820 84V560" stroke="#ededf0"/>
-      <path d="M1020 84V560" stroke="#ededf0"/>
-    </g>
-    <rect x="84" y="84" width="178" height="38" rx="19" fill="#18181b"/>
-    <text x="108" y="108" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" letter-spacing="1.6">${escHtml(config.kicker.toUpperCase())}</text>
-    <text x="84" y="196" font-family="Arial, sans-serif" font-size="58" font-weight="700" fill="#18181b">${escHtml(config.title)}</text>
-    <text x="84" y="262" font-family="Arial, sans-serif" font-size="24" fill="#52525b">${escHtml(config.note)}</text>
-    ${chips.map((chip, index) => `<rect x="${84 + (index * 186)}" y="454" width="170" height="58" rx="18" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/><text x="${104 + (index * 186)}" y="489" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">${escHtml(chip)}</text>`).join('')}
-    <path d="M742 206C790 172 842 158 900 160c60 1 112 18 156 54" fill="none" stroke="#18181b" stroke-opacity="0.16" stroke-width="18" stroke-linecap="round"/>
-    <path d="M742 290C792 262 848 250 908 252c58 2 108 18 148 48" fill="none" stroke="#18181b" stroke-opacity="0.22" stroke-width="10" stroke-dasharray="14 16" stroke-linecap="round"/>
-    <circle cx="760" cy="360" r="16" fill="#18181b"/>
-    <circle cx="858" cy="250" r="12" fill="#ffffff" stroke="#18181b" stroke-width="3"/>
-    <circle cx="1008" cy="272" r="12" fill="#ffffff" stroke="#18181b" stroke-width="3"/>
-    <text x="730" y="404" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">Mumbai</text>
-    <text x="834" y="226" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">India</text>
-    <text x="978" y="248" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">China</text>
+    <rect width="1200" height="630" rx="36" fill="#f6f5f4"/>
+    <rect x="42" y="42" width="1116" height="546" rx="30" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/>
+    <rect x="72" y="72" width="220" height="38" rx="19" fill="#18181b"/>
+    <text x="96" y="97" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff" letter-spacing="1.8">${escHtml(clampText(String(config.kicker || 'Moldart').toUpperCase(), 20))}</text>
+    ${titleLines.map((line, index) => `<text x="72" y="${184 + (index * 60)}" font-family="Arial, sans-serif" font-size="50" font-weight="700" fill="#18181b">${escHtml(line)}</text>`).join('')}
+    ${noteLines.map((line, index) => `<text x="72" y="${392 + (index * 28)}" font-family="Arial, sans-serif" font-size="23" fill="#52525b">${escHtml(line)}</text>`).join('')}
+    ${chips.map((chip, index) => `<rect x="${72 + (index * 174)}" y="484" width="160" height="56" rx="18" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/><text x="${92 + (index * 174)}" y="518" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#18181b">${escHtml(clampText(chip, 16))}</text>`).join('')}
+    <rect x="756" y="72" width="332" height="486" rx="28" fill="#fafafa" stroke="rgba(24,24,27,0.08)"/>
+    <text x="792" y="116" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#71717a" letter-spacing="1.8">PROGRAMME GEOGRAPHY</text>
+    <path d="M812 296C842 260 866 236 892 214" fill="none" stroke="#18181b" stroke-opacity="0.18" stroke-width="18" stroke-linecap="round"/>
+    <path d="M812 296C868 276 926 248 988 228" fill="none" stroke="#18181b" stroke-opacity="0.22" stroke-width="10" stroke-dasharray="14 16" stroke-linecap="round"/>
+    <path d="M812 296C746 272 692 248 644 212" fill="none" stroke="#d4d4d8" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="812" cy="296" r="16" fill="#18181b"/>
+    <circle cx="892" cy="214" r="12" fill="#ffffff" stroke="#18181b" stroke-width="3"/>
+    <circle cx="988" cy="228" r="12" fill="#ffffff" stroke="#18181b" stroke-width="3"/>
+    <text x="780" y="342" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">Mumbai</text>
+    <text x="862" y="188" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">India</text>
+    <text x="958" y="202" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">China</text>
+    <text x="792" y="418" font-family="Arial, sans-serif" font-size="16" fill="#52525b">Start from the route, then match the reference.</text>
+    <text x="792" y="508" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">moldartindia.com</text>
   </svg>`;
 }
 async function generateSiteSocialAssets() {
@@ -1722,7 +1737,7 @@ function getSearchEntries() {
 
 function renderHeroNetworkMap() {
   return `<div class="hero-network-card hero-world-map" aria-label="Illustrative global programme map">
-      <svg class="hero-network-svg" viewBox="0 0 960 620" role="img" aria-label="Illustrative world map showing Mumbai separately from India, with India and China as sourcing anchors and animated representative trade lanes across six buyer-relevant regions">
+      <svg class="hero-network-svg" viewBox="0 0 960 620" role="img" aria-label="Illustrative world map showing Mumbai separately from India, with India and China as sourcing anchors and representative trade lanes across six buyer-relevant regions">
           <defs>
               <linearGradient id="routeFade" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stop-color="#18181b" stop-opacity="0.98"></stop>
@@ -1998,11 +2013,26 @@ function socialImageMetaPath(image = '') {
   return image;
 }
 
+function socialImageVersionedUrl(image = '') {
+  if (!image) return image;
+  return `${image}${String(image).includes('?') ? '&' : '?'}v=${VER}`;
+}
+
+function socialImageMimeType(image = '') {
+  const clean = String(image || '').split('?')[0].toLowerCase();
+  if (clean.endsWith('.png')) return 'image/png';
+  if (clean.endsWith('.jpg') || clean.endsWith('.jpeg')) return 'image/jpeg';
+  if (clean.endsWith('.svg')) return 'image/svg+xml';
+  return 'image/png';
+}
+
 function headTag({ title, desc, canonical, ogType = 'website', ogImage = '/images/social/moldart-default.png', ogImageAlt = 'Moldart brand overview', noindex = false, schemas = [], prefetch = [] }) {
   const robotsMeta = noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
   const schemaScripts = schemas.map(s => `<script type="application/ld+json">\n    ${JSON.stringify(s)}\n    </script>`).join('\n    ');
   const prefetchLinks = [...new Set(['/data/search-index.json', ...prefetch])].map(p => `<link rel="prefetch" href="${p}">`).join('\n    ');
   const socialImage = socialImageMetaPath(ogImage);
+  const socialImageUrl = /^https?:/i.test(socialImage) ? socialImageVersionedUrl(socialImage) : `${SITE}${socialImageVersionedUrl(socialImage)}`;
+  const socialImageType = socialImageMimeType(socialImage);
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2017,19 +2047,24 @@ function headTag({ title, desc, canonical, ogType = 'website', ogImage = '/image
     <meta property="og:url" content="${SITE}${canonical}">
     <meta property="og:locale" content="en_IN">
     <meta property="og:site_name" content="Moldart">
-    <meta property="og:image" content="${SITE}${socialImage}">
+    <meta property="og:image" content="${socialImageUrl}">
+    <meta property="og:image:url" content="${socialImageUrl}">
+    <meta property="og:image:secure_url" content="${socialImageUrl}">
+    <meta property="og:image:type" content="${socialImageType}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="${escHtml(ogImageAlt)}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${escHtml(title)}">
     <meta name="twitter:description" content="${escHtml(desc)}">
-    <meta name="twitter:image" content="${SITE}${socialImage}">
+    <meta name="twitter:image" content="${socialImageUrl}">
+    <meta name="twitter:image:alt" content="${escHtml(ogImageAlt)}">
     <meta name="theme-color" content="#18181b">
     <script>document.documentElement.classList.add('js');</script>
     <link rel="canonical" href="${SITE}${canonical}">
     <link rel="alternate" hreflang="en-IN" href="${SITE}${canonical}">
     <link rel="alternate" hreflang="x-default" href="${SITE}${canonical}">
+    <link rel="image_src" href="${socialImageUrl}">
     ${favicons()}
     <link rel="dns-prefetch" href="https://wa.me">
     <link rel="preconnect" href="https://moldartindia.com">
@@ -2039,6 +2074,7 @@ function headTag({ title, desc, canonical, ogType = 'website', ogImage = '/image
     <style>${pageEnhancementCSS()}</style>
     <link rel="stylesheet" href="/styles.css?v=${VER}">
     <link rel="stylesheet" href="/pages.css?v=${VER}">
+    <link rel="stylesheet" href="/site-overrides.css?v=${VER}">
     ${prefetchLinks}
     ${schemaScripts}
 </head>`;
@@ -2101,7 +2137,8 @@ function footer() {
                         <a href="mailto:info@moldartindia.com" class="ui-footer-link">${glyph('mail', 'icon icon-sm')} info@moldartindia.com</a>
                         <a href="${whatsappHref(WHATSAPP_PRIMARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('whatsapp-brand', 'icon icon-sm')} ${WHATSAPP_PRIMARY.display}</a>
                         <a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('whatsapp-brand', 'icon icon-sm')} ${WHATSAPP_SECONDARY.display}</a>
-                        <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('linkedin-brand', 'icon icon-sm')} LinkedIn</a>
+                        <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('linkedin-brand', 'icon icon-sm')} Company LinkedIn</a>
+                        <a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi</a>
                         <a href="/contact/" class="ui-footer-link">${glyph('message', 'icon icon-sm')} Share your requirement</a>
                     </div>
                     <p class="text-xs text-zinc-500 leading-relaxed mt-5">Use Contact for enquiry forms, WhatsApp, meetings, and address details.</p>
@@ -2712,9 +2749,9 @@ function ctaBlock(heading, subtext, primaryLabel, primaryHref, secondaryLabel, s
 function generateHomepage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'Organization', name: 'Moldart', url: SITE + '/', logo: { '@type': 'ImageObject', url: SITE + '/favicon-192x192.png', width: 192, height: 192 }, foundingDate: '1989', sameAs: [COMPANY_LINKEDIN], address: { '@type': 'PostalAddress', streetAddress: '#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West)', addressLocality: 'Mumbai', addressRegion: 'Maharashtra', postalCode: '400064', addressCountry: 'IN' }, contactPoint: { '@type': 'ContactPoint', telephone: '+917208088788', contactType: 'sales', email: 'info@moldartindia.com', areaServed: 'IN', availableLanguage: ['English', 'Hindi'] }, description: 'Lamination tooling, panels, flooring, furniture programmes, decorative stainless steel, and industrial press surfaces from Mumbai since 1989.' },
+    { '@context': 'https://schema.org', '@type': 'Organization', name: 'Moldart', url: SITE + '/', logo: { '@type': 'ImageObject', url: SITE + '/favicon-192x192.png', width: 192, height: 192 }, foundingDate: '1989', sameAs: [COMPANY_LINKEDIN, YASH_LINKEDIN], address: { '@type': 'PostalAddress', streetAddress: '#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West)', addressLocality: 'Mumbai', addressRegion: 'Maharashtra', postalCode: '400064', addressCountry: 'IN' }, contactPoint: { '@type': 'ContactPoint', telephone: '+917208088788', contactType: 'sales', email: 'info@moldartindia.com', areaServed: 'IN', availableLanguage: ['English', 'Hindi'] }, description: 'Lamination tooling, panels, flooring, furniture programmes, decorative stainless steel, and industrial press surfaces from Mumbai since 1989.' },
     { '@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE + '/#website', name: 'Moldart', url: SITE + '/', inLanguage: 'en-IN' },
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/#webpage', url: SITE + '/', name: 'Moldart India | Lamination tooling, panels, flooring & decorative stainless steel', description: 'Moldart works from Mumbai across wood and steel programmes, aligning sourcing from India and China to the requirement.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/#webpage', url: SITE + '/', name: 'Moldart | Lamination tooling, panels, flooring & decorative stainless steel', description: 'Moldart works from Mumbai across wood and steel programmes, aligning sourcing from India and China to the requirement.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
@@ -2723,7 +2760,7 @@ function generateHomepage() {
   const ecosystemCards = portfolioFamilies.map((family) => `<article class="ui-library-card ui-ecosystem-card"><div class="ui-kicker mb-3">${glyph(familyIconName(family.title), 'icon icon-sm')} ${escHtml(family.title)}</div><h3 class="ui-family-title" style="font-size:1.15rem;">${escHtml(family.highlights[0])}</h3><p class="text-sm text-zinc-500 leading-relaxed mt-3">${escHtml(family.intro)}</p><div class="ui-link-row mt-5">${family.products.slice(0, 4).map((productId) => productTextLink(productId)).filter(Boolean).join('')}</div></article>`).join('');
 
   return headTag({
-    title: 'Moldart India | Lamination tooling, panels, flooring & decorative stainless steel',
+    title: 'Moldart | Lamination tooling, panels, flooring & decorative stainless steel',
     desc: 'Moldart works from Mumbai across wood and steel programmes, aligning sourcing from India and China to the application, finish, and commercial route.',
     canonical: '/',
     ogImage: siteSocialPosterRelativePath('moldart-home'),
@@ -2768,7 +2805,7 @@ function generateHomepage() {
             <div class="ui-section-head mb-10">
                 <div class="ui-kicker mb-4">${glyph('globe', 'icon icon-sm')} Programme geography</div>
                 <h2 class="ui-section-title">A CLEANER VIEW OF THE ROUTE.</h2>
-                <p class="ui-section-subtitle">The map is intentionally minimal: Mumbai is shown separately from India, India and China remain the sourcing anchors, and the wider lanes stay illustrative rather than overstated.</p>
+                <p class="ui-section-subtitle">The map stays deliberately simple: Mumbai is shown separately from India, India and China remain the sourcing anchors, and the wider lanes stay illustrative rather than overstated.</p>
             </div>
             <div class="ui-world-stage">
                 <div class="ui-world-stage-map">${renderHeroNetworkMap()}</div>
@@ -2784,7 +2821,7 @@ function generateHomepage() {
                         <span class="ui-world-map-legend-item is-primary"><strong>Mumbai</strong><span>Operating base and commercial coordination</span></span>
                         <span class="ui-world-map-legend-item"><strong>India</strong><span>Shown separately from Mumbai inside the Asia route</span></span>
                         <span class="ui-world-map-legend-item"><strong>China</strong><span>Second sourcing anchor where relevant</span></span>
-                        <span class="ui-world-map-legend-item"><strong>Animated lanes</strong><span>Illustrative trade direction, not office claims</span></span>
+                        <span class="ui-world-map-legend-item"><strong>Illustrative lanes</strong><span>Route direction only, not office claims</span></span>
                     </div>
                     <div class="ui-world-map-note mt-3">Six-region orientation only. The wider lines stay illustrative and are used only to explain route context around Mumbai, India, and China.</div>
                 </aside>
@@ -2910,14 +2947,14 @@ function generateExplorePage() {
 function generateSolutionsHub() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Solutions' }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/solutions/#webpage', url: SITE + '/solutions/', name: 'Solutions — Moldart India', description: 'Programme views across lamination, furniture, flooring, architecture, decorative stainless steel, and industrial press applications.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/solutions/#webpage', url: SITE + '/solutions/', name: 'Solutions — Moldart', description: 'Programme views across lamination, furniture, flooring, architecture, decorative stainless steel, and industrial press applications.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
   const solutionCards = applications.map((app, index) => renderApplicationPreviewCard(app, { priority: index < 3 })).join('\n');
 
   return headTag({
-    title: 'Solutions | Moldart India',
+    title: 'Solutions | Moldart',
     desc: 'Start with the programme and see the relevant product stack, guides, and downloads together.',
     canonical: '/solutions/',
     ogImage: siteSocialPosterRelativePath('moldart-solutions'),
@@ -3183,7 +3220,7 @@ function generateApplicationPage(app) {
 function generateResourcesPage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Resources' }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/resources/#webpage', url: SITE + '/resources/', name: 'Resources & Downloads — Moldart India', description: 'Download product catalogues, material references, and finish decks from Moldart.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/resources/#webpage', url: SITE + '/resources/', name: 'Resources & Downloads — Moldart', description: 'Download product catalogues, material references, and finish decks from Moldart.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
@@ -3208,7 +3245,7 @@ function generateResourcesPage() {
   }).join('\n');
 
   return headTag({
-    title: 'Resources & Downloads | Product Catalogues — Moldart India',
+    title: 'Resources & Downloads | Product Catalogues — Moldart',
     desc: 'Download product catalogues, material references, and finish decks for lamination tooling, panels, flooring, furniture, and decorative stainless steel.',
     canonical: '/resources/',
     ogImage: siteSocialPosterRelativePath('moldart-resources'),
@@ -3254,7 +3291,7 @@ function generateFAQPage() {
   const allFaqItems = rawFaq.categories.flatMap((category) => category.items);
   const schemas = [
     { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: allFaqItems.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })) },
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/faq/#webpage', url: SITE + '/faq/', name: 'FAQ — Moldart India', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/faq/#webpage', url: SITE + '/faq/', name: 'FAQ — Moldart', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
@@ -3318,7 +3355,7 @@ function generateFAQPage() {
   }).join('');
 
   return headTag({
-    title: 'FAQ | Moldart India',
+    title: 'FAQ | Moldart',
     desc: 'Buyer-facing answers on Moldart product groups, documents, enquiries, order planning, and next-step review.',
     canonical: '/faq/',
     schemas
@@ -3446,7 +3483,10 @@ function generateContactPage() {
                             <a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-700 font-medium">Alternate WhatsApp: ${WHATSAPP_SECONDARY.display}</a>
                             <a href="mailto:info@moldartindia.com" class="link-line text-sm text-zinc-700 font-medium">info@moldartindia.com</a>
                         </div>
-                        <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip">${glyph('linkedin-brand', 'icon icon-sm')} Moldart India on LinkedIn</a>
+                        <div class="contact-social-row">
+                            <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip">${glyph('linkedin-brand', 'icon icon-sm')} Moldart on LinkedIn</a>
+                            <a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi</a>
+                        </div>
                     </article>
                 </div>
                 <div class="ui-contact-form">
@@ -3581,6 +3621,7 @@ function generateAboutPage() {
                         <h3 class="ui-family-title">MR. YASH DOSHI</h3>
                         <div class="ui-proof-label mb-3">Partner</div>
                         <p class="text-sm text-zinc-500 leading-relaxed font-light">Partner working across category development, customer coordination, and programme follow-through.</p>
+                        <div class="mt-4"><a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="site-inline-link">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi on LinkedIn</a></div>
                     </div>
                 </article>
             </div>
@@ -3682,8 +3723,13 @@ function generateProcessPage() {
         </section>
 
         <section class="max-w mx-auto px py-16 fade-up">
-            <div class="ui-library-grid">
-                ${quickCards.map((card) => `<article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('check', 'icon icon-sm')} ${escHtml(card.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(card.detail)}</p></article>`).join('')}
+            <div class="ui-section-head mb-10">
+                <div class="ui-kicker mb-4">${glyph('check', 'icon icon-sm')} Review notes</div>
+                <h2 class="ui-section-title">THREE NOTES THAT KEEP<br>THE ROUTE CLEAN.</h2>
+                <p class="ui-section-subtitle">These are the points that usually change speed, approval quality, and repeat stability more than any generic product discussion.</p>
+            </div>
+            <div class="process-note-board">
+                ${quickCards.map((card, index) => `<article class="process-note-card"><div class="process-note-step">0${index + 1}</div><h3>${escHtml(card.title)}</h3><p>${escHtml(card.detail)}</p></article>`).join('')}
             </div>
         </section>
 
@@ -4032,7 +4078,7 @@ function generateInsightArticle(article) {
           ${context ? `<div class="insight-side-card"><div class="insight-side-label mb-3">Reference downloads</div><div class="flex flex-col gap-2">${context.meta.downloads.slice(0, 3).map((download) => downloadLink(download)).join('')}</div></div>` : ''}
       </aside>`;
 
-  const articleOgImage = article.generated ? siteSocialPosterRelativePath('moldart-insights') : insightPosterRelativePath(article, 'png');
+  const articleOgImage = insightPosterRelativePath(article, 'png');
 
   return headTag({
     title: `${article.title} | Moldart Insights`,
@@ -4071,10 +4117,20 @@ function generateInsightArticle(article) {
                 ${insightSidebar}
             </div>
         </section>
-        <section class="max-w mx-auto px py-12 border-t border-zinc-100 fade-up">
-            <div class="flex flex-col md-flex-row gap-4 justify-between items-center">
-                <a href="/insights/" class="btn-outline">← Back to Insights</a>
-                <a href="/contact/?product=${encodeURIComponent(context?.product?.name || article.category)}" class="btn-primary">Share your requirement →</a>
+        <section class="max-w mx-auto px py-16 border-t border-zinc-100 fade-up">
+            <div class="article-end-rail">
+                <article class="article-end-card">
+                    <div class="article-end-label">Explore more</div>
+                    <h2>Back to insights</h2>
+                    <p>Return to the wider library of edited guides, route notes, and secondary technical references.</p>
+                    <a href="/insights/" class="btn-outline">Open insights</a>
+                </article>
+                <article class="article-end-card article-end-card-primary">
+                    <div class="article-end-label">Next step</div>
+                    <h2>Share the actual requirement</h2>
+                    <p>Use ${escHtml(context?.product?.name || article.categoryLabel)} only as the starting point. The brief, reference, quantity, timing, and destination make the next review faster.</p>
+                    <a href="/contact/?product=${encodeURIComponent(context?.product?.name || article.category)}" class="btn-primary">Share your requirement</a>
+                </article>
             </div>
         </section>
     </main>
