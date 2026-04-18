@@ -618,8 +618,8 @@ const insightDossiers = {
       },
       references: [
         { title: 'LinkedIn article — Press Plates & Pads: Smart Tooling for Perfect Panels', source: 'LinkedIn / Yash Doshi', href: 'https://www.linkedin.com/pulse/press-plates-pads-smart-tooling-perfect-panels-yash-doshi-9vfje/', note: 'Original article and video source used for this rebuilt website version.' },
-        { title: 'CAPICARD press plates overview', source: 'C.A. PICARD', href: 'https://www.capicard.de/en/press-plates', note: 'Public reference point for press plate positioning and route language.' },
-        { title: 'Press plate polishing & finish notes', source: 'Sylvester / Hitech', href: 'https://www.sylvester-usa.com/press-plates', note: 'Useful context for finish-control language and plate condition.' },
+        { title: 'Press plate product overview', source: 'Outokumpu', href: 'https://www.outokumpu.com/en/products/specialized-products/press-plate', note: 'Public reference point for press plate positioning and route language.' },
+        { title: 'Lamination plates overview', source: 'Sylvester Products', href: 'https://www.laminationplates.com/', note: 'Useful context for finish-control language and plate condition.' },
         { title: 'How HPL panels are made', source: 'Fundermax', href: 'https://blog.fundermax.us/how-high-pressure-laminates-are-made', note: 'Helpful when translating tooling logic into the laminate process itself.' },
         { title: 'Decorative laminate manufacturing basics', source: 'Wikipedia', href: 'https://en.wikipedia.org/wiki/Decorative_laminate', note: 'Open summary reference for process orientation only.' }
       ]
@@ -665,7 +665,7 @@ const insightDossiers = {
       references: [
         { title: 'How HPL panels are made', source: 'Fundermax', href: 'https://blog.fundermax.us/how-high-pressure-laminates-are-made', note: 'Useful for the process distinction between higher-pressure laminate and short-cycle board routes.' },
         { title: 'Decorative laminate overview', source: 'Wikipedia', href: 'https://en.wikipedia.org/wiki/Decorative_laminate', note: 'Open background summary for HPL process orientation.' },
-        { title: 'NEMA LD 3 overview', source: 'NEMA', href: 'https://www.nema.org/standards/view/High-Pressure-Decorative-Laminates', note: 'Public standard reference landing page for decorative laminate expectations.' },
+        { title: 'NEMA standards overview', source: 'NEMA', href: 'https://www.nema.org/standards', note: 'Public standards landing page used here only as a broader reference context.' },
         { title: 'EPA composite wood formaldehyde standards', source: 'US EPA', href: 'https://www.epa.gov/formaldehyde/formaldehyde-emission-standards-composite-wood-products', note: 'Helpful when the LPL/TFL route depends on board-core compliance.' },
         { title: 'BIS standards portal', source: 'Bureau of Indian Standards', href: 'https://www.bis.gov.in/standards/', note: 'Public entry point for Indian laminate and panel standards references.' }
       ]
@@ -700,10 +700,10 @@ const insightDossiers = {
         ]
       },
       references: [
-        { title: 'Birch phenolic plywood reference', source: 'ULMA Construction', href: 'https://www.ulmaconstruction.com/en/products/formwork-plywood/birch-phenolic-plywood', note: 'Public reference point for phenolic formwork plywood positioning.' },
+        { title: 'Formwork panels overview', source: 'Doka', href: 'https://www.doka.com/en/solutions/formwork-beams-panels-props', note: 'Public reference point for broader formwork panel system positioning.' },
         { title: 'Shuttering plywood reuse guide', source: 'Haren Ply', href: 'https://www.harenply.com/types-applications-of-shuttering-plywood/', note: 'Useful open reference for shuttering plywood reuse behaviour.' },
         { title: 'Film-faced plywood reference', source: 'TT Plywood', href: 'https://ttplywood.com/film-faced-plywood/', note: 'Commercial reference point for reuse and application framing.' },
-        { title: 'CAPICARD press plates overview', source: 'C.A. PICARD', href: 'https://www.capicard.de/en/press-plates', note: 'Used here for the link between plywood face finish and press tooling logic.' }
+        { title: 'Press plate product overview', source: 'Outokumpu', href: 'https://www.outokumpu.com/en/products/specialized-products/press-plate', note: 'Used here for the link between plywood face finish and press tooling logic.' }
       ]
     },
     'upgraded-shuttering-plywood-vs-aluminium-plastic-formwork': {
@@ -739,20 +739,122 @@ const insightDossiers = {
         { title: 'Shuttering plywood reuse guide', source: 'Haren Ply', href: 'https://www.harenply.com/types-applications-of-shuttering-plywood/', note: 'Open market reference for standard plywood reuse behaviour.' },
         { title: 'Densified shuttering plywood note', source: 'Plymarc', href: 'https://www.plymarc.com/the-advantages-of-using-densified-shuttering-plywood-for-construction/', note: 'Commercial reference point for the densified plywood route.' },
         { title: 'Plastic formwork systems', source: 'Geoplast', href: 'https://www.geoplastglobal.com/en/products/formworks/', note: 'Public reference for plastic formwork positioning.' },
-        { title: 'Formwork plywood reference', source: 'ULMA Construction', href: 'https://www.ulmaconstruction.com/en/products/formwork-plywood/birch-phenolic-plywood', note: 'Useful for the plywood side of the comparison.' }
+        { title: 'Formwork panels overview', source: 'Doka', href: 'https://www.doka.com/en/solutions/formwork-beams-panels-props', note: 'Useful for the system-formwork side of the comparison.' }
       ]
     },
     'press-plate-chrome-condition-guide': {
       posterKicker: 'Working-face discipline',
       posterNote: 'Finish retention usually starts with the chrome condition, not the complaint wording.',
+      primerNote: 'Use this note when gloss drift, release change, or texture fatigue start appearing before the team is ready to replace the plate.',
+      priorities: [
+        'Record the approved finish benchmark and the actual chrome condition together.',
+        'Check wear, dents, and contamination before changing paper or resin assumptions.',
+        'Keep re-polish, re-chrome, and replacement history tied to the plate serial.'
+      ],
+      risks: [
+        'Cleaning damage or plate-to-plate contact reducing finish retention early.',
+        'Delayed replacement after the working face has already started drifting.',
+        'Treating chrome as decorative language instead of the real process surface.'
+      ],
+      faqs: [
+        { question: 'What is the first warning that chrome condition is moving?', answer: 'Usually a slower drift rather than one dramatic failure: gloss variation, weaker release, or a finish that no longer matches the approved panel as cleanly as before.' },
+        { question: 'When should the plate be inspected against the working face, not only the grade?', answer: 'Inspect earlier when the route becomes visually sensitive or when repeated finish change appears without staying tied to one paper or resin batch.' },
+        { question: 'What should stay in the replacement record?', answer: 'Keep the finish benchmark, plate identification, visible working-face condition, and the reason for re-polish, re-chrome, or replacement in one trail.' }
+      ],
+      cards: [
+        { label: 'Chrome role', value: 'Working face', note: 'Treat it as the surface that protects finish retention, not as cosmetic language.' },
+        { label: 'Watch first', value: 'Gloss drift', note: 'A stable route often starts signalling change here before one obvious failure appears.' },
+        { label: 'Handling risk', value: 'Stacking + cleaning', note: 'Casual storage and rushed cleaning can damage the route earlier than expected.' },
+        { label: 'Best record', value: 'Serial-linked trail', note: 'Replacement logic should stay tied to the plate, finish, and inspection history.' }
+      ],
+      chart: {
+        title: 'What usually exposes chrome deterioration first',
+        caption: 'Illustrative weighting for how finish-sensitive lines tend to notice working-face change.',
+        items: [
+          { label: 'Gloss stability', score: 92, value: 'Earliest signal', note: 'The approved panel begins to look slightly off before the team wants to admit the plate has moved.' },
+          { label: 'Release behaviour', score: 84, value: 'High', note: 'The route may start feeling less predictable even when grade language is unchanged.' },
+          { label: 'Visible scratches / dents', score: 78, value: 'Obvious but late', note: 'Once they are easy to see, the finish route is already under pressure.' },
+          { label: 'Paper or resin blame', score: 40, value: 'Often secondary', note: 'Those checks still matter, but the plate should be reviewed before the discussion narrows too far.' }
+        ]
+      },
+      table: {
+        title: 'Minimum chrome-condition inspection trail',
+        columns: ['Record line', 'What to capture', 'Why it protects repeat supply'],
+        rows: [
+          ['Approved benchmark', 'Master panel, gloss expectation, or accepted texture record', 'Keeps the next comparison tied to something real instead of memory.'],
+          ['Working-face condition', 'Visible wear, dents, contamination, or release remarks', 'Makes the surface review specific enough to act on.'],
+          ['Action taken', 'Clean, re-polish, re-chrome, replace, or continue', 'Turns maintenance into a controlled programme instead of a guess.'],
+          ['Next review point', 'Date, cycle band, or inspection trigger', 'Stops the route from drifting until the defect becomes expensive.']
+        ]
+      },
+      flow: {
+        title: 'Use this chrome review order',
+        items: [
+          'Start from the approved finish benchmark, not only the latest complaint wording.',
+          'Check the working face for wear, contamination, scratches, and release change.',
+          'Review handling, cleaning, and storage discipline before blaming one raw-material layer.',
+          'Write the corrected condition into the next plate review and reorder trail.'
+        ]
+      },
       references: [
-        { title: 'CAPICARD press plates overview', source: 'C.A. PICARD', href: 'https://www.capicard.de/en/press-plates', note: 'Public route reference for press plate positioning and maintenance language.' },
-        { title: 'Press plate polishing & finish notes', source: 'Sylvester / Hitech', href: 'https://www.sylvester-usa.com/press-plates', note: 'Useful open context for working-surface language and finish control.' }
+        { title: 'Press plate product overview', source: 'Outokumpu', href: 'https://www.outokumpu.com/en/products/specialized-products/press-plate', note: 'Public route reference for press plate positioning and maintenance language.' },
+        { title: 'Lamination plates overview', source: 'Sylvester Products', href: 'https://www.laminationplates.com/', note: 'Useful open context for working-surface language and finish control.' }
       ]
     },
     'printed-decor-paper-batch-repeat-approval-guide': {
       posterKicker: 'Batch-control guide',
       posterNote: 'The surface programme gets easier when the batch logic is approved before pressing.',
+      primerNote: 'Use this page when batch repeat, shade continuity, or multi-order matching matter more than getting one visually acceptable sheet through approval.',
+      priorities: [
+        'Lock the master panel or accepted benchmark before the paper moves into processing.',
+        'Write shade tolerance, repeat direction, and orientation into the approval record.',
+        'Define when a new batch needs re-approval versus routine continuation.'
+      ],
+      risks: [
+        'Ordering by design name without the last accepted visual reference attached.',
+        'Approving paper in isolation from impregnation and pressing behaviour.',
+        'Leaving repeat direction or panel layout sensitivity vague until production.'
+      ],
+      faqs: [
+        { question: 'What should define acceptance first: the paper sheet or the finished panel?', answer: 'Use both when possible, but the finished panel or last accepted surface should usually carry the final approval authority because that is what the project finally sees.' },
+        { question: 'When does a batch really need a fresh approval step?', answer: 'Treat it as a fresh approval whenever the route is visually sensitive, the benchmark has changed, or the order depends on tight repeat continuity across multiple runs.' },
+        { question: 'What causes the most avoidable decor-paper disputes later?', answer: 'Weak reference control: a design name survives in the PO but the accepted panel, shade band, and repeat logic do not.' }
+      ],
+      cards: [
+        { label: 'Approval anchor', value: 'Master panel', note: 'A printed sheet alone is rarely enough once the route is process-sensitive.' },
+        { label: 'Watch first', value: 'Repeat + shade', note: 'Those two points usually decide whether a reorder still feels aligned.' },
+        { label: 'Decision stage', value: 'Before pressing', note: 'The cost of a weak paper decision rises after impregnation and pressing.' },
+        { label: 'Best file', value: 'Batch record', note: 'Keep accepted benchmark, tolerance note, and re-approval rule together.' }
+      ],
+      chart: {
+        title: 'What usually creates batch mismatch later',
+        caption: 'Illustrative weighting for approval gaps that become visible only after pressing.',
+        items: [
+          { label: 'Missing accepted benchmark', score: 94, value: 'Primary', note: 'The batch discussion becomes subjective immediately if the last accepted reference is absent.' },
+          { label: 'Weak repeat orientation control', score: 82, value: 'High', note: 'Repeat direction often matters more once the panel layout becomes real.' },
+          { label: 'Shade tolerance left vague', score: 80, value: 'High', note: 'A small paper difference can become a visible surface difference later.' },
+          { label: 'Commercial urgency', score: 58, value: 'Common trigger', note: 'Speed often pushes the batch forward before the approval logic is fully written down.' }
+        ]
+      },
+      table: {
+        title: 'The approval file that reduces repeat problems',
+        columns: ['Record item', 'What should be written down', 'Why it matters later'],
+        rows: [
+          ['Accepted visual reference', 'Master panel, sheet reference, or both', 'Defines what the next order is trying to match.'],
+          ['Repeat logic', 'Orientation, matching sensitivity, and panel direction', 'Stops layout-led surprises after pressing.'],
+          ['Shade band', 'Tolerance note around the approved benchmark', 'Prevents subjective arguments once batches are compared.'],
+          ['Re-approval rule', 'What change forces a new approval step', 'Keeps routine continuation and fresh approval clearly separated.']
+        ]
+      },
+      flow: {
+        title: 'Use this approval order',
+        items: [
+          'Attach the last accepted visual benchmark before the new batch is discussed.',
+          'Confirm repeat direction, shade band, and matching sensitivity before release.',
+          'Check whether the route is a repeat programme or a fresh approval programme.',
+          'Carry the decision record forward so the next batch does not restart from memory.'
+        ]
+      },
       references: [
         { title: 'How HPL panels are made', source: 'Fundermax', href: 'https://blog.fundermax.us/how-high-pressure-laminates-are-made', note: 'Useful for understanding how printed paper decisions show up after pressing.' },
         { title: 'Decorative laminate overview', source: 'Wikipedia', href: 'https://en.wikipedia.org/wiki/Decorative_laminate', note: 'Open background reference for process orientation only.' }
@@ -761,6 +863,57 @@ const insightDossiers = {
     'decorative-stainless-steel-finish-family-guide': {
       posterKicker: 'Finish-family comparison',
       posterNote: 'The stronger the finish statement, the stronger the approval discipline should become.',
+      primerNote: 'Use this page when the finish family is still being chosen and the project needs environmental fit, light condition, and visual continuity judged together.',
+      priorities: [
+        'Approve the finish family against real light, touch, and visible-area conditions.',
+        'Keep grade, finish, and fabrication direction tied to the same sample set.',
+        'Write continuity rules before large-area matching, trims, and fabricated pieces start separately.'
+      ],
+      risks: [
+        'Treating mirror, hairline, No.4, and PVD as interchangeable brochure upgrades.',
+        'Approving a small sample without the actual environment or viewing distance in mind.',
+        'Letting fabricated continuity be decided after the face finish is already frozen.'
+      ],
+      faqs: [
+        { question: 'Why does mirror need more approval discipline than a softer finish?', answer: 'Because reflection exaggerates mismatch, handling marks, and installation variation across large visible areas far more quickly than less reflective finishes do.' },
+        { question: 'What usually matters first: the grade or the finish family?', answer: 'They should be approved together. Grade responds to environment and corrosion exposure; finish family responds to visibility, touch level, and project appearance.' },
+        { question: 'When should PVD be treated as a separate approval path?', answer: 'Treat it separately whenever colour, coating appearance, or batch continuity across multiple fabricated pieces matters to the finished project.' }
+      ],
+      cards: [
+        { label: 'Mirror route', value: 'Highest visibility', note: 'Best where the project can support stricter handling and matching discipline.' },
+        { label: 'Hairline route', value: 'Directional', note: 'Direction and join planning matter as much as the finish name.' },
+        { label: 'No.4 route', value: 'Balanced interior fit', note: 'Often chosen when the project needs a calmer visual window.' },
+        { label: 'PVD route', value: 'Colour + continuity', note: 'The approval must include coating appearance, not colour language alone.' }
+      ],
+      chart: {
+        title: 'Which finish families expose mismatch fastest',
+        caption: 'Illustrative comparison for project teams choosing the approval discipline level, not only the look.',
+        items: [
+          { label: 'Mirror', score: 96, value: 'Highest sensitivity', note: 'Reflection makes handling marks, batch shifts, and alignment issues visible very quickly.' },
+          { label: 'PVD coloured routes', score: 84, value: 'High', note: 'Colour and coating continuity need stronger sample and batch control.' },
+          { label: 'Hairline', score: 72, value: 'Directional sensitivity', note: 'Directionality affects joins, orientation, and fabricated continuity.' },
+          { label: 'No.4', score: 58, value: 'More forgiving', note: 'Still sample-led, but generally less visually aggressive than mirror routes.' }
+        ]
+      },
+      table: {
+        title: 'How the approval logic changes by finish family',
+        columns: ['Finish family', 'What to approve', 'What usually goes wrong'],
+        rows: [
+          ['Mirror', 'Reflection quality, large-area continuity, handling discipline', 'The project treats it like a style choice and discovers visibility risk too late.'],
+          ['Hairline', 'Direction, join logic, and orientation on fabricated parts', 'Directionality is ignored until panels and trims stop matching.'],
+          ['No.4', 'Environment fit, consistency, and visible-face expectation', 'It is treated as a default route without sample context.'],
+          ['PVD', 'Colour, coating tone, batch continuity, and protection needs', 'Colour is approved, but coating behaviour and continuity are not.']
+        ]
+      },
+      flow: {
+        title: 'Use this finish-selection order',
+        items: [
+          'Start with environment, corrosion exposure, and touch sensitivity.',
+          'Then compare finish families under real light and viewing conditions.',
+          'Check how panels, trims, profiles, and fabricated parts will stay visually aligned.',
+          'Write the finish family, direction, and continuity rule into the approved sample record.'
+        ]
+      },
       references: [
         { title: 'Euro Inox', source: 'Euro Inox', href: 'https://www.euro-inox.org/', note: 'Public reference point for stainless finish terminology and general background.' },
         { title: 'Moldart company page', source: 'LinkedIn', href: 'https://www.linkedin.com/company/moldartindia', note: 'Public company reference for decorative stainless positioning.' }
@@ -769,6 +922,57 @@ const insightDossiers = {
     'wood-flooring-core-moisture-wear-class-guide': {
       posterKicker: 'Flooring-system guide',
       posterNote: 'Decor, core, wear class, and site condition should never be approved in isolation.',
+      primerNote: 'Use this guide before the floor is priced only on decor or first cost and before site moisture, traffic, and installation conditions become late-stage surprises.',
+      priorities: [
+        'Fix the end use, traffic level, and site moisture logic before debating decor.',
+        'Keep core platform, wear class, and click profile tied to the same approval record.',
+        'Confirm accessory coordination so the full flooring system stays aligned.'
+      ],
+      risks: [
+        'Approving a good-looking board before the site condition and subfloor readiness are clear.',
+        'Treating wear class as sales language instead of use-condition fit.',
+        'Ignoring storage, wet cleaning, or humid-air exposure until after installation starts.'
+      ],
+      faqs: [
+        { question: 'Why does the core still matter when the finish sample already looks right?', answer: 'Because the HDF or Hydro HDF core often decides how stable the programme feels once moisture exposure, site storage, and daily traffic become real.' },
+        { question: 'How should wear class be read in practice?', answer: 'Read it against the actual traffic and abuse level. A stronger label is not automatically the best commercial choice if the environment does not need it.' },
+        { question: 'What creates the most avoidable flooring disputes later?', answer: 'Splitting the decision: decor is approved first, then site moisture, click compatibility, and accessory coordination are discussed much later.' }
+      ],
+      cards: [
+        { label: 'Core choice', value: 'HDF / Hydro HDF', note: 'The core often decides long-term stability more than the top visual sample suggests.' },
+        { label: 'Wear class', value: 'Use-led', note: 'Match it to actual traffic, not to the strongest sales label in the range.' },
+        { label: 'Site risk', value: 'Moisture + subfloor', note: 'Installation conditions can undo a technically correct board very quickly.' },
+        { label: 'System check', value: 'Accessories attached', note: 'Skirting, transitions, and profile compatibility belong in the approval path.' }
+      ],
+      chart: {
+        title: 'What usually creates flooring trouble first',
+        caption: 'Illustrative weighting for approval-stage decisions that later affect installation and daily use.',
+        items: [
+          { label: 'Site moisture / subfloor readiness', score: 94, value: 'Primary', note: 'Many flooring complaints start here before the decorative layer is truly at fault.' },
+          { label: 'Core platform mismatch', score: 86, value: 'High', note: 'The wrong core can feel fine in a sample but unstable in service.' },
+          { label: 'Wear class mismatch', score: 74, value: 'Use-driven', note: 'A weak fit shows up once traffic intensity becomes real.' },
+          { label: 'Accessory coordination', score: 62, value: 'Often delayed', note: 'The system starts feeling incomplete when accessories are treated as a later add-on.' }
+        ]
+      },
+      table: {
+        title: 'The flooring approval file that stays useful later',
+        columns: ['Decision area', 'What to lock', 'Why it matters'],
+        rows: [
+          ['End use', 'Traffic level, room type, cleaning pattern', 'This decides whether wear class and core choice are actually credible.'],
+          ['Core platform', 'HDF or Hydro HDF route with moisture logic', 'Keeps the substrate decision tied to the environment.'],
+          ['Installation condition', 'Subfloor readiness, perimeter planning, click fit', 'The floor can fail even when the board itself is acceptable.'],
+          ['Accessory system', 'Transitions, skirting, stair details, matching parts', 'Makes the programme behave like one flooring route instead of separate purchases.']
+        ]
+      },
+      flow: {
+        title: 'Use this flooring review order',
+        items: [
+          'Start with use condition, traffic intensity, and moisture exposure.',
+          'Then lock the core platform, wear class, and click system together.',
+          'Check storage, subfloor, and installation readiness before release.',
+          'Approve accessories as part of the same flooring system, not as a later fill-in.'
+        ]
+      },
       references: [
         { title: 'EPA composite wood standards', source: 'US EPA', href: 'https://www.epa.gov/formaldehyde/formaldehyde-emission-standards-composite-wood-products', note: 'Helpful background when core compliance or composite-wood standards matter.' },
         { title: 'BIS standards portal', source: 'Bureau of Indian Standards', href: 'https://www.bis.gov.in/standards/', note: 'Public entry point for relevant standards lookup.' }
@@ -777,6 +981,57 @@ const insightDossiers = {
     'custom-furniture-brief-drawing-sample-guide': {
       posterKicker: 'Approval-led briefing',
       posterNote: 'Custom furniture moves faster when the brief, drawing, finish, and sample support one another.',
+      primerNote: 'Use this guide when a furniture programme is slowing down because design, procurement, production, and approval are each holding a different version of the route.',
+      priorities: [
+        'Make the commercial brief, active drawing revision, and visible sample move together.',
+        'Write which parts of the order are fixed and which can still change without reopening approval.',
+        'Keep hardware, edge, trim, and finish-sensitive details attached from the first useful brief.'
+      ],
+      risks: [
+        'Price comparison starting before the active drawing and accepted sample are aligned.',
+        'A beautiful sample being approved without enough geometry, joinery, or tolerance logic behind it.',
+        'Repeat orders restarting from memory instead of the last approved drawing-and-sample file.'
+      ],
+      faqs: [
+        { question: 'What should a first useful custom-furniture brief already contain?', answer: 'At minimum: application, dimensions, layout logic, visible-face expectation, quantity, timing, destination, and whether the project is prototype-led or intended to repeat.' },
+        { question: 'Why is a sample alone not enough?', answer: 'Because a sample can protect the visible face while still leaving geometry, hardware, joinery, and tolerance intent too vague for production or receiving to use safely.' },
+        { question: 'What protects repeat furniture supply best?', answer: 'Keep the last approved drawing revision, material route, finish record, and hardware logic tied together so the next order does not reopen the whole decision.' }
+      ],
+      cards: [
+        { label: 'Brief quality', value: 'Route-defining', note: 'A vague opening brief usually multiplies revision cycles later.' },
+        { label: 'Drawing status', value: 'Commercially active', note: 'Everyone should work from the same revision before the quote hardens.' },
+        { label: 'Sample role', value: 'Visible-face proof', note: 'The sample protects appearance, but not the whole build on its own.' },
+        { label: 'Repeat logic', value: 'File-led', note: 'Custom work still needs a disciplined reorder trail.' }
+      ],
+      chart: {
+        title: 'What usually slows custom furniture first',
+        caption: 'Illustrative weighting for approval gaps that tend to create the most revision noise.',
+        items: [
+          { label: 'Fragmented brief', score: 94, value: 'Primary', note: 'The enquiry moves slowly when application, size, finish, and timing are not attached early.' },
+          { label: 'Drawing / sample mismatch', score: 86, value: 'High', note: 'The project looks approved visually, but geometry and handover still remain unstable.' },
+          { label: 'Late hardware decisions', score: 72, value: 'Common trigger', note: 'Edge, trim, and hardware sensitivity often arrive too late in the route.' },
+          { label: 'Weak reorder trail', score: 60, value: 'Later risk', note: 'Repeat work becomes slower when the first approval was never organised properly.' }
+        ]
+      },
+      table: {
+        title: 'The approval pack that keeps furniture work moving',
+        columns: ['Pack item', 'What it should show', 'Why it matters'],
+        rows: [
+          ['Commercial brief', 'Application, quantity, timing, destination, prototype or repeat status', 'Stops the quote from being built on assumptions.'],
+          ['Active drawing set', 'Current revision, dimensions, joinery, and tolerance logic', 'Keeps geometry stable across teams.'],
+          ['Visible sample or mock-up', 'Face material, finish family, edge or trim sensitivity', 'Protects what the buyer will actually judge visually.'],
+          ['Approval trail', 'Who approved what and what can still change', 'Reduces revision noise and keeps handover cleaner.']
+        ]
+      },
+      flow: {
+        title: 'Use this furniture approval order',
+        items: [
+          'Start with the real brief: application, dimensions, finish expectation, quantity, and timing.',
+          'Match the active drawing revision and the visible sample before price comparison hardens.',
+          'Attach hardware, edge, and tolerance-sensitive details before release into production.',
+          'Carry the approved file forward so repeat work starts from the last correct version.'
+        ]
+      },
       references: [
         { title: 'EPA composite wood standards', source: 'US EPA', href: 'https://www.epa.gov/formaldehyde/formaldehyde-emission-standards-composite-wood-products', note: 'Open compliance reference for many board-based furniture routes.' },
         { title: 'BIS standards portal', source: 'Bureau of Indian Standards', href: 'https://www.bis.gov.in/standards/', note: 'Public standards lookup entry point for furniture-related material routes.' }
@@ -785,8 +1040,59 @@ const insightDossiers = {
     'industrial-press-plates-receiving-flatness-checklist': {
       posterKicker: 'Receiving discipline',
       posterNote: 'Tolerance-critical tooling deserves a controlled receiving trail before production release.',
+      primerNote: 'Use this note when industrial press plates are about to move from delivery into plant handling and the receiving check still needs a tighter release rule.',
+      priorities: [
+        'Check identification, pack condition, surface state, and flatness before plant handling starts.',
+        'Keep flatness, parallelism, and working-surface remarks in one receiving record.',
+        'Attach storage and handling instructions before the plate is released internally.'
+      ],
+      risks: [
+        'Flatness being discussed while surface condition and handling marks stay undocumented.',
+        'The receiving team releasing the plate before deviations are escalated properly.',
+        'A technically acceptable plate being damaged in storage because the handling rule was never attached.'
+      ],
+      faqs: [
+        { question: 'Why is flatness alone not enough at receiving?', answer: 'Because tolerance-critical routes also depend on surface state, edge condition, parallelism, and the way the plate is handled after receipt. A flat plate can still become the wrong plate if those points drift.' },
+        { question: 'What should block production release immediately?', answer: 'Any unresolved mismatch in identification, packing damage, visible surface damage, or flatness/parallelism against the approved route should stop release until the deviation is reviewed.' },
+        { question: 'What should stay in the receiving trail for the next order?', answer: 'Keep plate identification, inspection date, accepted or rejected checkpoints, any deviations raised, and the storage or handling rule that followed receipt.' }
+      ],
+      cards: [
+        { label: 'First check', value: 'Receiving gate', note: 'The line should not become the first real inspection point.' },
+        { label: 'Tolerance focus', value: 'Flatness + parallelism', note: 'Those numbers matter most when they stay attached to surface state.' },
+        { label: 'Handling risk', value: 'Post-receipt damage', note: 'A good plate can still become unusable through casual stacking or storage.' },
+        { label: 'Best record', value: 'Controlled release file', note: 'Receiving should create a reusable inspection trail, not just a pass/fail memory.' }
+      ],
+      chart: {
+        title: 'What should stop release first',
+        caption: 'Illustrative weighting for receiving checks on tolerance-sensitive industrial plate routes.',
+        items: [
+          { label: 'Identification / order match', score: 96, value: 'Immediate gate', note: 'The wrong plate should never move further into the line.' },
+          { label: 'Surface condition', score: 88, value: 'High', note: 'Visible damage can undermine a technically correct route immediately.' },
+          { label: 'Flatness / parallelism', score: 86, value: 'High', note: 'Tolerance needs to be confirmed before the plate joins production. ' },
+          { label: 'Storage discipline', score: 68, value: 'Later risk', note: 'Post-receipt handling often damages the route after a clean incoming check.' }
+        ]
+      },
+      table: {
+        title: 'Receiving record for tolerance-critical plates',
+        columns: ['Record line', 'What to capture', 'Why it matters'],
+        rows: [
+          ['Order identity', 'Plate reference, batch, and document match', 'Prevents the wrong route from reaching production.'],
+          ['Physical condition', 'Pack integrity, edge state, surface remarks', 'Makes early damage visible before plant handling adds noise.'],
+          ['Tolerance check', 'Flatness, parallelism, or other agreed acceptance points', 'Keeps the receiving decision tied to the approved requirement.'],
+          ['Release status', 'Accepted, held, rejected, or escalated with next action', 'Creates a reusable inspection trail for the next order.']
+        ]
+      },
+      flow: {
+        title: 'Use this receiving order',
+        items: [
+          'Confirm identification, documents, and pack condition before unprotected handling begins.',
+          'Check surface state beside flatness and parallelism, not as a separate afterthought.',
+          'Escalate deviations before the plate is released into the line or plant circulation.',
+          'Attach storage and handling instructions so the accepted route stays protected afterward.'
+        ]
+      },
       references: [
-        { title: 'CAPICARD press plates overview', source: 'C.A. PICARD', href: 'https://www.capicard.de/en/press-plates', note: 'Useful public reference for industrial plate route language.' },
+        { title: 'Press plate product overview', source: 'Outokumpu', href: 'https://www.outokumpu.com/en/products/specialized-products/press-plate', note: 'Useful public reference for industrial plate route language.' },
         { title: 'BIS standards portal', source: 'Bureau of Indian Standards', href: 'https://www.bis.gov.in/standards/', note: 'Helpful when translating inspection requirements into standards lookup.' }
       ]
     }

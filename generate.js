@@ -16,7 +16,7 @@ const { importedInsights, insightDossiers } = require('./insight-enhancements.js
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.33';
+const VER = '2026.34';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
@@ -1122,13 +1122,13 @@ function fallbackInsightReferences(article, context = null) {
     return [
       { title: 'How HPL panels are made', source: 'Fundermax', href: 'https://blog.fundermax.us/how-high-pressure-laminates-are-made', note: 'Open process reference for laminate manufacturing context.' },
       { title: 'Decorative laminate overview', source: 'Wikipedia', href: 'https://en.wikipedia.org/wiki/Decorative_laminate', note: 'General background only; useful for open terminology alignment.' },
-      { title: 'CAPICARD press plates overview', source: 'C.A. PICARD', href: 'https://www.capicard.de/en/press-plates', note: 'Public reference point for press-plate route language.' },
+      { title: 'Press plate product overview', source: 'Outokumpu', href: 'https://www.outokumpu.com/en/products/specialized-products/press-plate', note: 'Public reference point for press-plate route language.' },
       { title: 'BIS standards portal', source: 'Bureau of Indian Standards', href: 'https://www.bis.gov.in/standards/', note: 'Public entry point for Indian standards lookup.' }
     ];
   }
   if (category === 'Industrial Tooling') {
     return [
-      { title: 'CAPICARD press plates overview', source: 'C.A. PICARD', href: 'https://www.capicard.de/en/press-plates', note: 'Useful public reference for tolerance-led press plate positioning.' },
+      { title: 'Press plate product overview', source: 'Outokumpu', href: 'https://www.outokumpu.com/en/products/specialized-products/press-plate', note: 'Useful public reference for tolerance-led press plate positioning.' },
       { title: 'BIS standards portal', source: 'Bureau of Indian Standards', href: 'https://www.bis.gov.in/standards/', note: 'Helpful when translating process requirements into standards lookup.' },
       { title: 'Stainless steels in architecture and design', source: 'Euro Inox', href: 'https://www.euro-inox.org/', note: 'General stainless background for open reference only.' }
     ];
@@ -1142,7 +1142,7 @@ function fallbackInsightReferences(article, context = null) {
   }
   if (category === 'Panel Systems') {
     return [
-      { title: 'Formwork plywood reference', source: 'ULMA Construction', href: 'https://www.ulmaconstruction.com/en/products/formwork-plywood/birch-phenolic-plywood', note: 'Useful open reference for plywood/formwork orientation.' },
+      { title: 'Formwork panels overview', source: 'Doka', href: 'https://www.doka.com/en/solutions/formwork-beams-panels-props', note: 'Useful open reference for plywood/formwork orientation.' },
       { title: 'Shuttering plywood reuse guide', source: 'Haren Ply', href: 'https://www.harenply.com/types-applications-of-shuttering-plywood/', note: 'Public market reference for reuse behaviour.' },
       { title: 'EPA composite wood standards', source: 'US EPA', href: 'https://www.epa.gov/formaldehyde/formaldehyde-emission-standards-composite-wood-products', note: 'Helpful for emission and composite-wood compliance context.' }
     ];
@@ -1450,7 +1450,7 @@ function renderInsightCoverCard(article, context = null, options = {}) {
   return `<div class="article-cover-card"><img src="${src}" alt="${escHtml(insightPreviewAlt(article, context))}" loading="${loading}"${options.eager ? ' fetchpriority="high"' : ''}><div class="article-cover-overlay"></div><div class="article-cover-badge">${escHtml(poster.posterKicker || article.categoryLabel)}</div></div>`;
 }
 function renderInsightCardMedia(article, context = null) {
-  return `<div class="ui-insight-card-media"><img src="${insightPreviewImage(article, context)}" alt="${escHtml(insightPreviewAlt(article, context))}" loading="lazy"></div>`;
+  return `<div class="ui-insight-card-media"><img src="${insightPreviewImage(article, context)}" alt="${escHtml(insightPreviewAlt(article, context))}" loading="lazy"><div class="ui-insight-card-badge">${escHtml(article.type)}</div></div>`;
 }
 function renderHomeInsightRow(article) {
   return `<div class="ui-article-row"><div class="ui-article-row-media"><img src="${insightPreviewImage(article)}" alt="${escHtml(insightPreviewAlt(article))}" loading="lazy"></div><div class="ui-article-row-copy"><div class="ui-list-title">${escHtml(article.title)}</div><div class="ui-list-meta">${escHtml(article.categoryLabel)} · ${escHtml(article.type)}</div></div><a href="/insights/${article.slug}/" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`;
@@ -1484,12 +1484,17 @@ function renderInsightReferences(article, context = null) {
   if (!references.length) return '';
   return `<section class="article-reference-section"><div class="article-section-head"><div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} Public references</div><h2>Reference links and standards context</h2></div><div class="article-reference-grid">${references.map((ref) => `<article class="article-reference-card"><div class="article-reference-source">${escHtml(ref.source || 'Reference')}</div><h3>${escHtml(ref.title)}</h3><p>${escHtml(ref.note || '')}</p><a href="${ref.href}" target="_blank" rel="noopener noreferrer" class="site-inline-link">Open reference ${glyph('arrow', 'icon icon-sm')}</a></article>`).join('')}</div></section>`;
 }
-function renderInsightDeepPanels(article, context = null) {
+function renderInsightLeadPanels(article, context = null) {
   const dossier = resolveInsightDossier(article, context);
   const dashboard = renderInsightDashboardCards(dossier.cards || []);
   const visuals = [renderInsightChart(dossier.chart), renderInsightTablePanel(dossier.table)].filter(Boolean).join('');
   const leadDeck = renderInsightCoverCard(article, context, { eager: true });
-  return `${leadDeck}${dashboard ? `<section class="article-dashboard-section">${dashboard}</section>` : ''}${visuals ? `<section class="article-visual-grid">${visuals}</section>` : ''}${renderInsightFlowPanel(dossier.flow)}${renderInsightReferences(article, context)}`;
+  return `${leadDeck}${dashboard ? `<section class="article-dashboard-section">${dashboard}</section>` : ''}${visuals ? `<section class="article-visual-grid">${visuals}</section>` : ''}`;
+}
+
+function renderInsightSupportPanels(article, context = null) {
+  const dossier = resolveInsightDossier(article, context);
+  return `${renderInsightFlowPanel(dossier.flow)}${renderInsightReferences(article, context)}`;
 }
 // safeJson() removed — search data now written to external JSON file
 
@@ -2358,6 +2363,8 @@ function stakeholderNoteFor(role = '') {
 }
 
 function articleStakeholderGroups(article, context = null) {
+  const dossier = resolveInsightDossier(article, context);
+  if (Array.isArray(dossier.stakeholders) && dossier.stakeholders.length) return dossier.stakeholders.slice(0, 6);
   const merged = [
     ...relatedSolutionsForProduct(article.category).flatMap((app) => solutionAudienceFor(app.slug)),
     ...articleStakeholderFallback(article),
@@ -2367,18 +2374,33 @@ function articleStakeholderGroups(article, context = null) {
   return [...new Set(merged)].slice(0, 6);
 }
 
-function articleAudienceFor(article) {
-  const unique = articleStakeholderGroups(article);
+function articleAudienceFor(article, context = null) {
+  const unique = articleStakeholderGroups(article, context);
   return unique.length ? unique.slice(0, 4) : ['Procurement', 'Technical teams'];
 }
 
 function articlePriorityItems(article, context = null) {
+  const dossier = resolveInsightDossier(article, context);
+  if (Array.isArray(dossier.priorities) && dossier.priorities.length) return dossier.priorities.slice(0, 3);
   const base = [...articleChecklistItems(article, context)];
   if (context?.product?.specs?.[1]) base.push(`Reconfirm ${stripMarkdownInline(context.product.specs[1])} before approval closes.`);
   return [...new Set(base)].slice(0, 3);
 }
 
+function articlePrimerNote(article, context = null) {
+  const dossier = resolveInsightDossier(article, context);
+  if (dossier.primerNote) return dossier.primerNote;
+  const productName = context?.product?.name || article.categoryLabel;
+  if (article.type.includes('Quality')) return `Use this page before ${productName.toLowerCase()} is received, accepted, or released into production.`;
+  if (article.type.includes('Buyer')) return 'Use this page when the first brief still needs application, reference, quantity, and approval language attached.';
+  if (article.type.includes('Comparative')) return 'Use this page when two routes look close on price but not yet on use, approval risk, or lifetime correction cost.';
+  if (article.type.includes('Technical')) return 'Use this page when the route depends on process conditions, tolerance, or specification language, not just a broad product name.';
+  return 'Use this page to tighten the brief before the technical, approval, and commercial conversations split apart.';
+}
+
 function articleFaqItems(article, context = null) {
+  const dossier = resolveInsightDossier(article, context);
+  if (Array.isArray(dossier.faqs) && dossier.faqs.length) return dossier.faqs.slice(0, 3);
   const productName = context?.product?.name || article.categoryLabel;
   const solutionName = relatedSolutionsForProduct(article.category)[0]?.name || article.categoryLabel;
   if (article.type.includes('Comparative')) {
@@ -2413,13 +2435,13 @@ function renderInsightPrimer(article, context = null) {
   const stakeholders = articleStakeholderGroups(article, context);
   const priorities = articlePriorityItems(article, context);
   const risks = articleRiskItems(article, context).slice(0, 3);
-  return `<section class="article-primer-grid"><article class="article-primer-card"><div class="article-primer-label">Useful across teams</div><div class="article-stakeholder-grid">${stakeholders.map((role) => `<div class="article-stakeholder-card"><strong>${escHtml(role)}</strong><span>${escHtml(stakeholderNoteFor(role))}</span></div>`).join('')}</div></article><article class="article-primer-card"><div class="article-primer-label">Lock first</div><ul class="article-primer-list">${priorities.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul></article><article class="article-primer-card"><div class="article-primer-label">Avoid this</div><ul class="article-primer-list">${risks.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul></article></section>`;
+  return `<section class="article-primer-grid"><article class="article-primer-card article-primer-card-wide"><div class="article-primer-label">Use this guide for</div><div class="article-stakeholder-pills">${stakeholders.map((role) => `<span class="article-stakeholder-pill" title="${escHtml(stakeholderNoteFor(role))}">${escHtml(role)}</span>`).join('')}</div><p class="article-primer-copy">${escHtml(articlePrimerNote(article, context))}</p></article><article class="article-primer-card"><div class="article-primer-label">Lock first</div><ul class="article-primer-list">${priorities.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul></article><article class="article-primer-card"><div class="article-primer-label">Avoid this</div><ul class="article-primer-list">${risks.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul></article></section>`;
 }
 
 function renderInsightFAQSection(article, context = null) {
   const faqs = articleFaqItems(article, context);
   if (!faqs.length) return '';
-  return `<section class="article-faq-section"><div class="article-section-head"><div class="ui-kicker mb-3">${glyph('message', 'icon icon-sm')} Quick answers</div><h2>Questions that usually come up next</h2></div><div class="article-faq-grid">${faqs.map((item) => `<article class="article-faq-card"><h3>${escHtml(item.question)}</h3><p>${escHtml(item.answer)}</p></article>`).join('')}</div></section>`;
+  return `<section class="article-faq-section"><div class="article-section-head"><div class="ui-kicker mb-3">${glyph('message', 'icon icon-sm')} Quick answers</div><h2>Questions that shape the next review</h2></div><div class="article-faq-grid">${faqs.map((item) => `<article class="article-faq-card"><h3>${escHtml(item.question)}</h3><p>${escHtml(item.answer)}</p></article>`).join('')}</div></section>`;
 }
 
 function renderApplicationPreviewCard(app, options = {}) {
@@ -2550,6 +2572,8 @@ function articleChecklistItems(article, context = null) {
 }
 
 function articleRiskItems(article, context = null) {
+  const dossier = resolveInsightDossier(article, context);
+  if (Array.isArray(dossier.risks) && dossier.risks.length) return dossier.risks.slice(0, 4);
   const product = context?.product;
   const risks = [
     'Generic equivalents replacing a product-specific route too early.',
@@ -2619,13 +2643,15 @@ function renderInsightTechnicalAppendix(article, context) {
 
 function renderInsightArticleBody(article) {
   const context = articleProductContext(article);
+  const leadPanels = renderInsightLeadPanels(article, context);
+  const supportPanels = renderInsightSupportPanels(article, context);
   const authoredContent = String(article.content || '').trim();
   if (authoredContent) {
-    return renderInsightPrimer(article, context) + markdownToHtml(authoredContent) + renderInsightDeepPanels(article, context) + renderInsightTechnicalAppendix(article, context) + renderInsightFAQSection(article, context);
+    return renderInsightPrimer(article, context) + leadPanels + markdownToHtml(authoredContent) + supportPanels + renderInsightTechnicalAppendix(article, context) + renderInsightFAQSection(article, context);
   }
 
   if (!context) {
-    return renderInsightPrimer(article, context) + markdownToHtml(article.content) + renderInsightDeepPanels(article, context) + renderInsightFAQSection(article, context);
+    return renderInsightPrimer(article, context) + leadPanels + markdownToHtml(article.content) + supportPanels + renderInsightFAQSection(article, context);
   }
 
   const { product, meta } = context;
@@ -2782,7 +2808,7 @@ function renderInsightArticleBody(article) {
     body = markdownToHtml(article.content);
   }
 
-  return renderInsightPrimer(article, context) + body + renderInsightDeepPanels(article, context) + renderInsightTechnicalAppendix(article, context) + renderInsightFAQSection(article, context);
+  return renderInsightPrimer(article, context) + leadPanels + body + supportPanels + renderInsightTechnicalAppendix(article, context) + renderInsightFAQSection(article, context);
 }
 
 function productCard(productId) {
@@ -4161,22 +4187,12 @@ function generateInsightArticle(article) {
     bc.schema
   ];
 
-  const audiences = articleAudienceFor(article);
-  const headings = extractHtmlHeadings(contentHtml);
-  const relatedSolutions = relatedSolutionsForProduct(article.category);
-  const routeArticles = context
-    ? rawInsights.generated.filter((item) => item.category === article.category && item.slug !== article.slug).slice(0, 5)
-    : [];
-  const tocHtml = headings.length ? `<div class="insight-side-card mb-4"><div class="insight-side-label mb-2">In this guide</div>${headings.map((heading) => `<a href="#${heading.id}" class="article-toc-link${heading.level === 3 ? ' is-sub' : ''}">${escHtml(heading.text)}</a>`).join('')}</div>` : '';
-  const insightSidebar = `
-      <aside class="insight-side-panel">
-          ${tocHtml}
-          ${context ? `<div class="insight-side-card mb-4"><div class="insight-side-label">Product</div><div class="insight-side-value">${escHtml(context.product.name)}</div></div>` : ''}
-          ${routeArticles.length ? `<div class="insight-side-card mb-4"><div class="insight-side-label mb-2">More in this product route</div>${routeArticles.map((item) => `<a href="/insights/${item.slug}/" class="article-toc-link">${escHtml(item.type)}</a>`).join('')}</div>` : ''}
-          ${relatedSolutions.length ? `<div class="insight-side-card mb-4"><div class="insight-side-label mb-2">Related solutions</div>${relatedSolutions.map((app) => `<a href="${getSolutionHref(app.slug)}" class="article-toc-link">${escHtml(app.name)}</a>`).join('')}</div>` : ''}
-          <div class="insight-side-card mb-4"><div class="insight-side-label">Approx. reading time</div><div class="insight-side-value">${escHtml(readTime)}</div></div>
-          ${context ? `<div class="insight-side-card"><div class="insight-side-label mb-3">Reference downloads</div><div class="flex flex-col gap-2">${context.meta.downloads.slice(0, 3).map((download) => downloadLink(download)).join('')}</div></div>` : ''}
-      </aside>`;
+  const audiences = articleAudienceFor(article, context);
+  const headings = extractHtmlHeadings(contentHtml)
+    .filter((heading) => heading.level === 2)
+    .filter((heading) => !['Questions that shape the next review', 'Reference links and standards context', 'Technical checkpoints at a glance'].includes(heading.text))
+    .slice(0, 10);
+  const tocRail = headings.length ? `<div class="article-toc-band"><div class="article-toc-label">In this guide</div><div class="article-toc-row">${headings.map((heading) => `<a href="#${heading.id}" class="article-toc-link${heading.level === 3 ? ' is-sub' : ''}">${escHtml(heading.text)}</a>`).join('')}</div></div>` : '';
 
   return headTag({
     title: `${article.title} | Moldart Insights`,
@@ -4207,12 +4223,12 @@ function generateInsightArticle(article) {
             ${renderInsightSignalStrip(article, context)}
         </section>
         <section class="max-w mx-auto px py-12">
-            <div class="insight-layout">
-                <div class="insight-article">
-                    ${renderShareBar(article.title, `/insights/${article.slug}/`)}
+            <div class="insight-layout insight-layout-single">
+                <article class="insight-article">
+                    ${tocRail}
                     ${contentHtml}
-                </div>
-                ${insightSidebar}
+                    ${renderShareBar(article.title, `/insights/${article.slug}/`)}
+                </article>
             </div>
         </section>
         <section class="max-w mx-auto px py-16 border-t border-zinc-100 fade-up">
