@@ -16,7 +16,7 @@ const { importedInsights, insightDossiers } = require('./insight-enhancements.js
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.32';
+const VER = '2026.33';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
@@ -2336,10 +2336,90 @@ function relatedInsightsForSolution(app, limit = 3) {
   return [...editorial, ...generated].slice(0, limit);
 }
 
+function articleStakeholderFallback(article) {
+  const byCategory = {
+    'Lamination Tooling': ['Procurement', 'Production teams', 'Quality teams', 'Supplier partners', 'Technical sales', 'Management'],
+    'Industrial Tooling': ['Technical buyers', 'Production engineers', 'Quality teams', 'Operations', 'Supplier partners', 'Management'],
+    'Decorative Steel': ['Architects', 'Design teams', 'Procurement', 'Fabricators', 'Site teams', 'Management'],
+    'Panel Systems': ['Procurement', 'Factory teams', 'Quality teams', 'Project teams', 'Supplier partners', 'Management'],
+    'Flooring Systems': ['Category buyers', 'Project teams', 'Installation partners', 'Quality teams', 'Commercial teams', 'Management'],
+    'Furniture Programmes': ['Procurement', 'Design teams', 'Production teams', 'Sales partners', 'Project teams', 'Management']
+  };
+  return byCategory[article.categoryLabel] || ['Procurement', 'Technical teams', 'Quality teams', 'Management'];
+}
+
+function stakeholderNoteFor(role = '') {
+  if (/procurement|buyer/i.test(role)) return 'Locks the RFQ, comparison frame, and commercial brief.';
+  if (/production|factory|operations|installation/i.test(role)) return 'Checks whether the route stays practical in the real workflow.';
+  if (/quality|receiving/i.test(role)) return 'Protects the approval points before release into use.';
+  if (/design|architect/i.test(role)) return 'Keeps the visible-face or use-case intent clear.';
+  if (/fabricator|supplier|sales/i.test(role)) return 'Helps keep route language and handover logic consistent.';
+  return 'Useful when commercial risk, approval clarity, and repeat stability all matter.';
+}
+
+function articleStakeholderGroups(article, context = null) {
+  const merged = [
+    ...relatedSolutionsForProduct(article.category).flatMap((app) => solutionAudienceFor(app.slug)),
+    ...articleStakeholderFallback(article),
+    context?.product?.stage,
+    'Management'
+  ].filter(Boolean);
+  return [...new Set(merged)].slice(0, 6);
+}
+
 function articleAudienceFor(article) {
-  const merged = relatedSolutionsForProduct(article.category).flatMap((app) => solutionAudienceFor(app.slug));
-  const unique = [...new Set(merged)];
+  const unique = articleStakeholderGroups(article);
   return unique.length ? unique.slice(0, 4) : ['Procurement', 'Technical teams'];
+}
+
+function articlePriorityItems(article, context = null) {
+  const base = [...articleChecklistItems(article, context)];
+  if (context?.product?.specs?.[1]) base.push(`Reconfirm ${stripMarkdownInline(context.product.specs[1])} before approval closes.`);
+  return [...new Set(base)].slice(0, 3);
+}
+
+function articleFaqItems(article, context = null) {
+  const productName = context?.product?.name || article.categoryLabel;
+  const solutionName = relatedSolutionsForProduct(article.category)[0]?.name || article.categoryLabel;
+  if (article.type.includes('Comparative')) {
+    return [
+      { question: `When should ${productName} be compared more carefully?`, answer: `Compare ${productName.toLowerCase()} more carefully when the application, finish expectation, tolerance, receiving risk, or lifetime correction cost would make a generic equivalent misleading.` },
+      { question: 'What should stay constant in the comparison?', answer: 'Keep the same application, approval reference, dimensions, documentation need, quantity, timing, and destination context while the route itself changes.' },
+      { question: 'Who should be involved before the route is selected?', answer: 'Procurement should align the commercial frame, the technical or design owner should align the fit, and quality or receiving should confirm how acceptance will be checked.' }
+    ];
+  }
+  if (article.type.includes('Quality')) {
+    return [
+      { question: `What should be checked first on ${productName.toLowerCase()}?`, answer: `Start with the approved benchmark, visible or dimensional condition, pack integrity, and any route-specific acceptance points that should be confirmed before production or installation release.` },
+      { question: 'Why do receiving mistakes create bigger problems later?', answer: 'Because weak receiving control allows the route to drift before the plant, site, or customer can separate approval failure from process failure.' },
+      { question: 'What protects repeat supply best?', answer: 'Keep the inspection result, approved sample or drawing, and the exact route record attached to the next reorder instead of relying on memory.' }
+    ];
+  }
+  if (article.type.includes('Buyer')) {
+    return [
+      { question: `What should be in the first RFQ for ${productName.toLowerCase()}?`, answer: 'Include application, size or build logic, finish or grade expectation, quantity, timing, destination, and the benchmark that will define acceptance.' },
+      { question: 'Why do buyer-led delays happen so often?', answer: 'Most delays happen because the first brief is missing the real application, the approved reference, or the receiving logic that should already be attached to the route.' },
+      { question: 'Which teams should read this before a PO hardens?', answer: 'Procurement, the approval owner, and the person who will receive or release the material should all be aligned before the order becomes difficult to change.' }
+    ];
+  }
+  return [
+    { question: `When is ${productName.toLowerCase()} worth a deeper review?`, answer: `${productName} deserves a deeper review when the route is visible, tolerance-sensitive, process-critical, or expensive to correct after approval.` },
+    { question: 'How should this page be used in practice?', answer: `Use it to tighten the brief for ${solutionName.toLowerCase()}, improve the RFQ, and keep the technical, approval, and commercial conversation attached to one route.` },
+    { question: 'What reduces mistakes most consistently?', answer: 'Keep the real application, the accepted benchmark, the receiving checkpoints, and the reorder trail tied together instead of letting each step create its own version of the route.' }
+  ];
+}
+
+function renderInsightPrimer(article, context = null) {
+  const stakeholders = articleStakeholderGroups(article, context);
+  const priorities = articlePriorityItems(article, context);
+  const risks = articleRiskItems(article, context).slice(0, 3);
+  return `<section class="article-primer-grid"><article class="article-primer-card"><div class="article-primer-label">Useful across teams</div><div class="article-stakeholder-grid">${stakeholders.map((role) => `<div class="article-stakeholder-card"><strong>${escHtml(role)}</strong><span>${escHtml(stakeholderNoteFor(role))}</span></div>`).join('')}</div></article><article class="article-primer-card"><div class="article-primer-label">Lock first</div><ul class="article-primer-list">${priorities.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul></article><article class="article-primer-card"><div class="article-primer-label">Avoid this</div><ul class="article-primer-list">${risks.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul></article></section>`;
+}
+
+function renderInsightFAQSection(article, context = null) {
+  const faqs = articleFaqItems(article, context);
+  if (!faqs.length) return '';
+  return `<section class="article-faq-section"><div class="article-section-head"><div class="ui-kicker mb-3">${glyph('message', 'icon icon-sm')} Quick answers</div><h2>Questions that usually come up next</h2></div><div class="article-faq-grid">${faqs.map((item) => `<article class="article-faq-card"><h3>${escHtml(item.question)}</h3><p>${escHtml(item.answer)}</p></article>`).join('')}</div></section>`;
 }
 
 function renderApplicationPreviewCard(app, options = {}) {
@@ -2541,11 +2621,11 @@ function renderInsightArticleBody(article) {
   const context = articleProductContext(article);
   const authoredContent = String(article.content || '').trim();
   if (authoredContent) {
-    return markdownToHtml(authoredContent) + renderInsightDeepPanels(article, context) + renderInsightTechnicalAppendix(article, context);
+    return renderInsightPrimer(article, context) + markdownToHtml(authoredContent) + renderInsightDeepPanels(article, context) + renderInsightTechnicalAppendix(article, context) + renderInsightFAQSection(article, context);
   }
 
   if (!context) {
-    return markdownToHtml(article.content) + renderInsightDeepPanels(article, context);
+    return renderInsightPrimer(article, context) + markdownToHtml(article.content) + renderInsightDeepPanels(article, context) + renderInsightFAQSection(article, context);
   }
 
   const { product, meta } = context;
@@ -2702,7 +2782,7 @@ function renderInsightArticleBody(article) {
     body = markdownToHtml(article.content);
   }
 
-  return body + renderInsightDeepPanels(article, context) + renderInsightTechnicalAppendix(article, context);
+  return renderInsightPrimer(article, context) + body + renderInsightDeepPanels(article, context) + renderInsightTechnicalAppendix(article, context) + renderInsightFAQSection(article, context);
 }
 
 function productCard(productId) {
@@ -3957,9 +4037,10 @@ function generateInsightsHub() {
   const categories = [...new Set(editorialArticles.map((a) => a.categoryLabel))];
   const [featuredArticle, ...otherArticles] = editorialArticles;
   const productRouteCount = [...new Set(generatedArticles.map((article) => article.category))].length;
+  const researchLedCount = editorialArticles.filter((article) => /Yash Doshi/i.test(article.author || '')).length;
 
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/insights/#webpage', url: SITE + '/insights/', name: 'Insights — Technical Guides & Notes | Moldart', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/insights/#webpage', url: SITE + '/insights/', name: 'Insights — Editorial Guides, Route Notes & Decision Support | Moldart', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
@@ -3973,6 +4054,12 @@ function generateInsightsHub() {
   };
 
   const filterBtns = `<div class="insights-filter-row"><button class="insights-filter-btn is-active" data-filter="all">All</button>${categories.map((c) => `<button class="insights-filter-btn" data-filter="${c}">${c}</button>`).join('')}</div>`;
+  const insightUseCaseCards = [
+    { icon: 'message', title: 'Tighten the first brief', copy: 'Start here when the RFQ is still vague and the team needs cleaner application, finish, quantity, timing, and approval inputs.', tags: ['Procurement', 'Sales partners', 'Management'] },
+    { icon: 'layers', title: 'Compare routes safely', copy: 'Use the comparative and technical guides to stop unlike-for-like price comparisons before they create expensive corrections later.', tags: ['Buyers', 'Technical teams', 'Commercial'] },
+    { icon: 'shield', title: 'Protect approvals and receiving', copy: 'Use the quality-led notes when the route is surface-critical, tolerance-critical, or likely to fail if the receiving logic stays weak.', tags: ['Quality teams', 'Receiving', 'Operations'] },
+    { icon: 'book', title: 'Train the wider team', copy: 'The articles are written so procurement, design, production, fabrication, and leadership can read the same route without separate internal translation.', tags: ['Employees', 'Partners', 'Leadership'] }
+  ].map((card) => `<article class="ui-library-card"><div class="ui-kicker mb-3">${glyph(card.icon, 'icon icon-sm')} ${escHtml(card.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(card.copy)}</p><div class="ui-link-row mt-5">${card.tags.map((item) => `<span class="ui-link-pill">${escHtml(item)}</span>`).join('')}</div></article>`).join('');
   const topicCards = categories.map((category) => {
     const categoryArticles = articles.filter((article) => article.categoryLabel === category);
     const meta = topicMeta[category] || { icon: 'book', intro: 'Guides and notes grouped by category.' };
@@ -3995,8 +4082,8 @@ function generateInsightsHub() {
   }).filter(Boolean).join('');
 
   return headTag({
-    title: 'Insights — Technical Guides & Notes | Moldart',
-    desc: 'Technical guides and notes for buyers, procurement teams, project stakeholders, and production teams across Moldart product systems.',
+    title: 'Insights | Editorial Guides, Route Notes & Decision Support — Moldart',
+    desc: 'Technical reading for procurement, quality, production, design, partner, and leadership teams across Moldart product systems.',
     canonical: '/insights/',
     ogImage: siteSocialPosterRelativePath('moldart-insights'),
     ogImageAlt: 'Moldart insights overview',
@@ -4008,15 +4095,16 @@ function generateInsightsHub() {
             ${bc.html}
             <div class="ui-page-hero">
                 <div class="ui-page-hero-copy">
-                    <div class="ui-kicker mb-4">${glyph('spark', 'icon icon-sm')} Technical Guides & Notes</div>
-                    <h1 class="ui-section-title">DEEPER TECHNICAL<br>GUIDANCE FOR BUYERS.</h1>
-                    <p class="ui-section-subtitle">Start with the edited guides below. When the brief narrows, each product route opens into tighter specification, RFQ, quality, and receiving notes without overwhelming the first read.</p>
+                    <div class="ui-kicker mb-4">${glyph('spark', 'icon icon-sm')} Editorial guides and route notes</div>
+                    <h1 class="ui-section-title">GUIDES FOR RFQS,<br>APPROVALS, RECEIVING,<br>AND REPEAT SUPPLY.</h1>
+                    <p class="ui-section-subtitle">Start with the edited guides below. They are written for procurement, quality, production, design, partner, and leadership reviews first. Only after the brief tightens should the route library become the heavier reading layer.</p>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-proof-grid">
                         <article class="ui-proof-card"><div class="ui-proof-label">Total coverage</div><div class="ui-proof-value">${articles.length} live pages</div><p class="ui-proof-copy">Edited guides and route-specific technical pages sit inside one searchable library.</p></article>
                         <article class="ui-proof-card"><div class="ui-proof-label">Editorial guides</div><div class="ui-proof-value">${editorialArticles.length}</div><p class="ui-proof-copy">Longer-form articles designed to stay readable, shareable, and commercially useful.</p></article>
                         <article class="ui-proof-card"><div class="ui-proof-label">Product routes</div><div class="ui-proof-value">${productRouteCount}</div><p class="ui-proof-copy">Each route opens into focused specification, buyer, quality, and comparison reading when needed.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Research-led editorials</div><div class="ui-proof-value">${researchLedCount}</div><p class="ui-proof-copy">Longer-form articles rebuilt from source material and turned into website-native technical reading.</p></article>
                     </div>
                 </div>
             </div>
@@ -4027,6 +4115,12 @@ function generateInsightsHub() {
         </section>
 
         <section class="max-w mx-auto px pb-12 border-b border-zinc-100">
+            <div class="ui-section-head mb-10">
+                <div class="ui-kicker mb-4">${glyph('check', 'icon icon-sm')} How to use the library</div>
+                <h2 class="ui-section-title">START WITH THE JOB,<br>NOT THE PAGE COUNT.</h2>
+                <p class="ui-section-subtitle">Use the hub by decision type first: tighten the brief, compare routes, protect approval, and keep repeat supply aligned. That keeps the library useful instead of noisy.</p>
+            </div>
+            <div class="ui-library-grid mb-12">${insightUseCaseCards}</div>
             <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Editorial insights</div>
             ${filterBtns}
             <div class="ui-insight-grid" id="insights-grid">
@@ -4035,10 +4129,11 @@ function generateInsightsHub() {
             </div>
         </section>
 
+
         <section class="max-w mx-auto px py-16 fade-up">
             <div class="ui-section-head mb-10">
                 <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Secondary route library</div>
-                <h2 class="ui-section-title">OPEN THE ROUTE LIBRARY<br>ONLY WHEN THE BRIEF TIGHTENS.</h2>
+                <h2 class="ui-section-title">OPEN THE ROUTE LIBRARY<br>ONLY WHEN MORE DETAIL IS NEEDED.</h2>
                 <p class="ui-section-subtitle">This layer stays secondary on purpose. Start with the edited guides above. Open the route library below only when the work becomes specification-led, RFQ-led, receiving-led, or quality-led.</p>
             </div>
             <div class="ui-route-directory-stack">${technicalReferenceHtml}</div>
@@ -4053,14 +4148,19 @@ function generateInsightsHub() {
 
 function generateInsightArticle(article) {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Insights', url: '/insights/' }, { name: article.title.length > 50 ? article.title.substring(0, 47) + '...' : article.title }]);
-  const schemas = [
-    { '@context': 'https://schema.org', '@type': 'Article', headline: article.title, author: { '@type': 'Organization', name: 'Moldart' }, datePublished: article.date, publisher: { '@type': 'Organization', name: 'Moldart', url: SITE } },
-    bc.schema
-  ];
 
   const contentHtml = renderInsightArticleBody(article);
   const context = articleProductContext(article);
   const readTime = estimateReadTime(article, contentHtml);
+  const faqItems = articleFaqItems(article, context);
+  const articleOgImage = insightPosterRelativePath(article, 'png');
+  const articleOgImageUrl = `${SITE}${socialImageVersionedUrl(articleOgImage)}`;
+  const schemas = [
+    { '@context': 'https://schema.org', '@type': 'Article', headline: article.title, description: article.excerpt.substring(0, 155), image: articleOgImageUrl, author: { '@type': 'Organization', name: 'Moldart' }, datePublished: article.date, dateModified: NOW, publisher: { '@type': 'Organization', name: 'Moldart', url: SITE, logo: { '@type': 'ImageObject', url: SITE + '/favicon-192x192.png', width: 192, height: 192 } }, mainEntityOfPage: SITE + `/insights/${article.slug}/` },
+    ...(faqItems.length ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqItems.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })) }] : []),
+    bc.schema
+  ];
+
   const audiences = articleAudienceFor(article);
   const headings = extractHtmlHeadings(contentHtml);
   const relatedSolutions = relatedSolutionsForProduct(article.category);
@@ -4077,8 +4177,6 @@ function generateInsightArticle(article) {
           <div class="insight-side-card mb-4"><div class="insight-side-label">Approx. reading time</div><div class="insight-side-value">${escHtml(readTime)}</div></div>
           ${context ? `<div class="insight-side-card"><div class="insight-side-label mb-3">Reference downloads</div><div class="flex flex-col gap-2">${context.meta.downloads.slice(0, 3).map((download) => downloadLink(download)).join('')}</div></div>` : ''}
       </aside>`;
-
-  const articleOgImage = insightPosterRelativePath(article, 'png');
 
   return headTag({
     title: `${article.title} | Moldart Insights`,

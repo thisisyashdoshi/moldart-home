@@ -280,7 +280,106 @@
   50% { opacity: 0.18; transform: scale(1.03); }
 }
 
+.article-primer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr 0.9fr;
+  gap: 1rem;
+  margin: 0 0 2.1rem;
+}
+
+.article-primer-card,
+.article-faq-card {
+  padding: 1.2rem 1.25rem;
+  border: 1px solid #ece7e2;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.03);
+}
+
+.article-primer-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #71717a;
+  margin-bottom: 0.8rem;
+}
+
+.article-stakeholder-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.article-stakeholder-card {
+  padding: 0.9rem 0.95rem;
+  border: 1px solid #f1eeeb;
+  border-radius: 18px;
+  background: #fafaf9;
+}
+
+.article-stakeholder-card strong {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.25;
+  color: #18181b;
+  margin-bottom: 0.35rem;
+}
+
+.article-stakeholder-card span {
+  display: block;
+  font-size: 0.78rem;
+  line-height: 1.62;
+  color: #52525b;
+}
+
+.article-primer-list {
+  padding-left: 1.05rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.article-primer-list li {
+  font-size: 0.88rem;
+  line-height: 1.72;
+  color: #3f3f46;
+}
+
+.article-faq-section {
+  margin-top: 2.35rem;
+}
+
+.article-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.article-faq-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  line-height: 1.35;
+  color: #18181b;
+  margin-bottom: 0.55rem;
+}
+
+.article-faq-card p {
+  font-size: 0.86rem;
+  line-height: 1.74;
+  color: #52525b;
+}
+
 @media (max-width: 1024px) {
+  .article-primer-grid,
+  .article-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .article-stakeholder-grid {
+    grid-template-columns: 1fr 1fr;
+  }
   .article-end-rail,
   .process-note-board {
     grid-template-columns: 1fr;
@@ -290,6 +389,10 @@
 @media (max-width: 768px) {
   .hero-network-card {
     border-radius: 24px !important;
+  }
+
+  .article-stakeholder-grid {
+    grid-template-columns: 1fr;
   }
 
   .hero-node-pointer {
