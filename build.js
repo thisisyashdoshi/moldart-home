@@ -1,4 +1,7 @@
-const sharp = require('sharp');
+let sharp = null;
+try {
+  sharp = require('sharp');
+} catch (_) {}
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
@@ -17,6 +20,10 @@ function replaceFile(src, dest) {
 }
 
 async function generateAVIF() {
+  if (!sharp) {
+    console.log('Skipping AVIF generation (sharp unavailable)');
+    return;
+  }
   const files = fs.readdirSync(IMG).filter(f => f.endsWith('.webp'));
   console.log(`Converting ${files.length} WebP images to AVIF...`);
 
@@ -40,6 +47,10 @@ async function generateAVIF() {
 }
 
 async function compressOversized() {
+  if (!sharp) {
+    console.log('\nSkipping oversized image compression (sharp unavailable)');
+    return;
+  }
   const targets = [
     { file: 'page6_img4.webp', maxKB: 60 },
     { file: 'page6_img2.webp', maxKB: 60 },
@@ -77,6 +88,10 @@ async function compressOversized() {
 }
 
 async function convertJPGtoWebP() {
+  if (!sharp) {
+    console.log('\nSkipping JPG→WebP conversion (sharp unavailable)');
+    return;
+  }
   const jpgFiles = fs.readdirSync(IMG).filter(f => f.endsWith('.jpg') || f.endsWith('.jpeg'));
   console.log(`\nConverting ${jpgFiles.length} JPG files to WebP...`);
   for (const file of jpgFiles) {
@@ -99,9 +114,13 @@ function minifyCSS() {
     const src = path.join(WORK, file);
     if (!fs.existsSync(src)) continue;
     const origSize = fs.statSync(src).size;
-    execSync(`npx cleancss -o "${src}" "${src}"`, { cwd: WORK });
-    const newSize = fs.statSync(src).size;
-    console.log(`  ${file}: ${(origSize/1024).toFixed(1)}KB → ${(newSize/1024).toFixed(1)}KB (${((1-newSize/origSize)*100).toFixed(1)}% savings)`);
+    try {
+      execSync(`npx cleancss -o "${src}" "${src}"`, { cwd: WORK, stdio: 'pipe' });
+      const newSize = fs.statSync(src).size;
+      console.log(`  ${file}: ${(origSize/1024).toFixed(1)}KB → ${(newSize/1024).toFixed(1)}KB (${((1-newSize/origSize)*100).toFixed(1)}% savings)`);
+    } catch (err) {
+      console.log(`  skipping ${file} minification (cleancss unavailable or incomplete)`);
+    }
   }
 }
 
@@ -109,9 +128,13 @@ function minifyJS() {
   console.log('\nMinifying JS...');
   const src = path.join(WORK, 'main.js');
   const origSize = fs.statSync(src).size;
-  execSync(`npx terser "${src}" -o "${src}" -c -m`, { cwd: WORK });
-  const newSize = fs.statSync(src).size;
-  console.log(`  main.js: ${(origSize/1024).toFixed(1)}KB → ${(newSize/1024).toFixed(1)}KB (${((1-newSize/origSize)*100).toFixed(1)}% savings)`);
+  try {
+    execSync(`npx terser "${src}" -o "${src}" -c -m`, { cwd: WORK, stdio: 'pipe' });
+    const newSize = fs.statSync(src).size;
+    console.log(`  main.js: ${(origSize/1024).toFixed(1)}KB → ${(newSize/1024).toFixed(1)}KB (${((1-newSize/origSize)*100).toFixed(1)}% savings)`);
+  } catch (err) {
+    console.log('  skipping JS minification (terser unavailable or incomplete)');
+  }
 }
 
 function generatePages() {

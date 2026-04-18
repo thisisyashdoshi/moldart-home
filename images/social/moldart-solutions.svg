@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Application-led product stacks and system views">
+    <rect width="1200" height="630" rx="36" fill="#fafafa"/>
+    <rect x="42" y="42" width="1116" height="546" rx="28" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/>
+    <g opacity="0.55">
+      <path d="M84 132H1116" stroke="#ededf0"/>
+      <path d="M84 232H1116" stroke="#ededf0"/>
+      <path d="M84 332H1116" stroke="#ededf0"/>
+      <path d="M84 432H1116" stroke="#ededf0"/>
+      <path d="M84 532H1116" stroke="#ededf0"/>
+      <path d="M220 84V560" stroke="#ededf0"/>
+      <path d="M420 84V560" stroke="#ededf0"/>
+      <path d="M620 84V560" stroke="#ededf0"/>
+      <path d="M820 84V560" stroke="#ededf0"/>
+      <path d="M1020 84V560" stroke="#ededf0"/>
+    </g>
+    <rect x="84" y="84" width="178" height="38" rx="19" fill="#18181b"/>
+    <text x="108" y="108" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" letter-spacing="1.6">SOLUTIONS</text>
+    <text x="84" y="196" font-family="Arial, sans-serif" font-size="58" font-weight="700" fill="#18181b">Application-led product stacks and system views</text>
+    <text x="84" y="262" font-family="Arial, sans-serif" font-size="24" fill="#52525b">Use the solutions layer when the requirement is still being narrowed at the programme level.</text>
+    <rect x="84" y="454" width="170" height="58" rx="18" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/><text x="104" y="489" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">Lamination</text><rect x="270" y="454" width="170" height="58" rx="18" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/><text x="290" y="489" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">Furniture</text><rect x="456" y="454" width="170" height="58" rx="18" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/><text x="476" y="489" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">Flooring</text><rect x="642" y="454" width="170" height="58" rx="18" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/><text x="662" y="489" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">Architecture</text>
+    <path d="M742 206C790 172 842 158 900 160c60 1 112 18 156 54" fill="none" stroke="#18181b" stroke-opacity="0.16" stroke-width="18" stroke-linecap="round"/>
+    <path d="M742 290C792 262 848 250 908 252c58 2 108 18 148 48" fill="none" stroke="#18181b" stroke-opacity="0.22" stroke-width="10" stroke-dasharray="14 16" stroke-linecap="round"/>
+    <circle cx="760" cy="360" r="16" fill="#18181b"/>
+    <circle cx="858" cy="250" r="12" fill="#ffffff" stroke="#18181b" stroke-width="3"/>
+    <circle cx="1008" cy="272" r="12" fill="#ffffff" stroke="#18181b" stroke-width="3"/>
+    <text x="730" y="404" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">Mumbai</text>
+    <text x="834" y="226" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">India</text>
+    <text x="978" y="248" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">China</text>
+  </svg>

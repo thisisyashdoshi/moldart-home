@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "dev": "node preview-server.js",
-    "build": "node generate.js && node build.js",
+    "build": "node build.js",
     "generate": "node generate.js",
     "preview": "node preview-server.js",
     "minify:css": "cleancss -o styles.css styles.css",

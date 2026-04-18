@@ -2,6 +2,16 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
+const { pathToFileURL } = require('url');
+let sharp = null;
+let chromium = null;
+try {
+  sharp = require('sharp');
+} catch (_) {}
+try {
+  ({ chromium } = require('playwright'));
+} catch (_) {}
+const { importedInsights, insightDossiers } = require('./insight-enhancements.js');
 
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
@@ -78,9 +88,21 @@ function whatsappHref(number, text = '') {
   return `https://wa.me/${number}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
 }
 
+function mergeInsightArticles(base = [], extra = []) {
+  const merged = [];
+  const seen = new Set();
+  for (const article of [...extra, ...base]) {
+    if (!article?.slug || seen.has(article.slug)) continue;
+    seen.add(article.slug);
+    merged.push(article);
+  }
+  return merged;
+}
+
 const rawProducts = JSON.parse(fs.readFileSync(path.join(WORK, 'data/product-directory.json'), 'utf8'));
 const rawFaq = JSON.parse(fs.readFileSync(path.join(WORK, 'data/faq.json'), 'utf8'));
-const rawInsightsSource = JSON.parse(fs.readFileSync(path.join(WORK, 'data/insights.json'), 'utf8'));
+const rawInsightsBase = JSON.parse(fs.readFileSync(path.join(WORK, 'data/insights.json'), 'utf8'));
+const rawInsightsSource = { ...rawInsightsBase, articles: mergeInsightArticles(rawInsightsBase.articles, importedInsights) };
 let rawInsights = { ...rawInsightsSource, editorial: normalizeInsightDates(rawInsightsSource.articles), generated: [], articles: normalizeInsightDates(rawInsightsSource.articles) };
 const getAllResourceItems = () => resourceGroups.flatMap((group) => group.items.map((item) => ({ ...item, group: group.title })));
 const getTotalResourceItems = () => getAllResourceItems().length;
@@ -768,26 +790,43 @@ function buildGeneratedInsightContent(product, meta, pattern) {
   const standards = (product.technical?.certifications || []).length ? product.technical.certifications.join(', ') : 'Project-specific or enquiry-led';
   const relatedRoutes = relatedSolutionsForProduct(product.id).map((app) => app.name).join(', ') || insightCategoryLabelForProduct(product.id);
   const commercial = meta.commercialNotes || product.customization || 'Final route, documents, and commercial timing are confirmed per enquiry.';
+  const receiving = [
+    'Match the dispatch to the approved reference, drawing, or sample.',
+    'Check visible condition, pack integrity, and any dimensional or finish-sensitive points before release into use.',
+    'Log deviations before the material becomes part of production or installation.',
+    'Keep the receiving result attached to the next reorder conversation.'
+  ].map((item) => `- ${item}`).join('\n');
 
   if (pattern.suffix === 'guide') {
-    return `## What the product is doing
+    return `## What the route is actually doing
 
 ${product.summary} ${meta.workflow || ''}
 
-## Technical signals buyers should not skip
+## Technical baseline for the first review
 
 ${specs}
 
-## Where it usually adds value
+## Where the route usually fits best
 
 ${applications}
 
-## What to lock before quoting
+## What tends to go wrong when the brief stays weak
 
-- Confirm the real application and end-use environment.
-- Match the approved reference, drawing, or finish expectation before price comparison begins.
-- Keep quantity, lead time, and destination in the same conversation as the technical route.
-- Use ${grades} only as part of the decision, not as the full decision.
+- The product name is used without the real application attached.
+- A visible finish, tolerance, or performance requirement is left implicit instead of written down.
+- The route is compared against a broader equivalent before the end use is fixed.
+- Quantity and timing are discussed before the technical path is clear.
+
+## Approval language that reduces mistakes
+
+- Confirm the actual application and end-use environment.
+- Attach the approved reference, drawing, finish family, or accepted benchmark.
+- Keep quantity, lead time, destination, and documentation tied to the same technical discussion.
+- Use ${grades} as a decision input, not as a shortcut for the full decision.
+
+## What receiving teams should already know
+
+${receiving}
 
 ## Related programme routes
 
@@ -799,9 +838,9 @@ ${commercial}`;
   }
 
   if (pattern.suffix === 'applications') {
-    return `## Where the route usually fits
+    return `## Start from the end use, not the catalogue name
 
-${product.name} works best when the actual end use matches the performance expectation, conversion path, and approval logic instead of being treated as a broad equivalent.
+${product.name} works best when the requirement is being read from the actual use condition backward. That keeps the route tied to performance, conversion, and approval logic instead of broad equivalence.
 
 ## Typical application directions
 
@@ -809,21 +848,28 @@ ${applications}
 
 ## What makes the fit stronger
 
-- The application is already clear.
+- The application is already clear before price comparison begins.
 - The approval route is tied to a drawing, sample, or accepted benchmark.
 - The receiving team knows what should be checked on arrival.
-- The order is being reviewed in the context of the final production or installation route.
+- The order is being reviewed inside the final production, installation, or operating context.
 
 ## Where the fit becomes weaker
 
 - The product is being compared outside its real end use.
 - The brief is missing size, finish, tolerance, or destination detail.
 - The order is trying to solve a process problem with a generic substitute.
-- The reference approval is weaker than the commercial urgency.
+- The reference approval is weaker than the commercial urgency around it.
 
-## Technical pointers for the first review
+## Technical pointers for the first application review
 
 ${specs}
+
+## What to lock before moving into supply
+
+- Application-specific acceptance points
+- Any visible-face, tolerance, or compliance expectation
+- Pack handling or receiving sensitivity
+- Commercial timing that still protects the technical route
 
 ## Final takeaway
 
@@ -833,7 +879,7 @@ ${commercial}`;
   if (pattern.suffix === 'buyers-guide') {
     return `## Why buyers still lose time on this route
 
-${product.name} enquiries slow down when the first RFQ is missing the real application, approval reference, or receiving logic.
+${product.name} enquiries slow down when the first RFQ is missing the real application, approval reference, or receiving logic. The cleaner route is to front-load those decisions instead of recovering them later by email or WhatsApp.
 
 ## What the buyer should bring into the first RFQ
 
@@ -841,18 +887,25 @@ ${product.name} enquiries slow down when the first RFQ is missing the real appli
 - Dimensions, size range, or build requirement
 - Finish, grade, or visible acceptance criteria
 - Quantity, timing, and destination
-- Any document or compliance expectation
+- Any document, compliance, or inspection expectation
 
-## Core checkpoints
+## Core technical checkpoints
 
 ${specs}
 
-## Commercial frame
+## Commercial frame that should stay attached
 
 - Lead time: ${product.technical?.leadTime || 'On request'}
 - MOQ: ${product.technical?.moq || 'On request'}
 - Origin route: ${product.technical?.origin || 'On request'}
 - Standards or compliance: ${standards}
+
+## What should be approved before the PO hardens
+
+- The exact route being quoted
+- The accepted benchmark or sample logic
+- Receiving or inspection priorities
+- Any rework risk that would make a cheaper route more expensive later
 
 ## Reorder discipline
 
@@ -868,10 +921,10 @@ ${commercial}`;
 
   if (pattern.suffix === 'comparison') {
     const comparisonOptions = (product.technical?.grades || product.applications || []).slice(0, 3);
-    const optionLines = comparisonOptions.length ? comparisonOptions.map((option) => `- ${option}`).join('\n') : `- ${product.name} vs a generic equivalent should only be judged against the same technical and commercial brief.`;
+    const optionLines = comparisonOptions.length ? comparisonOptions.map((option) => `- ${option}`).join('\n') : `- ${product.name} versus a generic equivalent should only be judged against the same technical and commercial brief.`;
     return `## The comparison should stay like-for-like
 
-${product.name} comparisons become misleading when buyers compare only price, only grade, or only brochure language.
+${product.name} comparisons become misleading when buyers compare only price, only grade, or only brochure language. The cleaner comparison keeps the technical and commercial frame constant while the route itself changes.
 
 ## Useful comparison options or checkpoints
 
@@ -891,6 +944,13 @@ ${optionLines}
 - A process-sensitive route is judged like a generic material line.
 - The plant or project consequence of the wrong choice is not priced into the decision.
 
+## What buyers should ask before choosing the final route
+
+- Which option protects the real end use better?
+- Which option makes approval clearer instead of noisier?
+- Which option increases receiving risk or repeat-order risk later?
+- Which option only looks cheaper because hidden correction cost is being ignored?
+
 ## Technical baseline
 
 ${specs}
@@ -903,7 +963,7 @@ ${commercial}`;
   if (pattern.suffix === 'quality') {
     return `## Quality starts before release into use
 
-${product.name} quality becomes easier to protect when receiving, approval, and handling are treated as one sequence.
+${product.name} quality becomes easier to protect when receiving, approval, storage, and handling are treated as one sequence instead of disconnected moments.
 
 ## What should be checked on receipt
 
@@ -915,6 +975,13 @@ ${specs}
 - Surface or dimensional condition on arrival
 - Pack integrity and handling observations
 - Any deviation before production or installation release
+
+## Storage and handling should not be an afterthought
+
+- Keep the approved route identifiable through storage and issue.
+- Separate acceptable material from pending or disputed material.
+- Do not let commercial urgency erase the inspection result.
+- Keep the reordering record tied to the same acceptance logic.
 
 ## Common reasons the route drifts later
 
@@ -947,18 +1014,19 @@ ${specs}
 - Approved benchmark attached where relevant
 - Quantity, timing, destination, and pack sensitivity included
 
+## What should sit beside the specification
+
+- Related programme routes: ${relatedRoutes}
+- Material or grade platform: ${grades}
+- Standards or compliance: ${standards}
+- Commercial and document expectations that protect the route later
+
 ## When the specification needs tightening
 
 - When the product is surface-critical or tolerance-sensitive
 - When the route moves across more than one sourcing lane
 - When the order depends on export or compliance documents
 - When the project or line cannot absorb a late substitution
-
-## Supporting technical frame
-
-- Material or grade platform: ${grades}
-- Standards or compliance: ${standards}
-- Related programme routes: ${relatedRoutes}
 
 ## Final takeaway
 
@@ -1011,6 +1079,402 @@ function writeFile(filePath, content) {
 }
 function escHtml(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function writeBinaryFile(filePath, content) {
+  mkdirp(path.dirname(filePath));
+  fs.writeFileSync(filePath, content);
+  console.log(`  ✓ ${path.relative(WORK, filePath)}`);
+}
+function uniqueLinks(items = []) {
+  const seen = new Set();
+  const output = [];
+  for (const item of items) {
+    const href = String(item?.href || '').trim();
+    if (!href || seen.has(href)) continue;
+    seen.add(href);
+    output.push(item);
+  }
+  return output;
+}
+function insightTheme(article, context = null) {
+  const key = context?.product?.id || article.category || article.categoryLabel;
+  if (['press-plates', 'press-pads', 'engraved-cylinders', 'decor-paper'].includes(key) || article.categoryLabel === 'Lamination Tooling') {
+    return { primary: '#18181b', soft: '#f4f4f5', accent: '#71717a', ink: '#18181b', glow: '#d4d4d8', image: '/images/page5_img3.webp' };
+  }
+  if (['plywood', 'fiberboard', 'osb', 'particleboard'].includes(key) || article.categoryLabel === 'Panel Systems') {
+    return { primary: '#14532d', soft: '#f0fdf4', accent: '#15803d', ink: '#14532d', glow: '#bbf7d0', image: '/images/page6_img1.webp' };
+  }
+  if (['decorative-panels', 'ss-profiles', 'ss-furniture'].includes(key) || article.categoryLabel === 'Decorative Steel') {
+    return { primary: '#1f2937', soft: '#f8fafc', accent: '#475569', ink: '#111827', glow: '#cbd5e1', image: '/images/page9_img1.webp' };
+  }
+  if (['industrial-press-plates'].includes(key) || article.categoryLabel === 'Industrial Tooling') {
+    return { primary: '#1d4ed8', soft: '#eff6ff', accent: '#2563eb', ink: '#1e3a8a', glow: '#bfdbfe', image: '/images/page9_img4.webp' };
+  }
+  if (['wood-flooring', 'flooring-accessories'].includes(key) || article.categoryLabel === 'Flooring Systems') {
+    return { primary: '#7c2d12', soft: '#fff7ed', accent: '#c2410c', ink: '#7c2d12', glow: '#fdba74', image: '/images/page7_img1.webp' };
+  }
+  return { primary: '#312e81', soft: '#eef2ff', accent: '#6366f1', ink: '#312e81', glow: '#c7d2fe', image: '/images/page7_img2.webp' };
+}
+function fallbackInsightReferences(article, context = null) {
+  const category = article.categoryLabel;
+  if (category === 'Lamination Tooling') {
+    return [
+      { title: 'How HPL panels are made', source: 'Fundermax', href: 'https://blog.fundermax.us/how-high-pressure-laminates-are-made', note: 'Open process reference for laminate manufacturing context.' },
+      { title: 'Decorative laminate overview', source: 'Wikipedia', href: 'https://en.wikipedia.org/wiki/Decorative_laminate', note: 'General background only; useful for open terminology alignment.' },
+      { title: 'CAPICARD press plates overview', source: 'C.A. PICARD', href: 'https://www.capicard.de/en/press-plates', note: 'Public reference point for press-plate route language.' },
+      { title: 'BIS standards portal', source: 'Bureau of Indian Standards', href: 'https://www.bis.gov.in/standards/', note: 'Public entry point for Indian standards lookup.' }
+    ];
+  }
+  if (category === 'Industrial Tooling') {
+    return [
+      { title: 'CAPICARD press plates overview', source: 'C.A. PICARD', href: 'https://www.capicard.de/en/press-plates', note: 'Useful public reference for tolerance-led press plate positioning.' },
+      { title: 'BIS standards portal', source: 'Bureau of Indian Standards', href: 'https://www.bis.gov.in/standards/', note: 'Helpful when translating process requirements into standards lookup.' },
+      { title: 'Stainless steels in architecture and design', source: 'Euro Inox', href: 'https://www.euro-inox.org/', note: 'General stainless background for open reference only.' }
+    ];
+  }
+  if (category === 'Decorative Steel') {
+    return [
+      { title: 'Euro Inox surface finishes guide', source: 'Euro Inox', href: 'https://www.euro-inox.org/', note: 'Public reference point for stainless surface terminology.' },
+      { title: 'Decorative stainless sourcing note', source: 'LinkedIn / Moldart', href: 'https://www.linkedin.com/company/moldartindia', note: 'Company-level public positioning for decorative stainless routes.' },
+      { title: 'BIS standards portal', source: 'Bureau of Indian Standards', href: 'https://www.bis.gov.in/standards/', note: 'Open reference entry point for standards lookup.' }
+    ];
+  }
+  if (category === 'Panel Systems') {
+    return [
+      { title: 'Formwork plywood reference', source: 'ULMA Construction', href: 'https://www.ulmaconstruction.com/en/products/formwork-plywood/birch-phenolic-plywood', note: 'Useful open reference for plywood/formwork orientation.' },
+      { title: 'Shuttering plywood reuse guide', source: 'Haren Ply', href: 'https://www.harenply.com/types-applications-of-shuttering-plywood/', note: 'Public market reference for reuse behaviour.' },
+      { title: 'EPA composite wood standards', source: 'US EPA', href: 'https://www.epa.gov/formaldehyde/formaldehyde-emission-standards-composite-wood-products', note: 'Helpful for emission and composite-wood compliance context.' }
+    ];
+  }
+  if (category === 'Flooring Systems' || category === 'Furniture Programmes') {
+    return [
+      { title: 'EPA composite wood standards', source: 'US EPA', href: 'https://www.epa.gov/formaldehyde/formaldehyde-emission-standards-composite-wood-products', note: 'Open compliance reference for many board-based furniture routes.' },
+      { title: 'BIS standards portal', source: 'Bureau of Indian Standards', href: 'https://www.bis.gov.in/standards/', note: 'Public standards lookup entry point.' },
+      { title: 'Moldart company page', source: 'LinkedIn', href: COMPANY_LINKEDIN, note: 'Public company reference used alongside the deeper route notes.' }
+    ];
+  }
+  return [
+    { title: 'Moldart company page', source: 'LinkedIn', href: COMPANY_LINKEDIN, note: 'Public company reference.' },
+    { title: 'BIS standards portal', source: 'Bureau of Indian Standards', href: 'https://www.bis.gov.in/standards/', note: 'Public standards lookup entry point.' }
+  ];
+}
+function defaultInsightCards(article, context = null) {
+  const product = context?.product;
+  const specRows = product ? product.specs.slice(0, 3).map((spec, index) => specToRow(spec, index)) : [];
+  if (specRows.length) {
+    return [
+      { label: 'Technical signal', value: `${specRows[0].label}: ${specRows[0].value}`, note: article.type },
+      { label: 'Best-fit route', value: product.applications?.[0] || article.categoryLabel, note: (product.applications || []).slice(1, 3).join(' • ') || 'Requirement-led review' },
+      { label: 'Programme logic', value: product.stage || product.use || article.categoryLabel, note: product.summary },
+      { label: 'Use this page for', value: article.type, note: 'Read it against the actual brief, not as a generic substitute.' }
+    ];
+  }
+  return [
+    { label: 'Category', value: article.categoryLabel, note: article.type },
+    { label: 'Use this page for', value: 'Specification clarity', note: 'Helpful when the brief is still being tightened.' },
+    { label: 'Best fit', value: 'Buyer + technical review', note: 'Built to support the next commercial conversation.' },
+    { label: 'Read with', value: 'Actual requirement', note: 'The article is strongest when read against the real enquiry.' }
+  ];
+}
+function defaultInsightChart(article, context = null) {
+  return {
+    title: 'How to read this page',
+    caption: 'A practical weighting for the first review rather than a laboratory score.',
+    items: [
+      { label: 'Application fit', score: 90, value: 'Start here', note: 'Check whether the route really fits the end use.' },
+      { label: 'Specification clarity', score: /Specification|Technical|Guide/i.test(article.type) ? 88 : 74, value: 'Important', note: 'Lock the terms before comparing price.' },
+      { label: 'Approval discipline', score: /Quality|Standards/i.test(article.type) ? 90 : 76, value: 'Important', note: 'Reference control reduces late-stage correction.' },
+      { label: 'Commercial alignment', score: /Buyer|Comparative/i.test(article.type) ? 86 : 70, value: 'Next step', note: 'Use the page to improve the RFQ, not replace it.' }
+    ]
+  };
+}
+function defaultInsightTable(article, context = null) {
+  const product = context?.product;
+  const specRows = product ? product.specs.slice(0, 4).map((spec, index) => specToRow(spec, index)) : [];
+  if (specRows.length) {
+    return {
+      title: 'Quick technical frame',
+      columns: ['Checkpoint', 'Reference', 'Why it belongs in the brief'],
+      rows: specRows.map((row) => [row.label, row.value, 'Helps keep the review tied to the actual route.'])
+    };
+  }
+  return {
+    title: 'Review frame',
+    columns: ['Step', 'What to confirm', 'Why it matters'],
+    rows: [
+      ['Application', 'Where the route really fits', 'Stops broad comparisons from becoming misleading.'],
+      ['Reference', 'Drawing, sample, or accepted benchmark', 'Protects approval quality before order confirmation.'],
+      ['Commercial fit', 'Quantity, timing, destination, and documents', 'Keeps the technical path attached to the real project.']
+    ]
+  };
+}
+function defaultInsightFlow(article, context = null) {
+  return {
+    title: 'Use the article in this order',
+    items: [
+      'Read the page against the real application, not against a vague product name.',
+      'Lock the strongest technical or approval checkpoints into the RFQ.',
+      'Compare alternatives only after the route stays like-for-like.',
+      'Carry the approved reference into receiving, supply, and repeat ordering.'
+    ]
+  };
+}
+function resolveInsightDossier(article, context = null) {
+  const productDossier = insightDossiers?.byProduct?.[article.category] || {};
+  const slugDossier = insightDossiers?.bySlug?.[article.slug] || {};
+  return {
+    ...productDossier,
+    ...slugDossier,
+    cards: slugDossier.cards || productDossier.cards || defaultInsightCards(article, context),
+    chart: slugDossier.chart || productDossier.chart || defaultInsightChart(article, context),
+    table: slugDossier.table || productDossier.table || defaultInsightTable(article, context),
+    flow: slugDossier.flow || productDossier.flow || defaultInsightFlow(article, context),
+    references: uniqueLinks([...(slugDossier.references || []), ...(productDossier.references || []), ...fallbackInsightReferences(article, context)])
+  };
+}
+function insightPosterRelativePath(article, ext = 'svg') {
+  return `/images/insights/${article.slug}.${ext}`;
+}
+function insightPosterOutputPath(article, ext = 'svg') {
+  return path.join(WORK, 'images', 'insights', `${article.slug}.${ext}`);
+}
+function insightPreviewImage(article, context = null) {
+  if (!article.generated) return insightPosterRelativePath(article, 'svg');
+  return insightTheme(article, context).image;
+}
+function insightPreviewAlt(article, context = null) {
+  return `${article.title} — Moldart insight cover`;
+}
+function wrapPosterText(text = '', limit = 22) {
+  const words = String(text || '').split(/\s+/).filter(Boolean);
+  const lines = [];
+  let line = '';
+  for (const word of words) {
+    const next = line ? `${line} ${word}` : word;
+    if (next.length <= limit || !line) {
+      line = next;
+    } else {
+      lines.push(line);
+      line = word;
+    }
+  }
+  if (line) lines.push(line);
+  return lines.slice(0, 4);
+}
+function renderPosterMetricChips(cards = []) {
+  return cards.slice(0, 3).map((card, index) => {
+    const x = 60 + (index * 198);
+    return `<rect x="${x}" y="486" width="176" height="60" rx="18" fill="rgba(255,255,255,0.92)" stroke="rgba(24,24,27,0.08)"/><text x="${x + 16}" y="510" font-family="Arial, sans-serif" font-size="13" fill="#71717a" letter-spacing="1.2">${escHtml(card.label.toUpperCase())}</text><text x="${x + 16}" y="537" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#18181b">${escHtml(card.value)}</text>`;
+  }).join('');
+}
+function buildInsightPosterSvg(article) {
+  const dossier = resolveInsightDossier(article, articleProductContext(article));
+  const theme = insightTheme(article, articleProductContext(article));
+  const titleLines = wrapPosterText(article.title, 24);
+  const chartItems = (dossier.chart?.items || []).slice(0, 3);
+  const titleHtml = titleLines.map((line, index) => `<text x="60" y="${172 + (index * 64)}" font-family="Arial, sans-serif" font-size="54" font-weight="700" fill="#18181b">${escHtml(line)}</text>`).join('');
+  const chartHtml = chartItems.map((item, index) => {
+    const y = 170 + (index * 118);
+    const barWidth = Math.round(210 * ((item.score || 70) / 100));
+    return `<text x="760" y="${y - 18}" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">${escHtml(item.label)}</text><rect x="760" y="${y}" width="220" height="14" rx="7" fill="#e4e4e7"/><rect x="760" y="${y}" width="${barWidth}" height="14" rx="7" fill="${theme.primary}"/><text x="1000" y="${y + 12}" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">${escHtml(item.value || `${item.score}`)}</text><text x="760" y="${y + 40}" font-family="Arial, sans-serif" font-size="15" fill="#52525b">${escHtml(item.note || '')}</text>`;
+  }).join('');
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="${escHtml(article.title)}">
+    <defs>
+      <linearGradient id="posterGrad-${escHtml(article.slug)}" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="100%" stop-color="${theme.soft}"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="630" rx="36" fill="url(#posterGrad-${escHtml(article.slug)})"/>
+    <rect x="38" y="38" width="1124" height="554" rx="30" fill="rgba(255,255,255,0.84)" stroke="rgba(24,24,27,0.06)"/>
+    <rect x="60" y="64" width="220" height="36" rx="18" fill="${theme.primary}" opacity="0.92"/>
+    <text x="84" y="88" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" letter-spacing="1.8">${escHtml((dossier.posterKicker || article.categoryLabel).toUpperCase())}</text>
+    ${titleHtml}
+    <text x="60" y="446" font-family="Arial, sans-serif" font-size="24" fill="#52525b">${escHtml(dossier.posterNote || article.excerpt)}</text>
+    ${renderPosterMetricChips(dossier.cards || [])}
+    <rect x="720" y="96" width="396" height="438" rx="28" fill="#ffffff" stroke="rgba(24,24,27,0.06)"/>
+    <text x="760" y="136" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="${theme.primary}" letter-spacing="1.6">DASHBOARD SNAPSHOT</text>
+    ${chartHtml}
+    <circle cx="1094" cy="112" r="14" fill="${theme.glow}"/>
+    <circle cx="1060" cy="112" r="8" fill="${theme.primary}"/>
+  </svg>`;
+}
+async function rasterizeSvgSet(tasks = []) {
+  if (!chromium || !tasks.length) return;
+  const browser = await chromium.launch({ headless: true, executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe' });
+  const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
+  for (const task of tasks) {
+    await page.goto(pathToFileURL(task.svgPath).href, { waitUntil: 'load' });
+    await page.screenshot({ path: task.pngPath, type: 'png' });
+    console.log(`  ✓ ${path.relative(WORK, task.pngPath)}`);
+  }
+  await browser.close();
+}
+async function generateInsightPosterAssets() {
+  const editorialArticles = rawInsights.editorial || [];
+  if (!editorialArticles.length) return;
+  mkdirp(path.join(WORK, 'images', 'insights'));
+  const rasterTasks = [];
+  for (const article of editorialArticles) {
+    const svg = buildInsightPosterSvg(article);
+    const svgPath = insightPosterOutputPath(article, 'svg');
+    writeFile(svgPath, svg);
+    if (sharp) {
+      const input = Buffer.from(svg);
+      await sharp(input).png().toFile(insightPosterOutputPath(article, 'png'));
+      console.log(`  ✓ ${path.relative(WORK, insightPosterOutputPath(article, 'png'))}`);
+    } else {
+      rasterTasks.push({ svgPath, pngPath: insightPosterOutputPath(article, 'png') });
+    }
+  }
+  await rasterizeSvgSet(rasterTasks);
+}
+const SITE_SOCIAL_POSTERS = [
+  {
+    name: 'moldart-default',
+    kicker: 'Moldart',
+    title: 'Wood and steel supply programmes from Mumbai',
+    note: 'Lamination tooling, panel systems, flooring, furniture, decorative stainless steel, and industrial press surfaces.',
+    chips: ['Since 1989', 'Mumbai', 'India + China sourcing', 'Buyer-facing guidance']
+  },
+  {
+    name: 'moldart-home',
+    kicker: 'Homepage preview',
+    title: 'Start from the route, not the generic product name',
+    note: 'Solutions, resources, insights, and enquiry-led supply support built around the actual requirement.',
+    chips: ['Solutions', 'Resources', 'Insights', 'Contact']
+  },
+  {
+    name: 'moldart-solutions',
+    kicker: 'Solutions',
+    title: 'Application-led product stacks and system views',
+    note: 'Use the solutions layer when the requirement is still being narrowed at the programme level.',
+    chips: ['Lamination', 'Furniture', 'Flooring', 'Architecture']
+  },
+  {
+    name: 'moldart-resources',
+    kicker: 'Resources',
+    title: 'Downloadable references for approvals and RFQs',
+    note: 'Reference decks, catalogues, and support files kept separate from the editorial guidance layer.',
+    chips: ['24 references', 'PDF library', 'Request-safe delivery', 'Searchable']
+  },
+  {
+    name: 'moldart-insights',
+    kicker: 'Insights',
+    title: 'Technical guidance built for buyers and specifiers',
+    note: 'Long-form articles, route notes, dashboards, and public references designed to support real enquiries.',
+    chips: ['Editorial articles', 'Technical routes', 'Public references', 'Shareable covers']
+  },
+  {
+    name: 'moldart-process',
+    kicker: 'Process',
+    title: 'From brief to aligned supply',
+    note: 'Share the brief, align the route, lock the reference, and keep repeat supply tied to what was approved.',
+    chips: ['Brief', 'Route', 'Reference', 'Supply']
+  }
+];
+function siteSocialPosterRelativePath(name, ext = 'png') {
+  return `/images/social/${name}.${ext}`;
+}
+function siteSocialPosterOutputPath(name, ext = 'svg') {
+  return path.join(WORK, 'images', 'social', `${name}.${ext}`);
+}
+function buildSiteSocialSvg(config) {
+  const chips = (config.chips || []).slice(0, 4);
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="${escHtml(config.title)}">
+    <rect width="1200" height="630" rx="36" fill="#fafafa"/>
+    <rect x="42" y="42" width="1116" height="546" rx="28" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/>
+    <g opacity="0.55">
+      <path d="M84 132H1116" stroke="#ededf0"/>
+      <path d="M84 232H1116" stroke="#ededf0"/>
+      <path d="M84 332H1116" stroke="#ededf0"/>
+      <path d="M84 432H1116" stroke="#ededf0"/>
+      <path d="M84 532H1116" stroke="#ededf0"/>
+      <path d="M220 84V560" stroke="#ededf0"/>
+      <path d="M420 84V560" stroke="#ededf0"/>
+      <path d="M620 84V560" stroke="#ededf0"/>
+      <path d="M820 84V560" stroke="#ededf0"/>
+      <path d="M1020 84V560" stroke="#ededf0"/>
+    </g>
+    <rect x="84" y="84" width="178" height="38" rx="19" fill="#18181b"/>
+    <text x="108" y="108" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" letter-spacing="1.6">${escHtml(config.kicker.toUpperCase())}</text>
+    <text x="84" y="196" font-family="Arial, sans-serif" font-size="58" font-weight="700" fill="#18181b">${escHtml(config.title)}</text>
+    <text x="84" y="262" font-family="Arial, sans-serif" font-size="24" fill="#52525b">${escHtml(config.note)}</text>
+    ${chips.map((chip, index) => `<rect x="${84 + (index * 186)}" y="454" width="170" height="58" rx="18" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/><text x="${104 + (index * 186)}" y="489" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">${escHtml(chip)}</text>`).join('')}
+    <path d="M742 206C790 172 842 158 900 160c60 1 112 18 156 54" fill="none" stroke="#18181b" stroke-opacity="0.16" stroke-width="18" stroke-linecap="round"/>
+    <path d="M742 290C792 262 848 250 908 252c58 2 108 18 148 48" fill="none" stroke="#18181b" stroke-opacity="0.22" stroke-width="10" stroke-dasharray="14 16" stroke-linecap="round"/>
+    <circle cx="760" cy="360" r="16" fill="#18181b"/>
+    <circle cx="858" cy="250" r="12" fill="#ffffff" stroke="#18181b" stroke-width="3"/>
+    <circle cx="1008" cy="272" r="12" fill="#ffffff" stroke="#18181b" stroke-width="3"/>
+    <text x="730" y="404" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">Mumbai</text>
+    <text x="834" y="226" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">India</text>
+    <text x="978" y="248" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">China</text>
+  </svg>`;
+}
+async function generateSiteSocialAssets() {
+  mkdirp(path.join(WORK, 'images', 'social'));
+  const rasterTasks = [];
+  for (const config of SITE_SOCIAL_POSTERS) {
+    const svg = buildSiteSocialSvg(config);
+    const svgPath = siteSocialPosterOutputPath(config.name, 'svg');
+    writeFile(svgPath, svg);
+    if (sharp) {
+      const input = Buffer.from(svg);
+      await sharp(input).png().toFile(siteSocialPosterOutputPath(config.name, 'png'));
+      console.log(`  ✓ ${path.relative(WORK, siteSocialPosterOutputPath(config.name, 'png'))}`);
+    } else {
+      rasterTasks.push({ svgPath, pngPath: siteSocialPosterOutputPath(config.name, 'png') });
+    }
+  }
+  await rasterizeSvgSet(rasterTasks);
+}
+function renderInsightCoverCard(article, context = null, options = {}) {
+  const src = insightPreviewImage(article, context);
+  const loading = options.eager ? 'eager' : 'lazy';
+  const poster = resolveInsightDossier(article, context);
+  return `<div class="article-cover-card"><img src="${src}" alt="${escHtml(insightPreviewAlt(article, context))}" loading="${loading}"${options.eager ? ' fetchpriority="high"' : ''}><div class="article-cover-overlay"></div><div class="article-cover-badge">${escHtml(poster.posterKicker || article.categoryLabel)}</div></div>`;
+}
+function renderInsightCardMedia(article, context = null) {
+  return `<div class="ui-insight-card-media"><img src="${insightPreviewImage(article, context)}" alt="${escHtml(insightPreviewAlt(article, context))}" loading="lazy"></div>`;
+}
+function renderHomeInsightRow(article) {
+  return `<div class="ui-article-row"><div class="ui-article-row-media"><img src="${insightPreviewImage(article)}" alt="${escHtml(insightPreviewAlt(article))}" loading="lazy"></div><div class="ui-article-row-copy"><div class="ui-list-title">${escHtml(article.title)}</div><div class="ui-list-meta">${escHtml(article.categoryLabel)} · ${escHtml(article.type)}</div></div><a href="/insights/${article.slug}/" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`;
+}
+function renderInsightDashboardCards(cards = []) {
+  if (!cards.length) return '';
+  return `<div class="article-dashboard-grid">${cards.map((card) => `<article class="article-dashboard-card"><div class="article-dashboard-label">${escHtml(card.label)}</div><div class="article-dashboard-value">${escHtml(card.value)}</div><p class="article-dashboard-note">${escHtml(card.note || '')}</p></article>`).join('')}</div>`;
+}
+function renderInsightChart(chart = null) {
+  if (!chart?.items?.length) return '';
+  const items = chart.items.slice(0, 4);
+  const rowGap = 78;
+  const height = 84 + (items.length * rowGap);
+  const svg = `<svg class="article-chart-svg" viewBox="0 0 460 ${height}" role="img" aria-label="${escHtml(chart.title)}">${items.map((item, index) => {
+    const y = 38 + (index * rowGap);
+    const width = Math.max(28, Math.round(248 * ((item.score || 70) / 100)));
+    return `<text x="24" y="${y}" class="chart-label">${escHtml(item.label)}</text><rect x="24" y="${y + 14}" width="260" height="12" rx="6" fill="#e4e4e7"></rect><rect x="24" y="${y + 14}" width="${width}" height="12" rx="6" fill="#18181b"></rect><text x="302" y="${y + 25}" class="chart-value">${escHtml(item.value || `${item.score}`)}</text>`;
+  }).join('')}</svg>`;
+  return `<article class="article-visual-card"><div class="article-visual-label">SVG dashboard</div><h3 class="article-visual-title">${escHtml(chart.title)}</h3><p class="article-visual-copy">${escHtml(chart.caption || '')}</p>${svg}<div class="article-chart-notes">${items.map((item) => `<div class="article-chart-note"><strong>${escHtml(item.label)}:</strong> ${escHtml(item.note || '')}</div>`).join('')}</div></article>`;
+}
+function renderInsightTablePanel(table = null) {
+  if (!table?.rows?.length) return '';
+  return `<article class="article-visual-card"><div class="article-visual-label">Reference table</div><h3 class="article-visual-title">${escHtml(table.title)}</h3><div class="article-table-wrap"><table><tr>${(table.columns || []).map((column) => `<th>${escHtml(column)}</th>`).join('')}</tr>${table.rows.map((row) => `<tr>${row.map((value) => `<td>${escHtml(value)}</td>`).join('')}</tr>`).join('')}</table></div></article>`;
+}
+function renderInsightFlowPanel(flow = null) {
+  if (!flow?.items?.length) return '';
+  return `<section class="article-flow-section"><div class="article-section-head"><div class="ui-kicker mb-3">${glyph('route', 'icon icon-sm')} Use this page</div><h2>${escHtml(flow.title)}</h2></div><div class="article-flow-grid">${flow.items.map((item, index) => `<article class="article-flow-card"><div class="article-flow-step">0${index + 1}</div><p>${escHtml(item)}</p></article>`).join('')}</div></section>`;
+}
+function renderInsightReferences(article, context = null) {
+  const references = resolveInsightDossier(article, context).references || [];
+  if (!references.length) return '';
+  return `<section class="article-reference-section"><div class="article-section-head"><div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} Public references</div><h2>Reference links and standards context</h2></div><div class="article-reference-grid">${references.map((ref) => `<article class="article-reference-card"><div class="article-reference-source">${escHtml(ref.source || 'Reference')}</div><h3>${escHtml(ref.title)}</h3><p>${escHtml(ref.note || '')}</p><a href="${ref.href}" target="_blank" rel="noopener noreferrer" class="site-inline-link">Open reference ${glyph('arrow', 'icon icon-sm')}</a></article>`).join('')}</div></section>`;
+}
+function renderInsightDeepPanels(article, context = null) {
+  const dossier = resolveInsightDossier(article, context);
+  const dashboard = renderInsightDashboardCards(dossier.cards || []);
+  const visuals = [renderInsightChart(dossier.chart), renderInsightTablePanel(dossier.table)].filter(Boolean).join('');
+  const leadDeck = renderInsightCoverCard(article, context, { eager: true });
+  return `${leadDeck}${dashboard ? `<section class="article-dashboard-section">${dashboard}</section>` : ''}${visuals ? `<section class="article-visual-grid">${visuals}</section>` : ''}${renderInsightFlowPanel(dossier.flow)}${renderInsightReferences(article, context)}`;
 }
 // safeJson() removed — search data now written to external JSON file
 
@@ -1258,83 +1722,116 @@ function getSearchEntries() {
 
 function renderHeroNetworkMap() {
   return `<div class="hero-network-card hero-world-map" aria-label="Illustrative global programme map">
-      <svg class="hero-network-svg" viewBox="0 0 960 580" role="img" aria-label="Illustrative world map showing Mumbai separately from India, with India and China as sourcing anchors and animated representative trade lanes across six buyer-relevant regions">
+      <svg class="hero-network-svg" viewBox="0 0 960 620" role="img" aria-label="Illustrative world map showing Mumbai separately from India, with India and China as sourcing anchors and animated representative trade lanes across six buyer-relevant regions">
           <defs>
               <linearGradient id="routeFade" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#18181b" stop-opacity="0.94"></stop>
-                  <stop offset="100%" stop-color="#a1a1aa" stop-opacity="0.14"></stop>
+                  <stop offset="0%" stop-color="#18181b" stop-opacity="0.98"></stop>
+                  <stop offset="100%" stop-color="#71717a" stop-opacity="0.18"></stop>
               </linearGradient>
               <linearGradient id="routeSoft" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#52525b" stop-opacity="0.34"></stop>
-                  <stop offset="100%" stop-color="#e4e4e7" stop-opacity="0.08"></stop>
+                  <stop offset="0%" stop-color="#18181b" stop-opacity="0.46"></stop>
+                  <stop offset="100%" stop-color="#d4d4d8" stop-opacity="0.1"></stop>
               </linearGradient>
+              <filter id="routeGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="7"></feGaussianBlur>
+              </filter>
           </defs>
-          <rect x="0" y="0" width="960" height="580" rx="34" fill="#fafafa"></rect>
+          <rect x="0" y="0" width="960" height="620" rx="34" fill="#fafafa"></rect>
           <g class="hero-world-grid">
-              <path d="M42 96H918"></path>
-              <path d="M42 176H918"></path>
-              <path d="M42 256H918"></path>
-              <path d="M42 336H918"></path>
-              <path d="M42 416H918"></path>
-              <path d="M42 496H918"></path>
-              <path d="M126 42V532"></path>
-              <path d="M230 42V532"></path>
-              <path d="M334 42V532"></path>
-              <path d="M438 42V532"></path>
-              <path d="M542 42V532"></path>
-              <path d="M646 42V532"></path>
-              <path d="M750 42V532"></path>
-              <path d="M854 42V532"></path>
+              <path d="M44 112H916"></path>
+              <path d="M44 202H916"></path>
+              <path d="M44 292H916"></path>
+              <path d="M44 382H916"></path>
+              <path d="M44 472H916"></path>
+              <path d="M132 52V568"></path>
+              <path d="M236 52V568"></path>
+              <path d="M340 52V568"></path>
+              <path d="M444 52V568"></path>
+              <path d="M548 52V568"></path>
+              <path d="M652 52V568"></path>
+              <path d="M756 52V568"></path>
+              <path d="M860 52V568"></path>
           </g>
           <g class="hero-world-continents">
-              <path d="M112 162c24-35 63-55 114-58 30-2 57 5 78 21 18 13 27 31 27 49 0 15-8 28-24 38-24 16-43 32-58 48-17 19-39 28-66 28-39 0-72-12-97-36-22-22-19-49 26-90z"></path>
-              <path d="M236 312c23 10 41 29 52 56 11 28 10 56-2 82-11 24-25 47-41 69-10 14-23 20-37 17-13-5-19-19-19-42 0-26 7-52 20-77 8-16 12-32 14-49 2-20 8-38 13-56z"></path>
-              <path d="M392 122c22-13 52-20 82-18 20 1 37 8 49 20 12 12 14 26 6 40-8 14-23 23-43 27-20 3-36 11-47 24-9 10-20 14-33 14-20 0-37-7-50-21-13-14-17-29-11-44 5-17 19-30 47-42z"></path>
-              <path d="M456 242c25 4 47 15 64 34 19 21 31 47 35 78 4 24 0 45-12 63-13 20-30 30-52 29-23-2-42-13-57-33-15-21-22-47-22-79 0-34 5-59 17-76 8-9 16-14 27-16z"></path>
-              <path d="M542 106c31-21 70-32 121-33 34 0 64 5 90 18 31 15 48 38 49 66 1 22-8 39-26 50-26 16-48 33-64 52-14 18-31 28-52 31-24 4-46-2-65-18-18-15-29-36-34-62-5-28 0-54 17-78 12-16 21-31 32-42 6-7 12-12 18-16z"></path>
-              <path d="M760 328c21 2 40 10 56 24 18 15 28 35 31 59 2 17-2 31-12 42-13 12-29 16-49 11-21-4-38-16-51-34-13-18-19-37-16-57 2-18 10-33 24-45 6-5 12-8 17-8z"></path>
+              <path d="M98 182c28-42 71-66 128-70 36-3 67 5 90 24 20 16 31 36 31 58 0 18-10 33-28 46-25 16-45 33-58 49-17 21-40 31-69 31-42 0-78-13-106-39-25-23-23-56 12-99z"></path>
+              <path d="M238 330c26 12 45 34 57 66 12 30 11 62-2 91-12 25-28 49-46 72-11 14-25 20-41 17-14-5-20-20-20-45 0-29 7-57 21-84 9-17 14-35 16-53 2-21 8-42 15-64z"></path>
+              <path d="M386 136c24-14 56-21 88-18 21 2 39 9 53 22 13 13 15 28 6 44-9 15-25 25-46 29-21 4-38 13-50 27-10 11-22 15-36 15-22 0-40-8-54-23-14-15-18-32-11-48 6-18 22-33 50-48z"></path>
+              <path d="M454 260c29 5 53 18 72 40 21 23 34 51 38 85 3 26-1 49-13 69-14 21-33 32-58 31-24-2-44-14-60-37-16-22-24-51-24-86 0-36 6-64 18-82 8-10 17-16 27-20z"></path>
+              <path d="M544 104c34-22 76-34 130-34 37 0 70 6 99 20 34 16 52 40 53 71 1 24-8 43-28 56-27 18-49 36-65 56-15 19-33 29-56 33-26 4-49-2-70-19-19-16-32-38-37-66-6-30 0-58 18-84 12-17 23-31 33-43 7-7 14-13 23-16z"></path>
+              <path d="M762 348c24 3 44 12 62 28 19 16 31 38 34 65 2 18-3 33-14 45-14 13-32 17-54 12-22-5-40-18-54-38-15-20-21-42-18-65 2-20 11-37 28-51 6-5 11-8 16-8z"></path>
           </g>
           <g class="hero-world-india-shape-group">
-              <path class="hero-india-shape" d="M607 214c9 6 15 15 18 28 2 11 8 20 19 28 3 2 4 6 1 10-8 9-16 17-24 27-7 8-10 18-9 30 1 8-3 13-10 11-8-2-15-8-21-19-5-11-11-20-17-27-5-5-6-11-3-17 4-7 9-14 15-22 6-8 9-17 11-27 2-11 8-18 20-22z"></path>
+              <path class="hero-india-shape" d="M607 230c9 6 16 16 18 30 3 12 9 22 20 30 3 2 4 7 1 11-8 10-17 19-26 29-7 9-10 20-9 32 1 9-3 14-10 12-8-2-15-9-22-21-6-12-12-22-18-29-5-6-6-12-3-18 4-8 9-15 15-24 7-8 10-18 12-29 2-11 9-20 22-23z"></path>
+          </g>
+          <g class="hero-world-routes hero-world-route-glow">
+              <path class="hero-world-route hero-world-route-glow-line" d="M592 286C605 266 615 250 623 238"></path>
+              <path class="hero-world-route hero-world-route-glow-line" d="M592 286C628 272 670 252 716 228"></path>
+              <path class="hero-world-route hero-world-route-glow-line" d="M592 286C494 238 362 194 172 175"></path>
+              <path class="hero-world-route hero-world-route-glow-line" d="M592 286C448 296 332 343 236 422"></path>
+              <path class="hero-world-route hero-world-route-glow-line" d="M592 286C536 246 490 204 446 168"></path>
+              <path class="hero-world-route hero-world-route-glow-line" d="M592 286C548 322 520 356 502 392"></path>
+              <path class="hero-world-route hero-world-route-glow-line" d="M592 286C670 304 744 346 820 392"></path>
           </g>
           <g class="hero-world-routes">
-              <path class="hero-world-route hero-world-route-primary" d="M592 262C600 244 608 232 621 223"></path>
-              <path class="hero-world-route hero-world-route-primary" d="M592 262C620 252 657 236 706 216"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M592 262C498 222 374 185 176 164"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M592 262C454 268 335 309 236 370"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M592 262C536 228 493 189 452 156"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M592 262C550 293 521 326 505 350"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M592 262C666 276 737 312 814 356"></path>
+              <path class="hero-world-route hero-world-route-primary" d="M592 286C605 266 615 250 623 238"></path>
+              <path class="hero-world-route hero-world-route-primary" d="M592 286C628 272 670 252 716 228"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M592 286C494 238 362 194 172 175"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M592 286C448 296 332 343 236 422"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M592 286C536 246 490 204 446 168"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M592 286C548 322 520 356 502 392"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M592 286C670 304 744 346 820 392"></path>
+          </g>
+          <g class="hero-route-dots">
+              <circle class="hero-route-dot" style="animation-delay:0s" cx="606" cy="264" r="5"></circle>
+              <circle class="hero-route-dot" style="animation-delay:.35s" cx="619" cy="245" r="5"></circle>
+              <circle class="hero-route-dot" style="animation-delay:.7s" cx="654" cy="258" r="5"></circle>
+              <circle class="hero-route-dot" style="animation-delay:1.05s" cx="700" cy="236" r="5"></circle>
+              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:1.4s" cx="512" cy="247" r="4"></circle>
+              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:1.75s" cx="428" cy="222" r="4"></circle>
+              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:2.1s" cx="332" cy="201" r="4"></circle>
+              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:2.45s" cx="489" cy="313" r="4"></circle>
+              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:2.8s" cx="394" cy="344" r="4"></circle>
+              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:3.15s" cx="295" cy="386" r="4"></circle>
+              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:3.5s" cx="548" cy="248" r="4"></circle>
+              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:3.85s" cx="494" cy="205" r="4"></circle>
+              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:4.2s" cx="532" cy="330" r="4"></circle>
+              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:4.55s" cx="510" cy="367" r="4"></circle>
+              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:4.9s" cx="690" cy="324" r="4"></circle>
+              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:5.25s" cx="764" cy="364" r="4"></circle>
           </g>
           <g class="hero-world-nodes">
-              <circle class="hero-world-pulse" cx="592" cy="262" r="22"></circle>
-              <circle class="hero-world-node hero-world-node-primary" cx="592" cy="262" r="9"></circle>
-              <circle class="hero-world-node hero-world-node-source" cx="621" cy="223" r="8"></circle>
-              <circle class="hero-world-node hero-world-node-source" cx="706" cy="216" r="8"></circle>
-              <circle class="hero-world-node" cx="176" cy="164" r="6"></circle>
-              <circle class="hero-world-node" cx="236" cy="370" r="6"></circle>
-              <circle class="hero-world-node" cx="452" cy="156" r="6"></circle>
-              <circle class="hero-world-node" cx="505" cy="350" r="6"></circle>
-              <circle class="hero-world-node" cx="814" cy="356" r="6"></circle>
+              <circle class="hero-world-pulse" cx="592" cy="286" r="26"></circle>
+              <circle class="hero-world-node hero-world-node-primary" cx="592" cy="286" r="10"></circle>
+              <circle class="hero-world-node hero-world-node-source" cx="623" cy="238" r="9"></circle>
+              <circle class="hero-world-node hero-world-node-source" cx="716" cy="228" r="9"></circle>
+              <circle class="hero-world-node" cx="172" cy="175" r="7"></circle>
+              <circle class="hero-world-node" cx="236" cy="422" r="7"></circle>
+              <circle class="hero-world-node" cx="446" cy="168" r="7"></circle>
+              <circle class="hero-world-node" cx="502" cy="392" r="7"></circle>
+              <circle class="hero-world-node" cx="820" cy="392" r="7"></circle>
           </g>
           <g class="hero-label-group">
-              <path class="hero-node-pointer" d="M592 246l-28-32"></path>
-              <text x="538" y="198" class="hero-node-label hero-node-label-primary">Mumbai</text>
-              <text x="538" y="181" class="hero-node-meta">Operating base</text>
-              <path class="hero-node-pointer" d="M621 223l20-30"></path>
-              <text x="666" y="176" class="hero-node-label">India</text>
-              <text x="666" y="159" class="hero-node-meta">Sourcing anchor</text>
-              <path class="hero-node-pointer" d="M706 216l28-24"></path>
-              <text x="792" y="174" class="hero-node-label">China</text>
-              <text x="792" y="157" class="hero-node-meta">Sourcing anchor</text>
+              <path class="hero-node-pointer" d="M592 270l-30-38"></path>
+              <text x="536" y="224" class="hero-node-label hero-node-label-primary">Mumbai</text>
+              <text x="536" y="205" class="hero-node-meta">Operating base</text>
+              <path class="hero-node-pointer" d="M623 238l18-34"></path>
+              <text x="676" y="190" class="hero-node-label">India</text>
+              <text x="676" y="171" class="hero-node-meta">Sourcing anchor</text>
+              <path class="hero-node-pointer" d="M716 228l30-26"></path>
+              <text x="804" y="184" class="hero-node-label">China</text>
+              <text x="804" y="165" class="hero-node-meta">Sourcing anchor</text>
           </g>
           <g class="hero-world-region-labels">
-              <text x="142" y="138" class="hero-world-region-label">North America</text>
-              <text x="196" y="420" class="hero-world-region-label">South America</text>
-              <text x="394" y="100" class="hero-world-region-label">Europe</text>
-              <text x="442" y="390" class="hero-world-region-label">Africa</text>
-              <text x="628" y="102" class="hero-world-region-label">Asia</text>
-              <text x="760" y="404" class="hero-world-region-label">Oceania</text>
+              <text x="136" y="144" class="hero-world-region-label">North America</text>
+              <text x="186" y="470" class="hero-world-region-label">South America</text>
+              <text x="380" y="112" class="hero-world-region-label">Europe</text>
+              <text x="430" y="442" class="hero-world-region-label">Africa</text>
+              <text x="624" y="96" class="hero-world-region-label">Asia</text>
+              <text x="758" y="446" class="hero-world-region-label">Oceania</text>
+          </g>
+          <g class="hero-map-caption-group">
+              <rect x="66" y="520" width="244" height="48" rx="20" fill="rgba(255,255,255,0.94)" stroke="#e4e4e7"></rect>
+              <text x="88" y="548" class="hero-world-small hero-world-small-strong">Representative programme lanes only</text>
           </g>
       </svg>
   </div>`;
@@ -1465,9 +1962,9 @@ function pageEnhancementCSS() {
   .insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.insight-card{display:flex;flex-direction:column;border:1px solid #f4f4f5;border-radius:20px;padding:1.2rem;background:#fff;transition:border-color .2s ease,box-shadow .2s ease}.insight-card:hover{border-color:#18181b;box-shadow:0 16px 36px rgba(0,0,0,.06)}.insight-card-type{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#71717a;margin-bottom:.7rem}.insight-card-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1rem;line-height:1.4;margin-bottom:.75rem}.insight-card-excerpt{font-size:.84rem;line-height:1.65;color:#52525b;flex:1}.insight-card-meta{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem;font-size:.72rem;color:#71717a}.insight-layout{align-items:start}.insight-side-panel{position:sticky;top:5.5rem}.insight-side-value{font-size:.92rem;line-height:1.5;color:#18181b}.share-bar{display:flex;flex-wrap:wrap;gap:.6rem;padding:0 0 1.2rem;margin-bottom:1.2rem;border-bottom:1px solid #f4f4f5}.share-chip{display:inline-flex;align-items:center;justify-content:center;padding:.45rem .75rem;border:1px solid #e4e4e7;border-radius:9999px;background:#fff;font-size:.72rem;color:#3f3f46;transition:border-color .2s ease,background .2s ease}.share-chip:hover{border-color:#18181b;background:#fafafa}
   .cmd-palette{width:min(42rem,calc(100vw - 1.5rem));border-radius:22px;border:1px solid #e4e4e7;overflow:hidden;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.2)}.cmd-palette-input-wrap{display:flex;align-items:center;gap:.75rem;padding:1rem 1.15rem;border-bottom:1px solid #f4f4f5}.cmd-palette-input{width:100%;border:none;outline:none;font-size:1rem;background:transparent}.cmd-palette-results{max-height:28rem;overflow:auto;padding:.5rem}.cmd-palette-item{display:flex;align-items:center;gap:.85rem;padding:.75rem .85rem;border-radius:14px;color:#18181b}.cmd-palette-item.is-active,.cmd-palette-item:hover{background:#fafafa}.cmd-palette-item svg{width:1rem;height:1rem;color:#71717a;flex-shrink:0}.cmd-palette-item-copy{display:flex;flex-direction:column;min-width:0}.cmd-palette-item-meta{font-size:.72rem;color:#71717a;margin-top:.12rem}.cmd-palette-empty{padding:1.5rem;color:#71717a;font-size:.84rem}.cmd-palette-footer{padding:.8rem 1.15rem;border-top:1px solid #f4f4f5;background:#fafafa}
   .resource-gate-dialog{width:min(52rem,100%);display:grid;grid-template-columns:.95fr 1.05fr;gap:1rem;padding:1rem;border-radius:24px;background:#fff;position:relative}.resource-gate-copy,.resource-gate-form{border:1px solid #f4f4f5;border-radius:18px;padding:1.1rem}.resource-gate-copy{background:#fafafa}.resource-gate-list{display:flex;flex-direction:column;gap:.7rem}.resource-gate-list div{position:relative;padding-left:1rem;font-size:.86rem;line-height:1.6;color:#52525b}.resource-gate-list div:before{content:'';position:absolute;left:0;top:.55rem;width:.35rem;height:.35rem;border-radius:9999px;background:#18181b}.resource-gate-close{position:absolute;top:1rem;right:1rem;width:2.1rem;height:2.1rem;border:1px solid #e4e4e7;border-radius:9999px;display:flex;align-items:center;justify-content:center}.resource-gate-close svg{width:1rem;height:1rem;fill:none;stroke:currentColor;stroke-width:2}.resource-gate-overlay{position:fixed;inset:0;background:rgba(24,24,27,.46);display:none;align-items:center;justify-content:center;z-index:120;padding:1rem}.resource-gate-overlay.is-open{display:flex}
-  @keyframes routeFlow{from{stroke-dashoffset:0}to{stroke-dashoffset:-180}}
-  @media (max-width:1024px){.home-hero-grid,.product-sheet-grid,.application-hero-grid,.insight-layout,.site-footer-grid,.signal-grid,.insights-grid,.resource-gate-dialog,.verified-grid,.flow-grid,.source-grid{grid-template-columns:1fr}.home-family-bento-grid{grid-template-columns:1fr}.product-summary-card-grid,.application-mosaic{grid-template-columns:1fr 1fr}.insight-side-panel{position:static}}
-  @media (max-width:768px){.site-search-trigger-compact{max-width:none}.site-search-trigger-meta,.site-search-trigger-shortcut{display:none}.product-summary-card-grid,.application-mosaic,.insights-grid{grid-template-columns:1fr}.hero-network-card{min-height:22rem}.hero-node-label{font-size:13px}.hero-node-meta,.hero-world-small{font-size:9px}.hero-world-region-label{font-size:10px}.ui-world-map-legend-item{min-width:calc(50% - .375rem)}.home-family-media{height:13rem}.product-sheet-image{height:15rem}.portal-status-card{flex-direction:column;align-items:flex-start}.resource-gate-dialog{grid-template-columns:1fr;padding:.75rem}}
+  .hero-network-card{border:1px solid #f4f4f5;border-radius:30px;overflow:hidden;background:#fff;min-height:34rem;box-shadow:0 28px 60px rgba(0,0,0,.05)}.hero-network-svg{width:100%;height:100%}.hero-world-grid path{stroke:#ececf0;stroke-width:1}.hero-world-continents path{fill:#f8f8f9;stroke:#e4e4e7;stroke-width:1.25}.hero-india-shape{fill:#e4e4e7;stroke:#a1a1aa;stroke-width:1.2}.hero-world-route{fill:none;stroke-linecap:round;stroke-dasharray:10 13;animation:routeFlow 9.5s linear infinite}.hero-world-route-primary{stroke:url(#routeFade);stroke-width:4.4}.hero-world-route-soft{stroke:url(#routeSoft);stroke-width:3.1;animation-duration:12s}.hero-world-route-glow-line{stroke:rgba(24,24,27,.14);stroke-width:10;filter:url(#routeGlow)}.hero-world-node{fill:#fff;stroke:#18181b;stroke-width:2.2}.hero-world-node-primary{fill:#18181b}.hero-world-node-source{fill:#fff;stroke:#18181b;stroke-width:2.2}.hero-world-pulse{fill:none;stroke:#18181b;stroke-width:1.2;opacity:.18;animation:mapPulse 2.8s ease-in-out infinite}.hero-node-pointer{stroke:#a1a1aa;stroke-width:1.4;fill:none;stroke-linecap:round}.hero-label-group text,.hero-world-region-label,.hero-world-small{font-family:'DM Sans',sans-serif}.hero-node-label{font-size:18px;font-weight:700;fill:#18181b;text-anchor:middle}.hero-node-label-primary{fill:#18181b}.hero-node-meta{font-size:10px;fill:#71717a;text-anchor:middle;letter-spacing:.12em;text-transform:uppercase}.hero-world-region-label{font-size:12px;font-weight:700;fill:#52525b}.hero-world-small{font-size:11px;fill:#71717a}.hero-world-small-strong{fill:#18181b;font-weight:700}.hero-route-dot{fill:#18181b;opacity:.18;animation:routeDotPulse 4.8s ease-in-out infinite}.hero-route-dot-soft{fill:#52525b}.ui-world-stage{display:grid;grid-template-columns:1.08fr .92fr;gap:1.5rem;align-items:start}.ui-world-stage-map{display:flex;flex-direction:column;gap:1rem}.ui-world-stage-copy{display:flex;flex-direction:column;gap:1rem}.ui-map-caption{padding:1rem 1.1rem;border:1px solid #e4e4e7;border-radius:20px;background:#fff;font-size:.9rem;line-height:1.7;color:#3f3f46}.ui-world-lane-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}.ui-world-lane-card{padding:1rem 1.05rem;border:1px solid #e4e4e7;border-radius:20px;background:#fff}.ui-world-lane-label{font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#71717a;margin-bottom:.5rem}.ui-world-lane-card strong{display:block;font-size:1rem;color:#18181b;margin-bottom:.3rem}.ui-world-lane-card p{font-size:.82rem;line-height:1.6;color:#52525b}.ui-world-map-legend{display:flex;flex-wrap:wrap;gap:.75rem}.ui-world-map-legend-item{display:inline-flex;flex-direction:column;gap:.2rem;padding:.75rem .9rem;border:1px solid #e4e4e7;border-radius:18px;background:#fff;min-width:10rem}.ui-world-map-legend-item strong{font-size:.82rem;color:#18181b}.ui-world-map-legend-item span{font-size:.72rem;color:#71717a;line-height:1.5}.ui-world-map-legend-item.is-primary{border-color:#18181b;box-shadow:0 14px 32px rgba(0,0,0,.05)}.ui-world-map-note{font-size:.8rem;line-height:1.75;color:#71717a;max-width:34rem}.ui-article-row{display:grid;grid-template-columns:5.5rem 1fr auto;gap:.85rem;align-items:center;padding:.7rem 0;border-bottom:1px solid #f4f4f5}.ui-article-row:last-child{border-bottom:none;padding-bottom:0}.ui-article-row-media{width:5.5rem;height:4rem;border-radius:16px;overflow:hidden;border:1px solid #e4e4e7;background:#fafafa}.ui-article-row-media img{width:100%;height:100%;object-fit:cover}.ui-article-row-copy{min-width:0}.ui-insight-card-media{position:relative;height:12.5rem;border-radius:18px;overflow:hidden;border:1px solid #f4f4f5;background:#fafafa;margin-bottom:1rem}.ui-insight-card-media img{width:100%;height:100%;object-fit:cover}.ui-insight-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}.ui-insight-feature{grid-column:span 2;display:grid;grid-template-columns:1.05fr .95fr;overflow:hidden;padding:0}.ui-insight-feature .ui-insight-card-media{height:100%;min-height:18rem;margin:0;border:none;border-right:1px solid #f4f4f5;border-radius:0}.ui-insight-card-body{display:flex;flex-direction:column;padding:1.25rem}.ui-topic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.ui-topic-card{border:1px solid #f4f4f5;border-radius:20px;background:#fff;padding:1.15rem}.ui-topic-card-head{display:flex;align-items:start;justify-content:space-between;gap:1rem}.ui-topic-copy{font-size:.84rem;line-height:1.7;color:#52525b}.ui-route-directory-stack{display:grid;gap:.9rem}.ui-route-directory{border:1px solid #f4f4f5;border-radius:24px;background:#fff;overflow:hidden}.ui-route-directory[open]{box-shadow:0 18px 38px rgba(0,0,0,.04)}.ui-route-directory summary{list-style:none;cursor:pointer;padding:1.2rem 1.25rem}.ui-route-directory summary::-webkit-details-marker{display:none}.ui-route-directory-summary{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start}.ui-route-directory-count{display:inline-flex;align-items:center;justify-content:center;min-width:2rem;height:2rem;border-radius:9999px;background:#18181b;color:#fff;font-size:.78rem;font-weight:700}.ui-route-directory-intro{font-size:.84rem;line-height:1.7;color:#52525b;margin-top:.4rem;max-width:42rem}.ui-route-directory-body{padding:0 1.25rem 1.25rem;display:grid;gap:.8rem}.ui-route-product-row{display:grid;grid-template-columns:1fr auto;gap:1rem;padding:1rem;border:1px solid #f4f4f5;border-radius:18px;background:#fafafa}.ui-route-product-copy h3{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:#18181b;margin-bottom:.35rem}.ui-route-product-copy p{font-size:.84rem;line-height:1.7;color:#52525b}.ui-route-product-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.7rem}.ui-route-product-meta span{padding:.35rem .55rem;border-radius:9999px;border:1px solid #e4e4e7;background:#fff;font-size:.72rem;color:#52525b}.ui-route-product-actions{display:flex;gap:.65rem;flex-wrap:wrap;align-items:center;justify-content:flex-end}.article-cover-card{position:relative;height:min(28rem,54vw);border:1px solid #f4f4f5;border-radius:28px;overflow:hidden;background:#fafafa;box-shadow:0 24px 48px rgba(0,0,0,.04)}.article-cover-card img{width:100%;height:100%;object-fit:cover}.article-cover-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.58))}.article-cover-badge{position:absolute;left:1.1rem;bottom:1.1rem;padding:.5rem .75rem;border-radius:9999px;background:rgba(255,255,255,.92);border:1px solid #e4e4e7;font-size:.75rem;font-weight:700;color:#18181b}.article-dashboard-section{padding:2rem 0 0}.article-dashboard-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.article-dashboard-card{border:1px solid #f4f4f5;border-radius:20px;background:#fff;padding:1.05rem}.article-dashboard-label{font-family:'Montserrat',sans-serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#71717a;margin-bottom:.55rem}.article-dashboard-value{font-family:'Montserrat',sans-serif;font-size:1.15rem;font-weight:700;line-height:1.35;color:#18181b;margin-bottom:.35rem}.article-dashboard-note{font-size:.8rem;line-height:1.6;color:#52525b}.article-visual-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:1rem;padding:2rem 0 0}.article-visual-card{border:1px solid #f4f4f5;border-radius:24px;background:#fff;padding:1.25rem}.article-visual-label{font-family:'Montserrat',sans-serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#71717a;margin-bottom:.55rem}.article-visual-title{font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:700;color:#18181b;margin-bottom:.45rem}.article-visual-copy{font-size:.84rem;line-height:1.7;color:#52525b;margin-bottom:1rem}.article-chart-svg{width:100%;height:auto}.article-chart-svg .chart-label{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;fill:#18181b}.article-chart-svg .chart-value{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;fill:#18181b}.article-chart-notes{display:grid;gap:.7rem;margin-top:1rem}.article-chart-note{font-size:.82rem;line-height:1.7;color:#52525b}.article-table-wrap{overflow:auto}.article-table-wrap table{min-width:100%;border-collapse:collapse}.article-table-wrap th,.article-table-wrap td{padding:.8rem .85rem;border-bottom:1px solid #f4f4f5;text-align:left;vertical-align:top}.article-table-wrap th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#71717a}.article-table-wrap td{font-size:.84rem;line-height:1.65;color:#3f3f46}.article-flow-section,.article-reference-section{padding:2rem 0 0}.article-section-head h2{font-family:'Montserrat',sans-serif;font-size:1.6rem;line-height:1.1;color:#18181b}.article-flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem}.article-flow-card{border:1px solid #f4f4f5;border-radius:20px;background:#fff;padding:1rem}.article-flow-step{font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#71717a;margin-bottom:.55rem}.article-flow-card p{font-size:.84rem;line-height:1.7;color:#52525b}.article-reference-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}.article-reference-card{border:1px solid #f4f4f5;border-radius:20px;background:#fff;padding:1rem}.article-reference-source{font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#71717a;margin-bottom:.55rem}.article-reference-card h3{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;color:#18181b;line-height:1.35;margin-bottom:.45rem}.article-reference-card p{font-size:.82rem;line-height:1.7;color:#52525b;margin-bottom:.85rem}.process-flow-card{border:1px solid #f4f4f5;border-radius:24px;background:#fff;padding:1.1rem}.process-flow-svg{width:100%;height:auto;display:block}.process-flow-label{font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#71717a;margin-bottom:.65rem}.process-flow-note{font-size:.84rem;line-height:1.7;color:#52525b;margin-top:.8rem}@keyframes routeFlow{from{stroke-dashoffset:0}to{stroke-dashoffset:-180}}@keyframes routeDotPulse{0%,100%{opacity:.12;transform:scale(.9)}50%{opacity:.95;transform:scale(1.2)}}@keyframes mapPulse{0%,100%{opacity:.12;transform:scale(.94)}50%{opacity:.34;transform:scale(1.06)}}
+  @media (max-width:1024px){.home-hero-grid,.product-sheet-grid,.application-hero-grid,.insight-layout,.site-footer-grid,.signal-grid,.insights-grid,.resource-gate-dialog,.verified-grid,.flow-grid,.source-grid,.ui-world-stage,.ui-topic-grid,.article-dashboard-grid,.article-visual-grid,.article-flow-grid,.article-reference-grid{grid-template-columns:1fr}.home-family-bento-grid{grid-template-columns:1fr}.product-summary-card-grid,.application-mosaic,.ui-world-lane-grid{grid-template-columns:1fr 1fr}.insight-side-panel{position:static}.ui-insight-feature{grid-template-columns:1fr}.ui-insight-feature .ui-insight-card-media{min-height:15rem;border-right:none;border-bottom:1px solid #f4f4f5}}
+  @media (max-width:768px){.site-search-trigger-compact{max-width:none}.site-search-trigger-meta,.site-search-trigger-shortcut{display:none}.product-summary-card-grid,.application-mosaic,.insights-grid,.ui-insight-grid,.ui-topic-grid,.article-dashboard-grid,.article-flow-grid,.article-reference-grid,.ui-world-lane-grid{grid-template-columns:1fr}.hero-network-card{min-height:26rem}.hero-node-label{font-size:14px}.hero-node-meta,.hero-world-small{font-size:9px}.hero-world-region-label,.hero-map-caption-group{display:none}.ui-world-map-legend-item{min-width:calc(50% - .375rem)}.home-family-media{height:13rem}.product-sheet-image{height:15rem}.portal-status-card{flex-direction:column;align-items:flex-start}.resource-gate-dialog,.article-visual-grid{grid-template-columns:1fr;padding:.75rem}.ui-article-row{grid-template-columns:4.5rem 1fr auto}.ui-article-row-media{width:4.5rem;height:3.4rem}.article-cover-card{height:16rem}.ui-route-product-row{grid-template-columns:1fr}.ui-route-product-actions{justify-content:flex-start}.ui-world-stage-copy{gap:.85rem}}
   `;
 }
 
@@ -1489,10 +1986,23 @@ function fontPreloads() {
     <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>`;
 }
 
-function headTag({ title, desc, canonical, ogType = 'website', ogImage = '/images/page5_img3.webp', ogImageAlt = 'Moldart industrial supply', noindex = false, schemas = [], prefetch = [] }) {
+function socialImageMetaPath(image = '') {
+  if (!image) return image;
+  if (/\.(png|jpg|jpeg|svg)$/i.test(image)) return image;
+  if (/\.webp$/i.test(image)) {
+    const jpgPath = path.join(WORK, image.replace(/^\//, '').replace(/\.webp$/i, '.jpg'));
+    const pngPath = path.join(WORK, image.replace(/^\//, '').replace(/\.webp$/i, '.png'));
+    if (fs.existsSync(jpgPath)) return image.replace(/\.webp$/i, '.jpg');
+    if (fs.existsSync(pngPath)) return image.replace(/\.webp$/i, '.png');
+  }
+  return image;
+}
+
+function headTag({ title, desc, canonical, ogType = 'website', ogImage = '/images/social/moldart-default.png', ogImageAlt = 'Moldart brand overview', noindex = false, schemas = [], prefetch = [] }) {
   const robotsMeta = noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
   const schemaScripts = schemas.map(s => `<script type="application/ld+json">\n    ${JSON.stringify(s)}\n    </script>`).join('\n    ');
   const prefetchLinks = [...new Set(['/data/search-index.json', ...prefetch])].map(p => `<link rel="prefetch" href="${p}">`).join('\n    ');
+  const socialImage = socialImageMetaPath(ogImage);
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1507,14 +2017,14 @@ function headTag({ title, desc, canonical, ogType = 'website', ogImage = '/image
     <meta property="og:url" content="${SITE}${canonical}">
     <meta property="og:locale" content="en_IN">
     <meta property="og:site_name" content="Moldart">
-    <meta property="og:image" content="${SITE}${ogImage.replace(/\.webp$/, '.jpg')}">
+    <meta property="og:image" content="${SITE}${socialImage}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="${escHtml(ogImageAlt)}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${escHtml(title)}">
     <meta name="twitter:description" content="${escHtml(desc)}">
-    <meta name="twitter:image" content="${SITE}${ogImage.replace(/\.webp$/, '.jpg')}">
+    <meta name="twitter:image" content="${SITE}${socialImage}">
     <meta name="theme-color" content="#18181b">
     <script>document.documentElement.classList.add('js');</script>
     <link rel="canonical" href="${SITE}${canonical}">
@@ -1993,33 +2503,35 @@ function renderInsightTechnicalAppendix(article, context) {
 function renderInsightArticleBody(article) {
   const context = articleProductContext(article);
   const authoredContent = String(article.content || '').trim();
-  if (authoredContent) return markdownToHtml(authoredContent) + renderInsightTechnicalAppendix(article, context);
+  if (authoredContent) {
+    return markdownToHtml(authoredContent) + renderInsightDeepPanels(article, context) + renderInsightTechnicalAppendix(article, context);
+  }
 
-  if (!context) return markdownToHtml(article.content);
+  if (!context) {
+    return markdownToHtml(article.content) + renderInsightDeepPanels(article, context);
+  }
 
   const { product, meta } = context;
   const specRows = product.specs.map((spec, index) => specToRow(spec, index));
-
   const commercialRows = [
     ['Lead time', product.technical?.leadTime || 'On request'],
     ['MOQ', product.technical?.moq || 'On request'],
     ['Origin', product.technical?.origin || 'On request'],
     ['Standards', (product.technical?.certifications || []).join(', ') || 'On request']
   ];
-
   const checklist = [
     'Define the application, finish expectation, and end-use environment before requesting a quote.',
     'Lock dimensional requirements, grade, and compliance expectations in the RFQ.',
     'Confirm sampling or reference approval when finish fidelity or surface consistency matters.',
     'Review supply timing, documentation, and packing requirements before order confirmation.'
   ];
-
   const safeOverview = `${product.summary} ${product.customization || ''}`.trim();
   const safeWorkflow = meta.workflow || product.summary;
   const safeCommercial = `${product.customization || 'Final configuration is confirmed per enquiry.'} Lead time, MOQ, origin, and supporting documents are confirmed against the actual programme.`;
+  let body = '';
 
   if (article.type === 'Buyer\'s Guide') {
-    return `
+    body = `
       <h2>Why This Matters</h2>
       <p>${escHtml(product.name)} buying decisions affect not only landed cost, but also finish quality, production stability, and downstream rework. The strongest RFQs align technical expectations, commercial timing, and inspection checkpoints before production begins.</p>
       <h2>Commercial Baseline</h2>
@@ -2041,10 +2553,8 @@ function renderInsightArticleBody(article) {
       <h2>How Moldart Usually Engages</h2>
       <p>${escHtml(safeOverview)}</p>
       <p>${escHtml(safeCommercial)}</p>`;
-  }
-
-  if (article.type === 'Quality & Standards') {
-    return `
+  } else if (article.type === 'Quality & Standards') {
+    body = `
       <h2>Quality Scope</h2>
       <p>${escHtml(product.name)} quality should be reviewed through the combined lens of dimensional control, surface acceptance, certification support, and consistency against the approved reference.</p>
       <h2>Applicable Standards</h2>
@@ -2065,10 +2575,8 @@ function renderInsightArticleBody(article) {
       </ol>
       <h2>Common Quality Risks</h2>
       <p>The most common failures happen when reference approval is weak, specifications are incomplete, or incoming inspection is delayed until after processing begins.</p>`;
-  }
-
-  if (article.type === 'Application Guide') {
-    return `
+  } else if (article.type === 'Application Guide') {
+    body = `
       <h2>Application Context</h2>
       <p>${escHtml(safeWorkflow)}</p>
       <h2>Typical Use Cases</h2>
@@ -2084,10 +2592,8 @@ function renderInsightArticleBody(article) {
       </ol>
       <h2>Execution Note</h2>
       <p>${escHtml(safeCommercial)}</p>`;
-  }
-
-  if (article.type === 'Technical Deep-Dive') {
-    return `
+  } else if (article.type === 'Technical Deep-Dive') {
+    body = `
       <h2>Technical Scope</h2>
       <p>${escHtml(safeOverview)}</p>
       <h2>Specification Reference</h2>
@@ -2110,9 +2616,7 @@ function renderInsightArticleBody(article) {
         <li>Which documents must ship with the order?</li>
         <li>What is the tolerance for batch-to-batch variation?</li>
       </ol>`;
-  }
-
-  if (article.type === 'Comparative Analysis') {
+  } else if (article.type === 'Comparative Analysis') {
     const options = extractComparisonOptions(article.title, product);
     const comparisonRows = options.map((option, index) => {
       const note = index === 0
@@ -2122,7 +2626,7 @@ function renderInsightArticleBody(article) {
           : 'Best when the requirement is application-specific or tied to an existing approval route.';
       return `<tr><td>${escHtml(option)}</td><td>${escHtml(product.applications[index % product.applications.length] || product.use)}</td><td>${escHtml(note)}</td></tr>`;
     }).join('');
-    return `
+    body = `
       <h2>Decision Frame</h2>
       <p>${escHtml(product.name)} comparisons are rarely just material-versus-material decisions. The right answer depends on tolerance, finish expectation, conversion route, volume, and commercial timing.</p>
       <h2>Comparison Table</h2>
@@ -2138,10 +2642,8 @@ function renderInsightArticleBody(article) {
         <tr><th>Commercial item</th><th>Reference</th></tr>
         ${commercialRows.map(([label, value]) => `<tr><td>${escHtml(label)}</td><td>${escHtml(value)}</td></tr>`).join('')}
       </table>`;
-  }
-
-  if (article.type === 'Comprehensive Guide') {
-    return `
+  } else if (article.type === 'Comprehensive Guide') {
+    body = `
       <h2>Overview</h2>
       <p>${escHtml(safeOverview)}</p>
       <h2>Where It Fits</h2>
@@ -2159,9 +2661,11 @@ function renderInsightArticleBody(article) {
       <ol>${checklist.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ol>
       <h2>When To Talk To Moldart</h2>
       <p>Bring Moldart in early when the programme involves finish-sensitive approvals, multi-step sourcing, compliance-sensitive exports, or recurring supply that needs a stable technical-commercial reference.</p>`;
+  } else {
+    body = markdownToHtml(article.content);
   }
 
-  return markdownToHtml(article.content);
+  return body + renderInsightDeepPanels(article, context) + renderInsightTechnicalAppendix(article, context);
 }
 
 function productCard(productId) {
@@ -2222,6 +2726,8 @@ function generateHomepage() {
     title: 'Moldart India | Lamination tooling, panels, flooring & decorative stainless steel',
     desc: 'Moldart works from Mumbai across wood and steel programmes, aligning sourcing from India and China to the application, finish, and commercial route.',
     canonical: '/',
+    ogImage: siteSocialPosterRelativePath('moldart-home'),
+    ogImageAlt: 'Moldart homepage overview',
     schemas,
     prefetch: ['/solutions/', '/resources/', '/insights/', '/contact/']
   }) + '\n' + nav('home') + `
@@ -2268,13 +2774,18 @@ function generateHomepage() {
                 <div class="ui-world-stage-map">${renderHeroNetworkMap()}</div>
                 <aside class="ui-world-stage-copy">
                     <div class="ui-map-caption">Mumbai is the operating base. India and China remain the sourcing anchors. The wider lines describe indicative programme geography, not sales-office coverage.</div>
+                    <div class="ui-world-lane-grid">
+                        <article class="ui-world-lane-card"><div class="ui-world-lane-label">Operating base</div><strong>Mumbai</strong><p>Commercial coordination, brief handling, and routing stay centred here.</p></article>
+                        <article class="ui-world-lane-card"><div class="ui-world-lane-label">Primary anchor</div><strong>India</strong><p>Shown separately from Mumbai so the map does not confuse the city with the country route.</p></article>
+                        <article class="ui-world-lane-card"><div class="ui-world-lane-label">Secondary anchor</div><strong>China</strong><p>Used where the category, finish route, or commercial path calls for it.</p></article>
+                        <article class="ui-world-lane-card"><div class="ui-world-lane-label">Wider lanes</div><strong>Six-region orientation</strong><p>North America, South America, Europe, Africa, Asia, and Oceania stay illustrative only.</p></article>
+                    </div>
                     <div class="ui-world-map-legend mt-4">
                         <span class="ui-world-map-legend-item is-primary"><strong>Mumbai</strong><span>Operating base and commercial coordination</span></span>
                         <span class="ui-world-map-legend-item"><strong>India</strong><span>Shown separately from Mumbai inside the Asia route</span></span>
                         <span class="ui-world-map-legend-item"><strong>China</strong><span>Second sourcing anchor where relevant</span></span>
                         <span class="ui-world-map-legend-item"><strong>Animated lanes</strong><span>Illustrative trade direction, not office claims</span></span>
                     </div>
-                    <div class="ui-app-badges mt-4"><span>North America</span><span>South America</span><span>Europe</span><span>Africa</span><span>Asia</span><span>Oceania</span></div>
                     <div class="ui-world-map-note mt-3">Six-region orientation only. The wider lines stay illustrative and are used only to explain route context around Mumbai, India, and China.</div>
                 </aside>
             </div>
@@ -2309,7 +2820,7 @@ function generateHomepage() {
                 <article class="ui-library-card">
                     <div class="ui-kicker mb-2">${glyph('spark', 'icon icon-sm')} Editorial guides</div>
                     <div class="ui-list-compact mt-4">
-                        ${featuredArticles.map((article) => `<div class="ui-list-row"><div class="ui-list-copy"><div class="ui-list-title">${escHtml(article.title)}</div><div class="ui-list-meta">${escHtml(article.categoryLabel)} · ${escHtml(article.type)}</div></div><a href="/insights/${article.slug}/" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`).join('')}
+                        ${featuredArticles.map((article) => renderHomeInsightRow(article)).join('')}
                     </div>
                     <div class="mt-8"><a href="/insights/" class="btn-outline">Open Insights</a></div>
                 </article>
@@ -2342,6 +2853,8 @@ function generateExplorePage() {
     title: 'Explore Moldart | Search solutions, product sheets, and guides',
     desc: 'Search and filter Moldart solutions, product sheets, technical resources, and guides from one discovery page.',
     canonical: '/explore/',
+    ogImage: siteSocialPosterRelativePath('moldart-home'),
+    ogImageAlt: 'Moldart discovery overview',
     schemas,
     prefetch: ['/data/product-directory.json', '/resources/', '/solutions/']
   }) + '\n' + nav('explore') + `
@@ -2407,7 +2920,7 @@ function generateSolutionsHub() {
     title: 'Solutions | Moldart India',
     desc: 'Start with the programme and see the relevant product stack, guides, and downloads together.',
     canonical: '/solutions/',
-    ogImage: '/images/page5_img3.webp',
+    ogImage: siteSocialPosterRelativePath('moldart-solutions'),
     ogImageAlt: 'Moldart solutions overview',
     schemas
   }) + '\n' + nav('solutions') + `
@@ -2698,6 +3211,8 @@ function generateResourcesPage() {
     title: 'Resources & Downloads | Product Catalogues — Moldart India',
     desc: 'Download product catalogues, material references, and finish decks for lamination tooling, panels, flooring, furniture, and decorative stainless steel.',
     canonical: '/resources/',
+    ogImage: siteSocialPosterRelativePath('moldart-resources'),
+    ogImageAlt: 'Moldart resources library',
     schemas
   }) + '\n' + nav('resources') + `
 
@@ -2861,6 +3376,8 @@ function generateContactPage() {
     title: 'Contact Moldart | Inquiry Form, WhatsApp, Phone & Meeting Booking',
     desc: 'Contact Moldart in Mumbai for product specifications, pricing, and sourcing support. Reach out by form, WhatsApp, phone, email, or meeting request.',
     canonical: '/contact/',
+    ogImage: siteSocialPosterRelativePath('moldart-default'),
+    ogImageAlt: 'Moldart brand overview',
     schemas
   }) + '\n' + nav('contact') + `
 
@@ -2985,6 +3502,8 @@ function generateAboutPage() {
     title: 'About Moldart | Since 1989',
     desc: 'Founded in 1989 and based in Mumbai, Moldart works across lamination tooling, panels, flooring, furniture, decorative stainless steel, and industrial press surfaces.',
     canonical: '/about/',
+    ogImage: siteSocialPosterRelativePath('moldart-default'),
+    ogImageAlt: 'Moldart brand overview',
     schemas
   }) + '\n' + nav('about') + `
 
@@ -3119,10 +3638,14 @@ function generateProcessPage() {
     { title: 'What protects repeat supply', detail: 'Keep the last approved sample, drawing, and document trail linked to the next order instead of reordering from memory.' }
   ];
 
+  const processVisual = `<div class="process-flow-card"><div class="process-flow-label">Commercial path</div><svg class="process-flow-svg" viewBox="0 0 860 220" role="img" aria-label="Process flow from brief to route, reference, and supply"><rect x="0" y="0" width="860" height="220" rx="28" fill="#fafafa"></rect><path d="M124 112H736" stroke="#d4d4d8" stroke-width="4" stroke-linecap="round"></path>${stages.map((stage, index) => { const x = 124 + (index * 204); return `<circle cx="${x}" cy="112" r="16" fill="#18181b"></circle><circle cx="${x}" cy="112" r="34" fill="none" stroke="rgba(24,24,27,.12)" stroke-width="2"></circle><text x="${x}" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff">${stage.number}</text><text x="${x}" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">${escHtml(stage.title)}</text><text x="${x}" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#52525b">${escHtml(index === 0 ? 'Brief' : index === 1 ? 'Route' : index === 2 ? 'Reference' : 'Supply')}</text>`; }).join('')}</svg><div class="process-flow-note">The shortest useful path is the commercial one: get the brief clear, narrow the route, lock the approval reference, then keep the same logic through supply and repeat orders.</div></div>`;
+
   return headTag({
     title: 'How Moldart Works | Sourcing, Quality & Supply Process',
     desc: 'A concise view of how Moldart moves from requirement brief through route alignment, approval, supply, and repeat support.',
     canonical: '/process/',
+    ogImage: siteSocialPosterRelativePath('moldart-process'),
+    ogImageAlt: 'Moldart process overview',
     schemas
   }) + '\n' + nav('process') + `
 
@@ -3133,7 +3656,7 @@ function generateProcessPage() {
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Process</div>
                     <h1 class="ui-section-title">FROM BRIEF<br>TO DELIVERY.</h1>
-                    <p class="ui-section-subtitle">This page stays intentionally concise: share the brief, align the route, lock the reference, and keep supply tied to what was actually approved.</p>
+                    <p class="ui-section-subtitle">The page is intentionally short, but the work is not casual: share the brief, align the route, lock the reference, and keep repeat supply tied to what was actually approved.</p>
                     <div class="ui-chip-row mt-8">
                         <span class="ui-chip">${glyph('message', 'icon icon-sm')} Start with the real brief</span>
                         <span class="ui-chip">${glyph('book', 'icon icon-sm')} Match the reference</span>
@@ -3142,11 +3665,7 @@ function generateProcessPage() {
                     </div>
                 </div>
                 <div class="ui-page-hero-panel">
-                    <div class="ui-proof-grid">
-                        <article class="ui-proof-card"><div class="ui-proof-label">Stages</div><div class="ui-proof-value">4</div><p class="ui-proof-copy">The process is intentionally shown as a shorter commercial path rather than a long internal checklist.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Best outcome</div><div class="ui-proof-value">Fewer late corrections</div><p class="ui-proof-copy">Early route and reference alignment reduce avoidable changes later.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Best fit</div><div class="ui-proof-value">Approval-sensitive programmes</div><p class="ui-proof-copy">The more surface, tolerance, or document control matters, the more useful this discipline becomes.</p></article>
-                    </div>
+                    ${processVisual}
                 </div>
             </div>
         </section>
@@ -3155,7 +3674,7 @@ function generateProcessPage() {
             <div class="ui-section-head mb-10">
                 <div class="ui-kicker mb-4">${glyph('clock', 'icon icon-sm')} Four stages</div>
                 <h2 class="ui-section-title">HOW THE WORK MOVES.</h2>
-                <p class="ui-section-subtitle">A compact view of how the requirement usually moves from the first message to aligned supply.</p>
+                <p class="ui-section-subtitle">A compact commercial view of how the requirement usually moves from the first message to aligned supply.</p>
             </div>
             <div class="ui-stage-grid ui-stage-grid-compact">
                 ${stages.map((stage) => `<article class="ui-stage-card"><div class="ui-stage-num">${stage.number}</div><h3 class="font-display font-bold text-lg mb-3">${escHtml(stage.title)}</h3><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(stage.detail)}</p><div class="ui-stage-meta"><div class="ui-stage-meta-block"><div class="ui-stage-meta-label">What to share</div><p>${escHtml(stage.share)}</p></div><div class="ui-stage-meta-block"><div class="ui-stage-meta-label">What comes out</div><p>${escHtml(stage.output)}</p></div></div></article>`).join('')}
@@ -3414,26 +3933,27 @@ function generateInsightsHub() {
     const formats = [...new Set(categoryArticles.map((article) => article.type.replace('Verified ', '')))].slice(0, 4).join(' · ');
     return `<article class="ui-topic-card"><div class="ui-topic-card-head"><div class="ui-kicker mb-3">${glyph(meta.icon, 'icon icon-sm')} ${escHtml(category)}</div><span class="ui-resource-count">${categoryArticles.length}</span></div><p class="ui-topic-copy">${escHtml(meta.intro)}</p><div class="ui-meta-inline mt-4"><span>${escHtml(formats)}</span></div></article>`;
   }).join('');
-  const featureHtml = featuredArticle ? `<a href="/insights/${featuredArticle.slug}/" class="ui-insight-feature insight-card" data-category="${escHtml(featuredArticle.categoryLabel)}"><div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Start here</div><div class="font-display font-black text-3xl mb-3" style="line-height:1.05;">${escHtml(featuredArticle.title)}</div><p class="text-sm text-zinc-500 leading-relaxed mb-6">${escHtml(featuredArticle.excerpt)}</p><div class="ui-meta-inline"><span>${escHtml(featuredArticle.type)}</span><span>${escHtml(featuredArticle.categoryLabel)}</span><span>${escHtml(articleDateLabel(featuredArticle))}</span></div></a>` : '';
-  const cardsHtml = otherArticles.map((article) => `<a href="/insights/${article.slug}/" class="ui-insight-card insight-card" data-category="${escHtml(article.categoryLabel)}"><div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} ${escHtml(article.type)}</div><div class="font-display font-bold text-xl mb-3" style="line-height:1.25;">${escHtml(article.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(article.excerpt)}</p><div class="ui-meta-inline mt-5"><span>${escHtml(article.categoryLabel)}</span><span>${escHtml(articleDateLabel(article))}</span></div></a>`).join('');
-  const technicalReferenceHtml = portfolioFamilies.map((family) => {
-    const productCards = family.products.map((productId) => {
+  const featureHtml = featuredArticle ? `<a href="/insights/${featuredArticle.slug}/" class="ui-insight-feature insight-card" data-category="${escHtml(featuredArticle.categoryLabel)}">${renderInsightCardMedia(featuredArticle)}<div class="ui-insight-card-body"><div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Start here</div><div class="font-display font-black text-3xl mb-3" style="line-height:1.05;">${escHtml(featuredArticle.title)}</div><p class="text-sm text-zinc-500 leading-relaxed mb-6">${escHtml(featuredArticle.excerpt)}</p><div class="ui-meta-inline"><span>${escHtml(featuredArticle.type)}</span><span>${escHtml(featuredArticle.categoryLabel)}</span><span>${escHtml(articleDateLabel(featuredArticle))}</span></div></div></a>` : '';
+  const cardsHtml = otherArticles.map((article) => `<a href="/insights/${article.slug}/" class="ui-insight-card insight-card" data-category="${escHtml(article.categoryLabel)}">${renderInsightCardMedia(article)}<div class="ui-insight-card-body"><div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} ${escHtml(article.type)}</div><div class="font-display font-bold text-xl mb-3" style="line-height:1.25;">${escHtml(article.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(article.excerpt)}</p><div class="ui-meta-inline mt-5"><span>${escHtml(article.categoryLabel)}</span><span>${escHtml(articleDateLabel(article))}</span></div></div></a>`).join('');
+  const technicalReferenceHtml = portfolioFamilies.map((family, familyIndex) => {
+    const productRows = family.products.map((productId) => {
       const product = getProduct(productId);
       const meta = getMeta(productId);
       const productArticles = generatedArticles.filter((article) => article.category === productId);
       if (!product || !meta || !productArticles.length) return '';
       const leadGuide = productArticles.find((article) => article.type === 'Technical Guide') || productArticles[0];
-      const formats = [...new Set(productArticles.map((article) => article.type))].slice(0, 4).join(' · ');
-      return `<article class="ui-library-card ui-technical-product-card"><div class="ui-kicker mb-3">${glyph(familyIconName(family.title), 'icon icon-sm')} ${escHtml(product.name)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(product.summary)}</p><div class="ui-app-badges mt-4">${product.specs.slice(0, 2).map((spec) => `<span>${escHtml(spec)}</span>`).join('')}</div><div class="ui-meta-inline mt-4"><span>${productArticles.length} focused articles</span><span>${escHtml(formats)}</span></div><div class="flex gap-3 flex-wrap mt-6"><a href="/insights/${leadGuide.slug}/" class="btn-outline">Open technical guide</a><a href="/products/${meta.slug}/" class="btn-outline">Open product sheet</a></div></article>`;
+      return `<article class="ui-route-product-row"><div class="ui-route-product-copy"><h3>${escHtml(product.name)}</h3><p>${escHtml(product.summary)}</p><div class="ui-route-product-meta">${product.specs.slice(0, 2).map((spec) => `<span>${escHtml(spec)}</span>`).join('')}<span>${productArticles.length} route pages</span></div></div><div class="ui-route-product-actions"><a href="/insights/${leadGuide.slug}/" class="btn-outline">Open technical guide</a><a href="/products/${meta.slug}/" class="btn-outline">Open product sheet</a></div></article>`;
     }).filter(Boolean).join('');
-    if (!productCards) return '';
-    return `<section class="ui-technical-family-section"><div class="ui-section-head mb-8"><div class="ui-kicker mb-3">${glyph(familyIconName(family.title), 'icon icon-sm')} ${escHtml(family.title)}</div><h2 class="ui-family-title" style="font-size:1.5rem;">${escHtml(family.highlights[0])}</h2><p class="text-sm text-zinc-500 leading-relaxed mt-3">${escHtml(family.intro)}</p></div><div class="ui-library-grid ui-technical-product-grid">${productCards}</div></section>`;
+    if (!productRows) return '';
+    return `<details class="ui-route-directory"${familyIndex === 0 ? ' open' : ''}><summary><div class="ui-route-directory-summary"><div><div class="ui-kicker mb-3">${glyph(familyIconName(family.title), 'icon icon-sm')} ${escHtml(family.title)}</div><h3 class="ui-family-title" style="font-size:1.25rem;">${escHtml(family.highlights[0])}</h3><p class="ui-route-directory-intro">${escHtml(family.intro)}</p></div><span class="ui-route-directory-count">${family.products.length}</span></div></summary><div class="ui-route-directory-body">${productRows}</div></details>`;
   }).filter(Boolean).join('');
 
   return headTag({
     title: 'Insights — Technical Guides & Notes | Moldart',
     desc: 'Technical guides and notes for buyers, procurement teams, project stakeholders, and production teams across Moldart product systems.',
     canonical: '/insights/',
+    ogImage: siteSocialPosterRelativePath('moldart-insights'),
+    ogImageAlt: 'Moldart insights overview',
     schemas
   }) + '\n' + nav('insights') + `
 
@@ -3471,11 +3991,11 @@ function generateInsightsHub() {
 
         <section class="max-w mx-auto px py-16 fade-up">
             <div class="ui-section-head mb-10">
-                <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Technical reference by product</div>
-                <h2 class="ui-section-title">GO DEEPER ONLY<br>WHEN THE BRIEF NARROWS.</h2>
-                <p class="ui-section-subtitle">The edited guides above handle most first reviews. Use the product route cards below when the work becomes specification-led, RFQ-led, or quality-led.</p>
+                <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Secondary route library</div>
+                <h2 class="ui-section-title">OPEN THE ROUTE LIBRARY<br>ONLY WHEN THE BRIEF TIGHTENS.</h2>
+                <p class="ui-section-subtitle">This layer stays secondary on purpose. Start with the edited guides above. Open the route library below only when the work becomes specification-led, RFQ-led, receiving-led, or quality-led.</p>
             </div>
-            <div class="ui-technical-family-stack">${technicalReferenceHtml}</div>
+            <div class="ui-route-directory-stack">${technicalReferenceHtml}</div>
         </section>
         ${ctaBlock('NEED SPECIFIC<br>GUIDANCE?', 'Use a guide as the starting point, then send the actual requirement for a product-aligned review.', 'Share your requirement', '/contact/', 'Open Resources', '/resources/')}
     </main>
@@ -3512,10 +4032,14 @@ function generateInsightArticle(article) {
           ${context ? `<div class="insight-side-card"><div class="insight-side-label mb-3">Reference downloads</div><div class="flex flex-col gap-2">${context.meta.downloads.slice(0, 3).map((download) => downloadLink(download)).join('')}</div></div>` : ''}
       </aside>`;
 
+  const articleOgImage = article.generated ? siteSocialPosterRelativePath('moldart-insights') : insightPosterRelativePath(article, 'png');
+
   return headTag({
     title: `${article.title} | Moldart Insights`,
     desc: article.excerpt.substring(0, 155),
     canonical: `/insights/${article.slug}/`,
+    ogImage: articleOgImage,
+    ogImageAlt: `${article.title} — Moldart insight`,
     schemas
   }) + '\n' + nav('insights') + `
 
@@ -3698,10 +4222,14 @@ function generateRedirects() {
 // ============================================================
 // MAIN
 // ============================================================
-function main() {
+async function main() {
   console.log('=== Moldart Page Generator ===\n');
 
-  console.log('Generating core pages...');
+  console.log('Generating social preview assets...');
+  await generateSiteSocialAssets();
+  await generateInsightPosterAssets();
+
+  console.log('\nGenerating core pages...');
   writeFile(path.join(WORK, 'index.html'), generateHomepage());
   writeFile(path.join(WORK, 'explore/index.html'), generateExplorePage());
   writeFile(path.join(WORK, 'about/index.html'), generateAboutPage());
@@ -3764,4 +4292,7 @@ function main() {
   console.log(`\n=== Generated ${totalPages} pages ===`);
 }
 
-main();
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
