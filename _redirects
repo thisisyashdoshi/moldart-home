@@ -2,12 +2,14 @@
 /about.html               /about/                   301
 /industry.html            /industry/                301
 /contact.html             /contact/                 301
-/login.html               /login/                   301
+/login.html               /portal/                  301
+/portal.html              /portal/                  301
 /about                    /about/                   301
 /industry                 /solutions/               301
 /industry/                /solutions/               301
 /contact                  /contact/                 301
-/login                    /login/                   301
+/login                    /portal/                  301
+/portal                   /portal/                  301
 /explore                  /explore/                 301
 /solutions                /solutions/               301
 /products                 /solutions/               301

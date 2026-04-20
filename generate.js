@@ -16,15 +16,15 @@ const { importedInsights, insightDossiers } = require('./insight-enhancements.js
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.37';
+const VER = '2026.39';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
 const YASH_LINKEDIN = 'https://www.linkedin.com/in/thisisyashdoshi';
 const WHATSAPP_PRIMARY = { number: '917208088788', display: '+91 7208088788' };
 const WHATSAPP_SECONDARY = { number: '917208188788', display: '+91 7208188788' };
-const BRAND_LINE = 'Wood and steel supply programmes from Mumbai, aligned to the requirement.';
-const NAV_SEARCH_META = 'Explore • Solutions • Resources • Insights • FAQ • Process';
+const BRAND_LINE = 'Specification-led wood and steel supply programmes from Mumbai.';
+const NAV_SEARCH_META = 'Explore • Solutions • Resources • Insights • FAQ • Process • Portal';
 const SUPPLY_FLOW_ITEMS = [
   { step: '01', title: 'Source', detail: 'Start from the actual requirement, then align the likely supply route instead of quoting a generic equivalent.' },
   { step: '02', title: 'Verify', detail: 'Use reference decks and samples to validate fit before volume or price becomes the only conversation.' },
@@ -348,7 +348,7 @@ const applications = [
     name: 'Lamination',
     seoTitle: 'Lamination Tooling & Materials Supplier — Moldart',
     metaDesc: 'Complete lamination supply chain: press plates, press pads, engraved cylinders, printed decor paper, and industrial press plates for HPL and LPL production.',
-    overview: 'Moldart supports the full lamination supply chain — from the tooling that creates surface texture to the decorative inputs that define the final appearance. Whether you manufacture HPL, LPL, or technical laminates, Moldart supplies the critical components that determine surface quality, production efficiency, and finish consistency.',
+    overview: 'Use this route when lamination performance depends on the full stack: press plate condition, press pad behaviour, cylinder repeat, decor paper compatibility, and the approved surface benchmark.',
     considerations: [
       'Press plate grade selection depends on required surface hardness and production volume',
       'Press pad construction affects heat distribution uniformity across the press area',
@@ -368,7 +368,7 @@ const applications = [
     name: 'Furniture Manufacturing',
     seoTitle: 'Furniture Materials & Components Supplier — Moldart',
     metaDesc: 'Substrates, decor inputs, and finished furniture for commercial and residential manufacturing. Plywood, MDF, HDF, particleboard, and CNC-built furniture.',
-    overview: 'Moldart supplies the materials and finished products that furniture manufacturers need — from substrate panels and decorative inputs to fully manufactured furniture components. The portfolio covers the full production chain, from raw boards to assembled, finish-ready products.',
+    overview: 'Use this route when substrate choice, emission or compliance requirements, decorative facing, machining precision, and finished-output expectations need to be aligned before quotation or sampling.',
     considerations: [
       'Substrate selection depends on the structural requirements and end-use environment',
       'Emission compliance standards vary by destination market (E1, CARB-NAF, F4 star)',
@@ -387,7 +387,7 @@ const applications = [
     name: 'Flooring',
     seoTitle: 'Engineered Wood Flooring & Accessories Supplier — Moldart',
     metaDesc: 'Engineered laminate flooring systems (AC3–AC5) with coordinated accessories. HDF core, click-lock profiles, and transition trims for residential and commercial use.',
-    overview: 'Moldart supplies engineered laminate flooring systems with coordinated accessories for complete installation packages. From the HDF core panel to transition profiles and skirting, the flooring portfolio covers everything needed for residential and commercial floor installations.',
+    overview: 'Use this route when wear class, core moisture behaviour, locking profile, accessory coordination, and site conditions need to be reviewed together before the flooring package is approved.',
     considerations: [
       'Wear class selection (AC3–AC5) depends on traffic intensity and commercial vs. residential use',
       'HDF core moisture resistance matters for kitchens, bathrooms, and humid environments',
@@ -405,7 +405,7 @@ const applications = [
     name: 'Architecture & Interiors',
     seoTitle: 'Architectural Materials Supplier | Steel Panels & Wood Panels — Moldart',
     metaDesc: 'Decorative stainless steel panels, profiles, and engineered wood substrates for architectural interiors. PVD finishes, structural panels, and custom fabrication.',
-    overview: 'Moldart supplies materials for architectural interior projects — from decorative stainless steel panels and profiles to engineered wood substrates and custom furniture. The portfolio serves architects, interior designers, and project contractors who need premium materials with reliable technical specifications.',
+    overview: 'Use this route when visible stainless surfaces, trims, support boards, and project detailing have to be aligned against environment, finish approval, fabrication logic, and installation conditions.',
     considerations: [
       'Decorative stainless-steel grade selection depends on environment, corrosion exposure, and the project finish route',
       'PVD color consistency across batches should be confirmed for large-area installations',
@@ -425,7 +425,7 @@ const applications = [
     name: 'Metal Finishing',
     seoTitle: 'Decorative Metal Finishing | PVD Stainless Steel — Moldart',
     metaDesc: 'Decorative-finished stainless steel panels, profiles, and furniture for premium interiors, with finish approval confirmed per programme.',
-    overview: 'Moldart supplies decorative stainless steel products with advanced surface finishing for premium interior and architectural applications. The metal finishing portfolio includes PVD coating, electroplating, etching, and embossing across panels, profiles, and furniture.',
+    overview: 'Use this route when the requirement is driven by finish family, grade, colour continuity, anti-fingerprint logic, and fabricated-output consistency across visible stainless parts.',
     considerations: [
       'Finish route, colour approval, and surface preparation should be aligned before commercial comparison',
       'Anti-fingerprint requirements should be confirmed for high-touch surfaces',
@@ -446,7 +446,7 @@ const applications = [
     name: 'PCB & CCL Manufacturing',
     seoTitle: 'Press Plates for PCB & CCL Manufacturing — Moldart',
     metaDesc: 'Industrial press plates for printed circuit board (PCB) and copper-clad laminate (CCL) manufacturing. Demagnetized plates with strict flatness and parallelism tolerances.',
-    overview: 'Moldart supplies specialized industrial press plates for the PCB and CCL manufacturing sector. These plates require controlled magnetic properties, strict dimensional tolerances, and high thermal conductivity to meet the precision demands of electronic laminate production.',
+    overview: 'Use this route when flatness, parallelism, demagnetisation control, surface condition, and incoming inspection discipline are part of the process capability, not optional extras.',
     considerations: [
       'Residual magnetism control should be confirmed for electronics pressing routes',
       'Flatness and parallelism should be matched to the production requirement',
@@ -545,66 +545,66 @@ const SOLUTION_FLOWS = {
 const ROUTE_VISUAL_MODELS = {
   lamination: {
     homeTitle: 'Decorative laminate surfaces',
-    homeSummary: 'Tooling and décor inputs aligned to visible laminate finish, press stability, and repeat surface quality.',
+    homeSummary: 'Press tooling and décor inputs aligned to texture transfer, press stability, and repeat approval quality.',
     homeOutputs: ['HPL', 'LPL', 'Panel surfacing'],
     homeSteps: ['Tooling', 'Press cycle', 'Surface output'],
-    storyTitle: 'SEE THE LAMINATION ROUTE IN ONE GLANCE.',
-    storyNote: 'Use this view when the question is how the tooling stack, printed decor, and press cycle combine before the line produces the approved surface.',
+    storyTitle: 'LAMINATION: INPUTS, CONTROLS, OUTPUTS.',
+    storyNote: 'Use this view when the line outcome depends on the full tooling stack, décor route, and press conditions being read together before approval.',
     inputs: ['Press Plates', 'Press Pads', 'Engraved Cylinders', 'Printed Decor Paper'],
     process: ['Pattern printing', 'Heat + pressure', 'Texture transfer'],
     outputs: ['Decorative laminate faces', 'Furniture panel surfaces', 'Flooring overlays']
   },
   furniture: {
     homeTitle: 'Furniture programmes',
-    homeSummary: 'Boards, decorative faces, and finished pieces aligned for modular, retail, hospitality, and custom furniture work.',
+    homeSummary: 'Substrates, decorative faces, and finished pieces aligned to machining accuracy, surface route, and end-use loading.',
     homeOutputs: ['Modular furniture', 'Retail fixtures', 'Custom interiors'],
     homeSteps: ['Boards', 'Fabrication', 'Furniture output'],
-    storyTitle: 'SEE THE FURNITURE ROUTE IN ONE GLANCE.',
-    storyNote: 'Use this view when the team needs to understand how substrate choice, decorative finish, and finished output sit inside the same programme.',
+    storyTitle: 'FURNITURE: MATERIAL STACK TO FINISHED OUTPUT.',
+    storyNote: 'Use this view when substrate choice, surface route, fabrication logic, and finished output need to be aligned before quotation or sampling.',
     inputs: ['Plywood', 'Fiberboard', 'Particleboard', 'Ready-Made / Custom Furniture'],
     process: ['Board selection', 'Facing + detailing', 'Assembly / fit-out'],
     outputs: ['Modular furniture', 'Custom furniture', 'Project-specific fit-outs']
   },
   flooring: {
     homeTitle: 'Flooring systems',
-    homeSummary: 'Floor boards and accessories aligned for wear class, moisture logic, and cleaner installation outcomes.',
+    homeSummary: 'Boards and accessories aligned to wear class, core moisture behaviour, locking profile, and installation finish.',
     homeOutputs: ['Residential floors', 'Commercial floors', 'Accessory coordination'],
     homeSteps: ['Floor core', 'Installation route', 'Finished floor'],
-    storyTitle: 'SEE THE FLOORING ROUTE IN ONE GLANCE.',
-    storyNote: 'Use this view when the question is how board construction, accessory choice, and installation conditions shape the final flooring result.',
+    storyTitle: 'FLOORING: CORE, ACCESSORY, INSTALLATION LOGIC.',
+    storyNote: 'Use this view when board construction, accessory choice, and site conditions need to be read together before the floor route is approved.',
     inputs: ['Wood Flooring', 'Flooring Accessories', 'Fiberboard'],
     process: ['Core + decor', 'Click-lock planning', 'Accessory fit'],
     outputs: ['Installed floors', 'Stair + trim finish', 'Coordinated room transitions']
   },
   architecture: {
     homeTitle: 'Architecture & interiors',
-    homeSummary: 'Decorative stainless surfaces, trims, and support boards aligned for visible interior features and project fit-outs.',
+    homeSummary: 'Decorative stainless surfaces, trims, and support boards aligned to environment, detailing, and installation-facing approval.',
     homeOutputs: ['Feature walls', 'Lift panels', 'Interior fit-outs'],
     homeSteps: ['Surface selection', 'Detailing', 'Installed interior output'],
-    storyTitle: 'SEE THE INTERIOR ROUTE IN ONE GLANCE.',
-    storyNote: 'Use this view when the requirement depends on how visible stainless surfaces, trims, and support boards come together in the final interior build-up.',
+    storyTitle: 'INTERIOR FIT-OUT: SURFACE, DETAIL, INSTALLATION.',
+    storyNote: 'Use this view when visible stainless surfaces, trims, and support boards have to be aligned against environment, detailing, and installation conditions.',
     inputs: ['Decorative SS Panels', 'SS Profiles', 'SS Furniture', 'Support boards'],
     process: ['Finish approval', 'Detail coordination', 'Project installation'],
     outputs: ['Architectural features', 'Interior cladding', 'Premium fit-outs']
   },
   'metal-finishing': {
     homeTitle: 'Decorative metal finishes',
-    homeSummary: 'Panels, profiles, and fabricated stainless routes where finish family, colour consistency, and visible approval matter.',
+    homeSummary: 'Panels, profiles, and fabricated stainless routes where finish family, colour continuity, and surface acceptance matter.',
     homeOutputs: ['PVD routes', 'Stamped surfaces', 'Mirror / hairline work'],
     homeSteps: ['Finish family', 'Approval', 'Decorative output'],
-    storyTitle: 'SEE THE METAL-FINISH ROUTE IN ONE GLANCE.',
-    storyNote: 'Use this view when the brief depends on surface family, approval discipline, and how the finish should stay consistent across decorative pieces.',
+    storyTitle: 'METAL FINISHING: SURFACE FAMILY TO APPROVED OUTPUT.',
+    storyNote: 'Use this view when the requirement is driven by finish family, approval discipline, and consistency across visible decorative pieces.',
     inputs: ['Decorative SS Panels', 'SS Profiles', 'SS Furniture'],
     process: ['Finish-family selection', 'Sample approval', 'Fabrication alignment'],
     outputs: ['Decorative panels', 'Profiles + trims', 'Fabricated feature pieces']
   },
   'pcb-ccl': {
     homeTitle: 'Technical laminate lines',
-    homeSummary: 'Tolerance-critical press plate routes aligned to demanding conditions in PCB, CCL, and other technical laminate work.',
+    homeSummary: 'Tolerance-critical plate routes aligned to flatness, parallelism, demagnetisation, and press consistency.',
     homeOutputs: ['CCL lines', 'PCB routes', 'Technical laminates'],
     homeSteps: ['Industrial plates', 'Controlled pressing', 'Technical output'],
-    storyTitle: 'SEE THE TECHNICAL ROUTE IN ONE GLANCE.',
-    storyNote: 'Use this view when the route depends on how industrial plates, inspection discipline, and controlled pressing conditions translate into technical laminate output.',
+    storyTitle: 'TECHNICAL LAMINATE LINES: PLATE CONDITION TO PRESS OUTPUT.',
+    storyNote: 'Use this view when plate condition, incoming inspection, and controlled pressing are part of process capability rather than optional checks.',
     inputs: ['Industrial Press Plates'],
     process: ['Incoming checks', 'Controlled pressing', 'Tolerance review'],
     outputs: ['PCB / CCL lines', 'Technical laminates', 'Lower downstream correction risk']
@@ -814,7 +814,8 @@ const primaryPages = [
   { title: 'Resources', url: '/resources/', meta: 'Catalogues, decks, and references', keywords: ['resources', 'downloads', 'catalogs'] },
   { title: 'Insights', url: '/insights/', meta: 'Technical guides and notes', keywords: ['insights', 'guides', 'notes'] },
   { title: 'FAQ', url: '/faq/', meta: 'Quick answers on products, documents, timing, and first contact', keywords: ['faq', 'questions', 'answers'] },
-  { title: 'Process', url: '/process/', meta: 'How the enquiry moves from brief to delivery', keywords: ['process', 'workflow', 'delivery'] },
+  { title: 'Process', url: '/process/', meta: 'How the enquiry moves from RFQ to repeat supply', keywords: ['process', 'workflow', 'delivery'] },
+  { title: 'Portal', url: '/portal/', meta: 'Buyer and partner portal preview', keywords: ['portal', 'buyer workspace', 'partner access'] },
   { title: 'About', url: '/about/', meta: 'Company, team, and sourcing model', keywords: ['about', 'company', 'leadership'] },
   { title: 'Contact', url: '/contact/', meta: 'Inquiry, WhatsApp, and meetings', keywords: ['contact', 'whatsapp', 'email'] }
 ];
@@ -1456,9 +1457,9 @@ const SITE_SOCIAL_POSTERS = [
   {
     name: 'moldart-home',
     kicker: 'Homepage preview',
-    title: 'Wood and steel supply, aligned to the brief',
-    note: 'Solutions, resources, insights, and contact kept under one cleaner Moldart layer.',
-    chips: ['Solutions', 'Resources', 'Insights', 'Contact']
+    title: 'Technical supply programmes, aligned to the brief',
+    note: 'Use Solutions, Resources, Insights, and Contact to move from search, to reference, to technical-commercial review.',
+    chips: ['6 routes', '24 files', '31 guides', 'Mumbai']
   },
   {
     name: 'moldart-solutions',
@@ -1484,9 +1485,16 @@ const SITE_SOCIAL_POSTERS = [
   {
     name: 'moldart-process',
     kicker: 'Process',
-    title: 'From brief to a stable supply route',
-    note: 'Share the brief, align the route, lock the reference, and carry that logic into repeat supply.',
-    chips: ['Brief', 'Route', 'Reference', 'Supply']
+    title: 'From RFQ inputs to approved repeat supply',
+    note: 'Lock the brief, narrow the route, confirm the reference, and keep the same controls through dispatch and reorder.',
+    chips: ['RFQ', 'Route', 'Approval', 'Repeat']
+  },
+  {
+    name: 'moldart-portal',
+    kicker: 'Portal preview',
+    title: 'Buyer and partner workspace coming soon',
+    note: 'A future operational layer for RFQs, references, approvals, documents, and repeat-order visibility.',
+    chips: ['Buyer', 'Partner', 'RFQ', 'Coming soon']
   }
 ];
 function siteSocialPosterRelativePath(name, ext = 'png') {
@@ -1747,6 +1755,7 @@ function getSearchEntries() {
     Insights: 'spark',
     FAQ: 'message',
     Process: 'route',
+    Portal: 'shield',
     About: 'building',
     Contact: 'message'
   };
@@ -1837,117 +1846,54 @@ function getSearchEntries() {
 }
 
 function renderHeroNetworkMap() {
-  return `<div class="hero-network-card hero-world-map" aria-label="Illustrative global programme map">
-      <svg class="hero-network-svg" viewBox="0 0 960 620" role="img" aria-label="Illustrative world map showing Mumbai separately from India, with India and China as sourcing anchors and representative trade lanes across six buyer-relevant regions">
+  return `<div class="hero-network-card hero-world-map" aria-label="Directional programme map">
+      <svg class="hero-network-svg" viewBox="0 0 960 620" role="img" aria-label="Directional world map placing Mumbai separately from India, with India and China as sourcing anchors and softer illustrative lanes in the background">
           <defs>
               <linearGradient id="routeFade" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#18181b" stop-opacity="0.98"></stop>
-                  <stop offset="100%" stop-color="#71717a" stop-opacity="0.18"></stop>
+                  <stop offset="0%" stop-color="#18181b" stop-opacity="0.96"></stop>
+                  <stop offset="100%" stop-color="#71717a" stop-opacity="0.22"></stop>
               </linearGradient>
               <linearGradient id="routeSoft" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#18181b" stop-opacity="0.46"></stop>
-                  <stop offset="100%" stop-color="#d4d4d8" stop-opacity="0.1"></stop>
+                  <stop offset="0%" stop-color="#52525b" stop-opacity="0.28"></stop>
+                  <stop offset="100%" stop-color="#d4d4d8" stop-opacity="0.08"></stop>
               </linearGradient>
-              <filter id="routeGlow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="7"></feGaussianBlur>
-              </filter>
           </defs>
           <rect x="0" y="0" width="960" height="620" rx="34" fill="#fafafa"></rect>
-          <g class="hero-world-grid">
-              <path d="M44 112H916"></path>
-              <path d="M44 202H916"></path>
-              <path d="M44 292H916"></path>
-              <path d="M44 382H916"></path>
-              <path d="M44 472H916"></path>
-              <path d="M132 52V568"></path>
-              <path d="M236 52V568"></path>
-              <path d="M340 52V568"></path>
-              <path d="M444 52V568"></path>
-              <path d="M548 52V568"></path>
-              <path d="M652 52V568"></path>
-              <path d="M756 52V568"></path>
-              <path d="M860 52V568"></path>
-          </g>
           <g class="hero-world-continents">
-              <path d="M98 182c28-42 71-66 128-70 36-3 67 5 90 24 20 16 31 36 31 58 0 18-10 33-28 46-25 16-45 33-58 49-17 21-40 31-69 31-42 0-78-13-106-39-25-23-23-56 12-99z"></path>
-              <path d="M238 330c26 12 45 34 57 66 12 30 11 62-2 91-12 25-28 49-46 72-11 14-25 20-41 17-14-5-20-20-20-45 0-29 7-57 21-84 9-17 14-35 16-53 2-21 8-42 15-64z"></path>
-              <path d="M386 136c24-14 56-21 88-18 21 2 39 9 53 22 13 13 15 28 6 44-9 15-25 25-46 29-21 4-38 13-50 27-10 11-22 15-36 15-22 0-40-8-54-23-14-15-18-32-11-48 6-18 22-33 50-48z"></path>
-              <path d="M454 260c29 5 53 18 72 40 21 23 34 51 38 85 3 26-1 49-13 69-14 21-33 32-58 31-24-2-44-14-60-37-16-22-24-51-24-86 0-36 6-64 18-82 8-10 17-16 27-20z"></path>
-              <path d="M544 104c34-22 76-34 130-34 37 0 70 6 99 20 34 16 52 40 53 71 1 24-8 43-28 56-27 18-49 36-65 56-15 19-33 29-56 33-26 4-49-2-70-19-19-16-32-38-37-66-6-30 0-58 18-84 12-17 23-31 33-43 7-7 14-13 23-16z"></path>
-              <path d="M762 348c24 3 44 12 62 28 19 16 31 38 34 65 2 18-3 33-14 45-14 13-32 17-54 12-22-5-40-18-54-38-15-20-21-42-18-65 2-20 11-37 28-51 6-5 11-8 16-8z"></path>
+              <path d="M96 194c28-44 72-68 130-72 36-3 67 5 91 24 21 17 32 37 32 59 0 18-10 34-29 47-25 17-45 34-58 51-17 21-40 32-69 32-42 0-78-14-106-40-25-23-23-56 9-101z"></path>
+              <path d="M238 342c27 12 47 35 59 67 12 31 11 63-2 92-12 26-28 50-46 73-11 14-25 20-41 17-14-5-20-20-20-45 0-29 7-57 21-85 9-17 14-35 16-54 2-21 8-42 13-65z"></path>
+              <path d="M388 146c25-15 57-22 90-19 21 2 39 10 54 23 13 13 15 28 6 44-9 16-25 26-47 30-21 4-38 13-50 27-10 11-22 16-36 16-22 0-40-8-54-23-14-16-18-32-11-49 6-18 23-34 48-49z"></path>
+              <path d="M456 272c29 5 54 18 73 40 22 23 35 52 39 86 3 26-1 49-14 70-14 21-33 32-58 31-24-2-44-15-60-38-16-23-24-52-24-87 0-36 6-64 18-82 8-10 17-17 26-20z"></path>
+              <path d="M544 114c34-23 78-35 132-35 37 0 70 7 100 21 34 16 52 40 53 72 1 24-8 43-28 57-27 18-49 37-65 57-15 19-34 30-57 34-26 4-49-3-70-20-19-16-31-38-37-66-6-31 0-59 18-85 12-18 24-32 34-44 7-7 14-13 22-16z"></path>
+              <path d="M762 360c24 3 45 13 63 29 20 16 31 38 34 65 2 18-3 34-14 46-14 13-32 17-54 12-22-5-40-18-55-39-14-20-20-42-17-66 2-20 11-37 27-51 6-5 12-8 16-8z"></path>
           </g>
           <g class="hero-world-india-shape-group">
-              <path class="hero-india-shape" d="M607 230c9 6 16 16 18 30 3 12 9 22 20 30 3 2 4 7 1 11-8 10-17 19-26 29-7 9-10 20-9 32 1 9-3 14-10 12-8-2-15-9-22-21-6-12-12-22-18-29-5-6-6-12-3-18 4-8 9-15 15-24 7-8 10-18 12-29 2-11 9-20 22-23z"></path>
-          </g>
-          <g class="hero-world-routes hero-world-route-glow">
-              <path class="hero-world-route hero-world-route-glow-line" d="M592 286C605 266 615 250 623 238"></path>
-              <path class="hero-world-route hero-world-route-glow-line" d="M592 286C628 272 670 252 716 228"></path>
-              <path class="hero-world-route hero-world-route-glow-line" d="M592 286C494 238 362 194 172 175"></path>
-              <path class="hero-world-route hero-world-route-glow-line" d="M592 286C448 296 332 343 236 422"></path>
-              <path class="hero-world-route hero-world-route-glow-line" d="M592 286C536 246 490 204 446 168"></path>
-              <path class="hero-world-route hero-world-route-glow-line" d="M592 286C548 322 520 356 502 392"></path>
-              <path class="hero-world-route hero-world-route-glow-line" d="M592 286C670 304 744 346 820 392"></path>
+              <path class="hero-india-shape" d="M606 240c10 6 16 16 18 30 3 12 10 22 21 30 3 2 3 7 1 11-8 10-17 20-26 30-7 9-10 20-9 32 1 9-3 14-10 12-8-2-15-9-22-21-6-12-12-22-18-29-5-6-6-12-3-19 4-7 9-15 15-23 7-8 10-18 12-29 2-11 9-20 21-24z"></path>
           </g>
           <g class="hero-world-routes">
-              <path class="hero-world-route hero-world-route-primary" d="M592 286C605 266 615 250 623 238"></path>
-              <path class="hero-world-route hero-world-route-primary" d="M592 286C628 272 670 252 716 228"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M592 286C494 238 362 194 172 175"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M592 286C448 296 332 343 236 422"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M592 286C536 246 490 204 446 168"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M592 286C548 322 520 356 502 392"></path>
-              <path class="hero-world-route hero-world-route-soft" d="M592 286C670 304 744 346 820 392"></path>
-          </g>
-          <g class="hero-route-dots">
-              <circle class="hero-route-dot" style="animation-delay:0s" cx="606" cy="264" r="5"></circle>
-              <circle class="hero-route-dot" style="animation-delay:.35s" cx="619" cy="245" r="5"></circle>
-              <circle class="hero-route-dot" style="animation-delay:.7s" cx="654" cy="258" r="5"></circle>
-              <circle class="hero-route-dot" style="animation-delay:1.05s" cx="700" cy="236" r="5"></circle>
-              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:1.4s" cx="512" cy="247" r="4"></circle>
-              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:1.75s" cx="428" cy="222" r="4"></circle>
-              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:2.1s" cx="332" cy="201" r="4"></circle>
-              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:2.45s" cx="489" cy="313" r="4"></circle>
-              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:2.8s" cx="394" cy="344" r="4"></circle>
-              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:3.15s" cx="295" cy="386" r="4"></circle>
-              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:3.5s" cx="548" cy="248" r="4"></circle>
-              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:3.85s" cx="494" cy="205" r="4"></circle>
-              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:4.2s" cx="532" cy="330" r="4"></circle>
-              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:4.55s" cx="510" cy="367" r="4"></circle>
-              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:4.9s" cx="690" cy="324" r="4"></circle>
-              <circle class="hero-route-dot hero-route-dot-soft" style="animation-delay:5.25s" cx="764" cy="364" r="4"></circle>
+              <path class="hero-world-route hero-world-route-primary" d="M590 292C603 272 614 255 622 244"></path>
+              <path class="hero-world-route hero-world-route-primary" d="M590 292C629 278 670 258 714 234"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M590 292C476 246 336 206 154 186"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M590 292C442 308 326 355 228 434"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M590 292C524 248 468 200 410 152"></path>
+              <path class="hero-world-route hero-world-route-soft" d="M590 292C674 316 752 362 836 414"></path>
           </g>
           <g class="hero-world-nodes">
-              <circle class="hero-world-pulse" cx="592" cy="286" r="26"></circle>
-              <circle class="hero-world-node hero-world-node-primary" cx="592" cy="286" r="10"></circle>
-              <circle class="hero-world-node hero-world-node-source" cx="623" cy="238" r="9"></circle>
-              <circle class="hero-world-node hero-world-node-source" cx="716" cy="228" r="9"></circle>
-              <circle class="hero-world-node" cx="172" cy="175" r="7"></circle>
-              <circle class="hero-world-node" cx="236" cy="422" r="7"></circle>
-              <circle class="hero-world-node" cx="446" cy="168" r="7"></circle>
-              <circle class="hero-world-node" cx="502" cy="392" r="7"></circle>
-              <circle class="hero-world-node" cx="820" cy="392" r="7"></circle>
+              <circle class="hero-world-pulse" cx="590" cy="292" r="24"></circle>
+              <circle class="hero-world-node hero-world-node-primary" cx="590" cy="292" r="10"></circle>
+              <circle class="hero-world-node hero-world-node-source" cx="622" cy="244" r="9"></circle>
+              <circle class="hero-world-node hero-world-node-source" cx="714" cy="234" r="9"></circle>
           </g>
           <g class="hero-label-group">
-              <path class="hero-node-pointer" d="M592 270l-30-38"></path>
-              <text x="536" y="224" class="hero-node-label hero-node-label-primary">Mumbai</text>
-              <text x="536" y="205" class="hero-node-meta">Operating base</text>
-              <path class="hero-node-pointer" d="M623 238l18-34"></path>
-              <text x="676" y="190" class="hero-node-label">India</text>
-              <text x="676" y="171" class="hero-node-meta">Sourcing anchor</text>
-              <path class="hero-node-pointer" d="M716 228l30-26"></path>
-              <text x="804" y="184" class="hero-node-label">China</text>
-              <text x="804" y="165" class="hero-node-meta">Sourcing anchor</text>
-          </g>
-          <g class="hero-world-region-labels">
-              <text x="136" y="144" class="hero-world-region-label">North America</text>
-              <text x="186" y="470" class="hero-world-region-label">South America</text>
-              <text x="380" y="112" class="hero-world-region-label">Europe</text>
-              <text x="430" y="442" class="hero-world-region-label">Africa</text>
-              <text x="624" y="96" class="hero-world-region-label">Asia</text>
-              <text x="758" y="446" class="hero-world-region-label">Oceania</text>
-          </g>
-          <g class="hero-map-caption-group">
-              <rect x="66" y="520" width="244" height="48" rx="20" fill="rgba(255,255,255,0.94)" stroke="#e4e4e7"></rect>
-              <text x="88" y="548" class="hero-world-small hero-world-small-strong">Representative programme lanes only</text>
+              <path class="hero-node-pointer" d="M590 278l-34-38"></path>
+              <text x="524" y="228" class="hero-node-label hero-node-label-primary">Mumbai</text>
+              <text x="524" y="209" class="hero-node-meta">Operating base</text>
+              <path class="hero-node-pointer" d="M622 244l12-30"></path>
+              <text x="676" y="202" class="hero-node-label">India</text>
+              <text x="676" y="183" class="hero-node-meta">Sourcing anchor</text>
+              <path class="hero-node-pointer" d="M714 234l26-24"></path>
+              <text x="798" y="198" class="hero-node-label">China</text>
+              <text x="798" y="179" class="hero-node-meta">Sourcing anchor</text>
           </g>
       </svg>
   </div>`;
@@ -1994,6 +1940,20 @@ function renderRouteStepRow(steps = []) {
   return `<div class="home-route-step-row">${steps.map((step) => `<span>${escHtml(step)}</span>`).join('')}</div>`;
 }
 
+function renderHomeRouteProductStrip(app) {
+  const preferredProductId = {
+    lamination: 'decor-paper',
+    furniture: 'ready-made-furniture',
+    flooring: 'wood-flooring',
+    architecture: 'decorative-panels',
+    'metal-finishing': 'ss-furniture',
+    'pcb-ccl': 'industrial-press-plates'
+  }[app.slug] || app.products[0];
+  const product = getProduct(preferredProductId);
+  if (!product) return '';
+  return `<div class="home-route-product-strip" aria-hidden="true"><div class="home-route-product-thumb"><img src="${product.image}" alt="" width="720" height="160" loading="eager" decoding="async"></div></div>`;
+}
+
 function renderRouteTokenRow(items = [], options = {}) {
   const { className = 'route-token-row', limit = Array.isArray(items) ? items.length : 0, numbered = false, emptyLabel = 'Requirement-led' } = options;
   const safeItems = Array.isArray(items) ? items.filter(Boolean) : [];
@@ -2011,64 +1971,46 @@ function renderRouteSnapshotStage(label, items = [], options = {}) {
 function renderHomeRouteCard(app) {
   const visual = ROUTE_VISUAL_MODELS[app.slug] || {};
   const productNames = app.products.map((productId) => getProduct(productId)?.name).filter(Boolean);
-  return `<article class="home-route-card">
-      <div class="home-route-media home-route-media-diagram">
-          <div class="home-route-media-badge">${glyph(applicationIconName(app.slug), 'icon icon-sm')} ${escHtml(app.name)}</div>
-          <div class="home-route-visual-grid">
-              ${renderRouteSnapshotStage('Inputs', visual.inputs || productNames, { limit: 1 })}
-              <div class="home-route-visual-arrow" aria-hidden="true">→</div>
-              ${renderRouteSnapshotStage('Process', visual.process || visual.homeSteps || [], { limit: 1, numbered: true })}
-              <div class="home-route-visual-arrow" aria-hidden="true">→</div>
-              ${renderRouteSnapshotStage('Outputs', visual.homeOutputs || visual.outputs || [], { limit: 1 })}
-          </div>
-      </div>
+  const outputs = (visual.homeOutputs || visual.outputs || []).slice(0, 2);
+  const productStrip = renderHomeRouteProductStrip(app);
+  return `<article class="home-route-card home-route-card-simple">
       <div class="home-route-body">
           <div class="home-route-top">
+              <div class="home-route-kicker">${glyph(applicationIconName(app.slug), 'icon icon-sm')} ${escHtml(app.name)}</div>
               <h3 class="home-route-title">${escHtml(visual.homeTitle || app.name)}</h3>
               <p class="home-route-copy">${escHtml(visual.homeSummary || app.overview)}</p>
+              ${productStrip}
           </div>
           <div class="home-route-block">
-              <div class="home-route-label">Usually combines</div>
+              <div class="home-route-label">Typical stack</div>
               <div class="home-route-chip-grid">${productNames.slice(0, 3).map((item) => `<span class="home-route-chip">${escHtml(item)}</span>`).join('')}</div>
           </div>
           <div class="home-route-block">
-              <div class="home-route-label">Output focus</div>
-              <div class="home-route-meta">${(visual.homeOutputs || []).slice(0, 2).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
+              <div class="home-route-label">Typical outputs</div>
+              <div class="home-route-meta">${outputs.map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
           </div>
           <div class="home-route-actions"><a href="${getSolutionHref(app.slug)}" class="btn-outline">Open ${escHtml(app.name)}</a></div>
       </div>
   </article>`;
 }
 
-function renderSolutionHeroDiagram(app) {
+function renderSolutionHeroSummary(app) {
   const visual = ROUTE_VISUAL_MODELS[app.slug] || {};
   const productNames = app.products.map((productId) => getProduct(productId)?.name).filter(Boolean);
-  return `<div class="solution-hero-diagram">
-      <div class="solution-hero-diagram-head">
-          <div class="solution-hero-diagram-kicker">${glyph(applicationIconName(app.slug), 'icon icon-sm')} Route diagram</div>
-          <div class="solution-hero-diagram-title">${escHtml(app.name)} at a glance</div>
-          <p class="solution-hero-diagram-copy">Use this view when the route matters more than any single product photo.</p>
-      </div>
-      <div class="solution-hero-diagram-rail">
-          <article class="solution-hero-diagram-card">
-              <div class="solution-hero-diagram-label">What goes in</div>
-              <h3>Inputs</h3>
-              ${renderRouteTokenRow(visual.inputs || productNames, { className: 'solution-hero-diagram-pills', limit: 4 })}
-          </article>
-          <div class="solution-hero-diagram-arrow" aria-hidden="true">→</div>
-          <article class="solution-hero-diagram-card">
-              <div class="solution-hero-diagram-label">What changes</div>
-              <h3>Process</h3>
-              ${renderRouteTokenRow(visual.process || visual.homeSteps || [], { className: 'solution-hero-diagram-pills', limit: 3, numbered: true })}
-          </article>
-          <div class="solution-hero-diagram-arrow" aria-hidden="true">→</div>
-          <article class="solution-hero-diagram-card">
-              <div class="solution-hero-diagram-label">What comes out</div>
-              <h3>Result</h3>
-              ${renderRouteTokenRow(visual.outputs || visual.homeOutputs || [], { className: 'solution-hero-diagram-pills', limit: 4 })}
-          </article>
-      </div>
-      <div class="ui-map-caption">Representative route diagram for this system.</div>
+  const outputs = (visual.outputs || visual.homeOutputs || []).slice(0, 3);
+  return `<div class="solution-hero-summary">
+      <article class="solution-hero-summary-card solution-hero-summary-card-note">
+          <div class="solution-hero-summary-label">What this page clarifies</div>
+          <p>Use this page when the requirement still needs the right product stack, approval checks, and file path before the narrower item-level review begins.</p>
+      </article>
+      <article class="solution-hero-summary-card">
+          <div class="solution-hero-summary-label">Usually combines</div>
+          ${renderRouteTokenRow(productNames, { className: 'solution-hero-summary-pills', limit: 4 })}
+      </article>
+      <article class="solution-hero-summary-card">
+          <div class="solution-hero-summary-label">Typical outputs</div>
+          ${renderRouteTokenRow(outputs, { className: 'solution-hero-summary-pills', limit: 3, emptyLabel: 'Project-specific output' })}
+      </article>
   </div>`;
 }
 
@@ -2085,34 +2027,34 @@ function renderSolutionStoryBand(app) {
       <div class="solution-system-band">
           <div class="solution-system-diagram">
               <article class="solution-system-stage">
-                  <div class="solution-system-stage-label">What goes in</div>
-                  <h3>Inputs</h3>
-                  <p>These are the materials, surfaces, or components that matter before the route can perform properly.</p>
+                  <div class="solution-system-stage-label">Input conditions</div>
+                  <h3>Material + process inputs</h3>
+                  <p>These are the materials, surfaces, or line conditions that need to be right before the route can perform as expected.</p>
                   <div class="solution-system-chip-row">${(visual.inputs || []).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
               </article>
               <div class="solution-system-arrow" aria-hidden="true">→</div>
               <article class="solution-system-stage">
-                  <div class="solution-system-stage-label">What changes</div>
-                  <h3>In-process logic</h3>
-                  <p>This is the point where transfer, fabrication, installation, or approval discipline changes the outcome.</p>
+                  <div class="solution-system-stage-label">Control points</div>
+                  <h3>Process controls</h3>
+                  <p>This is where transfer, fabrication, installation, or approval discipline changes the technical and commercial outcome.</p>
                   <div class="solution-system-chip-row">${(visual.process || []).map((item, index) => `<span><strong>0${index + 1}</strong>${escHtml(item)}</span>`).join('')}</div>
               </article>
               <div class="solution-system-arrow" aria-hidden="true">→</div>
               <article class="solution-system-stage">
-                  <div class="solution-system-stage-label">What comes out</div>
-                  <h3>Buyer-visible result</h3>
-                  <p>The final approval usually depends on these visible, installable, or repeatable output conditions.</p>
+                  <div class="solution-system-stage-label">Output conditions</div>
+                  <h3>Approved output</h3>
+                  <p>The release usually depends on these visible, measurable, or repeatable output conditions.</p>
                   <div class="solution-system-chip-row">${(visual.outputs || []).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
               </article>
           </div>
           <div class="solution-system-note-grid">
               <article class="solution-system-note-card">
                   <div class="solution-system-note-label">Linked product sheets</div>
-                  <p>Use the product sheets below when the system is clear but the item-level reference still needs to be confirmed.</p>
+                  <p>Use the product sheets below when the route is clear but the item-level reference still needs to be confirmed.</p>
                   <div class="solution-system-product-row">${productLinks}</div>
               </article>
               <article class="solution-system-note-card">
-                  <div class="solution-system-note-label">Lock before approval</div>
+                  <div class="solution-system-note-label">Approval controls</div>
                   <ul class="ui-stack-list">${app.considerations.slice(0, 4).map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul>
               </article>
           </div>
@@ -2381,6 +2323,7 @@ function footer() {
                         <a href="/insights/" class="ui-footer-link">Insights</a>
                         <a href="/faq/" class="ui-footer-link">FAQ</a>
                         <a href="/process/" class="ui-footer-link">Process</a>
+                        <a href="/portal/" class="ui-footer-link">Portal</a>
                         <a href="/about/" class="ui-footer-link">About</a>
                         <a href="/contact/" class="ui-footer-link">Contact</a>
                     </div>
@@ -2391,8 +2334,8 @@ function footer() {
                         <a href="mailto:info@moldartindia.com" class="ui-footer-link">${glyph('mail', 'icon icon-sm')} info@moldartindia.com</a>
                         <a href="${whatsappHref(WHATSAPP_PRIMARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('whatsapp-brand', 'icon icon-sm')} ${WHATSAPP_PRIMARY.display}</a>
                         <a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('whatsapp-brand', 'icon icon-sm')} ${WHATSAPP_SECONDARY.display}</a>
-                        <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('linkedin-brand', 'icon icon-sm')} Company LinkedIn</a>
-                        <a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi on LinkedIn</a>
+                        <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('linkedin-brand', 'icon icon-sm')} Moldart company page</a>
+                        <a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi</a>
                         <a href="/contact/" class="ui-footer-link">${glyph('message', 'icon icon-sm')} Share your requirement</a>
                     </div>
                     <p class="text-xs text-zinc-500 leading-relaxed mt-5">Use Contact for enquiry forms, WhatsApp, meetings, and address details.</p>
@@ -2529,7 +2472,7 @@ function renderResourcePreviewThumb(item = {}, options = {}) {
   const status = isRequestOnlyResource(resolved) ? 'Request' : 'PDF';
   const code = resourcePreviewCode(resolved);
   const previewLabel = resourcePreviewLabel(group);
-  return `<div class="resource-thumb ${resourceToneForGroup(group)}${compact ? ' is-compact' : ''}"><div class="resource-thumb-top"><span>${escHtml(status)}</span><strong>${escHtml(previewLabel)}</strong></div><div class="resource-thumb-code">${escHtml(code)}</div><div class="resource-thumb-art"><span></span><span></span><span></span></div><div class="resource-thumb-footer"><span>${escHtml(previewLabel)}</span><span>${escHtml(status)}</span></div></div>`;
+  return `<div class="resource-thumb ${resourceToneForGroup(group)}${compact ? ' is-compact' : ''}"><div class="resource-thumb-type">${escHtml(status)}</div><div class="resource-thumb-code">${escHtml(code)}</div><div class="resource-thumb-label">${escHtml(previewLabel)}</div></div>`;
 }
 
 function renderResourceDocumentCard(item = {}, options = {}) {
@@ -3298,8 +3241,8 @@ function generateHomepage() {
   const routeCards = applications.map((app) => renderHomeRouteCard(app)).join('');
 
   return headTag({
-    title: 'Moldart | Lamination tooling, panels, flooring & decorative stainless steel',
-    desc: 'Moldart works from Mumbai across wood and steel programmes, aligning sourcing from India and China to the application, finish, and commercial route.',
+    title: 'Moldart | Specification-led supply for laminates, panels, flooring, furniture & decorative stainless',
+    desc: 'Specification-led supply programmes from Mumbai across laminates, panels, flooring, furniture, decorative stainless steel, and industrial press routes.',
     canonical: '/',
     ogImage: siteSocialPosterRelativePath('moldart-home'),
     ogImageAlt: 'Moldart homepage overview',
@@ -3312,8 +3255,8 @@ function generateHomepage() {
             <div class="ui-hero">
                 <div>
                     <div class="ui-kicker mb-6">${glyph('shield', 'icon icon-sm')} Since 1989 · Mumbai</div>
-                    <h1 class="page-heading page-heading-home mb-6">PROGRAMMES FOR LAMINATES,<br>PANELS, FLOORING,<br>FURNITURE, AND DECORATIVE STAINLESS.</h1>
-                    <p class="ui-intro">Moldart helps buyers understand what the route makes, which products sit inside it, and which files matter before the next approval.</p>
+                    <h1 class="page-heading page-heading-home mb-6">SPECIFICATION-LED PROGRAMMES FOR LAMINATES,<br>PANELS, FLOORING,<br>FURNITURE, AND DECORATIVE STAINLESS.</h1>
+                    <p class="ui-intro">Use the site to narrow the application route, identify the likely product stack, and open the right reference files before RFQ, approval, or reorder.</p>
                     <div class="ui-chip-row mt-8">
                         <span class="ui-chip">${glyph('clock', 'icon icon-sm')} Since 1989</span>
                         <span class="ui-chip">${glyph('building', 'icon icon-sm')} Mumbai-led coordination</span>
@@ -3339,20 +3282,19 @@ function generateHomepage() {
         </section>
 
         <section class="max-w mx-auto px py-20 fade-up home-map-section">
-            <div class="ui-section-head mb-10">
-                <div class="ui-kicker mb-4">${glyph('globe', 'icon icon-sm')} Programme geography</div>
-                <h2 class="ui-section-title">A CLEANER VIEW OF THE ROUTE.</h2>
-                <p class="ui-section-subtitle">Use the map as orientation only. Mumbai is the operating base, India and China are the sourcing anchors, and the wider lanes stay illustrative.</p>
-            </div>
-            <div class="home-map-shell">
-                <div class="ui-world-stage-map">${renderHeroNetworkMap()}</div>
+            <div class="home-map-layout">
                 <div class="home-map-copy home-map-copy-minimal">
-                    <p class="home-map-note">Mumbai is the operating base. India and China stay as the sourcing anchors. The wider lanes are there only to place the route in context.</p>
+                    <div class="ui-kicker mb-4">${glyph('globe', 'icon icon-sm')} Programme geography</div>
+                    <h2 class="ui-section-title">PLACE THE OPERATING BASE,<br>THEN KEEP THE MAP QUIET.</h2>
+                    <p class="home-map-note">This map is directional only: Mumbai is the operating base, India and China are the sourcing anchors, and the wider lanes stay intentionally illustrative.</p>
                     <div class="home-map-legend-row">
                         <span class="home-map-legend-pill is-primary"><strong>Mumbai</strong><span>Operating base</span></span>
                         <span class="home-map-legend-pill"><strong>India + China</strong><span>Primary sourcing anchors</span></span>
-                        <span class="home-map-legend-pill"><strong>Illustrative lanes</strong><span>Route context only</span></span>
+                        <span class="home-map-legend-pill"><strong>Illustrative lanes</strong><span>Context only</span></span>
                     </div>
+                </div>
+                <div class="home-map-shell home-map-visual">
+                    <div class="ui-world-stage-map">${renderHeroNetworkMap()}</div>
                 </div>
             </div>
         </section>
@@ -3362,7 +3304,7 @@ function generateHomepage() {
                 <div class="ui-section-head mb-12">
                     <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} What Moldart helps make</div>
                     <h2 class="ui-section-title">SEE THE OUTPUT,<br>THEN OPEN THE RIGHT ROUTE.</h2>
-                    <p class="ui-section-subtitle">Each route uses one compact diagram, one product strip, and one output set so the explanation stays even, minimal, and easier to compare.</p>
+                    <p class="ui-section-subtitle">Each card keeps only the route, the likely product mix, and the output. Open the solution page when the full system needs more detail.</p>
                 </div>
                 <div class="home-route-grid">${routeCards}</div>
             </div>
@@ -3371,8 +3313,8 @@ function generateHomepage() {
         <section class="max-w mx-auto px py-20 border-t border-zinc-100 fade-up">
             <div class="ui-section-head mb-10">
                 <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Decision tools</div>
-                <h2 class="ui-section-title">FILES, GUIDES,<br>AND NEXT STEPS.</h2>
-                <p class="ui-section-subtitle">Keep documents and explanation distinct: use Resources for files, Insights for guidance, and Solutions when the full application system matters.</p>
+                <h2 class="ui-section-title">REFERENCE FILES,<br>TECHNICAL GUIDES,<br>AND NEXT STEPS.</h2>
+                <p class="ui-section-subtitle">Resources carry downloadable files, Insights carry technical guidance, and Solutions carry the wider application stack when the brief is still being narrowed.</p>
             </div>
             <div class="ui-library-grid ui-library-grid-balanced">
                 <article class="ui-library-card ui-library-card-collection">
@@ -3692,7 +3634,7 @@ function generateSolutionPage(app) {
   const referenceCards = app.downloads.slice(0, 3).map((download) => renderResourceDocumentCard(download, { compact: true, showGroup: false, showNote: true })).join('');
   const audience = solutionAudienceFor(app.slug).map((item) => `<span>${escHtml(item)}</span>`).join('');
   const visual = getApplicationVisual(app.slug);
-  const heroVisualHtml = renderSolutionHeroDiagram(app);
+  const heroSummaryHtml = renderSolutionHeroSummary(app);
 
   return headTag({
     title: `${app.name} Solution | Moldart`,
@@ -3717,10 +3659,8 @@ function generateSolutionPage(app) {
                         <a href="/resources/" class="btn-outline btn-lg">Open Resources</a>
                     </div>
                 </div>
-                <div class="ui-map-card ui-panel">
-                    <div class="ui-panel-inner">
-                        ${heroVisualHtml}
-                    </div>
+                <div class="ui-page-hero-panel solution-hero-summary-panel">
+                    ${heroSummaryHtml}
                 </div>
             </div>
         </section>
@@ -3730,8 +3670,8 @@ function generateSolutionPage(app) {
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
             <div class="ui-section-head mb-8">
                 <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Relevant product stack</div>
-                <h2 class="ui-section-title">START WITH THE RIGHT STACK.</h2>
-                <p class="ui-section-subtitle">Each card below explains why the product belongs in this system and links directly to the narrower product sheet when you need the detail.</p>
+                <h2 class="ui-section-title">IDENTIFY THE WORKING PRODUCT STACK.</h2>
+                <p class="ui-section-subtitle">Each card explains why the product belongs in this route and links directly to the narrower product sheet when item-level specification is next.</p>
             </div>
             <div class="ui-stack-product-grid">${stackCards}</div>
         </section>
@@ -3739,11 +3679,11 @@ function generateSolutionPage(app) {
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
             <div class="ui-spotlight">
                 <div class="ui-stack-card">
-                    <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Review sequence</div>
+                    <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Technical-commercial sequence</div>
                     <div class="ui-flow-band">${flowItems}</div>
                 </div>
                 <div class="ui-stack-card">
-                    <div class="ui-kicker mb-4">${glyph('check', 'icon icon-sm')} What to confirm</div>
+                    <div class="ui-kicker mb-4">${glyph('check', 'icon icon-sm')} Approval controls</div>
                     <ul class="ui-stack-list">${app.considerations.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul>
                 </div>
             </div>
@@ -3752,11 +3692,11 @@ function generateSolutionPage(app) {
         <section class="max-w mx-auto px py-16 fade-up">
             <div class="ui-library-grid">
                 <article class="ui-library-card">
-                    <div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Related guides</div>
+                    <div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Technical guides</div>
                     <div class="ui-list-compact">${guideCards || '<p class="text-sm text-zinc-500 leading-relaxed">Related guides are shown when they help the next decision.</p>'}</div>
                 </article>
                 <article class="ui-library-card">
-                    <div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} Reference downloads</div>
+                    <div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} Reference files</div>
                     <div class="resource-library-list resource-library-list-compact">${referenceCards}</div>
                 </article>
             </div>
@@ -4042,8 +3982,8 @@ function generateContactPage() {
                             <a href="mailto:info@moldartindia.com" class="link-line text-sm text-zinc-700 font-medium">info@moldartindia.com</a>
                         </div>
                         <div class="contact-social-row">
-                            <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip">${glyph('linkedin-brand', 'icon icon-sm')} Company LinkedIn</a>
-                            <a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip is-personal">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi on LinkedIn</a>
+                            <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip">${glyph('linkedin-brand', 'icon icon-sm')} Moldart company page</a>
+                            <a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip is-personal">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi</a>
                         </div>
                     </article>
                 </div>
@@ -4179,7 +4119,7 @@ function generateAboutPage() {
                         <h3 class="ui-family-title">MR. YASH DOSHI</h3>
                         <div class="ui-proof-label mb-3">Partner</div>
                         <p class="text-sm text-zinc-500 leading-relaxed font-light">Partner working across category development, customer coordination, and programme follow-through.</p>
-                        <div class="mt-5 contact-social-row"><a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip is-personal">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi on LinkedIn</a></div>
+                        <div class="mt-5 contact-social-row"><a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip is-personal">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi</a></div>
                     </div>
                 </article>
             </div>
@@ -4196,52 +4136,77 @@ function generateAboutPage() {
 function generateProcessPage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Process' }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/process/#webpage', url: SITE + '/process/', name: 'How Moldart Works | Sourcing & Supply Process', description: 'A concise view of how Moldart moves from requirement brief to aligned supply and repeat support.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/process/#webpage', url: SITE + '/process/', name: 'How Moldart Works | RFQ, Approval, Dispatch & Repeat Supply', description: 'A technical-commercial view of how Moldart moves from RFQ inputs to route alignment, approval control, dispatch, and repeat supply.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
   const stages = [
     {
       number: '01',
-      title: 'Share the brief',
-      detail: 'Application, finish expectation, size, quantity, timing, and destination define the route faster than a generic product name ever can.',
-      share: 'Application, drawing, sample, quantity, destination, and timeline.',
-      output: 'A practical shortlist of the likely category, references, and next discussion.'
+      title: 'Share the RFQ base',
+      detail: 'Application, finish target, size range, quantity, timing, destination, and supporting files narrow the route faster than any generic item name.',
+      share: 'Application, drawing, sample, quantity, destination, and timing baseline.',
+      output: 'A shortlist of the likely route, category, and reference files for the first technical review.'
     },
     {
       number: '02',
-      title: 'Align the route',
-      detail: 'The first review narrows the product family, grade direction, finish family, and sourcing lane before price comparison becomes misleading.',
-      share: 'Must-have technical points, approvals, compliance needs, and replacement rhythm.',
-      output: 'A cleaner recommendation on the right route and the right reference pack.'
+      title: 'Narrow the working route',
+      detail: 'The first review should reduce product noise by fixing the route, grade direction, finish family, and approval logic before commercial comparison starts.',
+      share: 'Non-negotiable technical points, compliance needs, approval format, and replacement or repeat rhythm.',
+      output: 'A cleaner recommendation on the right route, the right stack, and the right next file pack.'
     },
     {
       number: '03',
-      title: 'Lock the reference',
-      detail: 'Samples, drawings, finish decks, or previous approved records should be matched before production or dispatch planning begins.',
-      share: 'Approved sample, drawing, finish family, pattern, or the closest accepted benchmark.',
-      output: 'Fewer finish, tolerance, and documentation surprises later in the programme.'
+      title: 'Lock the approval reference',
+      detail: 'Sample, drawing, finish deck, pattern code, or previous approved record should all point to the same release baseline before production or dispatch planning begins.',
+      share: 'Approved sample, drawing revision, finish family, pattern code, or the closest accepted benchmark.',
+      output: 'Lower risk on finish drift, tolerance disputes, documentation gaps, and receiving confusion.'
     },
     {
       number: '04',
-      title: 'Supply, receive, repeat',
-      detail: 'Documentation, packing, dispatch, receiving, and repeat-order logic stay tied to the approved route instead of being rebuilt each time.',
-      share: 'Document needs, pack handling notes, receiving feedback, and reorder references.',
+      title: 'Carry the baseline through supply',
+      detail: 'Documentation, packing, dispatch, receiving checks, and reorder references should stay tied to the approved baseline instead of being rebuilt from memory.',
+      share: 'Document set, pack handling notes, receiving checkpoints, and repeat-order reference trail.',
       output: 'Cleaner delivery now and a more stable repeat route later.'
     }
   ];
 
   const quickCards = [
-    { title: 'What speeds up the first review', detail: 'A real brief with application, size, finish, quantity, timing, and destination always beats a generic equivalent request.' },
-    { title: 'Where approvals need more care', detail: 'Surface-critical products such as press plates, decorative stainless, flooring finishes, and industrial tooling need stronger reference control.' },
-    { title: 'What protects repeat supply', detail: 'Keep the last approved sample, drawing, and document trail linked to the next order instead of reordering from memory.' }
+    { title: 'What speeds up the first technical review', detail: 'A real RFQ set with application, size, finish, quantity, timing, destination, and one usable reference always outperforms a generic equivalent request.' },
+    { title: 'Where approvals need tighter control', detail: 'Surface-critical routes such as press plates, decorative stainless, flooring, and industrial tooling need a named approval baseline before commercial closure.' },
+    { title: 'What protects repeat supply', detail: 'Keep the approved sample, drawing revision, and document trail linked to the reorder instead of relying on memory or broad item names.' }
   ];
 
-  const processVisual = `<div class="process-flow-card"><div class="process-flow-label">Commercial path</div><svg class="process-flow-svg" viewBox="0 0 860 220" role="img" aria-label="Process flow from brief to route, reference, and supply"><rect x="0" y="0" width="860" height="220" rx="28" fill="#fafafa"></rect><path d="M124 112H736" stroke="#d4d4d8" stroke-width="4" stroke-linecap="round"></path>${stages.map((stage, index) => { const x = 124 + (index * 204); return `<circle cx="${x}" cy="112" r="16" fill="#18181b"></circle><circle cx="${x}" cy="112" r="34" fill="none" stroke="rgba(24,24,27,.12)" stroke-width="2"></circle><text x="${x}" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff">${stage.number}</text><text x="${x}" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">${escHtml(stage.title)}</text><text x="${x}" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#52525b">${escHtml(index === 0 ? 'Brief' : index === 1 ? 'Route' : index === 2 ? 'Reference' : 'Supply')}</text>`; }).join('')}</svg><div class="process-flow-note">The shortest useful path is the commercial one: get the brief clear, narrow the route, lock the approval reference, then keep the same logic through supply and repeat orders.</div></div>`;
+  const controlCards = [
+    {
+      kicker: 'Minimum first-review dataset',
+      title: 'What procurement should send first',
+      items: [
+        'End use or application, not only the product name',
+        'Size, thickness, quantity, and timing window',
+        'Finish target, pattern, or sample benchmark',
+        'Destination market, compliance, or environment note',
+        'Required document set: quote, TDS, sample, deck, or certificate'
+      ]
+    },
+    {
+      kicker: 'Release baseline',
+      title: 'What should be locked before production or dispatch',
+      items: [
+        'Approved sample, drawing revision, or finish code',
+        'Acceptance points for surface, tolerance, or fit',
+        'Packing and handling notes for transit and receipt',
+        'Receiving inspection method and claim path',
+        'Repeat-order reference so the next order starts from the same baseline'
+      ]
+    }
+  ];
+
+  const processVisual = `<div class="process-flow-card"><div class="process-flow-label">Working sequence</div><svg class="process-flow-svg" viewBox="0 0 860 220" role="img" aria-label="Process flow from RFQ inputs to route, approval baseline, and repeat supply"><rect x="0" y="0" width="860" height="220" rx="28" fill="#fafafa"></rect><path d="M124 112H736" stroke="#d4d4d8" stroke-width="4" stroke-linecap="round"></path>${stages.map((stage, index) => { const x = 124 + (index * 204); const topLabel = index === 0 ? 'RFQ base' : index === 1 ? 'Route' : index === 2 ? 'Approval' : 'Repeat'; const bottomLabel = index === 0 ? 'Inputs' : index === 1 ? 'Narrow' : index === 2 ? 'Lock' : 'Carry through'; return `<circle cx="${x}" cy="112" r="16" fill="#18181b"></circle><circle cx="${x}" cy="112" r="34" fill="none" stroke="rgba(24,24,27,.12)" stroke-width="2"></circle><text x="${x}" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff">${stage.number}</text><text x="${x}" y="52" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#18181b">${escHtml(topLabel)}</text><text x="${x}" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#52525b">${escHtml(bottomLabel)}</text>`; }).join('')}</svg><div class="process-flow-note">The shortest useful path is the disciplined one: lock the RFQ base, narrow the route, approve against a named reference, then keep the same control through dispatch and reorder.</div></div>`;
 
   return headTag({
-    title: 'How Moldart Works | Sourcing, Quality & Supply Process',
-    desc: 'A concise view of how Moldart moves from requirement brief through route alignment, approval, supply, and repeat support.',
+    title: 'How Moldart Works | RFQ, Approval, Dispatch & Repeat Supply',
+    desc: 'A technical-commercial view of how Moldart moves from RFQ inputs to route alignment, approval control, dispatch, and repeat supply.',
     canonical: '/process/',
     ogImage: siteSocialPosterRelativePath('moldart-process'),
     ogImageAlt: 'Moldart process overview',
@@ -4254,13 +4219,13 @@ function generateProcessPage() {
             <div class="ui-page-hero">
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Process</div>
-                    <h1 class="ui-section-title">FROM BRIEF<br>TO DELIVERY.</h1>
-                    <p class="ui-section-subtitle">The page is intentionally short, but the work is not casual: share the brief, align the route, lock the reference, and keep repeat supply tied to what was actually approved.</p>
+                    <h1 class="ui-section-title">FROM RFQ<br>TO APPROVED SUPPLY.</h1>
+                    <p class="ui-section-subtitle">This page is short on purpose, but the underlying work is not casual: define the RFQ base, narrow the route, lock the approval reference, and carry the same baseline through dispatch and repeat supply.</p>
                     <div class="ui-chip-row mt-8">
-                        <span class="ui-chip">${glyph('message', 'icon icon-sm')} Start with the real brief</span>
-                        <span class="ui-chip">${glyph('book', 'icon icon-sm')} Match the reference</span>
-                        <span class="ui-chip">${glyph('shield', 'icon icon-sm')} Protect the approval</span>
-                        <span class="ui-chip">${glyph('route', 'icon icon-sm')} Keep repeat supply stable</span>
+                        <span class="ui-chip">${glyph('message', 'icon icon-sm')} RFQ inputs</span>
+                        <span class="ui-chip">${glyph('route', 'icon icon-sm')} Route controls</span>
+                        <span class="ui-chip">${glyph('shield', 'icon icon-sm')} Approval baseline</span>
+                        <span class="ui-chip">${glyph('book', 'icon icon-sm')} Repeat stability</span>
                     </div>
                 </div>
                 <div class="ui-page-hero-panel">
@@ -4272,11 +4237,22 @@ function generateProcessPage() {
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
             <div class="ui-section-head mb-10">
                 <div class="ui-kicker mb-4">${glyph('clock', 'icon icon-sm')} Four stages</div>
-                <h2 class="ui-section-title">HOW THE WORK MOVES.</h2>
-                <p class="ui-section-subtitle">A compact commercial view of how the requirement usually moves from the first message to aligned supply.</p>
+                <h2 class="ui-section-title">THE WORKING SEQUENCE.</h2>
+                <p class="ui-section-subtitle">A compact technical-commercial view of how the requirement should move from the first message to aligned supply.</p>
             </div>
             <div class="ui-stage-grid ui-stage-grid-compact">
                 ${stages.map((stage) => `<article class="ui-stage-card"><div class="ui-stage-num">${stage.number}</div><h3 class="font-display font-bold text-lg mb-3">${escHtml(stage.title)}</h3><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(stage.detail)}</p><div class="ui-stage-meta"><div class="ui-stage-meta-block"><div class="ui-stage-meta-label">What to share</div><p>${escHtml(stage.share)}</p></div><div class="ui-stage-meta-block"><div class="ui-stage-meta-label">What comes out</div><p>${escHtml(stage.output)}</p></div></div></article>`).join('')}
+            </div>
+        </section>
+
+        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+            <div class="ui-section-head mb-10">
+                <div class="ui-kicker mb-4">${glyph('check', 'icon icon-sm')} Procurement controls</div>
+                <h2 class="ui-section-title">WHAT SHOULD BE LOCKED EARLY.</h2>
+                <p class="ui-section-subtitle">These two checkpoints usually prevent the widest share of avoidable delays, approval errors, and repeat-order drift.</p>
+            </div>
+            <div class="ui-library-grid">
+                ${controlCards.map((card) => `<article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('shield', 'icon icon-sm')} ${escHtml(card.kicker)}</div><h3 class="ui-family-title" style="font-size:1.2rem;">${escHtml(card.title)}</h3><ul class="ui-stack-list mt-5">${card.items.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul></article>`).join('')}
             </div>
         </section>
 
@@ -4284,14 +4260,14 @@ function generateProcessPage() {
             <div class="ui-section-head mb-10">
                 <div class="ui-kicker mb-4">${glyph('check', 'icon icon-sm')} Review notes</div>
                 <h2 class="ui-section-title">THREE NOTES THAT KEEP<br>THE ROUTE CLEAN.</h2>
-                <p class="ui-section-subtitle">These are the points that usually change speed, approval quality, and repeat stability more than any generic product discussion.</p>
+                <p class="ui-section-subtitle">These are the points that usually change review speed, approval quality, and repeat stability more than any generic product discussion.</p>
             </div>
             <div class="process-note-board">
                 ${quickCards.map((card, index) => `<article class="process-note-card"><div class="process-note-step">0${index + 1}</div><h3>${escHtml(card.title)}</h3><p>${escHtml(card.detail)}</p></article>`).join('')}
             </div>
         </section>
 
-        ${ctaBlock('READY TO START?', 'Share the requirement and the team can align the route, reference, and next step against the actual programme.', 'Share your requirement', '/contact/', 'Open Resources', '/resources/')}
+        ${ctaBlock('READY TO START?', 'Share the requirement and the team can align the route, reference, and next step against the actual programme.', 'Share your requirement', '/contact/', 'Portal preview', '/portal/')}
     </main>
 
     ${footer()}
@@ -4301,43 +4277,45 @@ function generateProcessPage() {
 
 function generateLoginPage() {
   return headTag({
-    title: 'Trade Portal Preview | Moldart',
-    desc: 'Buyer access and supply partner access previews for the Moldart trade portal.',
-    canonical: '/login/',
+    title: 'Buyer & Partner Portal Preview | Moldart',
+    desc: 'Coming-soon preview of the Moldart buyer and partner portal for RFQs, approvals, documents, and repeat-order coordination.',
+    canonical: '/portal/',
+    ogImage: siteSocialPosterRelativePath('moldart-portal'),
+    ogImageAlt: 'Moldart portal preview',
     noindex: true,
     schemas: []
-  }) + '\n' + nav('login') + `
+  }) + '\n' + nav('portal') + `
 
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Portal Preview</span></div>
-            <h1 class="page-heading">BUYER AND PARTNER<br>ACCESS.</h1>
-            <p class="text-base text-zinc-500 font-light max-w-2xl leading-relaxed mt-6">The Moldart portal is being built as a disciplined operational layer for repeat buyers and verified supply partners. Until launch, this page works as an access preview and routing point.</p>
+            <h1 class="page-heading">BUYER AND PARTNER PORTAL.<br>COMING SOON.</h1>
+            <p class="text-base text-zinc-500 font-light max-w-2xl leading-relaxed mt-6">The portal is being built as a disciplined operational layer for repeat buyers, verified supply partners, approvals, documents, and repeat-order coordination. Until launch, the public site remains the active route for search, files, guides, and direct enquiry.</p>
         </section>
 
         <section class="max-w mx-auto px py-16 fade-up">
             <div class="signal-grid signal-grid-portal">
                 <article class="signal-card portal-card">
-                    <div class="section-label mb-4">Buyer Access</div>
-                    <h2 class="font-display font-black text-2xl mb-4">BUYER WORKSPACE.</h2>
-                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">For manufacturers, project buyers, and procurement teams who want a cleaner route for specifications, documentation, downloads, and repeat requirement handling.</p>
+                    <div class="section-label mb-4">Buyer workspace</div>
+                    <h2 class="font-display font-black text-2xl mb-4">RFQ, REFERENCE, AND REPEAT.</h2>
+                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">Planned for procurement teams, manufacturers, and project buyers who want one cleaner lane for RFQ intake, documents, approval tracking, and repeat-order visibility.</p>
                     <ul class="product-summary-list mb-6">
                         <li>Structured RFQ and specification intake</li>
-                        <li>Reference documents and approval tracking</li>
-                        <li>Repeat-order visibility and coordinated follow-up</li>
+                        <li>Reference files, approvals, and discussion history</li>
+                        <li>Repeat-order visibility linked to prior approved baselines</li>
                     </ul>
-                    <a href="/contact/" class="btn-primary">Request Buyer Access</a>
+                    <a href="/contact/" class="btn-primary">Request buyer access</a>
                 </article>
                 <article class="signal-card portal-card">
-                    <div class="section-label mb-4">Supply Partner Access</div>
-                    <h2 class="font-display font-black text-2xl mb-4">SELLER WORKFLOW.</h2>
-                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">For verified manufacturing and supply partners who need a cleaner lane for quote alignment, documentation exchange, and production-linked communication.</p>
+                    <div class="section-label mb-4">Partner workflow</div>
+                    <h2 class="font-display font-black text-2xl mb-4">QUOTE, DOCUMENT, AND FOLLOW-THROUGH.</h2>
+                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">Planned for verified manufacturing and supply partners who need a clearer lane for quotations, document exchange, approval checkpoints, and repeat programme coordination.</p>
                     <ul class="product-summary-list mb-6">
                         <li>Standardised quote and document flow</li>
                         <li>Quality checkpoints and approval visibility</li>
                         <li>Operational coordination for repeat programmes</li>
                     </ul>
-                    <a href="/contact/" class="btn-outline">Request Partner Access</a>
+                    <a href="/contact/" class="btn-outline">Request partner access</a>
                 </article>
             </div>
         </section>
@@ -4346,12 +4324,12 @@ function generateLoginPage() {
             <div class="max-w mx-auto px py-16">
                 <div class="portal-status-card">
                     <div class="portal-status-copy">
-                        <div class="section-label mb-3">Current Status</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed">Portal access is not live yet, but buyer and supplier onboarding can still begin through the contact flow.</p>
+                        <div class="section-label mb-3">Current status</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed">This workspace is not live yet. For now, use Explore for discovery, Resources for files, Insights for technical reading, and Contact for the live enquiry path.</p>
                     </div>
                     <div class="flex gap-3 flex-wrap">
                         <a href="/contact/" class="btn-primary">Share your requirement</a>
-                        <a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="btn-outline">WhatsApp</a>
+                        <a href="/explore/" class="btn-outline">Open Explore</a>
                     </div>
                 </div>
             </div>
@@ -4700,7 +4678,6 @@ Allow: /
 Disallow: /data/
 Disallow: /sw.js
 Disallow: /offline.html
-Disallow: /login/
 Disallow: /.tmp/
 
 User-agent: OAI-SearchBot
@@ -4773,12 +4750,14 @@ function generateRedirects() {
 /about.html               /about/                   301
 /industry.html            /industry/                301
 /contact.html             /contact/                 301
-/login.html               /login/                   301
+/login.html               /portal/                  301
+/portal.html              /portal/                  301
 /about                    /about/                   301
 /industry                 /solutions/               301
 /industry/                /solutions/               301
 /contact                  /contact/                 301
-/login                    /login/                   301
+/login                    /portal/                  301
+/portal                   /portal/                  301
 /explore                  /explore/                 301
 /solutions                /solutions/               301
 /products                 /solutions/               301
@@ -4808,7 +4787,8 @@ async function main() {
   writeFile(path.join(WORK, 'explore/index.html'), generateExplorePage());
   writeFile(path.join(WORK, 'about/index.html'), generateAboutPage());
   writeFile(path.join(WORK, 'contact/index.html'), generateContactPage());
-  writeFile(path.join(WORK, 'login/index.html'), generateLoginPage());
+  writeFile(path.join(WORK, 'portal/index.html'), generateLoginPage());
+  writeFile(path.join(WORK, 'login/index.html'), generatePageRedirect('/portal/', 'Redirecting to Portal Preview — Moldart', 'Open portal preview', true));
   writeFile(path.join(WORK, '404.html'), generate404());
 
   console.log('\nGenerating solution pages...');

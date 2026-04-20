@@ -3,7 +3,6 @@ Allow: /
 Disallow: /data/
 Disallow: /sw.js
 Disallow: /offline.html
-Disallow: /login/
 Disallow: /.tmp/
 
 User-agent: OAI-SearchBot
