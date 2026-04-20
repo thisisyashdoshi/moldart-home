@@ -16,7 +16,7 @@ const { importedInsights, insightDossiers } = require('./insight-enhancements.js
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.34';
+const VER = '2026.37';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
@@ -542,6 +542,75 @@ const SOLUTION_FLOWS = {
   ]
 };
 
+const ROUTE_VISUAL_MODELS = {
+  lamination: {
+    homeTitle: 'Decorative laminate surfaces',
+    homeSummary: 'Tooling and décor inputs aligned to visible laminate finish, press stability, and repeat surface quality.',
+    homeOutputs: ['HPL', 'LPL', 'Panel surfacing'],
+    homeSteps: ['Tooling', 'Press cycle', 'Surface output'],
+    storyTitle: 'SEE THE LAMINATION ROUTE IN ONE GLANCE.',
+    storyNote: 'Use this view when the question is how the tooling stack, printed decor, and press cycle combine before the line produces the approved surface.',
+    inputs: ['Press Plates', 'Press Pads', 'Engraved Cylinders', 'Printed Decor Paper'],
+    process: ['Pattern printing', 'Heat + pressure', 'Texture transfer'],
+    outputs: ['Decorative laminate faces', 'Furniture panel surfaces', 'Flooring overlays']
+  },
+  furniture: {
+    homeTitle: 'Furniture programmes',
+    homeSummary: 'Boards, decorative faces, and finished pieces aligned for modular, retail, hospitality, and custom furniture work.',
+    homeOutputs: ['Modular furniture', 'Retail fixtures', 'Custom interiors'],
+    homeSteps: ['Boards', 'Fabrication', 'Furniture output'],
+    storyTitle: 'SEE THE FURNITURE ROUTE IN ONE GLANCE.',
+    storyNote: 'Use this view when the team needs to understand how substrate choice, decorative finish, and finished output sit inside the same programme.',
+    inputs: ['Plywood', 'Fiberboard', 'Particleboard', 'Ready-Made / Custom Furniture'],
+    process: ['Board selection', 'Facing + detailing', 'Assembly / fit-out'],
+    outputs: ['Modular furniture', 'Custom furniture', 'Project-specific fit-outs']
+  },
+  flooring: {
+    homeTitle: 'Flooring systems',
+    homeSummary: 'Floor boards and accessories aligned for wear class, moisture logic, and cleaner installation outcomes.',
+    homeOutputs: ['Residential floors', 'Commercial floors', 'Accessory coordination'],
+    homeSteps: ['Floor core', 'Installation route', 'Finished floor'],
+    storyTitle: 'SEE THE FLOORING ROUTE IN ONE GLANCE.',
+    storyNote: 'Use this view when the question is how board construction, accessory choice, and installation conditions shape the final flooring result.',
+    inputs: ['Wood Flooring', 'Flooring Accessories', 'Fiberboard'],
+    process: ['Core + decor', 'Click-lock planning', 'Accessory fit'],
+    outputs: ['Installed floors', 'Stair + trim finish', 'Coordinated room transitions']
+  },
+  architecture: {
+    homeTitle: 'Architecture & interiors',
+    homeSummary: 'Decorative stainless surfaces, trims, and support boards aligned for visible interior features and project fit-outs.',
+    homeOutputs: ['Feature walls', 'Lift panels', 'Interior fit-outs'],
+    homeSteps: ['Surface selection', 'Detailing', 'Installed interior output'],
+    storyTitle: 'SEE THE INTERIOR ROUTE IN ONE GLANCE.',
+    storyNote: 'Use this view when the requirement depends on how visible stainless surfaces, trims, and support boards come together in the final interior build-up.',
+    inputs: ['Decorative SS Panels', 'SS Profiles', 'SS Furniture', 'Support boards'],
+    process: ['Finish approval', 'Detail coordination', 'Project installation'],
+    outputs: ['Architectural features', 'Interior cladding', 'Premium fit-outs']
+  },
+  'metal-finishing': {
+    homeTitle: 'Decorative metal finishes',
+    homeSummary: 'Panels, profiles, and fabricated stainless routes where finish family, colour consistency, and visible approval matter.',
+    homeOutputs: ['PVD routes', 'Stamped surfaces', 'Mirror / hairline work'],
+    homeSteps: ['Finish family', 'Approval', 'Decorative output'],
+    storyTitle: 'SEE THE METAL-FINISH ROUTE IN ONE GLANCE.',
+    storyNote: 'Use this view when the brief depends on surface family, approval discipline, and how the finish should stay consistent across decorative pieces.',
+    inputs: ['Decorative SS Panels', 'SS Profiles', 'SS Furniture'],
+    process: ['Finish-family selection', 'Sample approval', 'Fabrication alignment'],
+    outputs: ['Decorative panels', 'Profiles + trims', 'Fabricated feature pieces']
+  },
+  'pcb-ccl': {
+    homeTitle: 'Technical laminate lines',
+    homeSummary: 'Tolerance-critical press plate routes aligned to demanding conditions in PCB, CCL, and other technical laminate work.',
+    homeOutputs: ['CCL lines', 'PCB routes', 'Technical laminates'],
+    homeSteps: ['Industrial plates', 'Controlled pressing', 'Technical output'],
+    storyTitle: 'SEE THE TECHNICAL ROUTE IN ONE GLANCE.',
+    storyNote: 'Use this view when the route depends on how industrial plates, inspection discipline, and controlled pressing conditions translate into technical laminate output.',
+    inputs: ['Industrial Press Plates'],
+    process: ['Incoming checks', 'Controlled pressing', 'Tolerance review'],
+    outputs: ['PCB / CCL lines', 'Technical laminates', 'Lower downstream correction risk']
+  }
+};
+
 // ============================================================
 // RESOURCE/DOWNLOAD GROUPS
 // ============================================================
@@ -601,6 +670,33 @@ const resourceGroups = [
     ]
   }
 ];
+
+const RESOURCE_ROUTE_OVERRIDES = {
+  'Moldart Company Profile': ['company'],
+  'Press Plate Standard Collection': ['lamination', 'pcb-ccl'],
+  'Press Plates for Shuttering Plywood': ['lamination'],
+  'Press Plate Texture Collection': ['lamination'],
+  'HPL Overlay Collection OL-01': ['lamination'],
+  'HPL Overlay Collection OL-02': ['lamination'],
+  'HPL Overlay Collection OL-03': ['lamination'],
+  'HPL Overlay Collection OL-04': ['lamination'],
+  'LPL Decorative Collection GB-01': ['lamination'],
+  'LPL Decorative Collection GB-02': ['lamination'],
+  'LPL PET Board Collection': ['lamination'],
+  'LPL Specialty Decorative Panels': ['lamination'],
+  'Gravure Cylinder & Printed Decor Paper Deck': ['lamination'],
+  'Engineered Wood Flooring Catalog': ['flooring'],
+  'Engineered Wood Doors Catalog': ['furniture'],
+  'Furniture Program Catalog 01': ['furniture'],
+  'Furniture Program Catalog 02': ['furniture'],
+  'Furniture Program Catalog 03': ['furniture'],
+  'Decorative SS Antique Finishes': ['architecture', 'metal-finishing'],
+  'Decorative SS Stamped Finishes': ['architecture', 'metal-finishing'],
+  'Decorative SS Heat-Printed Finishes': ['architecture', 'metal-finishing'],
+  'Decorative SS Mosaic Finishes': ['architecture', 'metal-finishing'],
+  'Stainless Steel Profiles Catalog': ['architecture', 'metal-finishing'],
+  'Stainless Steel Divider Systems': ['architecture', 'metal-finishing']
+};
 
 // ============================================================
 // PRODUCT CATEGORY GROUPS (for hub page)
@@ -1324,7 +1420,7 @@ async function rasterizeSvgSet(tasks = []) {
   const browser = await chromium.launch({ headless: true, executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe' });
   const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
   for (const task of tasks) {
-    await page.goto(pathToFileURL(task.svgPath).href, { waitUntil: 'load' });
+    await page.goto(pathToFileURL(task.svgPath).href, { waitUntil: 'domcontentloaded', timeout: 60000 });
     await page.screenshot({ path: task.pngPath, type: 'png' });
     console.log(`  ✓ ${path.relative(WORK, task.pngPath)}`);
   }
@@ -1453,7 +1549,7 @@ function renderInsightCardMedia(article, context = null) {
   return `<div class="ui-insight-card-media"><img src="${insightPreviewImage(article, context)}" alt="${escHtml(insightPreviewAlt(article, context))}" loading="lazy"><div class="ui-insight-card-badge">${escHtml(article.type)}</div></div>`;
 }
 function renderHomeInsightRow(article) {
-  return `<div class="ui-article-row"><div class="ui-article-row-media"><img src="${insightPreviewImage(article)}" alt="${escHtml(insightPreviewAlt(article))}" loading="lazy"></div><div class="ui-article-row-copy"><div class="ui-list-title">${escHtml(article.title)}</div><div class="ui-list-meta">${escHtml(article.categoryLabel)} · ${escHtml(article.type)}</div></div><a href="/insights/${article.slug}/" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`;
+  return `<a href="/insights/${article.slug}/" class="ui-article-row ui-article-row-home"><div class="ui-article-row-media"><img src="${insightPreviewImage(article)}" alt="${escHtml(insightPreviewAlt(article))}" loading="lazy"></div><div class="ui-article-row-copy"><div class="ui-kicker mb-2">${glyph('spark', 'icon icon-sm')} ${escHtml(article.categoryLabel)}</div><div class="ui-list-title">${escHtml(article.title)}</div><div class="ui-list-meta">${escHtml(clampText(article.excerpt, 120))}</div></div><span class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</span></a>`;
 }
 function renderInsightDashboardCards(cards = []) {
   if (!cards.length) return '';
@@ -1881,12 +1977,147 @@ function renderHomepageFamilyBento(family, index) {
   </article>`;
 }
 
-function renderApplicationMosaic(app) {
-  const cards = app.products.slice(0, 4).map((productId) => {
+function renderProductTileMosaic(productIds = [], options = {}) {
+  const { className = '', limit = 4, loading = 'lazy' } = options;
+  const cards = productIds.slice(0, limit).map((productId) => {
     const product = getProduct(productId);
-    return product ? `<div class="application-mosaic-tile"><img src="${product.image}" alt="${escHtml(product.name)}" width="320" height="240" loading="eager"><span>${escHtml(product.name)}</span></div>` : '';
+    return product ? `<div class="application-mosaic-tile"><img src="${product.image}" alt="${escHtml(product.name)}" width="320" height="240" loading="${loading}"><span>${escHtml(product.name)}</span></div>` : '';
   }).filter(Boolean).join('');
-  return `<div class="application-mosaic">${cards}</div>`;
+  return `<div class="application-mosaic${className ? ` ${className}` : ''}">${cards}</div>`;
+}
+
+function renderApplicationMosaic(app, options = {}) {
+  return renderProductTileMosaic(app.products, { limit: 4, loading: 'eager', ...options });
+}
+
+function renderRouteStepRow(steps = []) {
+  return `<div class="home-route-step-row">${steps.map((step) => `<span>${escHtml(step)}</span>`).join('')}</div>`;
+}
+
+function renderRouteTokenRow(items = [], options = {}) {
+  const { className = 'route-token-row', limit = Array.isArray(items) ? items.length : 0, numbered = false, emptyLabel = 'Requirement-led' } = options;
+  const safeItems = Array.isArray(items) ? items.filter(Boolean) : [];
+  const visible = safeItems.slice(0, limit);
+  const tokens = visible.map((item, index) => `<span>${numbered ? `<strong>${String(index + 1).padStart(2, '0')}</strong>` : ''}${escHtml(item)}</span>`);
+  if (!tokens.length) tokens.push(`<span class="is-muted">${escHtml(emptyLabel)}</span>`);
+  if (safeItems.length > visible.length) tokens.push(`<span class="is-muted">+${safeItems.length - visible.length} more</span>`);
+  return `<div class="${className}">${tokens.join('')}</div>`;
+}
+
+function renderRouteSnapshotStage(label, items = [], options = {}) {
+  return `<div class="home-route-visual-stage"><div class="home-route-visual-label">${escHtml(label)}</div>${renderRouteTokenRow(items, { className: 'home-route-visual-pills', ...options })}</div>`;
+}
+
+function renderHomeRouteCard(app) {
+  const visual = ROUTE_VISUAL_MODELS[app.slug] || {};
+  const productNames = app.products.map((productId) => getProduct(productId)?.name).filter(Boolean);
+  return `<article class="home-route-card">
+      <div class="home-route-media home-route-media-diagram">
+          <div class="home-route-media-badge">${glyph(applicationIconName(app.slug), 'icon icon-sm')} ${escHtml(app.name)}</div>
+          <div class="home-route-visual-grid">
+              ${renderRouteSnapshotStage('Inputs', visual.inputs || productNames, { limit: 1 })}
+              <div class="home-route-visual-arrow" aria-hidden="true">→</div>
+              ${renderRouteSnapshotStage('Process', visual.process || visual.homeSteps || [], { limit: 1, numbered: true })}
+              <div class="home-route-visual-arrow" aria-hidden="true">→</div>
+              ${renderRouteSnapshotStage('Outputs', visual.homeOutputs || visual.outputs || [], { limit: 1 })}
+          </div>
+      </div>
+      <div class="home-route-body">
+          <div class="home-route-top">
+              <h3 class="home-route-title">${escHtml(visual.homeTitle || app.name)}</h3>
+              <p class="home-route-copy">${escHtml(visual.homeSummary || app.overview)}</p>
+          </div>
+          <div class="home-route-block">
+              <div class="home-route-label">Usually combines</div>
+              <div class="home-route-chip-grid">${productNames.slice(0, 3).map((item) => `<span class="home-route-chip">${escHtml(item)}</span>`).join('')}</div>
+          </div>
+          <div class="home-route-block">
+              <div class="home-route-label">Output focus</div>
+              <div class="home-route-meta">${(visual.homeOutputs || []).slice(0, 2).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
+          </div>
+          <div class="home-route-actions"><a href="${getSolutionHref(app.slug)}" class="btn-outline">Open ${escHtml(app.name)}</a></div>
+      </div>
+  </article>`;
+}
+
+function renderSolutionHeroDiagram(app) {
+  const visual = ROUTE_VISUAL_MODELS[app.slug] || {};
+  const productNames = app.products.map((productId) => getProduct(productId)?.name).filter(Boolean);
+  return `<div class="solution-hero-diagram">
+      <div class="solution-hero-diagram-head">
+          <div class="solution-hero-diagram-kicker">${glyph(applicationIconName(app.slug), 'icon icon-sm')} Route diagram</div>
+          <div class="solution-hero-diagram-title">${escHtml(app.name)} at a glance</div>
+          <p class="solution-hero-diagram-copy">Use this view when the route matters more than any single product photo.</p>
+      </div>
+      <div class="solution-hero-diagram-rail">
+          <article class="solution-hero-diagram-card">
+              <div class="solution-hero-diagram-label">What goes in</div>
+              <h3>Inputs</h3>
+              ${renderRouteTokenRow(visual.inputs || productNames, { className: 'solution-hero-diagram-pills', limit: 4 })}
+          </article>
+          <div class="solution-hero-diagram-arrow" aria-hidden="true">→</div>
+          <article class="solution-hero-diagram-card">
+              <div class="solution-hero-diagram-label">What changes</div>
+              <h3>Process</h3>
+              ${renderRouteTokenRow(visual.process || visual.homeSteps || [], { className: 'solution-hero-diagram-pills', limit: 3, numbered: true })}
+          </article>
+          <div class="solution-hero-diagram-arrow" aria-hidden="true">→</div>
+          <article class="solution-hero-diagram-card">
+              <div class="solution-hero-diagram-label">What comes out</div>
+              <h3>Result</h3>
+              ${renderRouteTokenRow(visual.outputs || visual.homeOutputs || [], { className: 'solution-hero-diagram-pills', limit: 4 })}
+          </article>
+      </div>
+      <div class="ui-map-caption">Representative route diagram for this system.</div>
+  </div>`;
+}
+
+function renderSolutionStoryBand(app) {
+  const visual = ROUTE_VISUAL_MODELS[app.slug];
+  if (!visual) return '';
+  const productLinks = app.products.map((productId) => renderProductPillLink(productId, 'solution-system-product-pill')).filter(Boolean).join('');
+  return `<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+      <div class="ui-section-head mb-8">
+          <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} How the route works</div>
+          <h2 class="ui-section-title">${escHtml(visual.storyTitle)}</h2>
+          <p class="ui-section-subtitle">${escHtml(visual.storyNote)}</p>
+      </div>
+      <div class="solution-system-band">
+          <div class="solution-system-diagram">
+              <article class="solution-system-stage">
+                  <div class="solution-system-stage-label">What goes in</div>
+                  <h3>Inputs</h3>
+                  <p>These are the materials, surfaces, or components that matter before the route can perform properly.</p>
+                  <div class="solution-system-chip-row">${(visual.inputs || []).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
+              </article>
+              <div class="solution-system-arrow" aria-hidden="true">→</div>
+              <article class="solution-system-stage">
+                  <div class="solution-system-stage-label">What changes</div>
+                  <h3>In-process logic</h3>
+                  <p>This is the point where transfer, fabrication, installation, or approval discipline changes the outcome.</p>
+                  <div class="solution-system-chip-row">${(visual.process || []).map((item, index) => `<span><strong>0${index + 1}</strong>${escHtml(item)}</span>`).join('')}</div>
+              </article>
+              <div class="solution-system-arrow" aria-hidden="true">→</div>
+              <article class="solution-system-stage">
+                  <div class="solution-system-stage-label">What comes out</div>
+                  <h3>Buyer-visible result</h3>
+                  <p>The final approval usually depends on these visible, installable, or repeatable output conditions.</p>
+                  <div class="solution-system-chip-row">${(visual.outputs || []).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
+              </article>
+          </div>
+          <div class="solution-system-note-grid">
+              <article class="solution-system-note-card">
+                  <div class="solution-system-note-label">Linked product sheets</div>
+                  <p>Use the product sheets below when the system is clear but the item-level reference still needs to be confirmed.</p>
+                  <div class="solution-system-product-row">${productLinks}</div>
+              </article>
+              <article class="solution-system-note-card">
+                  <div class="solution-system-note-label">Lock before approval</div>
+                  <ul class="ui-stack-list">${app.considerations.slice(0, 4).map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul>
+              </article>
+          </div>
+      </div>
+  </section>`;
 }
 
 function specToRow(spec, index = 0) {
@@ -1932,6 +2163,24 @@ function renderShareBar(title, canonicalPath) {
       <a href="mailto:?subject=${encodedTitle}&body=${encodedUrl}" class="share-chip">${glyph('mail', 'icon icon-sm')} Email</a>
       <button type="button" class="share-chip share-copy-btn" data-copy-link="${fullUrl}">${glyph('copy', 'icon icon-sm')} Copy link</button>
   </div>`;
+}
+
+function renderArticleEndRail(article, context = null) {
+  let supportCard = `<article class="article-end-card"><div class="article-end-label">Explore more</div><h2>Back to insights</h2><p>Return to the wider library of edited guides, route notes, and decision support pages.</p><a href="/insights/" class="btn-outline">Open insights</a></article>`;
+  if (context?.product && context?.meta) {
+    const productHref = productPageHref(context.product.id);
+    const downloads = context.meta.downloads.slice(0, 2).map((download) => `<span class="article-end-link">${escHtml(download.title || 'Reference')}</span>`).join('');
+    const related = relatedSolutionsForProduct(context.product.id).slice(0, 2).map((app) => `<a href="${getSolutionHref(app.slug)}" class="article-end-link">${escHtml(app.name)}</a>`).join('');
+    supportCard = `<article class="article-end-card"><div class="article-end-label">Supporting references</div><h2>Open the reference pack</h2><p>When this guide becomes a live brief, move into the product sheet for the cleaner document pack, system links, and next checks.</p>${downloads ? `<div class="article-end-links">${downloads}</div>` : ''}${related ? `<div class="article-end-links">${related}</div>` : ''}<a href="${productHref}" class="btn-outline">Open product sheet</a></article>`;
+  }
+  return `<div class="article-end-rail">${supportCard}<article class="article-end-card article-end-card-primary"><div class="article-end-label">Next step</div><h2>Share the actual requirement</h2><p>Use ${escHtml(context?.product?.name || article.categoryLabel)} only as the starting point. The brief, reference, quantity, timing, and destination make the next review faster.</p><a href="/contact/?product=${encodeURIComponent(context?.product?.name || article.category)}" class="btn-primary">Share your requirement</a></article></div>`;
+}
+
+function renderInsightRouteAssistCard(app) {
+  const editorialCount = rawInsights.editorial.filter((article) => app.products.includes(article.category)).length;
+  const routeNoteCount = rawInsights.generated.filter((article) => app.products.includes(article.category)).length;
+  const routeModel = ROUTE_VISUAL_MODELS[app.slug] || {};
+  return `<article class="insight-route-card"><div class="ui-kicker mb-3">${glyph(applicationIconName(app.slug), 'icon icon-sm')} ${escHtml(app.name)}</div><h3>${escHtml(routeModel.homeTitle || app.name)}</h3><p>${escHtml(clampText(routeModel.storyNote || app.overview, 170))}</p><div class="insight-route-card-meta"><span>${editorialCount} edited guide${editorialCount === 1 ? '' : 's'}</span><span>${routeNoteCount} deeper route note${routeNoteCount === 1 ? '' : 's'}</span></div><div class="home-route-step-row home-route-step-row-compact">${(routeModel.process || []).slice(0, 3).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div><div class="insight-route-card-actions"><a href="${withQuery('/explore/', { type: 'guide', route: app.slug })}" class="btn-outline">Open route shortlist</a><a href="${getSolutionHref(app.slug)}" class="btn-outline">Open solution</a></div></article>`;
 }
 
 // ============================================================
@@ -2143,7 +2392,7 @@ function footer() {
                         <a href="${whatsappHref(WHATSAPP_PRIMARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('whatsapp-brand', 'icon icon-sm')} ${WHATSAPP_PRIMARY.display}</a>
                         <a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('whatsapp-brand', 'icon icon-sm')} ${WHATSAPP_SECONDARY.display}</a>
                         <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('linkedin-brand', 'icon icon-sm')} Company LinkedIn</a>
-                        <a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi</a>
+                        <a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="ui-footer-link">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi on LinkedIn</a>
                         <a href="/contact/" class="ui-footer-link">${glyph('message', 'icon icon-sm')} Share your requirement</a>
                     </div>
                     <p class="text-xs text-zinc-500 leading-relaxed mt-5">Use Contact for enquiry forms, WhatsApp, meetings, and address details.</p>
@@ -2239,28 +2488,73 @@ function breadcrumb(items) {
   };
 }
 
+function findResourceCatalogItem(item = {}) {
+  const title = String(item.title || '').trim();
+  const url = String(item.url || '').trim();
+  return getAllResourceItems().find((entry) => (title && entry.title === title) || (url && entry.url === url)) || item;
+}
+
+function resourceToneForGroup(group = '') {
+  if (/press|tooling/i.test(group)) return 'is-tooling';
+  if (/stainless/i.test(group)) return 'is-steel';
+  if (/wood|flooring|furniture/i.test(group)) return 'is-wood';
+  if (/lamination|decor/i.test(group)) return 'is-lamination';
+  if (/company/i.test(group)) return 'is-company';
+  return 'is-neutral';
+}
+
+function resourcePreviewCode(item = {}) {
+  const words = String(item.title || 'Reference')
+    .replace(/[^a-z0-9 ]/gi, ' ')
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter((word) => !/^(for|and|of|the|collection|catalog|program|deck|decorative)$/i.test(word));
+  return words.slice(0, 3).map((word) => word[0].toUpperCase()).join('') || 'PDF';
+}
+
+function resourcePreviewLabel(group = '') {
+  if (/company/i.test(group)) return 'Company';
+  if (/press/i.test(group)) return 'Press tooling';
+  if (/decor & lamination/i.test(group)) return 'Lamination';
+  if (/decor paper|gravure/i.test(group)) return 'Decor paper';
+  if (/wood|flooring|furniture/i.test(group)) return 'Wood / flooring';
+  if (/stainless/i.test(group)) return 'Steel finishes';
+  return group || 'Reference';
+}
+
+function renderResourcePreviewThumb(item = {}, options = {}) {
+  const { compact = false } = options;
+  const resolved = findResourceCatalogItem(item);
+  const group = resolved.group || 'Reference';
+  const status = isRequestOnlyResource(resolved) ? 'Request' : 'PDF';
+  const code = resourcePreviewCode(resolved);
+  const previewLabel = resourcePreviewLabel(group);
+  return `<div class="resource-thumb ${resourceToneForGroup(group)}${compact ? ' is-compact' : ''}"><div class="resource-thumb-top"><span>${escHtml(status)}</span><strong>${escHtml(previewLabel)}</strong></div><div class="resource-thumb-code">${escHtml(code)}</div><div class="resource-thumb-art"><span></span><span></span><span></span></div><div class="resource-thumb-footer"><span>${escHtml(previewLabel)}</span><span>${escHtml(status)}</span></div></div>`;
+}
+
+function renderResourceDocumentCard(item = {}, options = {}) {
+  const { compact = false, showGroup = true, showNote = true } = options;
+  const resolved = findResourceCatalogItem(item);
+  const requestOnly = isRequestOnlyResource(resolved);
+  const href = requestOnly ? requestDocumentHref(resolved) : resourceHref(resolved);
+  const title = resolved.title || item.title || 'Reference';
+  const desc = resolved.desc || item.desc || 'Reference document.';
+  const metaLine = showGroup && resolved.group ? resolved.group : (requestOnly ? 'Shared on request' : '');
+  const attrs = requestOnly ? '' : ` target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(title)}"`;
+  return `<a href="${href}" class="resource-library-row${compact ? ' is-compact' : ''}${requestOnly ? ' is-request' : ''}"${attrs}><div class="resource-library-row-preview">${renderResourcePreviewThumb(resolved, { compact: true })}</div><div class="resource-library-row-copy">${metaLine ? `<div class="resource-library-row-meta">${glyph('file', 'icon icon-sm')} ${escHtml(metaLine)}</div>` : ''}<div class="resource-library-row-title">${escHtml(title)}</div><div class="resource-library-row-desc">${escHtml(desc)}</div>${requestOnly && showNote && resolved.note ? `<div class="resource-library-row-note">${escHtml(resolved.note)}</div>` : ''}</div><div class="resource-library-row-action">${escHtml(requestOnly ? 'Request file' : 'Download PDF')} ${requestOnly ? glyph('message', 'icon icon-sm') : glyph('arrow', 'icon icon-sm')}</div></a>`;
+}
+
+function renderResourceListRow(item = {}, options = {}) {
+  return renderResourceDocumentCard(item, options);
+}
+
 function downloadLink(dl) {
-  if (isRequestOnlyResource(dl)) {
-    const href = requestDocumentHref(dl);
-    return `<a href="${href}" class="flex items-center justify-between p-3 rounded-lg transition-colors group resource-download-link resource-download-link-request" style="border:1px solid #f4f4f5;">
-      <div class="flex items-center gap-3">
-          <svg class="icon text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-          <span>
-              <span class="text-sm font-medium text-zinc-700 block">${escHtml(dl.title)}</span>
-              <span class="text-xs text-zinc-500 block">${escHtml(dl.note || 'Shared on request')}</span>
-          </span>
-      </div>
-      <span class="resource-download-badge">Request</span>
-  </a>`;
-  }
-  const href = resourceHref(dl);
-  return `<a href="${href}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(dl.title)}" class="flex items-center justify-between p-3 rounded-lg transition-colors group resource-download-link" style="border:1px solid #f4f4f5;">
-    <div class="flex items-center gap-3">
-        <svg class="icon text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-        <span class="text-sm font-medium text-zinc-700">${escHtml(dl.title)}</span>
-    </div>
-    <svg class="icon icon-sm text-zinc-300" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-</a>`;
+  const resolved = findResourceCatalogItem(dl);
+  const requestOnly = isRequestOnlyResource(resolved);
+  const href = requestOnly ? requestDocumentHref(resolved) : resourceHref(resolved);
+  const title = resolved.title || dl.title || 'Reference';
+  const attrs = requestOnly ? '' : ` target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(title)}"`;
+  return `<a href="${href}" class="article-download-link${requestOnly ? ' is-request' : ''}"${attrs}><span>${escHtml(title)}</span><strong>${escHtml(requestOnly ? 'Request' : 'Download')}</strong></a>`;
 }
 
 function productTextLink(productId) {
@@ -2305,8 +2599,23 @@ function renderPortfolioFamilyCard(family, options = {}) {
 }
 
 
+function withQuery(pathname = '', params = {}) {
+  const query = new URLSearchParams(Object.entries(params).filter(([, value]) => value !== undefined && value !== null && value !== '')).toString();
+  return query ? `${pathname}?${query}` : pathname;
+}
+
 function getSolutionHref(slug) {
   return `/solutions/${slug}/`;
+}
+
+function productPageHref(productId, params = {}) {
+  const meta = getMeta(productId);
+  return meta ? withQuery(`/products/${meta.slug}/`, params) : '/products/';
+}
+
+function renderContextualReturn(relatedSolutions = []) {
+  const solutionMap = JSON.stringify(Object.fromEntries(relatedSolutions.map((app) => [app.slug, app.name])));
+  return `<div class="ui-context-return"><a href="/solutions/" class="ui-context-return-link" data-context-return-link><span aria-hidden="true">←</span><span>Explore Solutions</span></a></div><script>(function(){var link=document.querySelector('[data-context-return-link]');if(!link)return;var params=new URLSearchParams(window.location.search);var map=${solutionMap};var href='/solutions/';var label='Explore Solutions';if(params.get('from')==='explore'){href='/explore/';label='Back to Explore';}else if(params.get('from')==='solution'&&params.get('solution')){var slug=params.get('solution');href='/solutions/'+slug+'/';label='Back to '+(map[slug]||'Solution');}else if(document.referrer&&document.referrer.indexOf('/explore/')!==-1){href='/explore/';label='Back to Explore';}link.setAttribute('href',href);var labelNode=link.querySelectorAll('span')[1];if(labelNode)labelNode.textContent=label;})();</script>`;
 }
 
 function renderProductPillLink(productId, className = 'ui-link-pill') {
@@ -2339,6 +2648,123 @@ function relatedInsightsForSolution(app, limit = 3) {
   const editorial = rawInsights.editorial.filter((article) => productIds.has(article.category));
   const generated = rawInsights.generated.filter((article) => productIds.has(article.category));
   return [...editorial, ...generated].slice(0, limit);
+}
+
+function routeNameForSlug(slug = '') {
+  if (slug === 'company') return 'Company';
+  return applications.find((item) => item.slug === slug)?.name || slug;
+}
+
+function routeSlugsForResourceGroup(title = '') {
+  if (/company/i.test(title)) return ['company'];
+  if (/press|tooling|lamination|decor paper|gravure/i.test(title)) return ['lamination'];
+  if (/flooring/i.test(title)) return ['flooring'];
+  if (/wood|furniture/i.test(title)) return ['furniture'];
+  if (/stainless/i.test(title)) return ['architecture', 'metal-finishing'];
+  return [];
+}
+
+function resourceRoutesFor(item = {}) {
+  if (Array.isArray(item.routes) && item.routes.length) return item.routes;
+  if (RESOURCE_ROUTE_OVERRIDES[item.title]) return RESOURCE_ROUTE_OVERRIDES[item.title];
+  return routeSlugsForResourceGroup(item.group || '');
+}
+
+function routeSlugsForArticle(article = {}) {
+  const label = String(article.categoryLabel || '');
+  if (/Lamination Tooling/i.test(label)) return ['lamination'];
+  if (/Furniture/i.test(label)) return ['furniture'];
+  if (/Flooring/i.test(label)) return ['flooring'];
+  if (/Decorative Steel/i.test(label)) return ['architecture', 'metal-finishing'];
+  if (/Industrial Tooling/i.test(label)) return ['pcb-ccl'];
+  if (/Panel Systems/i.test(label)) return ['furniture'];
+  return [];
+}
+
+function renderExploreDiscoveryCard(entry = {}) {
+  const routeChips = (entry.routeLabels || []).slice(0, 2).map((label) => `<span class="ui-meta-pill">${escHtml(label)}</span>`).join('');
+  return `<a href="${entry.href || '/explore/'}" class="explore-result-row" data-explore-card data-type="${escHtml(entry.type)}" data-routes="${escHtml((entry.routes || []).join(' '))}" data-search="${escHtml(entry.search || '')}"${entry.actionAttrs || ''}><div class="explore-result-row-media">${entry.media || `<div class="explore-card-media explore-card-media-icon">${glyph(entry.icon || 'search')}</div>`}</div><div class="explore-result-row-copy"><div class="explore-result-row-top"><span class="ui-meta-pill">${escHtml(entry.typeLabel || 'Entry')}</span>${routeChips}</div><div class="explore-result-row-title">${escHtml(entry.title || 'Untitled')}</div><div class="explore-result-row-desc">${escHtml(entry.copy || '')}</div><div class="explore-result-row-meta">${escHtml(entry.meta || '')}</div></div><div class="explore-result-row-action">${escHtml(entry.action || 'Open')} ${glyph('arrow', 'icon icon-sm')}</div></a>`;
+}
+
+function getExploreDiscoveryEntries() {
+  const entries = [];
+
+  rawProducts.products.forEach((product) => {
+    const meta = getMeta(product.id);
+    const routes = [...new Set(meta?.relatedApps || [])];
+    entries.push({
+      type: 'product',
+      typeLabel: 'Product sheet',
+      title: product.name,
+      copy: clampText(product.summary, 180),
+      meta: `${product.stage} · ${product.use}`,
+      href: productPageHref(product.id, { from: 'explore' }),
+      action: 'Open sheet',
+      routes,
+      routeLabels: routes.map((slug) => routeNameForSlug(slug)),
+      search: [product.name, product.summary, product.stage, product.use, ...(product.applications || []), ...(product.specs || [])].join(' '),
+      media: `<div class="explore-card-media"><img src="${product.image}" alt="${escHtml(product.name)}" loading="lazy"></div>`
+    });
+  });
+
+  applications.forEach((app) => {
+    const visual = getApplicationVisual(app.slug);
+    entries.push({
+      type: 'solution',
+      typeLabel: 'Solution',
+      title: app.name,
+      copy: clampText(app.overview, 180),
+      meta: `${app.products.length} linked product sheet${app.products.length === 1 ? '' : 's'}`,
+      href: getSolutionHref(app.slug),
+      action: 'Open system',
+      routes: [app.slug],
+      routeLabels: [app.name],
+      search: [app.name, app.overview, ...(app.considerations || []), ...(app.products || [])].join(' '),
+      media: `<div class="explore-card-media"><img src="${visual.image}" alt="${escHtml(visual.alt)}" loading="lazy"></div>`
+    });
+  });
+
+  resourceGroups.forEach((group) => {
+    group.items.forEach((item) => {
+      const resolved = { ...item, group: group.title };
+      const requestOnly = isRequestOnlyResource(resolved);
+      const title = resolved.title || 'Reference';
+      entries.push({
+        type: 'document',
+        typeLabel: 'Document',
+        title,
+        copy: clampText(resolved.desc || resolved.note || 'Reference document.', 180),
+        meta: `${group.title} · ${requestOnly ? 'Request file' : 'Downloadable PDF'}`,
+        href: requestOnly ? requestDocumentHref(resolved) : resourceHref(resolved),
+        action: requestOnly ? 'Request file' : 'Download PDF',
+        actionAttrs: requestOnly ? '' : ` target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(title)}"`,
+        routes: resourceRoutesFor(resolved),
+        routeLabels: resourceRoutesFor(resolved).map((slug) => routeNameForSlug(slug)),
+        search: [title, resolved.desc || '', resolved.note || '', group.title, requestOnly ? 'request file' : 'download pdf'].join(' '),
+        media: `<div class="explore-card-media explore-card-media-doc">${renderResourcePreviewThumb(resolved, { compact: false })}</div>`
+      });
+    });
+  });
+
+  rawInsights.editorial.forEach((article) => {
+    const routes = routeSlugsForArticle(article);
+    entries.push({
+      type: 'guide',
+      typeLabel: 'Guide',
+      title: article.title,
+      copy: clampText(article.excerpt, 180),
+      meta: `${article.categoryLabel} · ${article.type}`,
+      href: `/insights/${article.slug}/`,
+      action: 'Read guide',
+      routes,
+      routeLabels: routes.map((slug) => routeNameForSlug(slug)),
+      search: [article.title, article.excerpt, article.categoryLabel, article.type, ...(article.tags || [])].join(' '),
+      media: `<div class="explore-card-media explore-card-media-guide"><img src="${insightPreviewImage(article)}" alt="${escHtml(insightPreviewAlt(article))}" loading="lazy"></div>`
+    });
+  });
+
+  const order = { solution: 0, product: 1, document: 2, guide: 3 };
+  return entries.sort((a, b) => (order[a.type] ?? 99) - (order[b.type] ?? 99) || String(a.title).localeCompare(String(b.title)));
 }
 
 function articleStakeholderFallback(article) {
@@ -2477,6 +2903,7 @@ function renderSolutionProductCard(app, productId) {
   const meta = getMeta(productId);
   if (!product || !meta) return '';
   return `<article class="ui-stack-product-card">
+      <div class="ui-stack-product-media"><img src="${product.image}" alt="${escHtml(product.name)}" width="320" height="220" loading="eager" fetchpriority="high"></div>
       <div class="ui-stack-product-head">
           <div>
               <div class="ui-data-label">Product sheet</div>
@@ -2486,18 +2913,24 @@ function renderSolutionProductCard(app, productId) {
       </div>
       <p class="text-sm text-zinc-500 leading-relaxed mt-4">${escHtml(productRoleForSolution(app.slug, productId))}</p>
       <div class="ui-app-badges mt-5">${(product.applications || []).slice(0, 3).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
-      <div class="mt-6"><a href="/products/${meta.slug}/" class="btn-outline">Open product sheet</a></div>
+      <div class="mt-6"><a href="${productPageHref(productId, { from: 'solution', solution: app.slug })}" class="btn-outline">Open product sheet</a></div>
   </article>`;
 }
 
 function renderProductSolutionCard(productId, appSlug) {
   const app = applications.find((item) => item.slug === appSlug);
   if (!app) return '';
-  return `<article class="ui-note-card ui-note-card-solid">
-      <div class="ui-data-label">Solution system</div>
-      <div class="ui-data-value">${escHtml(app.name)}</div>
-      <p class="ui-data-note">${escHtml(productRoleForSolution(app.slug, productId))}</p>
-      <div class="mt-6"><a href="${getSolutionHref(app.slug)}" class="btn-outline">Explore system</a></div>
+  const routeModel = ROUTE_VISUAL_MODELS[app.slug] || {};
+  return `<article class="ui-note-card ui-note-card-solid product-solution-card product-solution-card-plain">
+      <div class="product-solution-icon">${glyph(applicationIconName(app.slug))}</div>
+      <div class="product-solution-body">
+          <div class="ui-data-label">Solution system</div>
+          <div class="ui-data-value">${escHtml(app.name)}</div>
+          <p class="ui-data-note">${escHtml(productRoleForSolution(app.slug, productId))}</p>
+          <div class="home-route-step-row home-route-step-row-compact">${(routeModel.process || []).slice(0, 3).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
+          <div class="ui-link-row mt-5">${(routeModel.outputs || []).slice(0, 2).map((item) => `<span class="ui-link-pill">${escHtml(item)}</span>`).join('')}</div>
+          <div class="mt-6"><a href="${getSolutionHref(app.slug)}" class="btn-outline">Explore system</a></div>
+      </div>
   </article>`;
 }
 
@@ -2606,10 +3039,9 @@ function renderInsightTechnicalAppendix(article, context) {
   const { product, meta } = context;
   const specRows = product.specs.slice(0, 4).map((spec, index) => specToRow(spec, index));
   const related = relatedSolutionsForProduct(article.category).slice(0, 3);
-  const routeArticles = rawInsights.generated.filter((item) => item.category === article.category && item.slug !== article.slug).slice(0, 4);
   const checklist = articleChecklistItems(article, context);
   const risks = articleRiskItems(article, context);
-  const downloads = meta.downloads.slice(0, 3).map((download) => downloadLink(download)).join('');
+  const downloads = meta.downloads.slice(0, 2).map((download) => downloadLink(download)).join('');
   return `
     <section class="article-appendix">
       <h2 id="technical-checkpoints-at-a-glance">Technical checkpoints at a glance</h2>
@@ -2632,11 +3064,11 @@ function renderInsightTechnicalAppendix(article, context) {
           <ul>${risks.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul>
         </article>
         <article class="article-panel">
-          <div class="article-panel-label">Use with these routes</div>
+          <div class="article-panel-label">Turn this into the next review</div>
           <div class="article-panel-chip-row">${related.length ? related.map((app) => `<a href="${getSolutionHref(app.slug)}" class="article-panel-chip">${escHtml(app.name)}</a>`).join('') : `<span class="article-panel-chip">${escHtml(article.categoryLabel)}</span>`}</div>
-          ${downloads ? `<div class="article-panel-links mt-4">${downloads}</div>` : `<p class="text-sm text-zinc-500 leading-relaxed mt-4">Reference files appear here when they support the route.</p>`}
+          <p class="text-sm text-zinc-500 leading-relaxed mt-4">Move into the product sheet or the linked solution view when this guide needs an actual reference file, quotation trail, or approval benchmark.</p>
+          ${downloads ? `<div class="article-panel-links mt-4">${downloads}</div>` : ''}
         </article>
-        ${routeArticles.length ? `<article class="article-panel"><div class="article-panel-label">Continue in this route</div><div class="article-panel-links">${routeArticles.map((item) => `<a href="/insights/${item.slug}/" class="article-toc-link">${escHtml(item.type)}</a>`).join('')}</div></article>` : ''}
       </div>
     </section>`;
 }
@@ -2861,9 +3293,9 @@ function generateHomepage() {
     bc.schema
   ];
 
-  const featuredDocs = getInstantResourceItems().slice(0, 4);
-  const featuredArticles = rawInsights.editorial.slice(0, 4);
-  const ecosystemCards = portfolioFamilies.map((family) => `<article class="ui-library-card ui-ecosystem-card"><div class="ui-kicker mb-3">${glyph(familyIconName(family.title), 'icon icon-sm')} ${escHtml(family.title)}</div><h3 class="ui-family-title" style="font-size:1.15rem;">${escHtml(family.highlights[0])}</h3><p class="text-sm text-zinc-500 leading-relaxed mt-3">${escHtml(family.intro)}</p><div class="ui-link-row mt-5">${family.products.slice(0, 4).map((productId) => productTextLink(productId)).filter(Boolean).join('')}</div></article>`).join('');
+  const featuredDocs = getInstantResourceItems().slice(0, 3);
+  const featuredArticles = rawInsights.editorial.slice(0, 3);
+  const routeCards = applications.map((app) => renderHomeRouteCard(app)).join('');
 
   return headTag({
     title: 'Moldart | Lamination tooling, panels, flooring & decorative stainless steel',
@@ -2876,17 +3308,16 @@ function generateHomepage() {
   }) + '\n' + nav('home') + `
 
     <main id="main-content" class="pt-16">
-        <section class="max-w mx-auto px py-20 fade-up">
+        <section class="max-w mx-auto px py-20 fade-up home-hero-section">
             <div class="ui-hero">
                 <div>
                     <div class="ui-kicker mb-6">${glyph('shield', 'icon icon-sm')} Since 1989 · Mumbai</div>
-                    <h1 class="page-heading page-heading-home mb-6">LAMINATION TOOLING, PANELS,<br>FLOORING, FURNITURE,<br>AND DECORATIVE STAINLESS STEEL.</h1>
-                    <p class="ui-intro">Moldart works from Mumbai across wood and steel programmes, aligning sourcing from India and China to the application, finish, and commercial route.</p>
+                    <h1 class="page-heading page-heading-home mb-6">PROGRAMMES FOR LAMINATES,<br>PANELS, FLOORING,<br>FURNITURE, AND DECORATIVE STAINLESS.</h1>
+                    <p class="ui-intro">Moldart helps buyers understand what the route makes, which products sit inside it, and which files matter before the next approval.</p>
                     <div class="ui-chip-row mt-8">
                         <span class="ui-chip">${glyph('clock', 'icon icon-sm')} Since 1989</span>
-                        <span class="ui-chip">${glyph('building', 'icon icon-sm')} Mumbai coordination</span>
+                        <span class="ui-chip">${glyph('building', 'icon icon-sm')} Mumbai-led coordination</span>
                         <span class="ui-chip">${glyph('route', 'icon icon-sm')} India + China sourcing</span>
-                        <span class="ui-chip">${glyph('message', 'icon icon-sm')} Requirement-led follow-up</span>
                     </div>
                     <div class="flex gap-4 flex-wrap mt-8 hero-cta-wrap">
                         <a href="/solutions/" class="btn-primary btn-lg">Explore Solutions →</a>
@@ -2895,82 +3326,71 @@ function generateHomepage() {
                 </div>
                 <div class="ui-panel ui-panel-soft home-hero-panel-compact">
                     <div class="ui-panel-inner">
-                        <div class="ui-kicker mb-4">${glyph('search', 'icon icon-sm')} Start from the shortest route</div>
+                        <div class="ui-kicker mb-4">${glyph('search', 'icon icon-sm')} Choose how to browse</div>
                         <div class="ui-metric-grid">
-                            ${renderMetricCard({ icon: 'search', label: 'Explore', value: 'Start here', note: 'Use the search-led route when you want the fastest jump into the right page.' })}
-                            ${renderMetricCard({ icon: 'compass', label: 'Solutions', value: applications.length, note: 'Application-led programme views with the product stack already attached.', animate: true })}
-                            ${renderMetricCard({ icon: 'book', label: 'Resources', value: getTotalResourceItems(), note: 'Downloadable reference decks and product documents in one library.', animate: true })}
-                            ${renderMetricCard({ icon: 'spark', label: 'Insights', value: rawInsights.articles.length, note: 'Guides and technical notes built to support buyer decisions.', animate: true })}
+                            ${renderMetricCard({ icon: 'search', label: 'Explore', value: 'Search-first', note: 'Best when you already know the product, application, or keyword.' })}
+                            ${renderMetricCard({ icon: 'compass', label: 'Solutions', value: applications.length, note: 'Best when the system matters more than the individual item name.' })}
+                            ${renderMetricCard({ icon: 'book', label: 'Resources', value: getTotalResourceItems(), note: 'Reference decks, catalogues, and product files in one place.' })}
+                            ${renderMetricCard({ icon: 'spark', label: 'Insights', value: rawInsights.editorial.length, note: 'Edited guides that make the next technical or buying review clearer.' })}
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="max-w mx-auto px pb-20 fade-up">
+        <section class="max-w mx-auto px py-20 fade-up home-map-section">
             <div class="ui-section-head mb-10">
                 <div class="ui-kicker mb-4">${glyph('globe', 'icon icon-sm')} Programme geography</div>
                 <h2 class="ui-section-title">A CLEANER VIEW OF THE ROUTE.</h2>
-                <p class="ui-section-subtitle">The map stays deliberately simple: Mumbai is shown separately from India, India and China remain the sourcing anchors, and the wider lanes stay illustrative rather than overstated.</p>
+                <p class="ui-section-subtitle">Use the map as orientation only. Mumbai is the operating base, India and China are the sourcing anchors, and the wider lanes stay illustrative.</p>
             </div>
-            <div class="ui-world-stage">
+            <div class="home-map-shell">
                 <div class="ui-world-stage-map">${renderHeroNetworkMap()}</div>
-                <aside class="ui-world-stage-copy">
-                    <div class="ui-map-caption">Mumbai is the operating base. India and China remain the sourcing anchors. The wider lines describe indicative programme geography, not sales-office coverage.</div>
-                    <div class="ui-world-lane-grid">
-                        <article class="ui-world-lane-card"><div class="ui-world-lane-label">Operating base</div><strong>Mumbai</strong><p>Commercial coordination, brief handling, and routing stay centred here.</p></article>
-                        <article class="ui-world-lane-card"><div class="ui-world-lane-label">Primary anchor</div><strong>India</strong><p>Shown separately from Mumbai so the map does not confuse the city with the country route.</p></article>
-                        <article class="ui-world-lane-card"><div class="ui-world-lane-label">Secondary anchor</div><strong>China</strong><p>Used where the category, finish route, or commercial path calls for it.</p></article>
-                        <article class="ui-world-lane-card"><div class="ui-world-lane-label">Wider lanes</div><strong>Six-region orientation</strong><p>North America, South America, Europe, Africa, Asia, and Oceania stay illustrative only.</p></article>
+                <div class="home-map-copy home-map-copy-minimal">
+                    <p class="home-map-note">Mumbai is the operating base. India and China stay as the sourcing anchors. The wider lanes are there only to place the route in context.</p>
+                    <div class="home-map-legend-row">
+                        <span class="home-map-legend-pill is-primary"><strong>Mumbai</strong><span>Operating base</span></span>
+                        <span class="home-map-legend-pill"><strong>India + China</strong><span>Primary sourcing anchors</span></span>
+                        <span class="home-map-legend-pill"><strong>Illustrative lanes</strong><span>Route context only</span></span>
                     </div>
-                    <div class="ui-world-map-legend mt-4">
-                        <span class="ui-world-map-legend-item is-primary"><strong>Mumbai</strong><span>Operating base and commercial coordination</span></span>
-                        <span class="ui-world-map-legend-item"><strong>India</strong><span>Shown separately from Mumbai inside the Asia route</span></span>
-                        <span class="ui-world-map-legend-item"><strong>China</strong><span>Second sourcing anchor where relevant</span></span>
-                        <span class="ui-world-map-legend-item"><strong>Illustrative lanes</strong><span>Route direction only, not office claims</span></span>
-                    </div>
-                    <div class="ui-world-map-note mt-3">Six-region orientation only. The wider lines stay illustrative and are used only to explain route context around Mumbai, India, and China.</div>
-                </aside>
+                </div>
             </div>
         </section>
 
-        <section id="product-ecosystems" class="bg-zinc-50 border-y border-zinc-100 fade-up">
+        <section id="where-moldart-fits" class="bg-zinc-50 border-y border-zinc-100 fade-up">
             <div class="max-w mx-auto px py-20">
                 <div class="ui-section-head mb-12">
-                    <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Product ecosystems</div>
-                    <h2 class="ui-section-title">START WITH THE CATEGORY,<br>THEN MOVE INTO THE PROGRAMME.</h2>
-                    <p class="ui-section-subtitle">Use this preview to understand the families Moldart works across. Open Solutions for the full application views, product stacks, and next-step references.</p>
+                    <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} What Moldart helps make</div>
+                    <h2 class="ui-section-title">SEE THE OUTPUT,<br>THEN OPEN THE RIGHT ROUTE.</h2>
+                    <p class="ui-section-subtitle">Each route uses one compact diagram, one product strip, and one output set so the explanation stays even, minimal, and easier to compare.</p>
                 </div>
-                <div class="ui-library-grid ui-ecosystem-grid">${ecosystemCards}</div>
-                <div class="mt-10"><a href="/solutions/" class="btn-outline">Open all solutions</a></div>
+                <div class="home-route-grid">${routeCards}</div>
             </div>
         </section>
 
         <section class="max-w mx-auto px py-20 border-t border-zinc-100 fade-up">
             <div class="ui-section-head mb-10">
                 <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Decision tools</div>
-                <h2 class="ui-section-title">FILES FOR DOWNLOAD,<br>GUIDES FOR DECISIONS.</h2>
-                <p class="ui-section-subtitle">Resources stays document-first and Insights stays article-first. They are kept separate so the home page stays useful without repeating the same route twice.</p>
+                <h2 class="ui-section-title">FILES, GUIDES,<br>AND NEXT STEPS.</h2>
+                <p class="ui-section-subtitle">Keep documents and explanation distinct: use Resources for files, Insights for guidance, and Solutions when the full application system matters.</p>
             </div>
-            <div class="ui-library-grid">
-                <article class="ui-library-card">
-                    <div class="ui-kicker mb-2">${glyph('file', 'icon icon-sm')} Reference downloads</div>
-                    <div class="ui-list-compact mt-4">
-                        ${featuredDocs.map((item) => `<div class="ui-list-row"><div class="ui-list-copy"><div class="ui-list-title">${escHtml(item.title)}</div><div class="ui-list-meta">${escHtml(item.group)} · ${escHtml(item.desc)}</div></div><a href="${resourceHref(item)}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(item.title)}" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`).join('')}
-                    </div>
+            <div class="ui-library-grid ui-library-grid-balanced">
+                <article class="ui-library-card ui-library-card-collection">
+                    <div class="ui-kicker mb-3">${glyph('file', 'icon icon-sm')} Reference downloads</div>
+                    <p class="text-sm text-zinc-500 leading-relaxed">Use these when the route is already known and the next step is checking the right collection, finish deck, or product file.</p>
+                    <div class="resource-library-list resource-library-list-compact mt-6">${featuredDocs.map((item) => renderResourceDocumentCard(item, { compact: true, showGroup: true, showNote: false })).join('')}</div>
                     <div class="mt-8"><a href="/resources/" class="btn-outline">Open Resources</a></div>
                 </article>
-                <article class="ui-library-card">
-                    <div class="ui-kicker mb-2">${glyph('spark', 'icon icon-sm')} Editorial guides</div>
-                    <div class="ui-list-compact mt-4">
-                        ${featuredArticles.map((article) => renderHomeInsightRow(article)).join('')}
-                    </div>
+                <article class="ui-library-card ui-library-card-collection">
+                    <div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Editorial guides</div>
+                    <p class="text-sm text-zinc-500 leading-relaxed">Use these when the team still needs better language around fit, approval logic, receiving checks, or route comparisons.</p>
+                    <div class="ui-list-compact mt-6">${featuredArticles.map((article) => renderHomeInsightRow(article)).join('')}</div>
                     <div class="mt-8"><a href="/insights/" class="btn-outline">Open Insights</a></div>
                 </article>
             </div>
         </section>
 
-        ${ctaBlock('READY TO START<br>FROM THE RIGHT ROUTE?', 'Use Solutions for the programme view, open references when needed, or send the requirement directly for review.', 'Explore Solutions', '/solutions/', 'Share your requirement', '/contact/')}
+        ${ctaBlock('READY TO START<br>FROM THE RIGHT ROUTE?', 'Use Solutions for the application view, Explore when you need search first, or send the requirement directly for review.', 'Explore Solutions', '/solutions/', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
@@ -2985,12 +3405,35 @@ function generateExplorePage() {
     bc.schema
   ];
 
-  const quickRoutes = [
-    { href: '/solutions/', title: 'Solutions', detail: 'Combined system views with the relevant product stack already attached.', meta: `${applications.length} systems`, icon: 'compass' },
-    { href: '/explore/#product-directory-root', title: 'Product sheets', detail: 'Open the individual product pages when you already know the category.', meta: `${rawProducts.products.length} sheets`, icon: 'layers' },
-    { href: '/resources/', title: 'Resources', detail: 'Document-first discovery for catalogues, finishes, and reference PDFs.', meta: `${getTotalResourceItems()} references`, icon: 'book' },
-    { href: '/insights/', title: 'Technical guides', detail: 'Longer-form guidance for buyers, technical teams, and project stakeholders.', meta: `${rawInsights.articles.length} guides`, icon: 'spark' }
-  ];
+  const exploreEntries = getExploreDiscoveryEntries();
+  const typeCounts = {
+    product: exploreEntries.filter((entry) => entry.type === 'product').length,
+    solution: exploreEntries.filter((entry) => entry.type === 'solution').length,
+    document: exploreEntries.filter((entry) => entry.type === 'document').length,
+    guide: exploreEntries.filter((entry) => entry.type === 'guide').length
+  };
+  const routeFilters = ['all', ...new Set(exploreEntries.flatMap((entry) => entry.routes || []))];
+  const typeButtons = [
+    ['all', `All ${exploreEntries.length}`],
+    ['product', `Products ${typeCounts.product}`],
+    ['solution', `Solutions ${typeCounts.solution}`],
+    ['guide', `Guides ${typeCounts.guide}`],
+    ['document', `Documents ${typeCounts.document}`]
+  ].map(([value, label], index) => `<button type="button" class="explore-filter-chip${index === 0 ? ' is-active' : ''}" data-explore-type="${value}">${escHtml(label)}</button>`).join('');
+  const routeButtons = routeFilters.map((slug, index) => `<button type="button" class="explore-filter-chip${index === 0 ? ' is-active' : ''}" data-explore-route="${slug}">${escHtml(slug === 'all' ? 'All routes' : routeNameForSlug(slug))}</button>`).join('');
+  const exploreTypeMeta = {
+    solution: { title: 'Solutions', copy: 'Application-led system pages that already group the relevant product stack.' },
+    product: { title: 'Product sheets', copy: 'Item-level reference pages when the route is known and the product check is next.' },
+    document: { title: 'Documents', copy: 'Catalogues, finish decks, and downloadable files tied to the current route.' },
+    guide: { title: 'Guides', copy: 'Editorial notes for approvals, fit, receiving checks, and route comparison.' }
+  };
+  const groupedExploreHtml = ['solution', 'product', 'document', 'guide'].map((type) => {
+    const items = exploreEntries.filter((entry) => entry.type === type);
+    if (!items.length) return '';
+    const meta = exploreTypeMeta[type];
+    return `<section class="explore-results-group" data-explore-group data-group-type="${type}"><div class="explore-results-group-head"><div><h2 class="explore-results-group-title">${escHtml(meta.title)}</h2><p class="explore-results-group-copy">${escHtml(meta.copy)}</p></div><div class="explore-results-group-count">${items.length}</div></div><div class="explore-results-stack">${items.map((entry) => renderExploreDiscoveryCard(entry)).join('')}</div></section>`;
+  }).join('');
+  const directoryScript = `<script>(function(){var root=document.querySelector('[data-explore-directory]');if(!root)return;var input=root.querySelector('[data-explore-search]');var summary=root.querySelector('[data-explore-summary]');var empty=root.querySelector('[data-explore-empty]');var cards=Array.from(root.querySelectorAll('[data-explore-card]'));var groups=Array.from(root.querySelectorAll('[data-explore-group]'));var params=new URLSearchParams(window.location.search);var state={q:params.get('q')||'',type:params.get('type')||'all',route:params.get('route')||'all'};if(!root.querySelector('[data-explore-type="'+state.type+'"]'))state.type='all';if(!root.querySelector('[data-explore-route="'+state.route+'"]'))state.route='all';if(input)input.value=state.q;cards.forEach(function(card){if(!card.dataset.display){var display=window.getComputedStyle(card).display;card.dataset.display=display&&display!=='none'?display:'flex';}});function setVisible(node, show){node.hidden=!show;node.style.display=show?(node.dataset.display||'block'):'none';}function updateButtons(){root.querySelectorAll('[data-explore-type]').forEach(function(btn){btn.classList.toggle('is-active', btn.getAttribute('data-explore-type')===state.type);});root.querySelectorAll('[data-explore-route]').forEach(function(btn){btn.classList.toggle('is-active', btn.getAttribute('data-explore-route')===state.route);});}function apply(){var q=(state.q||'').trim().toLowerCase();var visible=0;cards.forEach(function(card){var type=(card.getAttribute('data-type')||'').trim();var routes=(card.getAttribute('data-routes')||'').split(/\\s+/).map(function(value){return value.trim();}).filter(Boolean);var haystack=(card.getAttribute('data-search')||'').toLowerCase();var typeOk=state.type==='all'||type===state.type;var routeOk=state.route==='all'||routes.indexOf(state.route)!==-1;var searchOk=!q||haystack.indexOf(q)!==-1;var show=typeOk&&routeOk&&searchOk;setVisible(card, show);if(show)visible+=1;});groups.forEach(function(group){var groupCards=Array.from(group.querySelectorAll('[data-explore-card]'));var hasVisible=groupCards.some(function(card){return !card.hidden;});group.hidden=!hasVisible;group.style.display=hasVisible?'grid':'none';});if(summary)summary.textContent=visible+' of '+cards.length+' visible';if(empty)empty.hidden=visible!==0;updateButtons();var next=new URLSearchParams();if(state.q)next.set('q',state.q);if(state.type&&state.type!=='all')next.set('type',state.type);if(state.route&&state.route!=='all')next.set('route',state.route);var query=next.toString();history.replaceState({},'',window.location.pathname+(query?'?'+query:''));}if(input)input.addEventListener('input',function(){state.q=input.value||'';apply();});root.addEventListener('click',function(event){var typeBtn=event.target.closest('[data-explore-type]');var routeBtn=event.target.closest('[data-explore-route]');if(typeBtn){state.type=typeBtn.getAttribute('data-explore-type')||'all';apply();}if(routeBtn){state.route=routeBtn.getAttribute('data-explore-route')||'all';apply();}});apply();})();</script>`;
 
   return headTag({
     title: 'Explore Moldart | Search solutions, product sheets, and guides',
@@ -2999,7 +3442,7 @@ function generateExplorePage() {
     ogImage: siteSocialPosterRelativePath('moldart-home'),
     ogImageAlt: 'Moldart discovery overview',
     schemas,
-    prefetch: ['/data/product-directory.json', '/resources/', '/solutions/']
+    prefetch: ['/resources/', '/solutions/', '/insights/']
   }) + '\n' + nav('explore') + `
 
     <main id="main-content" class="pt-16">
@@ -3008,37 +3451,47 @@ function generateExplorePage() {
             <div class="ui-page-hero">
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('search', 'icon icon-sm')} Search the full portfolio</div>
-                    <h1 class="ui-section-title">SEARCH SOLUTIONS,<br>PRODUCT SHEETS, AND GUIDES.</h1>
-                    <p class="ui-section-subtitle">Use Explore when you do not care which page type the answer lives on. Search by product, application, spec language, or category and jump directly to the right sheet.</p>
+                    <h1 class="ui-section-title">SEARCH PRODUCTS,<br>SOLUTIONS, GUIDES,<br>AND DOCUMENTS.</h1>
+                    <p class="ui-section-subtitle">Explore is the master discovery layer. Filter by result type, route, and keyword when you want one place to shortlist the right sheet, guide, or document without losing the dedicated page behind it.</p>
                     <div class="ui-chip-row mt-8">
                         <span class="ui-chip">${glyph('search', 'icon icon-sm')} Search on-page</span>
+                        <span class="ui-chip">${glyph('layers', 'icon icon-sm')} Typed results</span>
                         <span class="ui-chip">${glyph('spark', 'icon icon-sm')} Ctrl/⌘ K palette</span>
-                        <span class="ui-chip">${glyph('layers', 'icon icon-sm')} Solutions + sheets + guides</span>
                     </div>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-metric-grid">
-                        ${renderMetricCard({ icon: 'compass', label: 'Solutions', value: applications.length, note: 'System views that already include the relevant product stack.', animate: true })}
-                        ${renderMetricCard({ icon: 'layers', label: 'Product sheets', value: rawProducts.products.length, note: 'Reference-led pages for individual products and categories.', animate: true })}
-                        ${renderMetricCard({ icon: 'book', label: 'Resources', value: getTotalResourceItems(), note: 'One library for catalogues, finish decks, and PDFs.', animate: true })}
-                        ${renderMetricCard({ icon: 'spark', label: 'Guides', value: rawInsights.articles.length, note: 'Technical guides covering product, quality, and procurement decisions.', animate: true })}
+                        ${renderMetricCard({ icon: 'compass', label: 'Solutions', value: typeCounts.solution, note: 'System views that already include the relevant product stack.' })}
+                        ${renderMetricCard({ icon: 'layers', label: 'Product sheets', value: typeCounts.product, note: 'Reference-led pages for individual products and categories.' })}
+                        ${renderMetricCard({ icon: 'book', label: 'Documents', value: typeCounts.document, note: 'Catalogues, finish decks, and downloadable reference files.' })}
+                        ${renderMetricCard({ icon: 'spark', label: 'Guides', value: typeCounts.guide, note: 'Edited insights covering approvals, fit, quality, and buying decisions.' })}
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="max-w mx-auto px py-16">
-            <div id="product-directory-root"></div>
-        </section>
-
-        <section class="bg-zinc-50 border-y border-zinc-100 fade-up">
-            <div class="max-w mx-auto px py-20">
-                <div class="ui-section-head mb-10">
-                    <div class="ui-kicker mb-4">${glyph('compass', 'icon icon-sm')} Quick routes</div>
-                    <h2 class="ui-section-title">FOUR FAST LANES.</h2>
-                    <p class="ui-section-subtitle">If you already know how you want to browse, jump directly into the right route below.</p>
+            <div class="explore-shell" data-explore-directory>
+                <div class="explore-toolbar">
+                    <div>
+                        <div class="ui-kicker mb-3">${glyph('map', 'icon icon-sm')} Typed discovery</div>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Use type filters when you already know the kind of answer you want. Use route filters when the requirement still belongs to a broader programme.</p>
+                    </div>
+                    <div class="explore-summary" data-explore-summary>${exploreEntries.length} of ${exploreEntries.length} visible</div>
                 </div>
-                <div class="ui-action-grid">${quickRoutes.map((card) => renderActionCard(card)).join('')}</div>
+                <div class="explore-controls">
+                    <input type="search" class="ui-directory-search explore-search-input" data-explore-search placeholder="Search products, systems, guides, documents, specs, or application terms..." aria-label="Search explore results">
+                    <div class="explore-filter-group">
+                        <div class="explore-filter-label">Type</div>
+                        <div class="explore-filter-row">${typeButtons}</div>
+                    </div>
+                    <div class="explore-filter-group">
+                        <div class="explore-filter-label">Route</div>
+                        <div class="explore-filter-row">${routeButtons}</div>
+                    </div>
+                </div>
+                <div class="explore-results-list">${groupedExploreHtml}</div>
+                <div class="explore-empty" data-explore-empty hidden>No result matches this filter yet. Try a broader keyword, switch the route, or return to all result types.</div>
             </div>
         </section>
 
@@ -3046,6 +3499,7 @@ function generateExplorePage() {
     </main>
 
     ${footer()}
+    ${directoryScript}
     ${closingElements()}`;
 }
 
@@ -3135,6 +3589,7 @@ function generateProductPage(productId) {
   const relatedSolutions = m.relatedApps.map((slug) => applications.find((item) => item.slug === slug)).filter(Boolean);
   const relatedSolutionPills = relatedSolutions.map((app) => `<a href="${getSolutionHref(app.slug)}" class="ui-link-pill">${escHtml(app.name)}</a>`).join('');
   const relatedSolutionCards = relatedSolutions.map((app) => renderProductSolutionCard(productId, app.slug)).join('');
+  const referenceCards = m.downloads.slice(0, 3).map((download) => renderResourceDocumentCard(download, { compact: true, showGroup: false, showNote: true })).join('');
 
   return headTag({
     title: m.seoTitle,
@@ -3148,6 +3603,7 @@ function generateProductPage(productId) {
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             ${bc.html}
+            ${renderContextualReturn(relatedSolutions)}
             <div class="ui-product-hero">
                 <div class="ui-product-media overflow-hidden">
                     <picture>
@@ -3202,15 +3658,15 @@ function generateProductPage(productId) {
                 <div class="ui-stack-card">
                     <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Reference pack</div>
                     <p class="text-sm text-zinc-500 leading-relaxed">Use the related documents as the first filter, then confirm the final specification against the real programme.</p>
-                    <div class="flex flex-col gap-2 mt-6">${m.downloads.slice(0, 3).map((download) => downloadLink(download)).join('')}</div>
+                    <div class="resource-library-list resource-library-list-compact mt-6">${referenceCards}</div>
                     ${relatedSolutionPills ? `<div class="mt-8"><div class="ui-data-label mb-3">Used in systems</div><div class="ui-related-row">${relatedSolutionPills}</div></div>` : ''}
                 </div>
             </div>
         </section>
 
-        ${relatedSolutionCards ? `<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up"><div class="ui-section-head mb-8"><div class="ui-kicker mb-4">${glyph('compass', 'icon icon-sm')} System fit</div><h2 class="ui-section-title">WHERE THIS PRODUCT FITS.</h2><p class="ui-section-subtitle">Use the solution views below when the requirement is still being narrowed at the system level.</p></div><div class="ui-library-grid">${relatedSolutionCards}</div></section>` : ''}
+        ${relatedSolutionCards ? `<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up"><div class="ui-section-head mb-8"><div class="ui-kicker mb-4">${glyph('compass', 'icon icon-sm')} System fit</div><h2 class="ui-section-title">SEE WHERE THIS PRODUCT FITS.</h2><p class="ui-section-subtitle">Use the solution views below when the requirement is still being narrowed at the system level and the product sheet alone is not enough.</p></div><div class="ui-library-grid">${relatedSolutionCards}</div></section>` : ''}
 
-        ${ctaBlock(`NEED ${escHtml(p.name.toUpperCase())}<br>SPECS OR PRICING?`, 'Share the application, finish expectation, quantity context, and timing for a faster recommendation.', 'Share your requirement', '/contact/', 'Back to Solutions', '/solutions/')}
+        ${ctaBlock(`NEED ${escHtml(p.name.toUpperCase())}<br>SPECS OR PRICING?`, 'Share the application, finish expectation, quantity context, and timing for a faster recommendation.', 'Share your requirement', '/contact/', 'Explore Solutions', '/solutions/')}
     </main>
 
     ${footer()}
@@ -3233,16 +3689,10 @@ function generateSolutionPage(app) {
   const flowItems = solutionFlowFor(app.slug).map((item, index) => `<div class="ui-flow-pill"><div class="ui-flow-step">${String(index + 1).padStart(2, '0')}</div><div class="ui-flow-title">${escHtml(item.title)}</div><p class="ui-flow-copy">${escHtml(item.detail)}</p></div>`).join('');
   const stackCards = app.products.map((productId) => renderSolutionProductCard(app, productId)).join('');
   const guideCards = relatedInsightsForSolution(app, 3).map((article) => `<div class="ui-list-row"><div class="ui-list-copy"><div class="ui-list-title">${escHtml(article.title)}</div><div class="ui-list-meta">${escHtml(article.categoryLabel)} · ${escHtml(article.type)}</div></div><a href="/insights/${article.slug}/" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a></div>`).join('');
-  const downloads = app.downloads.map((download) => downloadLink(download)).join('');
+  const referenceCards = app.downloads.slice(0, 3).map((download) => renderResourceDocumentCard(download, { compact: true, showGroup: false, showNote: true })).join('');
   const audience = solutionAudienceFor(app.slug).map((item) => `<span>${escHtml(item)}</span>`).join('');
   const visual = getApplicationVisual(app.slug);
-  const heroVisualHtml = app.products.length > 1
-    ? `${renderApplicationMosaic(app)}<div class="ui-map-caption">Representative products commonly combined in this system.</div>`
-    : `<picture>
-                            <source srcset="${visual.image.replace('.webp', '.avif')}" type="image/avif">
-                            <img src="${visual.image}" alt="${escHtml(visual.alt)}" width="900" height="600" loading="eager" class="w-full h-full object-cover">
-                        </picture>
-                        <div class="ui-map-caption">Reference product view for this system.</div>`;
+  const heroVisualHtml = renderSolutionHeroDiagram(app);
 
   return headTag({
     title: `${app.name} Solution | Moldart`,
@@ -3275,6 +3725,8 @@ function generateSolutionPage(app) {
             </div>
         </section>
 
+        ${renderSolutionStoryBand(app)}
+
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
             <div class="ui-section-head mb-8">
                 <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Relevant product stack</div>
@@ -3287,7 +3739,7 @@ function generateSolutionPage(app) {
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
             <div class="ui-spotlight">
                 <div class="ui-stack-card">
-                    <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Decision flow</div>
+                    <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Review sequence</div>
                     <div class="ui-flow-band">${flowItems}</div>
                 </div>
                 <div class="ui-stack-card">
@@ -3305,12 +3757,12 @@ function generateSolutionPage(app) {
                 </article>
                 <article class="ui-library-card">
                     <div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} Reference downloads</div>
-                    <div class="flex flex-col gap-2">${downloads}</div>
+                    <div class="resource-library-list resource-library-list-compact">${referenceCards}</div>
                 </article>
             </div>
         </section>
 
-        ${ctaBlock(`READY TO DISCUSS<br>${escHtml(app.name.toUpperCase())}?`, 'Share the requirement, finish logic, quantity, and timing and Moldart can align the right system and product sheet path directly.', 'Share your requirement', '/contact/', 'Back to Solutions', '/solutions/')}
+        ${ctaBlock(`READY TO DISCUSS<br>${escHtml(app.name.toUpperCase())}?`, 'Share the requirement, finish logic, quantity, and timing and Moldart can align the right system and product sheet path directly.', 'Share your requirement', '/contact/', 'Explore Solutions', '/solutions/')}
     </main>
 
     ${footer()}
@@ -3344,8 +3796,8 @@ function generateResourcesPage() {
                   <span class="ui-resource-status${requestCount ? ' is-request' : ''}">${requestCount ? `${requestCount} request-only` : 'All downloadable'}</span>
               </div>
           </div>
-          <div class="ui-resource-list mt-6">
-              ${group.items.map((item) => `<div class="ui-list-row${isRequestOnlyResource(item) ? ' is-request' : ''}"><div class="ui-list-copy"><div class="ui-list-title-row"><div class="ui-list-title">${escHtml(item.title)}</div><span class="ui-resource-item-badge${isRequestOnlyResource(item) ? ' is-request' : ''}">${isRequestOnlyResource(item) ? 'Request file' : 'Download PDF'}</span></div><div class="ui-list-meta">${escHtml(item.desc)}</div>${isRequestOnlyResource(item) && item.note ? `<div class="ui-list-note">${escHtml(item.note)}</div>` : ''}</div>${isRequestOnlyResource(item) ? `<a href="${requestDocumentHref(item)}" class="ui-list-link ui-list-link-request">${glyph('message', 'icon icon-sm')}</a>` : `<a href="${resourceHref(item)}" target="_blank" rel="noopener noreferrer" download data-gated-download="true" data-download-title="${escHtml(item.title)}" class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</a>`}</div>`).join('')}
+          <div class="resource-library-list mt-6">
+              ${group.items.map((item) => renderResourceDocumentCard({ ...item, group: group.title }, { compact: false, showGroup: false, showNote: true })).join('')}
           </div>
       </article>`;
   }).join('\n');
@@ -3366,13 +3818,13 @@ function generateResourcesPage() {
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Reference library</div>
                     <h1 class="ui-section-title">RESOURCES.</h1>
-                    <p class="ui-section-subtitle">Browse the full reference library in one place. All listed documents open as downloadable PDFs after one short form unlock on the device.</p>
+                    <p class="ui-section-subtitle">Browse the full reference library in one place. Each group stays organized by route so the right file is easier to spot before download.</p>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-metric-grid">
-                        ${renderMetricCard({ icon: 'file', label: 'Documents', value: getTotalResourceItems(), note: 'Every reference currently available in the public library.', animate: true })}
-                        ${renderMetricCard({ icon: 'arrow', label: 'Downloadable PDFs', value: getInstantResourceItems().length, note: 'All listed files now open as downloadable documents.', animate: true })}
-                        ${renderMetricCard({ icon: 'layers', label: 'Sections', value: resourceGroups.length, note: 'Grouped by buying route instead of by file name alone.', animate: true })}
+                        ${renderMetricCard({ icon: 'file', label: 'Documents', value: getTotalResourceItems(), note: 'Every reference currently available in the public library.' })}
+                        ${renderMetricCard({ icon: 'arrow', label: 'Downloadable PDFs', value: getTotalResourceItems(), note: 'All listed files now open as downloadable documents.' })}
+                        ${renderMetricCard({ icon: 'layers', label: 'Sections', value: resourceGroups.length, note: 'Grouped by buying route instead of by file name alone.' })}
                         ${renderMetricCard({ icon: 'clock', label: 'Unlock once', value: '1 form', note: 'Share details once and this browser keeps the full library unlocked.' })}
                     </div>
                 </div>
@@ -3585,13 +4037,13 @@ function generateContactPage() {
                         <div class="font-display font-bold text-xl tracking-wider mb-3">MUMBAI</div>
                         <p class="text-sm text-zinc-500 leading-relaxed font-light mb-4">#7, Building No. 1, New Sonal Link Industrial Estate,<br>Link Road, Malad (West), Mumbai — 400064<br>Maharashtra, India</p>
                         <div class="flex flex-col gap-2 mb-4">
-                            <a href="${whatsappHref(WHATSAPP_PRIMARY.number)}" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-700 font-medium">Primary WhatsApp: ${WHATSAPP_PRIMARY.display}</a>
-                            <a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-700 font-medium">Alternate WhatsApp: ${WHATSAPP_SECONDARY.display}</a>
+                            <a href="${whatsappHref(WHATSAPP_PRIMARY.number)}" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-700 font-medium">WhatsApp · ${WHATSAPP_PRIMARY.display}</a>
+                            <a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-700 font-medium">WhatsApp · ${WHATSAPP_SECONDARY.display}</a>
                             <a href="mailto:info@moldartindia.com" class="link-line text-sm text-zinc-700 font-medium">info@moldartindia.com</a>
                         </div>
                         <div class="contact-social-row">
-                            <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip">${glyph('linkedin-brand', 'icon icon-sm')} Moldart on LinkedIn</a>
-                            <a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi</a>
+                            <a href="${COMPANY_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip">${glyph('linkedin-brand', 'icon icon-sm')} Company LinkedIn</a>
+                            <a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip is-personal">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi on LinkedIn</a>
                         </div>
                     </article>
                 </div>
@@ -3695,7 +4147,7 @@ function generateAboutPage() {
                     <div class="ui-kicker mb-3">${glyph('building', 'icon icon-sm')} Operating base</div>
                     <h3 class="ui-family-title" style="font-size:1.2rem;">Mumbai remains the primary coordination point.</h3>
                     <p class="text-sm text-zinc-500 leading-relaxed mt-3">#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West), Mumbai — 400064, Maharashtra, India.</p>
-                    <div class="ui-link-row mt-5"><a href="${whatsappHref(WHATSAPP_PRIMARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-link-pill">Primary WhatsApp ${WHATSAPP_PRIMARY.display}</a><a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-link-pill">Alternate WhatsApp ${WHATSAPP_SECONDARY.display}</a><a href="mailto:info@moldartindia.com" class="ui-link-pill">info@moldartindia.com</a></div>
+                    <div class="ui-link-row mt-5"><a href="${whatsappHref(WHATSAPP_PRIMARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-link-pill">WhatsApp ${WHATSAPP_PRIMARY.display}</a><a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-link-pill">WhatsApp ${WHATSAPP_SECONDARY.display}</a><a href="mailto:info@moldartindia.com" class="ui-link-pill">info@moldartindia.com</a></div>
                 </article>
                 <article class="ui-library-card">
                     <div class="ui-kicker mb-3">${glyph('route', 'icon icon-sm')} How Moldart works</div>
@@ -3727,7 +4179,7 @@ function generateAboutPage() {
                         <h3 class="ui-family-title">MR. YASH DOSHI</h3>
                         <div class="ui-proof-label mb-3">Partner</div>
                         <p class="text-sm text-zinc-500 leading-relaxed font-light">Partner working across category development, customer coordination, and programme follow-through.</p>
-                        <div class="mt-4"><a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="site-inline-link">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi on LinkedIn</a></div>
+                        <div class="mt-5 contact-social-row"><a href="${YASH_LINKEDIN}" target="_blank" rel="noopener noreferrer" class="contact-social-chip is-personal">${glyph('linkedin-brand', 'icon icon-sm')} Yash Doshi on LinkedIn</a></div>
                     </div>
                 </article>
             </div>
@@ -4062,7 +4514,7 @@ function generateInsightsHub() {
   const generatedArticles = rawInsights.generated;
   const categories = [...new Set(editorialArticles.map((a) => a.categoryLabel))];
   const [featuredArticle, ...otherArticles] = editorialArticles;
-  const productRouteCount = [...new Set(generatedArticles.map((article) => article.category))].length;
+  const productRouteCount = generatedArticles.length;
   const researchLedCount = editorialArticles.filter((article) => /Yash Doshi/i.test(article.author || '')).length;
 
   const schemas = [
@@ -4070,42 +4522,17 @@ function generateInsightsHub() {
     bc.schema
   ];
 
-  const topicMeta = {
-    'Lamination Tooling': { icon: 'layers', intro: 'Press plates, press pads, cylinders, and decor-paper decisions for running laminate lines.' },
-    'Industrial Tooling': { icon: 'shield', intro: 'Tolerance-led guidance for PCB, CCL, and other more demanding technical laminate routes.' },
-    'Decorative Steel': { icon: 'spark', intro: 'Grades, finish approvals, profiles, and decorative stainless programmes for interiors.' },
-    'Panel Systems': { icon: 'factory', intro: 'Substrate, panel, and formwork notes for plywood, fiberboard, OSB, and particleboard.' },
-    'Flooring Systems': { icon: 'compass', intro: 'Wear class, core build, and accessory coordination for flooring-led programmes.' },
-    'Furniture Programmes': { icon: 'building', intro: 'Procurement, briefing, and approval guidance for ready-made and custom furniture work.' }
-  };
-
   const filterBtns = `<div class="insights-filter-row"><button class="insights-filter-btn is-active" data-filter="all">All</button>${categories.map((c) => `<button class="insights-filter-btn" data-filter="${c}">${c}</button>`).join('')}</div>`;
-  const insightUseCaseCards = [
-    { icon: 'message', title: 'Tighten the first brief', copy: 'Start here when the RFQ is still vague and the team needs cleaner application, finish, quantity, timing, and approval inputs.', tags: ['Procurement', 'Sales partners', 'Management'] },
-    { icon: 'layers', title: 'Compare routes safely', copy: 'Use the comparative and technical guides to stop unlike-for-like price comparisons before they create expensive corrections later.', tags: ['Buyers', 'Technical teams', 'Commercial'] },
-    { icon: 'shield', title: 'Protect approvals and receiving', copy: 'Use the quality-led notes when the route is surface-critical, tolerance-critical, or likely to fail if the receiving logic stays weak.', tags: ['Quality teams', 'Receiving', 'Operations'] },
-    { icon: 'book', title: 'Train the wider team', copy: 'The articles are written so procurement, design, production, fabrication, and leadership can read the same route without separate internal translation.', tags: ['Employees', 'Partners', 'Leadership'] }
-  ].map((card) => `<article class="ui-library-card"><div class="ui-kicker mb-3">${glyph(card.icon, 'icon icon-sm')} ${escHtml(card.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(card.copy)}</p><div class="ui-link-row mt-5">${card.tags.map((item) => `<span class="ui-link-pill">${escHtml(item)}</span>`).join('')}</div></article>`).join('');
-  const topicCards = categories.map((category) => {
-    const categoryArticles = articles.filter((article) => article.categoryLabel === category);
-    const meta = topicMeta[category] || { icon: 'book', intro: 'Guides and notes grouped by category.' };
-    const formats = [...new Set(categoryArticles.map((article) => article.type.replace('Verified ', '')))].slice(0, 4).join(' · ');
-    return `<article class="ui-topic-card"><div class="ui-topic-card-head"><div class="ui-kicker mb-3">${glyph(meta.icon, 'icon icon-sm')} ${escHtml(category)}</div><span class="ui-resource-count">${categoryArticles.length}</span></div><p class="ui-topic-copy">${escHtml(meta.intro)}</p><div class="ui-meta-inline mt-4"><span>${escHtml(formats)}</span></div></article>`;
-  }).join('');
+  const intentCards = [
+    { icon: 'message', title: 'Tighten the brief', copy: 'Use the edited guides when the first RFQ still needs better application, finish, and approval language.' },
+    { icon: 'layers', title: 'Compare routes', copy: 'Keep unlike-for-like comparisons out of the next review by using the comparative and technical notes first.' },
+    { icon: 'shield', title: 'Protect approval', copy: 'Use the quality-led notes when the route is visible, tolerance-led, or expensive to correct later.' },
+    { icon: 'book', title: 'Train the team', copy: 'The articles are written so procurement, design, production, and leadership can read the same route clearly.' }
+  ].map((card) => `<article class="insight-intent-card"><div class="ui-kicker mb-3">${glyph(card.icon, 'icon icon-sm')} ${escHtml(card.title)}</div><p>${escHtml(card.copy)}</p></article>`).join('');
+  const topicPills = categories.map((category) => `<span class="insight-topic-pill">${escHtml(category)}</span>`).join('');
   const featureHtml = featuredArticle ? `<a href="/insights/${featuredArticle.slug}/" class="ui-insight-feature insight-card" data-category="${escHtml(featuredArticle.categoryLabel)}">${renderInsightCardMedia(featuredArticle)}<div class="ui-insight-card-body"><div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Start here</div><div class="font-display font-black text-3xl mb-3" style="line-height:1.05;">${escHtml(featuredArticle.title)}</div><p class="text-sm text-zinc-500 leading-relaxed mb-6">${escHtml(featuredArticle.excerpt)}</p><div class="ui-meta-inline"><span>${escHtml(featuredArticle.type)}</span><span>${escHtml(featuredArticle.categoryLabel)}</span><span>${escHtml(articleDateLabel(featuredArticle))}</span></div></div></a>` : '';
   const cardsHtml = otherArticles.map((article) => `<a href="/insights/${article.slug}/" class="ui-insight-card insight-card" data-category="${escHtml(article.categoryLabel)}">${renderInsightCardMedia(article)}<div class="ui-insight-card-body"><div class="ui-kicker mb-3">${glyph('book', 'icon icon-sm')} ${escHtml(article.type)}</div><div class="font-display font-bold text-xl mb-3" style="line-height:1.25;">${escHtml(article.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(article.excerpt)}</p><div class="ui-meta-inline mt-5"><span>${escHtml(article.categoryLabel)}</span><span>${escHtml(articleDateLabel(article))}</span></div></div></a>`).join('');
-  const technicalReferenceHtml = portfolioFamilies.map((family, familyIndex) => {
-    const productRows = family.products.map((productId) => {
-      const product = getProduct(productId);
-      const meta = getMeta(productId);
-      const productArticles = generatedArticles.filter((article) => article.category === productId);
-      if (!product || !meta || !productArticles.length) return '';
-      const leadGuide = productArticles.find((article) => article.type === 'Technical Guide') || productArticles[0];
-      return `<article class="ui-route-product-row"><div class="ui-route-product-copy"><h3>${escHtml(product.name)}</h3><p>${escHtml(product.summary)}</p><div class="ui-route-product-meta">${product.specs.slice(0, 2).map((spec) => `<span>${escHtml(spec)}</span>`).join('')}<span>${productArticles.length} route pages</span></div></div><div class="ui-route-product-actions"><a href="/insights/${leadGuide.slug}/" class="btn-outline">Open technical guide</a><a href="/products/${meta.slug}/" class="btn-outline">Open product sheet</a></div></article>`;
-    }).filter(Boolean).join('');
-    if (!productRows) return '';
-    return `<details class="ui-route-directory"${familyIndex === 0 ? ' open' : ''}><summary><div class="ui-route-directory-summary"><div><div class="ui-kicker mb-3">${glyph(familyIconName(family.title), 'icon icon-sm')} ${escHtml(family.title)}</div><h3 class="ui-family-title" style="font-size:1.25rem;">${escHtml(family.highlights[0])}</h3><p class="ui-route-directory-intro">${escHtml(family.intro)}</p></div><span class="ui-route-directory-count">${family.products.length}</span></div></summary><div class="ui-route-directory-body">${productRows}</div></details>`;
-  }).filter(Boolean).join('');
+  const routeAssistCards = applications.map((app) => renderInsightRouteAssistCard(app)).join('');
 
   return headTag({
     title: 'Insights | Editorial Guides, Route Notes & Decision Support — Moldart',
@@ -4123,30 +4550,21 @@ function generateInsightsHub() {
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('spark', 'icon icon-sm')} Editorial guides and route notes</div>
                     <h1 class="ui-section-title">GUIDES FOR RFQS,<br>APPROVALS, RECEIVING,<br>AND REPEAT SUPPLY.</h1>
-                    <p class="ui-section-subtitle">Start with the edited guides below. They are written for procurement, quality, production, design, partner, and leadership reviews first. Only after the brief tightens should the route library become the heavier reading layer.</p>
+                    <p class="ui-section-subtitle">Start with the edited guides first. Use the narrower route notes only when the work becomes more specification-led, receiving-led, or approval-led.</p>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-proof-grid">
-                        <article class="ui-proof-card"><div class="ui-proof-label">Total coverage</div><div class="ui-proof-value">${articles.length} live pages</div><p class="ui-proof-copy">Edited guides and route-specific technical pages sit inside one searchable library.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Editorial guides</div><div class="ui-proof-value">${editorialArticles.length}</div><p class="ui-proof-copy">Longer-form articles designed to stay readable, shareable, and commercially useful.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Product routes</div><div class="ui-proof-value">${productRouteCount}</div><p class="ui-proof-copy">Each route opens into focused specification, buyer, quality, and comparison reading when needed.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Editorial guides</div><div class="ui-proof-value">${editorialArticles.length}</div><p class="ui-proof-copy">Longer-form reading built to stay useful in procurement, technical, and approval conversations.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Deeper route notes</div><div class="ui-proof-value">${productRouteCount}</div><p class="ui-proof-copy">These stay secondary on purpose and are used only when the brief becomes narrower than the editorials alone.</p></article>
                         <article class="ui-proof-card"><div class="ui-proof-label">Research-led editorials</div><div class="ui-proof-value">${researchLedCount}</div><p class="ui-proof-copy">Longer-form articles rebuilt from source material and turned into website-native technical reading.</p></article>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="max-w mx-auto px py-12">
-            <div class="ui-topic-grid">${topicCards}</div>
-        </section>
-
-        <section class="max-w mx-auto px pb-12 border-b border-zinc-100">
-            <div class="ui-section-head mb-10">
-                <div class="ui-kicker mb-4">${glyph('check', 'icon icon-sm')} How to use the library</div>
-                <h2 class="ui-section-title">START WITH THE JOB,<br>NOT THE PAGE COUNT.</h2>
-                <p class="ui-section-subtitle">Use the hub by decision type first: tighten the brief, compare routes, protect approval, and keep repeat supply aligned. That keeps the library useful instead of noisy.</p>
-            </div>
-            <div class="ui-library-grid mb-12">${insightUseCaseCards}</div>
+        <section class="max-w mx-auto px py-12 border-b border-zinc-100">
+            <div class="insight-intent-grid mb-8">${intentCards}</div>
+            <div class="insight-topic-row mb-6">${topicPills}</div>
             <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Editorial insights</div>
             ${filterBtns}
             <div class="ui-insight-grid" id="insights-grid">
@@ -4155,14 +4573,13 @@ function generateInsightsHub() {
             </div>
         </section>
 
-
         <section class="max-w mx-auto px py-16 fade-up">
             <div class="ui-section-head mb-10">
                 <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Secondary route library</div>
-                <h2 class="ui-section-title">OPEN THE ROUTE LIBRARY<br>ONLY WHEN MORE DETAIL IS NEEDED.</h2>
-                <p class="ui-section-subtitle">This layer stays secondary on purpose. Start with the edited guides above. Open the route library below only when the work becomes specification-led, RFQ-led, receiving-led, or quality-led.</p>
+                <h2 class="ui-section-title">ONLY OPEN NARROWER<br>ROUTE NOTES WHEN THEY EARN IT.</h2>
+                <p class="ui-section-subtitle">These cards stay secondary on purpose. Use them when the work becomes more product-led, receiving-led, or approval-led than the editorial guide alone.</p>
             </div>
-            <div class="ui-route-directory-stack">${technicalReferenceHtml}</div>
+            <div class="insight-route-card-grid">${routeAssistCards}</div>
         </section>
         ${ctaBlock('NEED SPECIFIC<br>GUIDANCE?', 'Use a guide as the starting point, then send the actual requirement for a product-aligned review.', 'Share your requirement', '/contact/', 'Open Resources', '/resources/')}
     </main>
@@ -4232,20 +4649,7 @@ function generateInsightArticle(article) {
             </div>
         </section>
         <section class="max-w mx-auto px py-16 border-t border-zinc-100 fade-up">
-            <div class="article-end-rail">
-                <article class="article-end-card">
-                    <div class="article-end-label">Explore more</div>
-                    <h2>Back to insights</h2>
-                    <p>Return to the wider library of edited guides, route notes, and secondary technical references.</p>
-                    <a href="/insights/" class="btn-outline">Open insights</a>
-                </article>
-                <article class="article-end-card article-end-card-primary">
-                    <div class="article-end-label">Next step</div>
-                    <h2>Share the actual requirement</h2>
-                    <p>Use ${escHtml(context?.product?.name || article.categoryLabel)} only as the starting point. The brief, reference, quantity, timing, and destination make the next review faster.</p>
-                    <a href="/contact/?product=${encodeURIComponent(context?.product?.name || article.category)}" class="btn-primary">Share your requirement</a>
-                </article>
-            </div>
+            ${renderArticleEndRail(article, context)}
         </section>
     </main>
 
