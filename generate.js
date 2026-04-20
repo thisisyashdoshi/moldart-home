@@ -16,7 +16,7 @@ const { importedInsights, insightDossiers } = require('./insight-enhancements.js
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.40';
+const VER = '2026.41';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
@@ -348,7 +348,7 @@ const applications = [
     name: 'Lamination',
     seoTitle: 'Lamination Tooling & Materials Supplier — Moldart',
     metaDesc: 'Complete lamination supply chain: press plates, press pads, engraved cylinders, printed decor paper, and industrial press plates for HPL and LPL production.',
-    overview: 'For lamination lines, the real decision is rarely one item in isolation. Press plate condition, press pad behaviour, cylinder repeat, decor paper compatibility, and the target surface benchmark have to be read together.',
+    overview: 'Use this route when surface quality depends on the full press stack, not one tooling item in isolation.',
     considerations: [
       'Press plate grade selection depends on required surface hardness and production volume',
       'Press pad construction affects heat distribution uniformity across the press area',
@@ -368,7 +368,7 @@ const applications = [
     name: 'Furniture Manufacturing',
     seoTitle: 'Furniture Materials & Components Supplier — Moldart',
     metaDesc: 'Substrates, decor inputs, and finished furniture for commercial and residential manufacturing. Plywood, MDF, HDF, particleboard, and CNC-built furniture.',
-    overview: 'In furniture work, the board choice, surface route, machining accuracy, compliance requirement, and output expectation have to line up before the team compares quotations or samples.',
+    overview: 'Use this route when board choice, finish route, machining, compliance, and output type need to align before RFQ.',
     considerations: [
       'Substrate selection depends on the structural requirements and end-use environment',
       'Emission compliance standards vary by destination market (E1, CARB-NAF, F4 star)',
@@ -387,7 +387,7 @@ const applications = [
     name: 'Flooring',
     seoTitle: 'Engineered Wood Flooring & Accessories Supplier — Moldart',
     metaDesc: 'Engineered laminate flooring systems (AC3–AC5) with coordinated accessories. HDF core, click-lock profiles, and transition trims for residential and commercial use.',
-    overview: 'Flooring decisions sit at system level: wear class, core moisture behaviour, locking profile, accessories, and site conditions all affect the final result and should be reviewed together.',
+    overview: 'Use this route when wear class, core stability, locking system, accessories, and site conditions must be reviewed together.',
     considerations: [
       'Wear class selection (AC3–AC5) depends on traffic intensity and commercial vs. residential use',
       'HDF core moisture resistance matters for kitchens, bathrooms, and humid environments',
@@ -405,7 +405,7 @@ const applications = [
     name: 'Architecture & Interiors',
     seoTitle: 'Architectural Materials Supplier | Steel Panels & Wood Panels — Moldart',
     metaDesc: 'Decorative stainless steel panels, profiles, and engineered wood substrates for architectural interiors. PVD finishes, structural panels, and custom fabrication.',
-    overview: 'Architectural interior work is usually decided by the visible finish, the environment, the detailing, and the installation condition—not by a generic stainless or panel label.',
+    overview: 'Use this route when visible finish, detailing, support build-up, and installation condition matter more than a single material label.',
     considerations: [
       'Decorative stainless-steel grade selection depends on environment, corrosion exposure, and the project finish route',
       'PVD color consistency across batches should be confirmed for large-area installations',
@@ -425,7 +425,7 @@ const applications = [
     name: 'Metal Finishing',
     seoTitle: 'Decorative Metal Finishing | PVD Stainless Steel — Moldart',
     metaDesc: 'Decorative-finished stainless steel panels, profiles, and furniture for premium interiors, with finish approval confirmed per programme.',
-    overview: 'For decorative stainless work, the real discussion is finish family, grade, colour continuity, anti-fingerprint requirement, and how the fabricated output will actually be approved.',
+    overview: 'Use this route when finish family, grade, colour continuity, and approval method need to be locked before comparison.',
     considerations: [
       'Finish route, colour approval, and surface preparation should be aligned before commercial comparison',
       'Anti-fingerprint requirements should be confirmed for high-touch surfaces',
@@ -446,7 +446,7 @@ const applications = [
     name: 'PCB & CCL Manufacturing',
     seoTitle: 'Press Plates for PCB & CCL Manufacturing — Moldart',
     metaDesc: 'Industrial press plates for printed circuit board (PCB) and copper-clad laminate (CCL) manufacturing. Demagnetized plates with strict flatness and parallelism tolerances.',
-    overview: 'In PCB and CCL work, flatness, parallelism, demagnetisation control, surface condition, and incoming inspection are part of process capability, not optional extras.',
+    overview: 'Use this route when flatness, parallelism, demagnetisation, and plate condition are process requirements, not secondary checks.',
     considerations: [
       'Residual magnetism control should be confirmed for electronics pressing routes',
       'Flatness and parallelism should be matched to the production requirement',
@@ -545,66 +545,66 @@ const SOLUTION_FLOWS = {
 const ROUTE_VISUAL_MODELS = {
   lamination: {
     homeTitle: 'Decorative laminate surfaces',
-    homeSummary: 'Press tooling and décor inputs aligned to texture transfer, press stability, and repeat approval quality.',
+    homeSummary: 'Press tooling and décor inputs aligned to surface transfer and repeat output.',
     homeOutputs: ['HPL', 'LPL', 'Panel surfacing'],
     homeSteps: ['Tooling', 'Press cycle', 'Surface output'],
     storyTitle: 'LAMINATION: STACK, CONTROLS, OUTPUT.',
-    storyNote: 'Read this as a system view of the tooling stack, décor route, and press conditions behind the approved surface.',
+    storyNote: 'Read the tooling stack, décor route, and press condition together.',
     inputs: ['Press Plates', 'Press Pads', 'Engraved Cylinders', 'Printed Decor Paper'],
     process: ['Pattern printing', 'Heat + pressure', 'Texture transfer'],
     outputs: ['Decorative laminate faces', 'Furniture panel surfaces', 'Flooring overlays']
   },
   furniture: {
     homeTitle: 'Furniture programmes',
-    homeSummary: 'Substrates, decorative faces, and finished pieces aligned to machining accuracy, surface route, and end-use loading.',
+    homeSummary: 'Boards, faces, and finished pieces aligned to machining, loading, and finish route.',
     homeOutputs: ['Modular furniture', 'Retail fixtures', 'Custom interiors'],
     homeSteps: ['Boards', 'Fabrication', 'Furniture output'],
     storyTitle: 'FURNITURE: STACK, CONTROLS, OUTPUT.',
-    storyNote: 'Read this as a system view of the board choice, surface route, fabrication logic, and finished output.',
+    storyNote: 'Read the board route, surface route, and finished output together.',
     inputs: ['Plywood', 'Fiberboard', 'Particleboard', 'Ready-Made / Custom Furniture'],
     process: ['Board selection', 'Facing + detailing', 'Assembly / fit-out'],
     outputs: ['Modular furniture', 'Custom furniture', 'Project-specific fit-outs']
   },
   flooring: {
     homeTitle: 'Flooring systems',
-    homeSummary: 'Boards and accessories aligned to wear class, core moisture behaviour, locking profile, and installation finish.',
+    homeSummary: 'Core boards and accessories aligned to wear class, moisture behaviour, and installation finish.',
     homeOutputs: ['Residential floors', 'Commercial floors', 'Accessory coordination'],
     homeSteps: ['Floor core', 'Installation route', 'Finished floor'],
     storyTitle: 'FLOORING: CORE, CONTROLS, OUTPUT.',
-    storyNote: 'Read this as a system view of the floor core, accessory logic, and site conditions behind the finished installation.',
+    storyNote: 'Read the core, locking route, accessories, and site condition together.',
     inputs: ['Wood Flooring', 'Flooring Accessories', 'Fiberboard'],
     process: ['Core + decor', 'Click-lock planning', 'Accessory fit'],
     outputs: ['Installed floors', 'Stair + trim finish', 'Coordinated room transitions']
   },
   architecture: {
     homeTitle: 'Architecture & interiors',
-    homeSummary: 'Decorative stainless surfaces, trims, and support boards aligned to environment, detailing, and installation-facing approval.',
+    homeSummary: 'Visible stainless surfaces, trims, and support boards aligned to detail and installation condition.',
     homeOutputs: ['Feature walls', 'Lift panels', 'Interior fit-outs'],
     homeSteps: ['Surface selection', 'Detailing', 'Installed interior output'],
     storyTitle: 'INTERIORS: SURFACE, DETAIL, OUTPUT.',
-    storyNote: 'Read this as a system view of finish choice, detailing, support materials, and installation-facing checks.',
+    storyNote: 'Read the visible finish, support build-up, detailing, and installation condition together.',
     inputs: ['Decorative SS Panels', 'SS Profiles', 'SS Furniture', 'Support boards'],
     process: ['Finish approval', 'Detail coordination', 'Project installation'],
     outputs: ['Architectural features', 'Interior cladding', 'Premium fit-outs']
   },
   'metal-finishing': {
     homeTitle: 'Decorative metal finishes',
-    homeSummary: 'Panels, profiles, and fabricated stainless routes where finish family, colour continuity, and surface acceptance matter.',
+    homeSummary: 'Decorative stainless routes where finish family, colour continuity, and surface acceptance matter.',
     homeOutputs: ['PVD routes', 'Stamped surfaces', 'Mirror / hairline work'],
     homeSteps: ['Finish family', 'Approval', 'Decorative output'],
     storyTitle: 'METAL FINISHING: FINISH, APPROVAL, OUTPUT.',
-    storyNote: 'Read this as a system view of finish family, approval method, and consistency across visible decorative parts.',
+    storyNote: 'Read finish family, approval method, and fabricated output together.',
     inputs: ['Decorative SS Panels', 'SS Profiles', 'SS Furniture'],
     process: ['Finish-family selection', 'Sample approval', 'Fabrication alignment'],
     outputs: ['Decorative panels', 'Profiles + trims', 'Fabricated feature pieces']
   },
   'pcb-ccl': {
     homeTitle: 'Technical laminate lines',
-    homeSummary: 'Tolerance-critical plate routes aligned to flatness, parallelism, demagnetisation, and press consistency.',
+    homeSummary: 'Tolerance-critical press plates aligned to flatness, parallelism, demagnetisation, and line consistency.',
     homeOutputs: ['CCL lines', 'PCB routes', 'Technical laminates'],
     homeSteps: ['Industrial plates', 'Controlled pressing', 'Technical output'],
     storyTitle: 'TECHNICAL LAMINATES: PLATE, PRESS, OUTPUT.',
-    storyNote: 'Read this as a system view of plate condition, incoming inspection, and controlled pressing.',
+    storyNote: 'Read plate condition, line tolerance, and incoming checks together.',
     inputs: ['Industrial Press Plates'],
     process: ['Incoming checks', 'Controlled pressing', 'Tolerance review'],
     outputs: ['PCB / CCL lines', 'Technical laminates', 'Lower downstream correction risk']
@@ -815,7 +815,7 @@ const primaryPages = [
   { title: 'Insights', url: '/insights/', meta: 'Technical guides and notes', keywords: ['insights', 'guides', 'notes'] },
   { title: 'FAQ', url: '/faq/', meta: 'Quick answers on products, documents, timing, and first contact', keywords: ['faq', 'questions', 'answers'] },
   { title: 'Process', url: '/process/', meta: 'How the enquiry moves from RFQ to repeat supply', keywords: ['process', 'workflow', 'delivery'] },
-  { title: 'Portal', url: '/portal/', meta: 'Buyer and partner portal preview', keywords: ['portal', 'buyer workspace', 'partner access'] },
+  { title: 'Portal', url: '/portal/', meta: 'Buyer and seller workspace preview', keywords: ['portal', 'buyer workspace', 'seller access'] },
   { title: 'About', url: '/about/', meta: 'Company, team, and sourcing model', keywords: ['about', 'company', 'leadership'] },
   { title: 'Contact', url: '/contact/', meta: 'Inquiry, WhatsApp, and meetings', keywords: ['contact', 'whatsapp', 'email'] }
 ];
@@ -1457,8 +1457,8 @@ const SITE_SOCIAL_POSTERS = [
   {
     name: 'moldart-home',
     kicker: 'Homepage preview',
-    title: 'Technical supply, aligned before RFQ',
-    note: 'Routes, references, and technical reading for procurement, commercial, and approval teams.',
+    title: 'Start with the route, not product noise',
+    note: 'Routes, files, and technical reading for procurement, technical, and commercial teams.',
     chips: ['6 routes', '24 files', '31 guides', 'Mumbai']
   },
   {
@@ -1478,7 +1478,7 @@ const SITE_SOCIAL_POSTERS = [
   {
     name: 'moldart-insights',
     kicker: 'Insights',
-    title: 'Technical articles for buyers, teams, and partners',
+    title: 'Technical articles for buyers, teams, and suppliers',
     note: 'Long-form guides, route notes, and public references built around real enquiries.',
     chips: ['Editorial', 'Technical routes', 'Public references', 'Share-ready']
   },
@@ -1492,9 +1492,9 @@ const SITE_SOCIAL_POSTERS = [
   {
     name: 'moldart-portal',
     kicker: 'Portal preview',
-    title: 'Buyer and partner workspace coming soon',
+    title: 'Buyer and seller workspace coming soon',
     note: 'A future operational layer for RFQs, references, approvals, documents, and repeat-order visibility.',
-    chips: ['Buyer', 'Partner', 'RFQ', 'Coming soon']
+    chips: ['Buyer', 'Seller', 'RFQ', 'Coming soon']
   }
 ];
 function siteSocialPosterRelativePath(name, ext = 'png') {
@@ -1503,37 +1503,61 @@ function siteSocialPosterRelativePath(name, ext = 'png') {
 function siteSocialPosterOutputPath(name, ext = 'svg') {
   return path.join(WORK, 'images', 'social', `${name}.${ext}`);
 }
+function solutionSocialPosterName(slug = '') {
+  return `moldart-solution-${slug}`;
+}
+function getSolutionSocialPosterConfigs() {
+  return applications.map((app) => {
+    const visual = ROUTE_VISUAL_MODELS[app.slug] || {};
+    const productNames = app.products.map((productId) => getProduct(productId)?.name).filter(Boolean).slice(0, 3);
+    const output = (visual.homeOutputs || visual.outputs || []).slice(0, 1);
+    return {
+      name: solutionSocialPosterName(app.slug),
+      kicker: 'Solution route',
+      title: app.name,
+      note: app.overview,
+      chips: [...productNames, ...output].slice(0, 4),
+      panelLabel: 'WORKING STACK'
+    };
+  });
+}
 function buildSiteSocialSvg(config) {
-  const chips = (config.chips || []).slice(0, 4);
+  const chips = (config.chips || []).filter(Boolean).slice(0, 4);
   const titleLines = wrapPosterText(config.title, 26, 3);
-  const noteLines = wrapPosterText(clampText(config.note, 104), 38, 2);
+  const noteLines = wrapPosterText(clampText(config.note, 108), 38, 2);
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="${escHtml(config.title)}">
-    <rect width="1200" height="630" rx="36" fill="#f6f5f4"/>
-    <rect x="42" y="42" width="1116" height="546" rx="30" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/>
-    <rect x="72" y="72" width="220" height="38" rx="19" fill="#18181b"/>
-    <text x="96" y="97" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff" letter-spacing="1.8">${escHtml(clampText(String(config.kicker || 'Moldart').toUpperCase(), 20))}</text>
-    ${titleLines.map((line, index) => `<text x="72" y="${184 + (index * 60)}" font-family="Arial, sans-serif" font-size="50" font-weight="700" fill="#18181b">${escHtml(line)}</text>`).join('')}
-    ${noteLines.map((line, index) => `<text x="72" y="${392 + (index * 28)}" font-family="Arial, sans-serif" font-size="23" fill="#52525b">${escHtml(line)}</text>`).join('')}
-    ${chips.map((chip, index) => `<rect x="${72 + (index * 174)}" y="484" width="160" height="56" rx="18" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/><text x="${92 + (index * 174)}" y="518" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#18181b">${escHtml(clampText(chip, 16))}</text>`).join('')}
-    <rect x="756" y="72" width="332" height="486" rx="28" fill="#fafafa" stroke="rgba(24,24,27,0.08)"/>
-    <text x="792" y="116" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#71717a" letter-spacing="1.8">PROGRAMME GEOGRAPHY</text>
-    <path d="M812 296C842 260 866 236 892 214" fill="none" stroke="#18181b" stroke-opacity="0.18" stroke-width="18" stroke-linecap="round"/>
-    <path d="M812 296C868 276 926 248 988 228" fill="none" stroke="#18181b" stroke-opacity="0.22" stroke-width="10" stroke-dasharray="14 16" stroke-linecap="round"/>
-    <path d="M812 296C746 272 692 248 644 212" fill="none" stroke="#d4d4d8" stroke-width="10" stroke-linecap="round"/>
-    <circle cx="812" cy="296" r="16" fill="#18181b"/>
-    <circle cx="892" cy="214" r="12" fill="#ffffff" stroke="#18181b" stroke-width="3"/>
-    <circle cx="988" cy="228" r="12" fill="#ffffff" stroke="#18181b" stroke-width="3"/>
-    <text x="780" y="342" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">Mumbai</text>
-    <text x="862" y="188" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">India</text>
-    <text x="958" y="202" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">China</text>
-    <text x="792" y="418" font-family="Arial, sans-serif" font-size="16" fill="#52525b">Start from the route, then match the reference.</text>
-    <text x="792" y="508" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">moldartindia.com</text>
+    <defs>
+      <linearGradient id="posterGlow" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#f7f5f2"/>
+        <stop offset="100%" stop-color="#ece7e2"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="630" rx="36" fill="#f5f3ef"/>
+    <rect x="28" y="28" width="1144" height="574" rx="34" fill="url(#posterGlow)"/>
+    <rect x="46" y="46" width="1108" height="538" rx="30" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/>
+    <rect x="70" y="72" width="220" height="36" rx="18" fill="#18181b"/>
+    <text x="92" y="95" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff" letter-spacing="1.7">${escHtml(clampText(String(config.kicker || 'Moldart').toUpperCase(), 28))}</text>
+    <text x="70" y="146" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#71717a" letter-spacing="2.1">MOLDART</text>
+    ${titleLines.map((line, index) => `<text x="70" y="${228 + (index * 62)}" font-family="Arial, sans-serif" font-size="52" font-weight="700" fill="#18181b">${escHtml(line)}</text>`).join('')}
+    ${noteLines.map((line, index) => `<text x="70" y="${410 + (index * 30)}" font-family="Arial, sans-serif" font-size="23" fill="#52525b">${escHtml(line)}</text>`).join('')}
+    <path d="M70 482H650" stroke="rgba(24,24,27,0.10)" stroke-width="1"/>
+    <text x="70" y="522" font-family="Arial, sans-serif" font-size="16" fill="#71717a">Specification-led supply from Mumbai.</text>
+    <text x="70" y="554" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#18181b">moldartindia.com</text>
+    <rect x="758" y="72" width="372" height="486" rx="30" fill="#18181b"/>
+    <text x="792" y="112" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="rgba(255,255,255,0.72)" letter-spacing="1.8">${escHtml(clampText(config.panelLabel || 'PUBLIC PREVIEW', 22))}</text>
+    <path d="M792 144H1096" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <path d="M820 180C878 196 944 204 1018 192" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M820 180C872 182 930 188 986 198" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="6" stroke-dasharray="12 14" stroke-linecap="round"/>
+    <circle cx="820" cy="180" r="12" fill="#ffffff"/>
+    <circle cx="1018" cy="192" r="10" fill="none" stroke="#ffffff" stroke-width="3"/>
+    ${chips.map((chip, index) => `<rect x="792" y="${242 + (index * 72)}" width="304" height="54" rx="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/><text x="820" y="${276 + (index * 72)}" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="rgba(255,255,255,0.52)">${String(index + 1).padStart(2, '0')}</text><text x="868" y="${276 + (index * 72)}" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff">${escHtml(clampText(chip, 24))}</text>`).join('')}
+    <text x="792" y="534" font-family="Arial, sans-serif" font-size="15" fill="rgba(255,255,255,0.72)">Built for search, sharing, and review.</text>
   </svg>`;
 }
 async function generateSiteSocialAssets() {
   mkdirp(path.join(WORK, 'images', 'social'));
   const rasterTasks = [];
-  for (const config of SITE_SOCIAL_POSTERS) {
+  for (const config of [...SITE_SOCIAL_POSTERS, ...getSolutionSocialPosterConfigs()]) {
     const svg = buildSiteSocialSvg(config);
     const svgPath = siteSocialPosterOutputPath(config.name, 'svg');
     writeFile(svgPath, svg);
@@ -1990,14 +2014,14 @@ function renderHomeRouteCard(app) {
               ${productStrip}
           </div>
           <div class="home-route-block">
-              <div class="home-route-label">Typical stack</div>
+              <div class="home-route-label">Working stack</div>
               <div class="home-route-chip-grid">${productNames.slice(0, 3).map((item) => `<span class="home-route-chip">${escHtml(item)}</span>`).join('')}</div>
           </div>
           <div class="home-route-block">
               <div class="home-route-label">Typical outputs</div>
               <div class="home-route-meta">${outputs.map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
           </div>
-          <div class="home-route-actions"><a href="${getSolutionHref(app.slug)}" class="btn-outline">Open ${escHtml(app.name)}</a></div>
+          <div class="home-route-actions"><a href="${getSolutionHref(app.slug)}" class="btn-outline" aria-label="Open ${escHtml(app.name)} route">Open route</a></div>
       </div>
   </article>`;
 }
@@ -2008,15 +2032,15 @@ function renderSolutionHeroSummary(app) {
   const outputs = (visual.outputs || visual.homeOutputs || []).slice(0, 3);
   return `<div class="solution-hero-summary">
       <article class="solution-hero-summary-card solution-hero-summary-card-note">
-          <div class="solution-hero-summary-label">Page use</div>
-          <p>Use this page to confirm route fit, working stack, and the file or product path needed next.</p>
+          <div class="solution-hero-summary-label">Use this page</div>
+          <p>Confirm route fit, working stack, and the next file or product sheet.</p>
       </article>
       <article class="solution-hero-summary-card">
-          <div class="solution-hero-summary-label">Typical stack</div>
+          <div class="solution-hero-summary-label">Working stack</div>
           ${renderRouteTokenRow(productNames, { className: 'solution-hero-summary-pills', limit: 4 })}
       </article>
       <article class="solution-hero-summary-card">
-          <div class="solution-hero-summary-label">Typical outputs</div>
+          <div class="solution-hero-summary-label">Likely outputs</div>
           ${renderRouteTokenRow(outputs, { className: 'solution-hero-summary-pills', limit: 3, emptyLabel: 'Project-specific output' })}
       </article>
   </div>`;
@@ -2025,12 +2049,9 @@ function renderSolutionHeroSummary(app) {
 function renderSolutionStoryBand(app) {
   const visual = ROUTE_VISUAL_MODELS[app.slug];
   if (!visual) return '';
-  const visibleProducts = app.products.slice(0, 5);
-  const hiddenProductCount = Math.max(0, app.products.length - visibleProducts.length);
-  const productLinks = visibleProducts.map((productId) => renderProductPillLink(productId, 'solution-system-product-pill')).filter(Boolean).join('') + (hiddenProductCount ? `<span class="solution-system-product-pill is-muted">+${hiddenProductCount} more</span>` : '');
   return `<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
       <div class="ui-section-head mb-8">
-          <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} How the route works</div>
+          <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Route snapshot</div>
           <h2 class="ui-section-title">${escHtml(visual.storyTitle)}</h2>
           <p class="ui-section-subtitle">${escHtml(visual.storyNote)}</p>
       </div>
@@ -2038,34 +2059,23 @@ function renderSolutionStoryBand(app) {
           <div class="solution-system-diagram">
               <article class="solution-system-stage">
                   <div class="solution-system-stage-label">Inputs</div>
-                  <h3>What has to be matched</h3>
-                  <p>The working materials and conditions behind the route.</p>
+                  <h3>What has to align</h3>
+                  <p>The materials and conditions behind the route.</p>
                   <div class="solution-system-chip-row">${(visual.inputs || []).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
               </article>
               <div class="solution-system-arrow" aria-hidden="true">→</div>
               <article class="solution-system-stage">
                   <div class="solution-system-stage-label">Controls</div>
-                  <h3>What changes the outcome</h3>
-                  <p>Where process or approval discipline affects the result.</p>
-                  <div class="solution-system-chip-row">${(visual.process || []).map((item, index) => `<span><strong>0${index + 1}</strong>${escHtml(item)}</span>`).join('')}</div>
+                  <h3>What changes the result</h3>
+                  <p>The process or approval points that shift the release outcome.</p>
+                  <div class="solution-system-chip-row">${(visual.process || []).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
               </article>
               <div class="solution-system-arrow" aria-hidden="true">→</div>
               <article class="solution-system-stage">
                   <div class="solution-system-stage-label">Outputs</div>
                   <h3>What gets approved</h3>
-                  <p>The visible or measurable conditions the release depends on.</p>
+                  <p>The visible or measurable condition the team is actually signing off.</p>
                   <div class="solution-system-chip-row">${(visual.outputs || []).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
-              </article>
-          </div>
-          <div class="solution-system-note-grid">
-              <article class="solution-system-note-card">
-                  <div class="solution-system-note-label">Linked product sheets</div>
-                  <p>Open the item-level page only when the route is clear and the exact sheet is needed next.</p>
-                  <div class="solution-system-product-row">${productLinks}</div>
-              </article>
-              <article class="solution-system-note-card">
-                  <div class="solution-system-note-label">Check before release</div>
-                  <ul class="ui-stack-list">${app.considerations.slice(0, 3).map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul>
               </article>
           </div>
       </div>
@@ -2827,9 +2837,9 @@ function renderApplicationPreviewCard(app, options = {}) {
   const { compact = false, priority = false } = options;
   const visual = getApplicationVisual(app.slug);
   const productLinks = app.products.slice(0, compact ? 4 : 5).map((productId) => renderProductPillLink(productId)).filter(Boolean).join('');
-  const checkpoints = app.considerations.slice(0, compact ? 2 : 3).map((item) => `<li>${escHtml(item)}</li>`).join('');
+  const checkpoints = app.considerations.slice(0, compact ? 1 : 2).map((item) => `<li>${escHtml(item)}</li>`).join('');
   const audienceBadges = solutionAudienceFor(app.slug).slice(0, compact ? 2 : 4).map((item) => `<span>${escHtml(item)}</span>`).join('');
-  const summary = compact ? `${app.overview.substring(0, 160).trim()}...` : `${app.overview.substring(0, 220).trim()}...`;
+  const summary = clampText(app.overview, compact ? 116 : 142);
   return `<article class="ui-solution-card${compact ? ' ui-solution-card-compact' : ''}">
       <div class="ui-solution-media">
           <picture>
@@ -2842,11 +2852,16 @@ function renderApplicationPreviewCard(app, options = {}) {
           <div class="ui-kicker mb-3">${glyph(applicationIconName(app.slug), 'icon icon-sm')} ${escHtml(visual.eyebrow)}</div>
           <h3 class="ui-family-title">${escHtml(app.name)}</h3>
           <p class="ui-family-copy">${escHtml(summary)}</p>
-          <div class="ui-solution-stack-label">Relevant product stack</div>
-          <div class="ui-link-row mt-4">${productLinks}</div>
-          <div class="ui-app-badges mt-5">${audienceBadges}</div>
-          ${compact ? '' : `<ul class="ui-stack-list mt-5">${checkpoints}</ul>`}
-          <div class="mt-6"><a href="${getSolutionHref(app.slug)}" class="btn-outline">Explore ${escHtml(app.name)} system</a></div>
+          <div class="ui-solution-block">
+              <div class="ui-solution-stack-label">Working stack</div>
+              <div class="ui-link-row ui-link-row-roomy mt-4">${productLinks}</div>
+          </div>
+          <div class="ui-solution-block">
+              <div class="ui-solution-stack-label">Typical reviewers</div>
+              <div class="ui-app-badges ui-app-badges-roomy mt-4">${audienceBadges}</div>
+          </div>
+          ${compact ? '' : `<div class="ui-solution-block"><div class="ui-solution-stack-label">What usually decides the route</div><ul class="ui-stack-list ui-stack-list-compact mt-4">${checkpoints}</ul></div>`}
+          <div class="ui-solution-card-action mt-6"><a href="${getSolutionHref(app.slug)}" class="btn-outline" aria-label="Open ${escHtml(app.name)} route">Open route</a></div>
       </div>
   </article>`;
 }
@@ -3342,7 +3357,7 @@ function generateHomepage() {
             </div>
         </section>
 
-        ${ctaBlock('READY TO START<br>FROM THE RIGHT ROUTE?', 'Use Solutions for the application view, Explore when you need search first, or send the requirement directly for review.', 'Explore Solutions', '/solutions/')}
+        ${ctaBlock('READY TO DISCUSS<br>THE RIGHT ROUTE?', 'Use Solutions for the application view, Explore when you need search first, or send the requirement directly for review.', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
@@ -3650,8 +3665,8 @@ function generateSolutionPage(app) {
     title: `${app.name} Solution | Moldart`,
     desc: app.metaDesc,
     canonical: getSolutionHref(app.slug),
-    ogImage: visual.image,
-    ogImageAlt: visual.alt,
+    ogImage: siteSocialPosterRelativePath(solutionSocialPosterName(app.slug)),
+    ogImageAlt: `${app.name} route preview`,
     schemas
   }) + '\n' + nav('solutions') + `
 
@@ -3678,23 +3693,18 @@ function generateSolutionPage(app) {
 
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
             <div class="ui-section-head mb-8">
-                <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Relevant product stack</div>
-                <h2 class="ui-section-title">IDENTIFY THE WORKING PRODUCT STACK.</h2>
-                <p class="ui-section-subtitle">Each card explains why the product belongs in this route and links directly to the narrower product sheet when item-level specification is next.</p>
+                <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} Product sheets in this route</div>
+                <h2 class="ui-section-title">OPEN THE RIGHT PRODUCT SHEET ONLY WHEN NEEDED.</h2>
+                <p class="ui-section-subtitle">The route comes first. Open the narrower sheet only when item-level specification is actually needed.</p>
             </div>
             <div class="ui-stack-product-grid">${stackCards}</div>
         </section>
 
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
-            <div class="ui-spotlight">
-                <div class="ui-stack-card">
-                    <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Technical-commercial sequence</div>
-                    <div class="ui-flow-band">${flowItems}</div>
-                </div>
-                <div class="ui-stack-card">
-                    <div class="ui-kicker mb-4">${glyph('check', 'icon icon-sm')} Approval controls</div>
-                    <ul class="ui-stack-list">${app.considerations.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul>
-                </div>
+            <div class="ui-stack-card ui-stack-card-wide">
+                <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Route decision points</div>
+                <p class="ui-data-note mb-6">Use these checks to decide whether the route is right before opening more files or comparing quotations.</p>
+                <div class="ui-flow-band">${flowItems}</div>
             </div>
         </section>
 
@@ -4286,11 +4296,11 @@ function generateProcessPage() {
 
 function generateLoginPage() {
   return headTag({
-    title: 'Buyer & Partner Portal Preview | Moldart',
-    desc: 'Coming-soon preview of the Moldart buyer and partner portal for RFQs, approvals, documents, and repeat-order coordination.',
+    title: 'Buyer & Seller Workspace Preview | Moldart',
+    desc: 'Coming-soon preview of the Moldart buyer and seller workspace for RFQs, approvals, documents, and repeat-order coordination.',
     canonical: '/portal/',
     ogImage: siteSocialPosterRelativePath('moldart-portal'),
-    ogImageAlt: 'Moldart portal preview',
+    ogImageAlt: 'Moldart buyer and seller workspace preview',
     noindex: true,
     schemas: []
   }) + '\n' + nav('portal') + `
@@ -4298,8 +4308,8 @@ function generateLoginPage() {
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Portal Preview</span></div>
-            <h1 class="page-heading">BUYER AND PARTNER PORTAL.<br>COMING SOON.</h1>
-            <p class="text-base text-zinc-500 font-light max-w-2xl leading-relaxed mt-6">The portal is being built as a disciplined operational layer for repeat buyers, verified supply partners, approvals, documents, and repeat-order coordination. Until launch, the public site remains the active route for search, files, guides, and direct enquiry.</p>
+            <h1 class="page-heading">BUYER AND SELLER WORKSPACES.<br>COMING SOON.</h1>
+            <p class="text-base text-zinc-500 font-light max-w-2xl leading-relaxed mt-6">The portal is being built as a disciplined operational layer for repeat buyers, verified sellers, approvals, documents, and repeat-order coordination. Until launch, the public site remains the active route for search, files, guides, and direct enquiry.</p>
         </section>
 
         <section class="max-w mx-auto px py-16 fade-up">
@@ -4316,15 +4326,15 @@ function generateLoginPage() {
                     <a href="/contact/" class="btn-primary">Request buyer access</a>
                 </article>
                 <article class="signal-card portal-card">
-                    <div class="section-label mb-4">Partner workflow</div>
+                    <div class="section-label mb-4">Seller workflow</div>
                     <h2 class="font-display font-black text-2xl mb-4">QUOTE, DOCUMENT, AND FOLLOW-THROUGH.</h2>
-                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">Planned for verified manufacturing and supply partners who need a clearer lane for quotations, document exchange, approval checkpoints, and repeat programme coordination.</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">Planned for verified manufacturing and supply sellers who need a clearer lane for quotations, document exchange, approval checkpoints, and repeat programme coordination.</p>
                     <ul class="product-summary-list mb-6">
                         <li>Standardised quote and document flow</li>
                         <li>Quality checkpoints and approval visibility</li>
                         <li>Operational coordination for repeat programmes</li>
                     </ul>
-                    <a href="/contact/" class="btn-outline">Request partner access</a>
+                    <a href="/contact/" class="btn-outline">Request seller access</a>
                 </article>
             </div>
         </section>
@@ -4337,7 +4347,6 @@ function generateLoginPage() {
                         <p class="text-sm text-zinc-500 leading-relaxed">This workspace is not live yet. For now, use Explore for discovery, Resources for files, Insights for technical reading, and Contact for the live enquiry path.</p>
                     </div>
                     <div class="flex gap-3 flex-wrap">
-                        <a href="/contact/" class="btn-primary">Share your requirement</a>
                         <a href="/explore/" class="btn-outline">Open Explore</a>
                     </div>
                 </div>

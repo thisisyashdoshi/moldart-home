@@ -3450,3 +3450,200 @@
     grid-template-columns: 1fr !important;
   }
 }
+
+/* 2026.41 audit pass: clearer dividers, aligned cards, steadier portal layout, and visible mobile map labels */
+
+.border-zinc-100 {
+  border-color: #ece7e2 !important;
+}
+
+main > section + section {
+  position: relative;
+}
+
+main > section + section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 1px;
+  background: #ece7e2;
+}
+
+main > section.border-b + section::before,
+main > section.border-y + section::before,
+main > section.border-t::before,
+main > section.border-y::before {
+  display: none;
+}
+
+.home-route-card,
+.ui-solution-card {
+  height: 100%;
+}
+
+.home-route-body,
+.ui-solution-body {
+  height: 100%;
+}
+
+.home-route-body {
+  grid-template-rows: minmax(0, 1fr) auto auto auto !important;
+}
+
+.home-route-top {
+  display: grid;
+  align-content: start;
+}
+
+.home-route-product-strip {
+  width: 100%;
+  margin-top: auto;
+}
+
+.home-route-product-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 5;
+  height: auto;
+}
+
+.home-route-block {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.home-route-actions {
+  margin-top: auto;
+  padding-top: 0.55rem;
+}
+
+.home-route-card .btn-outline,
+.ui-solution-card .btn-outline,
+.portal-card .btn-primary,
+.portal-card .btn-outline {
+  min-width: 9.5rem;
+  justify-content: center;
+}
+
+.ui-solution-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.ui-solution-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem !important;
+}
+
+.ui-solution-block {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.ui-solution-stack-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #71717a;
+}
+
+.ui-link-row-roomy,
+.ui-app-badges-roomy,
+.ui-solution-card .ui-link-row,
+.ui-solution-card .ui-app-badges {
+  gap: 0.55rem !important;
+}
+
+.ui-stack-list-compact {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.ui-solution-card-action {
+  margin-top: auto;
+  padding-top: 0.25rem;
+}
+
+.ui-stack-card-wide .ui-flow-band {
+  margin-top: 0.35rem;
+}
+
+.signal-grid-portal {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.portal-card {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr auto;
+  align-content: start;
+  gap: 0.85rem;
+  height: 100%;
+}
+
+.portal-card .product-summary-list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.portal-card .product-summary-list,
+.portal-card p {
+  margin-bottom: 0 !important;
+}
+
+.portal-card .btn-primary,
+.portal-card .btn-outline {
+  margin-top: 1.1rem;
+  justify-self: start;
+}
+
+.hero-world-map .hero-world-region-label {
+  fill: #8b8b93;
+  opacity: 0.88;
+}
+
+@media (max-width: 1024px) {
+  .signal-grid-portal {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  main > section + section::before {
+    left: 1rem;
+    right: 1rem;
+  }
+
+  .home-map-legend-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .hero-world-map .hero-world-region-label {
+    display: inline !important;
+    font-size: 8px !important;
+  }
+
+  .hero-world-map .hero-node-label {
+    font-size: 11px !important;
+  }
+
+  .hero-world-map .hero-node-meta,
+  .hero-world-map .hero-world-small {
+    font-size: 7.5px !important;
+  }
+
+  .home-route-card .btn-outline,
+  .ui-solution-card .btn-outline,
+  .portal-card .btn-primary,
+  .portal-card .btn-outline {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .portal-card .btn-primary,
+  .portal-card .btn-outline {
+    justify-self: stretch;
+  }
+}
