@@ -16,7 +16,7 @@ const { importedInsights, insightDossiers } = require('./insight-enhancements.js
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.41';
+const VER = '2026.42';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
@@ -1337,7 +1337,7 @@ function insightPosterOutputPath(article, ext = 'svg') {
   return path.join(WORK, 'images', 'insights', `${article.slug}.${ext}`);
 }
 function insightPreviewImage(article, context = null) {
-  return insightPosterRelativePath(article, 'svg');
+  return socialImageVersionedUrl(insightPosterRelativePath(article, 'png'));
 }
 function insightPreviewAlt(article, context = null) {
   return `${article.title} — Moldart insight cover`;
@@ -1469,6 +1469,13 @@ const SITE_SOCIAL_POSTERS = [
     chips: ['Lamination', 'Furniture', 'Flooring', 'Architecture']
   },
   {
+    name: 'moldart-explore',
+    kicker: 'Explore',
+    title: 'Search routes, sheets, guides, and documents',
+    note: 'Use one discovery layer when the keyword is known but the right page still needs to be found.',
+    chips: ['Search', 'Solutions', 'Guides', 'Documents']
+  },
+  {
     name: 'moldart-resources',
     kicker: 'Resources',
     title: 'References, decks, and decision files',
@@ -1490,6 +1497,27 @@ const SITE_SOCIAL_POSTERS = [
     chips: ['RFQ', 'Route', 'Approval', 'Repeat']
   },
   {
+    name: 'moldart-faq',
+    kicker: 'FAQ',
+    title: 'Quick answers before the next review',
+    note: 'Buyer-facing answers on documents, timing, first contact, and what needs to be confirmed before quoting.',
+    chips: ['Answers', 'Documents', 'Timing', 'Contact']
+  },
+  {
+    name: 'moldart-about',
+    kicker: 'About',
+    title: 'Mumbai-led supply since 1989',
+    note: 'Company background, sourcing logic, and leadership context without over-claiming scale or footprint.',
+    chips: ['Since 1989', 'Mumbai', 'India + China', 'Leadership']
+  },
+  {
+    name: 'moldart-contact',
+    kicker: 'Contact',
+    title: 'Share the requirement, choose the channel',
+    note: 'Use the form, WhatsApp, email, or meeting route when the next step needs a real technical-commercial response.',
+    chips: ['WhatsApp', 'Email', 'Meetings', 'Mumbai']
+  },
+  {
     name: 'moldart-portal',
     kicker: 'Portal preview',
     title: 'Buyer and seller workspace coming soon',
@@ -1506,6 +1534,9 @@ function siteSocialPosterOutputPath(name, ext = 'svg') {
 function solutionSocialPosterName(slug = '') {
   return `moldart-solution-${slug}`;
 }
+function productSocialPosterName(productId = '') {
+  return `moldart-product-${productId}`;
+}
 function getSolutionSocialPosterConfigs() {
   return applications.map((app) => {
     const visual = ROUTE_VISUAL_MODELS[app.slug] || {};
@@ -1520,6 +1551,16 @@ function getSolutionSocialPosterConfigs() {
       panelLabel: 'WORKING STACK'
     };
   });
+}
+function getProductSocialPosterConfigs() {
+  return rawProducts.products.map((product) => ({
+    name: productSocialPosterName(product.id),
+    kicker: 'Product sheet',
+    title: product.name,
+    note: product.summary,
+    chips: [product.stage, product.use, ...(product.applications || []).slice(0, 2)].filter(Boolean).slice(0, 4),
+    panelLabel: 'PRODUCT FIT'
+  }));
 }
 function buildSiteSocialSvg(config) {
   const chips = (config.chips || []).filter(Boolean).slice(0, 4);
@@ -1557,7 +1598,7 @@ function buildSiteSocialSvg(config) {
 async function generateSiteSocialAssets() {
   mkdirp(path.join(WORK, 'images', 'social'));
   const rasterTasks = [];
-  for (const config of [...SITE_SOCIAL_POSTERS, ...getSolutionSocialPosterConfigs()]) {
+  for (const config of [...SITE_SOCIAL_POSTERS, ...getSolutionSocialPosterConfigs(), ...getProductSocialPosterConfigs()]) {
     const svg = buildSiteSocialSvg(config);
     const svgPath = siteSocialPosterOutputPath(config.name, 'svg');
     writeFile(svgPath, svg);
@@ -1581,7 +1622,7 @@ function renderInsightCardMedia(article, context = null) {
   return `<div class="ui-insight-card-media"><img src="${insightPreviewImage(article, context)}" alt="${escHtml(insightPreviewAlt(article, context))}" loading="lazy"><div class="ui-insight-card-badge">${escHtml(article.type)}</div></div>`;
 }
 function renderHomeInsightRow(article) {
-  return `<a href="/insights/${article.slug}/" class="ui-article-row ui-article-row-home"><div class="ui-article-row-media"><img src="${insightPreviewImage(article)}" alt="${escHtml(insightPreviewAlt(article))}" loading="lazy"></div><div class="ui-article-row-copy"><div class="ui-kicker mb-2">${glyph('spark', 'icon icon-sm')} ${escHtml(article.categoryLabel)}</div><div class="ui-list-title">${escHtml(article.title)}</div><div class="ui-list-meta">${escHtml(clampText(article.excerpt, 120))}</div></div><span class="ui-list-link">${glyph('arrow', 'icon icon-sm')}</span></a>`;
+  return `<a href="/insights/${article.slug}/" class="resource-library-row resource-library-row-guide"><div class="resource-library-row-preview resource-library-row-preview-guide"><img src="${insightPreviewImage(article)}" alt="${escHtml(insightPreviewAlt(article))}" loading="lazy"></div><div class="resource-library-row-copy"><div class="resource-library-row-meta">${glyph('spark', 'icon icon-sm')} ${escHtml(article.categoryLabel)}</div><div class="resource-library-row-title">${escHtml(article.title)}</div><div class="resource-library-row-desc">${escHtml(clampText(article.excerpt, 124))}</div></div><div class="resource-library-row-action">Open guide ${glyph('arrow', 'icon icon-sm')}</div></a>`;
 }
 function renderInsightDashboardCards(cards = []) {
   if (!cards.length) return '';
@@ -2492,7 +2533,7 @@ function renderResourcePreviewThumb(item = {}, options = {}) {
   const status = isRequestOnlyResource(resolved) ? 'Request' : 'PDF';
   const code = resourcePreviewCode(resolved);
   const previewLabel = resourcePreviewLabel(group);
-  return `<div class="resource-thumb ${resourceToneForGroup(group)}${compact ? ' is-compact' : ''}"><div class="resource-thumb-type">${escHtml(status)}</div><div class="resource-thumb-code">${escHtml(code)}</div><div class="resource-thumb-label">${escHtml(previewLabel)}</div></div>`;
+  return `<div class="resource-thumb ${resourceToneForGroup(group)}${compact ? ' is-compact' : ''}"><div class="resource-thumb-type">${escHtml(status)}</div><div class="resource-thumb-code">${escHtml(code)}</div>${compact ? '' : `<div class="resource-thumb-label">${escHtml(previewLabel)}</div>`}</div>`;
 }
 
 function renderResourceDocumentCard(item = {}, options = {}) {
@@ -3346,18 +3387,16 @@ function generateHomepage() {
                     <div class="ui-kicker mb-3">${glyph('file', 'icon icon-sm')} Reference downloads</div>
                     <p class="text-sm text-zinc-500 leading-relaxed">Use these when the route is already known and the next step is checking the right collection, finish deck, or product file.</p>
                     <div class="resource-library-list resource-library-list-compact mt-6">${featuredDocs.map((item) => renderResourceDocumentCard(item, { compact: true, showGroup: true, showNote: false })).join('')}</div>
-                    <div class="mt-8"><a href="/resources/" class="btn-outline">Open Resources</a></div>
+                    <div class="ui-library-card-action-row mt-8"><a href="/resources/" class="btn-outline">Open Resources</a></div>
                 </article>
                 <article class="ui-library-card ui-library-card-collection">
                     <div class="ui-kicker mb-3">${glyph('spark', 'icon icon-sm')} Editorial guides</div>
                     <p class="text-sm text-zinc-500 leading-relaxed">Use these when the team still needs better language around fit, approval logic, receiving checks, or route comparisons.</p>
-                    <div class="ui-list-compact mt-6">${featuredArticles.map((article) => renderHomeInsightRow(article)).join('')}</div>
-                    <div class="mt-8"><a href="/insights/" class="btn-outline">Open Insights</a></div>
+                    <div class="resource-library-list resource-library-list-guide mt-6">${featuredArticles.map((article) => renderHomeInsightRow(article)).join('')}</div>
+                    <div class="ui-library-card-action-row mt-8"><a href="/insights/" class="btn-outline">Open Insights</a></div>
                 </article>
             </div>
         </section>
-
-        ${ctaBlock('READY TO DISCUSS<br>THE RIGHT ROUTE?', 'Use Solutions for the application view, Explore when you need search first, or send the requirement directly for review.', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
@@ -3406,8 +3445,8 @@ function generateExplorePage() {
     title: 'Explore Moldart | Search solutions, product sheets, and guides',
     desc: 'Search and filter Moldart solutions, product sheets, technical resources, and guides from one discovery page.',
     canonical: '/explore/',
-    ogImage: siteSocialPosterRelativePath('moldart-home'),
-    ogImageAlt: 'Moldart discovery overview',
+    ogImage: siteSocialPosterRelativePath('moldart-explore'),
+    ogImageAlt: 'Moldart explore preview',
     schemas,
     prefetch: ['/resources/', '/solutions/', '/insights/']
   }) + '\n' + nav('explore') + `
@@ -3562,8 +3601,8 @@ function generateProductPage(productId) {
     title: m.seoTitle,
     desc: safeProductMetaDesc(p),
     canonical: `/products/${m.slug}/`,
-    ogImage: p.image,
-    ogImageAlt: p.name + ' — Moldart',
+    ogImage: siteSocialPosterRelativePath(productSocialPosterName(productId)),
+    ogImageAlt: `${p.name} — Moldart product sheet`,
     schemas
   }) + '\n' + nav('solutions') + `
 
@@ -3721,7 +3760,6 @@ function generateSolutionPage(app) {
             </div>
         </section>
 
-        ${ctaBlock(`READY TO DISCUSS<br>${escHtml(app.name.toUpperCase())}?`, 'Share the requirement, finish logic, quantity, and timing and Moldart can align the right system and product sheet path directly.', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
@@ -3875,6 +3913,8 @@ function generateFAQPage() {
     title: 'FAQ | Moldart',
     desc: 'Buyer-facing answers on Moldart product groups, documents, enquiries, order planning, and next-step review.',
     canonical: '/faq/',
+    ogImage: siteSocialPosterRelativePath('moldart-faq'),
+    ogImageAlt: 'Moldart FAQ preview',
     schemas
   }) + '\n' + nav('faq') + `
 
@@ -3930,8 +3970,8 @@ function generateContactPage() {
     title: 'Contact Moldart | Inquiry Form, WhatsApp, Phone & Meeting Booking',
     desc: 'Contact Moldart in Mumbai for product specifications, pricing, and sourcing support. Reach out by form, WhatsApp, phone, email, or meeting request.',
     canonical: '/contact/',
-    ogImage: siteSocialPosterRelativePath('moldart-default'),
-    ogImageAlt: 'Moldart brand overview',
+    ogImage: siteSocialPosterRelativePath('moldart-contact'),
+    ogImageAlt: 'Moldart contact preview',
     schemas
   }) + '\n' + nav('contact') + `
 
@@ -4059,8 +4099,8 @@ function generateAboutPage() {
     title: 'About Moldart | Since 1989',
     desc: 'Founded in 1989 and based in Mumbai, Moldart works across lamination tooling, panels, flooring, furniture, decorative stainless steel, and industrial press surfaces.',
     canonical: '/about/',
-    ogImage: siteSocialPosterRelativePath('moldart-default'),
-    ogImageAlt: 'Moldart brand overview',
+    ogImage: siteSocialPosterRelativePath('moldart-about'),
+    ogImageAlt: 'Moldart about preview',
     schemas
   }) + '\n' + nav('about') + `
 
@@ -4317,22 +4357,22 @@ function generateLoginPage() {
                 <article class="signal-card portal-card">
                     <div class="section-label mb-4">Buyer workspace</div>
                     <h2 class="font-display font-black text-2xl mb-4">RFQ, REFERENCE, AND REPEAT.</h2>
-                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">Planned for procurement teams, manufacturers, and project buyers who want one cleaner lane for RFQ intake, documents, approval tracking, and repeat-order visibility.</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">Planned for procurement teams, manufacturers, and project buyers who need one cleaner lane for RFQ intake, document review, approval tracking, and repeat-order visibility.</p>
                     <ul class="product-summary-list mb-6">
-                        <li>Structured RFQ and specification intake</li>
-                        <li>Reference files, approvals, and discussion history</li>
-                        <li>Repeat-order visibility linked to prior approved baselines</li>
+                        <li>Structured RFQ intake</li>
+                        <li>Files, approvals, and review trail</li>
+                        <li>Repeat orders linked to approved baselines</li>
                     </ul>
                     <a href="/contact/" class="btn-primary">Request buyer access</a>
                 </article>
                 <article class="signal-card portal-card">
                     <div class="section-label mb-4">Seller workflow</div>
                     <h2 class="font-display font-black text-2xl mb-4">QUOTE, DOCUMENT, AND FOLLOW-THROUGH.</h2>
-                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">Planned for verified manufacturing and supply sellers who need a clearer lane for quotations, document exchange, approval checkpoints, and repeat programme coordination.</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">Planned for verified manufacturing and supply sellers who need one cleaner lane for quotations, document exchange, approval checkpoints, and repeat-programme coordination.</p>
                     <ul class="product-summary-list mb-6">
                         <li>Standardised quote and document flow</li>
-                        <li>Quality checkpoints and approval visibility</li>
-                        <li>Operational coordination for repeat programmes</li>
+                        <li>Approval checkpoints and quality visibility</li>
+                        <li>Repeat-programme coordination</li>
                     </ul>
                     <a href="/contact/" class="btn-outline">Request seller access</a>
                 </article>
@@ -4600,7 +4640,7 @@ function generateInsightArticle(article) {
     bc.schema
   ];
 
-  const audiences = articleAudienceFor(article, context);
+  const audiences = articleAudienceFor(article, context).slice(0, 4);
   const headings = extractHtmlHeadings(contentHtml)
     .filter((heading) => heading.level === 2)
     .filter((heading) => !['Questions that shape the next review', 'Reference links and standards context', 'Technical checkpoints at a glance'].includes(heading.text))
@@ -4620,7 +4660,7 @@ function generateInsightArticle(article) {
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             ${bc.html}
             <div class="inline-flex items-center gap-3 mb-8"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">${escHtml(article.categoryLabel)} · ${escHtml(article.type)}</span></div>
-            <h1 class="page-heading" style="font-size:clamp(1.8rem,4vw,3rem);line-height:.95;">${escHtml(article.title)}</h1>
+            <h1 class="page-heading article-page-heading" style="font-size:clamp(1.8rem,4vw,3rem);line-height:.95;">${escHtml(article.title)}</h1>
             <div class="flex items-center gap-4 mt-6 text-sm text-zinc-500">
                 <span>${escHtml(articleDateLabel(article))}</span>
                 <span>·</span>

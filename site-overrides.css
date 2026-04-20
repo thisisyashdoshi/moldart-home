@@ -3647,3 +3647,236 @@ main > section.border-y::before {
     justify-self: stretch;
   }
 }
+
+/* 2026.42 final standardisation + preview pass */
+
+.ui-library-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.ui-library-card-collection {
+  min-height: 100%;
+}
+
+.ui-library-card-collection .resource-library-list {
+  align-content: start;
+}
+
+.ui-library-card-action-row {
+  margin-top: auto;
+  padding-top: 1.2rem;
+}
+
+.resource-library-list-guide {
+  gap: 1rem;
+}
+
+.resource-library-row {
+  min-height: 6.15rem;
+}
+
+.resource-library-row-guide {
+  grid-template-columns: 7rem minmax(0, 1fr) auto;
+  gap: 1rem;
+}
+
+.resource-library-row-preview-guide {
+  width: 7rem;
+  min-width: 7rem;
+  align-items: stretch;
+}
+
+.resource-library-row-preview-guide img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid #ece7e2;
+  background: #fafaf9;
+  box-shadow: 0 10px 24px rgba(24, 24, 27, 0.08);
+}
+
+.resource-library-row-guide .resource-library-row-title {
+  font-size: 1rem;
+  line-height: 1.24;
+}
+
+.resource-library-row-guide .resource-library-row-desc {
+  max-width: 42rem;
+}
+
+.resource-thumb.is-compact {
+  aspect-ratio: 1 / 1.08;
+  padding: 0.76rem 0.7rem;
+  justify-items: start;
+}
+
+.resource-thumb.is-compact .resource-thumb-code {
+  font-size: 1.3rem;
+}
+
+.article-signal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.article-signal-card {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem;
+  border: 1px solid #ece7e2;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.03);
+}
+
+.article-signal-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #71717a;
+}
+
+.article-signal-value {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.28;
+  color: #18181b;
+}
+
+.article-signal-note {
+  font-size: 0.82rem;
+  line-height: 1.58;
+  color: #52525b;
+}
+
+.portal-card > p {
+  min-height: 6rem;
+}
+
+.portal-card .product-summary-list {
+  min-height: 10.25rem;
+}
+
+@media (max-width: 768px) {
+  .ui-library-card-action-row {
+    padding-top: 1rem;
+  }
+
+  .resource-library-row,
+  .resource-library-row-guide {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .resource-library-row-preview-guide {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .resource-library-row-action {
+    justify-content: flex-start;
+  }
+
+  .resource-library-row-guide .resource-library-row-action {
+    padding-top: 0.15rem;
+  }
+
+  .article-page-heading {
+    font-size: 1.68rem !important;
+    line-height: 0.98 !important;
+  }
+
+  .insight-article > * + * {
+    margin-top: 1.1rem !important;
+  }
+
+  .insight-article h2 {
+    margin-top: 1.75rem !important;
+    font-size: 1.08rem !important;
+    line-height: 1.18 !important;
+  }
+
+  .insight-article h3 {
+    margin-top: 1.25rem !important;
+    font-size: 0.96rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .insight-article p,
+  .insight-article li {
+    font-size: 0.88rem !important;
+    line-height: 1.66 !important;
+  }
+
+  .insight-article th,
+  .insight-article td,
+  .article-panel,
+  .article-dashboard-note,
+  .article-chart-note,
+  .article-signal-note {
+    font-size: 0.78rem !important;
+  }
+
+  .article-toc-band {
+    padding: 0.72rem !important;
+  }
+
+  .article-toc-row {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    margin-top: 0.6rem !important;
+    padding-bottom: 0.1rem;
+    scrollbar-width: none;
+  }
+
+  .article-toc-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .article-toc-band .article-toc-link {
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+
+  .article-primer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.75rem !important;
+  }
+
+  .article-primer-card-wide {
+    grid-column: 1 / -1;
+  }
+
+  .article-signal-grid,
+  .article-dashboard-grid,
+  .article-appendix-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.75rem !important;
+  }
+
+  .article-visual-grid,
+  .article-reference-grid,
+  .article-flow-grid,
+  .article-end-rail {
+    grid-template-columns: 1fr !important;
+  }
+
+  .article-signal-card,
+  .article-dashboard-card,
+  .article-visual-card,
+  .article-reference-card,
+  .article-panel,
+  .article-faq-card {
+    padding: 0.82rem !important;
+  }
+
+  .portal-card > p,
+  .portal-card .product-summary-list {
+    min-height: 0;
+  }
+}
