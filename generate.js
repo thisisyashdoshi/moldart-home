@@ -16,7 +16,7 @@ const { importedInsights, insightDossiers } = require('./insight-enhancements.js
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.39';
+const VER = '2026.40';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
@@ -348,7 +348,7 @@ const applications = [
     name: 'Lamination',
     seoTitle: 'Lamination Tooling & Materials Supplier — Moldart',
     metaDesc: 'Complete lamination supply chain: press plates, press pads, engraved cylinders, printed decor paper, and industrial press plates for HPL and LPL production.',
-    overview: 'Use this route when lamination performance depends on the full stack: press plate condition, press pad behaviour, cylinder repeat, decor paper compatibility, and the approved surface benchmark.',
+    overview: 'For lamination lines, the real decision is rarely one item in isolation. Press plate condition, press pad behaviour, cylinder repeat, decor paper compatibility, and the target surface benchmark have to be read together.',
     considerations: [
       'Press plate grade selection depends on required surface hardness and production volume',
       'Press pad construction affects heat distribution uniformity across the press area',
@@ -368,7 +368,7 @@ const applications = [
     name: 'Furniture Manufacturing',
     seoTitle: 'Furniture Materials & Components Supplier — Moldart',
     metaDesc: 'Substrates, decor inputs, and finished furniture for commercial and residential manufacturing. Plywood, MDF, HDF, particleboard, and CNC-built furniture.',
-    overview: 'Use this route when substrate choice, emission or compliance requirements, decorative facing, machining precision, and finished-output expectations need to be aligned before quotation or sampling.',
+    overview: 'In furniture work, the board choice, surface route, machining accuracy, compliance requirement, and output expectation have to line up before the team compares quotations or samples.',
     considerations: [
       'Substrate selection depends on the structural requirements and end-use environment',
       'Emission compliance standards vary by destination market (E1, CARB-NAF, F4 star)',
@@ -387,7 +387,7 @@ const applications = [
     name: 'Flooring',
     seoTitle: 'Engineered Wood Flooring & Accessories Supplier — Moldart',
     metaDesc: 'Engineered laminate flooring systems (AC3–AC5) with coordinated accessories. HDF core, click-lock profiles, and transition trims for residential and commercial use.',
-    overview: 'Use this route when wear class, core moisture behaviour, locking profile, accessory coordination, and site conditions need to be reviewed together before the flooring package is approved.',
+    overview: 'Flooring decisions sit at system level: wear class, core moisture behaviour, locking profile, accessories, and site conditions all affect the final result and should be reviewed together.',
     considerations: [
       'Wear class selection (AC3–AC5) depends on traffic intensity and commercial vs. residential use',
       'HDF core moisture resistance matters for kitchens, bathrooms, and humid environments',
@@ -405,7 +405,7 @@ const applications = [
     name: 'Architecture & Interiors',
     seoTitle: 'Architectural Materials Supplier | Steel Panels & Wood Panels — Moldart',
     metaDesc: 'Decorative stainless steel panels, profiles, and engineered wood substrates for architectural interiors. PVD finishes, structural panels, and custom fabrication.',
-    overview: 'Use this route when visible stainless surfaces, trims, support boards, and project detailing have to be aligned against environment, finish approval, fabrication logic, and installation conditions.',
+    overview: 'Architectural interior work is usually decided by the visible finish, the environment, the detailing, and the installation condition—not by a generic stainless or panel label.',
     considerations: [
       'Decorative stainless-steel grade selection depends on environment, corrosion exposure, and the project finish route',
       'PVD color consistency across batches should be confirmed for large-area installations',
@@ -425,7 +425,7 @@ const applications = [
     name: 'Metal Finishing',
     seoTitle: 'Decorative Metal Finishing | PVD Stainless Steel — Moldart',
     metaDesc: 'Decorative-finished stainless steel panels, profiles, and furniture for premium interiors, with finish approval confirmed per programme.',
-    overview: 'Use this route when the requirement is driven by finish family, grade, colour continuity, anti-fingerprint logic, and fabricated-output consistency across visible stainless parts.',
+    overview: 'For decorative stainless work, the real discussion is finish family, grade, colour continuity, anti-fingerprint requirement, and how the fabricated output will actually be approved.',
     considerations: [
       'Finish route, colour approval, and surface preparation should be aligned before commercial comparison',
       'Anti-fingerprint requirements should be confirmed for high-touch surfaces',
@@ -446,7 +446,7 @@ const applications = [
     name: 'PCB & CCL Manufacturing',
     seoTitle: 'Press Plates for PCB & CCL Manufacturing — Moldart',
     metaDesc: 'Industrial press plates for printed circuit board (PCB) and copper-clad laminate (CCL) manufacturing. Demagnetized plates with strict flatness and parallelism tolerances.',
-    overview: 'Use this route when flatness, parallelism, demagnetisation control, surface condition, and incoming inspection discipline are part of the process capability, not optional extras.',
+    overview: 'In PCB and CCL work, flatness, parallelism, demagnetisation control, surface condition, and incoming inspection are part of process capability, not optional extras.',
     considerations: [
       'Residual magnetism control should be confirmed for electronics pressing routes',
       'Flatness and parallelism should be matched to the production requirement',
@@ -548,8 +548,8 @@ const ROUTE_VISUAL_MODELS = {
     homeSummary: 'Press tooling and décor inputs aligned to texture transfer, press stability, and repeat approval quality.',
     homeOutputs: ['HPL', 'LPL', 'Panel surfacing'],
     homeSteps: ['Tooling', 'Press cycle', 'Surface output'],
-    storyTitle: 'LAMINATION: INPUTS, CONTROLS, OUTPUTS.',
-    storyNote: 'Use this view when the line outcome depends on the full tooling stack, décor route, and press conditions being read together before approval.',
+    storyTitle: 'LAMINATION: STACK, CONTROLS, OUTPUT.',
+    storyNote: 'Read this as a system view of the tooling stack, décor route, and press conditions behind the approved surface.',
     inputs: ['Press Plates', 'Press Pads', 'Engraved Cylinders', 'Printed Decor Paper'],
     process: ['Pattern printing', 'Heat + pressure', 'Texture transfer'],
     outputs: ['Decorative laminate faces', 'Furniture panel surfaces', 'Flooring overlays']
@@ -559,8 +559,8 @@ const ROUTE_VISUAL_MODELS = {
     homeSummary: 'Substrates, decorative faces, and finished pieces aligned to machining accuracy, surface route, and end-use loading.',
     homeOutputs: ['Modular furniture', 'Retail fixtures', 'Custom interiors'],
     homeSteps: ['Boards', 'Fabrication', 'Furniture output'],
-    storyTitle: 'FURNITURE: MATERIAL STACK TO FINISHED OUTPUT.',
-    storyNote: 'Use this view when substrate choice, surface route, fabrication logic, and finished output need to be aligned before quotation or sampling.',
+    storyTitle: 'FURNITURE: STACK, CONTROLS, OUTPUT.',
+    storyNote: 'Read this as a system view of the board choice, surface route, fabrication logic, and finished output.',
     inputs: ['Plywood', 'Fiberboard', 'Particleboard', 'Ready-Made / Custom Furniture'],
     process: ['Board selection', 'Facing + detailing', 'Assembly / fit-out'],
     outputs: ['Modular furniture', 'Custom furniture', 'Project-specific fit-outs']
@@ -570,8 +570,8 @@ const ROUTE_VISUAL_MODELS = {
     homeSummary: 'Boards and accessories aligned to wear class, core moisture behaviour, locking profile, and installation finish.',
     homeOutputs: ['Residential floors', 'Commercial floors', 'Accessory coordination'],
     homeSteps: ['Floor core', 'Installation route', 'Finished floor'],
-    storyTitle: 'FLOORING: CORE, ACCESSORY, INSTALLATION LOGIC.',
-    storyNote: 'Use this view when board construction, accessory choice, and site conditions need to be read together before the floor route is approved.',
+    storyTitle: 'FLOORING: CORE, CONTROLS, OUTPUT.',
+    storyNote: 'Read this as a system view of the floor core, accessory logic, and site conditions behind the finished installation.',
     inputs: ['Wood Flooring', 'Flooring Accessories', 'Fiberboard'],
     process: ['Core + decor', 'Click-lock planning', 'Accessory fit'],
     outputs: ['Installed floors', 'Stair + trim finish', 'Coordinated room transitions']
@@ -581,8 +581,8 @@ const ROUTE_VISUAL_MODELS = {
     homeSummary: 'Decorative stainless surfaces, trims, and support boards aligned to environment, detailing, and installation-facing approval.',
     homeOutputs: ['Feature walls', 'Lift panels', 'Interior fit-outs'],
     homeSteps: ['Surface selection', 'Detailing', 'Installed interior output'],
-    storyTitle: 'INTERIOR FIT-OUT: SURFACE, DETAIL, INSTALLATION.',
-    storyNote: 'Use this view when visible stainless surfaces, trims, and support boards have to be aligned against environment, detailing, and installation conditions.',
+    storyTitle: 'INTERIORS: SURFACE, DETAIL, OUTPUT.',
+    storyNote: 'Read this as a system view of finish choice, detailing, support materials, and installation-facing checks.',
     inputs: ['Decorative SS Panels', 'SS Profiles', 'SS Furniture', 'Support boards'],
     process: ['Finish approval', 'Detail coordination', 'Project installation'],
     outputs: ['Architectural features', 'Interior cladding', 'Premium fit-outs']
@@ -592,8 +592,8 @@ const ROUTE_VISUAL_MODELS = {
     homeSummary: 'Panels, profiles, and fabricated stainless routes where finish family, colour continuity, and surface acceptance matter.',
     homeOutputs: ['PVD routes', 'Stamped surfaces', 'Mirror / hairline work'],
     homeSteps: ['Finish family', 'Approval', 'Decorative output'],
-    storyTitle: 'METAL FINISHING: SURFACE FAMILY TO APPROVED OUTPUT.',
-    storyNote: 'Use this view when the requirement is driven by finish family, approval discipline, and consistency across visible decorative pieces.',
+    storyTitle: 'METAL FINISHING: FINISH, APPROVAL, OUTPUT.',
+    storyNote: 'Read this as a system view of finish family, approval method, and consistency across visible decorative parts.',
     inputs: ['Decorative SS Panels', 'SS Profiles', 'SS Furniture'],
     process: ['Finish-family selection', 'Sample approval', 'Fabrication alignment'],
     outputs: ['Decorative panels', 'Profiles + trims', 'Fabricated feature pieces']
@@ -603,8 +603,8 @@ const ROUTE_VISUAL_MODELS = {
     homeSummary: 'Tolerance-critical plate routes aligned to flatness, parallelism, demagnetisation, and press consistency.',
     homeOutputs: ['CCL lines', 'PCB routes', 'Technical laminates'],
     homeSteps: ['Industrial plates', 'Controlled pressing', 'Technical output'],
-    storyTitle: 'TECHNICAL LAMINATE LINES: PLATE CONDITION TO PRESS OUTPUT.',
-    storyNote: 'Use this view when plate condition, incoming inspection, and controlled pressing are part of process capability rather than optional checks.',
+    storyTitle: 'TECHNICAL LAMINATES: PLATE, PRESS, OUTPUT.',
+    storyNote: 'Read this as a system view of plate condition, incoming inspection, and controlled pressing.',
     inputs: ['Industrial Press Plates'],
     process: ['Incoming checks', 'Controlled pressing', 'Tolerance review'],
     outputs: ['PCB / CCL lines', 'Technical laminates', 'Lower downstream correction risk']
@@ -1457,8 +1457,8 @@ const SITE_SOCIAL_POSTERS = [
   {
     name: 'moldart-home',
     kicker: 'Homepage preview',
-    title: 'Technical supply programmes, aligned to the brief',
-    note: 'Use Solutions, Resources, Insights, and Contact to move from search, to reference, to technical-commercial review.',
+    title: 'Technical supply, aligned before RFQ',
+    note: 'Routes, references, and technical reading for procurement, commercial, and approval teams.',
     chips: ['6 routes', '24 files', '31 guides', 'Mumbai']
   },
   {
@@ -1895,6 +1895,14 @@ function renderHeroNetworkMap() {
               <text x="798" y="198" class="hero-node-label">China</text>
               <text x="798" y="179" class="hero-node-meta">Sourcing anchor</text>
           </g>
+          <g class="hero-world-region-labels">
+              <text x="138" y="170" class="hero-world-region-label">North America</text>
+              <text x="198" y="500" class="hero-world-region-label">South America</text>
+              <text x="394" y="140" class="hero-world-region-label">Europe</text>
+              <text x="454" y="470" class="hero-world-region-label">Africa</text>
+              <text x="618" y="112" class="hero-world-region-label">Asia</text>
+              <text x="772" y="472" class="hero-world-region-label">Oceania</text>
+          </g>
       </svg>
   </div>`;
 }
@@ -2000,11 +2008,11 @@ function renderSolutionHeroSummary(app) {
   const outputs = (visual.outputs || visual.homeOutputs || []).slice(0, 3);
   return `<div class="solution-hero-summary">
       <article class="solution-hero-summary-card solution-hero-summary-card-note">
-          <div class="solution-hero-summary-label">What this page clarifies</div>
-          <p>Use this page when the requirement still needs the right product stack, approval checks, and file path before the narrower item-level review begins.</p>
+          <div class="solution-hero-summary-label">Page use</div>
+          <p>Use this page to confirm route fit, working stack, and the file or product path needed next.</p>
       </article>
       <article class="solution-hero-summary-card">
-          <div class="solution-hero-summary-label">Usually combines</div>
+          <div class="solution-hero-summary-label">Typical stack</div>
           ${renderRouteTokenRow(productNames, { className: 'solution-hero-summary-pills', limit: 4 })}
       </article>
       <article class="solution-hero-summary-card">
@@ -2017,7 +2025,9 @@ function renderSolutionHeroSummary(app) {
 function renderSolutionStoryBand(app) {
   const visual = ROUTE_VISUAL_MODELS[app.slug];
   if (!visual) return '';
-  const productLinks = app.products.map((productId) => renderProductPillLink(productId, 'solution-system-product-pill')).filter(Boolean).join('');
+  const visibleProducts = app.products.slice(0, 5);
+  const hiddenProductCount = Math.max(0, app.products.length - visibleProducts.length);
+  const productLinks = visibleProducts.map((productId) => renderProductPillLink(productId, 'solution-system-product-pill')).filter(Boolean).join('') + (hiddenProductCount ? `<span class="solution-system-product-pill is-muted">+${hiddenProductCount} more</span>` : '');
   return `<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
       <div class="ui-section-head mb-8">
           <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} How the route works</div>
@@ -2027,35 +2037,35 @@ function renderSolutionStoryBand(app) {
       <div class="solution-system-band">
           <div class="solution-system-diagram">
               <article class="solution-system-stage">
-                  <div class="solution-system-stage-label">Input conditions</div>
-                  <h3>Material + process inputs</h3>
-                  <p>These are the materials, surfaces, or line conditions that need to be right before the route can perform as expected.</p>
+                  <div class="solution-system-stage-label">Inputs</div>
+                  <h3>What has to be matched</h3>
+                  <p>The working materials and conditions behind the route.</p>
                   <div class="solution-system-chip-row">${(visual.inputs || []).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
               </article>
               <div class="solution-system-arrow" aria-hidden="true">→</div>
               <article class="solution-system-stage">
-                  <div class="solution-system-stage-label">Control points</div>
-                  <h3>Process controls</h3>
-                  <p>This is where transfer, fabrication, installation, or approval discipline changes the technical and commercial outcome.</p>
+                  <div class="solution-system-stage-label">Controls</div>
+                  <h3>What changes the outcome</h3>
+                  <p>Where process or approval discipline affects the result.</p>
                   <div class="solution-system-chip-row">${(visual.process || []).map((item, index) => `<span><strong>0${index + 1}</strong>${escHtml(item)}</span>`).join('')}</div>
               </article>
               <div class="solution-system-arrow" aria-hidden="true">→</div>
               <article class="solution-system-stage">
-                  <div class="solution-system-stage-label">Output conditions</div>
-                  <h3>Approved output</h3>
-                  <p>The release usually depends on these visible, measurable, or repeatable output conditions.</p>
+                  <div class="solution-system-stage-label">Outputs</div>
+                  <h3>What gets approved</h3>
+                  <p>The visible or measurable conditions the release depends on.</p>
                   <div class="solution-system-chip-row">${(visual.outputs || []).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
               </article>
           </div>
           <div class="solution-system-note-grid">
               <article class="solution-system-note-card">
                   <div class="solution-system-note-label">Linked product sheets</div>
-                  <p>Use the product sheets below when the route is clear but the item-level reference still needs to be confirmed.</p>
+                  <p>Open the item-level page only when the route is clear and the exact sheet is needed next.</p>
                   <div class="solution-system-product-row">${productLinks}</div>
               </article>
               <article class="solution-system-note-card">
-                  <div class="solution-system-note-label">Approval controls</div>
-                  <ul class="ui-stack-list">${app.considerations.slice(0, 4).map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul>
+                  <div class="solution-system-note-label">Check before release</div>
+                  <ul class="ui-stack-list">${app.considerations.slice(0, 3).map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul>
               </article>
           </div>
       </div>
@@ -3241,8 +3251,8 @@ function generateHomepage() {
   const routeCards = applications.map((app) => renderHomeRouteCard(app)).join('');
 
   return headTag({
-    title: 'Moldart | Specification-led supply for laminates, panels, flooring, furniture & decorative stainless',
-    desc: 'Specification-led supply programmes from Mumbai across laminates, panels, flooring, furniture, decorative stainless steel, and industrial press routes.',
+    title: 'Moldart | Laminates, panels, flooring, furniture & decorative stainless',
+    desc: 'Moldart works from Mumbai across laminates, panels, flooring, furniture, decorative stainless steel, and industrial press routes, helping teams align route, reference, and approval before RFQ and supply.',
     canonical: '/',
     ogImage: siteSocialPosterRelativePath('moldart-home'),
     ogImageAlt: 'Moldart homepage overview',
@@ -3255,8 +3265,8 @@ function generateHomepage() {
             <div class="ui-hero">
                 <div>
                     <div class="ui-kicker mb-6">${glyph('shield', 'icon icon-sm')} Since 1989 · Mumbai</div>
-                    <h1 class="page-heading page-heading-home mb-6">SPECIFICATION-LED PROGRAMMES FOR LAMINATES,<br>PANELS, FLOORING,<br>FURNITURE, AND DECORATIVE STAINLESS.</h1>
-                    <p class="ui-intro">Use the site to narrow the application route, identify the likely product stack, and open the right reference files before RFQ, approval, or reorder.</p>
+                    <h1 class="page-heading page-heading-home mb-6">LAMINATES,<br>PANELS, FLOORING,<br>FURNITURE, AND<br>DECORATIVE STAINLESS.</h1>
+                    <p class="ui-intro">Moldart works with procurement, technical, and commercial teams that need a cleaner first pass: which route fits the requirement, which product stack usually sits inside it, which file should anchor approval, and what still has to be clarified before RFQ, sampling, dispatch, or repeat supply.</p>
                     <div class="ui-chip-row mt-8">
                         <span class="ui-chip">${glyph('clock', 'icon icon-sm')} Since 1989</span>
                         <span class="ui-chip">${glyph('building', 'icon icon-sm')} Mumbai-led coordination</span>
@@ -3264,7 +3274,6 @@ function generateHomepage() {
                     </div>
                     <div class="flex gap-4 flex-wrap mt-8 hero-cta-wrap">
                         <a href="/solutions/" class="btn-primary btn-lg">Explore Solutions →</a>
-                        <a href="/contact/" class="btn-outline btn-lg">Share your requirement</a>
                     </div>
                 </div>
                 <div class="ui-panel ui-panel-soft home-hero-panel-compact">
@@ -3285,12 +3294,13 @@ function generateHomepage() {
             <div class="home-map-layout">
                 <div class="home-map-copy home-map-copy-minimal">
                     <div class="ui-kicker mb-4">${glyph('globe', 'icon icon-sm')} Programme geography</div>
-                    <h2 class="ui-section-title">PLACE THE OPERATING BASE,<br>THEN KEEP THE MAP QUIET.</h2>
-                    <p class="home-map-note">This map is directional only: Mumbai is the operating base, India and China are the sourcing anchors, and the wider lanes stay intentionally illustrative.</p>
+                    <h2 class="ui-section-title">START WITH MUMBAI.<br>KEEP THE REST AS CONTEXT.</h2>
+                    <p class="home-map-note">Mumbai is the operating base. India and China are the sourcing anchors used most often in the current public route. The wider world map is there only to orient the viewer, not to imply offices or fixed sourcing claims elsewhere.</p>
                     <div class="home-map-legend-row">
                         <span class="home-map-legend-pill is-primary"><strong>Mumbai</strong><span>Operating base</span></span>
-                        <span class="home-map-legend-pill"><strong>India + China</strong><span>Primary sourcing anchors</span></span>
-                        <span class="home-map-legend-pill"><strong>Illustrative lanes</strong><span>Context only</span></span>
+                        <span class="home-map-legend-pill"><strong>India</strong><span>Sourcing anchor</span></span>
+                        <span class="home-map-legend-pill"><strong>China</strong><span>Sourcing anchor</span></span>
+                        <span class="home-map-legend-pill"><strong>World map</strong><span>Context only</span></span>
                     </div>
                 </div>
                 <div class="home-map-shell home-map-visual">
@@ -3314,7 +3324,7 @@ function generateHomepage() {
             <div class="ui-section-head mb-10">
                 <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Decision tools</div>
                 <h2 class="ui-section-title">REFERENCE FILES,<br>TECHNICAL GUIDES,<br>AND NEXT STEPS.</h2>
-                <p class="ui-section-subtitle">Resources carry downloadable files, Insights carry technical guidance, and Solutions carry the wider application stack when the brief is still being narrowed.</p>
+                <p class="ui-section-subtitle">Resources are the files. Insights are the technical reading. Solutions are the wider application view when the brief still needs to be narrowed properly.</p>
             </div>
             <div class="ui-library-grid ui-library-grid-balanced">
                 <article class="ui-library-card ui-library-card-collection">
@@ -3332,7 +3342,7 @@ function generateHomepage() {
             </div>
         </section>
 
-        ${ctaBlock('READY TO START<br>FROM THE RIGHT ROUTE?', 'Use Solutions for the application view, Explore when you need search first, or send the requirement directly for review.', 'Explore Solutions', '/solutions/', 'Share your requirement', '/contact/')}
+        ${ctaBlock('READY TO START<br>FROM THE RIGHT ROUTE?', 'Use Solutions for the application view, Explore when you need search first, or send the requirement directly for review.', 'Explore Solutions', '/solutions/')}
     </main>
 
     ${footer()}
@@ -3437,7 +3447,7 @@ function generateExplorePage() {
             </div>
         </section>
 
-        ${ctaBlock('NEED A HUMAN<br>SHORTLIST?', 'If search gets you close but not all the way there, send the requirement and let the team align the right path directly.', 'Share your requirement', '/contact/', 'Explore Solutions', '/solutions/')}
+        ${ctaBlock('NEED A HUMAN<br>SHORTLIST?', 'If search gets you close but not all the way there, send the requirement and let the team align the right path directly.', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
@@ -3492,7 +3502,7 @@ function generateSolutionsHub() {
             <div class="ui-solution-grid">${solutionCards}</div>
         </section>
 
-        ${ctaBlock('NEED A CLEANER<br>SHORTLIST?', 'Open the solution that matches the requirement, review the stack, and then move into direct discussion when the brief is ready.', 'Share your requirement', '/contact/', 'Open Resources', '/resources/')}
+        ${ctaBlock('NEED A CLEANER<br>SHORTLIST?', 'Open the solution that matches the requirement, review the stack, and then move into direct discussion when the brief is ready.', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
@@ -3608,7 +3618,7 @@ function generateProductPage(productId) {
 
         ${relatedSolutionCards ? `<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up"><div class="ui-section-head mb-8"><div class="ui-kicker mb-4">${glyph('compass', 'icon icon-sm')} System fit</div><h2 class="ui-section-title">SEE WHERE THIS PRODUCT FITS.</h2><p class="ui-section-subtitle">Use the solution views below when the requirement is still being narrowed at the system level and the product sheet alone is not enough.</p></div><div class="ui-library-grid">${relatedSolutionCards}</div></section>` : ''}
 
-        ${ctaBlock(`NEED ${escHtml(p.name.toUpperCase())}<br>SPECS OR PRICING?`, 'Share the application, finish expectation, quantity context, and timing for a faster recommendation.', 'Share your requirement', '/contact/', 'Explore Solutions', '/solutions/')}
+        ${ctaBlock(`NEED ${escHtml(p.name.toUpperCase())}<br>SPECS OR PRICING?`, 'Share the application, finish expectation, quantity context, and timing for a faster recommendation.', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
@@ -3656,7 +3666,6 @@ function generateSolutionPage(app) {
                     <div class="ui-app-badges mt-8">${audience}</div>
                     <div class="flex gap-4 flex-wrap mt-8">
                         <a href="/contact/" class="btn-primary btn-lg">Share your requirement →</a>
-                        <a href="/resources/" class="btn-outline btn-lg">Open Resources</a>
                     </div>
                 </div>
                 <div class="ui-page-hero-panel solution-hero-summary-panel">
@@ -3702,7 +3711,7 @@ function generateSolutionPage(app) {
             </div>
         </section>
 
-        ${ctaBlock(`READY TO DISCUSS<br>${escHtml(app.name.toUpperCase())}?`, 'Share the requirement, finish logic, quantity, and timing and Moldart can align the right system and product sheet path directly.', 'Share your requirement', '/contact/', 'Explore Solutions', '/solutions/')}
+        ${ctaBlock(`READY TO DISCUSS<br>${escHtml(app.name.toUpperCase())}?`, 'Share the requirement, finish logic, quantity, and timing and Moldart can align the right system and product sheet path directly.', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
@@ -3776,7 +3785,7 @@ function generateResourcesPage() {
         <section class="max-w mx-auto px py-16">
             <div class="ui-resource-group">${groupsHtml}</div>
         </section>
-        ${ctaBlock('NEED A SPECIFIC<br>DATA SHEET?', 'If the exact document is not listed here, send the product, application, or finish route and the team can route the right file directly.', 'Request a Document', '/contact/?focus=document-request', 'Explore Solutions', '/solutions/')}
+        ${ctaBlock('NEED A SPECIFIC<br>DATA SHEET?', 'If the exact document is not listed here, send the product, application, or finish route and the team can route the right file directly.', 'Request a Document', '/contact/?focus=document-request')}
     </main>
 
     ${footer()}
@@ -3889,7 +3898,7 @@ function generateFAQPage() {
         <section class="max-w mx-auto px py-16 border-t border-zinc-100 fade-up">
             <div class="ui-resource-group">${faqHtml}</div>
         </section>
-        ${ctaBlock('HAVE A SPECIFIC<br>QUESTION?', 'If the answer depends on the exact requirement, move from FAQ to a direct review with the team.', 'Share your requirement', '/contact/', 'Explore Solutions', '/solutions/')}
+        ${ctaBlock('HAVE A SPECIFIC<br>QUESTION?', 'If the answer depends on the exact requirement, move from FAQ to a direct review with the team.', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
@@ -4125,7 +4134,7 @@ function generateAboutPage() {
             </div>
         </section>
 
-        ${ctaBlock('READY TO WORK<br>FROM A CLEARER BRIEF?', 'Open Solutions, review the relevant references, or send the requirement directly for confirmation.', 'Explore Solutions', '/solutions/', 'Share your requirement', '/contact/')}
+        ${ctaBlock('READY TO WORK<br>FROM A CLEARER BRIEF?', 'Open Solutions, review the relevant references, or send the requirement directly for confirmation.', 'Explore Solutions', '/solutions/')}
     </main>
 
     ${footer()}
@@ -4267,7 +4276,7 @@ function generateProcessPage() {
             </div>
         </section>
 
-        ${ctaBlock('READY TO START?', 'Share the requirement and the team can align the route, reference, and next step against the actual programme.', 'Share your requirement', '/contact/', 'Portal preview', '/portal/')}
+        ${ctaBlock('READY TO START?', 'Share the requirement and the team can align the route, reference, and next step against the actual programme.', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
@@ -4559,7 +4568,7 @@ function generateInsightsHub() {
             </div>
             <div class="insight-route-card-grid">${routeAssistCards}</div>
         </section>
-        ${ctaBlock('NEED SPECIFIC<br>GUIDANCE?', 'Use a guide as the starting point, then send the actual requirement for a product-aligned review.', 'Share your requirement', '/contact/', 'Open Resources', '/resources/')}
+        ${ctaBlock('NEED SPECIFIC<br>GUIDANCE?', 'Use a guide as the starting point, then send the actual requirement for a product-aligned review.', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}

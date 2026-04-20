@@ -3353,3 +3353,100 @@
     height: 4.1rem;
   }
 }
+
+/* 2026.40 final copy-density + mobile article pass */
+
+.hero-world-map .hero-world-region-label {
+  fill: #a1a1aa;
+  opacity: 0.72;
+}
+
+.solution-system-product-pill.is-muted {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.38rem 0.6rem;
+  border: 1px solid #e7e5e4;
+  border-radius: 999px;
+  background: #fafaf9;
+  font-size: 0.74rem;
+  color: #71717a;
+}
+
+@media (max-width: 768px) {
+  .insight-article > * + * {
+    margin-top: 1.2rem !important;
+  }
+
+  .insight-article h2 {
+    margin-top: 2rem !important;
+    font-size: 1.18rem !important;
+    line-height: 1.14 !important;
+  }
+
+  .insight-article h3 {
+    margin-top: 1.35rem !important;
+    font-size: 1rem !important;
+    line-height: 1.32 !important;
+  }
+
+  .insight-article p,
+  .insight-article li {
+    font-size: 0.92rem !important;
+    line-height: 1.72 !important;
+  }
+
+  .insight-article ul,
+  .insight-article ol {
+    gap: 0.5rem !important;
+    padding-left: 1rem !important;
+  }
+
+  .insight-article th,
+  .insight-article td,
+  .article-panel,
+  .article-dashboard-note,
+  .article-chart-note {
+    font-size: 0.82rem !important;
+  }
+
+  .insight-article th,
+  .insight-article td {
+    padding: 0.68rem 0.72rem !important;
+  }
+
+  .article-cover-card {
+    height: 13.25rem !important;
+  }
+
+  .article-toc-band {
+    padding: 0.8rem !important;
+  }
+
+  .article-toc-band .article-toc-link {
+    font-size: 0.76rem !important;
+    padding: 0.42rem 0.62rem !important;
+  }
+
+  .article-dashboard-card,
+  .article-visual-card,
+  .article-reference-card,
+  .article-panel,
+  .article-faq-card,
+  .article-signal-card {
+    padding: 0.95rem !important;
+  }
+
+  .article-dashboard-value {
+    font-size: 1.08rem !important;
+  }
+
+  .article-signal-grid,
+  .article-dashboard-grid,
+  .article-visual-grid,
+  .article-reference-grid,
+  .article-flow-grid,
+  .article-appendix-grid,
+  .article-end-rail {
+    grid-template-columns: 1fr !important;
+  }
+}
