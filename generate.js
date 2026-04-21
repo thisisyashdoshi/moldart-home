@@ -16,7 +16,7 @@ const { importedInsights, insightDossiers } = require('./insight-enhancements.js
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.42';
+const VER = '2026.43';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
@@ -1456,10 +1456,10 @@ const SITE_SOCIAL_POSTERS = [
   },
   {
     name: 'moldart-home',
-    kicker: 'Homepage preview',
-    title: 'Start with the route, not product noise',
-    note: 'Routes, files, and technical reading for procurement, technical, and commercial teams.',
-    chips: ['6 routes', '24 files', '31 guides', 'Mumbai']
+    kicker: 'Moldart',
+    title: 'Laminates, panels, flooring, furniture, and decorative stainless',
+    note: 'Specification-led supply from Mumbai for procurement, technical, and commercial teams across route choice, files, and approvals.',
+    chips: ['Since 1989', 'Mumbai', '6 routes', '24 files']
   },
   {
     name: 'moldart-solutions',
@@ -1531,6 +1531,23 @@ function siteSocialPosterRelativePath(name, ext = 'png') {
 function siteSocialPosterOutputPath(name, ext = 'svg') {
   return path.join(WORK, 'images', 'social', `${name}.${ext}`);
 }
+const posterImageDataUriCache = new Map();
+function posterImageMime(absPath = '') {
+  const lower = String(absPath).toLowerCase();
+  if (lower.endsWith('.png')) return 'image/png';
+  if (lower.endsWith('.jpg') || lower.endsWith('.jpeg')) return 'image/jpeg';
+  if (lower.endsWith('.webp')) return 'image/webp';
+  if (lower.endsWith('.avif')) return 'image/avif';
+  return 'application/octet-stream';
+}
+function posterImageDataUri(relPath = '') {
+  const normalized = String(relPath || '').replace(/^\/+/, '');
+  const absPath = path.join(WORK, normalized);
+  if (posterImageDataUriCache.has(absPath)) return posterImageDataUriCache.get(absPath);
+  const dataUri = `data:${posterImageMime(absPath)};base64,${fs.readFileSync(absPath).toString('base64')}`;
+  posterImageDataUriCache.set(absPath, dataUri);
+  return dataUri;
+}
 function solutionSocialPosterName(slug = '') {
   return `moldart-solution-${slug}`;
 }
@@ -1562,7 +1579,48 @@ function getProductSocialPosterConfigs() {
     panelLabel: 'PRODUCT FIT'
   }));
 }
+function buildHomeSocialSvg(config) {
+  const chips = (config.chips || []).filter(Boolean).slice(0, 4);
+  const titleLines = wrapPosterText(config.title, 28, 3);
+  const noteLines = wrapPosterText(clampText(config.note, 116), 42, 3);
+  const heroPrimary = posterImageDataUri('/images/page7_img3.webp');
+  const heroFloor = posterImageDataUri('/images/page7_img1.webp');
+  const heroSteel = posterImageDataUri('/images/page9_img1.webp');
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="${escHtml(config.title)}">
+    <defs>
+      <linearGradient id="homePosterBg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#f7f4ee"/>
+        <stop offset="100%" stop-color="#efebe6"/>
+      </linearGradient>
+      <linearGradient id="homePosterPanel" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="100%" stop-color="#faf8f5"/>
+      </linearGradient>
+      <clipPath id="homePosterPrimaryClip"><rect x="706" y="56" width="438" height="302" rx="30"/></clipPath>
+      <clipPath id="homePosterSecondaryClip"><rect x="706" y="374" width="212" height="200" rx="26"/></clipPath>
+      <clipPath id="homePosterTertiaryClip"><rect x="932" y="374" width="212" height="200" rx="26"/></clipPath>
+    </defs>
+    <rect width="1200" height="630" rx="36" fill="url(#homePosterBg)"/>
+    <rect x="28" y="28" width="1144" height="574" rx="32" fill="url(#homePosterPanel)" stroke="rgba(24,24,27,0.08)"/>
+    <text x="70" y="94" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#71717a" letter-spacing="2.2">${escHtml(clampText(String(config.kicker || 'Moldart').toUpperCase(), 22))}</text>
+    <text x="70" y="124" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#18181b" letter-spacing="1.8">MUMBAI · SINCE 1989</text>
+    ${titleLines.map((line, index) => `<text x="70" y="${214 + (index * 58)}" font-family="Arial, sans-serif" font-size="50" font-weight="700" fill="#18181b">${escHtml(line)}</text>`).join('')}
+    ${noteLines.map((line, index) => `<text x="70" y="${378 + (index * 28)}" font-family="Arial, sans-serif" font-size="22" fill="#52525b">${escHtml(line)}</text>`).join('')}
+    <rect x="70" y="468" width="570" height="94" rx="24" fill="#18181b"/>
+    ${chips.map((chip, index) => `<g transform="translate(${92 + (index % 2) * 266} ${495 + Math.floor(index / 2) * 30})"><text x="0" y="0" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="rgba(255,255,255,0.54)">${String(index + 1).padStart(2, '0')}</text><text x="42" y="0" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">${escHtml(clampText(chip, 22))}</text></g>`).join('')}
+    <text x="70" y="590" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#18181b">moldartindia.com</text>
+    <rect x="690" y="40" width="470" height="550" rx="34" fill="#f3efe9" stroke="rgba(24,24,27,0.08)"/>
+    <image href="${heroPrimary}" x="706" y="56" width="438" height="302" preserveAspectRatio="xMidYMid slice" clip-path="url(#homePosterPrimaryClip)"/>
+    <image href="${heroFloor}" x="706" y="374" width="212" height="200" preserveAspectRatio="xMidYMid slice" clip-path="url(#homePosterSecondaryClip)"/>
+    <image href="${heroSteel}" x="932" y="374" width="212" height="200" preserveAspectRatio="xMidYMid slice" clip-path="url(#homePosterTertiaryClip)"/>
+    <rect x="724" y="74" width="196" height="34" rx="17" fill="rgba(255,255,255,0.9)"/>
+    <text x="746" y="96" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#18181b" letter-spacing="1.3">WOOD + STEEL PROGRAMMES</text>
+    <rect x="724" y="520" width="406" height="42" rx="21" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/>
+    <text x="746" y="546" font-family="Arial, sans-serif" font-size="16" fill="#18181b">Solutions · Resources · Insights · Search</text>
+  </svg>`;
+}
 function buildSiteSocialSvg(config) {
+  if (config?.name === 'moldart-home') return buildHomeSocialSvg(config);
   const chips = (config.chips || []).filter(Boolean).slice(0, 4);
   const titleLines = wrapPosterText(config.title, 26, 3);
   const noteLines = wrapPosterText(clampText(config.note, 108), 38, 2);
@@ -2013,8 +2071,8 @@ function renderRouteStepRow(steps = []) {
   return `<div class="home-route-step-row">${steps.map((step) => `<span>${escHtml(step)}</span>`).join('')}</div>`;
 }
 
-function renderHomeRouteProductStrip(app) {
-  const preferredProductId = {
+function homePreferredProductId(app) {
+  return {
     lamination: 'decor-paper',
     furniture: 'ready-made-furniture',
     flooring: 'wood-flooring',
@@ -2022,9 +2080,14 @@ function renderHomeRouteProductStrip(app) {
     'metal-finishing': 'ss-furniture',
     'pcb-ccl': 'industrial-press-plates'
   }[app.slug] || app.products[0];
-  const product = getProduct(preferredProductId);
-  if (!product) return '';
-  return `<div class="home-route-product-strip" aria-hidden="true"><div class="home-route-product-thumb"><img src="${product.image}" alt="" width="720" height="160" loading="eager" decoding="async"></div></div>`;
+}
+function renderProductImageCard(productId, className = '', alt = '', eager = false) {
+  const product = getProduct(productId);
+  if (!product?.image) return '';
+  return `<div class="${className}"><img src="${product.image}" alt="${escHtml(alt || product.name)}" width="720" height="540" loading="${eager ? 'eager' : 'lazy'}"${eager ? ' fetchpriority="high"' : ''} decoding="async"></div>`;
+}
+function renderHomeHeroBrowseRow({ href, icon, label, value, note }) {
+  return `<a href="${href}" class="home-browse-row"><div class="home-browse-row-icon">${glyph(icon, 'icon icon-sm')}</div><div class="home-browse-row-copy"><div class="home-browse-row-top"><div><div class="home-browse-row-label">${escHtml(label)}</div><div class="home-browse-row-value">${escHtml(value)}</div></div><span class="home-browse-row-link">Open ${glyph('arrow', 'icon icon-sm')}</span></div><p>${escHtml(note)}</p></div></a>`;
 }
 
 function renderRouteTokenRow(items = [], options = {}) {
@@ -2043,27 +2106,25 @@ function renderRouteSnapshotStage(label, items = [], options = {}) {
 
 function renderHomeRouteCard(app) {
   const visual = ROUTE_VISUAL_MODELS[app.slug] || {};
-  const productNames = app.products.map((productId) => getProduct(productId)?.name).filter(Boolean);
-  const outputs = (visual.homeOutputs || visual.outputs || []).slice(0, 2);
-  const productStrip = renderHomeRouteProductStrip(app);
-  return `<article class="home-route-card home-route-card-simple">
-      <div class="home-route-body">
-          <div class="home-route-top">
-              <div class="home-route-kicker">${glyph(applicationIconName(app.slug), 'icon icon-sm')} ${escHtml(app.name)}</div>
-              <h3 class="home-route-title">${escHtml(visual.homeTitle || app.name)}</h3>
-              <p class="home-route-copy">${escHtml(visual.homeSummary || app.overview)}</p>
-              ${productStrip}
-          </div>
-          <div class="home-route-block">
-              <div class="home-route-label">Working stack</div>
-              <div class="home-route-chip-grid">${productNames.slice(0, 3).map((item) => `<span class="home-route-chip">${escHtml(item)}</span>`).join('')}</div>
-          </div>
-          <div class="home-route-block">
-              <div class="home-route-label">Typical outputs</div>
-              <div class="home-route-meta">${outputs.map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
-          </div>
-          <div class="home-route-actions"><a href="${getSolutionHref(app.slug)}" class="btn-outline" aria-label="Open ${escHtml(app.name)} route">Open route</a></div>
+  const productNames = app.products.map((productId) => getProduct(productId)?.name).filter(Boolean).slice(0, 3);
+  const outputs = (visual.homeOutputs || visual.outputs || []).filter(Boolean).slice(0, 2);
+  const imageCard = renderProductImageCard(homePreferredProductId(app), 'home-route-row-media', `${app.name} route preview`, true);
+  return `<article class="home-route-row">
+      <div class="home-route-row-main">
+          <div class="home-route-kicker">${glyph(applicationIconName(app.slug), 'icon icon-sm')} ${escHtml(app.name)}</div>
+          <h3 class="home-route-row-title">${escHtml(visual.homeTitle || app.name)}</h3>
+          <p class="home-route-row-copy">${escHtml(visual.homeSummary || app.overview)}</p>
       </div>
+      ${imageCard}
+      <div class="home-route-row-block">
+          <div class="home-route-row-label">Working stack</div>
+          <div class="home-route-row-chips">${(productNames.length ? productNames : ['Route-led mix']).map((item) => `<span class="home-route-row-chip">${escHtml(item)}</span>`).join('')}</div>
+      </div>
+      <div class="home-route-row-block">
+          <div class="home-route-row-label">Likely outputs</div>
+          <div class="home-route-row-meta">${(outputs.length ? outputs : ['Programme-specific output']).map((item) => `<span>${escHtml(item)}</span>`).join('')}</div>
+      </div>
+      <div class="home-route-row-action"><a href="${getSolutionHref(app.slug)}" class="btn-outline" aria-label="Open ${escHtml(app.name)} route">Open route</a></div>
   </article>`;
 }
 
@@ -3305,6 +3366,12 @@ function generateHomepage() {
   const featuredDocs = getInstantResourceItems().slice(0, 3);
   const featuredArticles = rawInsights.editorial.slice(0, 3);
   const routeCards = applications.map((app) => renderHomeRouteCard(app)).join('');
+  const homeBrowseRows = [
+    { href: '/solutions/', icon: 'compass', label: 'Solutions', value: `${applications.length} routes`, note: 'Application-led route pages when the working stack still needs narrowing.' },
+    { href: '/resources/', icon: 'book', label: 'Resources', value: `${getTotalResourceItems()} files`, note: 'Catalogues, finish decks, and product sheets tied to the current public library.' },
+    { href: '/insights/', icon: 'spark', label: 'Insights', value: `${rawInsights.editorial.length} guides`, note: 'Edited technical reading for approvals, route fit, and receiving logic.' }
+  ].map((item) => renderHomeHeroBrowseRow(item)).join('');
+  const homeHeroMedia = `<div class="home-hero-media-grid">${renderProductImageCard('ready-made-furniture', 'home-hero-media-card home-hero-media-card-primary', 'Ready-made furniture programmes', true)}${renderProductImageCard('wood-flooring', 'home-hero-media-card', 'Wood flooring programmes', true)}${renderProductImageCard('decorative-panels', 'home-hero-media-card', 'Decorative stainless steel panels', true)}</div>`;
 
   return headTag({
     title: 'Moldart | Laminates, panels, flooring, furniture & decorative stainless',
@@ -3318,46 +3385,44 @@ function generateHomepage() {
 
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 fade-up home-hero-section">
-            <div class="ui-hero">
-                <div>
-                    <div class="ui-kicker mb-6">${glyph('shield', 'icon icon-sm')} Since 1989 · Mumbai</div>
-                    <h1 class="page-heading page-heading-home mb-6">LAMINATES,<br>PANELS, FLOORING,<br>FURNITURE, AND<br>DECORATIVE STAINLESS.</h1>
-                    <p class="ui-intro">Moldart works with procurement, technical, and commercial teams that need a cleaner first pass: which route fits the requirement, which product stack usually sits inside it, which file should anchor approval, and what still has to be clarified before RFQ, sampling, dispatch, or repeat supply.</p>
-                    <div class="ui-chip-row mt-8">
+            <div class="home-hero-shell-modern">
+                <div class="home-hero-copy-column">
+                    <div class="ui-kicker mb-5">${glyph('shield', 'icon icon-sm')} Since 1989 · Mumbai</div>
+                    <h1 class="home-hero-heading">Specification-led supply<br>for wood and decorative<br>steel programmes.</h1>
+                    <p class="home-hero-intro mt-6">Across laminates, panels, flooring, furniture, and decorative stainless, Moldart helps procurement, technical, and commercial teams narrow the route, working stack, and approval reference before RFQ, sampling, dispatch, and repeat supply.</p>
+                    <div class="ui-chip-row home-hero-chip-row mt-8">
                         <span class="ui-chip">${glyph('clock', 'icon icon-sm')} Since 1989</span>
                         <span class="ui-chip">${glyph('building', 'icon icon-sm')} Mumbai-led coordination</span>
                         <span class="ui-chip">${glyph('route', 'icon icon-sm')} India + China sourcing</span>
+                        <span class="ui-chip">${glyph('check', 'icon icon-sm')} RFQ to repeat supply</span>
                     </div>
-                    <div class="flex gap-4 flex-wrap mt-8 hero-cta-wrap">
-                        <a href="/solutions/" class="btn-primary btn-lg">Explore Solutions →</a>
+                    <div class="home-hero-actions mt-8">
+                        <a href="/solutions/" class="btn-primary btn-lg">Start with Solutions →</a>
                     </div>
                 </div>
-                <div class="ui-panel ui-panel-soft home-hero-panel-compact">
-                    <div class="ui-panel-inner">
-                        <div class="ui-kicker mb-4">${glyph('search', 'icon icon-sm')} Choose how to browse</div>
-                        <div class="ui-metric-grid">
-                            ${renderMetricCard({ icon: 'search', label: 'Explore', value: 'Search-first', note: 'Best when you already know the product, application, or keyword.' })}
-                            ${renderMetricCard({ icon: 'compass', label: 'Solutions', value: applications.length, note: 'Best when the system matters more than the individual item name.' })}
-                            ${renderMetricCard({ icon: 'book', label: 'Resources', value: getTotalResourceItems(), note: 'Reference decks, catalogues, and product files in one place.' })}
-                            ${renderMetricCard({ icon: 'spark', label: 'Insights', value: rawInsights.editorial.length, note: 'Edited guides that make the next technical or buying review clearer.' })}
-                        </div>
+                <div class="home-hero-stage">
+                    <div class="home-hero-media-shell">${homeHeroMedia}</div>
+                    <div class="home-browse-panel">
+                        <div class="ui-kicker mb-3">${glyph('search', 'icon icon-sm')} Choose the right starting point</div>
+                        <p class="home-browse-intro">Use solutions when the application is still being narrowed. Use resources when the file is needed next. Use insights when the team needs clearer technical language before the commercial discussion. Search stays in the header when the keyword is already known.</p>
+                        <div class="home-browse-list">${homeBrowseRows}</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="max-w mx-auto px py-20 fade-up home-map-section">
-            <div class="home-map-layout">
+            <div class="home-map-layout home-map-layout-refined">
                 <div class="home-map-copy home-map-copy-minimal">
                     <div class="ui-kicker mb-4">${glyph('globe', 'icon icon-sm')} Programme geography</div>
-                    <h2 class="ui-section-title">START WITH MUMBAI.<br>KEEP THE REST AS CONTEXT.</h2>
-                    <p class="home-map-note">Mumbai is the operating base. India and China are the sourcing anchors used most often in the current public route. The wider world map is there only to orient the viewer, not to imply offices or fixed sourcing claims elsewhere.</p>
+                    <h2 class="home-section-title">Mumbai leads coordination. India and China stay as sourcing context.</h2>
+                    <p class="home-map-note">Publicly supportable geography stays intentionally simple: Mumbai is the operating base, India and China are the sourcing anchors used most often in the current public route, and the wider map is shown only as directional context.</p>
                     <div class="home-map-legend-row">
                         <span class="home-map-legend-pill is-primary"><strong>Mumbai</strong><span>Operating base</span></span>
                         <span class="home-map-legend-pill"><strong>India</strong><span>Sourcing anchor</span></span>
                         <span class="home-map-legend-pill"><strong>China</strong><span>Sourcing anchor</span></span>
-                        <span class="home-map-legend-pill"><strong>World map</strong><span>Context only</span></span>
                     </div>
+                    <p class="home-map-caption-note">The world map is orientation only. It does not claim offices or fixed sourcing lanes outside the current evidence base.</p>
                 </div>
                 <div class="home-map-shell home-map-visual">
                     <div class="ui-world-stage-map">${renderHeroNetworkMap()}</div>
@@ -3365,24 +3430,24 @@ function generateHomepage() {
             </div>
         </section>
 
-        <section id="where-moldart-fits" class="bg-zinc-50 border-y border-zinc-100 fade-up">
+        <section id="where-moldart-fits" class="fade-up">
             <div class="max-w mx-auto px py-20">
-                <div class="ui-section-head mb-12">
+                <div class="ui-section-head home-section-head-wide mb-10">
                     <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} What Moldart helps make</div>
-                    <h2 class="ui-section-title">SEE THE OUTPUT,<br>THEN OPEN THE RIGHT ROUTE.</h2>
-                    <p class="ui-section-subtitle">Each card keeps only the route, the likely product mix, and the output. Open the solution page when the full system needs more detail.</p>
+                    <h2 class="home-section-title">See the application first. Then open the relevant route.</h2>
+                    <p class="ui-section-subtitle">Each row keeps the route, working stack, likely outputs, and one path into the full solution page.</p>
                 </div>
-                <div class="home-route-grid">${routeCards}</div>
+                <div class="home-route-directory">${routeCards}</div>
             </div>
         </section>
 
-        <section class="max-w mx-auto px py-20 border-t border-zinc-100 fade-up">
-            <div class="ui-section-head mb-10">
+        <section class="max-w mx-auto px py-20 fade-up home-library-section">
+            <div class="ui-section-head home-section-head-wide mb-10">
                 <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Decision tools</div>
-                <h2 class="ui-section-title">REFERENCE FILES,<br>TECHNICAL GUIDES,<br>AND NEXT STEPS.</h2>
-                <p class="ui-section-subtitle">Resources are the files. Insights are the technical reading. Solutions are the wider application view when the brief still needs to be narrowed properly.</p>
+                <h2 class="home-section-title">Files for approvals. Guides for decisions.</h2>
+                <p class="ui-section-subtitle">Resources hold the downloadable files. Insights hold the edited technical reading that helps clarify fit, approval logic, receiving checks, and route choice.</p>
             </div>
-            <div class="ui-library-grid ui-library-grid-balanced">
+            <div class="ui-library-grid ui-library-grid-balanced home-library-grid">
                 <article class="ui-library-card ui-library-card-collection">
                     <div class="ui-kicker mb-3">${glyph('file', 'icon icon-sm')} Reference downloads</div>
                     <p class="text-sm text-zinc-500 leading-relaxed">Use these when the route is already known and the next step is checking the right collection, finish deck, or product file.</p>
