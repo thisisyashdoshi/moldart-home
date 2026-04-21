@@ -8,6 +8,7 @@
     "build": "node build.js",
     "generate": "node generate.js",
     "preview": "node preview-server.js",
+    "audit:site": "node scripts/site-audit.js",
     "minify:css": "cleancss -o styles.css styles.css",
     "minify:js": "terser main.js -o main.js -c -m"
   },

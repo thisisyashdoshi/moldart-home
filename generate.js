@@ -16,7 +16,7 @@ const { importedInsights, insightDossiers } = require('./insight-enhancements.js
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.43';
+const VER = '2026.44';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
@@ -1583,9 +1583,9 @@ function buildHomeSocialSvg(config) {
   const chips = (config.chips || []).filter(Boolean).slice(0, 4);
   const titleLines = wrapPosterText(config.title, 28, 3);
   const noteLines = wrapPosterText(clampText(config.note, 116), 42, 3);
-  const heroPrimary = posterImageDataUri('/images/page7_img3.webp');
-  const heroFloor = posterImageDataUri('/images/page7_img1.webp');
-  const heroSteel = posterImageDataUri('/images/page9_img1.webp');
+  const heroPrimary = posterImageDataUri('/images/page5_img2.webp');
+  const heroFloor = posterImageDataUri('/images/page7_img4.webp');
+  const heroSteel = posterImageDataUri('/images/page9_img2_clean.webp');
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="${escHtml(config.title)}">
     <defs>
       <linearGradient id="homePosterBg" x1="0" y1="0" x2="1" y2="1">
@@ -2071,6 +2071,14 @@ function renderRouteStepRow(steps = []) {
   return `<div class="home-route-step-row">${steps.map((step) => `<span>${escHtml(step)}</span>`).join('')}</div>`;
 }
 
+const HOME_ROUTE_MEDIA = {
+  lamination: { src: '/images/home/lamination-stack.png', alt: 'Press plate and cushion pad stack in hydraulic press', fit: 'contain', width: 531, height: 673 },
+  furniture: { productId: 'ready-made-furniture', alt: 'Ready-made furniture programme reference' },
+  flooring: { productId: 'wood-flooring', alt: 'Wood flooring system reference' },
+  architecture: { productId: 'decorative-panels', alt: 'Decorative stainless steel panel reference' },
+  'metal-finishing': { productId: 'ss-furniture', alt: 'Decorative metal finishing reference' },
+  'pcb-ccl': { src: '/images/home/pcb-tooling-guide.png', alt: 'Electronics lamination tooling guide', fit: 'contain', width: 2816, height: 1536 }
+};
 function homePreferredProductId(app) {
   return {
     lamination: 'decor-paper',
@@ -2081,10 +2089,28 @@ function homePreferredProductId(app) {
     'pcb-ccl': 'industrial-press-plates'
   }[app.slug] || app.products[0];
 }
+function renderImageCard(src = '', className = '', alt = '', eager = false, size = {}) {
+  if (!src) return '';
+  const width = Number(size.width) || 720;
+  const height = Number(size.height) || 540;
+  return `<div class="${className}"><img src="${src}" alt="${escHtml(alt)}" width="${width}" height="${height}" loading="${eager ? 'eager' : 'lazy'}"${eager ? ' fetchpriority="high"' : ''} decoding="async"></div>`;
+}
 function renderProductImageCard(productId, className = '', alt = '', eager = false) {
   const product = getProduct(productId);
   if (!product?.image) return '';
-  return `<div class="${className}"><img src="${product.image}" alt="${escHtml(alt || product.name)}" width="720" height="540" loading="${eager ? 'eager' : 'lazy'}"${eager ? ' fetchpriority="high"' : ''} decoding="async"></div>`;
+  return renderImageCard(product.image, className, alt || product.name, eager);
+}
+function homeRouteMediaModel(app) {
+  const media = HOME_ROUTE_MEDIA[app.slug] || {};
+  if (media.productId) {
+    const product = getProduct(media.productId);
+    if (product?.image) {
+      return { src: product.image, alt: media.alt || product.name, fit: media.fit || 'cover', width: media.width || 720, height: media.height || 540 };
+    }
+  }
+  if (media.src) return { ...media };
+  const product = getProduct(homePreferredProductId(app));
+  return product?.image ? { src: product.image, alt: app.name, fit: 'cover', width: 720, height: 540 } : null;
 }
 function renderHomeHeroBrowseRow({ href, icon, label, value, note }) {
   return `<a href="${href}" class="home-browse-row"><div class="home-browse-row-icon">${glyph(icon, 'icon icon-sm')}</div><div class="home-browse-row-copy"><div class="home-browse-row-top"><div><div class="home-browse-row-label">${escHtml(label)}</div><div class="home-browse-row-value">${escHtml(value)}</div></div><span class="home-browse-row-link">Open ${glyph('arrow', 'icon icon-sm')}</span></div><p>${escHtml(note)}</p></div></a>`;
@@ -2108,7 +2134,8 @@ function renderHomeRouteCard(app) {
   const visual = ROUTE_VISUAL_MODELS[app.slug] || {};
   const productNames = app.products.map((productId) => getProduct(productId)?.name).filter(Boolean).slice(0, 3);
   const outputs = (visual.homeOutputs || visual.outputs || []).filter(Boolean).slice(0, 2);
-  const imageCard = renderProductImageCard(homePreferredProductId(app), 'home-route-row-media', `${app.name} route preview`, true);
+  const media = homeRouteMediaModel(app);
+  const imageCard = media ? renderImageCard(media.src, `home-route-row-media${media.fit === 'contain' ? ' is-diagram' : ''}`, media.alt || `${app.name} route preview`, true, media) : '';
   return `<article class="home-route-row">
       <div class="home-route-row-main">
           <div class="home-route-kicker">${glyph(applicationIconName(app.slug), 'icon icon-sm')} ${escHtml(app.name)}</div>
@@ -3371,7 +3398,7 @@ function generateHomepage() {
     { href: '/resources/', icon: 'book', label: 'Resources', value: `${getTotalResourceItems()} files`, note: 'Catalogues, finish decks, and product sheets tied to the current public library.' },
     { href: '/insights/', icon: 'spark', label: 'Insights', value: `${rawInsights.editorial.length} guides`, note: 'Edited technical reading for approvals, route fit, and receiving logic.' }
   ].map((item) => renderHomeHeroBrowseRow(item)).join('');
-  const homeHeroMedia = `<div class="home-hero-media-grid">${renderProductImageCard('ready-made-furniture', 'home-hero-media-card home-hero-media-card-primary', 'Ready-made furniture programmes', true)}${renderProductImageCard('wood-flooring', 'home-hero-media-card', 'Wood flooring programmes', true)}${renderProductImageCard('decorative-panels', 'home-hero-media-card', 'Decorative stainless steel panels', true)}</div>`;
+  const homeHeroMedia = `<div class="home-hero-media-grid">${renderProductImageCard('decor-paper', 'home-hero-media-card home-hero-media-card-primary', 'Printed decor paper and surface programme reference', true)}${renderProductImageCard('custom-furniture', 'home-hero-media-card', 'Custom furniture and design-engineering reference', true)}${renderProductImageCard('ss-profiles', 'home-hero-media-card', 'Decorative stainless steel profile reference', true)}</div>`;
 
   return headTag({
     title: 'Moldart | Laminates, panels, flooring, furniture & decorative stainless',
@@ -4543,6 +4570,34 @@ function extractHtmlHeadings(html = '') {
   return headings;
 }
 
+function decorateResponsiveTables(html = '') {
+  return String(html || '').replace(/<table([^>]*)>([\s\S]*?)<\/table>/gi, (match, attrs = '', inner = '') => {
+    const rows = [...inner.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)];
+    if (!rows.length) return match;
+    let headers = [];
+    const rebuiltRows = rows.map((row, rowIndex) => {
+      const cells = [...String(row[1] || '').matchAll(/<(th|td)([^>]*)>([\s\S]*?)<\/\1>/gi)];
+      if (!cells.length) return '';
+      const hasHeaderCells = cells.some((cell) => String(cell[1] || '').toLowerCase() === 'th');
+      if (rowIndex === 0 && hasHeaderCells) {
+        headers = cells.map((cell, index) => stripMarkdownInline(String(cell[3] || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()) || `Column ${index + 1}`);
+        return `<tr class="responsive-table-head">${cells.map((cell) => `<th${cell[2] || ''} scope="col">${cell[3] || ''}</th>`).join('')}</tr>`;
+      }
+      if (!headers.length) headers = cells.map((_, index) => `Column ${index + 1}`);
+      return `<tr class="responsive-table-row">${cells.map((cell, index) => {
+        const cleanedAttrs = String(cell[2] || '').replace(/\sdata-label=("[^"]*"|'[^']*')/gi, '');
+        const label = headers[index] || `Column ${index + 1}`;
+        return `<td${cleanedAttrs} data-label="${escHtml(label)}">${cell[3] || ''}</td>`;
+      }).join('')}</tr>`;
+    }).filter(Boolean).join('');
+    const classMatch = attrs.match(/class\s*=\s*["']([^"']*)["']/i);
+    const nextAttrs = classMatch
+      ? attrs.replace(classMatch[0], `class="${classMatch[1].includes('responsive-data-table') ? classMatch[1] : `${classMatch[1]} responsive-data-table`.trim()}"`)
+      : `${attrs} class="responsive-data-table"`;
+    return `<table${nextAttrs}>${rebuiltRows}</table>`;
+  });
+}
+
 function markdownToHtml(md) {
   const source = String(md || '').replace(/\r/g, '');
   const lines = source.split('\n');
@@ -4693,7 +4748,7 @@ function generateInsightsHub() {
 function generateInsightArticle(article) {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Insights', url: '/insights/' }, { name: article.title.length > 50 ? article.title.substring(0, 47) + '...' : article.title }]);
 
-  const contentHtml = renderInsightArticleBody(article);
+  const contentHtml = decorateResponsiveTables(renderInsightArticleBody(article));
   const context = articleProductContext(article);
   const readTime = estimateReadTime(article, contentHtml);
   const faqItems = articleFaqItems(article, context);
