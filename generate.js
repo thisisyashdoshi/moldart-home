@@ -16,7 +16,7 @@ const { importedInsights, insightDossiers } = require('./insight-enhancements.js
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.44';
+const VER = '2026.45';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
@@ -2072,12 +2072,12 @@ function renderRouteStepRow(steps = []) {
 }
 
 const HOME_ROUTE_MEDIA = {
-  lamination: { src: '/images/home/lamination-stack.png', alt: 'Press plate and cushion pad stack in hydraulic press', fit: 'contain', width: 531, height: 673 },
+  lamination: { productId: 'engraved-cylinders', alt: 'Decorative laminate tooling reference' },
   furniture: { productId: 'ready-made-furniture', alt: 'Ready-made furniture programme reference' },
   flooring: { productId: 'wood-flooring', alt: 'Wood flooring system reference' },
   architecture: { productId: 'decorative-panels', alt: 'Decorative stainless steel panel reference' },
   'metal-finishing': { productId: 'ss-furniture', alt: 'Decorative metal finishing reference' },
-  'pcb-ccl': { src: '/images/home/pcb-tooling-guide.png', alt: 'Electronics lamination tooling guide', fit: 'contain', width: 2816, height: 1536 }
+  'pcb-ccl': { productId: 'industrial-press-plates', alt: 'Technical laminate and industrial press plate reference' }
 };
 function homePreferredProductId(app) {
   return {
@@ -4449,7 +4449,7 @@ function generateLoginPage() {
                 <article class="signal-card portal-card">
                     <div class="section-label mb-4">Buyer workspace</div>
                     <h2 class="font-display font-black text-2xl mb-4">RFQ, REFERENCE, AND REPEAT.</h2>
-                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">Planned for procurement teams, manufacturers, and project buyers who need one cleaner lane for RFQ intake, document review, approval tracking, and repeat-order visibility.</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">Planned for procurement teams and repeat buyers who need one cleaner lane for RFQ intake, document review, approval tracking, and reorder visibility.</p>
                     <ul class="product-summary-list mb-6">
                         <li>Structured RFQ intake</li>
                         <li>Files, approvals, and review trail</li>
@@ -4460,7 +4460,7 @@ function generateLoginPage() {
                 <article class="signal-card portal-card">
                     <div class="section-label mb-4">Seller workflow</div>
                     <h2 class="font-display font-black text-2xl mb-4">QUOTE, DOCUMENT, AND FOLLOW-THROUGH.</h2>
-                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">Planned for verified manufacturing and supply sellers who need one cleaner lane for quotations, document exchange, approval checkpoints, and repeat-programme coordination.</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">Planned for verified sellers who need one cleaner lane for quotations, document exchange, approval checkpoints, and repeat-programme follow-through.</p>
                     <ul class="product-summary-list mb-6">
                         <li>Standardised quote and document flow</li>
                         <li>Approval checkpoints and quality visibility</li>
