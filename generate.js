@@ -2558,7 +2558,6 @@ function closingElements() {
         </div>
     </div>
 
-    <script src="/portal-app.js?v=${VER}" defer></script>
     <script src="/main.js?v=${VER}" defer></script>
 </body>
 </html>`;
