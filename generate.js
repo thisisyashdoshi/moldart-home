@@ -16,7 +16,7 @@ const { importedInsights, insightDossiers } = require('./insight-enhancements.js
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.45';
+const VER = '2026.48';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
@@ -815,7 +815,7 @@ const primaryPages = [
   { title: 'Insights', url: '/insights/', meta: 'Technical guides and notes', keywords: ['insights', 'guides', 'notes'] },
   { title: 'FAQ', url: '/faq/', meta: 'Quick answers on products, documents, timing, and first contact', keywords: ['faq', 'questions', 'answers'] },
   { title: 'Process', url: '/process/', meta: 'How the enquiry moves from RFQ to repeat supply', keywords: ['process', 'workflow', 'delivery'] },
-  { title: 'Portal', url: '/portal/', meta: 'Buyer and seller workspace preview', keywords: ['portal', 'buyer workspace', 'seller access'] },
+  { title: 'Portal', url: '/portal/', meta: 'Buyer and seller portal access for products, inquiries, orders, payments, logistics, and documents', keywords: ['portal', 'buyer login', 'seller login', 'portal access', 'orders', 'logistics'] },
   { title: 'About', url: '/about/', meta: 'Company, team, and sourcing model', keywords: ['about', 'company', 'leadership'] },
   { title: 'Contact', url: '/contact/', meta: 'Inquiry, WhatsApp, and meetings', keywords: ['contact', 'whatsapp', 'email'] }
 ];
@@ -1458,7 +1458,7 @@ const SITE_SOCIAL_POSTERS = [
     name: 'moldart-home',
     kicker: 'Moldart',
     title: 'Laminates, panels, flooring, furniture, and decorative stainless',
-    note: 'Specification-led supply from Mumbai for procurement, technical, and commercial teams across route choice, files, and approvals.',
+    note: 'SPECIFICATION-LED SUPPLY FROM MUMBAI FOR PROCUREMENT, TECHNICAL, AND COMMERCIAL TEAMS.',
     chips: ['Since 1989', 'Mumbai', '6 routes', '24 files']
   },
   {
@@ -1640,7 +1640,7 @@ function buildSiteSocialSvg(config) {
     ${titleLines.map((line, index) => `<text x="70" y="${228 + (index * 62)}" font-family="Arial, sans-serif" font-size="52" font-weight="700" fill="#18181b">${escHtml(line)}</text>`).join('')}
     ${noteLines.map((line, index) => `<text x="70" y="${410 + (index * 30)}" font-family="Arial, sans-serif" font-size="23" fill="#52525b">${escHtml(line)}</text>`).join('')}
     <path d="M70 482H650" stroke="rgba(24,24,27,0.10)" stroke-width="1"/>
-    <text x="70" y="522" font-family="Arial, sans-serif" font-size="16" fill="#71717a">Specification-led supply from Mumbai.</text>
+    <text x="70" y="522" font-family="Arial, sans-serif" font-size="16" fill="#71717a">SPECIFICATION-LED SUPPLY FROM MUMBAI.</text>
     <text x="70" y="554" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#18181b">moldartindia.com</text>
     <rect x="758" y="72" width="372" height="486" rx="30" fill="#18181b"/>
     <text x="792" y="112" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="rgba(255,255,255,0.72)" letter-spacing="1.8">${escHtml(clampText(config.panelLabel || 'PUBLIC PREVIEW', 22))}</text>
@@ -2558,6 +2558,7 @@ function closingElements() {
         </div>
     </div>
 
+    <script src="/portal-app.js?v=${VER}" defer></script>
     <script src="/main.js?v=${VER}" defer></script>
 </body>
 </html>`;
@@ -3415,7 +3416,7 @@ function generateHomepage() {
             <div class="home-hero-shell-modern">
                 <div class="home-hero-copy-column">
                     <div class="ui-kicker mb-5">${glyph('shield', 'icon icon-sm')} Since 1989 · Mumbai</div>
-                    <h1 class="home-hero-heading">Specification-led supply<br>for wood and decorative<br>steel programmes.</h1>
+                    <h1 class="home-hero-heading">SPECIFICATION-LED SUPPLY<br>FOR WOOD AND DECORATIVE<br>STEEL PROGRAMMES.</h1>
                     <p class="home-hero-intro mt-6">Across laminates, panels, flooring, furniture, and decorative stainless, Moldart helps procurement, technical, and commercial teams narrow the route, working stack, and approval reference before RFQ, sampling, dispatch, and repeat supply.</p>
                     <div class="ui-chip-row home-hero-chip-row mt-8">
                         <span class="ui-chip">${glyph('clock', 'icon icon-sm')} Since 1989</span>
@@ -4426,68 +4427,166 @@ function generateProcessPage() {
 }
 
 
-function generateLoginPage() {
+function portalAccessNav(active = 'sign-in') {
+  const links = [
+    { key: 'sign-in', href: '/portal/', label: 'Sign in' },
+    { key: 'sign-up', href: '/portal/sign-up/', label: 'Register' }
+  ];
+  return `<div class="portal-prototype-nav">${links.map((link) => `<a href="${link.href}" class="portal-prototype-link${active === link.key ? ' is-active' : ''}">${escHtml(link.label)}</a>`).join('')}</div>`;
+}
+
+function portalWorkspaceNav(active = 'dashboard') {
+  const links = [
+    { key: 'dashboard', href: '/portal/dashboard/', label: 'Overview' },
+    { key: 'catalog', href: '/portal/catalog/', label: 'Products' },
+    { key: 'rfq', href: '/portal/rfq/', label: 'Inquiries' },
+    { key: 'approvals', href: '/portal/approvals/', label: 'Documents' },
+    { key: 'orders', href: '/portal/orders/', label: 'Orders' }
+  ];
+  return `<div class="portal-prototype-nav">${links.map((link) => `<a href="${link.href}" class="portal-prototype-link${active === link.key ? ' is-active' : ''}">${escHtml(link.label)}</a>`).join('')}</div>`;
+}
+
+function generatePortalShell({ shell = 'access', active = 'sign-in', title = '', desc = '', canonical = '/portal/', heading = '', intro = '', body = '', label = 'Portal access · local only' }) {
+  const navMarkup = shell === 'workspace' ? portalWorkspaceNav(active) : portalAccessNav(active);
+  const ogAlt = shell === 'workspace' ? 'Moldart portal workspace' : 'Moldart portal access';
   return headTag({
-    title: 'Buyer & Seller Workspace Preview | Moldart',
-    desc: 'Coming-soon preview of the Moldart buyer and seller workspace for RFQs, approvals, documents, and repeat-order coordination.',
-    canonical: '/portal/',
+    title,
+    desc,
+    canonical,
     ogImage: siteSocialPosterRelativePath('moldart-portal'),
-    ogImageAlt: 'Moldart buyer and seller workspace preview',
+    ogImageAlt: ogAlt,
     noindex: true,
     schemas: []
   }) + '\n' + nav('portal') + `
 
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
-            <div class="inline-flex items-center gap-3 mb-10"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">Portal Preview</span></div>
-            <h1 class="page-heading">BUYER AND SELLER WORKSPACES.<br>COMING SOON.</h1>
-            <p class="text-base text-zinc-500 font-light max-w-2xl leading-relaxed mt-6">The portal is being built as a disciplined operational layer for repeat buyers, verified sellers, approvals, documents, and repeat-order coordination. Until launch, the public site remains the active route for search, files, guides, and direct enquiry.</p>
+            <div class="inline-flex items-center gap-3 mb-8"><span style="width:2rem;height:1px;background:#d4d4d8;"></span><span class="section-label">${escHtml(label)}</span></div>
+            ${navMarkup}
+            <h1 class="page-heading portal-page-heading mt-8">${heading}</h1>
+            <p class="text-base text-zinc-500 font-light max-w-3xl leading-relaxed mt-6">${intro}</p>
         </section>
-
-        <section class="max-w mx-auto px py-16 fade-up">
-            <div class="signal-grid signal-grid-portal">
-                <article class="signal-card portal-card">
-                    <div class="section-label mb-4">Buyer workspace</div>
-                    <h2 class="font-display font-black text-2xl mb-4">RFQ, REFERENCE, AND REPEAT.</h2>
-                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">Planned for procurement teams and repeat buyers who need one cleaner lane for RFQ intake, document review, approval tracking, and reorder visibility.</p>
-                    <ul class="product-summary-list mb-6">
-                        <li>Structured RFQ intake</li>
-                        <li>Files, approvals, and review trail</li>
-                        <li>Repeat orders linked to approved baselines</li>
-                    </ul>
-                    <a href="/contact/" class="btn-primary">Request buyer access</a>
-                </article>
-                <article class="signal-card portal-card">
-                    <div class="section-label mb-4">Seller workflow</div>
-                    <h2 class="font-display font-black text-2xl mb-4">QUOTE, DOCUMENT, AND FOLLOW-THROUGH.</h2>
-                    <p class="text-sm text-zinc-500 leading-relaxed mb-6">Planned for verified sellers who need one cleaner lane for quotations, document exchange, approval checkpoints, and repeat-programme follow-through.</p>
-                    <ul class="product-summary-list mb-6">
-                        <li>Standardised quote and document flow</li>
-                        <li>Approval checkpoints and quality visibility</li>
-                        <li>Repeat-programme coordination</li>
-                    </ul>
-                    <a href="/contact/" class="btn-outline">Request seller access</a>
-                </article>
-            </div>
-        </section>
-
-        <section class="bg-zinc-50 border-y border-zinc-100 fade-up">
-            <div class="max-w mx-auto px py-16">
-                <div class="portal-status-card">
-                    <div class="portal-status-copy">
-                        <div class="section-label mb-3">Current status</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed">This workspace is not live yet. For now, use Explore for discovery, Resources for files, Insights for technical reading, and Contact for the live enquiry path.</p>
-                    </div>
-                    <div class="flex gap-3 flex-wrap">
-                        <a href="/explore/" class="btn-outline">Open Explore</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+        ${body}
     </main>
 
     ${footer()}
     ${closingElements()}`;
+}
+
+function generatePortalAppMount(view = 'auth') {
+  return `<section class="max-w mx-auto px py-16 fade-up"><div id="portal-app" class="portal-app-mount" data-portal-view="${view}"></div></section>`;
+}
+
+function generateLoginPage() {
+  return generatePortalShell({
+    shell: 'access',
+    active: 'sign-in',
+    title: 'Portal Access | Moldart',
+    desc: 'Buyer and seller portal access for products, inquiries, orders, payments, logistics, and documents.',
+    canonical: '/portal/',
+    heading: 'PORTAL ACCESS.',
+    intro: 'Buyer and seller sign in or register here. After access, the workspace opens products, inquiries, orders, payments, logistics, and documents in one place.',
+    body: generatePortalAppMount('auth'),
+    label: 'Portal access · local only'
+  });
+}
+
+function generatePortalSignInPage() {
+  return generatePortalShell({
+    shell: 'access',
+    active: 'sign-in',
+    title: 'Portal Sign In | Moldart',
+    desc: 'Buyer and seller sign in for the Moldart portal workspace.',
+    canonical: '/portal/sign-in/',
+    heading: 'SIGN IN.',
+    intro: 'Open the buyer or seller workspace from one sign-in surface.',
+    body: generatePortalAppMount('sign-in'),
+    label: 'Portal access · local only'
+  });
+}
+
+function generatePortalSignUpPage() {
+  return generatePortalShell({
+    shell: 'access',
+    active: 'sign-up',
+    title: 'Portal Registration | Moldart',
+    desc: 'Buyer and seller registration for the Moldart portal workspace.',
+    canonical: '/portal/sign-up/',
+    heading: 'REGISTER.',
+    intro: 'Create buyer or seller access, then continue into the workspace.',
+    body: generatePortalAppMount('sign-up'),
+    label: 'Portal access · local only'
+  });
+}
+
+function generatePortalDashboardPage() {
+  return generatePortalShell({
+    shell: 'workspace',
+    active: 'dashboard',
+    title: 'Portal Workspace | Moldart',
+    desc: 'Portal workspace for products, inquiries, orders, payments, logistics, and documents.',
+    canonical: '/portal/dashboard/',
+    heading: 'PORTAL.',
+    intro: 'Use one workspace for products, inquiries, documents, orders, payments, and logistics.',
+    body: generatePortalAppMount('dashboard'),
+    label: 'Portal workspace · local only'
+  });
+}
+
+function generatePortalCatalogPage() {
+  return generatePortalShell({
+    shell: 'workspace',
+    active: 'catalog',
+    title: 'Portal Products | Moldart',
+    desc: 'Portal product review for technical sheets, reference files, and inquiry building.',
+    canonical: '/portal/catalog/',
+    heading: 'PRODUCTS.',
+    intro: 'Review the product range, open technical sheets, and move selected items into the workspace flow.',
+    body: generatePortalAppMount('catalog'),
+    label: 'Portal workspace · local only'
+  });
+}
+
+function generatePortalRfqPage() {
+  return generatePortalShell({
+    shell: 'workspace',
+    active: 'rfq',
+    title: 'Portal Inquiries | Moldart',
+    desc: 'Portal inquiry and quote workspace for products, quantities, commercials, and seller review.',
+    canonical: '/portal/rfq/',
+    heading: 'INQUIRIES.',
+    intro: 'Build the inquiry, confirm quantities, compare commercial options, and move the order forward.',
+    body: generatePortalAppMount('rfq'),
+    label: 'Portal workspace · local only'
+  });
+}
+
+function generatePortalApprovalsPage() {
+  return generatePortalShell({
+    shell: 'workspace',
+    active: 'approvals',
+    title: 'Portal Documents | Moldart',
+    desc: 'Portal documents and approval workspace for release files, checks, and comments.',
+    canonical: '/portal/approvals/',
+    heading: 'DOCUMENTS.',
+    intro: 'Keep technical files, commercial checks, and release readiness together before order creation.',
+    body: generatePortalAppMount('approvals'),
+    label: 'Portal workspace · local only'
+  });
+}
+
+function generatePortalOrdersPage() {
+  return generatePortalShell({
+    shell: 'workspace',
+    active: 'orders',
+    title: 'Portal Orders | Moldart',
+    desc: 'Portal order tracking for payment status, logistics stages, shipment files, and repeat business.',
+    canonical: '/portal/orders/',
+    heading: 'ORDERS.',
+    intro: 'Track order status, payment position, logistics movement, and repeat activity from one place.',
+    body: generatePortalAppMount('orders'),
+    label: 'Portal workspace · local only'
+  });
 }
 
 function generate404() {
@@ -4966,7 +5065,14 @@ async function main() {
   writeFile(path.join(WORK, 'about/index.html'), generateAboutPage());
   writeFile(path.join(WORK, 'contact/index.html'), generateContactPage());
   writeFile(path.join(WORK, 'portal/index.html'), generateLoginPage());
-  writeFile(path.join(WORK, 'login/index.html'), generatePageRedirect('/portal/', 'Redirecting to Portal Preview — Moldart', 'Open portal preview', true));
+  writeFile(path.join(WORK, 'portal/sign-in/index.html'), generatePortalSignInPage());
+  writeFile(path.join(WORK, 'portal/sign-up/index.html'), generatePortalSignUpPage());
+  writeFile(path.join(WORK, 'portal/dashboard/index.html'), generatePortalDashboardPage());
+  writeFile(path.join(WORK, 'portal/catalog/index.html'), generatePortalCatalogPage());
+  writeFile(path.join(WORK, 'portal/rfq/index.html'), generatePortalRfqPage());
+  writeFile(path.join(WORK, 'portal/approvals/index.html'), generatePortalApprovalsPage());
+  writeFile(path.join(WORK, 'portal/orders/index.html'), generatePortalOrdersPage());
+  writeFile(path.join(WORK, 'login/index.html'), generatePageRedirect('/portal/', 'Redirecting to Portal Access — Moldart', 'Open portal access', true));
   writeFile(path.join(WORK, '404.html'), generate404());
 
   console.log('\nGenerating solution pages...');
@@ -5020,7 +5126,7 @@ async function main() {
   writeFile(path.join(WORK, 'llms-full.txt'), generateLlmsFullTxt());
   writeFile(path.join(WORK, '_redirects'), generateRedirects());
 
-  const totalPages = 6 + (1 + applications.length) + (1 + Object.keys(productMeta).length) + (1 + applications.length) + 3 + 1 + 1 + rawInsights.articles.length;
+  const totalPages = 14 + (1 + applications.length) + (1 + Object.keys(productMeta).length) + (1 + applications.length) + 3 + 1 + 1 + rawInsights.articles.length;
   console.log(`\n=== Generated ${totalPages} pages ===`);
 }
 

@@ -1,10 +1,11 @@
-const CACHE = 'moldart-v2026.45';
+const CACHE = 'moldart-v2026.48';
 const PRECACHE = [
   '/',
-  '/styles.css?v=2026.45',
-  '/pages.css?v=2026.45',
-  '/site-overrides.css?v=2026.45',
-  '/main.js?v=2026.45',
+  '/styles.css?v=2026.48',
+  '/pages.css?v=2026.48',
+  '/site-overrides.css?v=2026.48',
+  '/portal-app.js?v=2026.48',
+  '/main.js?v=2026.48',
   '/fonts/montserrat-latin.woff2',
   '/fonts/dm-sans-latin.woff2',
   '/offline.html'
