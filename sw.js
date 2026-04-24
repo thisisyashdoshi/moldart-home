@@ -4,7 +4,6 @@ const PRECACHE = [
   '/styles.css?v=2026.48',
   '/pages.css?v=2026.48',
   '/site-overrides.css?v=2026.48',
-  '/portal-app.js?v=2026.48',
   '/main.js?v=2026.48',
   '/fonts/montserrat-latin.woff2',
   '/fonts/dm-sans-latin.woff2',

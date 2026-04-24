@@ -1734,8 +1734,23 @@ function getApplicationVisual(slug) {
 }
 
 function safeProductMetaDesc(product) {
-  const uses = (product.applications || []).slice(0, 3).join(', ');
-  return `${product.name} from Moldart. Verified overview, core specification references, and enquiry-led supply support${uses ? ` for ${uses}` : ''}.`;
+  const uses = (product.applications || []).slice(0, 2).join(', ');
+  return `${product.name} from Moldart with specification notes, document references, and RFQ-led supply support${uses ? ` for ${uses}` : ''}.`;
+}
+
+function compactSeoTitle(value, suffix = ' | Moldart', max = 68) {
+  const clean = String(value || '').replace(/\s+/g, ' ').trim();
+  if (!clean) return `Moldart${suffix}`;
+  if (`${clean}${suffix}`.length <= max) return `${clean}${suffix}`;
+  const limit = Math.max(18, max - suffix.length - 1);
+  const words = clean.split(' ');
+  let out = '';
+  for (const word of words) {
+    const next = out ? `${out} ${word}` : word;
+    if (next.length > limit) break;
+    out = next;
+  }
+  return `${out || clean.slice(0, limit).trim()}${suffix}`;
 }
 
 function standardsText(technical = {}) {
@@ -3402,7 +3417,7 @@ function generateHomepage() {
 
   return headTag({
     title: 'Moldart | Laminates, panels, flooring, furniture & decorative stainless',
-    desc: 'Moldart works from Mumbai across laminates, panels, flooring, furniture, decorative stainless steel, and industrial press routes, helping teams align route, reference, and approval before RFQ and supply.',
+    desc: 'Moldart supports RFQ-led sourcing for laminates, panels, flooring, furniture, decorative steel, and industrial press routes from Mumbai.',
     canonical: '/',
     ogImage: siteSocialPosterRelativePath('moldart-home'),
     ogImageAlt: 'Moldart homepage overview',
@@ -3612,7 +3627,7 @@ function generateSolutionsHub() {
   const solutionCards = applications.map((app, index) => renderApplicationPreviewCard(app, { priority: index < 3 })).join('\n');
 
   return headTag({
-    title: 'Solutions | Moldart',
+    title: 'B2B Sourcing Solutions | Moldart',
     desc: 'Start with the programme and see the relevant product stack, guides, and downloads together.',
     canonical: '/solutions/',
     ogImage: siteSocialPosterRelativePath('moldart-solutions'),
@@ -4002,7 +4017,7 @@ function generateFAQPage() {
   }).join('');
 
   return headTag({
-    title: 'FAQ | Moldart',
+    title: 'Sourcing & RFQ FAQ | Moldart',
     desc: 'Buyer-facing answers on Moldart product groups, documents, enquiries, order planning, and next-step review.',
     canonical: '/faq/',
     ogImage: siteSocialPosterRelativePath('moldart-faq'),
@@ -4473,7 +4488,23 @@ function generatePortalShell({ shell = 'access', active = 'sign-in', title = '',
 }
 
 function generatePortalAppMount(view = 'auth') {
-  return `<section class="max-w mx-auto px py-16 fade-up"><div id="portal-app" class="portal-app-mount" data-portal-view="${view}"></div></section>`;
+  const cards = [
+    { title: 'Buyer access', detail: 'Review products, raise RFQs, compare offers, track orders, payments, logistics, and buyer-visible documents.' },
+    { title: 'Seller access', detail: 'Receive assigned inquiries, maintain catalog lines, issue quotes, update execution milestones, and share approved documents.' },
+    { title: 'Controlled visibility', detail: 'Every record stays scoped by company, role, approval status, and document access rules before the full portal goes live.' }
+  ];
+  return `<section class="max-w mx-auto px py-16 fade-up">
+            <div class="portal-status-card mb-8">
+              <div class="portal-status-copy">
+                <div class="section-label mb-3">Private draft under review</div>
+                <p class="text-sm text-zinc-500 leading-relaxed">The detailed buyer/seller workspace is being reviewed internally first. Request access here; the authenticated portal will move to a separate portal environment after approval.</p>
+              </div>
+              <div class="flex gap-3 flex-wrap"><a href="/contact/" class="btn-primary">Request portal access</a><a href="/process/" class="btn-outline">View public workflow</a></div>
+            </div>
+            <div class="signal-grid signal-grid-portal">
+              ${cards.map((card) => `<article class="signal-card portal-card"><div class="section-label mb-4">${escHtml(card.title)}</div><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(card.detail)}</p></article>`).join('')}
+            </div>
+          </section>`;
 }
 
 function generateLoginPage() {
@@ -4486,7 +4517,7 @@ function generateLoginPage() {
     heading: 'PORTAL ACCESS.',
     intro: 'Buyer and seller sign in or register here. After access, the workspace opens products, inquiries, orders, payments, logistics, and documents in one place.',
     body: generatePortalAppMount('auth'),
-    label: 'Portal access · local only'
+    label: 'Portal access · request preview'
   });
 }
 
@@ -4500,7 +4531,7 @@ function generatePortalSignInPage() {
     heading: 'SIGN IN.',
     intro: 'Open the buyer or seller workspace from one sign-in surface.',
     body: generatePortalAppMount('sign-in'),
-    label: 'Portal access · local only'
+    label: 'Portal access · request preview'
   });
 }
 
@@ -4514,7 +4545,7 @@ function generatePortalSignUpPage() {
     heading: 'REGISTER.',
     intro: 'Create buyer or seller access, then continue into the workspace.',
     body: generatePortalAppMount('sign-up'),
-    label: 'Portal access · local only'
+    label: 'Portal access · request preview'
   });
 }
 
@@ -4528,7 +4559,7 @@ function generatePortalDashboardPage() {
     heading: 'PORTAL.',
     intro: 'Use one workspace for products, inquiries, documents, orders, payments, and logistics.',
     body: generatePortalAppMount('dashboard'),
-    label: 'Portal workspace · local only'
+    label: 'Portal workspace · private draft'
   });
 }
 
@@ -4542,7 +4573,7 @@ function generatePortalCatalogPage() {
     heading: 'PRODUCTS.',
     intro: 'Review the product range, open technical sheets, and move selected items into the workspace flow.',
     body: generatePortalAppMount('catalog'),
-    label: 'Portal workspace · local only'
+    label: 'Portal workspace · private draft'
   });
 }
 
@@ -4556,7 +4587,7 @@ function generatePortalRfqPage() {
     heading: 'INQUIRIES.',
     intro: 'Build the inquiry, confirm quantities, compare commercial options, and move the order forward.',
     body: generatePortalAppMount('rfq'),
-    label: 'Portal workspace · local only'
+    label: 'Portal workspace · private draft'
   });
 }
 
@@ -4570,7 +4601,7 @@ function generatePortalApprovalsPage() {
     heading: 'DOCUMENTS.',
     intro: 'Keep technical files, commercial checks, and release readiness together before order creation.',
     body: generatePortalAppMount('approvals'),
-    label: 'Portal workspace · local only'
+    label: 'Portal workspace · private draft'
   });
 }
 
@@ -4584,7 +4615,7 @@ function generatePortalOrdersPage() {
     heading: 'ORDERS.',
     intro: 'Track order status, payment position, logistics movement, and repeat activity from one place.',
     body: generatePortalAppMount('orders'),
-    label: 'Portal workspace · local only'
+    label: 'Portal workspace · private draft'
   });
 }
 
@@ -4866,7 +4897,7 @@ function generateInsightArticle(article) {
   const tocRail = headings.length ? `<div class="article-toc-band"><div class="article-toc-label">In this guide</div><div class="article-toc-row">${headings.map((heading) => `<a href="#${heading.id}" class="article-toc-link${heading.level === 3 ? ' is-sub' : ''}">${escHtml(heading.text)}</a>`).join('')}</div></div>` : '';
 
   return headTag({
-    title: `${article.title} | Moldart Insights`,
+    title: compactSeoTitle(article.title),
     desc: article.excerpt.substring(0, 155),
     canonical: `/insights/${article.slug}/`,
     ogImage: articleOgImage,
