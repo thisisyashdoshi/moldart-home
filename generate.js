@@ -1734,8 +1734,8 @@ function getApplicationVisual(slug) {
 }
 
 function safeProductMetaDesc(product) {
-  const uses = (product.applications || []).slice(0, 2).join(', ');
-  return `${product.name} from Moldart with specification notes, document references, and RFQ-led supply support${uses ? ` for ${uses}` : ''}.`;
+  const uses = (product.applications || []).slice(0, 1).join(', ');
+  return `${product.name} from Moldart. Specification notes, document references, and RFQ-led supply support${uses ? ` for ${uses}` : ''}.`;
 }
 
 function compactSeoTitle(value, suffix = ' | Moldart', max = 68) {
@@ -3416,7 +3416,7 @@ function generateHomepage() {
   const homeHeroMedia = `<div class="home-hero-media-grid">${renderProductImageCard('decor-paper', 'home-hero-media-card home-hero-media-card-primary', 'Printed decor paper and surface programme reference', true)}${renderProductImageCard('custom-furniture', 'home-hero-media-card', 'Custom furniture and design-engineering reference', true)}${renderProductImageCard('ss-profiles', 'home-hero-media-card', 'Decorative stainless steel profile reference', true)}</div>`;
 
   return headTag({
-    title: 'Moldart | Laminates, panels, flooring, furniture & decorative stainless',
+    title: 'Moldart | Laminates, Panels, Flooring & Decorative Steel',
     desc: 'Moldart supports RFQ-led sourcing for laminates, panels, flooring, furniture, decorative steel, and industrial press routes from Mumbai.',
     canonical: '/',
     ogImage: siteSocialPosterRelativePath('moldart-home'),
@@ -4526,7 +4526,7 @@ function generatePortalSignInPage() {
     shell: 'access',
     active: 'sign-in',
     title: 'Portal Sign In | Moldart',
-    desc: 'Buyer and seller sign in for the Moldart portal workspace.',
+    desc: 'Request-controlled buyer, seller, and internal access for the private Moldart portal workspace.',
     canonical: '/portal/sign-in/',
     heading: 'SIGN IN.',
     intro: 'Open the buyer or seller workspace from one sign-in surface.',
@@ -4540,7 +4540,7 @@ function generatePortalSignUpPage() {
     shell: 'access',
     active: 'sign-up',
     title: 'Portal Registration | Moldart',
-    desc: 'Buyer and seller registration for the Moldart portal workspace.',
+    desc: 'Company registration route for buyer and seller portal access under approval and role control.',
     canonical: '/portal/sign-up/',
     heading: 'REGISTER.',
     intro: 'Create buyer or seller access, then continue into the workspace.',
