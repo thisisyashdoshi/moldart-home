@@ -232,8 +232,13 @@
                             </label>
                             <label class="form-group"><span class="form-label">Requirement Focus</span><input type="text" name="application" class="form-input" placeholder="Pricing, specs, samples, project brief..."></label>
                         </div>
-                        <label class="form-group"><span class="form-label">Message *</span><textarea name="message" class="form-textarea" required aria-required="true" placeholder="Share the application, dimensions, finish expectations, quantity, and timing."></textarea></label>
-                        <p class="text-xs text-zinc-500">Your details are used only to review the requirement and respond with the relevant next step.</p>
+                        <div class="grid md-grid-3 gap-4">
+                            <label class="form-group"><span class="form-label">Quantity / MOQ Context</span><input type="text" name="quantity_context" class="form-input" placeholder="Trial, container, project, repeat..."></label>
+                            <label class="form-group"><span class="form-label">Target Timing</span><input type="text" name="target_timing" class="form-input" placeholder="Urgent, this month, Q3..."></label>
+                            <label class="form-group"><span class="form-label">Destination / Port</span><input type="text" name="destination" class="form-input" placeholder="India, export market, port..."></label>
+                        </div>
+                        <label class="form-group"><span class="form-label">Message *</span><textarea name="message" class="form-textarea" required aria-required="true" placeholder="Share the application, dimensions, finish expectations, approval reference, document need, and receiving checks."></textarea></label>
+                        <p class="text-xs text-zinc-500">Your details are used only to review the requirement, qualify the RFQ, and respond with the relevant next step.</p>
                         <button type="submit" class="btn-primary btn-lg" style="width:100%;justify-content:center;">Submit Inquiry</button>
                         <p class="text-xs text-zinc-500">Lead time, MOQ, and final commercial timing are confirmed after the requirement is reviewed.</p>
                     </form>

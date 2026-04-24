@@ -1738,6 +1738,48 @@ function safeProductMetaDesc(product) {
   return `${product.name} from Moldart. Specification notes, document references, and RFQ-led supply support${uses ? ` for ${uses}` : ''}.`;
 }
 
+function productRfqInputs(product) {
+  return [
+    `End use or application${product.applications?.[0] ? `: ${product.applications[0]}` : ', not only a product name'}`,
+    `Size, build, grade, or finish target${product.specs?.[0] ? `: ${stripMarkdownInline(product.specs[0])}` : ' tied to the real programme'}`,
+    'Quantity, target timing, destination, and preferred commercial route',
+    'Reference sample, drawing, finish deck, pattern code, or previous approval benchmark',
+    'Documents needed before order: catalogue, TDS, quote PDF, certificate, packing note, or shipment file'
+  ];
+}
+
+function productApprovalRisks(product) {
+  const firstApp = product.applications?.[0] || 'the final application';
+  return [
+    'Quoting before the approval reference is named',
+    `Comparing options outside ${firstApp}`,
+    'Treating finish, tolerance, or receiving checks as after-order details',
+    'Losing the approved sample, drawing revision, or document trail before reorder'
+  ];
+}
+
+function renderProductRfqControlSection(product) {
+  const inputs = productRfqInputs(product);
+  const risks = productApprovalRisks(product);
+  const confirms = [
+    'whether the route should stay standard, custom, or sample-led',
+    'which reference files should be reviewed before commercial closure',
+    'which checks should remain visible for dispatch, receiving, and repeat supply'
+  ];
+  return `<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+            <div class="ui-section-head mb-8">
+                <div class="ui-kicker mb-4">${glyph('message', 'icon icon-sm')} RFQ readiness</div>
+                <h2 class="ui-section-title">MAKE THE FIRST ENQUIRY<br>USEFUL.</h2>
+                <p class="ui-section-subtitle">A stronger RFQ reduces quote revisions, approval drift, and repeat-order confusion. Use this checklist before sending ${escHtml(product.name.toLowerCase())} requirements.</p>
+            </div>
+            <div class="ui-library-grid">
+                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('check', 'icon icon-sm')} Send first</div><ul class="ui-stack-list mt-5">${inputs.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul></article>
+                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('shield', 'icon icon-sm')} Avoid</div><ul class="ui-stack-list mt-5">${risks.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul></article>
+                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('route', 'icon icon-sm')} Moldart confirms</div><ul class="ui-stack-list mt-5">${confirms.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul><div class="mt-6"><a href="/contact/" class="btn-outline">Share requirement</a></div></article>
+            </div>
+          </section>`;
+}
+
 function compactSeoTitle(value, suffix = ' | Moldart', max = 68) {
   const clean = String(value || '').replace(/\s+/g, ' ').trim();
   if (!clean) return `Moldart${suffix}`;
@@ -3453,6 +3495,19 @@ function generateHomepage() {
             </div>
         </section>
 
+        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+            <div class="ui-section-head home-section-head-wide mb-10">
+                <div class="ui-kicker mb-4">${glyph('message', 'icon icon-sm')} From website to working brief</div>
+                <h2 class="home-section-title">THE SITE SHOULD TURN INTEREST<br>INTO A USABLE RFQ.</h2>
+                <p class="ui-section-subtitle">The strongest path is simple: shortlist the route, send the right inputs, then keep approvals, documents, and repeat references controlled in the private portal later.</p>
+            </div>
+            <div class="ui-library-grid">
+                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('search', 'icon icon-sm')} Shortlist</div><h3 class="ui-family-title" style="font-size:1.2rem;">Use solutions and product sheets to narrow the route.</h3><p class="text-sm text-zinc-500 leading-relaxed mt-3">Start from application, finish, grade, quantity, timing, and destination instead of a generic product name.</p></article>
+                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('check', 'icon icon-sm')} Qualify</div><h3 class="ui-family-title" style="font-size:1.2rem;">Send a brief that can be reviewed quickly.</h3><p class="text-sm text-zinc-500 leading-relaxed mt-3">A useful RFQ includes the approval reference, required documents, and receiving checks before pricing dominates.</p></article>
+                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('shield', 'icon icon-sm')} Control</div><h3 class="ui-family-title" style="font-size:1.2rem;">Move approved work into the private portal later.</h3><p class="text-sm text-zinc-500 leading-relaxed mt-3">Buyer, seller, and internal users should see only their scoped RFQs, quotes, orders, documents, payments, and logistics.</p></article>
+            </div>
+        </section>
+
         <section class="max-w mx-auto px py-20 fade-up home-map-section">
             <div class="home-map-layout home-map-layout-refined">
                 <div class="home-map-copy home-map-copy-minimal">
@@ -3758,6 +3813,8 @@ function generateProductPage(productId) {
                 </div>
             </div>
         </section>
+
+        ${renderProductRfqControlSection(p)}
 
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
             <div class="ui-spotlight">
@@ -4180,8 +4237,13 @@ function generateContactPage() {
                             </label>
                             <label class="form-group"><span class="form-label">Requirement Focus</span><input type="text" name="application" class="form-input" placeholder="Pricing, specs, samples, project brief..."></label>
                         </div>
-                        <label class="form-group"><span class="form-label">Message *</span><textarea name="message" class="form-textarea" required aria-required="true" placeholder="Share the application, dimensions, finish expectations, quantity, and timing."></textarea></label>
-                        <p class="text-xs text-zinc-500">Your details are used only to review the requirement and respond with the relevant next step.</p>
+                        <div class="grid md-grid-3 gap-4">
+                            <label class="form-group"><span class="form-label">Quantity / MOQ Context</span><input type="text" name="quantity_context" class="form-input" placeholder="Trial, container, project, repeat..."></label>
+                            <label class="form-group"><span class="form-label">Target Timing</span><input type="text" name="target_timing" class="form-input" placeholder="Urgent, this month, Q3..."></label>
+                            <label class="form-group"><span class="form-label">Destination / Port</span><input type="text" name="destination" class="form-input" placeholder="India, export market, port..."></label>
+                        </div>
+                        <label class="form-group"><span class="form-label">Message *</span><textarea name="message" class="form-textarea" required aria-required="true" placeholder="Share the application, dimensions, finish expectations, approval reference, document need, and receiving checks."></textarea></label>
+                        <p class="text-xs text-zinc-500">Your details are used only to review the requirement, qualify the RFQ, and respond with the relevant next step.</p>
                         <button type="submit" class="btn-primary btn-lg" style="width:100%;justify-content:center;">Submit Inquiry</button>
                         <p class="text-xs text-zinc-500">Lead time, MOQ, and final commercial timing are confirmed after the requirement is reviewed.</p>
                     </form>
@@ -4408,6 +4470,19 @@ function generateProcessPage() {
             </div>
             <div class="ui-stage-grid ui-stage-grid-compact">
                 ${stages.map((stage) => `<article class="ui-stage-card"><div class="ui-stage-num">${stage.number}</div><h3 class="font-display font-bold text-lg mb-3">${escHtml(stage.title)}</h3><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(stage.detail)}</p><div class="ui-stage-meta"><div class="ui-stage-meta-block"><div class="ui-stage-meta-label">What to share</div><p>${escHtml(stage.share)}</p></div><div class="ui-stage-meta-block"><div class="ui-stage-meta-label">What comes out</div><p>${escHtml(stage.output)}</p></div></div></article>`).join('')}
+            </div>
+        </section>
+
+        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+            <div class="ui-section-head mb-10">
+                <div class="ui-kicker mb-4">${glyph('shield', 'icon icon-sm')} Role visibility</div>
+                <h2 class="ui-section-title">THE PUBLIC PROCESS<br>BECOMES PRIVATE CONTROL.</h2>
+                <p class="ui-section-subtitle">The future portal should not be a public catalogue login. It should keep each approved company on the records, files, and tasks they are allowed to see.</p>
+            </div>
+            <div class="ui-library-grid">
+                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('building', 'icon icon-sm')} Buyer</div><ul class="ui-stack-list mt-5"><li>Own RFQs, quotes, orders, payments, logistics, and buyer-visible files</li><li>Repeat-order references and approval records tied to the company</li><li>No seller-wide or internal operations visibility</li></ul></article>
+                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('factory', 'icon icon-sm')} Seller</div><ul class="ui-stack-list mt-5"><li>Assigned inquiries, seller product lines, submitted offers, and execution updates</li><li>Only permitted documents and shipment milestones</li><li>No unrelated buyer records or competing seller data</li></ul></article>
+                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('shield', 'icon icon-sm')} Moldart ops</div><ul class="ui-stack-list mt-5"><li>Company approvals, user roles, document access, audit logs, and final workflow control</li><li>RFQ-to-order state visible across buyer and seller sides</li><li>Approval-first access before any production portal rollout</li></ul></article>
             </div>
         </section>
 
