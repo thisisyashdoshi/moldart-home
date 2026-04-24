@@ -839,6 +839,49 @@
     padding-bottom: 4.25rem !important;
   }
 
+  .ui-page-hero,
+  .ui-product-hero {
+    grid-template-columns: minmax(0, 1fr) !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .ui-page-hero > *,
+  .ui-product-hero > *,
+  .ui-product-side,
+  .ui-product-media,
+  .ui-fact-grid,
+  .solution-hero-summary,
+  .solution-hero-summary-card {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .ui-kicker,
+  .ui-section-title,
+  .ui-app-badges,
+  .ui-chip-row,
+  .solution-hero-summary-pills {
+    max-width: 100% !important;
+    overflow-wrap: anywhere;
+  }
+
+  .ui-kicker,
+  .ui-app-badges,
+  .ui-chip-row,
+  .solution-hero-summary-pills {
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+  }
+
+  .btn-primary.btn-lg,
+  .btn-outline.btn-lg {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
   .ui-contact-form,
   .ui-contact-route,
   .ui-insight-card,
@@ -3955,16 +3998,36 @@ main > section.border-y::before {
 
 /* 2026.43: homepage redesign and stronger home-share visual hierarchy */
 
+.ui-section-title,
+.home-section-title,
+.portal-page-heading {
+  text-transform: uppercase;
+}
+
 .home-hero-shell-modern {
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(22rem, 0.98fr);
-  gap: 1.5rem;
-  align-items: stretch;
+  gap: clamp(1.75rem, 3vw, 3rem);
+  align-items: center;
 }
 
 .home-hero-copy-column {
   display: grid;
   align-content: start;
+}
+
+.home-hero-kicker-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: fit-content;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #52525b;
 }
 
 .home-hero-heading,
@@ -3977,9 +4040,9 @@ main > section.border-y::before {
 }
 
 .home-hero-heading {
-  max-width: 11.5ch;
-  font-size: clamp(3rem, 5.8vw, 5.4rem);
-  line-height: 0.93;
+  max-width: 13.5ch;
+  font-size: clamp(2.7rem, 5vw, 4.7rem);
+  line-height: 0.95;
 }
 
 .home-section-title {
@@ -4007,7 +4070,7 @@ main > section.border-y::before {
 
 .home-hero-stage {
   display: grid;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .home-hero-media-shell,
@@ -4307,9 +4370,9 @@ main > section.border-y::before {
 
 @media (max-width: 768px) {
   .home-hero-heading {
-    max-width: 12ch;
-    font-size: clamp(2.05rem, 10.2vw, 3.1rem);
-    line-height: 0.96;
+    max-width: 13.5ch;
+    font-size: clamp(2rem, 9.2vw, 2.85rem);
+    line-height: 0.98;
   }
 
   .home-section-title {

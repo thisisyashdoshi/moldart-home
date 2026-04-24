@@ -16,7 +16,7 @@ const { importedInsights, insightDossiers } = require('./insight-enhancements.js
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.48';
+const VER = '2026.49';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
@@ -3471,40 +3471,21 @@ function generateHomepage() {
         <section class="max-w mx-auto px py-20 fade-up home-hero-section">
             <div class="home-hero-shell-modern">
                 <div class="home-hero-copy-column">
-                    <div class="ui-kicker mb-5">${glyph('shield', 'icon icon-sm')} Since 1989 · Mumbai</div>
-                    <h1 class="home-hero-heading">SPECIFICATION-LED SUPPLY<br>FOR WOOD AND DECORATIVE<br>STEEL PROGRAMMES.</h1>
-                    <p class="home-hero-intro mt-6">Across laminates, panels, flooring, furniture, and decorative stainless, Moldart helps procurement, technical, and commercial teams narrow the route, working stack, and approval reference before RFQ, sampling, dispatch, and repeat supply.</p>
-                    <div class="ui-chip-row home-hero-chip-row mt-8">
-                        <span class="ui-chip">${glyph('clock', 'icon icon-sm')} Since 1989</span>
-                        <span class="ui-chip">${glyph('building', 'icon icon-sm')} Mumbai-led coordination</span>
-                        <span class="ui-chip">${glyph('route', 'icon icon-sm')} India + China sourcing</span>
-                        <span class="ui-chip">${glyph('check', 'icon icon-sm')} RFQ to repeat supply</span>
-                    </div>
+                    <div class="home-hero-kicker-line mb-4">${glyph('shield', 'icon icon-sm')} Since 1989 · Mumbai</div>
+                    <h1 class="home-hero-heading">SPECIFICATION&#8209;LED<br>WOOD AND DECORATIVE<br>STEEL SUPPLY.</h1>
+                    <p class="home-hero-intro mt-6">From Mumbai, Moldart helps buyers shortlist the right route, confirm specifications, and move qualified enquiries toward controlled supply.</p>
                     <div class="home-hero-actions mt-8">
-                        <a href="/solutions/" class="btn-primary btn-lg">Start with Solutions →</a>
+                        <a href="/solutions/" class="btn-primary btn-lg">Explore Solutions →</a>
                     </div>
                 </div>
                 <div class="home-hero-stage">
                     <div class="home-hero-media-shell">${homeHeroMedia}</div>
                     <div class="home-browse-panel">
                         <div class="ui-kicker mb-3">${glyph('search', 'icon icon-sm')} Choose the right starting point</div>
-                        <p class="home-browse-intro">Use solutions when the application is still being narrowed. Use resources when the file is needed next. Use insights when the team needs clearer technical language before the commercial discussion. Search stays in the header when the keyword is already known.</p>
+                        <p class="home-browse-intro">Choose by application, file, or technical question. Search stays in the header when the keyword is already known.</p>
                         <div class="home-browse-list">${homeBrowseRows}</div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
-            <div class="ui-section-head home-section-head-wide mb-10">
-                <div class="ui-kicker mb-4">${glyph('message', 'icon icon-sm')} From website to working brief</div>
-                <h2 class="home-section-title">THE SITE SHOULD TURN INTEREST<br>INTO A USABLE RFQ.</h2>
-                <p class="ui-section-subtitle">The strongest path is simple: shortlist the route, send the right inputs, then keep approvals, documents, and repeat references controlled in the private portal later.</p>
-            </div>
-            <div class="ui-library-grid">
-                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('search', 'icon icon-sm')} Shortlist</div><h3 class="ui-family-title" style="font-size:1.2rem;">Use solutions and product sheets to narrow the route.</h3><p class="text-sm text-zinc-500 leading-relaxed mt-3">Start from application, finish, grade, quantity, timing, and destination instead of a generic product name.</p></article>
-                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('check', 'icon icon-sm')} Qualify</div><h3 class="ui-family-title" style="font-size:1.2rem;">Send a brief that can be reviewed quickly.</h3><p class="text-sm text-zinc-500 leading-relaxed mt-3">A useful RFQ includes the approval reference, required documents, and receiving checks before pricing dominates.</p></article>
-                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('shield', 'icon icon-sm')} Control</div><h3 class="ui-family-title" style="font-size:1.2rem;">Move approved work into the private portal later.</h3><p class="text-sm text-zinc-500 leading-relaxed mt-3">Buyer, seller, and internal users should see only their scoped RFQs, quotes, orders, documents, payments, and logistics.</p></article>
             </div>
         </section>
 
@@ -3512,7 +3493,7 @@ function generateHomepage() {
             <div class="home-map-layout home-map-layout-refined">
                 <div class="home-map-copy home-map-copy-minimal">
                     <div class="ui-kicker mb-4">${glyph('globe', 'icon icon-sm')} Programme geography</div>
-                    <h2 class="home-section-title">Mumbai leads coordination. India and China stay as sourcing context.</h2>
+                    <h2 class="home-section-title">MUMBAI-LED COORDINATION, WITH INDIA AND CHINA AS SOURCING CONTEXT.</h2>
                     <p class="home-map-note">Publicly supportable geography stays intentionally simple: Mumbai is the operating base, India and China are the sourcing anchors used most often in the current public route, and the wider map is shown only as directional context.</p>
                     <div class="home-map-legend-row">
                         <span class="home-map-legend-pill is-primary"><strong>Mumbai</strong><span>Operating base</span></span>
@@ -3531,7 +3512,7 @@ function generateHomepage() {
             <div class="max-w mx-auto px py-20">
                 <div class="ui-section-head home-section-head-wide mb-10">
                     <div class="ui-kicker mb-4">${glyph('layers', 'icon icon-sm')} What Moldart helps make</div>
-                    <h2 class="home-section-title">See the application first. Then open the relevant route.</h2>
+                    <h2 class="home-section-title">SEE THE APPLICATION FIRST. THEN OPEN THE ROUTE.</h2>
                     <p class="ui-section-subtitle">Each row keeps the route, working stack, likely outputs, and one path into the full solution page.</p>
                 </div>
                 <div class="home-route-directory">${routeCards}</div>
@@ -3541,7 +3522,7 @@ function generateHomepage() {
         <section class="max-w mx-auto px py-20 fade-up home-library-section">
             <div class="ui-section-head home-section-head-wide mb-10">
                 <div class="ui-kicker mb-4">${glyph('book', 'icon icon-sm')} Decision tools</div>
-                <h2 class="home-section-title">Files for approvals. Guides for decisions.</h2>
+                <h2 class="home-section-title">FILES FOR APPROVALS. GUIDES FOR DECISIONS.</h2>
                 <p class="ui-section-subtitle">Resources hold the downloadable files. Insights hold the edited technical reading that helps clarify fit, approval logic, receiving checks, and route choice.</p>
             </div>
             <div class="ui-library-grid ui-library-grid-balanced home-library-grid">
