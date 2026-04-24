@@ -4008,7 +4008,7 @@ main > section.border-y::before {
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(22rem, 0.98fr);
   gap: clamp(1.75rem, 3vw, 3rem);
-  align-items: center;
+  align-items: start;
 }
 
 .home-hero-copy-column {
@@ -4040,8 +4040,8 @@ main > section.border-y::before {
 }
 
 .home-hero-heading {
-  max-width: 13.5ch;
-  font-size: clamp(2.7rem, 5vw, 4.7rem);
+  max-width: 100%;
+  font-size: clamp(2.7rem, 4.2vw, 4.15rem);
   line-height: 0.95;
 }
 
@@ -5742,3 +5742,124 @@ main > section.border-y::before {
     color: #71717a;
   }
 }
+/* 2026.50 minimal correction: top-aligned hero, compact start cards, concise process */
+.home-browse-row {
+  align-items: center;
+}
+
+.home-browse-row-copy {
+  gap: 0.28rem;
+}
+
+.home-browse-row-copy p {
+  margin: 0;
+}
+
+.process-hero-minimal {
+  align-items: start;
+}
+
+.process-mini-panel {
+  display: flex;
+  align-items: stretch;
+}
+
+.process-mini-flow,
+.process-stage-grid-minimal,
+.process-checklist-minimal {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.process-mini-flow {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+}
+
+.process-mini-step,
+.process-stage-card-minimal,
+.process-checklist-minimal span {
+  border: 1px solid #ece7e2;
+  border-radius: 22px;
+  background: #fafaf9;
+}
+
+.process-mini-step {
+  min-height: 8rem;
+  padding: 1rem;
+  display: grid;
+  align-content: space-between;
+}
+
+.process-mini-step span,
+.process-note-step {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #71717a;
+}
+
+.process-mini-step strong {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.05rem;
+  color: #18181b;
+}
+
+.process-stage-grid-minimal {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.process-stage-card-minimal {
+  padding: 1.15rem;
+}
+
+.process-stage-card-minimal h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.05rem;
+  color: #18181b;
+  margin: 0.55rem 0 0.45rem;
+}
+
+.process-stage-card-minimal p {
+  font-size: 0.9rem;
+  line-height: 1.68;
+  color: #52525b;
+}
+
+.process-checklist-minimal {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 62rem;
+}
+
+.process-checklist-minimal span {
+  padding: 0.9rem 1rem;
+  font-size: 0.92rem;
+  color: #3f3f46;
+}
+
+@media (max-width: 1100px) {
+  .process-mini-flow,
+  .process-stage-grid-minimal,
+  .process-checklist-minimal {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .process-mini-flow,
+  .process-stage-grid-minimal,
+  .process-checklist-minimal {
+    grid-template-columns: 1fr;
+  }
+
+  .process-mini-step {
+    min-height: 0;
+    padding: 0.85rem 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+}
+

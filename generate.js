@@ -16,7 +16,7 @@ const { importedInsights, insightDossiers } = require('./insight-enhancements.js
 const WORK = __dirname;
 const SITE = 'https://moldartindia.com';
 const NOW = new Date().toISOString().split('T')[0];
-const VER = '2026.49';
+const VER = '2026.50';
 const FOUNDING_YEAR = 1989;
 const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/moldartindia';
@@ -2169,8 +2169,8 @@ function homeRouteMediaModel(app) {
   const product = getProduct(homePreferredProductId(app));
   return product?.image ? { src: product.image, alt: app.name, fit: 'cover', width: 720, height: 540 } : null;
 }
-function renderHomeHeroBrowseRow({ href, icon, label, value, note }) {
-  return `<a href="${href}" class="home-browse-row"><div class="home-browse-row-icon">${glyph(icon, 'icon icon-sm')}</div><div class="home-browse-row-copy"><div class="home-browse-row-top"><div><div class="home-browse-row-label">${escHtml(label)}</div><div class="home-browse-row-value">${escHtml(value)}</div></div><span class="home-browse-row-link">Open ${glyph('arrow', 'icon icon-sm')}</span></div><p>${escHtml(note)}</p></div></a>`;
+function renderHomeHeroBrowseRow({ href, icon, label, note }) {
+  return `<a href="${href}" class="home-browse-row"><div class="home-browse-row-icon">${glyph(icon, 'icon icon-sm')}</div><div class="home-browse-row-copy"><div class="home-browse-row-label">${escHtml(label)}</div><p>${escHtml(note)}</p></div></a>`;
 }
 
 function renderRouteTokenRow(items = [], options = {}) {
@@ -3451,11 +3451,11 @@ function generateHomepage() {
   const featuredArticles = rawInsights.editorial.slice(0, 3);
   const routeCards = applications.map((app) => renderHomeRouteCard(app)).join('');
   const homeBrowseRows = [
-    { href: '/solutions/', icon: 'compass', label: 'Solutions', value: `${applications.length} routes`, note: 'Application-led route pages when the working stack still needs narrowing.' },
-    { href: '/resources/', icon: 'book', label: 'Resources', value: `${getTotalResourceItems()} files`, note: 'Catalogues, finish decks, and product sheets tied to the current public library.' },
-    { href: '/insights/', icon: 'spark', label: 'Insights', value: `${rawInsights.editorial.length} guides`, note: 'Edited technical reading for approvals, route fit, and receiving logic.' }
+    { href: '/solutions/', icon: 'compass', label: 'Solutions', note: 'Choose by application.' },
+    { href: '/resources/', icon: 'book', label: 'Resources', note: 'Open catalogues and files.' },
+    { href: '/insights/', icon: 'spark', label: 'Insights', note: 'Read technical guides.' }
   ].map((item) => renderHomeHeroBrowseRow(item)).join('');
-  const homeHeroMedia = `<div class="home-hero-media-grid">${renderProductImageCard('decor-paper', 'home-hero-media-card home-hero-media-card-primary', 'Printed decor paper and surface programme reference', true)}${renderProductImageCard('custom-furniture', 'home-hero-media-card', 'Custom furniture and design-engineering reference', true)}${renderProductImageCard('ss-profiles', 'home-hero-media-card', 'Decorative stainless steel profile reference', true)}</div>`;
+  const homeHeroMedia = `<div class="home-hero-media-grid">${renderProductImageCard('decor-paper', 'home-hero-media-card home-hero-media-card-primary', 'Decor paper surface reference', true)}${renderProductImageCard('custom-furniture', 'home-hero-media-card', 'Furniture design reference', true)}${renderProductImageCard('ss-profiles', 'home-hero-media-card', 'Decorative steel profile reference', true)}</div>`;
 
   return headTag({
     title: 'Moldart | Laminates, Panels, Flooring & Decorative Steel',
@@ -3473,7 +3473,7 @@ function generateHomepage() {
                 <div class="home-hero-copy-column">
                     <div class="home-hero-kicker-line mb-4">${glyph('shield', 'icon icon-sm')} Since 1989 · Mumbai</div>
                     <h1 class="home-hero-heading">SPECIFICATION&#8209;LED<br>WOOD AND DECORATIVE<br>STEEL SUPPLY.</h1>
-                    <p class="home-hero-intro mt-6">From Mumbai, Moldart helps buyers shortlist the right route, confirm specifications, and move qualified enquiries toward controlled supply.</p>
+                    <p class="home-hero-intro mt-6">Moldart helps buyers source approved wood, surface, furniture, flooring, and decorative steel programmes with clearer specifications.</p>
                     <div class="home-hero-actions mt-8">
                         <a href="/solutions/" class="btn-primary btn-lg">Explore Solutions →</a>
                     </div>
@@ -3481,8 +3481,7 @@ function generateHomepage() {
                 <div class="home-hero-stage">
                     <div class="home-hero-media-shell">${homeHeroMedia}</div>
                     <div class="home-browse-panel">
-                        <div class="ui-kicker mb-3">${glyph('search', 'icon icon-sm')} Choose the right starting point</div>
-                        <p class="home-browse-intro">Choose by application, file, or technical question. Search stays in the header when the keyword is already known.</p>
+                        <div class="ui-kicker mb-3">${glyph('search', 'icon icon-sm')} Start here</div>
                         <div class="home-browse-list">${homeBrowseRows}</div>
                     </div>
                 </div>
@@ -4345,77 +4344,22 @@ function generateAboutPage() {
 function generateProcessPage() {
   const bc = breadcrumb([{ name: 'Home', url: '/' }, { name: 'Process' }]);
   const schemas = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/process/#webpage', url: SITE + '/process/', name: 'How Moldart Works | RFQ, Approval, Dispatch & Repeat Supply', description: 'A technical-commercial view of how Moldart moves from RFQ inputs to route alignment, approval control, dispatch, and repeat supply.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
+    { '@context': 'https://schema.org', '@type': 'WebPage', '@id': SITE + '/process/#webpage', url: SITE + '/process/', name: 'How Moldart Works | RFQ, Approval, Dispatch & Repeat Supply', description: 'A concise view of how Moldart moves from RFQ inputs to route alignment, approval control, dispatch, and repeat supply.', isPartOf: { '@id': SITE + '/#website' }, inLanguage: 'en-IN' },
     bc.schema
   ];
 
   const stages = [
-    {
-      number: '01',
-      title: 'Share the RFQ base',
-      detail: 'Application, finish target, size range, quantity, timing, destination, and supporting files narrow the route faster than any generic item name.',
-      share: 'Application, drawing, sample, quantity, destination, and timing baseline.',
-      output: 'A shortlist of the likely route, category, and reference files for the first technical review.'
-    },
-    {
-      number: '02',
-      title: 'Narrow the working route',
-      detail: 'The first review should reduce product noise by fixing the route, grade direction, finish family, and approval logic before commercial comparison starts.',
-      share: 'Non-negotiable technical points, compliance needs, approval format, and replacement or repeat rhythm.',
-      output: 'A cleaner recommendation on the right route, the right stack, and the right next file pack.'
-    },
-    {
-      number: '03',
-      title: 'Lock the approval reference',
-      detail: 'Sample, drawing, finish deck, pattern code, or previous approved record should all point to the same release baseline before production or dispatch planning begins.',
-      share: 'Approved sample, drawing revision, finish family, pattern code, or the closest accepted benchmark.',
-      output: 'Lower risk on finish drift, tolerance disputes, documentation gaps, and receiving confusion.'
-    },
-    {
-      number: '04',
-      title: 'Carry the baseline through supply',
-      detail: 'Documentation, packing, dispatch, receiving checks, and reorder references should stay tied to the approved baseline instead of being rebuilt from memory.',
-      share: 'Document set, pack handling notes, receiving checkpoints, and repeat-order reference trail.',
-      output: 'Cleaner delivery now and a more stable repeat route later.'
-    }
+    { number: '01', title: 'RFQ', detail: 'Share application, size, quantity, timing, and destination.' },
+    { number: '02', title: 'Route', detail: 'Confirm the product path and technical reference.' },
+    { number: '03', title: 'Approval', detail: 'Lock sample, finish, drawing, or benchmark.' },
+    { number: '04', title: 'Supply', detail: 'Carry the same baseline through documents, dispatch, and repeat orders.' }
   ];
-
-  const quickCards = [
-    { title: 'What speeds up the first technical review', detail: 'A real RFQ set with application, size, finish, quantity, timing, destination, and one usable reference always outperforms a generic equivalent request.' },
-    { title: 'Where approvals need tighter control', detail: 'Surface-critical routes such as press plates, decorative stainless, flooring, and industrial tooling need a named approval baseline before commercial closure.' },
-    { title: 'What protects repeat supply', detail: 'Keep the approved sample, drawing revision, and document trail linked to the reorder instead of relying on memory or broad item names.' }
-  ];
-
-  const controlCards = [
-    {
-      kicker: 'Minimum first-review dataset',
-      title: 'What procurement should send first',
-      items: [
-        'End use or application, not only the product name',
-        'Size, thickness, quantity, and timing window',
-        'Finish target, pattern, or sample benchmark',
-        'Destination market, compliance, or environment note',
-        'Required document set: quote, TDS, sample, deck, or certificate'
-      ]
-    },
-    {
-      kicker: 'Release baseline',
-      title: 'What should be locked before production or dispatch',
-      items: [
-        'Approved sample, drawing revision, or finish code',
-        'Acceptance points for surface, tolerance, or fit',
-        'Packing and handling notes for transit and receipt',
-        'Receiving inspection method and claim path',
-        'Repeat-order reference so the next order starts from the same baseline'
-      ]
-    }
-  ];
-
-  const processVisual = `<div class="process-flow-card"><div class="process-flow-label">Working sequence</div><svg class="process-flow-svg" viewBox="0 0 860 220" role="img" aria-label="Process flow from RFQ inputs to route, approval baseline, and repeat supply"><rect x="0" y="0" width="860" height="220" rx="28" fill="#fafafa"></rect><path d="M124 112H736" stroke="#d4d4d8" stroke-width="4" stroke-linecap="round"></path>${stages.map((stage, index) => { const x = 124 + (index * 204); const topLabel = index === 0 ? 'RFQ base' : index === 1 ? 'Route' : index === 2 ? 'Approval' : 'Repeat'; const bottomLabel = index === 0 ? 'Inputs' : index === 1 ? 'Narrow' : index === 2 ? 'Lock' : 'Carry through'; return `<circle cx="${x}" cy="112" r="16" fill="#18181b"></circle><circle cx="${x}" cy="112" r="34" fill="none" stroke="rgba(24,24,27,.12)" stroke-width="2"></circle><text x="${x}" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff">${stage.number}</text><text x="${x}" y="52" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#18181b">${escHtml(topLabel)}</text><text x="${x}" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#52525b">${escHtml(bottomLabel)}</text>`; }).join('')}</svg><div class="process-flow-note">The shortest useful path is the disciplined one: lock the RFQ base, narrow the route, approve against a named reference, then keep the same control through dispatch and reorder.</div></div>`;
+  const firstReviewItems = ['Application', 'Size / thickness / finish', 'Quantity and timing', 'Destination', 'Reference sample, drawing, or file', 'Required documents'];
+  const processVisual = `<div class="process-mini-flow" aria-label="RFQ to supply sequence">${stages.map((stage) => `<div class="process-mini-step"><span>${stage.number}</span><strong>${escHtml(stage.title)}</strong></div>`).join('')}</div>`;
 
   return headTag({
     title: 'How Moldart Works | RFQ, Approval, Dispatch & Repeat Supply',
-    desc: 'A technical-commercial view of how Moldart moves from RFQ inputs to route alignment, approval control, dispatch, and repeat supply.',
+    desc: 'A concise view of how Moldart moves from RFQ inputs to route alignment, approval control, dispatch, and repeat supply.',
     canonical: '/process/',
     ogImage: siteSocialPosterRelativePath('moldart-process'),
     ogImageAlt: 'Moldart process overview',
@@ -4425,19 +4369,16 @@ function generateProcessPage() {
     <main id="main-content" class="pt-16">
         <section class="max-w mx-auto px py-20 border-b border-zinc-100">
             ${bc.html}
-            <div class="ui-page-hero">
+            <div class="ui-page-hero process-hero-minimal">
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph('route', 'icon icon-sm')} Process</div>
                     <h1 class="ui-section-title">FROM RFQ<br>TO APPROVED SUPPLY.</h1>
-                    <p class="ui-section-subtitle">This page is short on purpose, but the underlying work is not casual: define the RFQ base, narrow the route, lock the approval reference, and carry the same baseline through dispatch and repeat supply.</p>
-                    <div class="ui-chip-row mt-8">
-                        <span class="ui-chip">${glyph('message', 'icon icon-sm')} RFQ inputs</span>
-                        <span class="ui-chip">${glyph('route', 'icon icon-sm')} Route controls</span>
-                        <span class="ui-chip">${glyph('shield', 'icon icon-sm')} Approval baseline</span>
-                        <span class="ui-chip">${glyph('book', 'icon icon-sm')} Repeat stability</span>
+                    <p class="ui-section-subtitle">Clear RFQ inputs, named approvals, and document control reduce avoidable delays.</p>
+                    <div class="home-hero-actions mt-8">
+                        <a href="/contact/" class="btn-primary btn-lg">Share Requirement →</a>
                     </div>
                 </div>
-                <div class="ui-page-hero-panel">
+                <div class="ui-page-hero-panel process-mini-panel">
                     ${processVisual}
                 </div>
             </div>
@@ -4445,57 +4386,30 @@ function generateProcessPage() {
 
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
             <div class="ui-section-head mb-10">
-                <div class="ui-kicker mb-4">${glyph('clock', 'icon icon-sm')} Four stages</div>
-                <h2 class="ui-section-title">THE WORKING SEQUENCE.</h2>
-                <p class="ui-section-subtitle">A compact technical-commercial view of how the requirement should move from the first message to aligned supply.</p>
+                <div class="ui-kicker mb-4">${glyph('clock', 'icon icon-sm')} Working sequence</div>
+                <h2 class="ui-section-title">RFQ. ROUTE. APPROVAL. SUPPLY.</h2>
             </div>
-            <div class="ui-stage-grid ui-stage-grid-compact">
-                ${stages.map((stage) => `<article class="ui-stage-card"><div class="ui-stage-num">${stage.number}</div><h3 class="font-display font-bold text-lg mb-3">${escHtml(stage.title)}</h3><p class="text-sm text-zinc-500 leading-relaxed">${escHtml(stage.detail)}</p><div class="ui-stage-meta"><div class="ui-stage-meta-block"><div class="ui-stage-meta-label">What to share</div><p>${escHtml(stage.share)}</p></div><div class="ui-stage-meta-block"><div class="ui-stage-meta-label">What comes out</div><p>${escHtml(stage.output)}</p></div></div></article>`).join('')}
-            </div>
-        </section>
-
-        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
-            <div class="ui-section-head mb-10">
-                <div class="ui-kicker mb-4">${glyph('shield', 'icon icon-sm')} Role visibility</div>
-                <h2 class="ui-section-title">THE PUBLIC PROCESS<br>BECOMES PRIVATE CONTROL.</h2>
-                <p class="ui-section-subtitle">The future portal should not be a public catalogue login. It should keep each approved company on the records, files, and tasks they are allowed to see.</p>
-            </div>
-            <div class="ui-library-grid">
-                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('building', 'icon icon-sm')} Buyer</div><ul class="ui-stack-list mt-5"><li>Own RFQs, quotes, orders, payments, logistics, and buyer-visible files</li><li>Repeat-order references and approval records tied to the company</li><li>No seller-wide or internal operations visibility</li></ul></article>
-                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('factory', 'icon icon-sm')} Seller</div><ul class="ui-stack-list mt-5"><li>Assigned inquiries, seller product lines, submitted offers, and execution updates</li><li>Only permitted documents and shipment milestones</li><li>No unrelated buyer records or competing seller data</li></ul></article>
-                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('shield', 'icon icon-sm')} Moldart ops</div><ul class="ui-stack-list mt-5"><li>Company approvals, user roles, document access, audit logs, and final workflow control</li><li>RFQ-to-order state visible across buyer and seller sides</li><li>Approval-first access before any production portal rollout</li></ul></article>
-            </div>
-        </section>
-
-        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
-            <div class="ui-section-head mb-10">
-                <div class="ui-kicker mb-4">${glyph('check', 'icon icon-sm')} Procurement controls</div>
-                <h2 class="ui-section-title">WHAT SHOULD BE LOCKED EARLY.</h2>
-                <p class="ui-section-subtitle">These two checkpoints usually prevent the widest share of avoidable delays, approval errors, and repeat-order drift.</p>
-            </div>
-            <div class="ui-library-grid">
-                ${controlCards.map((card) => `<article class="ui-library-card"><div class="ui-kicker mb-3">${glyph('shield', 'icon icon-sm')} ${escHtml(card.kicker)}</div><h3 class="ui-family-title" style="font-size:1.2rem;">${escHtml(card.title)}</h3><ul class="ui-stack-list mt-5">${card.items.map((item) => `<li>${escHtml(item)}</li>`).join('')}</ul></article>`).join('')}
+            <div class="process-stage-grid-minimal">
+                ${stages.map((stage) => `<article class="process-stage-card-minimal"><div class="process-note-step">${stage.number}</div><h3>${escHtml(stage.title)}</h3><p>${escHtml(stage.detail)}</p></article>`).join('')}
             </div>
         </section>
 
         <section class="max-w mx-auto px py-16 fade-up">
-            <div class="ui-section-head mb-10">
-                <div class="ui-kicker mb-4">${glyph('check', 'icon icon-sm')} Review notes</div>
-                <h2 class="ui-section-title">THREE NOTES THAT KEEP<br>THE ROUTE CLEAN.</h2>
-                <p class="ui-section-subtitle">These are the points that usually change review speed, approval quality, and repeat stability more than any generic product discussion.</p>
+            <div class="ui-section-head mb-8">
+                <div class="ui-kicker mb-4">${glyph('check', 'icon icon-sm')} First review</div>
+                <h2 class="ui-section-title">WHAT TO SEND FIRST.</h2>
             </div>
-            <div class="process-note-board">
-                ${quickCards.map((card, index) => `<article class="process-note-card"><div class="process-note-step">0${index + 1}</div><h3>${escHtml(card.title)}</h3><p>${escHtml(card.detail)}</p></article>`).join('')}
+            <div class="process-checklist-minimal">
+                ${firstReviewItems.map((item) => `<span>${escHtml(item)}</span>`).join('')}
             </div>
         </section>
 
-        ${ctaBlock('READY TO START?', 'Share the requirement and the team can align the route, reference, and next step against the actual programme.', 'Share your requirement', '/contact/')}
+        ${ctaBlock('READY TO START?', 'Send the application, quantity, timing, destination, and any reference file.', 'Share your requirement', '/contact/')}
     </main>
 
     ${footer()}
     ${closingElements()}`;
 }
-
 
 function portalAccessNav(active = 'sign-in') {
   const links = [
