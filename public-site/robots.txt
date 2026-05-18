@@ -1,0 +1,33 @@
+User-agent: *
+Allow: /
+Disallow: /data/
+		Disallow: /sw.js
+		Disallow: /offline.html
+		Disallow: /.tmp/
+		Disallow: /open-wood-science/admin/
+		Disallow: /open-wood-science/internal-control/
+		Disallow: /open-wood-science/reviewer-intake/
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://moldartindia.com/sitemap.xml
+Sitemap: https://moldartindia.com/sitemap-images.xml

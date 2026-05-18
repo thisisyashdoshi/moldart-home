@@ -1,0 +1,404 @@
+{
+  "articles": [
+    {
+      "id": "press-plates-panel-quality-guide",
+      "slug": "press-plates-panel-quality-guide",
+      "title": "Press Plates and Panel Quality: What Actually Changes the Surface",
+      "category": "press-plates",
+      "categoryLabel": "Lamination Tooling",
+      "tags": [
+        "press plates",
+        "lamination",
+        "surface quality",
+        "tooling"
+      ],
+      "type": "Guide",
+      "date": "2026-04-15",
+      "readTime": "8 min",
+      "excerpt": "A practical guide to how press plate grade, hardness, chrome condition, and handling shape the finished panel surface.",
+      "author": "Moldart Technical Team",
+      "content": "## Why panel quality changes\n\nPress plates influence the visible surface more directly than many buyers expect. Gloss level, texture fidelity, repeat consistency, and wear marks all move together when the plate condition is not being controlled.\n\n## The working reference points\n\nIn Moldart’s decorative route, the grade and hardness discussion is usually centred on three familiar points:\n\n- SS 304, SS 420, and SS 630 are the most frequently referenced working grades\n- 420 and 630 routes are associated with core hardness in the roughly 40-45 HRC range\n- hard-chrome working surfaces are referenced in the roughly 65-70 HRC range\n\nThose numbers matter, but they do not guarantee panel quality on their own.\n\n## What actually changes the finished surface\n\nIn practice, panel appearance changes when four conditions stay aligned:\n\n1. **Plate surface condition** — scratches, contamination, and handling damage can print into the final surface.\n2. **Hardness and chrome condition** — these influence wear resistance and how long the approved finish route stays repeatable.\n3. **Press consistency** — uneven heat or pressure can make a technically correct plate perform badly.\n4. **Reference discipline** — the approved texture or finish should be locked before repeat production begins.\n\n## What buyers should confirm early\n\nBefore asking for a commercial comparison, it is cleaner to confirm:\n\n- gloss, matt, texture, or other target surface language\n- expected production volume and replacement rhythm\n- plate size and press-line context\n- whether the requirement stays in decorative lamination or moves into a tighter technical route\n\n## Where buying mistakes usually happen\n\nThe most common mistake is to treat press plates as interchangeable stainless sheets. The safer commercial reading is to treat them as tooling whose value depends on finish output, cycle life, and stability inside the actual press route.\n\n## Final takeaway\n\nIf the requirement is surface-critical, the plate should be reviewed together with press conditions, handling discipline, and replacement planning rather than as an isolated material line item."
+    },
+    {
+      "id": "press-plates-replacement-programme-guide",
+      "slug": "press-plates-replacement-programme-guide",
+      "title": "Press Plates Replacement Programmes: What Buyers Should Lock Before Reordering",
+      "category": "press-plates",
+      "categoryLabel": "Lamination Tooling",
+      "tags": [
+        "press plates",
+        "replacement planning",
+        "tooling",
+        "buyer guide"
+      ],
+      "type": "Buyer's Guide",
+      "date": "2026-04-15",
+      "readTime": "7 min",
+      "excerpt": "A practical buyer guide for reordering press plates without losing finish consistency, approval discipline, or commercial clarity.",
+      "author": "Moldart Technical Team",
+      "content": "## Why repeat orders still go wrong\n\nReordering press plates sounds simple when the original route was already approved. In reality, the second order often fails because the team remembers the pattern name but not the full approval logic behind the first run.\n\n## What should be locked before reordering\n\nA disciplined replacement programme should reconfirm:\n\n- the approved finish or texture reference\n- plate size, thickness, and configuration\n- expected cycle life or replacement trigger\n- whether the plant conditions changed since the last order\n- whether the next order is decorative-only or part of a tighter technical route\n\n## Do not reorder from memory alone\n\nPattern names, shorthand descriptions, and old purchase line items are not enough on their own. The cleaner route is to match the reorder against the last approved sample, panel output, or technical record.\n\n## What changes between one order and the next\n\nEven when the plate specification stays stable, the programme can still drift because of:\n\n- changed press conditions\n- different production volume or replacement frequency\n- weaker incoming inspection\n- a mismatch between the approved finish and the actual reorder reference\n\n## Commercial checkpoints\n\nBefore confirming the reorder, the buyer should align:\n\n- quantity and replacement logic\n- timing against the production plan\n- packing and handling expectations\n- whether any documentation or batch tracking is required\n\n## Final buyer checklist\n\n1. Confirm the approved finish route.\n2. Match the reorder to the last accepted technical reference.\n3. Reconfirm current production conditions.\n4. Lock commercial timing before the old plates become a line-risk."
+    },
+    {
+      "id": "press-pads-heat-pressure-note",
+      "slug": "press-pads-heat-pressure-note",
+      "title": "Press Pads: Why Heat Transfer and Pressure Equalisation Matter More Than Brochure Claims",
+      "category": "press-pads",
+      "categoryLabel": "Lamination Tooling",
+      "tags": [
+        "press pads",
+        "lamination",
+        "heat transfer",
+        "panel quality"
+      ],
+      "type": "Field Note",
+      "date": "2026-04-15",
+      "readTime": "6 min",
+      "excerpt": "A practical note on what press pads do inside the stack and why even heat and pressure distribution matter to the finished panel.",
+      "author": "Moldart Technical Team",
+      "content": "## What press pads are doing in the stack\n\nPress pads are often discussed only after a line starts showing inconsistency. That is late. In reality, the pad sits inside the working stack and influences how evenly heat and pressure move across the full pressing area.\n\n## The practical reference points\n\nThe most consistent technical position around this product category is that:\n\n- silicone-copper composite construction is part of the route\n- the pad supports uniform heat transfer and pressure equalisation\n- expected life is usually discussed in a broad range of roughly 80,000 to 100,000 cycles\n\nThose values should still be checked against the real plant conditions rather than treated as a universal promise.\n\n## Why the pad matters to surface quality\n\nThe pad is not the visible decorative layer, but it directly affects the surface that leaves the press. When this layer performs badly, the line can start showing:\n\n- uneven surface feel\n- inconsistent pressure response\n- variation across the panel width\n- faster wear on surrounding tooling\n\n## What should be confirmed before purchase\n\nA cleaner buying discussion should cover:\n\n- press dimensions and working width\n- whether the line is short-cycle, high-volume, or another format\n- how pad condition is currently being judged in the plant\n- whether the pad is being reviewed together with plate condition or in isolation\n\n## What buyers should avoid\n\nThe mistake is to treat the pad as a generic consumable. In most plants, it performs more like a process-critical layer whose value depends on stack consistency and replacement timing.\n\n## Final takeaway\n\nIf panel quality is drifting and the plate alone is being blamed, the pad should be reviewed as part of the same conversation. Heat transfer and pressure balance are usually stack issues, not brochure issues."
+    },
+    {
+      "id": "press-pads-quality-replacement-checks",
+      "slug": "press-pads-quality-replacement-checks",
+      "title": "Press Pads Quality & Replacement Checks for Running Lamination Lines",
+      "category": "press-pads",
+      "categoryLabel": "Lamination Tooling",
+      "tags": [
+        "press pads",
+        "quality",
+        "replacement",
+        "lamination lines"
+      ],
+      "type": "Quality & Standards",
+      "date": "2026-04-15",
+      "readTime": "6 min",
+      "excerpt": "A practical quality-focused note on what to inspect, record, and confirm before press pad performance becomes a panel problem.",
+      "author": "Moldart Technical Team",
+      "content": "## Why pad inspection matters\n\nPress pad quality problems are often noticed late because the pad is hidden inside the stack. By the time the line starts showing surface inconsistency, the pad may already be affecting heat transfer, pressure balance, and wear behaviour.\n\n## What to inspect on receipt\n\nIncoming checks should cover:\n\n- overall dimensional consistency\n- visible handling damage\n- pack condition and storage history\n- clear confirmation that the pad route matches the intended press size and use\n\n## What to monitor in production\n\nA running line usually gives early warnings before a pad fails completely. Typical warning signs include:\n\n- rising variation across the pressed surface\n- pressure-related marks that were not present before\n- uneven finish outcome across the panel width\n- increased dependence on surrounding stack correction\n\n## Replacement should be planned, not guessed\n\nReplacement discipline works better when the plant records:\n\n- cycles or runtime\n- observed surface drift\n- handling incidents\n- any change in press conditions that could shorten pad life\n\n## What buyers should confirm with the supplier\n\nBefore reordering, reconfirm:\n\n- pad construction\n- width and fit for the current line\n- handling and storage guidance\n- the commercial timing required to avoid line interruption\n\n## Final operating view\n\nThe pad should be reviewed as part of the whole lamination stack. Treating it as an isolated consumable usually leads to slower diagnosis and weaker replacement timing."
+    },
+    {
+      "id": "engraved-cylinders-repeat-accuracy-guide",
+      "slug": "engraved-cylinders-repeat-accuracy-guide",
+      "title": "Engraved Cylinders: Repeat Accuracy, Depth, and Why the Print Start Point Matters",
+      "category": "engraved-cylinders",
+      "categoryLabel": "Lamination Tooling",
+      "tags": [
+        "engraved cylinders",
+        "decor printing",
+        "repeat accuracy",
+        "gravure"
+      ],
+      "type": "Technical Deep-Dive",
+      "date": "2026-04-15",
+      "readTime": "7 min",
+      "excerpt": "A deeper note on engraved cylinders for decor printing, focusing on repeat discipline, surface quality, and production relevance.",
+      "author": "Moldart Technical Team",
+      "content": "## Why repeat accuracy matters\n\nEngraved cylinders do not only create a pattern. They establish the repeat logic that later affects printed decor, alignment, and how believable the finished surface looks after pressing.\n\n## The three things that need to align\n\nA cleaner cylinder programme starts by aligning:\n\n- cylinder repeat and circumference\n- target design repeat and visual rhythm\n- print start point and registration discipline\n\nIf one of those three drifts, the issue can show up as visual mismatch long before the plant calls it a technical problem.\n\n## Depth and surface quality are not decorative details\n\nEngraving depth and cylinder surface condition influence:\n\n- pattern clarity\n- ink transfer behaviour\n- consistency across the print run\n- whether the finished decor still reads cleanly after impregnation and pressing\n\n## Approval should happen before production pressure builds\n\nThe right time to resolve repeat and pattern questions is before the order becomes urgent. A sample-led or reference-led approval route is more reliable than relying on historic shorthand descriptions.\n\n## Practical buyer checks\n\n- confirm the approved design repeat\n- confirm whether the cylinder is for an existing decor or a new pattern\n- document the start point or registration logic where relevant\n- record any dimensional or surface acceptance criteria before quoting\n\n## Final takeaway\n\nCylinders should be treated as precision print tooling, not simply as a pattern carrier. The cleaner the repeat discipline, the safer the downstream decor programme becomes."
+    },
+    {
+      "id": "printed-decor-paper-selection-guide",
+      "slug": "printed-decor-paper-selection-guide",
+      "title": "Printed Decor Paper: What to Lock Before Impregnation and Pressing",
+      "category": "decor-paper",
+      "categoryLabel": "Lamination Tooling",
+      "tags": [
+        "decor paper",
+        "impregnation",
+        "lamination",
+        "selection guide"
+      ],
+      "type": "Comprehensive Guide",
+      "date": "2026-04-15",
+      "readTime": "8 min",
+      "excerpt": "A practical guide to decor paper selection, covering print route, impregnation readiness, and what should be confirmed before production.",
+      "author": "Moldart Technical Team",
+      "content": "## Start before impregnation\n\nPrinted decor paper decisions work best when the print route, handling logic, and pressing expectations are aligned before the paper reaches impregnation. Late corrections are usually more expensive than early discipline.\n\n## What should be locked first\n\nBuyers should align five things early:\n\n- design route and approved visual reference\n- target application such as laminate, flooring, or furniture surface\n- GSM range and handling expectation\n- wet tensile and process compatibility\n- whether the programme is repeat production or first-time approval\n\n## Why paper choice is not only visual\n\nDecor paper is often judged first by appearance, but the commercial and technical fit also depends on:\n\n- print stability\n- impregnation readiness\n- how the paper behaves in the press route\n- whether the approved pattern still reads correctly after processing\n\n## Questions worth resolving before order confirmation\n\n- Is the paper being matched to an existing production route or a new approval?\n- Which decor reference defines acceptance?\n- What process conditions matter most in the plant?\n- Is the programme sensitive to repeat continuity or finish matching across batches?\n\n## Commercial discipline\n\nIt is cleaner to confirm timing, volume, and approval route together. A technically suitable paper can still become the wrong purchase if the programme timing or reference logic is weak.\n\n## Final takeaway\n\nDecor paper should be purchased as part of a full surface programme, not as an isolated print item."
+    },
+    {
+      "id": "industrial-press-plates-pcb-ccl-note",
+      "slug": "industrial-press-plates-pcb-ccl-note",
+      "title": "Industrial Press Plates for PCB and CCL: Flatness, Parallelism, and Surface Control",
+      "category": "industrial-press-plates",
+      "categoryLabel": "Industrial Tooling",
+      "tags": [
+        "industrial press plates",
+        "pcb",
+        "ccl",
+        "tolerance"
+      ],
+      "type": "Technical Note",
+      "date": "2026-04-15",
+      "readTime": "7 min",
+      "excerpt": "A tighter note on the flatness, parallelism, and surface expectations that matter when industrial press plates are being reviewed for PCB and CCL routes.",
+      "author": "Moldart Technical Team",
+      "content": "## Why this is a separate category\n\nIndustrial press plates belong in a different decision space from standard decorative lamination plates because the tolerance discipline is tighter and the downstream process is less forgiving.\n\n## The reference points that matter most\n\nThe industrial route is commonly framed around:\n\n- SUS 301, SUS 420, and SUS 630 references for electronics lamination programmes\n- heat-treated hardness in the roughly 40-45 HRC range for relevant platforms\n- flatness below 0.05 mm per metre\n- parallelism around 0.02 mm\n- very low surface roughness, with electronics tooling references often pointing to Ra below 0.1 μm\n\n## What makes the route different\n\nFor PCB and CCL work, the plate is not only a durable press surface. It becomes part of a tolerance-controlled manufacturing condition. When flatness, roughness, or parallelism drift, the downstream consequence is usually more severe than in ordinary decorative surfacing.\n\n## What buyers should confirm early\n\nThe cleaner review should cover:\n\n- the actual process requirement, not only the historic grade name\n- incoming inspection logic for flatness, surface condition, and handling damage\n- whether demagnetisation or other process-specific controls need to be part of the order\n- the documentation expected at receipt or release into production\n\n## What to avoid in the comparison\n\nThe most common mistake is to reduce the decision to grade alone. Grade matters, but dimensional and surface behaviour matter just as much. A technically correct grade with weak flatness control is still the wrong supply decision.\n\n## Final takeaway\n\nIndustrial press plates should be reviewed as tolerance-critical tooling. The right route is the one that matches the line condition, inspection discipline, and technical consequence of getting the plate wrong."
+    },
+    {
+      "id": "standard-vs-industrial-press-plates",
+      "slug": "standard-vs-industrial-press-plates",
+      "title": "Standard Press Plates vs Industrial Press Plates: When the Requirement Changes",
+      "category": "industrial-press-plates",
+      "categoryLabel": "Industrial Tooling",
+      "tags": [
+        "press plates",
+        "industrial press plates",
+        "comparison",
+        "tolerance"
+      ],
+      "type": "Comparative Analysis",
+      "date": "2026-04-15",
+      "readTime": "6 min",
+      "excerpt": "A comparison note on where decorative lamination tooling ends and tolerance-led industrial press tooling begins.",
+      "author": "Moldart Technical Team",
+      "content": "## The decision is not decorative versus industrial language alone\n\nStandard press plates and industrial press plates should not be compared as if they only differ in marketing category. The cleaner distinction is between decorative surface transfer work and tolerance-led technical pressing work.\n\n## Where standard decorative plates usually fit\n\nStandard decorative press plate routes belong where the key conversation is:\n\n- approved surface texture or finish\n- repeatable decorative output\n- replacement planning for running lamination lines\n- commercial efficiency inside a decorative programme\n\n## Where industrial plates take over\n\nIndustrial press plates belong when the production route becomes more demanding on:\n\n- flatness and parallelism\n- surface roughness control\n- process consistency in technical laminate work\n- electronics-focused applications such as PCB and CCL\n\n## Questions that separate the two routes\n\nBefore comparing the two, the buyer should ask:\n\n1. Is the requirement decorative, technical, or moving from one to the other?\n2. Is finish language the main concern, or does tolerance control dominate?\n3. What level of dimensional and surface discipline is actually required?\n4. What happens to cost if the wrong plate route is chosen and the line has to recover later?\n\n## Commercial reading of the choice\n\nDecorative plate supply often prioritises finish output and replacement efficiency. Industrial plate supply adds tighter process discipline and usually needs a stricter review of acceptance criteria before order confirmation.\n\n## Final takeaway\n\nThe requirement has changed when the discussion shifts from decorative finish delivery into tolerance-critical manufacturing control. That is the point where the industrial route becomes the safer comparison."
+    },
+    {
+      "id": "industrial-press-plates-quality-priorities",
+      "slug": "industrial-press-plates-quality-priorities",
+      "title": "Industrial Press Plates: Flatness, Parallelism, and Incoming Inspection Priorities",
+      "category": "industrial-press-plates",
+      "categoryLabel": "Industrial Tooling",
+      "tags": [
+        "industrial press plates",
+        "quality",
+        "flatness",
+        "inspection"
+      ],
+      "type": "Quality & Standards",
+      "date": "2026-04-15",
+      "readTime": "7 min",
+      "excerpt": "A quality-led guide to what should be checked on receipt when industrial press plates are being used in more demanding lines.",
+      "author": "Moldart Technical Team",
+      "content": "## Quality starts at receiving, not after release\n\nIndustrial press plates should be checked before they enter production. Waiting until the line reports a problem is usually too late for a clean correction.\n\n## The first inspection priorities\n\nIncoming inspection should focus on:\n\n- flatness against the approved requirement\n- parallelism and dimensional discipline\n- visible surface condition\n- packing integrity and handling damage\n- any supporting reference or certificate expected with the order\n\n## Why surface acceptance matters\n\nEven when the plate dimensions are technically correct, surface condition still matters. Marks, handling damage, or storage-related deterioration can undermine a programme that depends on tight surface behaviour.\n\n## What should be recorded\n\nA disciplined receiving process should capture:\n\n- order reference and batch linkage\n- inspection date and inspector\n- measured or confirmed acceptance points\n- any deviation raised before production release\n\n## Storage and handling are part of quality\n\nPlates that meet the requirement on arrival can still become a problem if handling, stacking, or storage is weak. The receiving process should therefore include a handling plan rather than a visual glance only.\n\n## Final takeaway\n\nIndustrial plate quality is strongest when receiving, storage, and production release work as one sequence rather than as separate events."
+    },
+    {
+      "id": "decorative-stainless-steel-sourcing-note",
+      "slug": "decorative-stainless-steel-sourcing-note",
+      "title": "Decorative Stainless Steel: Grades, Finishes, and Sourcing Routes",
+      "category": "decorative-panels",
+      "categoryLabel": "Decorative Steel",
+      "tags": [
+        "decorative stainless steel",
+        "pvd",
+        "architectural panels",
+        "sourcing"
+      ],
+      "type": "Guide",
+      "date": "2026-04-15",
+      "readTime": "7 min",
+      "excerpt": "A practical guide to decorative stainless steel grades, finish families, and the Mumbai-led India–China sourcing model behind this category.",
+      "author": "Moldart Technical Team",
+      "content": "## The working baseline\n\nDecorative stainless steel is one of the categories where finish language can become vague very quickly. The safer route is to keep the conversation on the repeated working points that buyers actually need to approve.\n\n## The grade and finish references most often used\n\nAcross the decorative route, the most consistent working position is:\n\n- architectural panel and profile programmes are part of the steel division\n- SS 201 and SS 304 are the most clearly repeated decorative grades, with 316 reviewed for more demanding conditions or on request\n- No.4, Hairline, and Mirror remain the most familiar finish families\n- PVD decorative options are part of the route\n- anti-fingerprint treatment belongs in the approval discussion where touch conditions matter\n\n## How the sourcing model should be understood\n\nMoldart coordinates the requirement from Mumbai and aligns sourcing by programme. Decorative stainless routes can therefore involve India, China, or a combination that depends on the final category, finish route, and commercial requirement.\n\n## Why approval discipline matters\n\nDecorative stainless steel is easy to overstate and difficult to standardise if the approval logic is vague. The stronger route is to align grade, finish family, visual reference, and use condition together rather than approving from a long brochure list.\n\n## Practical buyer checklist\n\n- confirm the grade first, especially for touch level and environment\n- confirm the finish family such as No.4, Hairline, Mirror, or the relevant PVD route\n- confirm whether anti-fingerprint treatment is needed\n- approve a visual reference before moving into project quantity\n\n## Final takeaway\n\nDecorative stainless sourcing works best when the buyer is approving a clearly defined route rather than a generic finish name. Grade, finish, and environment should stay tied together from the start."
+    },
+    {
+      "id": "decorative-ss-panel-approval-guide",
+      "slug": "decorative-ss-panel-approval-guide",
+      "title": "Decorative Stainless Steel Panel Approval: Grade, Finish, Sample, Environment",
+      "category": "decorative-panels",
+      "categoryLabel": "Decorative Steel",
+      "tags": [
+        "decorative steel",
+        "approval",
+        "finish route",
+        "quality"
+      ],
+      "type": "Quality & Standards",
+      "date": "2026-04-15",
+      "readTime": "7 min",
+      "excerpt": "A practical guide to avoiding approval mistakes on decorative stainless steel panels by aligning grade, finish, and environment early.",
+      "author": "Moldart Technical Team",
+      "content": "## Approval should start with the environment\n\nDecorative stainless steel approvals go wrong when finish is approved first and environment is asked later. The cleaner route is to start from the use condition, then align grade and finish together.\n\n## Four things that should be approved together\n\nA safer approval route aligns:\n\n- grade\n- finish family\n- sample or visual reference\n- installation environment\n\nApproving one without the others usually leads to late-stage corrections.\n\n## Why samples matter\n\nDecorative stainless steel is highly visual. Hairline direction, reflectivity, colour depth, texture, and coating response can all look different between a brochure image and a real sample. Sample-led approval remains the safer route for project work.\n\n## Questions to settle before quantity confirmation\n\n- Is the panel for a dry decorative interior or a more demanding environment?\n- Which finish family defines acceptance?\n- Does the project need anti-fingerprint treatment?\n- Will large-area or batch matching matter visually?\n\n## Commercial discipline\n\nThe strongest orders are the ones that move into quantity only after grade, finish route, and acceptance reference are already stable.\n\n## Final takeaway\n\nDecorative panel approvals are strongest when technical fit and visual approval move together rather than in separate conversations."
+    },
+    {
+      "id": "ss-201-vs-304-panels",
+      "slug": "ss-201-vs-304-panels",
+      "title": "SS 201 vs SS 304: Decorative Stainless Steel Panel Selection",
+      "category": "decorative-panels",
+      "categoryLabel": "Decorative Steel",
+      "tags": [
+        "ss 201",
+        "ss 304",
+        "decorative panels",
+        "comparison"
+      ],
+      "type": "Comparative Analysis",
+      "date": "2026-04-15",
+      "readTime": "6 min",
+      "excerpt": "A cleaner comparison note for decorative interiors where the grade question needs to be resolved before finish approval and supply decisions.",
+      "author": "Moldart Technical Team",
+      "content": "## The grade question should be resolved before finish approval\n\nSS 201 and SS 304 are often compared as if the finish route alone decides the answer. In practice, the cleaner comparison starts with environment, touch level, and long-term maintenance expectation.\n\n## Where SS 201 can fit\n\nSS 201 can make sense when the project is:\n\n- primarily decorative\n- installed in drier interior conditions\n- not relying on the grade for higher corrosion tolerance\n- already aligned to the commercial expectations of the programme\n\n## Where SS 304 usually becomes safer\n\nSS 304 should be reviewed more seriously when the project faces:\n\n- higher humidity or more demanding interior conditions\n- greater sensitivity to long-term corrosion behaviour\n- more visible finish risk if the substrate route is compromised\n- a stronger requirement for specification discipline across larger project quantities\n\n## What should not be decided from the brochure alone\n\nThe final grade should not be chosen from finish image alone. Grade, environment, and finish route must be reviewed together.\n\n## Final takeaway\n\nThe better question is not simply which grade is \"better.\" The better question is which grade is appropriate for the environment, finish route, and approval risk of the project."
+    },
+    {
+      "id": "ss-profiles-application-guide",
+      "slug": "ss-profiles-application-guide",
+      "title": "Stainless Steel Profiles: Why the Trim Route Should Follow the Panel Route",
+      "category": "ss-profiles",
+      "categoryLabel": "Decorative Steel",
+      "tags": [
+        "ss profiles",
+        "trims",
+        "inlays",
+        "application guide"
+      ],
+      "type": "Application Guide",
+      "date": "2026-04-15",
+      "readTime": "6 min",
+      "excerpt": "A use-case guide showing why trims, inlays, and divider systems should be selected with the panel route rather than as an afterthought.",
+      "author": "Moldart Technical Team",
+      "content": "## Profiles should follow the panel route\n\nStainless steel profiles are often selected late, after the panel route is already fixed. That usually creates avoidable mismatch in finish, geometry, and installation logic.\n\n## What profiles are actually doing\n\nIn architectural interiors, profiles are usually helping to resolve:\n\n- edge finishing\n- panel transitions\n- divider and trim conditions\n- inlay or accent detailing\n\nBecause they sit beside the visible panel surface, they should be chosen with the panel route rather than after it.\n\n## What should be aligned early\n\nThe cleaner review should cover:\n\n- grade compatibility\n- finish family\n- visible face and edge geometry\n- installation tolerance and substrate condition\n- whether the profile is decorative, protective, or both\n\n## Where mismatches usually happen\n\nProblems typically appear when the trim route is approved from a generic sample while the main panel route is being approved from a separate reference. The result is a project that looks related on paper but not in the finished space.\n\n## Final takeaway\n\nProfiles work best when they are treated as part of the decorative system, not as isolated hardware. If the panel route is already sample-led, the trim route should follow the same discipline."
+    },
+    {
+      "id": "shuttering-plywood-surface-finish-note",
+      "slug": "shuttering-plywood-surface-finish-note",
+      "title": "Shuttering Plywood Surface Finish and Reuse: What Buyers Should Compare",
+      "category": "plywood",
+      "categoryLabel": "Panel Systems",
+      "tags": [
+        "shuttering plywood",
+        "press plates",
+        "surface finish",
+        "formwork"
+      ],
+      "type": "Buyer's Note",
+      "date": "2026-04-15",
+      "readTime": "8 min",
+      "excerpt": "A practical note on why surface finish quality, reuse logic, and press route discipline matter when shuttering plywood is being compared against other formwork options.",
+      "author": "Moldart Technical Team",
+      "content": "## What the comparison is really about\n\nThe shuttering plywood discussion becomes more useful when it moves beyond purchase price alone. The practical comparison is between surface finish quality, reuse value, handling ease, and how much downstream correction the site will still need after the pour.\n\n## Where surface finish enters the buying decision\n\nFor many users, the board is being judged not only as a panel but as a concrete-facing surface. That means the conversation should include:\n\n- the quality of the finished board face\n- how consistently that face performs over repeat use\n- whether the route reduces plastering or finishing work after demoulding\n- whether the board stays commercially relevant across multiple cycles\n\n## Why the manufacturing route matters\n\nSurface finish improvement is tied to how the plywood is pressed in manufacturing. Better plate condition and a more stable press route influence whether the finished board can deliver cleaner concrete-facing output and stronger repeatability.\n\n## What buyers should compare against alternatives\n\nA better comparison should cover:\n\n1. number of usable cycles\n2. concrete-facing finish quality\n3. repair or correction effort after use\n4. ease of adoption compared with higher-capital alternatives\n5. the commercial cost across repeat use, not only the first invoice value\n\n## Final takeaway\n\nUpgraded shuttering plywood works best when the buyer evaluates finish quality and reuse logic together. The strongest decision is usually the one that balances board cost with surface outcome and repeat-use value over the real programme."
+    },
+    {
+      "id": "plywood-vs-fiberboard-substrate-guide",
+      "slug": "plywood-vs-fiberboard-substrate-guide",
+      "title": "Plywood vs Fiberboard: Substrate Choice for Furniture Programmes",
+      "category": "plywood",
+      "categoryLabel": "Panel Systems",
+      "tags": [
+        "plywood",
+        "fiberboard",
+        "furniture panels",
+        "comparison"
+      ],
+      "type": "Comparative Analysis",
+      "date": "2026-04-15",
+      "readTime": "6 min",
+      "excerpt": "A comparison note for furniture and interior buyers deciding between plywood and fiberboard-led build routes.",
+      "author": "Moldart Technical Team",
+      "content": "## The cleaner comparison starts with the end use\n\nPlywood and fiberboard should not be treated as interchangeable just because both sit under decorative finishes. The right answer depends on strength, surface expectation, machining route, and the way the finished product will be used.\n\n## Where plywood usually fits better\n\nPlywood is often the stronger choice when the programme depends on:\n\n- structural integrity\n- better screw-holding behaviour\n- carcass or load-bearing applications\n- broader tolerance for working conditions on site\n\n## Where fiberboard usually fits better\n\nFiberboard becomes more attractive when the priority is:\n\n- smoother painted or laminated faces\n- finer machining for certain decorative routes\n- consistent surface readiness\n- a finish route where visible face quality matters more than structural strength\n\n## Questions buyers should settle first\n\n- Is the part structural or primarily decorative?\n- Will the route be painted, laminated, veneered, or otherwise faced?\n- Does the application depend heavily on fasteners or carcass stability?\n- How sensitive is the programme to face smoothness and finish quality?\n\n## Final takeaway\n\nPlywood and fiberboard belong in the same conversation only when the end use is clear. Once the use is clear, the better route usually becomes obvious."
+    },
+    {
+      "id": "mdf-vs-hdf-surface-readiness-guide",
+      "slug": "mdf-vs-hdf-surface-readiness-guide",
+      "title": "MDF vs HDF: Surface Readiness, Density, and Conversion Fit",
+      "category": "fiberboard",
+      "categoryLabel": "Panel Systems",
+      "tags": [
+        "mdf",
+        "hdf",
+        "fiberboard",
+        "surface quality"
+      ],
+      "type": "Comparative Analysis",
+      "date": "2026-04-15",
+      "readTime": "6 min",
+      "excerpt": "A simple comparison guide for understanding when MDF and HDF belong in the same conversation and when they should not be treated as interchangeable.",
+      "author": "Moldart Technical Team",
+      "content": "## Density changes the conversation\n\nMDF and HDF are often mentioned together, but they should not be treated as identical surface routes. Density affects machining response, finishing behaviour, and how the board performs in the final programme.\n\n## Where MDF tends to fit\n\nMDF is commonly preferred when the route needs:\n\n- a smooth decorative face\n- stable machining for furniture components\n- painted or laminated surfaces\n- flexibility across common interior programmes\n\n## Where HDF tends to fit\n\nHDF becomes more relevant when the requirement needs:\n\n- a denser core build\n- tighter wear or performance expectations in some flooring or technical applications\n- a board route that benefits from higher density response\n\n## What buyers should confirm early\n\nA cleaner comparison should include:\n\n- whether the end use is surface-led or performance-led\n- the finish route and face quality expected\n- machining detail, edge condition, and hardware interaction where relevant\n- whether density is helping the real application or only sounding better on paper\n\n## Final takeaway\n\nMDF and HDF should be chosen from the end-use route backward, not from density language alone. The better board is the one that fits the conversion route, surface expectation, and downstream use."
+    },
+    {
+      "id": "osb-application-fit-guide",
+      "slug": "osb-application-fit-guide",
+      "title": "OSB: When It Fits, When It Doesn't, and What to Confirm Early",
+      "category": "osb",
+      "categoryLabel": "Panel Systems",
+      "tags": [
+        "osb",
+        "panel systems",
+        "application fit",
+        "selection"
+      ],
+      "type": "Application Guide",
+      "date": "2026-04-15",
+      "readTime": "6 min",
+      "excerpt": "A practical application guide for OSB programmes where structure, load path, and end use matter more than generic panel comparisons.",
+      "author": "Moldart Technical Team",
+      "content": "## OSB works best when structural logic is clear\n\nOSB is strongest when the programme values load path, panel utility, and structural behaviour more than refined decorative face quality.\n\n## Where it usually fits\n\nOSB is commonly reviewed for:\n\n- structural panel applications\n- framework and backing routes\n- packaging or utility-led builds\n- projects where the visible face is not the main aesthetic surface\n\n## Where expectations should stay realistic\n\nOSB should not be approached as if it is a substitute for every decorative panel route. The strand structure is part of its performance identity and also part of its visual limitation.\n\n## Early questions worth asking\n\n- Is the panel carrying load or mainly acting as a visible finish?\n- Will the OSB face stay exposed or be covered by another layer?\n- What moisture and handling conditions matter in the project?\n- Does the programme value surface refinement or structural utility first?\n\n## Commercial reading of the choice\n\nOSB is usually a good commercial route when the project respects what the material is meant to do. It becomes a weak commercial choice when the aesthetic or finishing expectation actually belongs to a different panel family.\n\n## Final takeaway\n\nOSB fits well when the structural role is clear. It fits poorly when the project is really asking for a refined decorative face under a different name."
+    },
+    {
+      "id": "particleboard-buyers-guide",
+      "slug": "particleboard-buyers-guide",
+      "title": "Particleboard Buying Basics for Commercial Furniture Programmes",
+      "category": "particleboard",
+      "categoryLabel": "Panel Systems",
+      "tags": [
+        "particleboard",
+        "commercial furniture",
+        "buyer guide",
+        "substrates"
+      ],
+      "type": "Buyer's Guide",
+      "date": "2026-04-15",
+      "readTime": "6 min",
+      "excerpt": "A commercial guide to particleboard selection that keeps the conversation on fit, finish route, and programme discipline instead of generic low-cost claims.",
+      "author": "Moldart Technical Team",
+      "content": "## Particleboard should be bought for fit, not only for cost\n\nParticleboard is often reduced to a low-cost conversation. That is too narrow. The safer buying question is whether it fits the furniture route, the surface programme, and the handling conditions it will actually face.\n\n## Where it commonly fits\n\nParticleboard works best in commercial furniture programmes where:\n\n- the board is part of a controlled interior route\n- the visible finish is created through facing or lamination\n- the load requirement is moderate and understood\n- repeat production matters more than premium substrate positioning\n\n## What should be clarified early\n\n- board thickness and density expectation\n- facing or finishing route\n- edge treatment and hardware logic\n- moisture exposure and service condition\n- whether the project is price-led, finish-led, or a balance of both\n\n## A better commercial comparison\n\nThe stronger comparison is not simply price per board. It is price against the right end use, conversion efficiency, finish result, and the cost of using the wrong board in the wrong route.\n\n## Final takeaway\n\nParticleboard is commercially effective when it is used inside the route it is meant for, with clear expectations on finish, load, and environment."
+    },
+    {
+      "id": "engineered-flooring-selection-guide",
+      "slug": "engineered-flooring-selection-guide",
+      "title": "Engineered Flooring Selection: AC Class, Core Build, and System Fit",
+      "category": "wood-flooring",
+      "categoryLabel": "Flooring Systems",
+      "tags": [
+        "wood flooring",
+        "ac class",
+        "hdf core",
+        "buyer guide"
+      ],
+      "type": "Buyer's Guide",
+      "date": "2026-04-15",
+      "readTime": "7 min",
+      "excerpt": "A practical flooring selection guide covering wear class, core build, and why accessory coordination should be part of the first conversation.",
+      "author": "Moldart Technical Team",
+      "content": "## Start with traffic and use conditions\n\nEngineered flooring selection becomes clearer when the conversation starts from the real traffic profile, subfloor condition, and maintenance expectation instead of from décor alone.\n\n## What should be aligned early\n\nBuyers should lock:\n\n- wear class expectation\n- core build and moisture sensitivity\n- installation method and click profile logic\n- accessory coordination for the full room route\n\n## Why accessory planning belongs in the first discussion\n\nFlooring performance is not only about the main board. Stair nosing, transitions, skirting, and matching profiles affect both appearance and completion quality. A good floor can still finish badly if the accessory logic is left unresolved.\n\n## Questions to settle before order confirmation\n\n- Is the route residential, commercial, or hospitality-led?\n- Does the site condition need extra moisture discipline?\n- Which click profile and installation logic are being followed?\n- Is the accessory set already aligned to the selected décor?\n- Does the receiving site have any storage or acclimatisation constraint?\n\n## Final takeaway\n\nEngineered flooring should be bought as a coordinated system rather than only as a finished board. Wear class, core build, installation logic, and accessory fit should stay in the same decision frame."
+    },
+    {
+      "id": "ready-made-furniture-procurement-guide",
+      "slug": "ready-made-furniture-procurement-guide",
+      "title": "Ready-Made Furniture Procurement: What to Lock Before Dispatch",
+      "category": "ready-made-furniture",
+      "categoryLabel": "Furniture Programmes",
+      "tags": [
+        "ready-made furniture",
+        "procurement",
+        "dispatch",
+        "buyer guide"
+      ],
+      "type": "Buyer's Guide",
+      "date": "2026-04-15",
+      "readTime": "6 min",
+      "excerpt": "A buyer guide for modular and ready-made furniture programmes where specification clarity matters before packing, not after arrival.",
+      "author": "Moldart Technical Team",
+      "content": "## Procurement starts before dispatch\n\nReady-made furniture programmes work best when the buyer settles specification, finish, packing logic, and receiving conditions before the order moves into dispatch preparation.\n\n## What should be locked early\n\n- approved drawing or layout reference\n- visible finish route\n- hardware and assembly expectation\n- packing format such as flat-pack or assembled delivery\n- site readiness and installation handling\n\n## Where furniture procurement often slips\n\nProblems usually appear when the team confirms the range but leaves too many assumptions open on finish, hardware, assembly condition, or receiving restrictions.\n\n## Practical commercial checks\n\n- confirm what defines the approved version\n- confirm packing and handling expectations\n- confirm whether assembly happens before or after delivery\n- confirm site restrictions such as access, installation timing, or unloading conditions\n\n## Why site conditions still matter\n\nEven a well-specified product can turn into a poor delivery if unloading, access, installation timing, or receiving discipline are unclear at the destination. Procurement therefore needs to stay linked to the actual site plan, not only to the factory dispatch date.\n\n## Final takeaway\n\nReady-made furniture procurement is strongest when the order is treated as a full delivery package, not only as a product line item. The cleaner the dispatch logic, the less correction happens at site level."
+    },
+    {
+      "id": "custom-furniture-brief-guide",
+      "slug": "custom-furniture-brief-guide",
+      "title": "Custom Furniture Briefs: Turning Layout Intent into a Usable RFQ",
+      "category": "custom-furniture",
+      "categoryLabel": "Furniture Programmes",
+      "tags": [
+        "custom furniture",
+        "rfq",
+        "briefing",
+        "project furniture"
+      ],
+      "type": "Comprehensive Guide",
+      "date": "2026-04-15",
+      "readTime": "7 min",
+      "excerpt": "A practical guide for moving from concept intent to a cleaner custom furniture enquiry with fewer missed assumptions.",
+      "author": "Moldart Technical Team",
+      "content": "## A better brief prevents expensive assumptions\n\nCustom furniture orders become inefficient when the layout idea, material route, and approval logic are scattered across calls, screenshots, and partial notes. A stronger brief saves time before pricing even begins.\n\n## What a usable furniture brief should include\n\nAt minimum, the brief should cover:\n\n- layout intent and dimensions\n- application and user environment\n- preferred material family\n- finish route and visible face expectation\n- hardware or functionality requirements\n- delivery and installation context\n\n## Why material logic belongs in the brief\n\nCustom furniture should not begin from appearance only. Substrate, finish, structure, and site use all influence what is practical to quote and build. When those points are missing, the RFQ often looks complete while still being commercially weak.\n\n## Useful approval checkpoints\n\n- first layout confirmation\n- material and finish alignment\n- sample or reference approval where needed\n- final commercial and delivery confirmation\n\n## What usually slows the RFQ down\n\nMost delays come from hidden assumptions: missing dimensions, unclear finish expectations, no installation context, or a design reference that still leaves the material route open. A brief improves fastest when those gaps are addressed early.\n\n## Final takeaway\n\nThe better the brief, the fewer assumptions survive into pricing, manufacturing, and installation. A usable RFQ is not just a design note; it is the first step in keeping the whole programme aligned."
+    }
+  ]
+}
+

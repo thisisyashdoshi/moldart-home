@@ -1,0 +1,577 @@
+{
+  "featured": [
+    "press-plates",
+    "press-pads",
+    "decorative-panels",
+    "industrial-press-plates"
+  ],
+  "products": [
+    {
+      "id": "press-plates",
+      "name": "Press Plates",
+      "material": "Wood",
+      "stage": "Raw Materials",
+      "use": "Tooling",
+      "industry": [
+        "Lamination",
+        "Flooring",
+        "Furniture"
+      ],
+      "image": "/images/page5_img3.webp",
+      "summary": "Lamination press plates used to transfer surface texture and support finish consistency.",
+      "specs": [
+        "Grades: SS 304, SS 420, SS 630",
+        "Core hardness: approx. 40–45 HRC (420/630)",
+        "Hard-chrome surface: approx. 65–70 HRC",
+        "1S / 2S supply on request"
+      ],
+      "applications": [
+        "Decorative laminates",
+        "Panel surfacing",
+        "Furniture panels"
+      ],
+      "customization": "Surface pattern, plate build, and chrome requirement are confirmed per programme.",
+      "technical": {
+        "grades": [
+          "SS 304",
+          "SS 420",
+          "SS 630"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led Asia supply coordination"
+      }
+    },
+    {
+      "id": "press-pads",
+      "name": "Press Pads",
+      "material": "Wood",
+      "stage": "Raw Materials",
+      "use": "Process",
+      "industry": [
+        "Lamination",
+        "Flooring",
+        "Furniture"
+      ],
+      "image": "/images/press_pad_new.webp",
+      "summary": "Silicone-copper composite pads for heat transfer and pressure equalisation in lamination.",
+      "specs": [
+        "Silicone-copper composite construction",
+        "Engineered for approx. 80,000–100,000 cycles",
+        "Maximum width: 3300 mm",
+        "Used to support even heat and pressure distribution"
+      ],
+      "applications": [
+        "Short-cycle lamination",
+        "High-volume pressing",
+        "Decorative board manufacturing"
+      ],
+      "customization": "Width and construction are aligned to the press line and programme.",
+      "technical": {
+        "grades": [
+          "Silicone-copper composite"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led Asia supply coordination"
+      }
+    },
+    {
+      "id": "engraved-cylinders",
+      "name": "Engraved Cylinders",
+      "material": "Wood",
+      "stage": "Raw Materials",
+      "use": "Surface",
+      "industry": [
+        "Lamination",
+        "Furniture"
+      ],
+      "image": "/images/page5_img1.webp",
+      "summary": "Rotogravure cylinders for décor printing and pattern transfer.",
+      "specs": [
+        "Precision rotogravure cylinder",
+        "Engraving depth: 18–25 μm",
+        "Surface roughness: Ra 0.2–0.3 μm",
+        "Used for high-definition décor transfer"
+      ],
+      "applications": [
+        "Decor paper printing",
+        "Pattern development",
+        "Woodgrain reproduction"
+      ],
+      "customization": "Pattern-specific engraving is confirmed against the décor programme.",
+      "technical": {
+        "grades": [
+          "Chrome-plated cylinder"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led Asia supply coordination"
+      }
+    },
+    {
+      "id": "decor-paper",
+      "name": "Printed Decor Paper",
+      "material": "Wood",
+      "stage": "Raw Materials",
+      "use": "Decorative",
+      "industry": [
+        "Furniture",
+        "Flooring",
+        "Lamination"
+      ],
+      "image": "/images/page5_img2.webp",
+      "summary": "Printed décor paper for laminate, flooring, and furniture surface programmes.",
+      "specs": [
+        "Weight: 60–85 GSM",
+        "Wet tensile: above 6N",
+        "Melamine-impregnation compatible",
+        "Woodgrain and décor options"
+      ],
+      "applications": [
+        "Decorative laminates",
+        "Flooring overlays",
+        "Furniture surfaces"
+      ],
+      "customization": "Décor, print route, and programme matching are confirmed per enquiry.",
+      "technical": {
+        "grades": [
+          "Decor paper"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led Asia supply coordination"
+      }
+    },
+    {
+      "id": "plywood",
+      "name": "Plywood",
+      "material": "Wood",
+      "stage": "Semi-Finished",
+      "use": "Panel",
+      "industry": [
+        "Furniture",
+        "Architecture"
+      ],
+      "image": "/images/page6_img1.webp",
+      "summary": "Plywood panels for structural and furniture-grade applications.",
+      "specs": [
+        "Density: 500–700 kg/m³",
+        "Thickness: 3–40 mm",
+        "Shear strength: approx. 1.5 MPa",
+        "Used in furniture, interiors, and panel programmes"
+      ],
+      "applications": [
+        "Furniture carcasses",
+        "Interior fit-outs",
+        "Architectural panels"
+      ],
+      "customization": "Core build, thickness, and panel programme are confirmed per enquiry.",
+      "technical": {
+        "grades": [
+          "Structural grade",
+          "Furniture grade"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "fiberboard",
+      "name": "Fiberboard",
+      "material": "Wood",
+      "stage": "Semi-Finished",
+      "use": "Panel",
+      "industry": [
+        "Furniture",
+        "Flooring",
+        "Architecture"
+      ],
+      "image": "/images/page6_img3.webp",
+      "summary": "MDF and HDF panels for lamination, painting, and conversion.",
+      "specs": [
+        "Combined density range: 720–1000 kg/m³",
+        "Thickness: 2–25 mm",
+        "Smooth surface for painting or lamination",
+        "MDF / HDF options on request"
+      ],
+      "applications": [
+        "Furniture fronts",
+        "Door skins",
+        "Decorative panel systems",
+        "Flooring cores"
+      ],
+      "customization": "Board type and panel programme are matched to the final application.",
+      "technical": {
+        "grades": [
+          "MDF",
+          "HDF"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "wood-flooring",
+      "name": "Wood Flooring",
+      "material": "Wood",
+      "stage": "Finished",
+      "use": "Surface",
+      "industry": [
+        "Flooring",
+        "Architecture"
+      ],
+      "image": "/images/page7_img1.webp",
+      "summary": "Engineered wood flooring systems for residential and commercial use.",
+      "specs": [
+        "HDF core density: above 850 kg/m³",
+        "Wear rating: AC3–AC5",
+        "Thickness swell: below 18%",
+        "Click-lock systems"
+      ],
+      "applications": [
+        "Residential flooring",
+        "Commercial interiors",
+        "Hospitality projects"
+      ],
+      "customization": "Décor, wear layer, and accessory coordination are confirmed per programme.",
+      "technical": {
+        "grades": [
+          "AC3",
+          "AC4",
+          "AC5"
+        ],
+        "certifications": [
+          "EN 13329"
+        ],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "custom-furniture",
+      "name": "Custom Furniture",
+      "material": "Wood",
+      "stage": "Finished",
+      "use": "Decorative",
+      "industry": [
+        "Furniture",
+        "Architecture"
+      ],
+      "image": "/images/page7_img4.webp",
+      "summary": "CAD/CNC-led furniture development for hospitality, residential, and retail programmes.",
+      "specs": [
+        "CAD / CNC-led development",
+        "MDF, HDF, and plywood core options",
+        "Built to project-specific layouts",
+        "Used in hospitality, retail, and residential work"
+      ],
+      "applications": [
+        "Hospitality furniture",
+        "Retail fixtures",
+        "Custom interior packages"
+      ],
+      "customization": "Layout, finish, and build are confirmed per project.",
+      "technical": {
+        "grades": [
+          "Project-specific"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "osb",
+      "name": "OSB (Oriented Strand Board)",
+      "material": "Wood",
+      "stage": "Semi-Finished",
+      "use": "Panel",
+      "industry": [
+        "Furniture",
+        "Architecture"
+      ],
+      "image": "/images/page6_img2.webp",
+      "summary": "OSB panels for structural and load-bearing applications.",
+      "specs": [
+        "Density: 600–750 kg/m³",
+        "Thickness: 6–25 mm",
+        "Bond strength: approx. 0.35 N/mm²",
+        "Used for structural panel applications"
+      ],
+      "applications": [
+        "Load-bearing construction",
+        "Furniture frameworks",
+        "Packaging"
+      ],
+      "customization": "Panel build and programme alignment are confirmed per enquiry.",
+      "technical": {
+        "grades": [
+          "OSB"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "particleboard",
+      "name": "Particleboard",
+      "material": "Wood",
+      "stage": "Semi-Finished",
+      "use": "Panel",
+      "industry": [
+        "Furniture",
+        "Architecture"
+      ],
+      "image": "/images/page6_img4.webp",
+      "summary": "Particleboard cores for commercial furniture and panel programmes.",
+      "specs": [
+        "Density: 600–750 kg/m³",
+        "Thickness: 4–44 mm",
+        "Emission grade depends on programme",
+        "Used as a standard furniture core"
+      ],
+      "applications": [
+        "Office furniture",
+        "Cabinetry",
+        "Shelving systems"
+      ],
+      "customization": "Thickness and programme fit are confirmed against final use.",
+      "technical": {
+        "grades": [
+          "Programme-specific"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "flooring-accessories",
+      "name": "Flooring Accessories",
+      "material": "Wood",
+      "stage": "Finished",
+      "use": "Decorative",
+      "industry": [
+        "Flooring",
+        "Architecture"
+      ],
+      "image": "/images/page7_img2.webp",
+      "summary": "Accessory profiles and trims coordinated with flooring programmes.",
+      "specs": [
+        "Skirting, transitions, and finishing trims",
+        "Coordinated to floor décor where required",
+        "Base material depends on programme",
+        "Final profile set confirmed per enquiry"
+      ],
+      "applications": [
+        "Room transitions",
+        "Wall skirting",
+        "Staircases"
+      ],
+      "customization": "Accessory mix and finish matching are confirmed per programme.",
+      "technical": {
+        "grades": [
+          "Programme-specific"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "ready-made-furniture",
+      "name": "Ready-Made Furniture",
+      "material": "Wood",
+      "stage": "Finished",
+      "use": "Decorative",
+      "industry": [
+        "Furniture",
+        "Architecture"
+      ],
+      "image": "/images/page7_img3.webp",
+      "summary": "Modular furniture components and assemblies for commercial and residential programmes.",
+      "specs": [
+        "Melamine / HPL-faced surfaces",
+        "Scratch resistance: above 3N",
+        "CNC precision: approx. ±0.1 mm",
+        "PVC / ABS edging"
+      ],
+      "applications": [
+        "Office workstations",
+        "Modular kitchens",
+        "Wardrobe systems"
+      ],
+      "customization": "Flat-pack or assembled delivery is confirmed per programme.",
+      "technical": {
+        "grades": [
+          "Melamine-faced",
+          "HPL-faced"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "decorative-panels",
+      "name": "Decorative SS Panels",
+      "material": "Steel",
+      "stage": "Finished",
+      "use": "Surface",
+      "industry": [
+        "Architecture"
+      ],
+      "image": "/images/page9_img1.avif",
+      "summary": "Decorative stainless steel panels for architectural interiors and premium surfaces.",
+      "specs": [
+        "Grades: SS 201 / SS 304, SS 316 on request",
+        "Finishes: No.4, Hairline, Mirror",
+        "PVD colours: Gold, Rose Gold, Black",
+        "Anti-fingerprint coating available"
+      ],
+      "applications": [
+        "Elevator cabins",
+        "Wall cladding",
+        "Retail displays"
+      ],
+      "customization": "Grade, finish, and visual approval route are confirmed per project.",
+      "technical": {
+        "grades": [
+          "SS 201",
+          "SS 304",
+          "SS 316 on request"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led India / China supply coordination"
+      }
+    },
+    {
+      "id": "ss-profiles",
+      "name": "SS Profiles",
+      "material": "Steel",
+      "stage": "Finished",
+      "use": "Hardware",
+      "industry": [
+        "Architecture",
+        "Furniture"
+      ],
+      "image": "/images/page9_img2_clean.webp",
+      "summary": "Decorative stainless steel profiles and trims for transitions, edging, and inlays.",
+      "specs": [
+        "Architectural trims and inlay profiles",
+        "Hairline, Mirror, or PVD finish alignment",
+        "Precision bending: approx. ±0.5 mm",
+        "Panel-matched programmes on request"
+      ],
+      "applications": [
+        "Wall panel trims",
+        "Floor transitions",
+        "Furniture inlay accents"
+      ],
+      "customization": "Profile shape and finish alignment are confirmed per programme.",
+      "technical": {
+        "grades": [
+          "SS 201",
+          "SS 304",
+          "SS 316 on request"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led India / China supply coordination"
+      }
+    },
+    {
+      "id": "ss-furniture",
+      "name": "SS Furniture",
+      "material": "Steel",
+      "stage": "Finished",
+      "use": "Decorative",
+      "industry": [
+        "Furniture",
+        "Architecture",
+        "Metal Finishing"
+      ],
+      "image": "/images/page9_img3.avif",
+      "summary": "Decorative stainless steel furniture for interior, retail, and hospitality programmes.",
+      "specs": [
+        "SS 304 frame-based programmes",
+        "PVD and AFP finish options",
+        "Scratch and stain resistant surfaces",
+        "Indoor / outdoor use depends on specification"
+      ],
+      "applications": [
+        "Luxury furniture",
+        "Lobby features",
+        "Retail and hospitality interiors"
+      ],
+      "customization": "Structure, finish, and top material are confirmed per project.",
+      "technical": {
+        "grades": [
+          "SS 304",
+          "Project-specific"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led India / China supply coordination"
+      }
+    },
+    {
+      "id": "industrial-press-plates",
+      "name": "Industrial Press Plates",
+      "material": "Steel",
+      "stage": "Raw Materials",
+      "use": "Tooling",
+      "industry": [
+        "Lamination",
+        "PCB/CCL",
+        "Technical Laminates"
+      ],
+      "image": "/images/page9_img4.webp",
+      "summary": "Industrial press plates for PCB, CCL, security, and technical laminate lines.",
+      "specs": [
+        "Grades: SUS 301, SUS 420, SUS 630",
+        "Hardness: approx. HRC 40–45",
+        "Flatness: below 0.05 mm/m",
+        "Surface roughness: Ra below 0.1 μm"
+      ],
+      "applications": [
+        "Copper-clad laminates (CCL)",
+        "Printed circuit boards (PCB)",
+        "Industrial high-pressure laminates (HPL)",
+        "Security laminates"
+      ],
+      "customization": "Tolerance route and final plate build are confirmed against the production line.",
+      "technical": {
+        "grades": [
+          "SUS 301",
+          "SUS 420",
+          "SUS 630"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led Asia supply coordination"
+      }
+    }
+  ]
+}
