@@ -6011,3 +6011,151 @@ body {
   }
 }
 
+/* Draft A: current-live polish. Keep the current content system, but make the surface calmer, tighter, and more editorial. */
+body::after {
+  content: "Draft A - current polish";
+  position: fixed;
+  left: 0.9rem;
+  bottom: 0.9rem;
+  z-index: 140;
+  padding: 0.38rem 0.62rem;
+  border: 1px solid rgba(24, 24, 27, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #18181b;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.home-hero-section {
+  background: #09090a;
+  color: #f7f7f8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.home-hero-section .home-hero-shell-modern {
+  gap: clamp(1.5rem, 4vw, 4rem);
+  min-height: min(45rem, calc(100vh - 4rem));
+}
+
+.home-hero-section .home-hero-heading {
+  color: #fff;
+  max-width: 11ch;
+  letter-spacing: -0.055em;
+}
+
+.home-hero-section .home-hero-intro {
+  color: #d4d4d8;
+  max-width: 42rem;
+}
+
+.home-hero-section .home-hero-kicker-line,
+.home-hero-section .home-browse-row-label {
+  color: #fff;
+}
+
+.home-hero-section .home-hero-media-shell,
+.home-hero-section .home-browse-panel {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: none;
+}
+
+.home-hero-section .home-browse-row {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.home-hero-section .home-browse-row p,
+.home-hero-section .ui-kicker {
+  color: #c8c8cf;
+}
+
+.home-hero-section .btn-outline {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.065);
+  color: #fff;
+  box-shadow: none;
+}
+
+.home-hero-section .btn-outline:hover {
+  border-color: #fff;
+  background: #fff;
+  color: #09090a;
+}
+
+main > section {
+  padding-top: clamp(3.25rem, 6vw, 5.5rem);
+  padding-bottom: clamp(3.25rem, 6vw, 5.5rem);
+}
+
+.home-control-strip,
+.home-library-grid,
+.ui-topic-grid,
+.ui-route-product-grid,
+.resource-library-list,
+.insights-grid {
+  gap: 0.85rem;
+}
+
+.home-control-strip article,
+.ui-library-card,
+.resource-library-row,
+.ui-insight-card,
+.ui-solution-card,
+.product-summary-card,
+.product-story-card,
+.spec-table-card,
+.article-dashboard-card,
+.article-visual-card,
+.article-reference-card,
+.article-signal-card {
+  border-color: #e8e8ec;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.home-control-strip article:hover,
+.ui-library-card:hover,
+.resource-library-row:hover,
+.ui-insight-card:hover,
+.ui-solution-card:hover {
+  border-color: #18181b;
+  box-shadow: 0 14px 32px rgba(24, 24, 27, 0.055);
+}
+
+.resource-thumb,
+.resource-thumb.is-compact,
+.resource-library-row-preview,
+.resource-library-row-preview-guide,
+.ui-insight-card-media,
+.product-sheet-image,
+.application-hero-media {
+  border-radius: 8px;
+}
+
+.resource-library-row-action .btn-outline,
+.ui-library-card-action-row .btn-outline,
+.home-route-card .btn-outline,
+.ui-solution-card .btn-outline {
+  min-height: 2.8rem;
+}
+
+.site-footer {
+  border-top: 1px solid #e8e8ec;
+  background: #f7f7f8;
+}
+
+@media (max-width: 768px) {
+  body::after {
+    display: none;
+  }
+
+  .home-hero-section .home-hero-heading {
+    max-width: 9.8ch;
+  }
+}
+
