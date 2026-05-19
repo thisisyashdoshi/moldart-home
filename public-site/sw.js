@@ -1,8 +1,8 @@
-self.addEventListener('install', (event) => {
+self.addEventListener("install", (event) => {
   event.waitUntil(self.skipWaiting());
 });
 
-self.addEventListener('activate', (event) => {
+self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches
       .keys()
@@ -12,6 +12,6 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-self.addEventListener('fetch', () => {
+self.addEventListener("fetch", () => {
   // Intentionally empty: this worker unregisters itself and never serves stale pages.
 });

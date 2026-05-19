@@ -1,50 +1,99 @@
 # Moldart Full Index
 
 ## Canonical Identity
-- Brand: Moldart
 - Legal name: Mold Art (India) Private Limited
-- Related operating/legal profile: Deco Metal, GSTIN 27AAHFD0708K1ZI
-- Website: https://moldartindia.com/
+- Related profile: Deco Metal, GSTIN 27AAHFD0708K1ZI
+- Website: [moldartindia.com](https://moldartindia.com/)
+- Email: [info@moldartindia.com](mailto:info@moldartindia.com)
+- WhatsApp primary: [+91 7208088788](https://wa.me/917208088788)
+- WhatsApp secondary: [+91 7208188788](https://wa.me/917208188788)
 - Base: Mumbai, Maharashtra, India
-- Address: #7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West), Mumbai 400064, Maharashtra, India
-- Email: info@moldartindia.com
-- Primary WhatsApp: +91 7208088788
-- Fallback WhatsApp: +91 7208188788
-- Positioning: Specification-led wood, surface, furniture, flooring, and decorative steel supply programmes from Mumbai.
-- Trust/statutory names: Yash Lalit Doshi; Lalit Nagindas Doshi; Sonal Lalitkumar Doshi.
-- People policy: Company-first; Yash, Lalit, and Sonal names are used only where profile ownership, statutory context, or trust context requires them. Customer CTA routes to the Moldart website, info email, and primary WhatsApp.
+- Positioning: Specification-led wood and steel supply programmes from Mumbai.
 
 ## Pages
-- https://moldartindia.com/
-- https://moldartindia.com/solutions/
-- https://moldartindia.com/resources/
-- https://moldartindia.com/insights/
-- https://moldartindia.com/contact/
-- https://moldartindia.com/about/
-- https://moldartindia.com/open-wood-science/
+- [Home](https://moldartindia.com/)
+- [Solutions](https://moldartindia.com/solutions/)
+- [Products](https://moldartindia.com/products/)
+- [Resources](https://moldartindia.com/resources/)
+- [Insights](https://moldartindia.com/insights/)
+- [Contact](https://moldartindia.com/contact/)
+- [About](https://moldartindia.com/about/)
 
 ## Solutions
-- Lamination: https://moldartindia.com/solutions/lamination/
-- Furniture Manufacturing: https://moldartindia.com/solutions/furniture/
-- Flooring: https://moldartindia.com/solutions/flooring/
-- Architecture & Interiors: https://moldartindia.com/solutions/architecture/
-- Metal Finishing: https://moldartindia.com/solutions/metal-finishing/
-- PCB & CCL Manufacturing: https://moldartindia.com/solutions/pcb-ccl/
+- [Lamination](https://moldartindia.com/solutions/lamination/)
+- [Furniture Manufacturing](https://moldartindia.com/solutions/furniture/)
+- [Flooring](https://moldartindia.com/solutions/flooring/)
+- [Architecture & Interiors](https://moldartindia.com/solutions/architecture/)
+- [Metal Finishing](https://moldartindia.com/solutions/metal-finishing/)
+- [PCB & CCL Manufacturing](https://moldartindia.com/solutions/pcb-ccl/)
 
 ## Products
-- Press Plates: https://moldartindia.com/products/press-plates/
-- Press Pads: https://moldartindia.com/products/press-pads/
-- Engraved Cylinders: https://moldartindia.com/products/engraved-cylinders/
-- Printed Decor Paper: https://moldartindia.com/products/printed-decor-paper/
-- Plywood: https://moldartindia.com/products/plywood/
-- Fiberboard: https://moldartindia.com/products/fiberboard/
-- OSB (Oriented Strand Board): https://moldartindia.com/products/osb/
-- Particleboard: https://moldartindia.com/products/particleboard/
-- Wood Flooring: https://moldartindia.com/products/wood-flooring/
-- Flooring Accessories: https://moldartindia.com/products/flooring-accessories/
-- Ready-Made Furniture: https://moldartindia.com/products/ready-made-furniture/
-- Custom Furniture: https://moldartindia.com/products/custom-furniture/
-- Decorative SS Panels: https://moldartindia.com/products/decorative-ss-panels/
-- SS Profiles: https://moldartindia.com/products/ss-profiles/
-- SS Furniture: https://moldartindia.com/products/ss-furniture/
-- Industrial Press Plates: https://moldartindia.com/products/industrial-press-plates/
+- [Press Plates](https://moldartindia.com/products/press-plates/)
+- [Press Pads](https://moldartindia.com/products/press-pads/)
+- [Engraved Cylinders](https://moldartindia.com/products/engraved-cylinders/)
+- [Printed Decor Paper](https://moldartindia.com/products/printed-decor-paper/)
+- [Plywood](https://moldartindia.com/products/plywood/)
+- [Fiberboard](https://moldartindia.com/products/fiberboard/)
+- [OSB (Oriented Strand Board)](https://moldartindia.com/products/osb/)
+- [Particleboard](https://moldartindia.com/products/particleboard/)
+- [Wood Flooring](https://moldartindia.com/products/wood-flooring/)
+- [Flooring Accessories](https://moldartindia.com/products/flooring-accessories/)
+- [Ready-Made Furniture](https://moldartindia.com/products/ready-made-furniture/)
+- [Custom Furniture](https://moldartindia.com/products/custom-furniture/)
+- [Decorative SS Panels](https://moldartindia.com/products/decorative-ss-panels/)
+- [SS Profiles](https://moldartindia.com/products/ss-profiles/)
+- [SS Furniture](https://moldartindia.com/products/ss-furniture/)
+- [Industrial Press Plates](https://moldartindia.com/products/industrial-press-plates/)
+
+## Technical Library
+- [Custom Furniture Briefs: Turning Layout Intent into a Usable RFQ](https://moldartindia.com/insights/custom-furniture-brief-guide/)
+- [Ready-Made Furniture Procurement: What to Lock Before Dispatch](https://moldartindia.com/insights/ready-made-furniture-procurement-guide/)
+- [Custom Furniture Briefs: Drawing, Material Route, and Sample Approval](https://moldartindia.com/insights/custom-furniture-brief-drawing-sample-guide/)
+- [Decorative Stainless Steel Panel Approval: Grade, Finish, Sample, Environment](https://moldartindia.com/insights/decorative-ss-panel-approval-guide/)
+- [Decorative Stainless Steel: Grades, Finishes, and Sourcing Routes](https://moldartindia.com/insights/decorative-stainless-steel-sourcing-note/)
+- [SS 201 vs SS 304: Decorative Stainless Steel Panel Selection](https://moldartindia.com/insights/ss-201-vs-304-panels/)
+- [Stainless Steel Profiles: Why the Trim Route Should Follow the Panel Route](https://moldartindia.com/insights/ss-profiles-application-guide/)
+- [Decorative Stainless Steel Finish Families: What Buyers Should Compare](https://moldartindia.com/insights/decorative-stainless-steel-finish-family-guide/)
+- [Engineered Flooring Selection: Wear Class, Core Build, and System Fit](https://moldartindia.com/insights/engineered-flooring-selection-guide/)
+- [Wood Flooring Core, Moisture, and Wear Class: What Buyers Should Lock Early](https://moldartindia.com/insights/wood-flooring-core-moisture-wear-class-guide/)
+- [Engraved Cylinders: Repeat Accuracy, Depth, and Why the Print Start Point Matters](https://moldartindia.com/insights/engraved-cylinders-repeat-accuracy-guide/)
+- [Press Pads: Why Heat Transfer and Pressure Equalisation Matter More Than Brochure Claims](https://moldartindia.com/insights/press-pads-heat-pressure-note/)
+- [Press Pads Quality & Replacement Checks for Running Lamination Lines](https://moldartindia.com/insights/press-pads-quality-replacement-checks/)
+- [Press Plates and Panel Quality: What Actually Changes the Surface](https://moldartindia.com/insights/press-plates-panel-quality-guide/)
+- [Press Plates Replacement Programmes: What Buyers Should Lock Before Reordering](https://moldartindia.com/insights/press-plates-replacement-programme-guide/)
+- [Printed Decor Paper: What to Lock Before Impregnation and Pressing](https://moldartindia.com/insights/printed-decor-paper-selection-guide/)
+- [Press Plate Chrome Condition: Why Surface Wear Changes Panel Output](https://moldartindia.com/insights/press-plate-chrome-condition-guide/)
+- [Press Plates and Press Pads: Smart Tooling for Better Panel Consistency](https://moldartindia.com/insights/press-plates-pads-smart-tooling-perfect-panels/)
+- [Printed Decor Paper Batch Repeat: Approval Before Impregnation](https://moldartindia.com/insights/printed-decor-paper-batch-repeat-approval-guide/)
+- [Industrial Press Plates for PCB and CCL: Flatness, Parallelism, and Surface Control](https://moldartindia.com/insights/industrial-press-plates-pcb-ccl-note/)
+- [Industrial Press Plates: Flatness, Parallelism, and Incoming Inspection Priorities](https://moldartindia.com/insights/industrial-press-plates-quality-priorities/)
+- [Standard Press Plates vs Industrial Press Plates: When the Requirement Changes](https://moldartindia.com/insights/standard-vs-industrial-press-plates/)
+- [Industrial Press Plate Receiving Checklist: Flatness, Surface, and Handling](https://moldartindia.com/insights/industrial-press-plates-receiving-flatness-checklist/)
+- [MDF vs HDF: Surface Readiness, Density, and Conversion Fit](https://moldartindia.com/insights/mdf-vs-hdf-surface-readiness-guide/)
+- [OSB: When It Fits, When It Doesn't, and What to Confirm Early](https://moldartindia.com/insights/osb-application-fit-guide/)
+- [Particleboard Buying Basics for Commercial Furniture Programmes](https://moldartindia.com/insights/particleboard-buyers-guide/)
+- [Plywood vs Fiberboard: Substrate Choice for Furniture Programmes](https://moldartindia.com/insights/plywood-vs-fiberboard-substrate-guide/)
+- [Shuttering Plywood Surface Finish and Reuse: What Buyers Should Compare](https://moldartindia.com/insights/shuttering-plywood-surface-finish-note/)
+- [Super-Mirror Shuttering Plywood: Surface Finish, Reuse, and Practical Fit](https://moldartindia.com/insights/super-mirror-shuttering-plywood-guide/)
+- [Upgraded Shuttering Plywood vs Aluminium and Plastic Formwork: A Practical Comparison](https://moldartindia.com/insights/upgraded-shuttering-plywood-vs-aluminium-plastic-formwork/)
+- [HPL vs LPL Material Selection: Use Case Before Surface Choice](https://moldartindia.com/insights/hpl-vs-lpl-material-selection-guide/)
+- [FOB China RFQ Checklist for Wood, Steel, Flooring, Furniture, and Tooling](https://moldartindia.com/insights/fob-china-rfq-checklist-wood-steel-flooring-furniture-tooling/)
+- [Supplier Document Pack: TDS, COA, MTC, Test Report, Packing List, HS Discussion](https://moldartindia.com/insights/supplier-document-pack-tds-coa-mtc-test-report-packing-list-hs-discussion/)
+- [Decorative Stainless Steel: 201 vs 304 vs 316 vs 430](https://moldartindia.com/insights/decorative-stainless-steel-201-304-316-430/)
+- [PVD Stainless Steel Buyer Checklist](https://moldartindia.com/insights/pvd-stainless-steel-buyer-checklist/)
+- [Anti-Fingerprint Stainless Steel: Use Case, Limits, Cleaning](https://moldartindia.com/insights/anti-fingerprint-stainless-steel-use-case-limits-cleaning/)
+- [Mirror Stainless Steel: Scratch, Distortion, PVC Film, Packing](https://moldartindia.com/insights/mirror-stainless-steel-scratch-distortion-pvc-film-packing/)
+- [Decorative Stainless Steel Packing and Receiving Checklist](https://moldartindia.com/insights/decorative-stainless-steel-packing-receiving-checklist/)
+- [MDF/HDF Emission Grades: E1, E0, CARB, TSCA Title VI](https://moldartindia.com/insights/mdf-hdf-emission-grades-e1-e0-carb-tsca-title-vi/)
+- [Particleboard vs MDF vs Plywood for Modular Furniture](https://moldartindia.com/insights/particleboard-vs-mdf-vs-plywood-modular-furniture/)
+- [Melamine-Faced Board / LPL Buying Guide](https://moldartindia.com/insights/melamine-faced-board-lpl-buying-guide/)
+- [HPL vs LPL vs CPL vs Veneer vs PET/PVC/Acrylic](https://moldartindia.com/insights/hpl-vs-lpl-vs-cpl-vs-veneer-pet-pvc-acrylic/)
+- [Press Plate Defect Troubleshooting Guide](https://moldartindia.com/insights/press-plate-defect-troubleshooting-guide/)
+- [Press Pad Failure Symptoms in Lamination Lines](https://moldartindia.com/insights/press-pad-failure-symptoms-lamination-lines/)
+- [Lamination Stack Control: Plate + Pad + Paper + Substrate + Press Cycle](https://moldartindia.com/insights/lamination-stack-control-plate-pad-paper-substrate-press-cycle/)
+- [Printed Decor Paper Colour Matching: Master Sample, Batch Repeat, Metamerism](https://moldartindia.com/insights/printed-decor-paper-colour-matching-master-sample-batch-repeat-metamerism/)
+- [Flooring Accessories: Skirting, Stair Nosing, T-Moulding, Reducers, End Caps](https://moldartindia.com/insights/flooring-accessories-skirting-stair-nosing-t-moulding-reducers-end-caps/)
+- [Flooring Site Readiness Before Dispatch](https://moldartindia.com/insights/flooring-site-readiness-before-dispatch/)
+- [Formwork Plywood: Cost Per Use vs First Cost](https://moldartindia.com/insights/formwork-plywood-cost-per-use-vs-first-cost/)
+- [China Sample Approval Route: Buyer Sample, Counter Sample, Production Sample](https://moldartindia.com/insights/china-sample-approval-route-buyer-counter-production-sample/)
+- [What Buyers Should Not Compare Only by Price](https://moldartindia.com/insights/what-buyers-should-not-compare-only-by-price/)

@@ -1,12 +1,9 @@
 User-agent: *
 Allow: /
 Disallow: /data/
-		Disallow: /sw.js
-		Disallow: /offline.html
-		Disallow: /.tmp/
-		Disallow: /open-wood-science/admin/
-		Disallow: /open-wood-science/internal-control/
-		Disallow: /open-wood-science/reviewer-intake/
+Disallow: /sw.js
+Disallow: /offline.html
+Disallow: /.tmp/
 
 User-agent: OAI-SearchBot
 Allow: /

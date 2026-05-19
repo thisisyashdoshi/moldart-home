@@ -4,7 +4,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=(), accelerometer=(), gyroscope=(), magnetometer=(), display-capture=(), fullscreen=(self)
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://static.cloudflareinsights.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://static.cloudflareinsights.com https://cloudflareinsights.com https://*.cloudflareinsights.com; form-action 'self' https://formspree.io https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
 
@@ -20,22 +20,6 @@
   Cache-Control: no-store
   X-Robots-Tag: noindex, nofollow, noarchive
 
-/api/*
-  Cache-Control: no-store
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-/open-wood-science/admin/*
-  Cache-Control: no-store
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-/open-wood-science/internal-control/*
-  Cache-Control: no-store
-  X-Robots-Tag: noindex, nofollow, noarchive
-
-/open-wood-science/reviewer-intake/*
-  Cache-Control: no-store
-  X-Robots-Tag: noindex, nofollow, noarchive
-
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
   X-Robots-Tag: index, follow
@@ -48,9 +32,6 @@
   Cache-Control: public, max-age=31536000, immutable
 
 /main.js
-  Cache-Control: public, max-age=31536000, immutable
-
-/lead-forms.js
   Cache-Control: public, max-age=31536000, immutable
 
 /pages.css
@@ -91,12 +72,6 @@
   Cache-Control: public, max-age=86400
 
 /robots.txt
-  Cache-Control: public, max-age=86400
-
-/.well-known/security.txt
-  Cache-Control: public, max-age=86400
-
-/security.txt
   Cache-Control: public, max-age=86400
 
 /sw.js

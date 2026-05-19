@@ -1,31 +1,37 @@
 # Moldart
 
 ## Canonical Identity
-- Brand: Moldart
 - Legal name: Mold Art (India) Private Limited
-- Related operating/legal profile: Deco Metal, GSTIN 27AAHFD0708K1ZI
-- Website: https://moldartindia.com/
+- Related profile: Deco Metal, GSTIN 27AAHFD0708K1ZI
+- Website: [moldartindia.com](https://moldartindia.com/)
+- Email: [info@moldartindia.com](mailto:info@moldartindia.com)
+- WhatsApp: [+91 7208088788](https://wa.me/917208088788)
 - Base: Mumbai, Maharashtra, India
-- Address: #7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West), Mumbai 400064, Maharashtra, India
-- Email: info@moldartindia.com
-- Primary WhatsApp: +91 7208088788
-- Fallback WhatsApp: +91 7208188788
-- Positioning: Specification-led wood, surface, furniture, flooring, and decorative steel supply programmes from Mumbai.
-- Trust/statutory names: Yash Lalit Doshi; Lalit Nagindas Doshi; Sonal Lalitkumar Doshi.
-- People policy: Company-first; Yash, Lalit, and Sonal names are used only where profile ownership, statutory context, or trust context requires them. Customer CTA routes to the Moldart website, info email, and primary WhatsApp.
+- Positioning: Specification-led wood and steel supply programmes from Mumbai.
 
 ## Primary Pages
-- Home: https://moldartindia.com/
-- Solutions: https://moldartindia.com/solutions/
-- Resources: https://moldartindia.com/resources/
-- Insights: https://moldartindia.com/insights/
-- Contact: https://moldartindia.com/contact/
-- About: https://moldartindia.com/about/
-- Open Wood Science: https://moldartindia.com/open-wood-science/
+- [Home](https://moldartindia.com/)
+- [Solutions](https://moldartindia.com/solutions/)
+- [Products](https://moldartindia.com/products/)
+- [Resources](https://moldartindia.com/resources/)
+- [Insights](https://moldartindia.com/insights/)
+- [Contact](https://moldartindia.com/contact/)
+- [About](https://moldartindia.com/about/)
 
 ## Key Topics
 - Solution systems and product stacks
 - Product sheets and technical references
-- Technical guides, buyer notes, and comparison articles
+- Technical library decision sheets for RFQs, approvals, receiving, documents, and defects
 - Downloadable catalogues, finish decks, and PDFs
-- Source-backed wood-panel science review initiative
+
+## Technical Library Index
+- [RFQ & Sourcing Control](https://moldartindia.com/insights/)
+- [Decorative Stainless Steel](https://moldartindia.com/insights/)
+- [Lamination Tooling](https://moldartindia.com/insights/)
+- [Printed Decor Paper & Cylinders](https://moldartindia.com/insights/)
+- [Panel Systems](https://moldartindia.com/insights/)
+- [Decorative Surfaces](https://moldartindia.com/insights/)
+- [Flooring Systems](https://moldartindia.com/insights/)
+- [Furniture Programmes](https://moldartindia.com/insights/)
+- [Formwork / Shuttering](https://moldartindia.com/insights/)
+- [Industrial Tooling](https://moldartindia.com/insights/)
