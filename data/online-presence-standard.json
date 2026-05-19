@@ -1,0 +1,351 @@
+{
+  "version": "2026-05-08",
+  "canonical": {
+    "brand": "Moldart",
+    "legal_name": "Mold Art (India) Private Limited",
+    "positioning": "Specification-led wood, surface, furniture, flooring, and decorative steel supply programmes from Mumbai.",
+    "website": "https://moldartindia.com/",
+    "email": "info@moldartindia.com",
+    "whatsapp_primary": "+91 7208088788",
+    "whatsapp_secondary": "+91 7208188788",
+    "address": "#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West), Mumbai 400064, Maharashtra, India",
+    "public_geography": "Mumbai-led coordination with India and China as sourcing anchors.",
+    "linkedin_company": "https://www.linkedin.com/company/moldartindia",
+    "linkedin_yash": "https://www.linkedin.com/in/thisisyashdoshi"
+  },
+  "entities": {
+    "moldart": {
+      "public_name": "Moldart",
+      "legal_name": "Mold Art (India) Private Limited",
+      "cin": "U74994MH2005PTC153242",
+      "public_role": "Main public brand and website. Public CTA should point to https://moldartindia.com/, info@moldartindia.com, and WhatsApp +91 7208088788 / +91 7208188788."
+    },
+    "deco_metal": {
+      "public_name": "Deco Metal",
+      "gstin": "27AAHFD0708K1ZI",
+      "public_role": "Related metal business profile surfaced in GST and directory results. Keep Deco Metal linked back to the Moldart website/contact route where a public website/contact route is needed."
+    },
+    "known_confusions": [
+      "Mouldart (India) Private Limited in Uttar Pradesh is a separate public search result and should not be merged with Moldart / Mold Art (India) Private Limited, Mumbai.",
+      "Older Justdial Mold Art India Pvt Ltd listing at 022P1900676_BZDET was confirmed removed by Justdial by email on 2026-05-08; treat any remaining public search result as cache/direct-page verification only."
+    ],
+    "people": {
+      "yash_doshi": "Use Yash Doshi / Yash Lalit Doshi only where the public profile or statutory context requires the full name.",
+      "lalit_doshi": "Use Lalit Doshi / Lalit Nagindas Doshi only where the public profile or statutory context requires the full name.",
+      "sonal_doshi": "Use Sonal Doshi / Sonal Lalitkumar Doshi only where the public profile or statutory context requires the full name."
+    }
+  },
+  "watch_targets": [
+    {
+      "label": "Moldart homepage",
+      "url": "https://moldartindia.com/",
+      "kind": "owned-site",
+      "critical": true,
+      "expected_texts": ["Moldart", "info@moldartindia.com", "+91 7208088788", "+91 7208188788"]
+    },
+    {
+      "label": "Moldart contact",
+      "url": "https://moldartindia.com/contact/",
+      "kind": "owned-site",
+      "critical": true,
+      "expected_texts": ["info@moldartindia.com", "+91 7208088788", "+91 7208188788", "New Sonal Link"]
+    },
+    {
+      "label": "Moldart about",
+      "url": "https://moldartindia.com/about/",
+      "kind": "owned-site",
+      "critical": true,
+      "expected_texts": ["Moldart", "Mumbai", "1989"]
+    },
+    {
+      "label": "Moldart FAQ",
+      "url": "https://moldartindia.com/faq/",
+      "kind": "owned-site",
+      "critical": false,
+      "expected_text": "Moldart"
+    },
+    {
+      "label": "Moldart sitemap",
+      "url": "https://moldartindia.com/sitemap.xml",
+      "kind": "owned-site",
+      "critical": true,
+      "expected_text": "https://moldartindia.com/"
+    },
+    {
+      "label": "Moldart LLM summary",
+      "url": "https://moldartindia.com/llms.txt",
+      "kind": "owned-site",
+      "critical": false,
+      "expected_texts": [
+        "Canonical Identity",
+        "Deco Metal",
+        "Yash Lalit Doshi",
+        "Lalit Nagindas Doshi",
+        "Sonal Lalitkumar Doshi"
+      ]
+    },
+    {
+      "label": "Listmonk link-domain send gate",
+      "url": "https://links.moldartindia.com/",
+      "kind": "send-gate",
+      "critical": false,
+      "expected_text": ""
+    },
+    {
+      "label": "Moldart LinkedIn company",
+      "url": "https://www.linkedin.com/company/moldartindia",
+      "kind": "owned-profile",
+      "critical": false,
+      "expected_text": "Moldart"
+    },
+    {
+      "label": "Justdial claimed Moldart listing",
+      "url": "https://www.justdial.com/Mumbai/Moldart-India-Pvt-Ltd-Hotel-Sai-Palace-Grand-Malad-West/022PXX22-XX22-190607213408-Q6U3_BZDET",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_text": "Moldart",
+      "requires_manual_review": true,
+      "review_note": "Justdial confirmed changes on 2026-05-06. Public search on 2026-05-07 showed the claimed listing now includes Deco Metal legal name, GSTIN 27AAHFD0708K1ZI, 1989 establishment signal, and Malad West address; keep manual review until the direct Justdial page is verifiable without 403 and contact route links to Moldart website/email/WhatsApp."
+    },
+    {
+      "label": "Justdial older Mold Art duplicate",
+      "url": "https://www.justdial.com/Mumbai/Mold-Art-India-Pvt-Ltd-Opp-Movie-Time-Theatre-Malad-West/022P1900676_BZDET",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_text": "Mold Art",
+      "requires_manual_review": true,
+      "review_note": "Justdial confirmed by email on 2026-05-08 that this older duplicate/stale listing was removed under ticket UCS-33YJ3SB7. Keep watch only for cached search results or direct-page 403 verification limits."
+    },
+    {
+      "label": "Yash Doshi LinkedIn",
+      "url": "https://www.linkedin.com/in/thisisyashdoshi",
+      "kind": "owned-profile",
+      "critical": false,
+      "expected_text": "Yash"
+    },
+    {
+      "label": "Mold Art company directory",
+      "url": "https://www.thecompanycheck.com/company/mold-art-india-private-limited/U74994MH2005PTC153242",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_texts": ["Mold Art", "Lalit Nagindas Doshi", "Sonal Lalitkumar Doshi"]
+    },
+    {
+      "label": "Mold Art Zauba directory",
+      "url": "https://www.zaubacorp.com/MOLD-ART-INDIA-PRIVATE-LIMITED-U74994MH2005PTC153242",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_texts": ["U74994MH2005PTC153242", "LALIT NAGINDAS DOSHI", "SONAL LALITKUMAR DOSHI"],
+      "requires_manual_review": true,
+      "review_note": "Public result confirms CIN and directors but may show masked/older contact data; use only as statutory corroboration, not customer CTA."
+    },
+    {
+      "label": "Mold Art Tofler directory",
+      "url": "https://www.tofler.in/mold-art-india-private-limited/company/U74994MH2005PTC153242",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_texts": ["Mold Art", "Lalit Nagindas Doshi", "Sonal Lalitkumar Doshi"],
+      "requires_manual_review": true,
+      "review_note": "Public result confirms active company/director/address signals; use only as statutory corroboration, not customer CTA."
+    },
+    {
+      "label": "Mold Art QuickCompany directory",
+      "url": "https://www.quickcompany.in/company/mold-art-india-private-limited",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_texts": ["Mold Art", "Lalit Nagindas Doshi", "Sonal Lalitkumar Doshi"],
+      "requires_manual_review": true,
+      "review_note": "Public result exposes historical trademark/director signals; monitor for stale category/contact claims."
+    },
+    {
+      "label": "Deco Metal GST directory",
+      "url": "https://piceapp.com/gst-number-search/deco-metal-27aahfd0708k1zi/",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_texts": ["DECO METAL", "27AAHFD0708K1ZI"]
+    },
+    {
+      "label": "Deco Metal KnowYourGST directory",
+      "url": "https://www.knowyourgst.com/gst-number-search/deco-metal-27AAHFD0708K1ZI/",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_texts": ["Deco Metal", "27AAHFD0708K1ZI"],
+      "requires_manual_review": true,
+      "review_note": "Public result confirms Deco Metal GSTIN, partnership, Malad West address, retail/wholesale business. It does not expose contact details, so customer CTA should remain Moldart website/email/WhatsApp."
+    },
+    {
+      "label": "Mouldart separate entity website",
+      "url": "https://mouldartindia.com/",
+      "kind": "known-confusion",
+      "critical": false,
+      "expected_text": "office@mouldartindia.com",
+      "requires_manual_review": true,
+      "review_note": "Separate Uttar Pradesh plastic mould/design business; do not merge with Moldart/Mold Art India Mumbai signals."
+    },
+    {
+      "label": "Moldart SignalHire company profile",
+      "url": "https://www.signalhire.com/companies/moldart-india-private-limited",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_text": "moldartindia.com",
+      "requires_manual_review": true,
+      "review_note": "Public profile has useful website/address/founded signals but also older phone/specialty fields; monitor and correct only through verified SignalHire support or claim route."
+    },
+    {
+      "label": "Moldart SignalHire email-format page",
+      "url": "https://www.signalhire.com/companies/moldart-india-private-limited/email-format",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_text": "moldartindia.com",
+      "requires_manual_review": true,
+      "review_note": "Email-pattern directory page should not be used as a customer CTA source; monitor for privacy/contact-risk and request correction/removal only through verified support."
+    },
+    {
+      "label": "TradeIndia Ahmedabad Moldart listing",
+      "url": "https://www.tradeindia.com/moldart-india-pvt-ltd-7773793/",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_text": "Moldart",
+      "requires_manual_review": true,
+      "review_note": "Appears to place Moldart India Pvt. Ltd. in Ahmedabad with another contact name; treat as possible stale/distributor/confusion until ownership and contact route are verified."
+    },
+    {
+      "label": "TradeIndia Mumbai Moldart product listing",
+      "url": "https://www.tradeindia.com/products/press-plates-for-high-pressure-low-pressure-laminates-3350699.html",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_text": "Moldart",
+      "requires_manual_review": true,
+      "review_note": "Older product listing uses Moldart (India) Pvt. Ltd. and 2005 establishment signal; monitor for outdated contact, category, and CTA information."
+    },
+    {
+      "label": "Internshala MoldArt company profile",
+      "url": "https://internshala.com/company/moldart-india-1632116238/",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_text": "moldartindia.com",
+      "requires_manual_review": true,
+      "review_note": "Hiring profile has older company narrative and claim language; update only if an active Internshala employer account or verified support route exists."
+    },
+    {
+      "label": "Behance Deco Metal job listing",
+      "url": "https://www.behance.net/joblist/195785/Design-and-Digital-Executive",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_text": "yash@moldartindia.com",
+      "requires_manual_review": true,
+      "review_note": "Job listing exposes Deco Metal/Moldart contact details and office/factory addresses; verify whether the role is intentionally live and consistent with current hiring policy."
+    },
+    {
+      "label": "Bharatibiz Deco Metal listing",
+      "url": "https://www.bharatibiz.com/deco-metal_15-098705-88788",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_text": "Deco Metal",
+      "requires_manual_review": true,
+      "review_note": "Listing shows older phone/email signals and should be checked for stale or unintended public contact details before any support correction."
+    },
+    {
+      "label": "Edge Insights Mold Art company profile",
+      "url": "https://info.edgeinsights.in/company/Mold-Art-India-Pvt.-Ltd./125418",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_text": "moldartindia.com",
+      "requires_manual_review": true,
+      "review_note": "Business-intelligence profile includes older financial/product text; use only as corroboration and monitor for stale public claims."
+    },
+    {
+      "label": "TheCompanyCheck Deco Metal MSME profile",
+      "url": "https://www.thecompanycheck.com/org/deco-metal/61d73c9787",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_text": "Deco Metal",
+      "requires_manual_review": true,
+      "review_note": "MSME profile corroborates Deco Metal manufacturing, Malad and Vasai signals; monitor for accuracy but keep customer CTA routed to Moldart website/email/WhatsApp."
+    },
+    {
+      "label": "ImportGenius Deco Metal shipment result",
+      "url": "https://www.importgenius.cn/india/suppliers/guangdong-golden-goblet-import-and-export-co-ltd",
+      "kind": "third-party-directory",
+      "critical": false,
+      "expected_text": "DECO METAL",
+      "requires_manual_review": true,
+      "review_note": "Trade-data result references Deco Metal shipment context; paid/third-party data should be monitored only, not treated as a public CTA source."
+    }
+  ],
+  "public_source_observations": [
+    {
+      "source": "Moldart owned website",
+      "status": "canonical",
+      "observation": "Owned pages consistently surface https://moldartindia.com/, info@moldartindia.com, +91 7208088788, +91 7208188788, Moldart LinkedIn company, and Yash Doshi contact route."
+    },
+    {
+      "source": "Moldart LinkedIn company",
+      "status": "canonical-compatible",
+      "observation": "Public company result links website, Yash Doshi contact, info@moldartindia.com, +91 7208088788, and +91 7208188788."
+    },
+    {
+      "source": "Justdial claimed Moldart listing",
+      "status": "improved-manual-review",
+      "observation": "Now shows Deco Metal legal name and GSTIN 27AAHFD0708K1ZI in public search; Justdial support is active by email, but direct page is automation-hostile and should stay under manual review."
+    },
+    {
+      "source": "Justdial older Mold Art India Pvt Ltd listing",
+      "status": "removed-confirmed-watch-cache",
+      "observation": "Justdial confirmed by email on 2026-05-08 that the older duplicate/stale listing was removed. Continue watching for cache residue or direct-page verification limits only."
+    },
+    {
+      "source": "Company statutory directories",
+      "status": "statutory-corroboration",
+      "observation": "TheCompanyCheck, Zauba, Tofler, QuickCompany and AllIndiaITR-type results corroborate CIN U74994MH2005PTC153242, Mumbai address, Lalit Nagindas Doshi, and Sonal Lalitkumar Doshi; they should not be treated as public customer-contact sources unless the directory supports verified updates."
+    },
+    {
+      "source": "Deco Metal GST directories",
+      "status": "statutory-corroboration",
+      "observation": "Pice and KnowYourGST corroborate DECO METAL, GSTIN 27AAHFD0708K1ZI, partnership status, Malad West/New Sonal Link address, and retail/wholesale business; CTA should still point to Moldart website/email/WhatsApp."
+    },
+    {
+      "source": "Mouldart India Uttar Pradesh results",
+      "status": "known-confusion",
+      "observation": "Mouldart (India) Private Limited / mouldartindia.com is a separate Greater Noida plastic mould/design business with office@mouldartindia.com and GSTIN 09AAPCM8272Q1ZA."
+    },
+    {
+      "source": "Recruiting and people-data directories",
+      "status": "manual-review-expanded",
+      "observation": "SignalHire, Internshala, Behance and similar profiles can surface older Moldart/Deco contact, job, phone, employee, and specialty fields; keep them monitored and correct only through verified claim/support routes."
+    },
+    {
+      "source": "Trade and business-intelligence directories",
+      "status": "manual-review-expanded",
+      "observation": "TradeIndia, Edge Insights, Bharatibiz, TheCompanyCheck MSME, and ImportGenius-style results can carry old category, location, phone, financial, shipment, or contact signals. Use as evidence/watch sources, not canonical customer-contact sources."
+    }
+  ],
+  "public_search_queries": [
+    "Moldart",
+    "Mold Art India Private Limited",
+    "Deco Metal 27AAHFD0708K1ZI",
+    "Yash Doshi Moldart",
+    "Yash Lalit Doshi",
+    "Lalit Doshi Moldart",
+    "Lalit Nagindas Doshi Mold Art",
+    "Sonal Doshi Moldart",
+    "Sonal Lalitkumar Doshi Mold Art",
+    "Moldart India Justdial",
+    "Mold Art India Pvt Ltd Justdial 27AAECM2543F1ZO",
+    "Mouldart India Private Limited",
+    "Moldart SignalHire",
+    "Moldart TradeIndia",
+    "Moldart Internshala",
+    "Moldart Edge Insights",
+    "Moldart Behance Deco Metal",
+    "Deco Metal Bharatibiz",
+    "Deco Metal ImportGenius",
+    "Deco Metal TheCompanyCheck MSME"
+  ],
+  "safety_rules": [
+    "Do not copy raw API keys, tokens, passwords, vault entries, or private credentials into reports.",
+    "Use connected tools or vault references only when a specific external update requires authentication.",
+    "Protect Yash's time: do not accept calls or schedule discussions for listing cleanup; keep support resolution written and email-only unless Yash explicitly overrides.",
+    "Do not change third-party profiles, send emails, or deploy production changes without a clear approval gate."
+  ]
+}
