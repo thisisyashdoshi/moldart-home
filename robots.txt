@@ -4,6 +4,7 @@ Disallow: /data/
 Disallow: /sw.js
 Disallow: /offline.html
 Disallow: /.tmp/
+Disallow: /_next/
 
 User-agent: OAI-SearchBot
 Allow: /

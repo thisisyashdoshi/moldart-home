@@ -22,6 +22,4 @@
 /faq                      /faq/                     301
 /process                  /process/                 301
 /insights                 /insights/                301
-/api/ows-intake          /.netlify/functions/ows-intake  200
-/api/ows-admin           /.netlify/functions/ows-admin   200
 /*                        /404.html                 404
