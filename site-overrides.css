@@ -6159,3 +6159,318 @@ main > section {
   }
 }
 
+
+
+/* 2026.54 final UX decision pass: explicit navigation, lighter buyer-first hero, stronger video affordance */
+.site-header .max-w {
+  gap: 1rem;
+}
+
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-left: 1rem;
+  white-space: nowrap;
+}
+
+.site-nav-link {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #52525b;
+}
+
+.site-nav-link:hover,
+.site-nav-link.is-active {
+  color: #18181b;
+}
+
+.site-header-rfq {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.55rem;
+  padding: 0.58rem 0.88rem;
+  border: 1px solid #18181b;
+  border-radius: 999px;
+  background: #18181b;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.site-header-rfq:hover,
+.site-header-rfq.is-active {
+  background: #3f3f46;
+  border-color: #3f3f46;
+  color: #fff;
+}
+
+.site-search-trigger-compact {
+  flex: 0 1 21rem !important;
+  max-width: 21rem !important;
+}
+
+.home-hero-section {
+  background: linear-gradient(135deg, #fafaf9 0%, #f4f1ed 52%, #ffffff 100%) !important;
+  color: #18181b !important;
+  border-bottom: 1px solid #e7e5e4 !important;
+}
+
+.home-hero-section .home-hero-shell-modern {
+  min-height: auto !important;
+  align-items: center !important;
+}
+
+.home-hero-section .home-hero-heading {
+  color: #18181b !important;
+  max-width: 12.2ch !important;
+  text-shadow: none !important;
+}
+
+.home-hero-section .home-hero-intro {
+  color: #3f3f46 !important;
+}
+
+.home-hero-section .home-hero-kicker-line,
+.home-hero-section .home-browse-row-label {
+  color: #52525b !important;
+}
+
+.home-hero-section .home-hero-media-shell,
+.home-hero-section .home-browse-panel {
+  border-color: #e7e5e4 !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  box-shadow: 0 24px 56px rgba(24, 24, 27, 0.07) !important;
+}
+
+.home-hero-section .home-browse-row {
+  border-color: #ece7e2 !important;
+  background: #fff !important;
+}
+
+.home-hero-section .home-browse-row p,
+.home-hero-section .ui-kicker {
+  color: #52525b !important;
+}
+
+.home-hero-section .btn-outline {
+  border-color: #d6d3d1 !important;
+  background: #fff !important;
+  color: #18181b !important;
+}
+
+.home-hero-section .btn-outline:hover {
+  border-color: #18181b !important;
+  background: #18181b !important;
+  color: #fff !important;
+}
+
+.home-browse-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.home-browse-row {
+  min-height: 6rem;
+}
+
+.contact-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.35rem;
+}
+
+.article-panel:has(.article-panel-label:first-child) {
+  background: linear-gradient(180deg, #fff 0%, #fafaf9 100%);
+}
+
+.article-panel .article-panel-label:first-child {
+  color: #52525b;
+}
+
+.youtube-card {
+  grid-template-columns: minmax(8.5rem, 12rem) minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr auto;
+  align-items: stretch;
+  min-height: 9.5rem;
+  padding: 0.85rem !important;
+}
+
+.youtube-card-thumb {
+  position: relative;
+  grid-row: 1 / span 4;
+  grid-column: 1;
+  min-height: 8rem;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #09090b;
+}
+
+.youtube-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.86;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.youtube-card:hover .youtube-card-thumb img {
+  transform: scale(1.04);
+  opacity: 0.95;
+}
+
+.youtube-card-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.youtube-card-play::before {
+  content: '';
+  width: 3.1rem;
+  height: 3.1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.youtube-card-play::after {
+  content: '';
+  position: absolute;
+  border-top: 0.55rem solid transparent;
+  border-bottom: 0.55rem solid transparent;
+  border-left: 0.82rem solid #18181b;
+  margin-left: 0.18rem;
+}
+
+.youtube-card-type,
+.youtube-card strong,
+.youtube-card span:not(.youtube-card-type):not(.youtube-card-thumb):not(.youtube-card-play),
+.youtube-card em {
+  grid-column: 2;
+}
+
+body::after {
+  content: 'Draft B - UX polish' !important;
+}
+
+@media (max-width: 1180px) {
+  .site-nav-links {
+    gap: 0.62rem;
+    margin-left: 0.45rem;
+  }
+
+  .site-nav-link {
+    font-size: 0.66rem;
+  }
+
+  .site-search-trigger-compact {
+    flex-basis: 15rem !important;
+    max-width: 15rem !important;
+  }
+}
+
+@media (max-width: 980px) {
+  .site-nav-links {
+    display: none !important;
+  }
+
+  .site-search-trigger-compact {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header-rfq {
+    min-height: 2.45rem;
+    padding: 0.52rem 0.72rem;
+  }
+
+  .home-browse-list {
+    grid-template-columns: 1fr !important;
+  }
+
+  .home-browse-row {
+    min-height: 0;
+  }
+
+  .contact-hero-actions .btn-primary,
+  .contact-hero-actions .btn-outline {
+    width: 100%;
+  }
+
+  .youtube-card {
+    grid-template-columns: 1fr;
+  }
+
+  .youtube-card-thumb,
+  .youtube-card-type,
+  .youtube-card strong,
+  .youtube-card span:not(.youtube-card-type):not(.youtube-card-thumb):not(.youtube-card-play),
+  .youtube-card em {
+    grid-column: 1;
+  }
+
+  .youtube-card-thumb {
+    grid-row: auto;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 460px) {
+  .site-header .max-w {
+    gap: 0.55rem;
+  }
+
+  .site-header-rfq {
+    display: none;
+  }
+}
+
+/* 2026.54b mobile heading legibility: reduce heavy subpixel fringing on small screens. */
+@media (max-width: 768px) {
+  .home-hero-heading,
+  .article-page-heading,
+  .ui-section-title,
+  .page-heading {
+    font-weight: 700 !important;
+    letter-spacing: -0.028em !important;
+    text-shadow: none !important;
+  }
+}
+
+/* 2026.54c article headline polish: cleaner editorial title weight. */
+.article-page-heading {
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  text-shadow: none !important;
+}
+
+/* 2026.54d video overlay specificity fix. */
+.youtube-card .youtube-card-play {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2;
+  display: grid !important;
+  place-items: center !important;
+  pointer-events: none;
+}
+
+.youtube-card .youtube-card-play::before {
+  display: block !important;
+}
+
+.youtube-card .youtube-card-play::after {
+  top: 50%;
+  left: 50%;
+  transform: translate(-35%, -50%);
+}
