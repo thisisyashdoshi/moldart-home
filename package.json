@@ -1,8 +1,0 @@
-{
-  "name": "moldart-home",
-  "version": "2026.05.15",
-  "private": true,
-  "scripts": {
-    "build": "node -e \"console.log('Static Moldart site ready')\""
-  }
-}
