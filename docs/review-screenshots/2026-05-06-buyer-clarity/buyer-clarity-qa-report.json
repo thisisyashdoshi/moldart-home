@@ -1,0 +1,273 @@
+{
+  "base": "http://127.0.0.1:4173",
+  "createdAt": "2026-05-06T08:08:27.939Z",
+  "checks": [
+    {
+      "viewport": "desktop",
+      "page": "press-plates",
+      "url": "http://127.0.0.1:4173/products/press-plates/",
+      "status": 200,
+      "title": "Press Plates Supplier | Lamination Press Plates — Moldart",
+      "hasBuyerClarity": true,
+      "hasAiGeneratedReference": false,
+      "brokenImages": [],
+      "pageOverflow": false,
+      "overflowingElements": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "viewport": "desktop",
+      "page": "decorative-ss-panels",
+      "url": "http://127.0.0.1:4173/products/decorative-ss-panels/",
+      "status": 200,
+      "title": "Decorative Stainless Steel Panels | PVD SS Sheets — Moldart",
+      "hasBuyerClarity": true,
+      "hasAiGeneratedReference": false,
+      "brokenImages": [],
+      "pageOverflow": false,
+      "overflowingElements": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "viewport": "desktop",
+      "page": "wood-flooring",
+      "url": "http://127.0.0.1:4173/products/wood-flooring/",
+      "status": 200,
+      "title": "Engineered Wood Flooring Supplier | Laminate Flooring — Moldart",
+      "hasBuyerClarity": true,
+      "hasAiGeneratedReference": false,
+      "brokenImages": [],
+      "pageOverflow": false,
+      "overflowingElements": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "viewport": "desktop",
+      "page": "contact",
+      "url": "http://127.0.0.1:4173/contact/",
+      "status": 200,
+      "title": "Contact Moldart | Inquiry Form, WhatsApp, Phone & Meeting Booking",
+      "hasBuyerClarity": true,
+      "hasAiGeneratedReference": false,
+      "brokenImages": [],
+      "pageOverflow": false,
+      "overflowingElements": [
+        {
+          "tag": "input",
+          "cls": "lead-honeypot",
+          "text": ""
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "viewport": "desktop",
+      "page": "process",
+      "url": "http://127.0.0.1:4173/process/",
+      "status": 200,
+      "title": "How Moldart Works | RFQ, Approval, Dispatch & Repeat Supply",
+      "hasBuyerClarity": true,
+      "hasAiGeneratedReference": false,
+      "brokenImages": [],
+      "pageOverflow": false,
+      "overflowingElements": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "viewport": "desktop",
+      "page": "portal-boundary",
+      "url": "http://127.0.0.1:4173/portal/",
+      "status": 200,
+      "title": "Private Portal Access | Moldart",
+      "hasBuyerClarity": true,
+      "hasAiGeneratedReference": false,
+      "brokenImages": [],
+      "pageOverflow": false,
+      "overflowingElements": [],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "viewport": "mobile",
+      "page": "press-plates",
+      "url": "http://127.0.0.1:4173/products/press-plates/",
+      "status": 200,
+      "title": "Press Plates Supplier | Lamination Press Plates — Moldart",
+      "hasBuyerClarity": true,
+      "hasAiGeneratedReference": false,
+      "brokenImages": [],
+      "pageOverflow": false,
+      "overflowingElements": [
+        {
+          "tag": "button",
+          "cls": "site-search-trigger site-search-trigger-compact",
+          "text": "Search products, documents, guides...\n                    Press plates, flooring"
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "viewport": "mobile",
+      "page": "decorative-ss-panels",
+      "url": "http://127.0.0.1:4173/products/decorative-ss-panels/",
+      "status": 200,
+      "title": "Decorative Stainless Steel Panels | PVD SS Sheets — Moldart",
+      "hasBuyerClarity": true,
+      "hasAiGeneratedReference": false,
+      "brokenImages": [],
+      "pageOverflow": false,
+      "overflowingElements": [
+        {
+          "tag": "button",
+          "cls": "site-search-trigger site-search-trigger-compact",
+          "text": "Search products, documents, guides...\n                    Press plates, flooring"
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "viewport": "mobile",
+      "page": "wood-flooring",
+      "url": "http://127.0.0.1:4173/products/wood-flooring/",
+      "status": 200,
+      "title": "Engineered Wood Flooring Supplier | Laminate Flooring — Moldart",
+      "hasBuyerClarity": true,
+      "hasAiGeneratedReference": false,
+      "brokenImages": [],
+      "pageOverflow": false,
+      "overflowingElements": [
+        {
+          "tag": "button",
+          "cls": "site-search-trigger site-search-trigger-compact",
+          "text": "Search products, documents, guides...\n                    Press plates, flooring"
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "viewport": "mobile",
+      "page": "contact",
+      "url": "http://127.0.0.1:4173/contact/",
+      "status": 200,
+      "title": "Contact Moldart | Inquiry Form, WhatsApp, Phone & Meeting Booking",
+      "hasBuyerClarity": true,
+      "hasAiGeneratedReference": false,
+      "brokenImages": [],
+      "pageOverflow": false,
+      "overflowingElements": [
+        {
+          "tag": "button",
+          "cls": "site-search-trigger site-search-trigger-compact",
+          "text": "Search products, documents, guides...\n                    Press plates, flooring"
+        },
+        {
+          "tag": "input",
+          "cls": "lead-honeypot",
+          "text": ""
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "viewport": "mobile",
+      "page": "process",
+      "url": "http://127.0.0.1:4173/process/",
+      "status": 200,
+      "title": "How Moldart Works | RFQ, Approval, Dispatch & Repeat Supply",
+      "hasBuyerClarity": true,
+      "hasAiGeneratedReference": false,
+      "brokenImages": [],
+      "pageOverflow": false,
+      "overflowingElements": [
+        {
+          "tag": "button",
+          "cls": "site-search-trigger site-search-trigger-compact",
+          "text": "Search products, documents, guides...\n                    Press plates, flooring"
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "viewport": "mobile",
+      "page": "portal-boundary",
+      "url": "http://127.0.0.1:4173/portal/",
+      "status": 200,
+      "title": "Private Portal Access | Moldart",
+      "hasBuyerClarity": true,
+      "hasAiGeneratedReference": false,
+      "brokenImages": [],
+      "pageOverflow": false,
+      "overflowingElements": [
+        {
+          "tag": "button",
+          "cls": "site-search-trigger site-search-trigger-compact",
+          "text": "Search products, documents, guides...\n                    Press plates, flooring"
+        },
+        {
+          "tag": "table",
+          "cls": "",
+          "text": "RolePublic-safe viewBoundaryBuyerApproved RFQs, quotes, orders, and documents af"
+        },
+        {
+          "tag": "thead",
+          "cls": "",
+          "text": "RolePublic-safe viewBoundary"
+        },
+        {
+          "tag": "tr",
+          "cls": "",
+          "text": "RolePublic-safe viewBoundary"
+        },
+        {
+          "tag": "th",
+          "cls": "",
+          "text": "Public-safe view"
+        },
+        {
+          "tag": "th",
+          "cls": "",
+          "text": "Boundary"
+        },
+        {
+          "tag": "tbody",
+          "cls": "",
+          "text": "BuyerApproved RFQs, quotes, orders, and documents after company approval.No publ"
+        },
+        {
+          "tag": "tr",
+          "cls": "",
+          "text": "BuyerApproved RFQs, quotes, orders, and documents after company approval.No publ"
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0
+  }
+}

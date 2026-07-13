@@ -1,0 +1,563 @@
+{
+  "featured": [
+    "press-plates",
+    "press-pads",
+    "decorative-panels",
+    "industrial-press-plates"
+  ],
+  "products": [
+    {
+      "id": "press-plates",
+      "name": "Press Plates",
+      "material": "Wood",
+      "stage": "Raw Materials",
+      "use": "Tooling",
+      "industry": [
+        "Lamination",
+        "Flooring",
+        "Furniture"
+      ],
+      "image": "/images/page5_img3.webp",
+      "summary": "Requirement-led stainless press-plate programmes for panel, laminate, flooring, door, and furniture pressing routes.",
+      "specs": [
+        "Application, press type, temperature, pressure, cycle, and panel stack required before selection",
+        "Plate grade, build, dimensions, flatness, hardness, and surface condition confirmed in approved evidence",
+        "Smooth, mirror, matte, embossed, EIR, chrome, and non-chrome routes require separate sample and technical approval",
+        "MFC, TFL, HPL, CPL, compact laminate, flooring, door, and furniture fit confirmed per programme"
+      ],
+      "applications": [
+        "MFC and TFL panel surfacing",
+        "HPL, CPL, and compact laminate pressing",
+        "Flooring, door, and furniture surface programmes"
+      ],
+      "customization": "Surface pattern, plate build, and chrome requirement are confirmed per programme.",
+      "technical": {
+        "grades": [
+          "Programme-specific stainless grade"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led Asia supply coordination"
+      }
+    },
+    {
+      "id": "press-pads",
+      "name": "Press Pads",
+      "material": "Wood",
+      "stage": "Raw Materials",
+      "use": "Process",
+      "industry": [
+        "Lamination",
+        "Flooring",
+        "Furniture"
+      ],
+      "image": "/images/press_pad_new.webp",
+      "summary": "Requirement-led press-pad and cushion-system selection for heat and pressure equalisation in wood-panel lamination.",
+      "specs": [
+        "Press type, panel stack, temperature, pressure, cycle, and working size required before selection",
+        "Pad construction, elastic response, thickness, and surface confirmed against approved technical evidence",
+        "Service-life basis and replacement criteria confirmed for the actual press programme",
+        "Brass, high-elastic, felt, wire-mesh, and related accessories remain qualification-only until separately approved"
+      ],
+      "applications": [
+        "Short-cycle lamination",
+        "High-volume pressing",
+        "Decorative board manufacturing"
+      ],
+      "customization": "Width and construction are aligned to the press line and programme.",
+      "technical": {
+        "grades": [
+          "Programme-specific cushion construction"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led Asia supply coordination"
+      }
+    },
+    {
+      "id": "engraved-cylinders",
+      "name": "Engraved Cylinders",
+      "material": "Wood",
+      "stage": "Raw Materials",
+      "use": "Surface",
+      "industry": [
+        "Lamination",
+        "Furniture"
+      ],
+      "image": "/images/page5_img1.webp",
+      "summary": "Rotogravure cylinders for décor printing and pattern transfer.",
+      "specs": [
+        "Printing line, repeat, base-paper, ink, and pattern inputs required before cylinder review",
+        "Cylinder construction, engraving method, depth, surface condition, and dimensions confirmed in approved technical evidence",
+        "Master artwork, colour route, repeat tolerance, and retained sample required for approval",
+        "Production fit confirmed against the actual printing and décor programme"
+      ],
+      "applications": [
+        "Decor paper printing",
+        "Pattern development",
+        "Woodgrain reproduction"
+      ],
+      "customization": "Pattern-specific engraving is confirmed against the décor programme.",
+      "technical": {
+        "grades": [
+          "Programme-specific cylinder construction"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led Asia supply coordination"
+      }
+    },
+    {
+      "id": "decor-paper",
+      "name": "Printed Decor Paper",
+      "material": "Wood",
+      "stage": "Raw Materials",
+      "use": "Decorative",
+      "industry": [
+        "Furniture",
+        "Flooring",
+        "Lamination"
+      ],
+      "image": "/images/page5_img2.webp",
+      "summary": "Printed décor-paper qualification for laminate, flooring, door, and furniture surface programmes.",
+      "specs": [
+        "Base paper, grammage, print route, colour standard, repeat, and end-use required before selection",
+        "Strength, porosity, resin compatibility, and process conditions confirmed in approved technical evidence",
+        "Master sample, batch approval, metamerism, and retained-reference route confirmed per programme",
+        "Melamine impregnated paper and PP, PVC, PET, or PETG films remain separate qualification routes"
+      ],
+      "applications": [
+        "Decorative laminates",
+        "Flooring overlays",
+        "Furniture surfaces"
+      ],
+      "customization": "Décor, print route, and programme matching are confirmed per enquiry.",
+      "technical": {
+        "grades": [
+          "Decor paper"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led Asia supply coordination"
+      }
+    },
+    {
+      "id": "plywood",
+      "name": "Plywood",
+      "material": "Wood",
+      "stage": "Semi-Finished",
+      "use": "Panel",
+      "industry": [
+        "Furniture",
+        "Architecture"
+      ],
+      "image": "/images/page6_img1.webp",
+      "summary": "Plywood panels for structural and furniture-grade applications.",
+      "specs": [
+        "End use, core construction, face, thickness, dimensions, and load condition required before selection",
+        "Bond, moisture, strength, emission, and surface requirements confirmed in approved technical evidence",
+        "Sample, test method, tolerance, and acceptance basis confirmed per programme",
+        "Furniture, interior, formwork, and architectural fit reviewed separately"
+      ],
+      "applications": [
+        "Furniture carcasses",
+        "Interior fit-outs",
+        "Architectural panels"
+      ],
+      "customization": "Core build, thickness, and panel programme are confirmed per enquiry.",
+      "technical": {
+        "grades": [
+          "Programme-specific plywood construction"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "fiberboard",
+      "name": "Fiberboard",
+      "material": "Wood",
+      "stage": "Semi-Finished",
+      "use": "Panel",
+      "industry": [
+        "Furniture",
+        "Flooring",
+        "Architecture"
+      ],
+      "image": "/images/page6_img3.webp",
+      "summary": "MDF and HDF panels for lamination, painting, and conversion.",
+      "specs": [
+        "MDF or HDF route, end use, thickness, dimensions, machining, and surface process required before selection",
+        "Density profile, moisture, swelling, strength, emission, and surface condition confirmed in approved technical evidence",
+        "MR, HMR, FR, flooring-core, and other special routes require separate product and test approval",
+        "Painting, lamination, door, furniture, and flooring fit reviewed against the actual process"
+      ],
+      "applications": [
+        "Furniture fronts",
+        "Door skins",
+        "Decorative panel systems",
+        "Flooring cores"
+      ],
+      "customization": "Board type and panel programme are matched to the final application.",
+      "technical": {
+        "grades": [
+          "MDF",
+          "HDF"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "wood-flooring",
+      "name": "Laminate Flooring Systems",
+      "material": "Laminate flooring",
+      "stage": "Finished",
+      "use": "Surface",
+      "industry": [
+        "Flooring",
+        "Architecture"
+      ],
+      "image": "/images/page7_img1.webp",
+      "summary": "HDF-core click-system laminate flooring programmes for residential and commercial use; final construction and acceptance requirements are confirmed per approved programme.",
+      "specs": [
+        "Core, decorative surface, balancing layer, and locking route confirmed per approved programme",
+        "Declared use class and test method confirmed in the applicable product TDS",
+        "Moisture, storage, underlay, and installation conditions confirmed before dispatch",
+        "Click-system and accessory compatibility confirmed against the approved sample"
+      ],
+      "applications": [
+        "Residential laminate flooring",
+        "Commercial laminate flooring",
+        "Hospitality flooring programmes"
+      ],
+      "customization": "Décor, construction, use class, locking profile, and accessory coordination are confirmed per programme.",
+      "technical": {
+        "grades": [
+          "Programme-specific"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "custom-furniture",
+      "name": "Custom Furniture",
+      "material": "Wood",
+      "stage": "Finished",
+      "use": "Decorative",
+      "industry": [
+        "Furniture",
+        "Architecture"
+      ],
+      "image": "/images/page7_img4.webp",
+      "summary": "CAD/CNC-led furniture development for hospitality, residential, and retail programmes.",
+      "specs": [
+        "Approved drawing, dimensions, quantity, use environment, and installation responsibility required before review",
+        "Core, hardware, finish, edge, assembly, and packing route confirmed against approved samples and documents",
+        "CAD, CNC, prototype, counter-sample, and production route confirmed per supplier programme",
+        "Hospitality, retail, residential, and commercial fit reviewed project by project"
+      ],
+      "applications": [
+        "Hospitality furniture",
+        "Retail fixtures",
+        "Custom interior packages"
+      ],
+      "customization": "Layout, finish, and build are confirmed per project.",
+      "technical": {
+        "grades": [
+          "Project-specific"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "osb",
+      "name": "OSB (Oriented Strand Board)",
+      "material": "Wood",
+      "stage": "Semi-Finished",
+      "use": "Panel",
+      "industry": [
+        "Furniture",
+        "Architecture"
+      ],
+      "image": "/images/page6_img2.webp",
+      "summary": "OSB panels for structural and load-bearing applications.",
+      "specs": [
+        "OSB type, end use, load condition, exposure class, thickness, and dimensions required before selection",
+        "Strength, bond, moisture, swelling, emission, and structural basis confirmed in approved technical evidence",
+        "Fine-surface, fire-retardant, and special-emission routes require separate product and test approval",
+        "Construction, furniture, packaging, and other fit reviewed against the applicable standard and use condition"
+      ],
+      "applications": [
+        "Load-bearing construction",
+        "Furniture frameworks",
+        "Packaging"
+      ],
+      "customization": "Panel build and programme alignment are confirmed per enquiry.",
+      "technical": {
+        "grades": [
+          "OSB"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "particleboard",
+      "name": "Particleboard",
+      "material": "Wood",
+      "stage": "Semi-Finished",
+      "use": "Panel",
+      "industry": [
+        "Furniture",
+        "Architecture"
+      ],
+      "image": "/images/page6_img4.webp",
+      "summary": "Particleboard cores for commercial furniture and panel programmes.",
+      "specs": [
+        "End use, face route, thickness, dimensions, machining, edge, and load condition required before selection",
+        "Density profile, moisture, swelling, strength, screw holding, and emission confirmed in approved technical evidence",
+        "MR, structural, melamine-faced, and special-emission routes require separate product and test approval",
+        "Furniture, cabinetry, shelving, and component fit reviewed per programme"
+      ],
+      "applications": [
+        "Office furniture",
+        "Cabinetry",
+        "Shelving systems"
+      ],
+      "customization": "Thickness and programme fit are confirmed against final use.",
+      "technical": {
+        "grades": [
+          "Programme-specific"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "flooring-accessories",
+      "name": "Flooring Accessories",
+      "material": "Wood",
+      "stage": "Finished",
+      "use": "Decorative",
+      "industry": [
+        "Flooring",
+        "Architecture"
+      ],
+      "image": "/images/page7_img2.webp",
+      "summary": "Accessory profiles and trims coordinated with flooring programmes.",
+      "specs": [
+        "Room transitions, expansion gaps, wall junctions, stair details, and installation method required before selection",
+        "Profile type, base material, dimensions, finish, and wear surface confirmed in approved technical evidence",
+        "Décor coordination and accessory compatibility confirmed against the approved flooring sample",
+        "Final profile set, quantities, packing, and spares confirmed per programme"
+      ],
+      "applications": [
+        "Room transitions",
+        "Wall skirting",
+        "Staircases"
+      ],
+      "customization": "Accessory mix and finish matching are confirmed per programme.",
+      "technical": {
+        "grades": [
+          "Programme-specific"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "ready-made-furniture",
+      "name": "Ready-Made Furniture",
+      "material": "Wood",
+      "stage": "Finished",
+      "use": "Decorative",
+      "industry": [
+        "Furniture",
+        "Architecture"
+      ],
+      "image": "/images/page7_img3.webp",
+      "summary": "Modular furniture components and assemblies for commercial and residential programmes.",
+      "specs": [
+        "Product type, dimensions, quantity, use environment, assembly, and installation responsibility required before review",
+        "Board, face, hardware, edge, machining, finish, and packing confirmed in approved technical evidence",
+        "Scratch, stain, load, durability, and tolerance requirements confirmed by applicable test and sample",
+        "Flat-pack, assembled, component, and finished-unit routes confirmed per programme"
+      ],
+      "applications": [
+        "Office workstations",
+        "Modular kitchens",
+        "Wardrobe systems"
+      ],
+      "customization": "Flat-pack or assembled delivery is confirmed per programme.",
+      "technical": {
+        "grades": [
+          "Melamine-faced",
+          "HPL-faced"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Programme-dependent"
+      }
+    },
+    {
+      "id": "decorative-panels",
+      "name": "Decorative Stainless Steel Sheets",
+      "material": "Steel",
+      "stage": "Finished",
+      "use": "Surface",
+      "industry": [
+        "Architecture"
+      ],
+      "image": "/images/page9_img1.webp",
+      "summary": "Requirement-led decorative stainless steel sheet programmes for architectural, elevator, retail, wall, ceiling, and project surfaces.",
+      "specs": [
+        "Use environment, grade, dimensions, thickness, substrate, fabrication, and installation route required before selection",
+        "Mirror, hairline, satin, No.4, etched, embossed, PVD, sand-blasted, and other finishes require separate sample approval",
+        "Anti-fingerprint coating, protective film, finish direction, colour tolerance, and cleaning basis confirmed in approved evidence",
+        "Packing, interleaving, corner protection, loading, and receiving criteria confirmed per project"
+      ],
+      "applications": [
+        "Elevator cabins",
+        "Wall cladding",
+        "Retail displays"
+      ],
+      "customization": "Grade, finish, and visual approval route are confirmed per project.",
+      "technical": {
+        "grades": [
+          "Programme-specific stainless grade"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led India / China supply coordination"
+      }
+    },
+    {
+      "id": "ss-profiles",
+      "name": "SS Profiles",
+      "material": "Steel",
+      "stage": "Finished",
+      "use": "Hardware",
+      "industry": [
+        "Architecture",
+        "Furniture"
+      ],
+      "image": "/images/page9_img2_clean.webp",
+      "summary": "Decorative stainless steel profiles and trims for transitions, edging, and inlays.",
+      "specs": [
+        "Profile purpose, section drawing, grade, thickness, length, tolerance, and installation method required before selection",
+        "Hairline, mirror, PVD, or other finish alignment confirmed against the approved sheet sample",
+        "Forming, bending, welding, edge, film, and packing requirements confirmed in approved technical evidence",
+        "Panel-matched trims, transitions, edging, and inlays confirmed per project"
+      ],
+      "applications": [
+        "Wall panel trims",
+        "Floor transitions",
+        "Furniture inlay accents"
+      ],
+      "customization": "Profile shape and finish alignment are confirmed per programme.",
+      "technical": {
+        "grades": [
+          "Programme-specific stainless grade"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led India / China supply coordination"
+      }
+    },
+    {
+      "id": "ss-furniture",
+      "name": "SS Furniture",
+      "material": "Steel",
+      "stage": "Finished",
+      "use": "Decorative",
+      "industry": [
+        "Furniture",
+        "Architecture",
+        "Metal Finishing"
+      ],
+      "image": "/images/page9_img3.webp",
+      "summary": "Decorative stainless steel furniture for interior, retail, and hospitality programmes.",
+      "specs": [
+        "Approved drawing, structure, dimensions, quantity, use environment, and installation responsibility required before review",
+        "Grade, frame, weld, finish, top material, hardware, and assembly confirmed in approved technical evidence",
+        "Scratch, stain, corrosion, load, and durability requirements confirmed by applicable test and sample",
+        "Indoor, outdoor, PVD, anti-fingerprint, and mixed-material routes reviewed separately"
+      ],
+      "applications": [
+        "Luxury furniture",
+        "Lobby features",
+        "Retail and hospitality interiors"
+      ],
+      "customization": "Structure, finish, and top material are confirmed per project.",
+      "technical": {
+        "grades": [
+          "Project-specific stainless grade"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led India / China supply coordination"
+      }
+    },
+    {
+      "id": "industrial-press-plates",
+      "name": "Industrial Press Plates",
+      "material": "Steel",
+      "stage": "Raw Materials",
+      "use": "Tooling",
+      "industry": [
+        "Lamination",
+        "PCB/CCL",
+        "Technical Laminates"
+      ],
+      "image": "/images/page9_img4.webp",
+      "summary": "Requirement-led press plates and tooling for PCB, CCL, FPC, smart-card, IC-substrate, security, and technical laminate lines.",
+      "specs": [
+        "Press line, product stack, temperature, pressure, cycle, working size, cleanliness, and handling requirements required before selection",
+        "Grade, hardness, flatness, parallelism, roughness, magnetism, dimensions, and machining confirmed in approved technical evidence",
+        "Separator, carrier, top, bonding, caul, protection, and other tooling types require separate drawing and finished-part approval",
+        "FPC, PCB, CCL, smart-card, IC-substrate, security, and technical-laminate fit confirmed per programme"
+      ],
+      "applications": [
+        "PCB, CCL, and FPC pressing",
+        "Smart-card and IC-substrate lamination",
+        "Security and technical laminates",
+        "Separator, carrier, caul, and protection tooling"
+      ],
+      "customization": "Tolerance route and final plate build are confirmed against the production line.",
+      "technical": {
+        "grades": [
+          "Programme-specific tooling grade"
+        ],
+        "certifications": [],
+        "leadTime": "On request",
+        "moq": "On request",
+        "origin": "Mumbai-led Asia supply coordination"
+      }
+    }
+  ]
+}

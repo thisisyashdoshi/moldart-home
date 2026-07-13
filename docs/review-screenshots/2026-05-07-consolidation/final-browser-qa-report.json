@@ -1,0 +1,424 @@
+{
+  "generatedAt": "2026-05-07T07:16:02.260Z",
+  "publicPages": [
+    {
+      "viewport": "mobile",
+      "name": "home",
+      "route": "/",
+      "url": "http://127.0.0.1:4173/",
+      "title": "Moldart | Laminates, Panels, Flooring & Decorative Steel",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "name": "explore",
+      "route": "/explore/",
+      "url": "http://127.0.0.1:4173/explore/",
+      "title": "Explore Moldart | Search solutions, product sheets, and guides",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "name": "products",
+      "route": "/products/",
+      "url": "http://127.0.0.1:4173/products/",
+      "title": "Products | Moldart Product Sheets",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "name": "press-plates",
+      "route": "/products/press-plates/",
+      "url": "http://127.0.0.1:4173/products/press-plates/",
+      "title": "Press Plates Supplier | Lamination Press Plates — Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "name": "solutions",
+      "route": "/solutions/",
+      "url": "http://127.0.0.1:4173/solutions/",
+      "title": "B2B Sourcing Solutions | Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "name": "resources",
+      "route": "/resources/",
+      "url": "http://127.0.0.1:4173/resources/",
+      "title": "Resources & Downloads | Product Catalogues — Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "name": "contact",
+      "route": "/contact/",
+      "url": "http://127.0.0.1:4173/contact/",
+      "title": "Contact Moldart | RFQ Brief and Workflow",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "name": "about",
+      "route": "/about/",
+      "url": "http://127.0.0.1:4173/about/",
+      "title": "About Moldart | Since 1989",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "name": "faq",
+      "route": "/faq/",
+      "url": "http://127.0.0.1:4173/faq/",
+      "title": "Sourcing & RFQ FAQ | Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "name": "portal-boundary",
+      "route": "/portal/",
+      "url": "http://127.0.0.1:4173/portal/",
+      "title": "Private Portal Access | Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet",
+      "name": "home",
+      "route": "/",
+      "url": "http://127.0.0.1:4173/",
+      "title": "Moldart | Laminates, Panels, Flooring & Decorative Steel",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet",
+      "name": "explore",
+      "route": "/explore/",
+      "url": "http://127.0.0.1:4173/explore/",
+      "title": "Explore Moldart | Search solutions, product sheets, and guides",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet",
+      "name": "products",
+      "route": "/products/",
+      "url": "http://127.0.0.1:4173/products/",
+      "title": "Products | Moldart Product Sheets",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet",
+      "name": "press-plates",
+      "route": "/products/press-plates/",
+      "url": "http://127.0.0.1:4173/products/press-plates/",
+      "title": "Press Plates Supplier | Lamination Press Plates — Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet",
+      "name": "solutions",
+      "route": "/solutions/",
+      "url": "http://127.0.0.1:4173/solutions/",
+      "title": "B2B Sourcing Solutions | Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet",
+      "name": "resources",
+      "route": "/resources/",
+      "url": "http://127.0.0.1:4173/resources/",
+      "title": "Resources & Downloads | Product Catalogues — Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet",
+      "name": "contact",
+      "route": "/contact/",
+      "url": "http://127.0.0.1:4173/contact/",
+      "title": "Contact Moldart | RFQ Brief and Workflow",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet",
+      "name": "about",
+      "route": "/about/",
+      "url": "http://127.0.0.1:4173/about/",
+      "title": "About Moldart | Since 1989",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet",
+      "name": "faq",
+      "route": "/faq/",
+      "url": "http://127.0.0.1:4173/faq/",
+      "title": "Sourcing & RFQ FAQ | Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "tablet",
+      "name": "portal-boundary",
+      "route": "/portal/",
+      "url": "http://127.0.0.1:4173/portal/",
+      "title": "Private Portal Access | Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "desktop",
+      "name": "home",
+      "route": "/",
+      "url": "http://127.0.0.1:4173/",
+      "title": "Moldart | Laminates, Panels, Flooring & Decorative Steel",
+      "overflow": false
+    },
+    {
+      "viewport": "desktop",
+      "name": "explore",
+      "route": "/explore/",
+      "url": "http://127.0.0.1:4173/explore/",
+      "title": "Explore Moldart | Search solutions, product sheets, and guides",
+      "overflow": false
+    },
+    {
+      "viewport": "desktop",
+      "name": "products",
+      "route": "/products/",
+      "url": "http://127.0.0.1:4173/products/",
+      "title": "Products | Moldart Product Sheets",
+      "overflow": false
+    },
+    {
+      "viewport": "desktop",
+      "name": "press-plates",
+      "route": "/products/press-plates/",
+      "url": "http://127.0.0.1:4173/products/press-plates/",
+      "title": "Press Plates Supplier | Lamination Press Plates — Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "desktop",
+      "name": "solutions",
+      "route": "/solutions/",
+      "url": "http://127.0.0.1:4173/solutions/",
+      "title": "B2B Sourcing Solutions | Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "desktop",
+      "name": "resources",
+      "route": "/resources/",
+      "url": "http://127.0.0.1:4173/resources/",
+      "title": "Resources & Downloads | Product Catalogues — Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "desktop",
+      "name": "contact",
+      "route": "/contact/",
+      "url": "http://127.0.0.1:4173/contact/",
+      "title": "Contact Moldart | RFQ Brief and Workflow",
+      "overflow": false
+    },
+    {
+      "viewport": "desktop",
+      "name": "about",
+      "route": "/about/",
+      "url": "http://127.0.0.1:4173/about/",
+      "title": "About Moldart | Since 1989",
+      "overflow": false
+    },
+    {
+      "viewport": "desktop",
+      "name": "faq",
+      "route": "/faq/",
+      "url": "http://127.0.0.1:4173/faq/",
+      "title": "Sourcing & RFQ FAQ | Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "desktop",
+      "name": "portal-boundary",
+      "route": "/portal/",
+      "url": "http://127.0.0.1:4173/portal/",
+      "title": "Private Portal Access | Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "wide",
+      "name": "home",
+      "route": "/",
+      "url": "http://127.0.0.1:4173/",
+      "title": "Moldart | Laminates, Panels, Flooring & Decorative Steel",
+      "overflow": false
+    },
+    {
+      "viewport": "wide",
+      "name": "explore",
+      "route": "/explore/",
+      "url": "http://127.0.0.1:4173/explore/",
+      "title": "Explore Moldart | Search solutions, product sheets, and guides",
+      "overflow": false
+    },
+    {
+      "viewport": "wide",
+      "name": "products",
+      "route": "/products/",
+      "url": "http://127.0.0.1:4173/products/",
+      "title": "Products | Moldart Product Sheets",
+      "overflow": false
+    },
+    {
+      "viewport": "wide",
+      "name": "press-plates",
+      "route": "/products/press-plates/",
+      "url": "http://127.0.0.1:4173/products/press-plates/",
+      "title": "Press Plates Supplier | Lamination Press Plates — Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "wide",
+      "name": "solutions",
+      "route": "/solutions/",
+      "url": "http://127.0.0.1:4173/solutions/",
+      "title": "B2B Sourcing Solutions | Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "wide",
+      "name": "resources",
+      "route": "/resources/",
+      "url": "http://127.0.0.1:4173/resources/",
+      "title": "Resources & Downloads | Product Catalogues — Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "wide",
+      "name": "contact",
+      "route": "/contact/",
+      "url": "http://127.0.0.1:4173/contact/",
+      "title": "Contact Moldart | RFQ Brief and Workflow",
+      "overflow": false
+    },
+    {
+      "viewport": "wide",
+      "name": "about",
+      "route": "/about/",
+      "url": "http://127.0.0.1:4173/about/",
+      "title": "About Moldart | Since 1989",
+      "overflow": false
+    },
+    {
+      "viewport": "wide",
+      "name": "faq",
+      "route": "/faq/",
+      "url": "http://127.0.0.1:4173/faq/",
+      "title": "Sourcing & RFQ FAQ | Moldart",
+      "overflow": false
+    },
+    {
+      "viewport": "wide",
+      "name": "portal-boundary",
+      "route": "/portal/",
+      "url": "http://127.0.0.1:4173/portal/",
+      "title": "Private Portal Access | Moldart",
+      "overflow": false
+    }
+  ],
+  "processRedirect": {
+    "status": 200,
+    "url": "http://127.0.0.1:4173/contact/#workflow",
+    "ok": true
+  },
+  "search": [
+    {
+      "term": "press plate",
+      "firstHref": "/products/press-plates/",
+      "expected": "/products/press-plates/",
+      "ok": true
+    },
+    {
+      "term": "steel panel",
+      "firstHref": "/products/decorative-ss-panels/",
+      "expected": "/products/decorative-ss-panels/",
+      "ok": true
+    },
+    {
+      "term": "flooring",
+      "firstHref": "/solutions/flooring/",
+      "expected": "/solutions/flooring/",
+      "ok": true
+    },
+    {
+      "term": "catalog",
+      "firstHref": "/resources/",
+      "expected": "/resources/",
+      "ok": true
+    },
+    {
+      "term": "RFQ",
+      "firstHref": "/contact/",
+      "expected": "/contact/",
+      "ok": true
+    },
+    {
+      "term": "portal",
+      "firstHref": "/portal/",
+      "expected": "/portal/",
+      "ok": true
+    }
+  ],
+  "portal": {
+    "health": {
+      "ok": true,
+      "authReady": true,
+      "services": {
+        "database": true,
+        "redis": true,
+        "storage": true
+      }
+    },
+    "loginPages": [
+      {
+        "viewport": "desktop",
+        "url": "http://127.0.0.1:3100/portal",
+        "title": "Moldart Trade Portal",
+        "overflow": false,
+        "noDemoVisible": true,
+        "servicesReady": true
+      },
+      {
+        "viewport": "mobile",
+        "url": "http://127.0.0.1:3100/portal",
+        "title": "Moldart Trade Portal",
+        "overflow": false,
+        "noDemoVisible": true,
+        "servicesReady": true
+      }
+    ],
+    "roleRoutes": [
+      {
+        "role": "buyer",
+        "landing": "/portal/buyer/dashboard",
+        "expectedRoute": "/portal/buyer/dashboard",
+        "blockedRoute": "/portal/admin/dashboard",
+        "blockedLanding": "/portal/buyer/dashboard",
+        "blocked": true
+      },
+      {
+        "role": "seller",
+        "landing": "/portal/seller/dashboard",
+        "expectedRoute": "/portal/seller/dashboard",
+        "blockedRoute": "/portal/buyer/dashboard",
+        "blockedLanding": "/portal/seller/dashboard",
+        "blocked": true
+      },
+      {
+        "role": "admin",
+        "landing": "/portal/admin/dashboard",
+        "expectedRoute": "/portal/admin/dashboard",
+        "blockedRoute": "/portal/seller/dashboard",
+        "blockedLanding": "/portal/admin/dashboard",
+        "blocked": true
+      }
+    ]
+  },
+  "consoleErrors": []
+}

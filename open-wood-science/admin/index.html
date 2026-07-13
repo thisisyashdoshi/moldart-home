@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Wood Science Admin Review Console | Moldart</title>
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Internal Open Wood Science review, screening, assignment and publication control console.">
+  <link rel="stylesheet" href="/open-wood-science/ows.css">
+</head>
+<body>
+<main class="ows-shell">
+  <header class="ows-topbar">
+    <div class="ows-mark" aria-label="Moldart Open Wood Science admin">
+      <span class="ows-mark-main">MOLDART</span>
+      <span class="ows-mark-sub">Open Wood Science admin</span>
+    </div>
+    <nav class="ows-nav" aria-label="Open Wood Science links">
+      <a href="/open-wood-science/contribute/">Contributor page</a>
+      <a href="/open-wood-science/reviewer-intake/">Legacy intake link</a>
+    </nav>
+  </header>
+
+  <section class="ows-hero">
+    <div>
+      <h1>Review console.</h1>
+      <p>One quiet place to screen contributors, prepare private-copy assignments, monitor active reviews, and keep public publication blocked until source-backed review is complete.</p>
+    </div>
+    <aside class="ows-mode-card">
+      <strong>Safety mode</strong>
+      <p class="ows-muted">The console does not share files. It only reads SharePoint Lists and prepares assignment triggers. Live assignment creation stays disabled unless the server explicitly allows it.</p>
+    </aside>
+  </section>
+
+  <section class="ows-panel" aria-label="Admin authentication">
+    <div class="ows-form-grid">
+      <div class="ows-field">
+        <label for="admin-token">Admin token</label>
+        <input id="admin-token" type="password" autocomplete="off" placeholder="Paste OWS_ADMIN_TOKEN">
+        <span class="ows-hint">Stored only in this browser tab session.</span>
+      </div>
+      <div class="ows-field">
+        <label>&nbsp;</label>
+        <div class="ows-actions">
+          <button id="save-token" class="ows-button secondary" type="button">Load console</button>
+          <button id="clear-token" class="ows-button ghost" type="button">Clear</button>
+          <button id="refresh" class="ows-button ghost" type="button" hidden>Refresh</button>
+        </div>
+      </div>
+    </div>
+    <div id="status" class="ows-status" role="status" aria-live="polite"></div>
+  </section>
+
+  <section id="dashboard" hidden>
+    <section class="ows-section">
+      <div class="ows-section-head">
+        <div>
+          <h2>Command view</h2>
+          <p id="generated-at"></p>
+        </div>
+        <span id="mutation-state" class="ows-pill"></span>
+      </div>
+      <div id="metrics" class="ows-metrics"></div>
+    </section>
+
+    <section class="ows-section ows-grid-2">
+      <article class="ows-panel">
+        <h2>Next decisions</h2>
+        <div id="risks" class="ows-stack"></div>
+      </article>
+      <article class="ows-panel">
+        <h2>End-to-end gate</h2>
+        <ol class="ows-flow">
+          <li>Contributor applies through the public page.</li>
+          <li>Moldart screens identity, evidence, conflict and topic fit.</li>
+          <li>Admin prepares an assignment trigger only after approval.</li>
+          <li>Existing automation creates one private review copy and sends access.</li>
+          <li>Reviewer edits with tracked changes and source-backed comments.</li>
+          <li>Moldart accepts, rejects or holds edits before public release.</li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="ows-section ows-admin-layout">
+      <div>
+        <div class="ows-section-head">
+          <div>
+            <h2>Applicant review</h2>
+            <p>Only approve after verification. Use a card to prefill the assignment draft.</p>
+          </div>
+        </div>
+        <div id="contributors" class="ows-stack"></div>
+      </div>
+
+      <aside class="ows-panel">
+        <h2>Assignment draft</h2>
+        <p>Dry-run first. Live creation only writes to <code>OWS_Review_Assignments</code>; access is handled by the existing private-copy automation.</p>
+        <form id="assignment-form">
+          <div class="ows-field">
+            <label for="reviewer-name">Reviewer name</label>
+            <input id="reviewer-name" name="reviewerName" required>
+          </div>
+          <div class="ows-field">
+            <label for="reviewer-email">Reviewer email</label>
+            <input id="reviewer-email" name="reviewerEmail" type="email" required>
+          </div>
+          <div class="ows-form-grid">
+            <div class="ows-field">
+              <label for="document-code">Document code</label>
+              <select id="document-code" name="documentCode" required></select>
+            </div>
+            <div class="ows-field">
+              <label for="due-date">Due date</label>
+              <input id="due-date" name="dueDate" type="date">
+            </div>
+          </div>
+          <div class="ows-field">
+            <label for="contributor-id">Contributor item ID</label>
+            <input id="contributor-id" name="contributorItemId" placeholder="Optional">
+          </div>
+          <div class="ows-field">
+            <label for="assignment-notes">Approval note</label>
+            <textarea id="assignment-notes" name="notes" placeholder="Short screening basis. Do not include confidential data."></textarea>
+          </div>
+          <div class="ows-checks">
+            <label><input id="confirm-master" type="checkbox"> No master draft or parent folder access.</label>
+            <label><input id="confirm-copy" type="checkbox"> One private review copy only.</label>
+            <label><input id="request-live" type="checkbox"> Request live SharePoint assignment creation if enabled.</label>
+          </div>
+          <div class="ows-actions ows-mt-14">
+            <button class="ows-button secondary" type="submit">Preview assignment</button>
+          </div>
+        </form>
+        <pre id="assignment-result" class="ows-preview" hidden></pre>
+      </aside>
+    </section>
+
+    <section class="ows-section">
+      <div class="ows-section-head">
+        <div>
+          <h2>Active assignments</h2>
+          <p>Private-copy status, reviewer, due date and folder-safety signal.</p>
+        </div>
+      </div>
+      <div id="assignments" class="ows-grid-2"></div>
+    </section>
+
+    <section class="ows-section">
+      <div class="ows-section-head">
+        <div>
+          <h2>Document board</h2>
+          <p>All technical drafts stay blocked from public release until accepted review and source decisions are recorded.</p>
+        </div>
+      </div>
+      <div id="documents" class="ows-grid-3"></div>
+    </section>
+
+    <section class="ows-section ows-grid-2">
+      <article class="ows-panel">
+        <h2>Publication readiness</h2>
+        <div id="publication" class="ows-stack"></div>
+      </article>
+      <article class="ows-panel">
+        <h2>Recent audit</h2>
+        <div id="changes" class="ows-stack"></div>
+      </article>
+    </section>
+  </section>
+
+  <p class="ows-footer-note">Internal use only. Do not enable live assignment creation until the owner has reviewed dry-run output against SharePoint.</p>
+</main>
+
+<script src="/open-wood-science/admin/inline-admin-1.js"></script>
+</body>
+</html>

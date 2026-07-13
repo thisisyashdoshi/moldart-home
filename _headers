@@ -1,0 +1,99 @@
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=(), accelerometer=(), gyroscope=(), magnetometer=(), display-capture=(), fullscreen=(self)
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw=' 'sha256-VlmP0A50QtdsDOscYrYc77JGmuEjZCJ+s4IBasd7jho=' 'sha256-RpQVoE3CRUzbuUKNokW+nQapCdeziyhCcaxxDNFFi9o=' 'sha256-I39vOnWPyv3DL67aBWGmiUMeUiQJX+HjxwKOGoI10RI=' 'sha256-+L3myeUEo07RY+dHHqUOl2IWHGp04Fjg5poBCxMBY3o=' 'sha256-r7zgAZnjvGKRcCb7zYwINLjK4nAEMjRi3E5PsH/Z5sg=' 'sha256-E6JbLHqZI7Mnf/+g5t9iqh0rxysWrU0LEBQBiKkne1I=' 'sha256-Fi9VlWb2opbna0Tj+qHkI9PGFHC3qbv+eAkqC2y+uKQ=' 'sha256-VfZm75izRTlSJaBZL/CK6KVBuz1+dTo3tYUbCGogiuI=' 'sha256-sDxC1jELxcMoGeI+x9oX0IrCovohMn9JBtfFsmhY3xM=' 'sha256-3LMamfDRLE+pU4kzT1Ruky5m5LHZUw4N4mXP4b07rYk=' 'sha256-4jwminB63U0Ul4BnDHMAYupWPb7pdtDMtvSDnH47hko=' 'sha256-QMPhBvG2vnD54I6u0BGBaNz/iv/I9dA+/5yzzQdk6Ls=' 'sha256-064LFLgAcI8iazctOO+Y3m+CCqfC5Pjg8q0Vrst8wWk=' 'sha256-zBjjy7PWR2Unhhg54Aa2wlOlsfMeYuKIxp8m1sH/uSY=' 'sha256-2cKOxB3em6kHJJZXxFmlxeQyQurR87g2u74JOPgG+4c=' 'sha256-LDqzXPWsMcpTBkY2M0ZwoSxheGYjF2i1l7FrAoZUxg8=' 'sha256-juzx4CasXoHqIOXiSIz8EQiaE9SovT+erh7yTdIpGbY=' 'sha256-+4InYaL8ShGPVfzGrCf1LRbkhqe8fIensaNdUu/BEAw=' 'sha256-8Oe5x5g+PuoZau15oItxdDrr4ZZ7+zNS2TsMEzYy5g0=' 'sha256-yZ/OllcrlrbRHD6ss3udEASIk9bT30N/CYz8aeGtx4Y=' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://static.cloudflareinsights.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
+/api/*
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/open-wood-science/*
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/portal/
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/portal/index.html
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/portal/*
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: index, follow
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: index, follow
+
+/site.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/home.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/styles.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/main.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/lead-forms.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/pages.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/data/*
+  Cache-Control: public, max-age=86400
+  Access-Control-Allow-Origin: *
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.ico
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon-*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/site.webmanifest
+  Cache-Control: public, max-age=604800
+
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+
+/sitemap-images.xml
+  Cache-Control: public, max-age=86400
+
+/robots.txt
+  Cache-Control: public, max-age=86400
+
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/downloads/*
+  Cache-Control: public, max-age=2592000
+

@@ -1,0 +1,642 @@
+{
+  "generatedAt": "2026-07-12",
+  "counts": {
+    "publicVideos": 40,
+    "longForm": 18,
+    "shorts": 22,
+    "publishedInsights": 51,
+    "directlyMappedInsights": 19,
+    "insightsWithVideo": 19,
+    "insightsWithoutVideo": 32,
+    "insightsWithImage": 51,
+    "insightsWithoutImage": 0,
+    "insightsWithEditorialImage": 51,
+    "videosNeedingNewInsight": 0
+  },
+  "selectedInsightMedia": [
+    {
+      "slug": "custom-furniture-brief-guide",
+      "title": "Custom Furniture Briefs: Turning Layout Intent into a Usable RFQ",
+      "category": "Furniture Programmes",
+      "url": "https://moldartindia.com/insights/custom-furniture-brief-guide/",
+      "image": "/images/insights/editorial/custom-furniture-brief-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "ready-made-furniture-procurement-guide",
+      "title": "Ready-Made Furniture Procurement: What to Lock Before Dispatch",
+      "category": "Furniture Programmes",
+      "url": "https://moldartindia.com/insights/ready-made-furniture-procurement-guide/",
+      "image": "/images/insights/editorial/ready-made-furniture-procurement-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "custom-furniture-brief-drawing-sample-guide",
+      "title": "Custom Furniture Briefs: Drawing, Material Route, and Sample Approval",
+      "category": "Furniture Programmes",
+      "url": "https://moldartindia.com/insights/custom-furniture-brief-drawing-sample-guide/",
+      "image": "/images/insights/editorial/custom-furniture-brief-drawing-sample-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "decorative-ss-panel-approval-guide",
+      "title": "Decorative Stainless Steel Panel Approval: Grade, Finish, Sample, Environment",
+      "category": "Decorative Stainless Steel",
+      "url": "https://moldartindia.com/insights/decorative-ss-panel-approval-guide/",
+      "image": "/images/insights/editorial/decorative-ss-panel-approval-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "decorative-stainless-steel-sourcing-note",
+      "title": "Decorative Stainless Steel: Grades, Finishes, and Sourcing Routes",
+      "category": "Decorative Stainless Steel",
+      "url": "https://moldartindia.com/insights/decorative-stainless-steel-sourcing-note/",
+      "image": "/images/insights/editorial/decorative-stainless-steel-sourcing-note.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "ss-201-vs-304-panels",
+      "title": "SS 201 vs SS 304: Decorative Stainless Steel Panel Selection",
+      "category": "Decorative Stainless Steel",
+      "url": "https://moldartindia.com/insights/ss-201-vs-304-panels/",
+      "image": "/images/insights/editorial/ss-201-vs-304-panels.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "ss-profiles-application-guide",
+      "title": "Stainless Steel Profiles: Why the Trim Route Should Follow the Panel Route",
+      "category": "Decorative Stainless Steel",
+      "url": "https://moldartindia.com/insights/ss-profiles-application-guide/",
+      "image": "/images/insights/editorial/ss-profiles-application-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "decorative-stainless-steel-finish-family-guide",
+      "title": "Decorative Stainless Steel Finish Families: What Buyers Should Compare",
+      "category": "Decorative Stainless Steel",
+      "url": "https://moldartindia.com/insights/decorative-stainless-steel-finish-family-guide/",
+      "image": "/images/insights/editorial/decorative-stainless-steel-finish-family-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "engineered-flooring-selection-guide",
+      "title": "Laminate Flooring Selection: Construction, Use Class, and System Approval",
+      "category": "Flooring Systems",
+      "url": "https://moldartindia.com/insights/engineered-flooring-selection-guide/",
+      "image": "/images/insights/editorial/engineered-flooring-selection-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "hBA8HDYfufM",
+        "type": "video",
+        "title": "The Density Driver Behind Premium Flooring Materials",
+        "url": "https://www.youtube.com/watch?v=hBA8HDYfufM",
+        "topic": "Flooring material density and core quality"
+      }
+    },
+    {
+      "slug": "wood-flooring-core-moisture-wear-class-guide",
+      "title": "Laminate Flooring Core, Moisture, and Wear: What Buyers Should Verify",
+      "category": "Flooring Systems",
+      "url": "https://moldartindia.com/insights/wood-flooring-core-moisture-wear-class-guide/",
+      "image": "/images/insights/editorial/wood-flooring-core-moisture-wear-class-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "hBA8HDYfufM",
+        "type": "video",
+        "title": "The Density Driver Behind Premium Flooring Materials",
+        "url": "https://www.youtube.com/watch?v=hBA8HDYfufM",
+        "topic": "Flooring material density and core quality"
+      }
+    },
+    {
+      "slug": "engraved-cylinders-repeat-accuracy-guide",
+      "title": "Engraved Cylinders: Repeat Accuracy, Depth, and Why the Print Start Point Matters",
+      "category": "Printed Decor Paper & Cylinders",
+      "url": "https://moldartindia.com/insights/engraved-cylinders-repeat-accuracy-guide/",
+      "image": "/images/insights/editorial/engraved-cylinders-repeat-accuracy-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "jzC_qVBhlEs",
+        "type": "short",
+        "title": "How Doctor Blades Keep Printing Precise",
+        "url": "https://www.youtube.com/shorts/jzC_qVBhlEs",
+        "topic": "Doctor blades and printing precision"
+      }
+    },
+    {
+      "slug": "press-pads-heat-pressure-note",
+      "title": "Press Pads: Why Heat Transfer and Pressure Equalisation Matter More Than Brochure Claims",
+      "category": "Lamination Tooling",
+      "url": "https://moldartindia.com/insights/press-pads-heat-pressure-note/",
+      "image": "/images/insights/editorial/press-pads-heat-pressure-note.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "1qughskaUs4",
+        "type": "video",
+        "title": "How Press Pads Control Heat, Pressure, and Surface Quality",
+        "url": "https://www.youtube.com/watch?v=1qughskaUs4",
+        "topic": "Press pads, heat transfer, pressure equalisation, and laminate quality"
+      }
+    },
+    {
+      "slug": "press-pads-quality-replacement-checks",
+      "title": "Press Pads Quality & Replacement Checks for Running Lamination Lines",
+      "category": "Lamination Tooling",
+      "url": "https://moldartindia.com/insights/press-pads-quality-replacement-checks/",
+      "image": "/images/insights/editorial/press-pads-quality-replacement-checks.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "press-plates-panel-quality-guide",
+      "title": "Press Plates and Panel Quality: What Actually Changes the Surface",
+      "category": "Lamination Tooling",
+      "url": "https://moldartindia.com/insights/press-plates-panel-quality-guide/",
+      "image": "/images/insights/editorial/press-plates-panel-quality-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "pD67-Eko0uA",
+        "type": "video",
+        "title": "How EIR Laminate Texture Works Metallurgy Behind Real Wood Illusion 1",
+        "url": "https://www.youtube.com/watch?v=pD67-Eko0uA",
+        "topic": "EIR texture and real-wood laminate illusion"
+      }
+    },
+    {
+      "slug": "press-plates-replacement-programme-guide",
+      "title": "Press Plates Replacement Programmes: What Buyers Should Lock Before Reordering",
+      "category": "Lamination Tooling",
+      "url": "https://moldartindia.com/insights/press-plates-replacement-programme-guide/",
+      "image": "/images/insights/editorial/press-plates-replacement-programme-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "gwEm5Gb1RAk",
+        "type": "video",
+        "title": "How to Evaluate a Press Plate Before Buying",
+        "url": "https://www.youtube.com/watch?v=gwEm5Gb1RAk",
+        "topic": "Press plate buying checks"
+      }
+    },
+    {
+      "slug": "printed-decor-paper-selection-guide",
+      "title": "Printed Decor Paper: What to Lock Before Impregnation and Pressing",
+      "category": "Printed Decor Paper & Cylinders",
+      "url": "https://moldartindia.com/insights/printed-decor-paper-selection-guide/",
+      "image": "/images/insights/editorial/printed-decor-paper-selection-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "pD67-Eko0uA",
+        "type": "video",
+        "title": "How EIR Laminate Texture Works Metallurgy Behind Real Wood Illusion 1",
+        "url": "https://www.youtube.com/watch?v=pD67-Eko0uA",
+        "topic": "EIR texture and real-wood laminate illusion"
+      }
+    },
+    {
+      "slug": "press-plate-chrome-condition-guide",
+      "title": "Press Plate Chrome Condition: Why Surface Wear Changes Panel Output",
+      "category": "Lamination Tooling",
+      "url": "https://moldartindia.com/insights/press-plate-chrome-condition-guide/",
+      "image": "/images/insights/editorial/press-plate-chrome-condition-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "mw3zLJlRoA8",
+        "type": "video",
+        "title": "How Glossy, Matte, and Texture Press Plates Affect Final Surface Quality",
+        "url": "https://www.youtube.com/watch?v=mw3zLJlRoA8",
+        "topic": "Gloss, matte, texture, and surface quality"
+      }
+    },
+    {
+      "slug": "press-plates-pads-smart-tooling-perfect-panels",
+      "title": "Press Plates and Press Pads: Smart Tooling for Better Panel Consistency",
+      "category": "Lamination Tooling",
+      "url": "https://moldartindia.com/insights/press-plates-pads-smart-tooling-perfect-panels/",
+      "image": "/images/insights/editorial/press-plates-pads-smart-tooling-perfect-panels.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "printed-decor-paper-batch-repeat-approval-guide",
+      "title": "Printed Decor Paper Batch Repeat: Approval Before Impregnation",
+      "category": "Printed Decor Paper & Cylinders",
+      "url": "https://moldartindia.com/insights/printed-decor-paper-batch-repeat-approval-guide/",
+      "image": "/images/insights/editorial/printed-decor-paper-batch-repeat-approval-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "industrial-press-plates-pcb-ccl-note",
+      "title": "Industrial Press Plates for PCB and CCL: Flatness, Parallelism, and Surface Control",
+      "category": "Industrial Tooling",
+      "url": "https://moldartindia.com/insights/industrial-press-plates-pcb-ccl-note/",
+      "image": "/images/insights/editorial/industrial-press-plates-pcb-ccl-note.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "industrial-press-plates-quality-priorities",
+      "title": "Industrial Press Plates: Flatness, Parallelism, and Incoming Inspection Priorities",
+      "category": "Industrial Tooling",
+      "url": "https://moldartindia.com/insights/industrial-press-plates-quality-priorities/",
+      "image": "/images/insights/editorial/industrial-press-plates-quality-priorities.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "R54Ad3j0-28",
+        "type": "video",
+        "title": "Press Tooling Tolerances - Hidden Quality Driver",
+        "url": "https://www.youtube.com/watch?v=R54Ad3j0-28",
+        "topic": "Press tooling tolerances and quality drivers"
+      }
+    },
+    {
+      "slug": "standard-vs-industrial-press-plates",
+      "title": "Standard Press Plates vs Industrial Press Plates: When the Requirement Changes",
+      "category": "Industrial Tooling",
+      "url": "https://moldartindia.com/insights/standard-vs-industrial-press-plates/",
+      "image": "/images/insights/editorial/standard-vs-industrial-press-plates.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "R54Ad3j0-28",
+        "type": "video",
+        "title": "Press Tooling Tolerances - Hidden Quality Driver",
+        "url": "https://www.youtube.com/watch?v=R54Ad3j0-28",
+        "topic": "Press tooling tolerances and quality drivers"
+      }
+    },
+    {
+      "slug": "industrial-press-plates-receiving-flatness-checklist",
+      "title": "Industrial Press Plate Receiving Checklist: Flatness, Surface, and Handling",
+      "category": "Industrial Tooling",
+      "url": "https://moldartindia.com/insights/industrial-press-plates-receiving-flatness-checklist/",
+      "image": "/images/insights/editorial/industrial-press-plates-receiving-flatness-checklist.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "mdf-vs-hdf-surface-readiness-guide",
+      "title": "MDF vs HDF: Surface Readiness, Density, and Conversion Fit",
+      "category": "Panel Systems",
+      "url": "https://moldartindia.com/insights/mdf-vs-hdf-surface-readiness-guide/",
+      "image": "/images/insights/editorial/mdf-vs-hdf-surface-readiness-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "NVGRq86lKi0",
+        "type": "video",
+        "title": "The Isotropic Core Explained Engineering High Performance MDF, HDF & HDHMR Boards",
+        "url": "https://www.youtube.com/watch?v=NVGRq86lKi0",
+        "topic": "MDF, HDF, HDHMR, isotropic board core"
+      }
+    },
+    {
+      "slug": "osb-application-fit-guide",
+      "title": "OSB: When It Fits, When It Doesn't, and What to Confirm Early",
+      "category": "Panel Systems",
+      "url": "https://moldartindia.com/insights/osb-application-fit-guide/",
+      "image": "/images/insights/editorial/osb-application-fit-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "particleboard-buyers-guide",
+      "title": "Particleboard Buying Basics for Commercial Furniture Programmes",
+      "category": "Panel Systems",
+      "url": "https://moldartindia.com/insights/particleboard-buyers-guide/",
+      "image": "/images/insights/editorial/particleboard-buyers-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "plywood-vs-fiberboard-substrate-guide",
+      "title": "Plywood vs Fiberboard: Substrate Choice for Furniture Programmes",
+      "category": "Panel Systems",
+      "url": "https://moldartindia.com/insights/plywood-vs-fiberboard-substrate-guide/",
+      "image": "/images/insights/editorial/plywood-vs-fiberboard-substrate-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "89dWWwoYNCs",
+        "type": "video",
+        "title": "PB vs MDF vs HDF vs Plywood vs OSB Which Board Is Best",
+        "url": "https://www.youtube.com/watch?v=89dWWwoYNCs",
+        "topic": "Board substrate comparison"
+      }
+    },
+    {
+      "slug": "shuttering-plywood-surface-finish-note",
+      "title": "Shuttering Plywood Surface Finish and Reuse: What Buyers Should Compare",
+      "category": "Formwork / Shuttering",
+      "url": "https://moldartindia.com/insights/shuttering-plywood-surface-finish-note/",
+      "image": "/images/insights/editorial/shuttering-plywood-surface-finish-note.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "super-mirror-shuttering-plywood-guide",
+      "title": "Super-Mirror Shuttering Plywood: Surface Finish, Reuse, and Practical Fit",
+      "category": "Formwork / Shuttering",
+      "url": "https://moldartindia.com/insights/super-mirror-shuttering-plywood-guide/",
+      "image": "/images/insights/editorial/super-mirror-shuttering-plywood-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "upgraded-shuttering-plywood-vs-aluminium-plastic-formwork",
+      "title": "Upgraded Shuttering Plywood vs Aluminium and Plastic Formwork: A Practical Comparison",
+      "category": "Formwork / Shuttering",
+      "url": "https://moldartindia.com/insights/upgraded-shuttering-plywood-vs-aluminium-plastic-formwork/",
+      "image": "/images/insights/editorial/upgraded-shuttering-plywood-vs-aluminium-plastic-formwork.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "hpl-vs-lpl-material-selection-guide",
+      "title": "HPL vs LPL Material Selection: Use Case Before Surface Choice",
+      "category": "Decorative Surfaces",
+      "url": "https://moldartindia.com/insights/hpl-vs-lpl-material-selection-guide/",
+      "image": "/images/insights/editorial/hpl-vs-lpl-material-selection-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "-ZEfeAt2d20",
+        "type": "video",
+        "title": "How Decorative Laminate Becomes Real",
+        "url": "https://www.youtube.com/watch?v=-ZEfeAt2d20",
+        "topic": "Decorative laminate production and surface realism"
+      }
+    },
+    {
+      "slug": "fob-china-rfq-checklist-wood-steel-flooring-furniture-tooling",
+      "title": "FOB China RFQ Checklist for Wood, Steel, Flooring, Furniture, and Tooling",
+      "category": "RFQ & Sourcing Control",
+      "url": "https://moldartindia.com/insights/fob-china-rfq-checklist-wood-steel-flooring-furniture-tooling/",
+      "image": "/images/insights/editorial/fob-china-rfq-checklist-wood-steel-flooring-furniture-tooling.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "supplier-document-pack-tds-coa-mtc-test-report-packing-list-hs-discussion",
+      "title": "Supplier Document Pack: TDS, COA, MTC, Test Report, Packing List, HS Discussion",
+      "category": "RFQ & Sourcing Control",
+      "url": "https://moldartindia.com/insights/supplier-document-pack-tds-coa-mtc-test-report-packing-list-hs-discussion/",
+      "image": "/images/insights/editorial/supplier-document-pack-tds-coa-mtc-test-report-packing-list-hs-discussion.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "decorative-stainless-steel-201-304-316-430",
+      "title": "Decorative Stainless Steel: 201 vs 304 vs 316 vs 430",
+      "category": "Decorative Stainless Steel",
+      "url": "https://moldartindia.com/insights/decorative-stainless-steel-201-304-316-430/",
+      "image": "/images/insights/editorial/decorative-stainless-steel-201-304-316-430.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "pvd-stainless-steel-buyer-checklist",
+      "title": "PVD Stainless Steel Buyer Checklist",
+      "category": "Decorative Stainless Steel",
+      "url": "https://moldartindia.com/insights/pvd-stainless-steel-buyer-checklist/",
+      "image": "/images/insights/editorial/pvd-stainless-steel-buyer-checklist.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "anti-fingerprint-stainless-steel-use-case-limits-cleaning",
+      "title": "Anti-Fingerprint Stainless Steel: Use Case, Limits, Cleaning",
+      "category": "Decorative Stainless Steel",
+      "url": "https://moldartindia.com/insights/anti-fingerprint-stainless-steel-use-case-limits-cleaning/",
+      "image": "/images/insights/editorial/anti-fingerprint-stainless-steel-use-case-limits-cleaning.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "mirror-stainless-steel-scratch-distortion-pvc-film-packing",
+      "title": "Mirror Stainless Steel: Scratch, Distortion, PVC Film, Packing",
+      "category": "Decorative Stainless Steel",
+      "url": "https://moldartindia.com/insights/mirror-stainless-steel-scratch-distortion-pvc-film-packing/",
+      "image": "/images/insights/editorial/mirror-stainless-steel-scratch-distortion-pvc-film-packing.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "decorative-stainless-steel-packing-receiving-checklist",
+      "title": "Decorative Stainless Steel Packing and Receiving Checklist",
+      "category": "Decorative Stainless Steel",
+      "url": "https://moldartindia.com/insights/decorative-stainless-steel-packing-receiving-checklist/",
+      "image": "/images/insights/editorial/decorative-stainless-steel-packing-receiving-checklist.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "mdf-hdf-emission-grades-e1-e0-carb-tsca-title-vi",
+      "title": "MDF/HDF Emission Grades: E1, E0, CARB, TSCA Title VI",
+      "category": "Panel Systems",
+      "url": "https://moldartindia.com/insights/mdf-hdf-emission-grades-e1-e0-carb-tsca-title-vi/",
+      "image": "/images/insights/editorial/mdf-hdf-emission-grades-e1-e0-carb-tsca-title-vi.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "NVGRq86lKi0",
+        "type": "video",
+        "title": "The Isotropic Core Explained Engineering High Performance MDF, HDF & HDHMR Boards",
+        "url": "https://www.youtube.com/watch?v=NVGRq86lKi0",
+        "topic": "MDF, HDF, HDHMR, isotropic board core"
+      }
+    },
+    {
+      "slug": "particleboard-vs-mdf-vs-plywood-modular-furniture",
+      "title": "Particleboard vs MDF vs Plywood for Modular Furniture",
+      "category": "Panel Systems",
+      "url": "https://moldartindia.com/insights/particleboard-vs-mdf-vs-plywood-modular-furniture/",
+      "image": "/images/insights/editorial/particleboard-vs-mdf-vs-plywood-modular-furniture.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "89dWWwoYNCs",
+        "type": "video",
+        "title": "PB vs MDF vs HDF vs Plywood vs OSB Which Board Is Best",
+        "url": "https://www.youtube.com/watch?v=89dWWwoYNCs",
+        "topic": "Board substrate comparison"
+      }
+    },
+    {
+      "slug": "melamine-faced-board-lpl-buying-guide",
+      "title": "Melamine-Faced Board / LPL Buying Guide",
+      "category": "Decorative Surfaces",
+      "url": "https://moldartindia.com/insights/melamine-faced-board-lpl-buying-guide/",
+      "image": "/images/insights/editorial/melamine-faced-board-lpl-buying-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "hpl-vs-lpl-vs-cpl-vs-veneer-pet-pvc-acrylic",
+      "title": "HPL vs LPL vs CPL vs Veneer vs PET/PVC/Acrylic",
+      "category": "Decorative Surfaces",
+      "url": "https://moldartindia.com/insights/hpl-vs-lpl-vs-cpl-vs-veneer-pet-pvc-acrylic/",
+      "image": "/images/insights/editorial/hpl-vs-lpl-vs-cpl-vs-veneer-pet-pvc-acrylic.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "Evs0x1WbuL4",
+        "type": "video",
+        "title": "Moldart Engineering the Illusion - Material Science Behind Decorative Laminates",
+        "url": "https://www.youtube.com/watch?v=Evs0x1WbuL4",
+        "topic": "Decorative laminate material science"
+      }
+    },
+    {
+      "slug": "press-plate-defect-troubleshooting-guide",
+      "title": "Press Plate Defect Troubleshooting Guide",
+      "category": "Lamination Tooling",
+      "url": "https://moldartindia.com/insights/press-plate-defect-troubleshooting-guide/",
+      "image": "/images/insights/editorial/press-plate-defect-troubleshooting-guide.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "gnmYoZmdago",
+        "type": "video",
+        "title": "Eradicating Micro-Defects The Physics of Next-Gen Lamination",
+        "url": "https://www.youtube.com/watch?v=gnmYoZmdago",
+        "topic": "Lamination micro-defects and troubleshooting"
+      }
+    },
+    {
+      "slug": "press-pad-failure-symptoms-lamination-lines",
+      "title": "Press Pad Failure Symptoms in Lamination Lines",
+      "category": "Lamination Tooling",
+      "url": "https://moldartindia.com/insights/press-pad-failure-symptoms-lamination-lines/",
+      "image": "/images/insights/editorial/press-pad-failure-symptoms-lamination-lines.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "1qughskaUs4",
+        "type": "video",
+        "title": "How Press Pads Control Heat, Pressure, and Surface Quality",
+        "url": "https://www.youtube.com/watch?v=1qughskaUs4",
+        "topic": "Press pads, heat transfer, pressure equalisation, and laminate quality"
+      }
+    },
+    {
+      "slug": "lamination-stack-control-plate-pad-paper-substrate-press-cycle",
+      "title": "Lamination Stack Control: Plate + Pad + Paper + Substrate + Press Cycle",
+      "category": "Lamination Tooling",
+      "url": "https://moldartindia.com/insights/lamination-stack-control-plate-pad-paper-substrate-press-cycle/",
+      "image": "/images/insights/editorial/lamination-stack-control-plate-pad-paper-substrate-press-cycle.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": {
+        "id": "gnmYoZmdago",
+        "type": "video",
+        "title": "Eradicating Micro-Defects The Physics of Next-Gen Lamination",
+        "url": "https://www.youtube.com/watch?v=gnmYoZmdago",
+        "topic": "Lamination micro-defects and troubleshooting"
+      }
+    },
+    {
+      "slug": "printed-decor-paper-colour-matching-master-sample-batch-repeat-metamerism",
+      "title": "Printed Decor Paper Colour Matching: Master Sample, Batch Repeat, Metamerism",
+      "category": "Printed Decor Paper & Cylinders",
+      "url": "https://moldartindia.com/insights/printed-decor-paper-colour-matching-master-sample-batch-repeat-metamerism/",
+      "image": "/images/insights/editorial/printed-decor-paper-colour-matching-master-sample-batch-repeat-metamerism.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "flooring-accessories-skirting-stair-nosing-t-moulding-reducers-end-caps",
+      "title": "Flooring Accessories: Skirting, Stair Nosing, T-Moulding, Reducers, End Caps",
+      "category": "Flooring Systems",
+      "url": "https://moldartindia.com/insights/flooring-accessories-skirting-stair-nosing-t-moulding-reducers-end-caps/",
+      "image": "/images/insights/editorial/flooring-accessories-skirting-stair-nosing-t-moulding-reducers-end-caps.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "flooring-site-readiness-before-dispatch",
+      "title": "Laminate Flooring Site Readiness Before Dispatch",
+      "category": "Flooring Systems",
+      "url": "https://moldartindia.com/insights/flooring-site-readiness-before-dispatch/",
+      "image": "/images/insights/editorial/flooring-site-readiness-before-dispatch.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "formwork-plywood-cost-per-use-vs-first-cost",
+      "title": "Formwork Plywood: Cost Per Use vs First Cost",
+      "category": "Formwork / Shuttering",
+      "url": "https://moldartindia.com/insights/formwork-plywood-cost-per-use-vs-first-cost/",
+      "image": "/images/insights/editorial/formwork-plywood-cost-per-use-vs-first-cost.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "china-sample-approval-route-buyer-counter-production-sample",
+      "title": "China Sample Approval Route: Buyer Sample, Counter Sample, Production Sample",
+      "category": "RFQ & Sourcing Control",
+      "url": "https://moldartindia.com/insights/china-sample-approval-route-buyer-counter-production-sample/",
+      "image": "/images/insights/editorial/china-sample-approval-route-buyer-counter-production-sample.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    },
+    {
+      "slug": "what-buyers-should-not-compare-only-by-price",
+      "title": "What Buyers Should Not Compare Only by Price",
+      "category": "RFQ & Sourcing Control",
+      "url": "https://moldartindia.com/insights/what-buyers-should-not-compare-only-by-price/",
+      "image": "/images/insights/editorial/what-buyers-should-not-compare-only-by-price.webp",
+      "imageSource": "editorial",
+      "mediaStatus": "ILLUSTRATIVE_RENDER",
+      "selectedVideo": null
+    }
+  ]
+}

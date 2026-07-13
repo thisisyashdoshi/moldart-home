@@ -1,0 +1,13 @@
+# Large PDFs (>25MB) — exceed Cloudflare Pages file size limit
+downloads/HPL - OL - 4.pdf
+downloads/PRESS PLATE - TEXTURE COLLECTION.pdf
+downloads/LPL - SPECIALTY DECORATIVE PANELS.pdf
+downloads/WOOD - FURNITURE - 3.pdf
+downloads/LPL - GB - 01.pdf
+downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf
+.tmp/
+internal/
+public-site/
+node_modules/
+package-lock.json
+lighthouse-home.json

@@ -1,0 +1,10 @@
+{
+  "version": "2026.07.12.ab153fee40e3.de75e18501",
+  "generatedAt": "2026-07-12T06:46:40.281Z",
+  "git": {
+    "sha": "ab153fee40e3",
+    "branch": "release/2026-05-23-change-improve"
+  },
+  "site": "https://moldartindia.com",
+  "generator": "moldart-static-generator"
+}

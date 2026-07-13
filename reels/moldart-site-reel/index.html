@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moldart Website Reel Preview</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="./reel.css">
+</head>
+<body>
+  <main class="reel-page">
+    <section class="reel-wrap" aria-label="Moldart website reel preview">
+      <div class="reel-stage" id="reelStage">
+        <div class="reel-progress" aria-hidden="true">
+          <span class="progress-segment"></span>
+          <span class="progress-segment"></span>
+          <span class="progress-segment"></span>
+          <span class="progress-segment"></span>
+          <span class="progress-segment"></span>
+          <span class="progress-segment"></span>
+        </div>
+
+        <article class="scene is-active" data-start="0" data-end="4.0">
+          <img class="scene-media" src="./assets/home-top.png" alt="Moldart homepage hero on mobile">
+          <div class="scene-scrim"></div>
+          <div class="scene-copy">
+            <p class="scene-kicker">Moldart · current website</p>
+            <h1>China sourcing,<br>clarified.</h1>
+            <p>Specification-led supply for wood and decorative steel programmes.</p>
+          </div>
+        </article>
+
+        <article class="scene" data-start="4.0" data-end="7.4">
+          <img class="scene-media" src="./assets/solutions-top.png" alt="Moldart solutions page on mobile">
+          <div class="scene-scrim"></div>
+          <div class="scene-copy">
+            <p class="scene-kicker">Solutions</p>
+            <h2>Start with the application.</h2>
+            <p>Use programme-led pages to narrow the route before comparing sheets and specs.</p>
+          </div>
+        </article>
+
+        <article class="scene" data-start="7.4" data-end="12.9">
+          <img class="scene-media" src="./assets/explore-top.png" alt="Moldart explore page on mobile">
+          <div class="scene-scrim"></div>
+          <div class="scene-copy">
+            <p class="scene-kicker">Explore</p>
+            <h2>Search products, solutions, guides, and documents.</h2>
+            <p>One discovery layer for the full public portfolio.</p>
+          </div>
+        </article>
+
+        <article class="scene" data-start="12.9" data-end="16.5">
+          <img class="scene-media" src="./assets/insight-top.png" alt="Moldart insight article on mobile">
+          <div class="scene-scrim"></div>
+          <div class="scene-copy">
+            <p class="scene-kicker">Insights</p>
+            <h2>Read the technical note.</h2>
+            <p>Use deeper articles to judge tooling, quality signals, and process fit faster.</p>
+          </div>
+        </article>
+
+        <article class="scene" data-start="16.5" data-end="20.2">
+          <img class="scene-media" src="./assets/process-top.png" alt="Moldart process page on mobile">
+          <div class="scene-scrim"></div>
+          <div class="scene-copy">
+            <p class="scene-kicker">Process</p>
+            <h2>Prepare the RFQ better.</h2>
+            <p>Carry one approved baseline from route definition to repeat supply.</p>
+          </div>
+        </article>
+
+        <article class="scene scene-end" data-start="20.2" data-end="22.7">
+          <div class="end-grid"></div>
+          <div class="scene-copy scene-copy-end">
+            <p class="scene-kicker">Final frame</p>
+            <h2>Explore Moldart.</h2>
+            <p>moldartindia.com</p>
+          </div>
+        </article>
+
+        <div class="reel-overlay" id="reelOverlay">
+          <p class="overlay-label">Website reel preview · 22s</p>
+          <button class="reel-button" id="playButton" type="button">Play with sound</button>
+          <p class="overlay-note">Built from the current website using real page captures.</p>
+        </div>
+
+        <button class="reel-button reel-button-replay" id="replayButton" type="button" hidden>Replay</button>
+      </div>
+
+      <div class="reel-note">
+        <p><strong>Preview:</strong> vertical website reel concept for social sharing.</p>
+        <p>Click <strong>Play with sound</strong> to start the narration and timed scenes.</p>
+      </div>
+    </section>
+
+    <audio id="narration" preload="auto" src="./assets/narration.wav"></audio>
+  </main>
+  <script src="./reel.js"></script>
+</body>
+</html>

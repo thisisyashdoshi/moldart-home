@@ -1,0 +1,59 @@
+{
+  "name": "moldart-home",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node preview-server.js",
+    "build": "node build.js",
+    "generate": "node generate.js",
+    "preview": "node preview-server.js",
+    "preview:ensure": "node scripts/ensure-local-preview.mjs",
+    "preview:ows": "node scripts/ows-local-preview.mjs",
+    "audit:site": "node scripts/site-audit.js",
+    "audit:a11y": "node scripts/check-a11y.js",
+    "goal": "node scripts/moldart-quality-monitor.mjs --build",
+    "monitor:site": "node scripts/moldart-quality-monitor.mjs",
+    "monitor:site:build": "node scripts/moldart-quality-monitor.mjs --build",
+    "compare:live-draft": "node scripts/moldart-live-draft-compare.mjs",
+    "release:check": "node scripts/moldart-artifact-release-gate.mjs",
+    "test:ows-intake": "node scripts/test-ows-intake.mjs",
+    "test:ows-admin": "node scripts/test-ows-admin.mjs",
+    "minify:css": "cleancss -o styles.css styles.css && cleancss -o pages.css pages.css && cleancss -o site-overrides.css site-overrides.css",
+    "minify:js": "terser main.js -o main.js -c -m",
+    "format:check": "node scripts/check-format-light.mjs",
+    "lint:js": "node scripts/check-js-syntax.mjs",
+    "test:unit": "node scripts/test-lead-intake.mjs",
+    "secretlint:check": "node scripts/check-secrets-light.mjs",
+    "license:check": "node scripts/check-oss-licenses.js",
+    "security:deps": "npm audit --audit-level=high",
+    "lint:css": "node scripts/check-css-light.mjs",
+    "lint:html": "node scripts/check-html-light.mjs",
+    "unused:check": "node scripts/check-unused-light.mjs",
+    "lighthouse:check": "node scripts/check-lighthouse.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thisisyashdoshi/moldart-home.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/thisisyashdoshi/moldart-home/issues"
+  },
+  "homepage": "https://github.com/thisisyashdoshi/moldart-home#readme",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
+    "clean-css-cli": "^5.6.3",
+    "lighthouse": "^13.3.0",
+    "purgecss": "^8.0.0",
+    "sharp": "^0.34.5",
+    "terser": "^5.46.1",
+    "vitest": "^4.1.7"
+  },
+  "overrides": {
+    "ws": "8.21.0"
+  }
+}

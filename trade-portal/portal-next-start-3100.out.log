@@ -1,0 +1,8 @@
+
+> trade-portal@0.1.0 start
+> next start -p 3100 -H 127.0.0.1
+
+▲ Next.js 16.2.4
+- Local:         http://127.0.0.1:3100
+- Network:       http://127.0.0.1:3100
+✓ Ready in 1114ms

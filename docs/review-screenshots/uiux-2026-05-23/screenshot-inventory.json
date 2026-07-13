@@ -1,0 +1,272 @@
+[
+  {
+    "route": "/",
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1100,
+    "ok": true,
+    "size": 382188,
+    "file": "docs/review-screenshots/uiux-2026-05-23/home-desktop.png",
+    "out": ""
+  },
+  {
+    "route": "/explore/",
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1100,
+    "ok": true,
+    "size": 187928,
+    "file": "docs/review-screenshots/uiux-2026-05-23/explore-desktop.png",
+    "out": ""
+  },
+  {
+    "route": "/insights/",
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1100,
+    "ok": true,
+    "size": 212613,
+    "file": "docs/review-screenshots/uiux-2026-05-23/insights-desktop.png",
+    "out": ""
+  },
+  {
+    "route": "/contact/",
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1100,
+    "ok": true,
+    "size": 183695,
+    "file": "docs/review-screenshots/uiux-2026-05-23/contact-desktop.png",
+    "out": ""
+  },
+  {
+    "route": "/process/",
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1100,
+    "ok": true,
+    "size": 143904,
+    "file": "docs/review-screenshots/uiux-2026-05-23/process-desktop.png",
+    "out": ""
+  },
+  {
+    "route": "/products/",
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1100,
+    "ok": true,
+    "size": 150427,
+    "file": "docs/review-screenshots/uiux-2026-05-23/products-desktop.png",
+    "out": ""
+  },
+  {
+    "route": "/solutions/",
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1100,
+    "ok": true,
+    "size": 323448,
+    "file": "docs/review-screenshots/uiux-2026-05-23/solutions-desktop.png",
+    "out": ""
+  },
+  {
+    "route": "/resources/",
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1100,
+    "ok": true,
+    "size": 149021,
+    "file": "docs/review-screenshots/uiux-2026-05-23/resources-desktop.png",
+    "out": ""
+  },
+  {
+    "route": "/about/",
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 1100,
+    "ok": true,
+    "size": 166598,
+    "file": "docs/review-screenshots/uiux-2026-05-23/about-desktop.png",
+    "out": ""
+  },
+  {
+    "route": "/",
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "ok": true,
+    "size": 371788,
+    "file": "docs/review-screenshots/uiux-2026-05-23/home-tablet.png",
+    "out": ""
+  },
+  {
+    "route": "/explore/",
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "ok": true,
+    "size": 135856,
+    "file": "docs/review-screenshots/uiux-2026-05-23/explore-tablet.png",
+    "out": ""
+  },
+  {
+    "route": "/insights/",
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "ok": true,
+    "size": 120714,
+    "file": "docs/review-screenshots/uiux-2026-05-23/insights-tablet.png",
+    "out": ""
+  },
+  {
+    "route": "/contact/",
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "ok": true,
+    "size": 112745,
+    "file": "docs/review-screenshots/uiux-2026-05-23/contact-tablet.png",
+    "out": ""
+  },
+  {
+    "route": "/process/",
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "ok": true,
+    "size": 86586,
+    "file": "docs/review-screenshots/uiux-2026-05-23/process-tablet.png",
+    "out": ""
+  },
+  {
+    "route": "/products/",
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "ok": true,
+    "size": 111749,
+    "file": "docs/review-screenshots/uiux-2026-05-23/products-tablet.png",
+    "out": ""
+  },
+  {
+    "route": "/solutions/",
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "ok": true,
+    "size": 113381,
+    "file": "docs/review-screenshots/uiux-2026-05-23/solutions-tablet.png",
+    "out": ""
+  },
+  {
+    "route": "/resources/",
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "ok": true,
+    "size": 112843,
+    "file": "docs/review-screenshots/uiux-2026-05-23/resources-tablet.png",
+    "out": ""
+  },
+  {
+    "route": "/about/",
+    "viewport": "tablet",
+    "width": 834,
+    "height": 1112,
+    "ok": true,
+    "size": 117296,
+    "file": "docs/review-screenshots/uiux-2026-05-23/about-tablet.png",
+    "out": ""
+  },
+  {
+    "route": "/",
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "ok": true,
+    "size": 119802,
+    "file": "docs/review-screenshots/uiux-2026-05-23/home-mobile.png",
+    "out": ""
+  },
+  {
+    "route": "/explore/",
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "ok": true,
+    "size": 71807,
+    "file": "docs/review-screenshots/uiux-2026-05-23/explore-mobile.png",
+    "out": ""
+  },
+  {
+    "route": "/insights/",
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "ok": true,
+    "size": 72803,
+    "file": "docs/review-screenshots/uiux-2026-05-23/insights-mobile.png",
+    "out": ""
+  },
+  {
+    "route": "/contact/",
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "ok": true,
+    "size": 65314,
+    "file": "docs/review-screenshots/uiux-2026-05-23/contact-mobile.png",
+    "out": ""
+  },
+  {
+    "route": "/process/",
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "ok": true,
+    "size": 52991,
+    "file": "docs/review-screenshots/uiux-2026-05-23/process-mobile.png",
+    "out": ""
+  },
+  {
+    "route": "/products/",
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "ok": true,
+    "size": 65185,
+    "file": "docs/review-screenshots/uiux-2026-05-23/products-mobile.png",
+    "out": ""
+  },
+  {
+    "route": "/solutions/",
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "ok": true,
+    "size": 64075,
+    "file": "docs/review-screenshots/uiux-2026-05-23/solutions-mobile.png",
+    "out": ""
+  },
+  {
+    "route": "/resources/",
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "ok": true,
+    "size": 55109,
+    "file": "docs/review-screenshots/uiux-2026-05-23/resources-mobile.png",
+    "out": ""
+  },
+  {
+    "route": "/about/",
+    "viewport": "mobile",
+    "width": 390,
+    "height": 844,
+    "ok": true,
+    "size": 63557,
+    "file": "docs/review-screenshots/uiux-2026-05-23/about-mobile.png",
+    "out": ""
+  }
+]

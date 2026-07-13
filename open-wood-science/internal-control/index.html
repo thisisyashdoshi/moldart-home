@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Wood Science Internal Control | Moldart</title>
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Token-gated internal control dashboard for Open Wood Science reviewer intake and assignment workflow.">
+  <link rel="stylesheet" href="/open-wood-science/internal-control/inline-internal-control-1.css">
+</head>
+<body>
+<main>
+  <p class="eyebrow">Moldart - Open Wood Science</p>
+  <h1>Internal control dashboard</h1>
+  <p class="lead">A lightweight web-control layer for the current Microsoft 365 workflow. It reads SharePoint Lists, highlights screening/assignment risk, and prepares private-copy assignment triggers without directly sharing any document.</p>
+
+  <section class="notice" aria-label="Safety rules">
+    <strong>Safety boundary:</strong> this page never sends reviewer invitations directly and must never share master drafts or parent folders. Assignment creation only stages `OWS_Review_Assignments` with `AccessStatus = Approved - Send Access`; the existing private-copy automation handles access separately.
+  </section>
+
+  <section class="panel">
+    <div class="auth">
+      <div>
+        <label for="admin-token">Admin API token</label>
+        <input id="admin-token" type="password" autocomplete="off" placeholder="Paste OWS_ADMIN_TOKEN">
+        <span class="hint">Stored only in this browser tab session. The API must also have `OWS_ADMIN_TOKEN` configured.</span>
+      </div>
+      <button id="save-token" class="button secondary" type="button">Use token</button>
+      <button id="clear-token" class="button ghost" type="button">Clear</button>
+    </div>
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+  </section>
+
+  <section id="dashboard" hidden>
+    <div class="section-head">
+      <div>
+        <h2>Live workflow status</h2>
+        <p id="generated-at" class="small"></p>
+      </div>
+      <button id="refresh" class="button" type="button">Refresh dashboard</button>
+    </div>
+    <div id="metrics" class="metrics"></div>
+    <div id="risks" class="panel"></div>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>Prepare assignment trigger</h2>
+        <p class="small">Default is dry-run. Live creation requires server-side `OWS_ADMIN_ENABLE_MUTATIONS=true` and both safety confirmations.</p>
+        <form id="assignment-form">
+          <div class="form-grid">
+            <div class="field">
+              <label for="reviewer-name">Reviewer name</label>
+              <input id="reviewer-name" name="reviewerName" required>
+            </div>
+            <div class="field">
+              <label for="reviewer-email">Reviewer email</label>
+              <input id="reviewer-email" name="reviewerEmail" type="email" required>
+            </div>
+            <div class="field">
+              <label for="document-code">Document code</label>
+              <select id="document-code" name="documentCode" required></select>
+            </div>
+            <div class="field">
+              <label for="due-date">Due date</label>
+              <input id="due-date" name="dueDate" type="date">
+            </div>
+          </div>
+          <div class="field">
+            <label for="contributor-id">Contributor item ID</label>
+            <input id="contributor-id" name="contributorItemId" placeholder="Optional SharePoint list item ID">
+          </div>
+          <div class="field">
+            <label for="assignment-notes">Approval notes</label>
+            <textarea id="assignment-notes" name="notes" placeholder="Short screening basis. Do not include confidential information."></textarea>
+          </div>
+          <div class="checks">
+            <label><input id="confirm-master" type="checkbox"> I confirm no master draft or parent folder should be shared.</label>
+            <label><input id="confirm-copy" type="checkbox"> I confirm only one private reviewer copy should be created for this assignment.</label>
+            <label><input id="request-live" type="checkbox"> Request live SharePoint assignment creation if server mutations are enabled.</label>
+          </div>
+          <button class="button" type="submit">Preview assignment trigger</button>
+        </form>
+        <pre id="assignment-result" hidden></pre>
+      </section>
+
+      <section class="panel">
+        <h2>Operating rule</h2>
+        <p>Approve only after identity, expertise, conflict, document fit, and source-backed review willingness are verified.</p>
+        <ul>
+          <li>No master draft sharing.</li>
+          <li>No parent folder sharing.</li>
+          <li>Private copy only.</li>
+          <li>Every substantive edit needs reason plus source.</li>
+          <li>Final public publication still requires human technical accept/reject.</li>
+        </ul>
+        <p id="mutation-state" class="small"></p>
+      </section>
+    </div>
+
+    <section>
+      <h2>Contributors needing screening</h2>
+      <div id="contributors" class="table-wrap"></div>
+    </section>
+
+    <section>
+      <h2>Recent assignments</h2>
+      <div id="assignments" class="table-wrap"></div>
+    </section>
+
+    <section>
+      <h2>Tracked documents</h2>
+      <div id="documents" class="table-wrap"></div>
+    </section>
+
+    <section>
+      <h2>Recent change audit</h2>
+      <div id="changes" class="table-wrap"></div>
+    </section>
+  </section>
+</main>
+
+<script src="/open-wood-science/internal-control/inline-internal-control-1.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+{
+  "categories": [
+    {
+      "name": "Company & Reach",
+      "items": [
+        {
+          "question": "Where is Moldart based?",
+          "answer": "Moldart is based in Malad West, Mumbai, Maharashtra, India. The Mumbai office is the main commercial and technical coordination point."
+        },
+        {
+          "question": "When was Moldart founded?",
+          "answer": "Moldart was founded in 1989 and continues to work from Mumbai across wood and steel supply programmes."
+        },
+        {
+          "question": "Does Moldart work with only one sourcing country?",
+          "answer": "No. Moldart coordinates the requirement from Mumbai and aligns sourcing by programme. India and China remain the core sourcing anchors, while the final lane depends on the actual requirement."
+        },
+        {
+          "question": "Can Moldart support domestic as well as export programmes?",
+          "answer": "Yes. Domestic and export supply can both be supported, with the final route, documentation, and commercial conditions aligned to the order."
+        }
+      ]
+    },
+    {
+      "name": "Product Fit & Customisation",
+      "items": [
+        {
+          "question": "What product groups does Moldart focus on?",
+          "answer": "Moldart works across lamination tooling, engineered wood panels, flooring systems, furniture programmes, decorative stainless steel, and industrial press surfaces."
+        },
+        {
+          "question": "How should I choose the right route if more than one product could fit?",
+          "answer": "Start with the application, finish expectation, quantity, and destination context. The Solutions pages are designed to show the relevant product stack before you move into a narrower product sheet."
+        },
+        {
+          "question": "Can custom sizes, finishes, or project-led requirements be handled?",
+          "answer": "Yes. Custom sizes, finish routes, grades, and project-led supply requirements can be reviewed directly with the Moldart team. Final feasibility depends on the actual category and programme."
+        },
+        {
+          "question": "Can one enquiry include more than one product family or solution?",
+          "answer": "Yes. If the requirement spans more than one product group or combines several categories in one programme, it is better to share the full brief together so the route can be aligned early."
+        }
+      ]
+    },
+    {
+      "name": "Samples, Approvals & Documents",
+      "items": [
+        {
+          "question": "Can I ask for a catalogue or technical reference before ordering?",
+          "answer": "Yes. The Resources page groups public catalogues, finish decks, and reference PDFs. If the exact document you need is not listed there, you can request it directly."
+        },
+        {
+          "question": "Are samples or finish approvals possible?",
+          "answer": "Yes, where the programme requires it. Sample, finish, and reference approval should be aligned before final commercial confirmation on finish-sensitive or tolerance-sensitive work."
+        },
+        {
+          "question": "Why are some specifications shown as \"on request\"?",
+          "answer": "Because not every grade, route, tolerance, or commercial value can be published as a fixed universal statement. Where the requirement is project-sensitive, the final value is confirmed directly."
+        },
+        {
+          "question": "Can repeat orders follow an earlier approved sample or reference?",
+          "answer": "Yes, and that is usually the safer route. Repeat orders work best when they are matched to the last approved sample, drawing, or technical reference rather than to memory alone."
+        }
+      ]
+    },
+    {
+      "name": "Orders, Timing & Logistics",
+      "items": [
+        {
+          "question": "Are lead time and MOQ fixed across all orders?",
+          "answer": "No. Lead time and MOQ depend on the product, origin, customization level, and current programme conditions. They are confirmed during enquiry."
+        },
+        {
+          "question": "What usually affects delivery planning?",
+          "answer": "Delivery planning usually depends on the product route, sourcing lane, packaging needs, destination, documents, and whether the order is standard, custom, or approval-sensitive."
+        },
+        {
+          "question": "Can packing and documentation requirements be reviewed before dispatch?",
+          "answer": "Yes. Where the order needs export documentation, special packing, or receiving-side coordination, those points should be aligned before the dispatch stage."
+        },
+        {
+          "question": "What should be checked when the order is received?",
+          "answer": "The receiving team should check the supply against the approved route as early as possible. Depending on the product, that may include finish, dimensions, packing condition, or the supporting documents tied to the order."
+        }
+      ]
+    },
+    {
+      "name": "Enquiries & Next Steps",
+      "items": [
+        {
+          "question": "What should I include in an enquiry?",
+          "answer": "The fastest enquiries include the product or application, finish expectation, dimensions, quantity, destination market, and required timing."
+        },
+        {
+          "question": "How should I contact Moldart for the quickest response?",
+          "answer": "Use the enquiry form for a structured brief, WhatsApp for fast first contact, or email when drawings and documents need to be shared from the start."
+        },
+        {
+          "question": "What happens after I submit a requirement?",
+          "answer": "The Moldart team reviews the application, aligns the likely product and sourcing route, and then follows up directly on the next technical and commercial step."
+        },
+        {
+          "question": "Can Moldart review the brief even if the final product is not fixed yet?",
+          "answer": "Yes. That is often the best time to start. Early review helps narrow the right category, reference path, and next step before the brief becomes harder to correct."
+        }
+      ]
+    }
+  ]
+}
