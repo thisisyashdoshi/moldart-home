@@ -39,13 +39,18 @@ jobs:
           CF_PAGES_COMMIT_SHA: ${{ github.sha }}
           CF_PAGES_BRANCH: final11-pages-no-lfs-3c7f0ea
 
-      - name: Verify code and production dependencies
+      - name: Verify formatting and syntax
         run: |
           npm run format:check
           npm run lint:js
           npm run lint:css
           npm run lint:html
-          npm run test:unit
+
+      - name: Verify unit behavior
+        run: npm run test:unit
+
+      - name: Verify licenses and production dependencies
+        run: |
           npm run license:check
           npm audit --omit=dev --audit-level=low
 
