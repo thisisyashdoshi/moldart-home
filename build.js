@@ -196,30 +196,33 @@ async function buildHomeCSS() {
     css: ['site.css'],
     safelist: {
       standard: [
-        /^is-/,
+        'is-active',
+        'is-open',
+        'is-visible',
         'open',
         'hidden',
         'scrolled',
         'scroll-locked',
         'lead-form-status',
-        'data-stage-filter',
-        /^text-/
+        'text-emerald-600'
       ]
     }
   });
   if (!result?.css) throw new Error('PurgeCSS did not produce homepage CSS.');
+  const homepageCss = result.css.replace(/@font-face\{[^}]*\}/g, '');
+  if (homepageCss.includes('@font-face'))
+    throw new Error('Homepage CSS still contains a render-delaying web-font declaration.');
   for (const requiredSelector of [
     '.home-hero-heading',
     '.home-browse-row',
     '.ui-footer',
-    '.form-consent',
     '.whatsapp-fab'
   ]) {
-    if (!result.css.includes(requiredSelector))
+    if (!homepageCss.includes(requiredSelector))
       throw new Error(`Homepage CSS is missing required selector ${requiredSelector}.`);
   }
   const fullSize = fs.statSync(fullPath).size;
-  fs.writeFileSync(outputPath, result.css, 'utf8');
+  fs.writeFileSync(outputPath, homepageCss, 'utf8');
   const homeSize = fs.statSync(outputPath).size;
   if (homeSize >= fullSize * 0.7)
     throw new Error(`Homepage CSS reduction is below guardrail (${homeSize} of ${fullSize} bytes).`);
@@ -253,6 +256,7 @@ function shouldCopyPublicFile(src) {
   if (base === '.DS_Store') return false;
   if (base.includes('-YASH-LAPTOP')) return false;
   if (base.endsWith('.tmp')) return false;
+  if (/^images\/insights\/editorial\//i.test(rel)) return false;
   if (/^images\/insights\/[^/]+\.png$/i.test(rel)) return false;
   if (/^images\/open-license\/.*-original\.(?:jpe?g|png|webp|avif)$/i.test(rel)) return false;
   let stats;

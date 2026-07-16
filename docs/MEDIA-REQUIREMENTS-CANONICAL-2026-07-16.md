@@ -112,9 +112,9 @@ Video rules:
 
 ## Insight-cover policy
 
-- Keep all 51 current covers on the noindex candidate with the visible `ILLUSTRATIVE EDITORIAL IMAGE` status.
-- Before production, record source, owner, licence, allowed use and approval date for each cover.
-- Replace first in publication/revenue priority order, not all at once.
+- The noindex candidate now uses 51 first-party deterministic SVG diagrams generated from the locked article titles and categories.
+- Previous editorial/render covers are excluded from the public artifact while their rights and provenance remain unresolved.
+- Replace deterministic diagrams progressively, in publication/revenue priority order, only with rights-cleared media.
 - Preferred replacements: real product detail, real inspection setup, deterministic comparison diagram or document/checklist crop with confidential data removed.
 
 ## Approval packet required per asset

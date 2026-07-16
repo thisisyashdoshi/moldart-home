@@ -18,9 +18,10 @@ const BASE = process.argv[2] || 'http://127.0.0.1:4173';
 
 function pickExecutablePath() {
   const candidates = [
+    process.env.CHROME_PATH,
     'C:/Program Files/Google/Chrome/Application/chrome.exe',
     'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'
-  ];
+  ].filter(Boolean);
   return candidates.find((candidate) => fs.existsSync(candidate));
 }
 
@@ -266,13 +267,27 @@ async function main() {
     page.keyboard.press('Enter')
   ]);
   const arrowActual = new URL(page.url()).pathname;
+
+  await page.goto(homeUrl, { waitUntil: 'networkidle', timeout: 60000 });
+  await page.click('[data-open-command-palette]');
+  await page.fill('#cmd-input', 'Moldart Company Profile');
+  await page.waitForSelector('#cmd-results .cmd-palette-item.is-active');
+  const resourceExpected = await page.locator('#cmd-results .cmd-palette-item.is-active').getAttribute('href');
+  await Promise.all([
+    page.waitForURL((url) => url.pathname === '/resources/', { timeout: 10000 }),
+    page.keyboard.press('Enter')
+  ]);
+  const resourceActual = new URL(page.url()).pathname;
   const commandPaletteNavigationAudit = {
     enterExpected,
     enterActual,
     enterPassed: enterExpected === '/products/press-plates/' && enterActual === enterExpected,
     arrowExpected,
     arrowActual,
-    arrowPassed: arrowExpected === '/products/industrial-press-plates/' && arrowActual === arrowExpected
+    arrowPassed: arrowExpected === '/products/industrial-press-plates/' && arrowActual === arrowExpected,
+    resourceExpected,
+    resourceActual,
+    resourcePassed: resourceExpected === '/resources/' && resourceActual === '/resources/'
   };
 
   async function auditUnavailableSearch(mode) {
@@ -309,8 +324,10 @@ async function main() {
   await mobilePage.goto(`${BASE.replace(/\/$/, '')}/`, { waitUntil: 'networkidle', timeout: 60000 });
   const mobileHomepageAudit = await mobilePage.evaluate(() => {
     const mobileChat = document.querySelector('.home-hero-mobile-chat');
+    const heroStage = document.querySelector('.home-hero-stage');
     return {
       overflow: document.documentElement.scrollWidth > window.innerWidth + 1,
+      heroStageDisplay: heroStage ? getComputedStyle(heroStage).display : 'missing',
       visibleBrowseRows: Array.from(document.querySelectorAll('.home-browse-row')).filter((el) => {
         const rect = el.getBoundingClientRect();
         return rect.bottom > 0 && rect.top < window.innerHeight;
@@ -400,12 +417,13 @@ async function main() {
     !commandPaletteAudit.closedAfterEscape,
     !commandPaletteNavigationAudit.enterPassed,
     !commandPaletteNavigationAudit.arrowPassed,
+    !commandPaletteNavigationAudit.resourcePassed,
     !commandPaletteFailureAudit.network.unavailableMessage,
     !commandPaletteFailureAudit.network.inputFocused,
     !commandPaletteFailureAudit.malformed.unavailableMessage,
     !commandPaletteFailureAudit.malformed.inputFocused,
     mobileHomepageAudit.overflow,
-    mobileHomepageAudit.visibleBrowseRows < 1,
+    mobileHomepageAudit.heroStageDisplay !== 'none',
     mobileHomepageAudit.heroButtonTop > 620,
     mobileHomepageAudit.floatingWhatsAppDisplay !== 'none',
     mobileHomepageAudit.mobileChatDisplay === 'none',

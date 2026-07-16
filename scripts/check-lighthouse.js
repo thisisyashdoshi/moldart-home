@@ -70,6 +70,24 @@ function median(values) {
   return sorted.length % 2 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2;
 }
 
+function cleanupLighthouseBrowser(lighthouseTmp) {
+  if (process.platform !== 'win32') return;
+  spawnSync(
+    'powershell.exe',
+    [
+      '-NoProfile',
+      '-Command',
+      "$needle=$env:MOLDART_LIGHTHOUSE_TMP; Get-CimInstance Win32_Process -Filter \"Name='chrome.exe' OR Name='msedge.exe'\" -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like ('*' + $needle + '*') } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }",
+    ],
+    {
+      env: { ...process.env, MOLDART_LIGHTHOUSE_TMP: lighthouseTmp },
+      encoding: 'utf8',
+      stdio: 'pipe',
+      timeout: 30000,
+    }
+  );
+}
+
 function runLighthouse(attempt) {
   fs.mkdirSync(TMP, { recursive: true });
   fs.rmSync(OUT, { force: true });
@@ -93,6 +111,8 @@ function runLighthouse(attempt) {
       stdio: 'pipe',
     }
   );
+
+  cleanupLighthouseBrowser(lighthouseTmp);
 
   if (result.status !== 0 && !fs.existsSync(OUT)) {
     const details = String(result.stderr || result.stdout || '').trim();

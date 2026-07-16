@@ -1082,9 +1082,12 @@ function writeFileSyncWithRetry(filePath, content, options) {
 	}
 	throw lastError;
 }
+function normalizeTextOutput(content) {
+	return String(content).replace(/[\t ]+$/gm, "");
+}
 function writeFile(filePath, content) {
 	mkdirp(path.dirname(filePath));
-	writeFileSyncWithRetry(filePath, content, "utf8");
+	writeFileSyncWithRetry(filePath, normalizeTextOutput(content), "utf8");
 	console.log(`  ✓ ${path.relative(WORK, filePath)}`);
 }
 function hasUsableFile(filePath) {
@@ -1097,15 +1100,16 @@ function hasUsableFile(filePath) {
 }
 function writeFileIfChanged(filePath, content) {
 	mkdirp(path.dirname(filePath));
+	const normalized = normalizeTextOutput(content);
 	try {
 		if (
 			fs.existsSync(filePath) &&
-			fs.readFileSync(filePath, "utf8") === content
+			fs.readFileSync(filePath, "utf8") === normalized
 		) {
 			return false;
 		}
 	} catch (_) {}
-	writeFileSyncWithRetry(filePath, content, "utf8");
+	writeFileSyncWithRetry(filePath, normalized, "utf8");
 	console.log(`  ✓ ${path.relative(WORK, filePath)}`);
 	return true;
 }
@@ -1580,29 +1584,19 @@ function insightEditorialImageRelativePath(article) {
 	return "";
 }
 function insightPreviewImageRaw(article, context = null) {
-	const pngPath = insightPosterRelativePath(article, "png");
 	const svgPath = insightPosterRelativePath(article, "svg");
-	return (
-		insightEditorialImageRelativePath(article) ||
-		(hasUsableFile(path.join(WORK, pngPath.replace(/^\//, "")))
-			? pngPath
-			: svgPath)
-	);
+	const pngPath = insightPosterRelativePath(article, "png");
+	return hasUsableFile(path.join(WORK, svgPath.replace(/^\//, "")))
+		? svgPath
+		: pngPath;
 }
 function insightPreviewImage(article, context = null) {
 	return socialImageVersionedUrl(insightPreviewImageRaw(article, context));
 }
 function insightMediaStatus(article) {
-	const record = insightMediaBySlug.get(article.slug);
-	if (record && /ChatGPT Image/i.test(String(record.sourceRelative || ""))) {
-		return {
-			code: "ILLUSTRATIVE_RENDER",
-			label: "Illustrative render — not product, facility, test, or project evidence.",
-		};
-	}
 	return {
-		code: "SOURCE_STATUS_UNCONFIRMED",
-		label: "Reference visual — confirm product, process, and usage evidence separately.",
+		code: "DETERMINISTIC_DIAGRAM",
+		label: "Deterministic editorial diagram — not product, facility, test, or project evidence.",
 	};
 }
 
@@ -3554,7 +3548,7 @@ function footer() {
     </footer>`;
 }
 
-function closingElements() {
+function closingElements(includeResourceGate = true) {
 	return `
     <aside class="quick-contact-landmark" aria-label="Quick contact">
         <a href="${whatsappHref(WHATSAPP_PRIMARY.number, `Hi Moldart, I'm interested in your products.`)}" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="Chat on WhatsApp">
@@ -3584,6 +3578,7 @@ function closingElements() {
             </div>
         </div>
     </div>
+    ${includeResourceGate ? `
     <div id="resource-gate" class="resource-gate-overlay" inert>
         <div class="resource-gate-dialog" role="dialog" aria-modal="true" aria-labelledby="resource-gate-title">
             <button type="button" class="resource-gate-close" data-resource-gate-close aria-label="Close resource form">
@@ -3619,8 +3614,10 @@ function closingElements() {
             </form>
         </div>
     </div>
+    ` : ""}
 
     <script src="/main.js?v=${VER}" defer></script>
+    ${includeResourceGate ? `
     <script>
       (function(){
         var loaded = false;
@@ -3638,12 +3635,11 @@ function closingElements() {
         function maybeFormEvent(event){
           if (event.target && event.target.closest && event.target.closest('form[data-lead-form]')) loadLeadForms();
         }
-        document.addEventListener('focusin', maybeFormEvent, { once: true });
-        document.addEventListener('pointerdown', maybeFormEvent, { once: true, passive: true });
-        if ('requestIdleCallback' in window) window.requestIdleCallback(loadLeadForms, { timeout: 5500 });
-        else window.addEventListener('load', function(){ window.setTimeout(loadLeadForms, 3200); }, { once: true });
+        document.addEventListener('focusin', maybeFormEvent);
+        document.addEventListener('pointerdown', maybeFormEvent, { passive: true });
       })();
     </script>
+    ` : ""}
 </body>
 </html>`;
 }
@@ -5096,7 +5092,7 @@ function generateHomepage() {
     </main>
 
     ${footer()}
-    ${closingElements()}`
+    ${closingElements(false)}`
 	);
 }
 
@@ -5823,6 +5819,8 @@ function generateSolutionPage(app) {
             </div>
             <div class="ui-stack-product-grid">${stackCards}</div>
         </section>
+
+        ${renderOpenLicenseReferences(getSolutionHref(app.slug))}
 
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
             <div class="ui-stack-card ui-stack-card-wide">
@@ -7915,14 +7913,13 @@ function youtubeCoverageReport() {
 	const selectedInsightMedia = (rawInsights.articles || []).map((article) => {
 		const selectedVideo = bestVideoForInsight(article);
 		const image = insightPreviewImageRaw(article);
-		const editorialImage = insightEditorialImageRelativePath(article);
 		return {
 			slug: article.slug,
 			title: article.title,
 			category: article.categoryLabel || article.category || "Technical Library",
 			url: `${SITE}/insights/${article.slug}/`,
 			image,
-			imageSource: editorialImage ? "editorial" : "generated-poster",
+			imageSource: "deterministic-poster",
 			mediaStatus: insightMediaStatus(article).code,
 			selectedVideo: selectedVideo
 				? {
