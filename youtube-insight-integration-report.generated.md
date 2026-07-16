@@ -13,7 +13,7 @@ Generated: 2026-07-16
 - Insights without video coverage: 32
 - Insights with image coverage: 51
 - Insights without image coverage: 0
-- Insights using imported editorial images: 51
+- Insights using imported editorial images: 0
 - Videos recommending a new insight: 0
 
 ## Videos That Need A Tighter Insight
