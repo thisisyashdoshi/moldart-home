@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -126,6 +127,22 @@ function walk(dir) {
     else entries.push(full);
   }
   return entries;
+}
+
+function executableInlineScriptHashes() {
+  const records = [];
+  for (const file of walk(publicDir).filter((item) => item.endsWith(".html"))) {
+    const html = fs.readFileSync(file, "utf8");
+    for (const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
+      const attributes = match[1] || "";
+      if (/\bsrc\s*=/i.test(attributes)) continue;
+      const type = attributes.match(/\btype=["']([^"']+)/i)?.[1]?.toLowerCase() || "";
+      if (type && !["text/javascript", "application/javascript", "module"].includes(type)) continue;
+      const digest = crypto.createHash("sha256").update(match[2], "utf8").digest("base64");
+      records.push({ hash: `sha256-${digest}`, file: path.relative(publicDir, file) });
+    }
+  }
+  return records;
 }
 
 function sitemapUrls(xml) {
@@ -266,6 +283,22 @@ function validateHeadersAndRedirects() {
       if (headers.includes(required)) pass(`header ${required}`);
       else fail(`header ${required}`, "Required security/header directive missing from _headers");
     }
+    const cspLine = headers.split(/\r?\n/).find((line) => line.includes("Content-Security-Policy:")) || "";
+    const declaredHashes = new Set(Array.from(cspLine.matchAll(/'sha256-([^']+)'/g)).map((match) => `sha256-${match[1]}`));
+    const inlineRecords = executableInlineScriptHashes();
+    const requiredHashes = new Set(inlineRecords.map((record) => record.hash));
+    const missingHashes = [...requiredHashes].filter((hash) => !declaredHashes.has(hash));
+    const staleHashes = [...declaredHashes].filter((hash) => !requiredHashes.has(hash));
+    if (!missingHashes.length && !staleHashes.length && requiredHashes.size > 0)
+      pass("CSP executable inline-script hashes", { uniqueHashes: requiredHashes.size, scriptInstances: inlineRecords.length });
+    else
+      fail("CSP executable inline-script hashes", "CSP hashes must exactly match every executable inline script in the public artifact", {
+        missingHashes,
+        staleHashes,
+        affectedFiles: inlineRecords.filter((record) => missingHashes.includes(record.hash)).slice(0, 30),
+      });
+    if (cspLine.length <= 2000) pass("CSP header line length", { characters: cspLine.length });
+    else fail("CSP header line length", "Cloudflare _headers lines may not exceed 2,000 characters", { characters: cspLine.length });
     if (/\/portal\/\*\s+[\s\S]*X-Robots-Tag:\s*noindex/i.test(headers)) pass("portal noindex headers");
     else warn("portal noindex headers", "Could not confirm portal noindex block in _headers");
   }

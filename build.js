@@ -4,6 +4,7 @@ try {
 } catch (_) {}
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { execSync } = require('child_process');
 const { PurgeCSS } = require('purgecss');
 
@@ -422,6 +423,50 @@ function applyNoindexReviewArtifact() {
   }
 }
 
+function executableInlineScripts(html) {
+  const scripts = [];
+  for (const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
+    const attributes = match[1] || '';
+    if (/\bsrc\s*=/i.test(attributes)) continue;
+    const type = attributes.match(/\btype=["']([^"']+)/i)?.[1]?.toLowerCase() || '';
+    if (type && !['text/javascript', 'application/javascript', 'module'].includes(type)) continue;
+    scripts.push(match[2]);
+  }
+  return scripts;
+}
+
+function refreshPublicCspHashes() {
+  const hashes = new Set();
+  for (const file of walkDirectory(PUBLIC_OUT).filter(file => file.endsWith('.html'))) {
+    const html = fs.readFileSync(file, 'utf8');
+    for (const script of executableInlineScripts(html)) {
+      const digest = crypto.createHash('sha256').update(script, 'utf8').digest('base64');
+      hashes.add(`'sha256-${digest}'`);
+    }
+  }
+  const tokens = [...hashes].sort();
+  if (!tokens.length) throw new Error('No executable inline scripts found for CSP hashing.');
+  for (const headersPath of [path.join(WORK, '_headers'), path.join(PUBLIC_OUT, '_headers')]) {
+    const headers = fs.readFileSync(headersPath, 'utf8');
+    let changed = false;
+    const updated = headers
+      .split(/\r?\n/)
+      .map((line) => {
+        if (!line.includes('Content-Security-Policy:')) return line;
+        const withoutOldHashes = line.replace(/\s+'sha256-[^']+'/g, '');
+        const next = withoutOldHashes.replace("script-src 'self'", `script-src 'self' ${tokens.join(' ')}`);
+        if (next === withoutOldHashes) throw new Error(`CSP script-src directive missing in ${headersPath}`);
+        if (next.length > 2000) throw new Error(`CSP header line exceeds Cloudflare's 2,000-character limit (${next.length}).`);
+        changed = true;
+        return next;
+      })
+      .join('\n');
+    if (!changed) throw new Error(`Content-Security-Policy header missing in ${headersPath}`);
+    fs.writeFileSync(headersPath, updated, 'utf8');
+  }
+  console.log(`  CSP hashes refreshed for ${tokens.length} executable inline scripts`);
+}
+
 function copyPublicArtifact() {
   console.log('\nCreating public-only deployment artifact...');
   resetPublicArtifactDir();
@@ -496,6 +541,8 @@ function copyPublicArtifact() {
   ]) {
     removePublicEntry(path.join(PUBLIC_OUT, 'products', legacySlug));
   }
+
+  refreshPublicCspHashes();
 
   console.log(`  Public artifact ready at ${path.relative(WORK, PUBLIC_OUT)}/`);
   console.log('  Excluded private/runtime paths: trade-portal, node_modules, .next, .tmp, functions, netlify/functions');
