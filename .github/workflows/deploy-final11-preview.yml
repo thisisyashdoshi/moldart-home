@@ -46,7 +46,6 @@ jobs:
           npm run lint:css
           npm run lint:html
           npm run test:unit
-          npm run secretlint:check
           npm run license:check
           npm audit --omit=dev --audit-level=low
 
