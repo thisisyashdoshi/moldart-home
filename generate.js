@@ -7809,6 +7809,32 @@ function getLegacyInsightRedirectRules() {
 
 function generateRedirects() {
 	const legacyInsightRedirects = getLegacyInsightRedirectRules().join("\n");
+	const immutablePdfCommit = "3c7f0ea885d0801d6155177fb668e45f6f73963e";
+	const externalPdfRedirects = [
+		"ANTIQUE.pdf",
+		"DIVIDER.pdf",
+		"HEAT PRINTED.pdf",
+		"HPL - OL - 1.pdf",
+		"HPL - OL - 2.pdf",
+		"HPL - OL - 3.pdf",
+		"INTRODUCTION TO MOLDART.pdf",
+		"LPL - GB - 02.pdf",
+		"LPL - PET BOARD.pdf",
+		"MOSAIC.pdf",
+		"PRESS PLATE - BASIC COLLECTION.pdf",
+		"PRESS PLATE - SHUTTERING PLYWOOD.pdf",
+		"PROFILE.pdf",
+		"STAMPED.pdf",
+		"WOOD - DOOR.pdf",
+		"WOOD - FLOORING.pdf",
+		"WOOD - FURNITURE - 1.pdf",
+		"WOOD - FURNITURE - 2.pdf",
+	]
+		.map((name) => {
+			const encoded = encodeURIComponent(name).replace(/%2F/gi, "/");
+			return `/downloads/${encoded} https://media.githubusercontent.com/media/thisisyashdoshi/moldart-home/${immutablePdfCommit}/downloads/${encoded} 302`;
+		})
+		.join("\n");
 	return `/index.html               /                         301
 /about.html               /about/                   301
 /industry.html            /industry/                301
@@ -7847,6 +7873,7 @@ function generateRedirects() {
 /open-wood-science/       /resources/               301
 /open-wood-science/*      /resources/               301
 ${legacyInsightRedirects}
+${externalPdfRedirects}
 /insights                 /insights/                301
 /*                        /404.html                 404`;
 }
