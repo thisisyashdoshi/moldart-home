@@ -1,0 +1,58 @@
+name: Deploy final11 noindex preview
+
+on:
+  push:
+    branches:
+      - final11-pages-no-lfs-3c7f0ea
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: moldart-final11-noindex-preview
+  cancel-in-progress: true
+
+jobs:
+  verify-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out preview branch
+        uses: actions/checkout@v4
+        with:
+          lfs: false
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Build noindex artifact
+        run: npm run build
+        env:
+          BUILD_VERSION: 2026.07.16.media-rich.final11
+          CF_PAGES_COMMIT_SHA: ${{ github.sha }}
+          CF_PAGES_BRANCH: final11-pages-no-lfs-3c7f0ea
+
+      - name: Verify code and production dependencies
+        run: |
+          npm run format:check
+          npm run lint:js
+          npm run lint:css
+          npm run lint:html
+          npm run test:unit
+          npm run secretlint:check
+          npm run license:check
+          npm audit --omit=dev --audit-level=low
+
+      - name: Deploy Cloudflare Pages preview
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public-site --project-name=moldart-home --branch=final11-pages-no-lfs-3c7f0ea --commit-hash=${{ github.sha }} --commit-dirty=false
