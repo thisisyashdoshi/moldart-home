@@ -34,9 +34,10 @@ const paths = [
 
 function pickExecutablePath() {
   const candidates = [
+    process.env.CHROME_PATH,
     'C:/Program Files/Google/Chrome/Application/chrome.exe',
     'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
-  ];
+  ].filter(Boolean);
   return candidates.find((candidate) => fs.existsSync(candidate));
 }
 
@@ -49,7 +50,8 @@ function pickExecutablePath() {
 
   for (const route of paths) {
     const url = `${base}${route}`;
-    await page.goto(url, { waitUntil: 'networkidle', timeout: 60000 });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => {});
     const results = await new AxeBuilder({ page }).analyze();
     const serious = results.violations.filter((violation) => ['serious', 'critical'].includes(violation.impact));
     console.log(`${route} axe violations: ${results.violations.length}, serious/critical: ${serious.length}`);

@@ -254,6 +254,7 @@ function shouldCopyPublicFile(src) {
   if (base.includes('-YASH-LAPTOP')) return false;
   if (base.endsWith('.tmp')) return false;
   if (/^images\/insights\/[^/]+\.png$/i.test(rel)) return false;
+  if (/^images\/open-license\/.*-original\.(?:jpe?g|png|webp|avif)$/i.test(rel)) return false;
   let stats;
   try {
     stats = fs.statSync(src);

@@ -214,6 +214,17 @@ const rawVisualPrototypeMedia = JSON.parse(
 const visualPrototypeMediaById = new Map(
 	(rawVisualPrototypeMedia.records || []).map((record) => [record.id, record]),
 );
+const rawOpenLicenseMedia = JSON.parse(
+	fs.readFileSync(path.join(WORK, "data/open-license-media.json"), "utf8"),
+);
+const openLicenseMediaByRoute = new Map();
+for (const item of rawOpenLicenseMedia.items || []) {
+	for (const route of item.routes || []) {
+		const records = openLicenseMediaByRoute.get(route) || [];
+		records.push(item);
+		openLicenseMediaByRoute.set(route, records);
+	}
+}
 const rawInsightOptimization = JSON.parse(
 	fs.readFileSync(path.join(WORK, "data/insight-optimization.json"), "utf8"),
 );
@@ -2381,6 +2392,19 @@ function reviewMediaStatusLabel(status) {
 		: status === "VIDEO_THUMBNAIL"
 			? "Video reference"
 			: "Route diagram";
+}
+
+function renderOpenLicenseReferences(route) {
+	const items = openLicenseMediaByRoute.get(route) || [];
+	if (!items.length) return "";
+	return `<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up open-license-reference-section">
+		<div class="ui-section-head mb-8">
+			<div class="ui-kicker mb-4">${glyph("image", "icon icon-sm")} Open-license context</div>
+			<h2 class="ui-section-title">MATERIAL REFERENCES, NOT STOCK EVIDENCE.</h2>
+			<p class="ui-section-subtitle">These independently licensed images help explain the material or application. They do not depict Moldart inventory, a named supplier, an approved sample, test evidence or a completed project.</p>
+		</div>
+		<div class="open-license-reference-grid">${items.map((item) => `<figure class="product-media-figure open-license-reference-card"><picture><source srcset="${item.avif}" type="image/avif"><source srcset="${item.src}" type="image/webp"><img src="${item.jpg}" alt="${escHtml(item.alt)}" width="1600" height="1200" loading="lazy"></picture><figcaption><strong>${escHtml(item.caption)}</strong><span>Photo: ${escHtml(item.author)} · <a href="${escHtml(item.sourcePage)}" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> · <a href="${escHtml(item.licenseUrl)}" target="_blank" rel="license noopener noreferrer">${escHtml(item.license)}</a> · ${escHtml(item.changes)}</span></figcaption></figure>`).join("")}</div>
+	</section>`;
 }
 
 function reviewMediaBuyerCaption(status) {
@@ -5439,7 +5463,12 @@ function generateProductPage(productId) {
 		console.error(`Missing data for ${productId}`);
 		return;
 	}
-	const image = approvedProductImage(p);
+	const approvedImage = approvedProductImage(p);
+	const reviewMedia = approvedImage ? null : reviewProductMedia(p);
+	const image = approvedImage || reviewMedia?.image || "";
+	const isReviewMedia = Boolean(image && !approvedImage && reviewMedia);
+	const productRoute = `/products/${m.slug}/`;
+	const openLicenseReferenceSection = renderOpenLicenseReferences(productRoute);
 	const rawPageTitle = String(p.seoShortTitle || m.seoTitle || p.name)
 		.replace(/\s*\|\s*Moldart\s*$/i, "")
 		.trim();
@@ -5532,8 +5561,12 @@ function generateProductPage(productId) {
 		product: p.name,
 	});
 	const statusClass = p.publicStatus === "In stock" ? " is-stocked" : "";
+	const reviewCaption = reviewMedia?.caption || p.mediaCaption || "Representative review reference; confirm the exact product through the RFQ.";
+	const rasterSource = image.endsWith(".webp")
+		? `<source srcset="${image.replace(".webp", ".avif")}" type="image/avif">`
+		: "";
 	const heroMedia = image
-		? `<figure class="product-media-figure"><picture><source srcset="${image.replace(".webp", ".avif")}" type="image/avif"><img src="${image}" alt="${escHtml(p.name)}" width="900" height="700" loading="eager" class="w-full h-full object-cover"></picture><figcaption>${escHtml(p.mediaCaption || "Approved product reference image.")}</figcaption></figure>`
+		? `<figure class="product-media-figure"${isReviewMedia ? ' data-media-state="noindex-review-reference"' : ""}><picture>${rasterSource}<img src="${image}" alt="${escHtml(`${p.name} ${isReviewMedia ? "review reference" : "product reference"}`)}" width="900" height="700" loading="eager" class="w-full h-full object-cover"></picture><figcaption>${isReviewMedia ? `<strong>${escHtml(reviewMediaStatusLabel(reviewMedia.status))}</strong> ` : ""}${escHtml(reviewCaption)}</figcaption></figure>`
 		: `<div class="product-media-placeholder product-media-placeholder-large" data-media-state="text-first-product-page" role="img" aria-label="${escHtml(`${p.name}: specification overview`)}">${glyph("layers", "icon")}<strong>SPECIFY THIS PRODUCT</strong><span>Use the application, grade or construction, dimensions, quantity and destination to confirm the exact route.</span></div>`;
 	const listCard = (label, title, items, icon = "check") => `<article class="ui-library-card product-control-card"><div class="ui-kicker mb-3">${glyph(icon, "icon icon-sm")} ${escHtml(label)}</div><h3>${escHtml(title)}</h3><ul class="ui-stack-list mt-5">${(items || []).map((item) => `<li>${escHtml(item)}</li>`).join("")}</ul></article>`;
 	const controlCards = [
@@ -5605,6 +5638,8 @@ function generateProductPage(productId) {
                 </div>
             </div>
         </section>
+
+        ${openLicenseReferenceSection}
 
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
             <div class="ui-section-head mb-8">

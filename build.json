@@ -1,9 +1,9 @@
 {
-  "version": "2026.07.15.3d70190c6c6b.dd9eabb6ab",
-  "generatedAt": "2026-07-15T09:31:12.108Z",
+  "version": "2026.07.16.media-rich.5cf2d6107f",
+  "generatedAt": "2026-07-16T12:23:19.283Z",
   "git": {
-    "sha": "3d70190c6c6b",
-    "branch": "package-rc"
+    "sha": "17cb4fb267f0",
+    "branch": "draft/non-media-final-20260716"
   },
   "site": "https://moldartindia.com",
   "generator": "moldart-static-generator"

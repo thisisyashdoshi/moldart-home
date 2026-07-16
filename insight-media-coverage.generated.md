@@ -1,6 +1,6 @@
 # Moldart Insight Media Coverage
 
-Generated: 2026-07-15
+Generated: 2026-07-16
 
 Every published insight renders one labelled lead image. A YouTube card appears only when a directly mapped, article-specific video is available.
 

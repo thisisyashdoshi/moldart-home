@@ -454,7 +454,7 @@ function validateCatalogueContract() {
   else fail("family-level stock wording", "Only the confirmed families may carry qualified public stock wording", { missingStocked, extraStocked, weakStockNotes });
 
   const approvedMediaStates = new Set(["APPROVED_REAL", "APPROVED_EDITED_REAL", "APPROVED_DIAGRAM", "USE_EXISTING"]);
-  const knownMediaStates = new Set([...approvedMediaStates, "EXISTING_REVIEW_ASSET", "SOURCE_REQUIRED", "OMIT"]);
+  const knownMediaStates = new Set([...approvedMediaStates, "EXISTING_REVIEW_ASSET", "DIAGRAM", "SOURCE_REQUIRED", "OMIT"]);
   const unknownMediaStates = products.filter((product) => !knownMediaStates.has(product.mediaStatus)).map((product) => ({ id: product.id, mediaStatus: product.mediaStatus }));
   const catalogueFiles = [
     "index.html",
@@ -477,6 +477,7 @@ function validateCatalogueContract() {
     "products/index.html",
     "explore/index.html",
     "solutions/index.html",
+    ...expectedProductSlugs.map((slug) => `products/${slug}/index.html`),
     ...expectedSolutionSlugs.map((slug) => `solutions/${slug}/index.html`),
   ]);
   const reviewAssetPaths = new Set(reviewRecords.filter((record) => ["USE_EXISTING_REFERENCE", "DIAGRAM", "VIDEO_THUMBNAIL"].includes(record.status)).map((record) => record.image).filter(Boolean));
@@ -486,7 +487,7 @@ function validateCatalogueContract() {
     const html = existsArtifact(relativePath) ? readArtifact(relativePath) : "";
     const approved = approvedMediaStates.has(product.mediaStatus);
     const reviewRecord = reviewByProduct.get(product.id);
-    const reviewReferenceAllowed = Boolean(reviewModeNoindex && reviewRecord?.status === "USE_EXISTING_REFERENCE" && reviewRecord.image === product.image);
+    const reviewReferenceAllowed = Boolean(reviewModeNoindex && ["USE_EXISTING_REFERENCE", "DIAGRAM", "VIDEO_THUMBNAIL"].includes(reviewRecord?.status) && reviewRecord.image === product.image);
     const publicProduct = publicProducts.get(product.id);
     const publishedCandidateAssets = product.image ? mediaVariants(product.image).filter(existsArtifact) : [];
     if (!approved && product.image) {
@@ -497,7 +498,8 @@ function validateCatalogueContract() {
       if (publishedCandidateAssets.length && !reviewReferenceAllowed) unapprovedMediaUses.push({ id: product.id, file: "public-site/images", image: product.image, publishedCandidateAssets });
       if (publicProduct?.image) unapprovedMediaUses.push({ id: product.id, file: "data/product-directory.json", image: publicProduct.image });
     }
-    if (!approved && !html.includes('data-media-state="text-first-product-page"')) unapprovedMediaUses.push({ id: product.id, file: relativePath, image: "missing text-first placeholder" });
+    if (!approved && !reviewReferenceAllowed && !html.includes('data-media-state="text-first-product-page"')) unapprovedMediaUses.push({ id: product.id, file: relativePath, image: "missing text-first placeholder" });
+    if (reviewReferenceAllowed && (!html.includes(product.image) || !html.includes('data-media-state="noindex-review-reference"'))) unapprovedMediaUses.push({ id: product.id, file: relativePath, image: "labelled noindex review reference is missing" });
     if (approved && (!product.image || !html.includes(product.image))) unapprovedMediaUses.push({ id: product.id, file: relativePath, image: "approved image is missing" });
     return {
       productId: product.id,
@@ -515,7 +517,7 @@ function validateCatalogueContract() {
   const staleMediaReferences = policyFiles.flatMap((entry) => legacyReviewMedia.filter((assetPath) => entry.text.includes(assetPath)).map((assetPath) => ({ file: entry.file, assetPath })));
   if (staleMediaReferences.length) unapprovedMediaUses.push({ id: "stale-policy-reference", references: staleMediaReferences });
   if (existsArtifact("sitemap-images.xml") || (existsArtifact("robots.txt") && /sitemap-images\.xml/i.test(readArtifact("robots.txt")))) unapprovedMediaUses.push({ id: "stale-image-sitemap", file: "sitemap-images.xml or robots.txt" });
-  if (!unknownMediaStates.length && !unapprovedMediaUses.length) pass("product media fail-closed", { routes: productMediaRegister.length, publishedApprovedMedia: productMediaRegister.filter((item) => item.publicationDecision === "published-approved-media").length, publishedNoindexReviewReferences: productMediaRegister.filter((item) => item.publicationDecision === "published-noindex-review-reference").length, productPagesRemainFailClosed: true });
+  if (!unknownMediaStates.length && !unapprovedMediaUses.length) pass("product media fail-closed", { routes: productMediaRegister.length, publishedApprovedMedia: productMediaRegister.filter((item) => item.publicationDecision === "published-approved-media").length, publishedNoindexReviewReferences: productMediaRegister.filter((item) => item.publicationDecision === "published-noindex-review-reference").length, productPagesUseLabelledNoindexReferences: productMediaRegister.every((item) => item.publicationDecision === "published-approved-media" || item.publicationDecision === "published-noindex-review-reference") });
   else fail("product media fail-closed", "Unapproved, stale, or unknown product media must not render or ship in the public artifact", { unknownMediaStates, unapprovedMediaUses });
 
   const productPageFailures = [];
