@@ -30,4 +30,3 @@ User-agent: CCBot
 Allow: /
 
 Sitemap: https://moldartindia.com/sitemap.xml
-Sitemap: https://moldartindia.com/sitemap-images.xml

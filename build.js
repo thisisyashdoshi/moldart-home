@@ -323,6 +323,100 @@ function resetPublicArtifactDir() {
   }
 }
 
+const APPROVED_PUBLIC_MEDIA_STATES = new Set([
+  'APPROVED_REAL',
+  'APPROVED_EDITED_REAL',
+  'APPROVED_DIAGRAM',
+  'USE_EXISTING'
+]);
+const REVIEW_MEDIA_REGISTER = JSON.parse(
+  fs.readFileSync(path.join(WORK, 'internal', 'visual-prototype-media.json'), 'utf8')
+);
+const REVIEW_MEDIA_PATHS = new Set(
+  (REVIEW_MEDIA_REGISTER.records || [])
+    .filter(record => ['USE_EXISTING_REFERENCE', 'DIAGRAM', 'VIDEO_THUMBNAIL'].includes(record.status))
+    .map(record => record.image)
+    .filter(Boolean)
+);
+
+const LEGACY_REVIEW_MEDIA = [
+  '/images/page5_img1.webp',
+  '/images/page5_img2.webp',
+  '/images/page5_img3.webp',
+  '/images/page6_img1.webp',
+  '/images/page6_img2.webp',
+  '/images/page6_img3.webp',
+  '/images/page6_img4.webp',
+  '/images/page7_img1.webp',
+  '/images/page7_img2.webp',
+  '/images/page7_img3.webp',
+  '/images/page7_img4.webp',
+  '/images/page9_img1.webp',
+  '/images/page9_img2.webp',
+  '/images/page9_img2_clean.webp',
+  '/images/page9_img3.webp',
+  '/images/page9_img4.webp',
+  '/images/press_pad_new.webp'
+];
+
+function removePublicMediaVariants(assetPath) {
+  const relative = String(assetPath || '').replace(/^\/+/, '');
+  if (!relative.startsWith('images/')) return;
+  const parsed = path.parse(relative);
+  for (const extension of ['.webp', '.avif', '.png', '.jpg', '.jpeg', '.svg']) {
+    removePublicEntry(path.join(PUBLIC_OUT, parsed.dir, `${parsed.name}${extension}`));
+  }
+}
+
+function sanitizePublicProductMedia() {
+  const sourcePath = path.join(WORK, 'data', 'product-directory.json');
+  const publicPath = path.join(PUBLIC_OUT, 'data', 'product-directory.json');
+  if (!fs.existsSync(sourcePath) || !fs.existsSync(publicPath)) return;
+
+  const directory = JSON.parse(fs.readFileSync(sourcePath, 'utf8'));
+  const approvedPaths = new Set();
+  for (const product of directory.products || []) {
+    if (product.image && APPROVED_PUBLIC_MEDIA_STATES.has(product.mediaStatus)) {
+      approvedPaths.add(product.image);
+    } else if (product.image && REVIEW_MEDIA_PATHS.has(product.image)) {
+      // Noindex visual prototype: retain the asset only for labelled Home/Products review cards.
+    } else if (product.image) {
+      removePublicMediaVariants(product.image);
+    }
+  }
+
+  for (const candidate of LEGACY_REVIEW_MEDIA) {
+    if (!approvedPaths.has(candidate) && !REVIEW_MEDIA_PATHS.has(candidate)) removePublicMediaVariants(candidate);
+  }
+
+  const publicDirectory = {
+    ...directory,
+    products: (directory.products || []).map((product) => {
+      if (product.image && APPROVED_PUBLIC_MEDIA_STATES.has(product.mediaStatus)) {
+        return product;
+      }
+      return {
+        ...product,
+        image: '',
+        mediaStatus: 'OMITTED_PENDING_APPROVAL',
+        mediaCaption: 'Approved product media is pending.'
+      };
+    })
+  };
+  fs.writeFileSync(publicPath, `${JSON.stringify(publicDirectory, null, 2)}\n`, 'utf8');
+}
+
+function applyNoindexReviewArtifact() {
+  for (const file of walkDirectory(PUBLIC_OUT).filter(file => file.endsWith('.html'))) {
+    const html = fs.readFileSync(file, 'utf8');
+    const updated = html.replace(
+      /<meta name="robots" content="[^"]*">/i,
+      '<meta name="robots" content="noindex, nofollow, noarchive">'
+    );
+    fs.writeFileSync(file, updated, 'utf8');
+  }
+}
+
 function copyPublicArtifact() {
   console.log('\nCreating public-only deployment artifact...');
   resetPublicArtifactDir();
@@ -349,7 +443,6 @@ function copyPublicArtifact() {
     'site.css',
     'robots.txt',
     'sitemap.xml',
-    'sitemap-images.xml',
     'site-overrides.css',
     'site.webmanifest',
     'styles.css',
@@ -368,6 +461,7 @@ function copyPublicArtifact() {
     'contact',
     'data',
     'downloads',
+    'evidence-qc',
     'explore',
     'faq',
     'fonts',
@@ -377,12 +471,26 @@ function copyPublicArtifact() {
     'login',
     'products',
     'privacy',
+    'process',
     'resources',
     'solutions',
     'terms'
   ];
 
   for (const dir of dirs) copyDirIfExists(dir);
+
+  sanitizePublicProductMedia();
+  applyNoindexReviewArtifact();
+
+  for (const legacySlug of [
+    'engraved-cylinders',
+    'flooring-accessories',
+    'custom-furniture',
+    'ready-made-furniture',
+    'ss-furniture'
+  ]) {
+    removePublicEntry(path.join(PUBLIC_OUT, 'products', legacySlug));
+  }
 
   console.log(`  Public artifact ready at ${path.relative(WORK, PUBLIC_OUT)}/`);
   console.log('  Excluded private/runtime paths: trade-portal, node_modules, .next, .tmp, functions, netlify/functions');

@@ -1,563 +1,1633 @@
 {
+  "version": "2026-07-13",
+  "scope": "17 active public product routes; five legacy routes are excluded from catalogue data.",
+  "systems": [
+    {
+      "id": "wood",
+      "name": "Wood-Panel Lamination & Decorative Surfaces",
+      "description": "Press tooling, papers, films, boards, laminates and laminate-flooring systems."
+    },
+    {
+      "id": "steel",
+      "name": "Decorative Stainless Steel",
+      "description": "Decorative stainless sheets, profiles and coordinated finish routes."
+    },
+    {
+      "id": "electronics",
+      "name": "Electronics Lamination & Press Systems",
+      "description": "Precision press tooling, cushion materials and process films for electronics lamination."
+    }
+  ],
   "featured": [
     "press-plates",
-    "press-pads",
+    "melamine-impregnated-paper",
     "decorative-panels",
     "industrial-press-plates"
   ],
   "products": [
     {
       "id": "press-plates",
-      "name": "Press Plates",
-      "material": "Wood",
-      "stage": "Raw Materials",
+      "publicId": "W-PLATE",
+      "slug": "press-plates",
+      "name": "Wood Lamination Press Plates",
+      "system": "wood",
+      "publicStatus": "Current RFQ Route",
+      "stockNote": "",
+      "material": "Wood and decorative-surface system",
+      "stage": "Technical product route",
       "use": "Tooling",
       "industry": [
-        "Lamination",
-        "Flooring",
-        "Furniture"
+        "lamination",
+        "decorative-surfaces",
+        "furniture"
       ],
       "image": "/images/page5_img3.webp",
-      "summary": "Requirement-led stainless press-plate programmes for panel, laminate, flooring, door, and furniture pressing routes.",
+      "mediaStatus": "EXISTING_REVIEW_ASSET",
+      "mediaCaption": "Existing draft visual reference; not evidence of current stock, tests, factory ownership or completed projects.",
+      "summary": "Stainless press plates for MFC/TFL, HPL/CPL/compact, flooring, doors and furniture.",
+      "scope": "Stainless press plates for MFC/TFL, HPL/CPL/compact, flooring, doors and furniture; smooth, mirror, matte, embossed, EIR, chrome/non-chrome only when proven.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
       "specs": [
-        "Application, press type, temperature, pressure, cycle, and panel stack required before selection",
-        "Plate grade, build, dimensions, flatness, hardness, and surface condition confirmed in approved evidence",
-        "Smooth, mirror, matte, embossed, EIR, chrome, and non-chrome routes require separate sample and technical approval",
-        "MFC, TFL, HPL, CPL, compact laminate, flooring, door, and furniture fit confirmed per programme"
+        "Application and pressed product",
+        "Press make/type and stack position",
+        "Plate length, width, thickness and quantity",
+        "Working side: 1S/2S",
+        "Material/grade requirement or supplier proposal",
+        "Surface family, texture code, gloss/Ra target and measurement method",
+        "Chrome/non-chrome route and coating evidence",
+        "Flatness/parallelism/tolerance and measurement grid",
+        "Hardness and test method where required",
+        "Temperature, pressure, cycle and handling limits",
+        "Approved master plate/panel/drawing",
+        "MTC/TDS/test/inspection/packing requirements"
+      ],
+      "options": [
+        "MFC, TFL, HPL and CPL pressing",
+        "Flooring, door and furniture surface programmes"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
       ],
       "applications": [
-        "MFC and TFL panel surfacing",
-        "HPL, CPL, and compact laminate pressing",
-        "Flooring, door, and furniture surface programmes"
+        "MFC, TFL, HPL and CPL pressing",
+        "Flooring, door and furniture surface programmes"
       ],
-      "customization": "Surface pattern, plate build, and chrome requirement are confirmed per programme.",
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
       "technical": {
-        "grades": [
-          "Programme-specific stainless grade"
-        ],
+        "grades": [],
         "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
-        "origin": "Mumbai-led Asia supply coordination"
-      }
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
+        "origin": "Programme-dependent"
+      },
+      "seoTitle": "Wood Lamination Press Plates | Technical RFQ | Moldart",
+      "metaDesc": "Stainless press plates for MFC/TFL, HPL/CPL/compact, flooring, doors and furniture.",
+      "overview": "Prepare a technical RFQ for wood lamination press plates without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Availability, quantity, MOQ, packing and dispatch timing are confirmed after technical review.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "lamination",
+        "decorative-surfaces",
+        "furniture"
+      ],
+      "downloads": [
+        {
+          "title": "Press Plate Standard Collection",
+          "url": "/downloads/PRESS PLATE - BASIC COLLECTION.pdf"
+        },
+        {
+          "title": "Press Plates for Shuttering Plywood",
+          "url": "/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf"
+        }
+      ]
     },
     {
       "id": "press-pads",
-      "name": "Press Pads",
-      "material": "Wood",
-      "stage": "Raw Materials",
-      "use": "Process",
+      "publicId": "W-PAD",
+      "slug": "press-pads",
+      "name": "Wood Lamination Press Pads & Cushion Systems",
+      "system": "wood",
+      "publicStatus": "Current RFQ Route",
+      "stockNote": "",
+      "material": "Wood and decorative-surface system",
+      "stage": "Technical product route",
+      "use": "Process material",
       "industry": [
-        "Lamination",
-        "Flooring",
-        "Furniture"
+        "lamination",
+        "decorative-surfaces"
       ],
       "image": "/images/press_pad_new.webp",
-      "summary": "Requirement-led press-pad and cushion-system selection for heat and pressure equalisation in wood-panel lamination.",
+      "mediaStatus": "EXISTING_REVIEW_ASSET",
+      "mediaCaption": "Existing draft visual reference; not evidence of current stock, tests, factory ownership or completed projects.",
+      "summary": "Silicone-copper/brass, high-elastic and related cushion systems.",
+      "scope": "Silicone-copper/brass, high-elastic and related cushion systems; felt/wire-mesh/accessories only as separately qualified constructions.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
       "specs": [
-        "Press type, panel stack, temperature, pressure, cycle, and working size required before selection",
-        "Pad construction, elastic response, thickness, and surface confirmed against approved technical evidence",
-        "Service-life basis and replacement criteria confirmed for the actual press programme",
-        "Brass, high-elastic, felt, wire-mesh, and related accessories remain qualification-only until separately approved"
+        "Press and application",
+        "Stack position",
+        "Working size and quantity",
+        "Pad construction/material",
+        "Nominal thickness and tolerance",
+        "Compression/recovery basis",
+        "Heat-transfer/temperature basis",
+        "Pressure and cycle conditions",
+        "Surface/weave and edge construction",
+        "Service-life test basis—not universal cycles",
+        "Inspection and replacement criteria",
+        "Trial/sample and packing requirements"
+      ],
+      "options": [
+        "Wood-panel lamination",
+        "Press-stack heat and pressure equalisation"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
       ],
       "applications": [
-        "Short-cycle lamination",
-        "High-volume pressing",
-        "Decorative board manufacturing"
+        "Wood-panel lamination",
+        "Press-stack heat and pressure equalisation"
       ],
-      "customization": "Width and construction are aligned to the press line and programme.",
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
       "technical": {
-        "grades": [
-          "Programme-specific cushion construction"
-        ],
+        "grades": [],
         "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
-        "origin": "Mumbai-led Asia supply coordination"
-      }
-    },
-    {
-      "id": "engraved-cylinders",
-      "name": "Engraved Cylinders",
-      "material": "Wood",
-      "stage": "Raw Materials",
-      "use": "Surface",
-      "industry": [
-        "Lamination",
-        "Furniture"
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
+        "origin": "Programme-dependent"
+      },
+      "seoTitle": "Wood Lamination Press Pads & Cushion Systems | Technical RFQ | Moldart",
+      "metaDesc": "Silicone-copper/brass, high-elastic and related cushion systems.",
+      "overview": "Prepare a technical RFQ for wood lamination press pads & cushion systems without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Availability, quantity, MOQ, packing and dispatch timing are confirmed after technical review.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "lamination",
+        "decorative-surfaces"
       ],
-      "image": "/images/page5_img1.webp",
-      "summary": "Rotogravure cylinders for décor printing and pattern transfer.",
-      "specs": [
-        "Printing line, repeat, base-paper, ink, and pattern inputs required before cylinder review",
-        "Cylinder construction, engraving method, depth, surface condition, and dimensions confirmed in approved technical evidence",
-        "Master artwork, colour route, repeat tolerance, and retained sample required for approval",
-        "Production fit confirmed against the actual printing and décor programme"
-      ],
-      "applications": [
-        "Decor paper printing",
-        "Pattern development",
-        "Woodgrain reproduction"
-      ],
-      "customization": "Pattern-specific engraving is confirmed against the décor programme.",
-      "technical": {
-        "grades": [
-          "Programme-specific cylinder construction"
-        ],
-        "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
-        "origin": "Mumbai-led Asia supply coordination"
-      }
+      "downloads": []
     },
     {
       "id": "decor-paper",
-      "name": "Printed Decor Paper",
-      "material": "Wood",
-      "stage": "Raw Materials",
-      "use": "Decorative",
+      "publicId": "W-DECOR",
+      "slug": "printed-decor-paper",
+      "name": "Printed Décor Paper",
+      "system": "wood",
+      "publicStatus": "Current RFQ Route",
+      "stockNote": "",
+      "material": "Wood and decorative-surface system",
+      "stage": "Technical product route",
+      "use": "Process material",
       "industry": [
-        "Furniture",
-        "Flooring",
-        "Lamination"
+        "lamination",
+        "decorative-surfaces",
+        "furniture",
+        "flooring"
       ],
       "image": "/images/page5_img2.webp",
-      "summary": "Printed décor-paper qualification for laminate, flooring, door, and furniture surface programmes.",
+      "mediaStatus": "EXISTING_REVIEW_ASSET",
+      "mediaCaption": "Existing draft visual reference; not evidence of current stock, tests, factory ownership or completed projects.",
+      "summary": "Printed décor paper for furniture, flooring, doors, laminates and panels.",
+      "scope": "Printed décor paper for furniture, flooring, doors, laminates and panels; values confirmed per programme.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
       "specs": [
-        "Base paper, grammage, print route, colour standard, repeat, and end-use required before selection",
-        "Strength, porosity, resin compatibility, and process conditions confirmed in approved technical evidence",
-        "Master sample, batch approval, metamerism, and retained-reference route confirmed per programme",
-        "Melamine impregnated paper and PP, PVC, PET, or PETG films remain separate qualification routes"
+        "End use and substrate",
+        "Base paper type",
+        "Grammage and test method",
+        "Width, roll length, core and winding",
+        "Design/decor code and repeat length",
+        "Print method, ink route and colour standard",
+        "Moisture, porosity and wet-strength requirements",
+        "Impregnation/resin process compatibility",
+        "Master, batch and pressed-panel samples",
+        "Viewing conditions and metamerism method",
+        "Batch/lot traceability",
+        "Packing, storage and shelf conditions"
+      ],
+      "options": [
+        "Decorative laminates",
+        "Flooring, furniture and door surfaces"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
       ],
       "applications": [
         "Decorative laminates",
-        "Flooring overlays",
-        "Furniture surfaces"
+        "Flooring, furniture and door surfaces"
       ],
-      "customization": "Décor, print route, and programme matching are confirmed per enquiry.",
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
       "technical": {
-        "grades": [
-          "Decor paper"
-        ],
+        "grades": [],
         "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
-        "origin": "Mumbai-led Asia supply coordination"
-      }
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
+        "origin": "Programme-dependent"
+      },
+      "seoTitle": "Printed Décor Paper | Technical RFQ | Moldart",
+      "metaDesc": "Printed décor paper for furniture, flooring, doors, laminates and panels.",
+      "overview": "Prepare a technical RFQ for printed décor paper without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Availability, quantity, MOQ, packing and dispatch timing are confirmed after technical review.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "lamination",
+        "decorative-surfaces",
+        "furniture",
+        "flooring"
+      ],
+      "downloads": [
+        {
+          "title": "HPL Overlay Collection OL-01",
+          "url": "/downloads/HPL - OL - 1.pdf"
+        }
+      ]
     },
     {
-      "id": "plywood",
-      "name": "Plywood",
-      "material": "Wood",
-      "stage": "Semi-Finished",
-      "use": "Panel",
+      "id": "melamine-impregnated-paper",
+      "publicId": "W-MIP",
+      "slug": "melamine-impregnated-technical-papers",
+      "name": "Melamine-Impregnated & Technical Papers",
+      "system": "wood",
+      "publicStatus": "In stock",
+      "stockNote": "Melamine-impregnated paper is in stock. Exact paper role, resin system, dimensions and available quantity are confirmed against the RFQ.",
+      "material": "Wood and decorative-surface system",
+      "stage": "Technical product route",
+      "use": "Process material",
       "industry": [
-        "Furniture",
-        "Architecture"
+        "lamination",
+        "decorative-surfaces",
+        "furniture",
+        "flooring"
       ],
-      "image": "/images/page6_img1.webp",
-      "summary": "Plywood panels for structural and furniture-grade applications.",
+      "image": "",
+      "mediaStatus": "SOURCE_REQUIRED",
+      "mediaCaption": "Approved product media is not yet available; this text-first page intentionally does not fabricate an image.",
+      "summary": "Melamine-impregnated décor papers, overlays, underlays and backing/balancing papers for wood-panel lamination.",
+      "scope": "Melamine-impregnated décor papers, overlays, underlays and backing/balancing papers for wood-panel lamination.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
       "specs": [
-        "End use, core construction, face, thickness, dimensions, and load condition required before selection",
-        "Bond, moisture, strength, emission, and surface requirements confirmed in approved technical evidence",
-        "Sample, test method, tolerance, and acceptance basis confirmed per programme",
-        "Furniture, interior, formwork, and architectural fit reviewed separately"
+        "Paper role: décor/overlay/underlay/backing",
+        "Base paper and grammage",
+        "Resin chemistry/type",
+        "Resin content and test method",
+        "Volatile content and test method",
+        "Flow/cure/gel time and method",
+        "Sheet/roll size and tolerance",
+        "Press temperature, pressure and cycle window",
+        "Storage, shelf life and conditioning",
+        "Surface/colour/master sample",
+        "Batch traceability and COA fields",
+        "Packing and moisture protection"
+      ],
+      "options": [
+        "MFC and TFL boards",
+        "HPL, CPL, overlay, underlay and balancing-paper routes"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
       ],
       "applications": [
-        "Furniture carcasses",
-        "Interior fit-outs",
-        "Architectural panels"
+        "MFC and TFL boards",
+        "HPL, CPL, overlay, underlay and balancing-paper routes"
       ],
-      "customization": "Core build, thickness, and panel programme are confirmed per enquiry.",
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
       "technical": {
-        "grades": [
-          "Programme-specific plywood construction"
-        ],
+        "grades": [],
         "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
         "origin": "Programme-dependent"
-      }
+      },
+      "seoTitle": "Melamine-Impregnated & Technical Papers | Technical RFQ | Moldart",
+      "metaDesc": "Melamine-impregnated décor papers, overlays, underlays and backing/balancing papers for wood-panel lamination.",
+      "overview": "Prepare a technical RFQ for melamine-impregnated & technical papers without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Melamine-impregnated paper is in stock. Exact paper role, resin system, dimensions and available quantity are confirmed against the RFQ.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "lamination",
+        "decorative-surfaces",
+        "furniture",
+        "flooring"
+      ],
+      "downloads": []
+    },
+    {
+      "id": "decorative-films-foils",
+      "publicId": "W-FILM",
+      "slug": "decorative-films-foils",
+      "name": "Decorative Films & Foils — PP, PVC, PET, PETG",
+      "system": "wood",
+      "publicStatus": "In stock",
+      "stockNote": "PP, PVC, PET and PETG decorative film and foil families are in stock. Exact construction, finish, width and available quantity are confirmed against the RFQ.",
+      "material": "Wood and decorative-surface system",
+      "stage": "Technical product route",
+      "use": "Process material",
+      "industry": [
+        "decorative-surfaces",
+        "furniture"
+      ],
+      "image": "",
+      "mediaStatus": "SOURCE_REQUIRED",
+      "mediaCaption": "Approved product media is not yet available; this text-first page intentionally does not fabricate an image.",
+      "summary": "Printed or coated thermoplastic surface films for furniture, flooring, doors, profiles and interior components.",
+      "scope": "Printed or coated thermoplastic surface films for furniture, flooring, doors, profiles and interior components; polymer and process-specific.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
+      "specs": [
+        "Polymer: PP/PVC/PET/PETG",
+        "Application and substrate",
+        "Film thickness and tolerance",
+        "Width, roll length and core",
+        "Print/colour/design/finish",
+        "Top coating and back treatment",
+        "Adhesive/lamination/forming process",
+        "Process temperature and line speed",
+        "Shrinkage/dimensional stability method",
+        "Abrasion, scratch, stain, chemical, UV or light requirements as applicable",
+        "Master/formed sample and edge compatibility",
+        "Storage, shelf life and packing"
+      ],
+      "options": [
+        "Furniture and cabinet surfaces",
+        "Door, profile and interior-component lamination or forming"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
+      ],
+      "applications": [
+        "Furniture and cabinet surfaces",
+        "Door, profile and interior-component lamination or forming"
+      ],
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
+      "technical": {
+        "grades": [],
+        "certifications": [],
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
+        "origin": "Programme-dependent"
+      },
+      "seoTitle": "Decorative Films & Foils — PP, PVC, PET, PETG | Technical RFQ | Moldart",
+      "metaDesc": "Printed or coated thermoplastic surface films for furniture, flooring, doors, profiles and interior components.",
+      "overview": "Prepare a technical RFQ for decorative films & foils — pp, pvc, pet, petg without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "PP, PVC, PET and PETG decorative film and foil families are in stock. Exact construction, finish, width and available quantity are confirmed against the RFQ.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "decorative-surfaces",
+        "furniture"
+      ],
+      "downloads": []
+    },
+    {
+      "id": "genuine-vegetable-parchment",
+      "publicId": "W-GVP",
+      "slug": "genuine-vegetable-parchment",
+      "name": "Genuine Vegetable Parchment for Decorative Lamination",
+      "system": "wood",
+      "publicStatus": "In stock",
+      "stockNote": "Genuine vegetable parchment is in stock. Exact grade, basis weight or caliper, format and available quantity are confirmed against the RFQ.",
+      "material": "Wood and decorative-surface system",
+      "stage": "Technical product route",
+      "use": "Process material",
+      "industry": [
+        "lamination",
+        "decorative-surfaces"
+      ],
+      "image": "",
+      "mediaStatus": "SOURCE_REQUIRED",
+      "mediaCaption": "Approved product media is not yet available; this text-first page intentionally does not fabricate an image.",
+      "summary": "Technical parchment for CPL/HPL, furniture, doors, wall panels, flooring, profiles and edge/postforming routes—not food parchment.",
+      "scope": "Technical parchment for CPL/HPL, furniture, doors, wall panels, flooring, profiles and edge/postforming routes—not food parchment.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
+      "specs": [
+        "Application: HPL/CPL/edge/profile/postforming",
+        "Paper grade/type",
+        "Basis weight/caliper",
+        "Dry and wet tensile basis",
+        "Internal bond",
+        "Resin barrier requirement",
+        "Flexibility/postforming radius",
+        "Glue compatibility",
+        "Sheet/roll dimensions",
+        "Surface, moisture and cleanliness",
+        "Sample bonding/press trial",
+        "Traceability, storage and packing"
+      ],
+      "options": [
+        "HPL and CPL processing",
+        "Edge, profile and postforming routes"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
+      ],
+      "applications": [
+        "HPL and CPL processing",
+        "Edge, profile and postforming routes"
+      ],
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
+      "technical": {
+        "grades": [],
+        "certifications": [],
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
+        "origin": "Programme-dependent"
+      },
+      "seoTitle": "Genuine Vegetable Parchment for Decorative Lamination | Technical RFQ | Moldart",
+      "metaDesc": "Technical parchment for CPL/HPL, furniture, doors, wall panels, flooring, profiles and edge/postforming routes—not food parchment.",
+      "overview": "Prepare a technical RFQ for genuine vegetable parchment for decorative lamination without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Genuine vegetable parchment is in stock. Exact grade, basis weight or caliper, format and available quantity are confirmed against the RFQ.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "lamination",
+        "decorative-surfaces"
+      ],
+      "downloads": []
     },
     {
       "id": "fiberboard",
-      "name": "Fiberboard",
-      "material": "Wood",
-      "stage": "Semi-Finished",
-      "use": "Panel",
+      "publicId": "W-MDF",
+      "slug": "fiberboard",
+      "name": "MDF & HDF",
+      "system": "wood",
+      "publicStatus": "Current RFQ Route",
+      "stockNote": "",
+      "material": "Wood and decorative-surface system",
+      "stage": "Technical product route",
+      "use": "Process material",
       "industry": [
-        "Furniture",
-        "Flooring",
-        "Architecture"
+        "furniture",
+        "flooring",
+        "architecture"
       ],
       "image": "/images/page6_img3.webp",
-      "summary": "MDF and HDF panels for lamination, painting, and conversion.",
+      "mediaStatus": "EXISTING_REVIEW_ASSET",
+      "mediaCaption": "Existing draft visual reference; not evidence of current stock, tests, factory ownership or completed projects.",
+      "summary": "MDF/HDF including moisture-resistant, high-density, fire-retardant, flooring-core and special-emission routes only when evidenced.",
+      "scope": "MDF/HDF including moisture-resistant, high-density, fire-retardant, flooring-core and special-emission routes only when evidenced; engineered door/cabinet/wardrobe/front and furniture-component routes only when drawing, board construction and conversion evidence are approved.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
       "specs": [
-        "MDF or HDF route, end use, thickness, dimensions, machining, and surface process required before selection",
-        "Density profile, moisture, swelling, strength, emission, and surface condition confirmed in approved technical evidence",
-        "MR, HMR, FR, flooring-core, and other special routes require separate product and test approval",
-        "Painting, lamination, door, furniture, and flooring fit reviewed against the actual process"
+        "MDF/HDF and product grade",
+        "End use and conversion process",
+        "Thickness, dimensions and tolerances",
+        "Density profile—not only average density",
+        "Moisture and thickness swelling",
+        "Internal bond/bending/surface soundness as applicable",
+        "Machining and edge requirements",
+        "Surface/calibration/sanding",
+        "Emission destination and evidence",
+        "MR/HMR/FR/NAF/ULEF or other special route",
+        "Sample/machining trial",
+        "Packing, moisture protection and labels"
+      ],
+      "options": [
+        "Furniture and cabinetry",
+        "Painted, laminated and supported flooring-core programmes"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
       ],
       "applications": [
-        "Furniture fronts",
-        "Door skins",
-        "Decorative panel systems",
-        "Flooring cores"
+        "Furniture and cabinetry",
+        "Painted, laminated and supported flooring-core programmes"
       ],
-      "customization": "Board type and panel programme are matched to the final application.",
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
       "technical": {
-        "grades": [
-          "MDF",
-          "HDF"
-        ],
+        "grades": [],
         "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
         "origin": "Programme-dependent"
-      }
-    },
-    {
-      "id": "wood-flooring",
-      "name": "Laminate Flooring Systems",
-      "material": "Laminate flooring",
-      "stage": "Finished",
-      "use": "Surface",
-      "industry": [
-        "Flooring",
-        "Architecture"
+      },
+      "seoTitle": "MDF & HDF | Technical RFQ | Moldart",
+      "metaDesc": "MDF/HDF including moisture-resistant, high-density, fire-retardant, flooring-core and special-emission routes only when evidenced.",
+      "overview": "Prepare a technical RFQ for mdf & hdf without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Availability, quantity, MOQ, packing and dispatch timing are confirmed after technical review.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "furniture",
+        "flooring",
+        "architecture"
       ],
-      "image": "/images/page7_img1.webp",
-      "summary": "HDF-core click-system laminate flooring programmes for residential and commercial use; final construction and acceptance requirements are confirmed per approved programme.",
-      "specs": [
-        "Core, decorative surface, balancing layer, and locking route confirmed per approved programme",
-        "Declared use class and test method confirmed in the applicable product TDS",
-        "Moisture, storage, underlay, and installation conditions confirmed before dispatch",
-        "Click-system and accessory compatibility confirmed against the approved sample"
-      ],
-      "applications": [
-        "Residential laminate flooring",
-        "Commercial laminate flooring",
-        "Hospitality flooring programmes"
-      ],
-      "customization": "Décor, construction, use class, locking profile, and accessory coordination are confirmed per programme.",
-      "technical": {
-        "grades": [
-          "Programme-specific"
-        ],
-        "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
-        "origin": "Programme-dependent"
-      }
-    },
-    {
-      "id": "custom-furniture",
-      "name": "Custom Furniture",
-      "material": "Wood",
-      "stage": "Finished",
-      "use": "Decorative",
-      "industry": [
-        "Furniture",
-        "Architecture"
-      ],
-      "image": "/images/page7_img4.webp",
-      "summary": "CAD/CNC-led furniture development for hospitality, residential, and retail programmes.",
-      "specs": [
-        "Approved drawing, dimensions, quantity, use environment, and installation responsibility required before review",
-        "Core, hardware, finish, edge, assembly, and packing route confirmed against approved samples and documents",
-        "CAD, CNC, prototype, counter-sample, and production route confirmed per supplier programme",
-        "Hospitality, retail, residential, and commercial fit reviewed project by project"
-      ],
-      "applications": [
-        "Hospitality furniture",
-        "Retail fixtures",
-        "Custom interior packages"
-      ],
-      "customization": "Layout, finish, and build are confirmed per project.",
-      "technical": {
-        "grades": [
-          "Project-specific"
-        ],
-        "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
-        "origin": "Programme-dependent"
-      }
-    },
-    {
-      "id": "osb",
-      "name": "OSB (Oriented Strand Board)",
-      "material": "Wood",
-      "stage": "Semi-Finished",
-      "use": "Panel",
-      "industry": [
-        "Furniture",
-        "Architecture"
-      ],
-      "image": "/images/page6_img2.webp",
-      "summary": "OSB panels for structural and load-bearing applications.",
-      "specs": [
-        "OSB type, end use, load condition, exposure class, thickness, and dimensions required before selection",
-        "Strength, bond, moisture, swelling, emission, and structural basis confirmed in approved technical evidence",
-        "Fine-surface, fire-retardant, and special-emission routes require separate product and test approval",
-        "Construction, furniture, packaging, and other fit reviewed against the applicable standard and use condition"
-      ],
-      "applications": [
-        "Load-bearing construction",
-        "Furniture frameworks",
-        "Packaging"
-      ],
-      "customization": "Panel build and programme alignment are confirmed per enquiry.",
-      "technical": {
-        "grades": [
-          "OSB"
-        ],
-        "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
-        "origin": "Programme-dependent"
-      }
+      "downloads": []
     },
     {
       "id": "particleboard",
+      "publicId": "W-PB",
+      "slug": "particleboard",
       "name": "Particleboard",
-      "material": "Wood",
-      "stage": "Semi-Finished",
-      "use": "Panel",
+      "system": "wood",
+      "publicStatus": "Current RFQ Route",
+      "stockNote": "",
+      "material": "Wood and decorative-surface system",
+      "stage": "Technical product route",
+      "use": "Process material",
       "industry": [
-        "Furniture",
-        "Architecture"
+        "furniture"
       ],
       "image": "/images/page6_img4.webp",
-      "summary": "Particleboard cores for commercial furniture and panel programmes.",
+      "mediaStatus": "EXISTING_REVIEW_ASSET",
+      "mediaCaption": "Existing draft visual reference; not evidence of current stock, tests, factory ownership or completed projects.",
+      "summary": "Standard, moisture-resistant, structural, melamine-faced and special-emission particleboard programmes.",
+      "scope": "Standard, moisture-resistant, structural, melamine-faced and special-emission particleboard programmes; engineered door/cabinet/wardrobe/front and furniture-component routes only when drawing, board construction and conversion evidence are approved.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
       "specs": [
-        "End use, face route, thickness, dimensions, machining, edge, and load condition required before selection",
-        "Density profile, moisture, swelling, strength, screw holding, and emission confirmed in approved technical evidence",
-        "MR, structural, melamine-faced, and special-emission routes require separate product and test approval",
-        "Furniture, cabinetry, shelving, and component fit reviewed per programme"
+        "Product/grade and use",
+        "Thickness, dimensions and tolerance",
+        "Density profile",
+        "Moisture and thickness swelling",
+        "Internal bond/bending as applicable",
+        "Screw-holding and edge route",
+        "Machining/chipping acceptance",
+        "Face/calibration/lamination readiness",
+        "Emission destination and certificate scope",
+        "MFC/TFL face and décor if applicable",
+        "Trial/component sample",
+        "Packing and labels"
+      ],
+      "options": [
+        "Commercial furniture",
+        "Cabinetry, shelving and melamine-faced boards"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
       ],
       "applications": [
-        "Office furniture",
-        "Cabinetry",
-        "Shelving systems"
+        "Commercial furniture",
+        "Cabinetry, shelving and melamine-faced boards"
       ],
-      "customization": "Thickness and programme fit are confirmed against final use.",
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
       "technical": {
-        "grades": [
-          "Programme-specific"
-        ],
+        "grades": [],
         "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
         "origin": "Programme-dependent"
-      }
+      },
+      "seoTitle": "Particleboard | Technical RFQ | Moldart",
+      "metaDesc": "Standard, moisture-resistant, structural, melamine-faced and special-emission particleboard programmes.",
+      "overview": "Prepare a technical RFQ for particleboard without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Availability, quantity, MOQ, packing and dispatch timing are confirmed after technical review.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "furniture"
+      ],
+      "downloads": []
     },
     {
-      "id": "flooring-accessories",
-      "name": "Flooring Accessories",
-      "material": "Wood",
-      "stage": "Finished",
-      "use": "Decorative",
+      "id": "osb",
+      "publicId": "W-OSB",
+      "slug": "osb",
+      "name": "OSB & Fine-Surface OSB",
+      "system": "wood",
+      "publicStatus": "Current RFQ Route",
+      "stockNote": "",
+      "material": "Wood and decorative-surface system",
+      "stage": "Technical product route",
+      "use": "Process material",
       "industry": [
-        "Flooring",
-        "Architecture"
+        "furniture",
+        "architecture",
+        "formwork-shuttering"
       ],
-      "image": "/images/page7_img2.webp",
-      "summary": "Accessory profiles and trims coordinated with flooring programmes.",
+      "image": "/images/page6_img2.webp",
+      "mediaStatus": "EXISTING_REVIEW_ASSET",
+      "mediaCaption": "Existing draft visual reference; not evidence of current stock, tests, factory ownership or completed projects.",
+      "summary": "OSB/F-OSB, moisture/exposure, structural, fine-surface, FR and special-emission variants only by approved grade.",
+      "scope": "OSB/F-OSB, moisture/exposure, structural, fine-surface, FR and special-emission variants only by approved grade.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
       "specs": [
-        "Room transitions, expansion gaps, wall junctions, stair details, and installation method required before selection",
-        "Profile type, base material, dimensions, finish, and wear surface confirmed in approved technical evidence",
-        "Décor coordination and accessory compatibility confirmed against the approved flooring sample",
-        "Final profile set, quantities, packing, and spares confirmed per programme"
+        "OSB type/grade and applicable standard",
+        "Load/exposure/use condition",
+        "Thickness, dimensions and tolerance",
+        "Strand orientation and construction",
+        "Strength/stiffness/bond requirements",
+        "Moisture and swelling",
+        "Surface/edge/coating route",
+        "Fastening and machining",
+        "FR/emission/special requirement",
+        "Marking and certificate scope",
+        "Application trial/sample",
+        "Packing and storage"
+      ],
+      "options": [
+        "Construction and formwork support",
+        "Furniture frameworks and industrial panels"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
       ],
       "applications": [
-        "Room transitions",
-        "Wall skirting",
-        "Staircases"
+        "Construction and formwork support",
+        "Furniture frameworks and industrial panels"
       ],
-      "customization": "Accessory mix and finish matching are confirmed per programme.",
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
       "technical": {
-        "grades": [
-          "Programme-specific"
-        ],
+        "grades": [],
         "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
         "origin": "Programme-dependent"
-      }
+      },
+      "seoTitle": "OSB & Fine-Surface OSB | Technical RFQ | Moldart",
+      "metaDesc": "OSB/F-OSB, moisture/exposure, structural, fine-surface, FR and special-emission variants only by approved grade.",
+      "overview": "Prepare a technical RFQ for osb & fine-surface osb without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Availability, quantity, MOQ, packing and dispatch timing are confirmed after technical review.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "furniture",
+        "architecture",
+        "formwork-shuttering"
+      ],
+      "downloads": []
     },
     {
-      "id": "ready-made-furniture",
-      "name": "Ready-Made Furniture",
-      "material": "Wood",
-      "stage": "Finished",
-      "use": "Decorative",
+      "id": "plywood",
+      "publicId": "W-PLY",
+      "slug": "plywood",
+      "name": "Plywood",
+      "system": "wood",
+      "publicStatus": "Current RFQ Route",
+      "stockNote": "",
+      "material": "Wood and decorative-surface system",
+      "stage": "Technical product route",
+      "use": "Process material",
       "industry": [
-        "Furniture",
-        "Architecture"
+        "furniture",
+        "architecture",
+        "formwork-shuttering"
       ],
-      "image": "/images/page7_img3.webp",
-      "summary": "Modular furniture components and assemblies for commercial and residential programmes.",
+      "image": "/images/page6_img1.webp",
+      "mediaStatus": "EXISTING_REVIEW_ASSET",
+      "mediaCaption": "Existing draft visual reference; not evidence of current stock, tests, factory ownership or completed projects.",
+      "summary": "Furniture, interior, structural and formwork plywood as separate constructions.",
+      "scope": "Furniture, interior, structural and formwork plywood as separate constructions; engineered door/cabinet/wardrobe/front and furniture-component routes only when drawing, board construction and conversion evidence are approved.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
       "specs": [
-        "Product type, dimensions, quantity, use environment, assembly, and installation responsibility required before review",
-        "Board, face, hardware, edge, machining, finish, and packing confirmed in approved technical evidence",
-        "Scratch, stain, load, durability, and tolerance requirements confirmed by applicable test and sample",
-        "Flat-pack, assembled, component, and finished-unit routes confirmed per programme"
+        "End use and applicable grade",
+        "Wood species/face/core construction",
+        "Ply count/build and core-gap acceptance",
+        "Thickness, dimensions and tolerance",
+        "Bond/moisture/exposure class",
+        "Strength and load requirement",
+        "Face quality and surface route",
+        "Edge sealing and machining",
+        "Emission/certification destination",
+        "Formwork face/release route if applicable",
+        "Sample/test evidence",
+        "Packing, storage and labels"
+      ],
+      "options": [
+        "Furniture and interiors",
+        "Formwork, shuttering and architectural panels"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
       ],
       "applications": [
-        "Office workstations",
-        "Modular kitchens",
-        "Wardrobe systems"
+        "Furniture and interiors",
+        "Formwork, shuttering and architectural panels"
       ],
-      "customization": "Flat-pack or assembled delivery is confirmed per programme.",
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
       "technical": {
-        "grades": [
-          "Melamine-faced",
-          "HPL-faced"
-        ],
+        "grades": [],
         "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
         "origin": "Programme-dependent"
-      }
+      },
+      "seoTitle": "Plywood | Technical RFQ | Moldart",
+      "metaDesc": "Furniture, interior, structural and formwork plywood as separate constructions.",
+      "overview": "Prepare a technical RFQ for plywood without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Availability, quantity, MOQ, packing and dispatch timing are confirmed after technical review.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "furniture",
+        "architecture",
+        "formwork-shuttering"
+      ],
+      "downloads": []
+    },
+    {
+      "id": "hpl-compact-laminated-boards",
+      "publicId": "W-HPL",
+      "slug": "hpl-compact-laminated-boards",
+      "name": "HPL, Compact & HPL-Laminated Boards",
+      "system": "wood",
+      "publicStatus": "Project-Specific Qualification",
+      "stockNote": "",
+      "material": "Wood and decorative-surface system",
+      "stage": "Technical product route",
+      "use": "Process material",
+      "industry": [
+        "decorative-surfaces",
+        "furniture",
+        "architecture"
+      ],
+      "image": "",
+      "mediaStatus": "SOURCE_REQUIRED",
+      "mediaCaption": "Approved product media is not yet available; this text-first page intentionally does not fabricate an image.",
+      "summary": "HPL sheets, compact laminate and HPL-laminated boards.",
+      "scope": "HPL sheets, compact laminate and HPL-laminated boards; construction and substrate route must be explicit; engineered door/cabinet/wardrobe/front and furniture-component routes only when drawing, board construction and conversion evidence are approved.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
+      "specs": [
+        "Product route: HPL/compact/laminated board",
+        "Application/environment",
+        "Construction and substrate",
+        "Thickness, dimensions and tolerance",
+        "Décor/finish/texture and directional reference",
+        "Wear, scratch, stain, chemical, impact or fire requirement as applicable",
+        "Postforming or machining route",
+        "Flatness and edge requirement",
+        "Applicable standard/test method",
+        "Master sample and batch approval",
+        "Backing/balancer requirement",
+        "Packing, protection and labels"
+      ],
+      "options": [
+        "Furniture and cabinetry",
+        "Compact laminate and HPL-faced panel systems"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
+      ],
+      "applications": [
+        "Furniture and cabinetry",
+        "Compact laminate and HPL-faced panel systems"
+      ],
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
+      "technical": {
+        "grades": [],
+        "certifications": [],
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
+        "origin": "Programme-dependent"
+      },
+      "seoTitle": "HPL, Compact & HPL-Laminated Boards | Technical RFQ | Moldart",
+      "metaDesc": "HPL sheets, compact laminate and HPL-laminated boards.",
+      "overview": "Prepare a technical RFQ for hpl, compact & hpl-laminated boards without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Availability, quantity, MOQ, packing and dispatch timing are confirmed after technical review.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "decorative-surfaces",
+        "furniture",
+        "architecture"
+      ],
+      "downloads": [
+        {
+          "title": "HPL Overlay Collection OL-01",
+          "url": "/downloads/HPL - OL - 1.pdf"
+        },
+        {
+          "title": "HPL Overlay Collection OL-02",
+          "url": "/downloads/HPL - OL - 2.pdf"
+        },
+        {
+          "title": "HPL Overlay Collection OL-03",
+          "url": "/downloads/HPL - OL - 3.pdf"
+        }
+      ]
+    },
+    {
+      "id": "wood-flooring",
+      "publicId": "W-FLOOR",
+      "slug": "wood-flooring",
+      "name": "Laminate Flooring Systems",
+      "system": "wood",
+      "publicStatus": "Current RFQ Route",
+      "stockNote": "",
+      "material": "Wood and decorative-surface system",
+      "stage": "Technical product route",
+      "use": "Process material",
+      "industry": [
+        "flooring"
+      ],
+      "image": "/images/page7_img1.webp",
+      "mediaStatus": "EXISTING_REVIEW_ASSET",
+      "mediaCaption": "Existing draft visual reference; not evidence of current stock, tests, factory ownership or completed projects.",
+      "summary": "HDF-core laminate flooring systems.",
+      "scope": "HDF-core laminate flooring systems; flooring substrates; coordinated skirting/nosing/transitions/accessories as conditional system components. Engineered wood is not implied without separate evidence.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
+      "specs": [
+        "Product construction and applicable standard",
+        "Use environment and declared class",
+        "Plank dimensions/thickness/tolerance",
+        "Core type and density profile",
+        "Lock profile and joint geometry",
+        "Abrasion/wear and test method",
+        "Swelling/moisture/dimensional stability",
+        "Surface décor/texture/gloss",
+        "Backing/underlay/accessories",
+        "Emission and destination evidence",
+        "Site readiness/installation conditions",
+        "Sample, carton and pallet requirements",
+        "Accessory/junction schedule and décor coordination when required"
+      ],
+      "options": [
+        "Residential and commercial laminate flooring",
+        "Coordinated trims, underlay and accessories"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
+      ],
+      "applications": [
+        "Residential and commercial laminate flooring",
+        "Coordinated trims, underlay and accessories"
+      ],
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
+      "technical": {
+        "grades": [],
+        "certifications": [],
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
+        "origin": "Programme-dependent"
+      },
+      "seoTitle": "Laminate Flooring Systems | Technical RFQ | Moldart",
+      "metaDesc": "HDF-core laminate flooring systems.",
+      "overview": "Prepare a technical RFQ for laminate flooring systems without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Availability, quantity, MOQ, packing and dispatch timing are confirmed after technical review.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "flooring"
+      ],
+      "downloads": [
+        {
+          "title": "Flooring Systems Reference Deck",
+          "url": "/downloads/WOOD - FLOORING.pdf"
+        }
+      ]
     },
     {
       "id": "decorative-panels",
+      "publicId": "S-SHEET",
+      "slug": "decorative-ss-panels",
       "name": "Decorative Stainless Steel Sheets",
-      "material": "Steel",
-      "stage": "Finished",
-      "use": "Surface",
+      "system": "steel",
+      "publicStatus": "Current RFQ Route",
+      "stockNote": "",
+      "material": "Decorative stainless steel",
+      "stage": "Technical product route",
+      "use": "Process material",
       "industry": [
-        "Architecture"
+        "architecture",
+        "metal-finishing"
       ],
       "image": "/images/page9_img1.webp",
-      "summary": "Requirement-led decorative stainless steel sheet programmes for architectural, elevator, retail, wall, ceiling, and project surfaces.",
+      "mediaStatus": "EXISTING_REVIEW_ASSET",
+      "mediaCaption": "Existing draft visual reference; not evidence of current stock, tests, factory ownership or completed projects.",
+      "summary": "Mirror, hairline, satin, No.4, etched, embossed, sand-blasted, PVD, AFP and project finishes only after sample/evidence approval.",
+      "scope": "Mirror, hairline, satin, No.4, etched, embossed, sand-blasted, PVD, AFP and project finishes only after sample/evidence approval; drawing-led fabricated applications may be reviewed project by project but are not a separate standard product route.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
       "specs": [
-        "Use environment, grade, dimensions, thickness, substrate, fabrication, and installation route required before selection",
-        "Mirror, hairline, satin, No.4, etched, embossed, PVD, sand-blasted, and other finishes require separate sample approval",
-        "Anti-fingerprint coating, protective film, finish direction, colour tolerance, and cleaning basis confirmed in approved evidence",
-        "Packing, interleaving, corner protection, loading, and receiving criteria confirmed per project"
+        "Application/environment",
+        "Grade and source/mill evidence",
+        "Thickness, dimensions and tolerance",
+        "Base finish and direction",
+        "PVD/colour/coating route",
+        "AFP requirement and cleaning method",
+        "Gloss/Ra/colour tolerance and method",
+        "Protective film/interleaving",
+        "Cutting/bending/welding/fabrication",
+        "Approved physical sample and viewing condition",
+        "MTC/test/inspection requirements",
+        "Crate, loading and receiving criteria"
+      ],
+      "options": [
+        "Elevator and architectural surfaces",
+        "Wall, ceiling, retail and decorative-metal applications"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
       ],
       "applications": [
-        "Elevator cabins",
-        "Wall cladding",
-        "Retail displays"
+        "Elevator and architectural surfaces",
+        "Wall, ceiling, retail and decorative-metal applications"
       ],
-      "customization": "Grade, finish, and visual approval route are confirmed per project.",
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
       "technical": {
-        "grades": [
-          "Programme-specific stainless grade"
-        ],
+        "grades": [],
         "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
-        "origin": "Mumbai-led India / China supply coordination"
-      }
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
+        "origin": "Programme-dependent"
+      },
+      "seoTitle": "Decorative Stainless Steel Sheets | Technical RFQ | Moldart",
+      "metaDesc": "Mirror, hairline, satin, No.4, etched, embossed, sand-blasted, PVD, AFP and project finishes only after sample/evidence approval.",
+      "overview": "Prepare a technical RFQ for decorative stainless steel sheets without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Availability, quantity, MOQ, packing and dispatch timing are confirmed after technical review.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "architecture",
+        "metal-finishing"
+      ],
+      "downloads": [
+        {
+          "title": "Decorative SS Antique Finishes",
+          "url": "/downloads/ANTIQUE.pdf"
+        },
+        {
+          "title": "Decorative SS Heat-Printed Finishes",
+          "url": "/downloads/HEAT PRINTED.pdf"
+        }
+      ]
     },
     {
       "id": "ss-profiles",
-      "name": "SS Profiles",
-      "material": "Steel",
-      "stage": "Finished",
-      "use": "Hardware",
+      "publicId": "S-PROFILE",
+      "slug": "ss-profiles",
+      "name": "Stainless Steel Profiles & Trims",
+      "system": "steel",
+      "publicStatus": "Current RFQ Route",
+      "stockNote": "",
+      "material": "Decorative stainless steel",
+      "stage": "Technical product route",
+      "use": "Process material",
       "industry": [
-        "Architecture",
-        "Furniture"
+        "architecture",
+        "metal-finishing"
       ],
       "image": "/images/page9_img2_clean.webp",
-      "summary": "Decorative stainless steel profiles and trims for transitions, edging, and inlays.",
+      "mediaStatus": "EXISTING_REVIEW_ASSET",
+      "mediaCaption": "Existing draft visual reference; not evidence of current stock, tests, factory ownership or completed projects.",
+      "summary": "T/U/L profiles, skirting, dividers, trims, transitions and custom sections coordinated with approved sheet finish.",
+      "scope": "T/U/L profiles, skirting, dividers, trims, transitions and custom sections coordinated with approved sheet finish.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
       "specs": [
-        "Profile purpose, section drawing, grade, thickness, length, tolerance, and installation method required before selection",
-        "Hairline, mirror, PVD, or other finish alignment confirmed against the approved sheet sample",
-        "Forming, bending, welding, edge, film, and packing requirements confirmed in approved technical evidence",
-        "Panel-matched trims, transitions, edging, and inlays confirmed per project"
+        "Profile purpose/junction",
+        "Section drawing",
+        "Grade and thickness",
+        "Length/tolerance",
+        "Finish, direction and colour",
+        "Bending/forming/welding",
+        "Fixing/installation",
+        "Edge/radius/protective film",
+        "Sheet-match sample",
+        "Quantity and cut list",
+        "Inspection criteria",
+        "Packing/marking"
+      ],
+      "options": [
+        "Panel trims and dividers",
+        "Transitions, edging, inlays and elevator details"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
       ],
       "applications": [
-        "Wall panel trims",
-        "Floor transitions",
-        "Furniture inlay accents"
+        "Panel trims and dividers",
+        "Transitions, edging, inlays and elevator details"
       ],
-      "customization": "Profile shape and finish alignment are confirmed per programme.",
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
       "technical": {
-        "grades": [
-          "Programme-specific stainless grade"
-        ],
+        "grades": [],
         "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
-        "origin": "Mumbai-led India / China supply coordination"
-      }
-    },
-    {
-      "id": "ss-furniture",
-      "name": "SS Furniture",
-      "material": "Steel",
-      "stage": "Finished",
-      "use": "Decorative",
-      "industry": [
-        "Furniture",
-        "Architecture",
-        "Metal Finishing"
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
+        "origin": "Programme-dependent"
+      },
+      "seoTitle": "Stainless Steel Profiles & Trims | Technical RFQ | Moldart",
+      "metaDesc": "T/U/L profiles, skirting, dividers, trims, transitions and custom sections coordinated with approved sheet finish.",
+      "overview": "Prepare a technical RFQ for stainless steel profiles & trims without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Availability, quantity, MOQ, packing and dispatch timing are confirmed after technical review.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "architecture",
+        "metal-finishing"
       ],
-      "image": "/images/page9_img3.webp",
-      "summary": "Decorative stainless steel furniture for interior, retail, and hospitality programmes.",
-      "specs": [
-        "Approved drawing, structure, dimensions, quantity, use environment, and installation responsibility required before review",
-        "Grade, frame, weld, finish, top material, hardware, and assembly confirmed in approved technical evidence",
-        "Scratch, stain, corrosion, load, and durability requirements confirmed by applicable test and sample",
-        "Indoor, outdoor, PVD, anti-fingerprint, and mixed-material routes reviewed separately"
-      ],
-      "applications": [
-        "Luxury furniture",
-        "Lobby features",
-        "Retail and hospitality interiors"
-      ],
-      "customization": "Structure, finish, and top material are confirmed per project.",
-      "technical": {
-        "grades": [
-          "Project-specific stainless grade"
-        ],
-        "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
-        "origin": "Mumbai-led India / China supply coordination"
-      }
+      "downloads": [
+        {
+          "title": "Stainless Steel Profiles Catalogue",
+          "url": "/downloads/PROFILE.pdf"
+        }
+      ]
     },
     {
       "id": "industrial-press-plates",
-      "name": "Industrial Press Plates",
-      "material": "Steel",
-      "stage": "Raw Materials",
+      "publicId": "E-PLATE",
+      "slug": "industrial-press-plates",
+      "name": "Precision Press Plates & Tooling for PCB, CCL, FPC and Smart Cards",
+      "system": "electronics",
+      "publicStatus": "Current RFQ Route",
+      "stockNote": "",
+      "material": "Electronics press system",
+      "stage": "Technical product route",
       "use": "Tooling",
       "industry": [
-        "Lamination",
-        "PCB/CCL",
-        "Technical Laminates"
+        "pcb-ccl"
       ],
       "image": "/images/page9_img4.webp",
-      "summary": "Requirement-led press plates and tooling for PCB, CCL, FPC, smart-card, IC-substrate, security, and technical laminate lines.",
+      "mediaStatus": "EXISTING_REVIEW_ASSET",
+      "mediaCaption": "Existing draft visual reference; not evidence of current stock, tests, factory ownership or completed projects.",
+      "summary": "Separator, press, carrier, top, bonding, caul and protection plates for PCB/CCL/FPC, smart-card, IC-substrate, security and technical laminates.",
+      "scope": "Separator, press, carrier, top, bonding, caul and protection plates for PCB/CCL/FPC, smart-card, IC-substrate, security and technical laminates.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
       "specs": [
-        "Press line, product stack, temperature, pressure, cycle, working size, cleanliness, and handling requirements required before selection",
-        "Grade, hardness, flatness, parallelism, roughness, magnetism, dimensions, and machining confirmed in approved technical evidence",
-        "Separator, carrier, top, bonding, caul, protection, and other tooling types require separate drawing and finished-part approval",
-        "FPC, PCB, CCL, smart-card, IC-substrate, security, and technical-laminate fit confirmed per programme"
+        "Application and exact tooling role",
+        "Press/product stack",
+        "Material grade and condition",
+        "Length, width, thickness and tolerance",
+        "Flatness and measurement grid/support",
+        "Parallelism and measurement method",
+        "Surface roughness and method",
+        "Hardness and method",
+        "Residual magnetism limit/method",
+        "Machining, holes, edge and burr criteria",
+        "Cleanliness/contamination/traceability",
+        "Inspection report, handling, packing and storage"
+      ],
+      "options": [
+        "PCB, CCL and FPC pressing",
+        "Smart-card, IC-substrate and technical-laminate tooling"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
       ],
       "applications": [
-        "PCB, CCL, and FPC pressing",
-        "Smart-card and IC-substrate lamination",
-        "Security and technical laminates",
-        "Separator, carrier, caul, and protection tooling"
+        "PCB, CCL and FPC pressing",
+        "Smart-card, IC-substrate and technical-laminate tooling"
       ],
-      "customization": "Tolerance route and final plate build are confirmed against the production line.",
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
       "technical": {
-        "grades": [
-          "Programme-specific tooling grade"
-        ],
+        "grades": [],
         "certifications": [],
-        "leadTime": "On request",
-        "moq": "On request",
-        "origin": "Mumbai-led Asia supply coordination"
-      }
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
+        "origin": "Programme-dependent"
+      },
+      "seoTitle": "Precision Press Plates & Tooling for PCB, CCL, FPC and Smart Cards | Technical RFQ | Moldart",
+      "seoShortTitle": "Electronics Press Plates & Tooling",
+      "metaDesc": "Separator, press, carrier, top, bonding, caul and protection plates for PCB/CCL/FPC, smart-card, IC-substrate, security and technical laminates.",
+      "overview": "Prepare a technical RFQ for precision press plates & tooling for pcb, ccl, fpc and smart cards without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Availability, quantity, MOQ, packing and dispatch timing are confirmed after technical review.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "pcb-ccl"
+      ],
+      "downloads": []
+    },
+    {
+      "id": "electronics-press-pads",
+      "publicId": "E-PAD",
+      "slug": "electronics-press-pads",
+      "name": "Electronics Press Pads & Cushion Materials",
+      "system": "electronics",
+      "publicStatus": "In stock",
+      "stockNote": "Electronics press-pad and cushion-material families are in stock. Exact construction, size, process window and available quantity are confirmed against the RFQ and trial basis.",
+      "material": "Electronics press system",
+      "stage": "Technical product route",
+      "use": "Process material",
+      "industry": [
+        "pcb-ccl"
+      ],
+      "image": "",
+      "mediaStatus": "SOURCE_REQUIRED",
+      "mediaCaption": "Approved product media is not yet available; this text-first page intentionally does not fabricate an image.",
+      "summary": "Press pads/cushion materials for PCB, FPC, rigid-flex, CCL, IC-substrate and smart-card lamination.",
+      "scope": "Press pads/cushion materials for PCB, FPC, rigid-flex, CCL, IC-substrate and smart-card lamination.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
+      "specs": [
+        "Application/product stack",
+        "Press type and stack position",
+        "Material/construction",
+        "Thickness, size and tolerance",
+        "Temperature, pressure and time window",
+        "Compression/recovery",
+        "Thermal conductivity/heat transfer basis",
+        "Cleanliness/ionic/outgassing requirement",
+        "Surface/imprint requirement",
+        "Life/replacement method",
+        "Trial and approved process window",
+        "Storage, handling and packing"
+      ],
+      "options": [
+        "PCB, FPC, CCL and IC-substrate lamination",
+        "Smart-card press stacks"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
+      ],
+      "applications": [
+        "PCB, FPC, CCL and IC-substrate lamination",
+        "Smart-card press stacks"
+      ],
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
+      "technical": {
+        "grades": [],
+        "certifications": [],
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
+        "origin": "Programme-dependent"
+      },
+      "seoTitle": "Electronics Press Pads & Cushion Materials | Technical RFQ | Moldart",
+      "metaDesc": "Press pads/cushion materials for PCB, FPC, rigid-flex, CCL, IC-substrate and smart-card lamination.",
+      "overview": "Prepare a technical RFQ for electronics press pads & cushion materials without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Electronics press-pad and cushion-material families are in stock. Exact construction, size, process window and available quantity are confirmed against the RFQ and trial basis.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "pcb-ccl"
+      ],
+      "downloads": []
+    },
+    {
+      "id": "electronics-lamination-films",
+      "publicId": "E-FILM",
+      "slug": "electronics-lamination-films",
+      "name": "Electronics Lamination Films — Release, Conformal, Carrier & Protection",
+      "system": "electronics",
+      "publicStatus": "In stock",
+      "stockNote": "Release, conformal and carrier-film families are in stock. Exact function, polymer, dimensions and available quantity are confirmed against the RFQ; protection-film availability is confirmed separately.",
+      "material": "Electronics press system",
+      "stage": "Technical product route",
+      "use": "Process material",
+      "industry": [
+        "pcb-ccl"
+      ],
+      "image": "",
+      "mediaStatus": "SOURCE_REQUIRED",
+      "mediaCaption": "Approved product media is not yet available; this text-first page intentionally does not fabricate an image.",
+      "summary": "Release, conformal, carrier and protection films for PCB/FPC/rigid-flex/CCL/IC-substrate/smart-card applications.",
+      "scope": "Release, conformal, carrier and protection films for PCB/FPC/rigid-flex/CCL/IC-substrate/smart-card applications; film functions must not be conflated.",
+      "useWhen": "Use this route when the application, construction, dimensions and approval basis can be stated before commercial comparison.",
+      "exclusions": [
+        "No universal numeric value, certification or performance claim without product-specific evidence.",
+        "No supplier, factory, stock-quantity or manufacturer implication beyond the visible approved statement."
+      ],
+      "specs": [
+        "Film function: release/conformal/carrier/protection",
+        "Application and stack position",
+        "Polymer/material system",
+        "Thickness, width, length and tolerance",
+        "Temperature, pressure and duration",
+        "Release force and test method",
+        "Shrinkage/dimensional stability",
+        "Conformability/via or adhesive-flow control",
+        "Cleanliness, ions, silicone/plasticizer/halogen requirements",
+        "Surface/anti-static/ESD requirement",
+        "Shelf life, storage and traceability",
+        "Trial, sample and packing"
+      ],
+      "options": [
+        "Release, conformal and carrier-film functions",
+        "PCB, FPC, CCL and smart-card process layers"
+      ],
+      "evidence": [
+        "Current TDS or controlled specification with revision and product scope",
+        "Test or inspection evidence tied to the stated method and product or lot",
+        "Approved physical sample, drawing or master reference where appearance or fit matters",
+        "Packing, label and traceability record appropriate to the order"
+      ],
+      "approval": [
+        "Confirm the RFQ inputs and evidence list",
+        "Review the applicable sample, drawing or technical submission",
+        "Run the required process or fit trial before scale-up",
+        "Record the accepted reference, revision and hold criteria"
+      ],
+      "qc": [
+        "Verify product identity, construction and ordered variant",
+        "Check dimensions, visible condition and agreed acceptance points",
+        "Reconcile documents, labels and batch or lot references",
+        "Hold material when identity, damage, evidence or sample match is unresolved"
+      ],
+      "packing": [
+        "Agree moisture, surface and edge protection before dispatch",
+        "State roll, sheet, panel, plate or tooling handling limits",
+        "Keep labels and traceability readable without exposing private counterparties",
+        "Inspect packing condition at receipt before product release"
+      ],
+      "applications": [
+        "Release, conformal and carrier-film functions",
+        "PCB, FPC, CCL and smart-card process layers"
+      ],
+      "customization": "Exact construction, dimensions, finish, quantity, packing and dispatch basis are confirmed against the RFQ.",
+      "technical": {
+        "grades": [],
+        "certifications": [],
+        "leadTime": "Confirmed after RFQ review",
+        "moq": "Confirmed after RFQ review",
+        "origin": "Programme-dependent"
+      },
+      "seoTitle": "Electronics Lamination Films — Release, Conformal, Carrier & Protection | Technical RFQ | Moldart",
+      "seoShortTitle": "Electronics Lamination Films | Release & Carrier Films",
+      "metaDesc": "Release, conformal, carrier and protection films for PCB/FPC/rigid-flex/CCL/IC-substrate/smart-card applications.",
+      "overview": "Prepare a technical RFQ for electronics lamination films — release, conformal, carrier & protection without assuming an unverified grade, value or approval.",
+      "workflow": "Define the application and construction. Review evidence and sample. Record acceptance before scale-up.",
+      "commercialNotes": "Release, conformal and carrier-film families are in stock. Exact function, polymer, dimensions and available quantity are confirmed against the RFQ; protection-film availability is confirmed separately.",
+      "relatedProducts": [],
+      "relatedApps": [
+        "pcb-ccl"
+      ],
+      "downloads": []
     }
   ]
 }

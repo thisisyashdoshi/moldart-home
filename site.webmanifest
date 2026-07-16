@@ -1,7 +1,7 @@
 {
   "name": "Moldart",
   "short_name": "Moldart",
-  "description": "Integrated industrial supply solutions since 1989.",
+  "description": "Technical RFQ coordination for wood-panel, decorative stainless steel, and electronics press systems.",
   "start_url": "/",
   "id": "/",
   "scope": "/",
@@ -45,22 +45,6 @@
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/images/press_pad_new.webp",
-      "sizes": "1200x630",
-      "type": "image/webp",
-      "form_factor": "wide",
-      "label": "Moldart homepage showcasing industrial supply solutions"
-    },
-    {
-      "src": "/images/page5_img3.webp",
-      "sizes": "600x400",
-      "type": "image/webp",
-      "form_factor": "narrow",
-      "label": "Moldart product directory on mobile"
     }
   ]
 }

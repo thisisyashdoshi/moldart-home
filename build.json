@@ -1,9 +1,9 @@
 {
-  "version": "2026.07.12.ab153fee40e3.de75e18501",
-  "generatedAt": "2026-07-12T06:46:40.281Z",
+  "version": "2026.07.15.3d70190c6c6b.dd9eabb6ab",
+  "generatedAt": "2026-07-15T09:31:12.108Z",
   "git": {
-    "sha": "ab153fee40e3",
-    "branch": "release/2026-05-23-change-improve"
+    "sha": "3d70190c6c6b",
+    "branch": "package-rc"
   },
   "site": "https://moldartindia.com",
   "generator": "moldart-static-generator"

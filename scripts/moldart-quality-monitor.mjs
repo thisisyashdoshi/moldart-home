@@ -126,7 +126,11 @@ function validateStaticArtifact() {
     return;
   }
   const urls = sitemapUrls(readText("public-site/sitemap.xml"));
-  assertAtLeast("public sitemap url count", urls.length, 82);
+  const pathnames = urls.map((url) => new URL(url).pathname);
+  assertEqual("public sitemap url count", urls.length, 89);
+  assertEqual("public product route count", pathnames.filter((pathname) => pathname.startsWith("/products/")).length, 18);
+  assertEqual("public solution route count", pathnames.filter((pathname) => pathname.startsWith("/solutions/")).length, 9);
+  assertEqual("public insight route count", pathnames.filter((pathname) => pathname.startsWith("/insights/")).length, 52);
   const missing = urls
     .map((url) => new URL(url).pathname)
     .map((pathname) => ({ pathname, file: routeToArtifactPath(pathname) }))
@@ -225,12 +229,20 @@ async function main() {
   run(process.execPath, ["--check", "generate.js"], "node --check generate.js");
   validateYoutubeAndMedia();
   validateStaticArtifact();
+  run(process.execPath, ["scripts/moldart-artifact-release-gate.mjs"], "artifact release gate");
   if (baseUrl) {
     await httpCheck("/");
+    await httpCheck("/products/");
+    await httpCheck("/products/melamine-impregnated-technical-papers/");
+    await httpCheck("/products/electronics-lamination-films/");
+    await httpCheck("/solutions/decorative-surfaces/");
+    await httpCheck("/solutions/pcb-ccl/");
+    await httpCheck("/evidence-qc/");
+    await httpCheck("/process/");
+    await httpCheck("/contact/?intent=buyer-rfq&product=Electronics%20Lamination%20Films");
     await httpCheck("/insights/press-plates-panel-quality-guide/");
     await httpCheck("/insights/decorative-stainless-steel-201-304-316-430/");
     await httpCheck("/insights/custom-furniture-brief-guide/");
-    await httpCheck("/products/press-plates/");
     await httpCheck("/data/youtube-library.json");
   }
   writeReports();

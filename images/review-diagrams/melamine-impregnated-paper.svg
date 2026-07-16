@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="t d">
+<title id="t">Melamine-Impregnated &amp; Technical Papers review diagram</title><desc id="d">Navigation diagram only; not product, stock, factory or quality evidence.</desc>
+<rect width="1200" height="750" fill="#f7f5ef"/><rect x="56" y="56" width="1088" height="638" rx="28" fill="#d5efe6" stroke="#173f35" stroke-width="3"/>
+<text x="96" y="132" font-family="Arial,sans-serif" font-size="24" letter-spacing="4" fill="#173f35">REVIEW DIAGRAM · NOT PRODUCT EVIDENCE</text>
+<text x="96" y="236" font-family="Arial,sans-serif" font-size="58" font-weight="700" fill="#111827">Paper route</text>
+<text x="96" y="290" font-family="Arial,sans-serif" font-size="26" fill="#374151">Décor · overlay · underlay · balancing</text>
+<g transform="translate(96 370)" fill="none" stroke="#173f35" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+<rect x="0" y="0" width="230" height="150" rx="18"/><path d="M48 48h134M48 78h134M48 108h84"/>
+<path d="M278 75h108"/><path d="M356 48l30 27-30 27"/>
+<rect x="426" y="0" width="230" height="150" rx="75"/><path d="M474 48h134M474 78h134M474 108h84"/>
+<path d="M704 75h108"/><path d="M782 48l30 27-30 27"/>
+<rect x="852" y="0" width="230" height="150" rx="18"/><circle cx="912" cy="75" r="28"/><path d="M960 50h74M960 78h74M960 106h50"/>
+</g><text x="96" y="622" font-family="Arial,sans-serif" font-size="22" fill="#4b5563">Purpose: route recognition and RFQ navigation. Exact material, construction and availability require review.</text></svg>

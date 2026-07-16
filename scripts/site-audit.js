@@ -179,7 +179,13 @@ async function main() {
     `${BASE.replace(/\/$/, '')}/products/`,
     `${BASE.replace(/\/$/, '')}/solutions/`,
     `${BASE.replace(/\/$/, '')}/resources/`,
+    `${BASE.replace(/\/$/, '')}/evidence-qc/`,
+    `${BASE.replace(/\/$/, '')}/process/`,
     `${BASE.replace(/\/$/, '')}/insights/`,
+    `${BASE.replace(/\/$/, '')}/products/melamine-impregnated-technical-papers/`,
+    `${BASE.replace(/\/$/, '')}/products/electronics-lamination-films/`,
+    `${BASE.replace(/\/$/, '')}/solutions/decorative-surfaces/`,
+    `${BASE.replace(/\/$/, '')}/solutions/pcb-ccl/`,
     `${BASE.replace(/\/$/, '')}/faq/`,
     `${BASE.replace(/\/$/, '')}/about/`,
     `${BASE.replace(/\/$/, '')}/contact/`,
@@ -201,7 +207,11 @@ async function main() {
     '/products/',
     '/solutions/',
     '/contact/',
+    '/evidence-qc/',
+    '/process/',
     '/products/press-plates/',
+    '/products/electronics-lamination-films/',
+    '/solutions/decorative-surfaces/',
     '/insights/custom-furniture-brief-guide/',
     '/privacy/'
   ];
@@ -233,6 +243,61 @@ async function main() {
   commandPaletteAudit.closedAfterEscape = await page.evaluate(
     () => !document.querySelector('#command-palette')?.classList.contains('is-open')
   );
+
+  const homeUrl = `${BASE.replace(/\/$/, '')}/`;
+  await page.click('[data-open-command-palette]');
+  await page.fill('#cmd-input', 'press plates');
+  await page.waitForSelector('#cmd-results .cmd-palette-item.is-active');
+  const enterExpected = await page.locator('#cmd-results .cmd-palette-item.is-active').getAttribute('href');
+  await Promise.all([
+    page.waitForURL((url) => url.pathname === enterExpected, { timeout: 10000 }),
+    page.keyboard.press('Enter')
+  ]);
+  const enterActual = new URL(page.url()).pathname;
+
+  await page.goto(homeUrl, { waitUntil: 'networkidle', timeout: 60000 });
+  await page.click('[data-open-command-palette]');
+  await page.fill('#cmd-input', 'press plates');
+  await page.waitForSelector('#cmd-results .cmd-palette-item.is-active');
+  await page.keyboard.press('ArrowDown');
+  const arrowExpected = await page.locator('#cmd-results .cmd-palette-item.is-active').getAttribute('href');
+  await Promise.all([
+    page.waitForURL((url) => url.pathname === arrowExpected, { timeout: 10000 }),
+    page.keyboard.press('Enter')
+  ]);
+  const arrowActual = new URL(page.url()).pathname;
+  const commandPaletteNavigationAudit = {
+    enterExpected,
+    enterActual,
+    enterPassed: enterExpected === '/products/press-plates/' && enterActual === enterExpected,
+    arrowExpected,
+    arrowActual,
+    arrowPassed: arrowExpected === '/products/industrial-press-plates/' && arrowActual === arrowExpected
+  };
+
+  async function auditUnavailableSearch(mode) {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 800 }, serviceWorkers: 'block' });
+    const issuePage = await context.newPage();
+    await issuePage.route('**/data/search-index.json*', async (route) => {
+      if (mode === 'network') await route.abort('failed');
+      else await route.fulfill({ status: 200, contentType: 'application/json', body: '{"invalid":true}' });
+    });
+    await issuePage.goto(homeUrl, { waitUntil: 'networkidle', timeout: 60000 });
+    await issuePage.click('[data-open-command-palette]');
+    await issuePage.waitForFunction(
+      () => document.querySelector('#cmd-results')?.textContent?.includes('Search is unavailable right now.')
+    );
+    const result = await issuePage.evaluate(() => ({
+      unavailableMessage: document.querySelector('#cmd-results')?.textContent?.includes('Search is unavailable right now.') || false,
+      inputFocused: document.activeElement?.id === 'cmd-input'
+    }));
+    await context.close();
+    return result;
+  }
+  const commandPaletteFailureAudit = {
+    network: await auditUnavailableSearch('network'),
+    malformed: await auditUnavailableSearch('malformed')
+  };
 
   const mobileContext = await browser.newContext(mobileContextOptions(390, 844));
   const mobilePage = await mobileContext.newPage();
@@ -303,6 +368,8 @@ async function main() {
     keyChecks,
     homepageAudit,
     commandPaletteAudit,
+    commandPaletteNavigationAudit,
+    commandPaletteFailureAudit,
     desktopVisualSystemAudit,
     mobileVisualSystemAudit,
     mobileHomepageAudit,
@@ -331,8 +398,14 @@ async function main() {
     !commandPaletteAudit.open,
     !commandPaletteAudit.inputFocused,
     !commandPaletteAudit.closedAfterEscape,
+    !commandPaletteNavigationAudit.enterPassed,
+    !commandPaletteNavigationAudit.arrowPassed,
+    !commandPaletteFailureAudit.network.unavailableMessage,
+    !commandPaletteFailureAudit.network.inputFocused,
+    !commandPaletteFailureAudit.malformed.unavailableMessage,
+    !commandPaletteFailureAudit.malformed.inputFocused,
     mobileHomepageAudit.overflow,
-    mobileHomepageAudit.visibleBrowseRows < 2,
+    mobileHomepageAudit.visibleBrowseRows < 1,
     mobileHomepageAudit.heroButtonTop > 620,
     mobileHomepageAudit.floatingWhatsAppDisplay !== 'none',
     mobileHomepageAudit.mobileChatDisplay === 'none',

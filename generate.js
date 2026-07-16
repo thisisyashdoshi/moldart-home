@@ -71,8 +71,6 @@ const BUILD_CONTENT_HASH = publicSourceHash();
 const VER =
 	process.env.BUILD_VERSION ||
 	`${NOW.replace(/-/g, ".")}.${BUILD_GIT_SHA.slice(0, 12)}.${BUILD_CONTENT_HASH}`;
-const FOUNDING_YEAR = 1989;
-const YEARS_ACTIVE = Math.max(1, new Date().getFullYear() - FOUNDING_YEAR);
 const COMPANY_LINKEDIN = "https://www.linkedin.com/company/moldartindia";
 const YASH_LINKEDIN = "https://www.linkedin.com/in/thisisyashdoshi";
 const WHATSAPP_PRIMARY = { number: "917208088788", display: "+91 7208088788" };
@@ -81,12 +79,13 @@ const WHATSAPP_SECONDARY = {
 	display: "+91 7208188788",
 };
 const BRAND_LINE =
-	"Specification-led wood and steel supply programmes from Mumbai.";
+	"Technical RFQ coordination for wood-panel, decorative stainless steel, and electronics press systems from Mumbai.";
 const NAV_SEARCH_META =
 	"Products • Solutions • Resources • Insights • FAQ • Contact";
 const LEGAL_NAME = "Mold Art (India) Private Limited";
 const RELATED_PROFILE = "Deco Metal, GSTIN 27AAHFD0708K1ZI";
-const COMPANY_ADDRESS = "Mumbai, Maharashtra, India";
+const COMPANY_ADDRESS =
+	"#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West), Mumbai 400064, Maharashtra, India";
 const LEGAL_EFFECTIVE_DATE = "10 July 2026";
 const SUPPLY_FLOW_ITEMS = [
 	{
@@ -206,6 +205,18 @@ function normalizeYoutubeLibrary(raw = {}) {
 const rawProducts = JSON.parse(
 	fs.readFileSync(path.join(WORK, "data/product-directory.json"), "utf8"),
 );
+const rawSolutions = JSON.parse(
+	fs.readFileSync(path.join(WORK, "data/solutions.json"), "utf8"),
+);
+const rawVisualPrototypeMedia = JSON.parse(
+	fs.readFileSync(path.join(WORK, "internal/visual-prototype-media.json"), "utf8"),
+);
+const visualPrototypeMediaById = new Map(
+	(rawVisualPrototypeMedia.records || []).map((record) => [record.id, record]),
+);
+const rawInsightOptimization = JSON.parse(
+	fs.readFileSync(path.join(WORK, "data/insight-optimization.json"), "utf8"),
+);
 const rawFaq = JSON.parse(
 	fs.readFileSync(path.join(WORK, "data/faq.json"), "utf8"),
 );
@@ -234,12 +245,30 @@ const insightMediaBySlug = new Map(
 	]),
 );
 const youtubeLibrary = normalizeYoutubeLibrary(rawYoutubeLibrary);
+const insightOptimizationBySlug = new Map(
+	(rawInsightOptimization.records || []).map((record) => [record.slug, record]),
+);
+function applyInsightOptimization(article = {}) {
+	const record = insightOptimizationBySlug.get(article.slug);
+	if (!record) return article;
+	return {
+		...article,
+		title: record.title,
+		seoTitle: compactSeoTitle(record.title),
+		excerpt: record.decision || article.excerpt,
+		packageDecision: record.decision,
+		packagePriority: record.priority,
+		packageHeroSubject: record.heroSubject,
+		packageVideoRecommendation: record.videoRecommendation,
+		packageRewriteControls: record.rewriteControls,
+	};
+}
 const rawInsightsSource = {
 	...rawInsightsBase,
 	articles: mergeInsightArticles(rawInsightsBase.articles, [
 		...technicalLibraryPublished,
 		...importedInsights,
-	]),
+	]).map(applyInsightOptimization),
 };
 let rawInsights = {
 	...rawInsightsSource,
@@ -260,919 +289,39 @@ const getRequestResourceItems = () =>
 // ============================================================
 // EXTENDED PRODUCT METADATA
 // ============================================================
-const productMeta = {
-	"press-plates": {
-		slug: "press-plates",
-		seoTitle: "Press Plates Supplier | Lamination Press Plates — Moldart",
-		metaDesc:
-			"Requirement-led press-plate review for panel, laminate, flooring, door, and furniture pressing programmes.",
-		overview:
-			"Use this route to define the application, press stack, plate construction, finish reference, evidence, and approval basis before commercial comparison.",
-		workflow:
-			"Press plates form the tooling surface in a lamination press. Application, plate build, texture, finish, evidence, sample, and acceptance criteria must be reviewed together.",
-		commercialNotes:
-			"Final grade, construction, surface, dimensions, quantity, evidence, and commercial route are confirmed only against the approved programme.",
-		relatedProducts: [
-			"press-pads",
-			"engraved-cylinders",
-			"industrial-press-plates",
-		],
-		relatedApps: ["lamination", "furniture"],
-		downloads: [
-			{
-				title: "Press Plate Standard Collection",
-				url: "/downloads/PRESS PLATE - BASIC COLLECTION.pdf",
-			},
-			{
-				title: "Press Plates for Shuttering Plywood",
-				url: "/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf",
-			},
-			{
-				title: "Press Plate Texture Collection",
-				url: "/downloads/PRESS PLATE - TEXTURE COLLECTION.pdf",
-				access: "request",
-				note: "Large reference deck shared on request.",
-			},
-		],
-	},
-	"press-pads": {
-		slug: "press-pads",
-		seoTitle: "Press Pads | Lamination Cushion-System Requirements — Moldart",
-		metaDesc:
-			"Requirement-led press-pad and cushion-system review for wood-panel lamination lines.",
-		overview:
-			"Use this route to define the press, panel stack, working conditions, cushion construction, dimensions, evidence, and replacement basis before commercial comparison.",
-		workflow:
-			"Press pads sit between the heating platen and tooling stack. Their construction and fit must be confirmed against the actual press conditions, approved technical evidence, and sample route.",
-		commercialNotes:
-			"Construction, working size, service-life basis, accessories, quantity, and commercial route are confirmed only against the approved programme.",
-		relatedProducts: ["press-plates", "engraved-cylinders"],
-		relatedApps: ["lamination"],
-		downloads: [
-			{
-				title: "Moldart Company Profile",
-				url: "/downloads/INTRODUCTION TO MOLDART.pdf",
-			},
-		],
-	},
-	"engraved-cylinders": {
-		slug: "engraved-cylinders",
-		seoTitle:
-			"Engraved Cylinders for Decor Paper | Rotogravure Cylinders — Moldart",
-		metaDesc:
-			"Precision rotogravure engraved cylinders for high-definition pattern transfer in decor paper printing. Engraving depth 18–25 μm, surface roughness Ra 0.2–0.3 μm.",
-		overview:
-			"Moldart supplies precision rotogravure cylinders built for high-definition pattern transfer and repeat accuracy in decor paper printing. These cylinders enable faithful woodgrain, stone, and abstract pattern reproduction for decorative laminate production.",
-		workflow:
-			"Engraved cylinders are used in rotogravure printing lines to transfer decorative patterns onto base paper. The printed decor paper is then impregnated with melamine resin and used in laminate pressing.",
-		commercialNotes:
-			"Pattern-specific engraving support available. Engraving depth typically 18–25 μm with surface roughness of Ra 0.2–0.3 μm for HD pattern fidelity.",
-		relatedProducts: ["decor-paper", "press-plates"],
-		relatedApps: ["lamination"],
-		downloads: [
-			{
-				title: "Moldart Company Profile",
-				url: "/downloads/INTRODUCTION TO MOLDART.pdf",
-			},
-			{
-				title: "Gravure Cylinder & Printed Decor Paper Deck",
-				url: "/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf",
-				access: "request",
-				note: "Large reference deck shared on request.",
-			},
-		],
-	},
-	"decor-paper": {
-		slug: "printed-decor-paper",
-		seoTitle: "Printed Decor Paper Supplier | Melamine Decor Paper — Moldart",
-		metaDesc:
-			"Printed decor-paper requirements, colour approval, batch control, and process-fit review for laminate, flooring, and furniture programmes.",
-		overview:
-			"Use this route to define the base paper, design, print, colour reference, repeat, resin process, evidence, and approval basis before commercial comparison.",
-		workflow:
-			"Printed decor paper becomes part of a surface system only after the printing, impregnation, substrate, press stack, sample, and acceptance route are confirmed together.",
-		commercialNotes:
-			"Grammage, strength, porosity, resin fit, décor, batch tolerance, quantity, and commercial route are confirmed only against approved technical evidence and samples.",
-		relatedProducts: ["engraved-cylinders", "fiberboard", "plywood"],
-		relatedApps: ["lamination", "furniture"],
-		downloads: [
-			{
-				title: "Moldart Company Profile",
-				url: "/downloads/INTRODUCTION TO MOLDART.pdf",
-			},
-			{
-				title: "HPL Overlay Collection OL-01",
-				url: "/downloads/HPL - OL - 1.pdf",
-			},
-			{
-				title: "Gravure Cylinder & Printed Decor Paper Deck",
-				url: "/downloads/GRAVURE CYLINDER AND PRINTED DECOR PAPER FOR LOW AND HIGH PRESSURE LAMINATES.pdf",
-				access: "request",
-				note: "Large reference deck shared on request.",
-			},
-		],
-	},
-	plywood: {
-		slug: "plywood",
-		seoTitle:
-			"Plywood Supplier | Structural & Furniture-Grade Plywood — Moldart",
-		metaDesc:
-			"Structural and furniture-grade plywood at 500–700 kg/m³ density, 3–40 mm thickness. High shear strength for furniture, interiors, and architectural panels.",
-		overview:
-			"Moldart supplies structural and furniture-grade plywood engineered for high-strength panel applications. With controlled density profiles and reliable shear strength, these panels serve as core substrates in furniture manufacturing, interior fit-outs, and architectural panel systems.",
-		workflow:
-			"Plywood is a cross-laminated wood panel used as a structural substrate. It is commonly laminated with decorative surfaces or used as-is in load-bearing and furniture carcass applications.",
-		commercialNotes:
-			"Density: 500–700 kg/m³. Thickness range: 3–40 mm. Shear strength ≥ 1.5 MPa. Core build-up and thickness can be aligned to project needs.",
-		relatedProducts: ["fiberboard", "particleboard", "osb"],
-		relatedApps: ["furniture", "architecture"],
-		downloads: [
-			{
-				title: "Press Plates for Shuttering Plywood",
-				url: "/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf",
-			},
-			{
-				title: "Moldart Company Profile",
-				url: "/downloads/INTRODUCTION TO MOLDART.pdf",
-			},
-		],
-	},
-	fiberboard: {
-		slug: "fiberboard",
-		seoTitle: "Fiberboard Supplier | MDF & HDF Panels — Moldart",
-		metaDesc:
-			"MDF (700–820 kg/m³) and HDF (780–900 kg/m³) panels. EU E1, TSCA Title VI, Japan F4 star compliant. Moisture-resistant grades available for flooring and furniture.",
-		overview:
-			"Moldart supplies MDF and HDF engineered panels with exceptionally smooth surfaces suited for high-gloss lamination, painting, and precision conversion. Available in multiple density profiles and emission standards to match destination market requirements.",
-		workflow:
-			"Fiberboard panels serve as the core substrate in laminated furniture fronts, door skins, decorative panel systems, and flooring cores. Their smooth surface is critical for high-quality surface finishing.",
-		commercialNotes:
-			"MDF density: 700–820 kg/m³. HDF density: 780–900 kg/m³. Compliant with EU E1, TSCA Title VI, and Japan F4 star standards. Moisture Resistant (MR) grades available.",
-		relatedProducts: ["plywood", "particleboard", "wood-flooring"],
-		relatedApps: ["furniture", "flooring", "architecture"],
-		downloads: [
-			{
-				title: "Moldart Company Profile",
-				url: "/downloads/INTRODUCTION TO MOLDART.pdf",
-			},
-		],
-	},
-	osb: {
-		slug: "osb",
-		seoTitle: "OSB Supplier | Oriented Strand Board — Moldart",
-		metaDesc:
-			"OSB/3 and Fine OSB panels. ENF grade (No Added Formaldehyde), CARB-NAF & EPA-NAF certified, FSC certified, Japan F4 star. Structural and load-bearing use.",
-		overview:
-			"Moldart supplies high-strength oriented strand board compliant with EN 13986 and EN 300 standards. Available in OSB/3 and Fine OSB (F-OSB) grades, these panels are engineered for structural, load-bearing, and heavy-duty industrial applications.",
-		workflow:
-			"OSB is a structural engineered wood panel used in construction, packaging, and furniture frameworks. Its oriented strand structure provides exceptional load-bearing performance.",
-		commercialNotes:
-			"ENF grade (No Added Formaldehyde). CARB-NAF & EPA-NAF certified. FSC certified and Japan F4 star (JAS) compliant. Available in 6mm, 9mm, 15mm, and custom cut-to-size formats.",
-		relatedProducts: ["plywood", "particleboard", "fiberboard"],
-		relatedApps: ["architecture", "furniture"],
-		downloads: [
-			{
-				title: "Moldart Company Profile",
-				url: "/downloads/INTRODUCTION TO MOLDART.pdf",
-			},
-		],
-	},
-	particleboard: {
-		slug: "particleboard",
-		seoTitle:
-			"Particleboard Supplier | Commercial Furniture-Grade Panels — Moldart",
-		metaDesc:
-			"Particleboard panels at 650–760 kg/m³, 9–38 mm thickness. E1, TSCA Title VI, Japan F4 star compliant. MR and EN 312 P6 grades for furniture and cabinetry.",
-		overview:
-			"Moldart supplies cost-effective, highly workable particleboard cores engineered for commercial furniture manufacturing. With reliable density profiles and multiple emission compliance options, these panels serve the core needs of office furniture, cabinetry, and shelving production.",
-		workflow:
-			"Particleboard is used as the core substrate in laminated furniture panels, cabinetry, and shelving. It is typically faced with melamine, HPL, or veneer finishes before use in final products.",
-		commercialNotes:
-			"Density: 650–760 kg/m³. Thickness: 9–38 mm. Compliant with E1, TSCA Title VI, and Japan F4 star. MR and EN 312 P6 grades available. Custom thicknesses supported.",
-		relatedProducts: ["plywood", "fiberboard", "osb"],
-		relatedApps: ["furniture"],
-		downloads: [
-			{
-				title: "Moldart Company Profile",
-				url: "/downloads/INTRODUCTION TO MOLDART.pdf",
-			},
-		],
-	},
-	"wood-flooring": {
-		slug: "wood-flooring",
-		seoTitle: "Laminate Flooring Systems & Accessories Supplier — Moldart",
-		metaDesc:
-			"Laminate flooring systems with HDF-core construction, click profiles, and coordinated accessories. Final construction, declared use class, and acceptance requirements are confirmed per approved programme.",
-		overview:
-			"Moldart supports laminate flooring system reviews covering construction, locking profile, accessories, site readiness, and approval references before dispatch.",
-		workflow:
-			"Laminate flooring is reviewed as a system: approved board construction, locking profile, underlay, accessories, site conditions, and installation requirements are confirmed together.",
-		commercialNotes:
-			"Construction, declared use class, finish, locking profile, and accessory route are programme-specific. Final requirements must be confirmed in the approved TDS, sample record, and purchase specification.",
-		relatedProducts: ["flooring-accessories", "fiberboard"],
-		relatedApps: ["flooring", "architecture"],
-		downloads: [
-			{
-				title: "Flooring Systems Reference Deck",
-				url: "/downloads/WOOD - FLOORING.pdf",
-			},
-		],
-	},
-	"flooring-accessories": {
-		slug: "flooring-accessories",
-		seoTitle: "Flooring Accessories | Transition Profiles & Skirting — Moldart",
-		metaDesc:
-			"Coordinated flooring transition profiles, skirting, and stair nosing in aluminium, MDF, or PVC. Custom matched to floor decor for complete installations.",
-		overview:
-			"Moldart supplies coordinated transition profiles, skirting, and stair nosing designed to complete laminate flooring installations. Available in aluminium, MDF, or PVC base materials with durable wear surfaces matched to the installed floor decor.",
-		workflow:
-			"Flooring accessories are the finishing components installed alongside laminate flooring. They cover expansion gaps, transitions between rooms, wall-to-floor junctions, and staircase edges.",
-		commercialNotes:
-			"Profile types include T-bar, End cap, and Stair nosing. Base materials: Aluminium, MDF, or PVC. Profiles can be custom matched to any specific floor decor.",
-		relatedProducts: ["wood-flooring"],
-		relatedApps: ["flooring"],
-		downloads: [
-			{
-				title: "Flooring Systems Reference Deck",
-				url: "/downloads/WOOD - FLOORING.pdf",
-			},
-		],
-	},
-	"ready-made-furniture": {
-		slug: "ready-made-furniture",
-		seoTitle: "Ready-Made Furniture Supplier | Modular Furniture — Moldart",
-		metaDesc:
-			"Precision-manufactured modular furniture with melamine or HPL facing. CNC precision within 0.1 mm. Scratch resistance over 3N. Flat-pack or assembled delivery.",
-		overview:
-			"Moldart supplies precision-manufactured modular furniture components and assemblies for commercial and residential use. Built with CNC accuracy and durable surface finishes, these products serve office, kitchen, and wardrobe applications.",
-		workflow:
-			"Ready-made furniture is manufactured from engineered wood substrates faced with melamine or HPL, then precision-cut and edge-banded before assembly or flat-pack dispatch.",
-		commercialNotes:
-			"Melamine or HPL faced surfaces. Scratch resistance over 3N. CNC precision within 0.1 mm. PVC/ABS edging 0.4–2.0 mm. Flat-pack or assembled delivery based on project requirements.",
-		relatedProducts: ["custom-furniture", "plywood", "fiberboard"],
-		relatedApps: ["furniture"],
-		downloads: [
-			{
-				title: "Furniture Program Catalog 01",
-				url: "/downloads/WOOD - FURNITURE - 1.pdf",
-			},
-			{
-				title: "Furniture Program Catalog 02",
-				url: "/downloads/WOOD - FURNITURE - 2.pdf",
-			},
-			{
-				title: "Furniture Program Catalog 03",
-				url: "/downloads/WOOD - FURNITURE - 3.pdf",
-				access: "request",
-				note: "Large reference deck shared on request.",
-			},
-		],
-	},
-	"custom-furniture": {
-		slug: "custom-furniture",
-		seoTitle:
-			"Custom Furniture | Hospitality & Retail Projects — Moldart",
-		metaDesc:
-			"CAD/CNC-driven custom furniture development for hospitality, residential, and retail environments. MDF, HDF, and plywood cores. Built to project-specific layouts.",
-		overview:
-			"Moldart supplies CAD/CNC-driven furniture developed for hospitality, residential, and retail environments. Each project is engineered to specific layouts, finish requirements, and spatial constraints using MDF, HDF, and plywood cores.",
-		workflow:
-			"Custom furniture begins with design coordination (CAD/CNC), followed by material selection, precision manufacturing, finish application, and project-specific packaging and delivery.",
-		commercialNotes:
-			"Designed and built to project-specific layouts and finishes. Core materials include MDF, HDF, and plywood. Suitable for hospitality, retail, and residential applications.",
-		relatedProducts: ["ready-made-furniture", "plywood", "fiberboard"],
-		relatedApps: ["furniture", "architecture"],
-		downloads: [
-			{
-				title: "Furniture Program Catalog 01",
-				url: "/downloads/WOOD - FURNITURE - 1.pdf",
-			},
-			{
-				title: "Furniture Program Catalog 02",
-				url: "/downloads/WOOD - FURNITURE - 2.pdf",
-			},
-			{
-				title: "Furniture Program Catalog 03",
-				url: "/downloads/WOOD - FURNITURE - 3.pdf",
-				access: "request",
-				note: "Large reference deck shared on request.",
-			},
-		],
-	},
-	"decorative-panels": {
-		slug: "decorative-ss-panels",
-		seoTitle: "Decorative Stainless Steel Sheets | Finish-Led RFQ — Moldart",
-		metaDesc:
-			"Requirement-led decorative stainless steel sheet review covering grade, finish, fabrication, protection, packing, and project approval.",
-		overview:
-			"Use this route to define the environment, sheet construction, finish reference, fabrication, protection, evidence, and acceptance basis before commercial comparison.",
-		workflow:
-			"Decorative stainless steel sheets are reviewed as a finished surface system: use environment, grade, finish, direction, substrate, fabrication, film, packing, and sample approval must align.",
-		commercialNotes:
-			"Grade, finish, dimensions, coating, fabrication, packing, quantity, and commercial route are confirmed only against approved technical evidence and samples.",
-		relatedProducts: ["ss-profiles", "ss-furniture"],
-		relatedApps: ["architecture", "metal-finishing"],
-		downloads: [
-			{
-				title: "Decorative SS Antique Finishes",
-				url: "/downloads/ANTIQUE.pdf",
-			},
-			{
-				title: "Decorative SS Stamped Finishes",
-				url: "/downloads/STAMPED.pdf",
-			},
-			{
-				title: "Decorative SS Heat-Printed Finishes",
-				url: "/downloads/HEAT PRINTED.pdf",
-			},
-			{ title: "Decorative SS Mosaic Finishes", url: "/downloads/MOSAIC.pdf" },
-		],
-	},
-	"ss-profiles": {
-		slug: "ss-profiles",
-		seoTitle: "Stainless Steel Profiles Supplier | SS Trims & Inlays — Moldart",
-		metaDesc:
-			"Precision-formed stainless steel profiles and trims in common architectural shapes, coordinated to decorative panel finish routes.",
-		overview:
-			"Moldart supplies stainless steel profiles, trims, and inlays for cleaner architectural transitions and edge detailing, with emphasis on profile coordination, finish matching, and project-led confirmation.",
-		workflow:
-			"SS profiles are used as transition trims, panel edging, floor-to-wall junctions, and decorative inlays in architectural interiors. They are typically installed alongside decorative stainless steel panels.",
-		commercialNotes:
-			"Common profile routes include T, U, L, C, and box forms with finish coordination to the selected panel programme. Final grade, length, folding geometry, and groove detail are confirmed per enquiry.",
-		relatedProducts: ["decorative-panels", "ss-furniture"],
-		relatedApps: ["architecture"],
-		downloads: [
-			{
-				title: "Stainless Steel Profiles Catalog",
-				url: "/downloads/PROFILE.pdf",
-			},
-			{
-				title: "Stainless Steel Divider Systems",
-				url: "/downloads/DIVIDER.pdf",
-			},
-		],
-	},
-	"ss-furniture": {
-		slug: "ss-furniture",
-		seoTitle:
-			"Stainless Steel Furniture | PVD-Plated Luxury Furniture — Moldart",
-		metaDesc:
-			"Decorative stainless steel furniture with PVD and electroplated finishes. Tables, consoles, partitions. Marble, glass, and MDF tops. Custom design support.",
-		overview:
-			"Moldart supplies decorative stainless steel furniture with plated finishes and mixed-material top options for luxury interior environments. From tables and consoles to partitions and lobby features, each piece combines structural precision with premium surface treatment.",
-		workflow:
-			"SS furniture is fabricated from stainless steel frames, finished with PVD or electroplating, then assembled with selected top materials (marble, glass, MDF) before delivery to site.",
-		commercialNotes:
-			"Product types: Tables, consoles, and partitions. Finish options: PVD and electroplated. Top materials: Marble, glass, and MDF. Custom design support available.",
-		relatedProducts: ["decorative-panels", "ss-profiles"],
-		relatedApps: ["architecture", "furniture", "metal-finishing"],
-		downloads: [
-			{
-				title: "Decorative SS Antique Finishes",
-				url: "/downloads/ANTIQUE.pdf",
-			},
-			{
-				title: "Decorative SS Heat-Printed Finishes",
-				url: "/downloads/HEAT PRINTED.pdf",
-			},
-		],
-	},
-	"industrial-press-plates": {
-		slug: "industrial-press-plates",
-		seoTitle: "Industrial Press Tooling | PCB, CCL & FPC Requirements — Moldart",
-		metaDesc:
-			"Requirement-led press-plate and tooling review for PCB, CCL, FPC, smart-card, IC-substrate, security, and technical laminate programmes.",
-		overview:
-			"Use this route to define the product stack, tooling type, dimensions, machining, surface, cleanliness, evidence, and acceptance basis before commercial comparison.",
-		workflow:
-			"Electronics and technical-laminate press tooling must be reviewed against the actual press cycle, product stack, finished-part drawing, handling, cleanliness, sample, and QC evidence.",
-		commercialNotes:
-			"Tooling type, grade, dimensions, machining, flatness, surface, quantity, evidence, and commercial route are confirmed only against the approved programme.",
-		relatedProducts: ["press-plates", "press-pads"],
-		relatedApps: ["lamination", "pcb-ccl"],
-		downloads: [
-			{
-				title: "Press Plate Standard Collection",
-				url: "/downloads/PRESS PLATE - BASIC COLLECTION.pdf",
-			},
-		],
-	},
-};
+const productMeta = Object.fromEntries(
+	(rawProducts.products || []).map((product) => [
+		product.id,
+		{
+			slug: product.slug || product.id,
+			seoTitle: product.seoTitle || `${product.name} | Moldart`,
+			metaDesc: product.metaDesc || product.summary,
+			overview: product.overview || product.summary,
+			workflow: product.workflow || "Define the application, review evidence, approve the reference, and record acceptance.",
+			commercialNotes: product.commercialNotes || "Availability and commercial details are confirmed after RFQ review.",
+			relatedProducts: product.relatedProducts || [],
+			relatedApps: product.relatedApps || [],
+			downloads: product.downloads || [],
+		},
+	]),
+);
 
 // ============================================================
 // APPLICATION DATA
 // ============================================================
-const applications = [
-	{
-		slug: "lamination",
-		name: "Lamination",
-		seoTitle: "Lamination Tooling & Materials Supplier — Moldart",
-		metaDesc:
-			"Complete lamination supply chain: press plates, press pads, engraved cylinders, printed decor paper, and industrial press plates for HPL and LPL production.",
-		overview:
-			"Use this route when surface quality depends on the full press stack, not one tooling item in isolation.",
-		considerations: [
-			"Press plate grade selection depends on required surface hardness and production volume",
-			"Press pad construction affects heat distribution uniformity across the press area",
-			"Engraved cylinder specifications must match the target decor paper design and repeat length",
-			"Decor paper GSM and wet tensile strength affect impregnation and pressing behavior",
-			"Industrial press plates for CCL/PCB require demagnetization control",
-		],
-		products: [
-			"press-plates",
-			"press-pads",
-			"engraved-cylinders",
-			"decor-paper",
-			"industrial-press-plates",
-		],
-		downloads: [
-			{
-				title: "Press Plate Standard Collection",
-				url: "/downloads/PRESS PLATE - BASIC COLLECTION.pdf",
-			},
-			{
-				title: "Press Plates for Shuttering Plywood",
-				url: "/downloads/PRESS PLATE - SHUTTERING PLYWOOD.pdf",
-			},
-			{
-				title: "HPL Overlay Collection OL-01",
-				url: "/downloads/HPL - OL - 1.pdf",
-			},
-		],
-	},
-	{
-		slug: "furniture",
-		name: "Furniture Manufacturing",
-		seoTitle: "Furniture Materials & Components Supplier — Moldart",
-		metaDesc:
-			"Substrates, decor inputs, and finished furniture for commercial and residential manufacturing. Plywood, MDF, HDF, particleboard, and CNC-built furniture.",
-		overview:
-			"Use this route when board choice, finish route, machining, compliance, and output type need to align before RFQ.",
-		considerations: [
-			"Substrate selection depends on the structural requirements and end-use environment",
-			"Emission compliance standards vary by destination market (E1, CARB-NAF, F4 star)",
-			"Surface finish quality depends on substrate smoothness — MDF/HDF provides the best base for high-gloss",
-			"Edging compatibility should be verified against substrate thickness and material",
-			"Custom furniture requires early-stage design coordination for optimal material utilization",
-		],
-		products: [
-			"plywood",
-			"fiberboard",
-			"particleboard",
-			"ready-made-furniture",
-			"custom-furniture",
-			"decor-paper",
-		],
-		downloads: [
-			{
-				title: "Furniture Program Catalog 01",
-				url: "/downloads/WOOD - FURNITURE - 1.pdf",
-			},
-			{
-				title: "Furniture Program Catalog 02",
-				url: "/downloads/WOOD - FURNITURE - 2.pdf",
-			},
-		],
-	},
-	{
-		slug: "flooring",
-		name: "Flooring",
-		seoTitle: "Laminate Flooring Systems & Accessories Supplier — Moldart",
-		metaDesc:
-			"Laminate flooring systems and accessories for homes and commercial sites. Final construction, declared use class, and site requirements are confirmed per approval.",
-		overview:
-			"Use this route when laminate construction, locking profile, accessories, and site conditions must be reviewed together.",
-		considerations: [
-			"Declared use class and its supporting product evidence must match the actual use condition",
-			"Core construction and site moisture conditions must be confirmed before dispatch",
-			"Click-system compatibility should be confirmed for the approved installation method",
-			"Accessory profiles must match the approved floor sample and junction detail",
-			"Subfloor readiness and installation conditions belong in the approval record",
-		],
-		products: ["wood-flooring", "flooring-accessories", "fiberboard"],
-		downloads: [
-			{
-				title: "Flooring Systems Reference Deck",
-				url: "/downloads/WOOD - FLOORING.pdf",
-			},
-		],
-	},
-	{
-		slug: "architecture",
-		name: "Architecture & Interiors",
-		seoTitle:
-			"Architectural Materials Supplier | Steel Panels & Wood Panels — Moldart",
-		metaDesc:
-			"Decorative stainless steel panels, profiles, and engineered wood substrates for architectural interiors. PVD finishes, structural panels, and custom fabrication.",
-		overview:
-			"Use this route when visible finish, detailing, support build-up, and installation condition matter more than a single material label.",
-		considerations: [
-			"Decorative stainless-steel grade selection depends on environment, corrosion exposure, and the project finish route",
-			"PVD color consistency across batches should be confirmed for large-area installations",
-			"Structural panel selection depends on load, span, and environmental conditions",
-			"Custom furniture lead times depend on complexity, finish, and production scheduling",
-			"Anti-fingerprint coating is recommended for high-touch architectural surfaces",
-		],
-		products: [
-			"decorative-panels",
-			"ss-profiles",
-			"ss-furniture",
-			"plywood",
-			"fiberboard",
-			"osb",
-		],
-		downloads: [
-			{
-				title: "Decorative SS Antique Finishes",
-				url: "/downloads/ANTIQUE.pdf",
-			},
-			{
-				title: "Stainless Steel Profiles Catalog",
-				url: "/downloads/PROFILE.pdf",
-			},
-			{ title: "Decorative SS Mosaic Finishes", url: "/downloads/MOSAIC.pdf" },
-		],
-	},
-	{
-		slug: "metal-finishing",
-		name: "Metal Finishing",
-		seoTitle: "Decorative Metal Finishing | PVD Stainless Steel — Moldart",
-		metaDesc:
-			"Decorative-finished stainless steel panels, profiles, and furniture for premium interiors, with finish approval confirmed per programme.",
-		overview:
-			"Use this route when finish family, grade, colour continuity, and approval method need to be locked before comparison.",
-		considerations: [
-			"Finish route, colour approval, and surface preparation should be aligned before commercial comparison",
-			"Anti-fingerprint requirements should be confirmed for high-touch surfaces",
-			"Large-area or repeat orders should be reviewed for colour and finish consistency",
-			"Surface preparation affects the final decorative appearance and should be approved early",
-			"Grade, environment, and finish route should be aligned before approval is locked",
-		],
-		products: ["decorative-panels", "ss-profiles", "ss-furniture"],
-		downloads: [
-			{
-				title: "Decorative SS Antique Finishes",
-				url: "/downloads/ANTIQUE.pdf",
-			},
-			{
-				title: "Decorative SS Stamped Finishes",
-				url: "/downloads/STAMPED.pdf",
-			},
-			{
-				title: "Decorative SS Heat-Printed Finishes",
-				url: "/downloads/HEAT PRINTED.pdf",
-			},
-			{ title: "Decorative SS Mosaic Finishes", url: "/downloads/MOSAIC.pdf" },
-		],
-	},
-	{
-		slug: "pcb-ccl",
-		name: "PCB, CCL & FPC Press Tooling",
-		seoTitle: "PCB, CCL & FPC Press Tooling Requirements — Moldart",
-		metaDesc:
-			"Requirement-led industrial press-plate and tooling review for PCB, CCL, FPC, smart-card, IC-substrate, and technical laminate programmes.",
-		overview:
-			"Use this route when tooling type, dimensions, machining, flatness, parallelism, surface, cleanliness, handling, and incoming inspection must be locked before comparison.",
-		considerations: [
-			"Confirm the actual product stack, press cycle, working size, tooling role, and finished-part drawing",
-			"Match flatness, parallelism, surface, hardness, magnetism, and cleanliness to an approved test and acceptance basis",
-			"Separate plate, separator, carrier, top, bonding, caul, protection, and other tooling requirements",
-			"Confirm handling, protective film, packing, loading, traceability, and incoming inspection before production use",
-			"Keep unqualified electronics consumables outside the public route until separately approved",
-		],
-		products: ["industrial-press-plates"],
-		downloads: [
-			{
-				title: "Press Plate Standard Collection",
-				url: "/downloads/PRESS PLATE - BASIC COLLECTION.pdf",
-			},
-		],
-	},
-];
-
-const SOLUTION_PRODUCT_ROLES = {
-	lamination: {
-		"press-plates":
-			"Defines the visible press surface, texture transfer, and finish repeatability in decorative lamination lines.",
-		"press-pads":
-			"Helps stabilise heat transfer and pressure equalisation across the press build-up.",
-		"engraved-cylinders":
-			"Creates the printed decor pattern that later becomes the visible surface language of the panel.",
-		"decor-paper":
-			"Carries the approved printed design into impregnation and pressing.",
-		"industrial-press-plates":
-			"Supports the tooling review when a programme moves into PCB, CCL, FPC, smart-card, IC-substrate, or other technical laminate routes.",
-	},
-	furniture: {
-		plywood:
-			"Supports structural furniture parts where strength, screw holding, or substrate stability matter.",
-		fiberboard:
-			"Provides the smoother core route when paint, foil, melamine, or decorative facing needs a more uniform base.",
-		particleboard:
-			"Supports commercial furniture programmes where cost control and repeat conversion matter.",
-		"ready-made-furniture":
-			"Moves the conversation from raw board supply into finished modular or assembled output.",
-		"custom-furniture":
-			"Turns layouts, finish intent, and site conditions into a build-to-brief furniture route.",
-		"decor-paper":
-			"Supports décor alignment where the furniture programme depends on laminated visual surfaces.",
-	},
-	flooring: {
-		"wood-flooring":
-			"Acts as the finished walking surface and the main performance layer of the flooring system.",
-		"flooring-accessories":
-			"Closes the installation properly through skirting, stair nosing, and transition details.",
-		fiberboard:
-			"Supports the core build where density, lock precision, and surface readiness affect floor performance.",
-	},
-	architecture: {
-		"decorative-panels":
-			"Creates the visible stainless-steel surface language for cladding, lifts, features, and interiors.",
-		"ss-profiles":
-			"Finishes edges, transitions, joints, and inlay conditions so the panel route looks intentional and complete.",
-		"ss-furniture":
-			"Adds fabricated decorative pieces where the project needs furniture or feature elements in the same finish family.",
-		plywood:
-			"Supports backing, carcass, or hidden structural routes behind visible interior finishes.",
-		fiberboard:
-			"Supports smoother painted or laminated interior build-ups where face quality matters.",
-		osb: "Supports selected structural or non-visible build-up conditions where panel strength matters more than a refined face.",
-	},
-	"metal-finishing": {
-		"decorative-panels":
-			"Acts as the main decorative sheet route when finish, reflection, and surface approval drive the decision.",
-		"ss-profiles":
-			"Keeps trims and divider details aligned with the approved decorative finish route.",
-		"ss-furniture":
-			"Extends the same finish logic into fabricated furniture or feature pieces.",
-	},
-	"pcb-ccl": {
-		"industrial-press-plates":
-			"Carries the tolerance-critical plate role for electronics lamination work where flatness, parallelism, and surface discipline are not optional.",
-	},
-};
-
-const SOLUTION_AUDIENCES = {
-	lamination: [
-		"Procurement",
-		"Production teams",
-		"Quality teams",
-		"Technical buyers",
-	],
-	furniture: ["Procurement", "OEM teams", "Design teams", "Production teams"],
-	flooring: [
-		"Category buyers",
-		"Project teams",
-		"Installation partners",
-		"Procurement",
-	],
-	architecture: ["Architects", "Interior teams", "Procurement", "Fabricators"],
-	"metal-finishing": [
-		"Architects",
-		"Finish approvers",
-		"Procurement",
-		"Fabricators",
-	],
-	"pcb-ccl": [
-		"Technical buyers",
-		"Production engineers",
-		"Quality teams",
-		"Operations",
-	],
-};
-
-const SOLUTION_FLOWS = {
-	lamination: [
-		{
-			title: "Define the target surface",
-			detail:
-				"Lock the finish language, plate condition expectations, and press context before asking for a generic quote.",
-		},
-		{
-			title: "Align the tooling stack",
-			detail:
-				"Confirm whether the programme needs only plates, or also pads, cylinders, decor paper, or industrial plate support.",
-		},
-		{
-			title: "Approve the reference route",
-			detail:
-				"Texture, pattern, and replacement expectations should be agreed before production scales.",
-		},
-	],
-	furniture: [
-		{
-			title: "Start from the end use",
-			detail:
-				"Cabinetry, modular programmes, hospitality work, and custom fit-outs do not all need the same substrate route.",
-		},
-		{
-			title: "Lock the board logic",
-			detail:
-				"Strength, surface readiness, compliance, and finish route should be aligned before price comparison dominates.",
-		},
-		{
-			title: "Move into finished output only when ready",
-			detail:
-				"Ready-made or custom furniture works best after the board, finish, and layout logic are already clear.",
-		},
-	],
-	flooring: [
-		{
-			title: "Choose the floor system",
-			detail:
-				"Traffic level, core build, and moisture exposure shape the right flooring route.",
-		},
-		{
-			title: "Coordinate the accessories",
-			detail:
-				"Skirting, transitions, and stair details should follow the floor decision, not appear as an afterthought.",
-		},
-		{
-			title: "Confirm installation conditions",
-			detail:
-				"Subfloor readiness, lock profile, and site conditions affect the final performance.",
-		},
-	],
-	architecture: [
-		{
-			title: "Begin with the visible surface",
-			detail:
-				"The finish approval route matters because large-area stainless programmes expose inconsistency quickly.",
-		},
-		{
-			title: "Align trims and support materials",
-			detail:
-				"Profiles, backing materials, and fabricated pieces should follow the same approved route.",
-		},
-		{
-			title: "Approve before scale",
-			detail:
-				"Sample-backed finish approval is safer than assuming a brochure image will translate to project quantity.",
-		},
-	],
-	"metal-finishing": [
-		{
-			title: "Fix the finish family early",
-			detail:
-				"Hairline, mirror, etched, stamped, or PVD routes should be narrowed before commercial negotiation.",
-		},
-		{
-			title: "Coordinate decorative parts together",
-			detail:
-				"Panels, trims, and furniture are easier to approve when they are treated as one finish system.",
-		},
-		{
-			title: "Keep final approval sample-led",
-			detail:
-				"Visual acceptance should be tied to the approved route, not only to a catalogue description.",
-		},
-	],
-	"pcb-ccl": [
-		{
-			title: "Start from tolerance, not only grade",
-			detail:
-				"Electronics lamination decisions fail when the discussion stays too broad and grade-only.",
-		},
-		{
-			title: "Match the line condition",
-			detail:
-				"Flatness, parallelism, surface behaviour, and documentation should all align with the actual production line.",
-		},
-		{
-			title: "Confirm incoming checks",
-			detail:
-				"Inspection discipline at receipt matters because the downstream process is less forgiving.",
-		},
-	],
-};
-
-const ROUTE_VISUAL_MODELS = {
-	lamination: {
-		homeTitle: "Decorative laminate surfaces",
-		homeSummary:
-			"Press tooling and décor inputs aligned to surface transfer and repeat output.",
-		homeOutputs: ["HPL", "LPL", "Panel surfacing"],
-		homeSteps: ["Tooling", "Press cycle", "Surface output"],
-		storyTitle: "LAMINATION: STACK, CONTROLS, OUTPUT.",
-		storyNote:
-			"Read the tooling stack, décor route, and press condition together.",
-		inputs: [
-			"Press Plates",
-			"Press Pads",
-			"Engraved Cylinders",
-			"Printed Decor Paper",
-		],
-		process: ["Pattern printing", "Heat + pressure", "Texture transfer"],
-		outputs: [
-			"Decorative laminate faces",
-			"Furniture panel surfaces",
-			"Flooring overlays",
-		],
-	},
-	furniture: {
-		homeTitle: "Furniture programmes",
-		homeSummary:
-			"Boards, faces, and finished pieces aligned to machining, loading, and finish route.",
-		homeOutputs: ["Modular furniture", "Retail fixtures", "Custom interiors"],
-		homeSteps: ["Boards", "Fabrication", "Furniture output"],
-		storyTitle: "FURNITURE: STACK, CONTROLS, OUTPUT.",
-		storyNote:
-			"Read the board route, surface route, and finished output together.",
-		inputs: [
-			"Plywood",
-			"Fiberboard",
-			"Particleboard",
-			"Ready-Made / Custom Furniture",
-		],
-		process: ["Board selection", "Facing + detailing", "Assembly / fit-out"],
-		outputs: [
-			"Modular furniture",
-			"Custom furniture",
-			"Project-specific fit-outs",
-		],
-	},
-	flooring: {
-		homeTitle: "Flooring systems",
-		homeSummary:
-			"Core boards and accessories aligned to wear class, moisture behaviour, and installation finish.",
-		homeOutputs: [
-			"Residential floors",
-			"Commercial floors",
-			"Accessory coordination",
-		],
-		homeSteps: ["Floor core", "Installation route", "Finished floor"],
-		storyTitle: "FLOORING: CORE, CONTROLS, OUTPUT.",
-		storyNote:
-			"Read the core, locking route, accessories, and site condition together.",
-		inputs: ["Wood Flooring", "Flooring Accessories", "Fiberboard"],
-		process: ["Core + decor", "Click-lock planning", "Accessory fit"],
-		outputs: [
-			"Installed floors",
-			"Stair + trim finish",
-			"Coordinated room transitions",
-		],
-	},
-	architecture: {
-		homeTitle: "Architecture & interiors",
-		homeSummary:
-			"Visible stainless surfaces, trims, and support boards aligned to detail and installation condition.",
-		homeOutputs: ["Feature walls", "Lift panels", "Interior fit-outs"],
-		homeSteps: ["Surface selection", "Detailing", "Installed interior output"],
-		storyTitle: "INTERIORS: SURFACE, DETAIL, OUTPUT.",
-		storyNote:
-			"Read the visible finish, support build-up, detailing, and installation condition together.",
-		inputs: [
-			"Decorative SS Panels",
-			"SS Profiles",
-			"SS Furniture",
-			"Support boards",
-		],
-		process: ["Finish approval", "Detail coordination", "Project installation"],
-		outputs: [
-			"Architectural features",
-			"Interior cladding",
-			"Premium fit-outs",
-		],
-	},
-	"metal-finishing": {
-		homeTitle: "Decorative metal finishes",
-		homeSummary:
-			"Decorative stainless routes where finish family, colour continuity, and surface acceptance matter.",
-		homeOutputs: ["PVD routes", "Stamped surfaces", "Mirror / hairline work"],
-		homeSteps: ["Finish family", "Approval", "Decorative output"],
-		storyTitle: "METAL FINISHING: FINISH, APPROVAL, OUTPUT.",
-		storyNote:
-			"Read finish family, approval method, and fabricated output together.",
-		inputs: ["Decorative SS Panels", "SS Profiles", "SS Furniture"],
-		process: [
-			"Finish-family selection",
-			"Sample approval",
-			"Fabrication alignment",
-		],
-		outputs: [
-			"Decorative panels",
-			"Profiles + trims",
-			"Fabricated feature pieces",
-		],
-	},
-	"pcb-ccl": {
-		homeTitle: "Technical laminate lines",
-		homeSummary:
-			"Tolerance-critical press plates aligned to flatness, parallelism, demagnetisation, and line consistency.",
-		homeOutputs: ["CCL lines", "PCB routes", "Technical laminates"],
-		homeSteps: ["Industrial plates", "Controlled pressing", "Technical output"],
-		storyTitle: "TECHNICAL LAMINATES: PLATE, PRESS, OUTPUT.",
-		storyNote:
-			"Read plate condition, line tolerance, and incoming checks together.",
-		inputs: ["Industrial Press Plates"],
-		process: ["Incoming checks", "Controlled pressing", "Tolerance review"],
-		outputs: [
-			"PCB / CCL lines",
-			"Technical laminates",
-			"Lower downstream correction risk",
-		],
-	},
-};
+const applications = rawSolutions.solutions || [];
+const SOLUTION_PRODUCT_ROLES = Object.fromEntries(
+	applications.map((solution) => [solution.slug, solution.productRoles || {}]),
+);
+const SOLUTION_AUDIENCES = Object.fromEntries(
+	applications.map((solution) => [solution.slug, solution.audience || []]),
+);
+const SOLUTION_FLOWS = Object.fromEntries(
+	applications.map((solution) => [solution.slug, solution.flow || []]),
+);
+const ROUTE_VISUAL_MODELS = Object.fromEntries(
+	applications.map((solution) => [solution.slug, solution.visual || {}]),
+);
 
 // ============================================================
 // RESOURCE/DOWNLOAD GROUPS
@@ -1390,196 +539,53 @@ const RESOURCE_ROUTE_OVERRIDES = {
 // ============================================================
 // PRODUCT CATEGORY GROUPS (for hub page)
 // ============================================================
-const productCategories = [
-	{
-		title: "Lamination Tooling",
-		desc: "Press plates, press pads, engraved cylinders, and printed decor paper for laminate production.",
-		products: [
-			"press-plates",
-			"press-pads",
-			"engraved-cylinders",
-			"decor-paper",
-		],
-	},
-	{
-		title: "Engineered Substrates",
-		desc: "Plywood, fiberboard (MDF/HDF), OSB, and particleboard panels for furniture, construction, and industrial use.",
-		products: ["plywood", "fiberboard", "osb", "particleboard"],
-	},
-	{
-		title: "Flooring & Furniture",
-		desc: "Engineered wood flooring systems, coordinated accessories, and ready-made or custom-built furniture.",
-		products: [
-			"wood-flooring",
-			"flooring-accessories",
-			"ready-made-furniture",
-			"custom-furniture",
-		],
-	},
-	{
-		title: "Decorative Stainless Steel",
-		desc: "PVD-coated panels, precision profiles, and stainless steel furniture for architectural interiors.",
-		products: ["decorative-panels", "ss-profiles", "ss-furniture"],
-	},
-	{
-		title: "Industrial Press Plates",
-		desc: "Heavy-duty press plates for HPL, CCL, and PCB manufacturing with strict tolerances and demagnetization control.",
-		products: ["industrial-press-plates"],
-	},
-];
+const productCategories = (rawProducts.systems || []).map((system) => ({
+	title: system.name,
+	desc: system.description,
+	products: rawProducts.products
+		.filter((product) => product.system === system.id)
+		.map((product) => product.id),
+}));
 
-const portfolioFamilies = [
-	{
-		title: "Lamination Tooling",
-		intro:
-			"Surface-transfer tooling and decor inputs for laminate production where repeatability, finish fidelity, and press stability matter.",
-		products: [
-			"press-plates",
-			"press-pads",
-			"engraved-cylinders",
-			"decor-paper",
-		],
-		highlights: [
-			"SS 304 / 420 / 630",
-			"Hard-chrome surfaces approx. 65-70 HRC",
-			"Decor printing and texture-transfer tooling",
-		],
-		sectors: ["HPL / LPL", "Furniture surfacing", "Flooring overlays"],
-	},
-	{
-		title: "Engineered Wood Substrates",
-		intro:
-			"Panel substrates for furniture, interior fit-outs, and technical build-ups with emission, density, and structural performance control.",
-		products: ["plywood", "fiberboard", "osb", "particleboard"],
-		highlights: [
-			"E1 / TSCA Title VI / F4 star",
-			"MDF, HDF, plywood, OSB, particleboard",
-			"Structural and decorative panel programmes",
-		],
-		sectors: ["Furniture manufacturing", "Interiors", "Construction support"],
-	},
-	{
-		title: "Flooring & Furniture Programmes",
-		intro:
-			"Engineered flooring systems and furniture programmes coordinated around finish consistency, fit-out speed, and repeat production control.",
-		products: [
-			"wood-flooring",
-			"flooring-accessories",
-			"ready-made-furniture",
-			"custom-furniture",
-		],
-		highlights: [
-			"AC3-AC5 wear classes",
-			"Click-lock and coordinated accessory systems",
-			"CAD / CNC-led furniture development",
-		],
-		sectors: [
-			"Residential interiors",
-			"Commercial spaces",
-			"Hospitality fit-outs",
-		],
-	},
-	{
-		title: "Decorative Stainless Steel",
-		intro:
-			"Architectural stainless steel surfaces, trims, and fabricated pieces where finish control, corrosion resistance, and visual consistency are critical.",
-		products: ["decorative-panels", "ss-profiles", "ss-furniture"],
-		highlights: [
-			"SS 201 / 304 platforms",
-			"No.4, Hairline, Mirror, and PVD routes",
-			"Panels, profiles, and fabricated pieces",
-		],
-		sectors: [
-			"Architecture",
-			"Retail interiors",
-			"Hospitality and premium fit-outs",
-		],
-	},
-	{
-		title: "Industrial Press Plates",
-		intro:
-			"Heavy-duty press plates for technical laminate lines where tolerance discipline, heat behaviour, and magnetism control affect yield and product stability.",
-		products: ["industrial-press-plates"],
-		highlights: [
-			"SUS 301 / 420 / 630",
-			"Flatness below 0.05 mm/m",
-			"PCB, CCL, security, and technical laminate support",
-		],
-		sectors: [
-			"PCB & CCL",
-			"Technical laminates",
-			"Security laminate programmes",
-		],
-	},
-];
+const portfolioFamilies = productCategories.map((category) => ({
+	title: category.title,
+	intro: category.desc,
+	products: category.products,
+	highlights: [],
+	sectors: [],
+}));
 
-const applicationVisuals = {
-	lamination: {
-		image: "/images/page5_img3.webp",
-		alt: "Lamination tooling and press surfaces",
-		eyebrow: "Texture transfer and press-line control",
-	},
-	furniture: {
-		image: "/images/page7_img4.webp",
-		alt: "Furniture manufacturing and engineered panels",
-		eyebrow: "Panels, decorative inputs, and finished programmes",
-	},
-	flooring: {
-		image: "/images/page7_img1.webp",
-		alt: "Engineered flooring systems",
-		eyebrow: "Flooring systems with coordinated accessories",
-	},
-	architecture: {
-		image: "/images/page9_img1.webp",
-		alt: "Decorative stainless steel for architectural interiors",
-		eyebrow: "Architectural finishes and material coordination",
-	},
-	"metal-finishing": {
-		image: "/images/page9_img2_clean.webp",
-		alt: "Metal finishing and stainless steel detailing",
-		eyebrow: "Surface treatments, trims, and premium detailing",
-	},
-	"pcb-ccl": {
-		image: "/images/page9_img4.webp",
-		alt: "Industrial press plates for PCB and CCL manufacturing",
-		eyebrow: "Tolerance-critical tooling for technical laminate lines",
-	},
-};
+const applicationVisuals = Object.fromEntries(
+	applications.map((solution) => {
+		const product = (solution.products || [])
+			.map((productId) => getProduct(productId))
+			.find((item) => approvedProductImage(item));
+		return [
+			solution.slug,
+			{
+				image:
+					approvedProductImage(product) ||
+					"/images/social/moldart-solutions.webp",
+				alt: `${solution.name} technical route`,
+				eyebrow: solution.visual?.storyNote || solution.overview,
+			},
+		];
+	}),
+);
 
 const companyMilestones = [
-	{
-		year: "1989",
-		title: "Foundation",
-		detail:
-			"Moldart begins operations in Mumbai as a trading and industrial sourcing partner.",
-	},
-	{
-		year: "1990s",
-		title: "Tooling & Panels",
-		detail:
-			"The wood-focused portfolio expands into press tooling, substrates, and decor-linked material coordination.",
-	},
-	{
-		year: "2000s",
-		title: "Expanded Sourcing Network",
-		detail:
-			"Long-term manufacturing relationships strengthen programme support across India, China, and export-led supply routes.",
-	},
-	{
-		year: "2010s",
-		title: "Decorative Steel Expansion",
-		detail:
-			"Decorative stainless steel, profiles, and fabricated programmes are added for architectural and interior buyers.",
-	},
-	{
-		year: "Today",
-		title: "Integrated Supply Partner",
-		detail:
-			"Moldart works across tooling, substrates, flooring, furniture, and decorative steel through one commercial and technical interface.",
-	},
+	{ year: "1989", title: "Business roots in Mumbai", detail: "The related Deco Metal partnership established its Mumbai trading presence. This date is presented as business history, not as the incorporation date of Mold Art (India) Private Limited." },
+	{ year: "2005", title: "Mold Art (India) Private Limited", detail: "The current legal entity was incorporated in Mumbai under CIN U74994MH2005PTC153242." },
+	{ year: "Today", title: "Technical RFQ coordination", detail: "Moldart coordinates product definition, sourcing, samples, evidence, packing and commercial execution across wood, decorative steel and electronics press routes." },
 ];
 
 const primaryPages = [
+	{
+		title: "Products",
+		url: "/products/",
+		meta: "Seventeen product routes across three technical systems",
+		keywords: ["products", "catalogue", "wood", "steel", "electronics"],
+	},
 	{
 		title: "Explore",
 		url: "/explore/",
@@ -1591,6 +597,18 @@ const primaryPages = [
 		url: "/solutions/",
 		meta: "Combined systems, product stacks, and product sheets",
 		keywords: ["solutions", "systems", "product stack"],
+	},
+	{
+		title: "Evidence & QC",
+		url: "/evidence-qc/",
+		meta: "Samples, documents, inspection, packing and receiving controls",
+		keywords: ["evidence", "qc", "sample", "inspection", "packing"],
+	},
+	{
+		title: "Process",
+		url: "/process/",
+		meta: "RFQ, qualification, approval, dispatch and repeat supply",
+		keywords: ["process", "rfq", "approval", "dispatch"],
 	},
 	{
 		title: "Resources",
@@ -1617,54 +635,36 @@ const primaryPages = [
 		keywords: ["about", "company", "leadership"],
 	},
 	{
-		title: "Contact",
-		url: "/contact/",
-		meta: "Inquiry, WhatsApp, and meetings",
-		keywords: ["contact", "whatsapp", "email"],
+		title: "Start RFQ",
+		url: "/contact/?intent=buyer-rfq",
+		meta: "Submit a structured technical requirement",
+		keywords: ["contact", "rfq", "whatsapp", "email"],
 	},
 ];
 
-const familyVisuals = {
-	"Lamination Tooling": {
-		image: "/images/page5_img3.webp",
-		alt: "Lamination tooling surfaces",
-		label: "Surface transfer and press-line control",
-	},
-	"Engineered Wood Substrates": {
-		image: "/images/page6_img1.webp",
-		alt: "Engineered wood panel substrates",
-		label: "Panel performance and lamination readiness",
-	},
-	"Flooring & Furniture Programmes": {
-		image: "/images/page7_img1.webp",
-		alt: "Flooring and furniture programmes",
-		label: "System fit, finish, and project execution",
-	},
-	"Decorative Stainless Steel": {
-		image: "/images/page9_img1.webp",
-		alt: "Decorative stainless steel surfaces",
-		label: "Architectural finish consistency",
-	},
-	"Industrial Press Plates": {
-		image: "/images/page9_img4.webp",
-		alt: "Industrial press plates",
-		label: "Tolerance-critical pressing support",
-	},
-};
+const familyVisuals = Object.fromEntries(
+	portfolioFamilies.map((family) => {
+		const product = family.products.map((id) => getProduct(id)).find((item) => item?.image);
+		return [
+			family.title,
+			{
+				image: product?.image || "/images/social/moldart-products.webp",
+				alt: `${family.title} product system`,
+				label: family.intro,
+			},
+		];
+	}),
+);
+familyVisuals["Lamination Tooling"] ||= Object.values(familyVisuals)[0];
 
 function insightCategoryLabelForProduct(productId) {
-	const family = portfolioFamilies.find((item) =>
-		item.products.includes(productId),
-	);
-	if (!family) return "Technical Guides";
-	if (family.title === "Decorative Stainless Steel") return "Decorative Stainless Steel";
-	if (family.title === "Industrial Press Plates") return "Industrial Tooling";
-	if (family.title === "Engineered Wood Substrates") return "Panel Systems";
-	if (family.title === "Flooring & Furniture Programmes") {
-		return ["wood-flooring", "flooring-accessories"].includes(productId)
-			? "Flooring Systems"
-			: "Furniture Programmes";
-	}
+	const product = getProduct(productId);
+	if (!product) return "Technical Guides";
+	if (product.system === "steel") return "Decorative Stainless Steel";
+	if (product.system === "electronics") return "Industrial Tooling";
+	if (product.id === "wood-flooring") return "Flooring Systems";
+	if (["fiberboard", "particleboard", "osb", "plywood"].includes(product.id)) return "Panel Systems";
+	if (["hpl-compact-laminated-boards", "decorative-films-foils"].includes(product.id)) return "Decorative Surfaces";
 	return "Lamination Tooling";
 }
 
@@ -2743,16 +1743,16 @@ const SITE_SOCIAL_POSTERS = [
 	{
 		name: "moldart-default",
 		kicker: "Moldart",
-		title: "Specification-led wood and steel supply",
-		note: "Lamination tooling, panels, flooring, furniture, decorative stainless steel, and industrial press routes from Mumbai.",
-		chips: ["Since 1989", "Mumbai", "India + China", "Requirement-led"],
+		title: "One RFQ path for wood, steel + electronics",
+		note: "Wood-panel lamination, decorative stainless steel and electronics press systems from a Mumbai technical RFQ desk.",
+		chips: ["3 systems", "17 product routes", "Mumbai", "Technical RFQ"],
 	},
 	{
 		name: "moldart-home",
 		kicker: "Moldart",
-		title: "Laminates, panels, flooring, furniture, and decorative stainless",
-		note: "SPECIFICATION-LED SUPPLY FROM MUMBAI FOR PROCUREMENT, TECHNICAL, AND COMMERCIAL TEAMS.",
-		chips: ["Since 1989", "Mumbai", "6 routes", "24 files"],
+		title: "One RFQ path for wood, steel + electronics",
+		note: "PRODUCT, APPLICATION, CONSTRUCTION, QUANTITY, TIMING, DESTINATION AND EVIDENCE IN ONE TECHNICAL BRIEF.",
+		chips: ["3 systems", "17 products", "8 solutions", "51 guides"],
 	},
 	{
 		name: "moldart-solutions",
@@ -2767,6 +1767,13 @@ const SITE_SOCIAL_POSTERS = [
 		title: "Search routes, sheets, guides, and documents",
 		note: "Use one discovery layer when the keyword is known but the right page still needs to be found.",
 		chips: ["Search", "Solutions", "Guides", "Documents"],
+	},
+	{
+		name: "moldart-evidence",
+		kicker: "Evidence & QC",
+		title: "Samples, documents, inspection and receiving",
+		note: "Match each claim and acceptance point to the right product, method, sample, lot and revision.",
+		chips: ["Evidence", "Samples", "QC", "Packing"],
 	},
 	{
 		name: "moldart-resources",
@@ -2804,9 +1811,9 @@ const SITE_SOCIAL_POSTERS = [
 	{
 		name: "moldart-about",
 		kicker: "About",
-		title: "Mumbai-led supply since 1989",
-		note: "Company background, sourcing logic, and leadership context without over-claiming scale or footprint.",
-		chips: ["Since 1989", "Mumbai", "India + China", "Leadership"],
+		title: "A Mumbai technical and commercial RFQ desk",
+		note: "Company role, sourcing controls and contact routes without unsupported scale, facility or history claims.",
+		chips: ["Mumbai", "India + China", "Technical review", "Commercial control"],
 	},
 	{
 		name: "moldart-contact",
@@ -2828,24 +1835,6 @@ function siteSocialPosterRelativePath(name, ext = "png") {
 }
 function siteSocialPosterOutputPath(name, ext = "svg") {
 	return path.join(WORK, "images", "social", `${name}.${ext}`);
-}
-const posterImageDataUriCache = new Map();
-function posterImageMime(absPath = "") {
-	const lower = String(absPath).toLowerCase();
-	if (lower.endsWith(".png")) return "image/png";
-	if (lower.endsWith(".jpg") || lower.endsWith(".jpeg")) return "image/jpeg";
-	if (lower.endsWith(".webp")) return "image/webp";
-	if (lower.endsWith(".avif")) return "image/avif";
-	return "application/octet-stream";
-}
-function posterImageDataUri(relPath = "") {
-	const normalized = String(relPath || "").replace(/^\/+/, "");
-	const absPath = path.join(WORK, normalized);
-	if (posterImageDataUriCache.has(absPath))
-		return posterImageDataUriCache.get(absPath);
-	const dataUri = `data:${posterImageMime(absPath)};base64,${fs.readFileSync(absPath).toString("base64")}`;
-	posterImageDataUriCache.set(absPath, dataUri);
-	return dataUri;
 }
 function solutionSocialPosterName(slug = "") {
 	return `moldart-solution-${slug}`;
@@ -2891,9 +1880,12 @@ function buildHomeSocialSvg(config) {
 	const chips = (config.chips || []).filter(Boolean).slice(0, 4);
 	const titleLines = wrapPosterText(config.title, 28, 3);
 	const noteLines = wrapPosterText(clampText(config.note, 116), 42, 3);
-	const heroPrimary = posterImageDataUri("/images/page5_img2.webp");
-	const heroFloor = posterImageDataUri("/images/page7_img4.webp");
-	const heroSteel = posterImageDataUri("/images/page9_img2_clean.webp");
+	const heroPrimary =
+		"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2'%3E%3Crect width='2' height='2' fill='%2318181b'/%3E%3C/svg%3E";
+	const heroFloor =
+		"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2'%3E%3Crect width='2' height='2' fill='%2314532d'/%3E%3C/svg%3E";
+	const heroSteel =
+		"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2'%3E%3Crect width='2' height='2' fill='%231d4ed8'/%3E%3C/svg%3E";
 	return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="${escHtml(config.title)}">
     <defs>
       <linearGradient id="homePosterBg" x1="0" y1="0" x2="1" y2="1">
@@ -2911,7 +1903,7 @@ function buildHomeSocialSvg(config) {
     <rect width="1200" height="630" rx="36" fill="url(#homePosterBg)"/>
     <rect x="28" y="28" width="1144" height="574" rx="32" fill="url(#homePosterPanel)" stroke="rgba(24,24,27,0.08)"/>
     <text x="70" y="94" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#71717a" letter-spacing="2.2">${escHtml(clampText(String(config.kicker || "Moldart").toUpperCase(), 22))}</text>
-    <text x="70" y="124" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#18181b" letter-spacing="1.8">MUMBAI · SINCE 1989</text>
+    <text x="70" y="124" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#18181b" letter-spacing="1.8">MUMBAI · TECHNICAL RFQ DESK</text>
     ${titleLines.map((line, index) => `<text x="70" y="${214 + index * 58}" font-family="Arial, sans-serif" font-size="50" font-weight="700" fill="#18181b">${escHtml(line)}</text>`).join("")}
     ${noteLines.map((line, index) => `<text x="70" y="${378 + index * 28}" font-family="Arial, sans-serif" font-size="22" fill="#52525b">${escHtml(line)}</text>`).join("")}
     <rect x="70" y="468" width="570" height="94" rx="24" fill="#18181b"/>
@@ -2922,13 +1914,12 @@ function buildHomeSocialSvg(config) {
     <image href="${heroFloor}" x="706" y="374" width="212" height="200" preserveAspectRatio="xMidYMid slice" clip-path="url(#homePosterSecondaryClip)"/>
     <image href="${heroSteel}" x="932" y="374" width="212" height="200" preserveAspectRatio="xMidYMid slice" clip-path="url(#homePosterTertiaryClip)"/>
     <rect x="724" y="74" width="196" height="34" rx="17" fill="rgba(255,255,255,0.9)"/>
-    <text x="746" y="96" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#18181b" letter-spacing="1.3">WOOD + STEEL PROGRAMMES</text>
+    <text x="746" y="96" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#18181b" letter-spacing="1.3">WOOD · STEEL · ELECTRONICS</text>
     <rect x="724" y="520" width="406" height="42" rx="21" fill="#ffffff" stroke="rgba(24,24,27,0.08)"/>
     <text x="746" y="546" font-family="Arial, sans-serif" font-size="16" fill="#18181b">Solutions · Resources · Insights · Search</text>
   </svg>`;
 }
 function buildSiteSocialSvg(config) {
-	if (config?.name === "moldart-home") return buildHomeSocialSvg(config);
 	const chips = (config.chips || []).filter(Boolean).slice(0, 4);
 	const titleLines = wrapPosterText(config.title, 26, 3);
 	const noteLines = wrapPosterText(clampText(config.note, 108), 38, 2);
@@ -3278,7 +2269,14 @@ function renderTechnicalLibraryArticle(article) {
 	const library = article.technicalLibrary;
 	const workflow = library.approvalWorkflow || [];
 	const mistakes = library.mistakes || [];
+	const quickMetrics = [
+		["Specification checks", library.specMatrix?.length || 0],
+		["Risk conditions", library.defectRisk?.length || 0],
+		["Document decisions", library.documentChecklist?.length || 0],
+		["Approval steps", workflow.length],
+	];
 	return `
+    <section class="article-quick-metrics" aria-label="Guide coverage">${quickMetrics.map(([label, value]) => `<article><strong>${escHtml(value)}</strong><span>${escHtml(label)}</span></article>`).join("")}</section>
     <section class="article-panel">
       <div class="article-panel-label">Decision summary</div>
       <h2>${escHtml(library.decisionHeadline)}</h2>
@@ -3301,7 +2299,7 @@ function renderTechnicalLibraryArticle(article) {
       ${renderTechnicalLibraryTable(["Parameter", "Decision or reference", "Why it matters", "Evidence before approval"], library.specMatrix)}
     </section>
     ${renderTechnicalVisualBlock(library.visualBlock)}
-    ${workflow.length ? `<section class="article-panel"><h2>Approval workflow</h2><ol>${workflow.map((step) => `<li>${escHtml(step)}</li>`).join("")}</ol></section>` : ""}
+    ${!library.visualBlock && workflow.length ? `<section class="article-panel"><h2>Approval workflow</h2><ol>${workflow.map((step) => `<li>${escHtml(step)}</li>`).join("")}</ol></section>` : ""}
     <section class="article-panel">
       <h2>Defect and risk map</h2>
       ${renderTechnicalLibraryTable(["Issue", "Likely cause", "Buyer check", "Hold, reject, or rework action"], library.defectRisk)}
@@ -3327,6 +2325,20 @@ function renderTechnicalLibraryArticle(article) {
 // safeJson() removed — search data now written to external JSON file
 
 function getApplicationVisual(slug) {
+	const app = applications.find((item) => item.slug === slug);
+	for (const productId of app?.products || []) {
+		const product = getProduct(productId);
+		const review = reviewProductMedia(product);
+		if (review?.image) {
+			return {
+				image: review.image,
+				alt: `${product.name} — ${reviewMediaStatusLabel(review.status).toLowerCase()}`,
+				eyebrow: reviewMediaStatusLabel(review.status),
+				reviewStatus: review.status,
+				productName: product.name,
+			};
+		}
+	}
 	return (
 		applicationVisuals[slug] || {
 			image: "/images/page5_img3.webp",
@@ -3338,16 +2350,51 @@ function getApplicationVisual(slug) {
 
 function safeProductMetaDesc(product) {
 	const uses = (product.applications || []).slice(0, 1).join(", ");
-	return `${product.name} from Moldart. Specification notes, document references, and RFQ-led supply support${uses ? ` for ${uses}` : ""}.`;
+	const fallback = `${product.name} from Moldart. Specification notes, document references, and RFQ-led supply support${uses ? ` for ${uses}` : ""}.`;
+	const supplied = String(product.metaDesc || "").trim();
+	return clampText(supplied.length >= 70 ? supplied : `${supplied} ${fallback}`.trim(), 158);
+}
+
+function approvedProductImage(product) {
+	if (!product?.image) return "";
+	return [
+		"APPROVED_REAL",
+		"APPROVED_EDITED_REAL",
+		"APPROVED_DIAGRAM",
+		"USE_EXISTING",
+	].includes(String(product.mediaStatus || "").trim())
+		? product.image
+		: "";
+}
+
+function reviewProductMedia(product) {
+	if (!product) return null;
+	const record = visualPrototypeMediaById.get(product.id);
+	if (!record?.image) return null;
+	if (!["USE_EXISTING_REFERENCE", "DIAGRAM", "VIDEO_THUMBNAIL"].includes(record.status)) return null;
+	return record;
+}
+
+function reviewMediaStatusLabel(status) {
+	return status === "USE_EXISTING_REFERENCE"
+		? "Representative image"
+		: status === "VIDEO_THUMBNAIL"
+			? "Video reference"
+			: "Route diagram";
+}
+
+function reviewMediaBuyerCaption(status) {
+	return status === "DIAGRAM"
+		? "Illustrative route diagram — confirm the exact construction and acceptance basis in your RFQ."
+		: "Representative family image — confirm the exact grade, construction, dimensions and availability in your RFQ.";
 }
 
 function productRfqInputs(product) {
 	return [
-		`End use or application${product.applications?.[0] ? `: ${product.applications[0]}` : ", not only a product name"}`,
-		`Size, build, grade, or finish target${product.specs?.[0] ? `: ${stripMarkdownInline(product.specs[0])}` : " tied to the real programme"}`,
-		"Quantity, target timing, destination, and preferred commercial route",
-		"Reference sample, drawing, finish deck, pattern code, or previous approval benchmark",
-		"Documents needed before order: catalogue, TDS, quote PDF, certificate, packing note, or shipment file",
+		...(product.specs || []).map((item) => stripMarkdownInline(item)),
+		"Required quantity and unit, target timing, destination and Incoterm if known",
+		"Reference sample, drawing, finish master, pattern code or previous approval record",
+		"Documents and inspection evidence required before order or dispatch",
 	];
 }
 
@@ -3378,7 +2425,7 @@ function renderProductRfqControlSection(product) {
             <div class="ui-library-grid">
                 <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph("check", "icon icon-sm")} Send first</div><ul class="ui-stack-list mt-5">${inputs.map((item) => `<li>${escHtml(item)}</li>`).join("")}</ul></article>
                 <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph("shield", "icon icon-sm")} Avoid</div><ul class="ui-stack-list mt-5">${risks.map((item) => `<li>${escHtml(item)}</li>`).join("")}</ul></article>
-                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph("route", "icon icon-sm")} Moldart confirms</div><ul class="ui-stack-list mt-5">${confirms.map((item) => `<li>${escHtml(item)}</li>`).join("")}</ul><div class="mt-6"><a href="/contact/" class="btn-outline">Share requirement</a></div></article>
+                <article class="ui-library-card"><div class="ui-kicker mb-3">${glyph("route", "icon icon-sm")} Moldart confirms</div><ul class="ui-stack-list mt-5">${confirms.map((item) => `<li>${escHtml(item)}</li>`).join("")}</ul><div class="mt-6"><a href="${withQuery("/contact/", { intent: "buyer-rfq", product: product.name })}" class="btn-outline">Start product RFQ</a></div></article>
             </div>
           </section>`;
 }
@@ -3745,7 +2792,7 @@ function getSearchEntries() {
 		group: "Product Family",
 		title: family.title,
 		url: "/solutions/",
-		meta: family.highlights[0],
+		meta: family.highlights[0] || family.intro || "Technical product system",
 		keywords: [...family.products, ...family.sectors],
 		icon: familyIconName(family.title),
 	}));
@@ -3930,9 +2977,12 @@ function renderProductTileMosaic(productIds = [], options = {}) {
 		.slice(0, limit)
 		.map((productId) => {
 			const product = getProduct(productId);
-			return product
-				? `<div class="application-mosaic-tile"><img src="${product.image}" alt="${escHtml(product.name)}" width="320" height="240" loading="${loading}"><span>${escHtml(product.name)}</span></div>`
-				: "";
+			if (!product) return "";
+			const image = approvedProductImage(product);
+			const media = image
+				? `<img src="${image}" alt="${escHtml(product.name)}" width="320" height="240" loading="${loading}">`
+				: `<div class="product-media-placeholder" role="img" aria-label="${escHtml(`${product.name}: specification route`)}">${glyph("layers", "icon")}<span>Open the product specification route</span></div>`;
+			return `<div class="application-mosaic-tile">${media}<span>${escHtml(product.name)}</span></div>`;
 		})
 		.filter(Boolean)
 		.join("");
@@ -3952,42 +3002,17 @@ function renderRouteStepRow(steps = []) {
 }
 
 const HOME_ROUTE_MEDIA = {
-	lamination: {
-		productId: "engraved-cylinders",
-		alt: "Decorative laminate tooling reference",
-	},
-	furniture: {
-		productId: "ready-made-furniture",
-		alt: "Ready-made furniture programme reference",
-	},
-	flooring: {
-		productId: "wood-flooring",
-		alt: "Wood flooring system reference",
-	},
-	architecture: {
-		productId: "decorative-panels",
-		alt: "Decorative stainless steel panel reference",
-	},
-	"metal-finishing": {
-		productId: "ss-furniture",
-		alt: "Decorative metal finishing reference",
-	},
-	"pcb-ccl": {
-		productId: "industrial-press-plates",
-		alt: "Technical laminate and industrial press plate reference",
-	},
+	lamination: { productId: "press-plates", alt: "Wood-panel lamination press-tooling reference" },
+	furniture: { productId: "fiberboard", alt: "Furniture and cabinetry board reference" },
+	flooring: { productId: "wood-flooring", alt: "Laminate flooring system reference" },
+	"decorative-surfaces": { productId: "hpl-compact-laminated-boards", alt: "Decorative surface construction route" },
+	"formwork-shuttering": { productId: "plywood", alt: "Formwork and shuttering panel reference" },
+	architecture: { productId: "decorative-panels", alt: "Decorative stainless steel reference" },
+	"metal-finishing": { productId: "decorative-panels", alt: "Decorative metal finishing reference" },
+	"pcb-ccl": { productId: "industrial-press-plates", alt: "Electronics press-tooling reference" },
 };
 function homePreferredProductId(app) {
-	return (
-		{
-			lamination: "decor-paper",
-			furniture: "ready-made-furniture",
-			flooring: "wood-flooring",
-			architecture: "decorative-panels",
-			"metal-finishing": "ss-furniture",
-			"pcb-ccl": "industrial-press-plates",
-		}[app.slug] || app.products[0]
-	);
+	return HOME_ROUTE_MEDIA[app.slug]?.productId || app.products[0];
 }
 function renderImageCard(
 	src = "",
@@ -4008,16 +3033,30 @@ function renderProductImageCard(
 	eager = false,
 ) {
 	const product = getProduct(productId);
-	if (!product?.image) return "";
-	return renderImageCard(product.image, className, alt || product.name, eager);
+	const image = approvedProductImage(product);
+	if (!image) return "";
+	return renderImageCard(image, className, alt || product.name, eager);
+}
+
+function renderReviewProductImageCard(
+	productId,
+	className = "",
+	alt = "",
+	eager = false,
+) {
+	const product = getProduct(productId);
+	const media = reviewProductMedia(product);
+	if (!media) return "";
+	return `<div class="${className} review-media-frame"><img src="${media.image}" alt="${escHtml(alt || product.name)}" width="720" height="540" loading="${eager ? "eager" : "lazy"}"${eager ? ' fetchpriority="high"' : ""} decoding="async"><span class="review-media-badge">${escHtml(reviewMediaStatusLabel(media.status))}</span></div>`;
 }
 function homeRouteMediaModel(app) {
 	const media = HOME_ROUTE_MEDIA[app.slug] || {};
 	if (media.productId) {
 		const product = getProduct(media.productId);
-		if (product?.image) {
+		const image = approvedProductImage(product);
+		if (image) {
 			return {
-				src: product.image,
+				src: image,
 				alt: media.alt || product.name,
 				fit: media.fit || "cover",
 				width: media.width || 720,
@@ -4027,9 +3066,10 @@ function homeRouteMediaModel(app) {
 	}
 	if (media.src) return { ...media };
 	const product = getProduct(homePreferredProductId(app));
-	return product?.image
+	const image = approvedProductImage(product);
+	return image
 		? {
-				src: product.image,
+				src: image,
 				alt: app.name,
 				fit: "cover",
 				width: 720,
@@ -4337,7 +3377,6 @@ function headTag({
 				`<script type="application/ld+json">\n    ${JSON.stringify(s)}\n    </script>`,
 		)
 		.join("\n    ");
-	const prefetchLinks = "";
 	const preloadImageLinks = preloadImages
 		.filter(Boolean)
 		.map(
@@ -4386,9 +3425,7 @@ function headTag({
     ${favicons()}
     <link rel="dns-prefetch" href="https://wa.me">
     ${preloadFonts ? fontPreloads() : ""}
-    ${preloadImageLinks}
-    <link rel="stylesheet" href="${stylesheet}?v=${VER}">
-    ${prefetchLinks}
+${preloadImageLinks ? `    ${preloadImageLinks}\n` : ""}    <link rel="stylesheet" href="${stylesheet}?v=${VER}">
     ${schemaScripts}
 </head>`;
 }
@@ -4401,15 +3438,17 @@ function nav(route) {
             <a href="/" class="site-brand flex items-center gap-3">
                 <div>
                     <div class="font-display font-black text-base site-brand-word">MOLDART</div>
-                    <div class="text-xs text-zinc-500 md-hidden site-brand-sub">Since 1989 · Mumbai</div>
+                    <div class="text-xs text-zinc-500 md-hidden site-brand-sub">Technical RFQ desk · Mumbai</div>
                 </div>
             </a>
             <div class="site-nav-links md-hidden">
+                <a href="/products/" class="site-nav-link ${route === 'products' ? 'is-active' : ''}">Products</a>
                 <a href="/solutions/" class="site-nav-link ${route === 'solutions' ? 'is-active' : ''}">Solutions</a>
-                <a href="/explore/" class="site-nav-link ${route === 'explore' ? 'is-active' : ''}">Products</a>
+                <a href="/evidence-qc/" class="site-nav-link ${route === 'evidence' ? 'is-active' : ''}">Evidence & QC</a>
                 <a href="/resources/" class="site-nav-link ${route === 'resources' ? 'is-active' : ''}">Resources</a>
                 <a href="/insights/" class="site-nav-link ${route === 'insights' ? 'is-active' : ''}">Insights</a>
-                <a href="/contact/" class="site-nav-link ${route === 'contact' ? 'is-active' : ''}">Contact</a>
+                <a href="/about/" class="site-nav-link ${route === 'about' ? 'is-active' : ''}">About</a>
+                <a href="/contact/?intent=buyer-rfq" class="site-nav-link site-nav-rfq ${route === 'contact' ? 'is-active' : ''}">Start RFQ</a>
             </div>
             <button type="button" class="site-search-trigger site-search-trigger-compact site-search-push" data-open-command-palette aria-label="Search Moldart pages, products, resources, insights, FAQ, and contact routes">
                 ${glyph("search", "icon site-search-trigger-icon")}
@@ -4427,12 +3466,16 @@ function nav(route) {
         <div id="mob-menu" class="ui-mobile-menu" inert>
             <div class="ui-mobile-menu-panel">
                 <a href="/">Home</a>
-                <a href="/explore/">Products</a>
+                <a href="/products/">Products</a>
                 <a href="/solutions/">Solutions</a>
+                <a href="/explore/">Explore</a>
+                <a href="/evidence-qc/">Evidence & QC</a>
                 <a href="/resources/">Resources</a>
                 <a href="/insights/">Insights</a>
+                <a href="/process/">Process</a>
                 <a href="/faq/">FAQ</a>
-                <a href="/contact/">Contact</a>
+                <a href="/about/">About</a>
+                <a href="/contact/?intent=buyer-rfq">Start RFQ</a>
             </div>
         </div>
     </nav>`;
@@ -4440,13 +3483,13 @@ function nav(route) {
 
 function footer() {
 	return `<footer class="ui-footer">
-        <div class="max-w mx-auto px py-16">
+        <div class="max-w mx-auto px py-12">
             <div class="ui-footer-grid">
                 <div class="ui-footer-card">
                     <div class="font-display font-black text-xl tracking-wider mb-4">MOLDART</div>
                     <p class="text-sm text-zinc-400 leading-relaxed font-light mb-5">${BRAND_LINE}</p>
                     <div class="ui-footer-meta">
-                        <span class="ui-footer-pill">${glyph("clock", "icon icon-sm")} Since 1989</span>
+                        <span class="ui-footer-pill">${glyph("layers", "icon icon-sm")} 3 product systems</span>
                         <span class="ui-footer-pill">${glyph("building", "icon icon-sm")} Mumbai</span>
                         <span class="ui-footer-pill">${glyph("route", "icon icon-sm")} India + China</span>
                     </div>
@@ -4455,8 +3498,11 @@ function footer() {
                     <div class="section-label text-zinc-600 mb-5">Navigate</div>
                     <div class="ui-footer-nav">
                         <a href="/" class="ui-footer-link">Home</a>
-                        <a href="/explore/" class="ui-footer-link">Explore</a>
+                        <a href="/products/" class="ui-footer-link">Products</a>
                         <a href="/solutions/" class="ui-footer-link">Solutions</a>
+                        <a href="/explore/" class="ui-footer-link">Explore</a>
+                        <a href="/evidence-qc/" class="ui-footer-link">Evidence & QC</a>
+                        <a href="/process/" class="ui-footer-link">Process</a>
                         <a href="/resources/" class="ui-footer-link">Resources</a>
                         <a href="/insights/" class="ui-footer-link">Insights</a>
                         <a href="/faq/" class="ui-footer-link">FAQ</a>
@@ -4860,6 +3906,7 @@ function getExploreDiscoveryEntries() {
 	rawProducts.products.forEach((product) => {
 		const meta = getMeta(product.id);
 		const routes = [...new Set(meta?.relatedApps || [])];
+		const image = approvedProductImage(product);
 		entries.push({
 			type: "product",
 			typeLabel: "Product sheet",
@@ -4878,7 +3925,9 @@ function getExploreDiscoveryEntries() {
 				...(product.applications || []),
 				...(product.specs || []),
 			].join(" "),
-			media: `<div class="explore-card-media"><img src="${product.image}" alt="${escHtml(product.name)}" width="320" height="220" loading="lazy"></div>`,
+			media: image
+				? `<div class="explore-card-media"><img src="${image}" alt="${escHtml(product.name)}" width="320" height="220" loading="lazy"></div>`
+				: "",
 		});
 	});
 
@@ -4900,7 +3949,7 @@ function getExploreDiscoveryEntries() {
 				...(app.considerations || []),
 				...(app.products || []),
 			].join(" "),
-			media: `<div class="explore-card-media"><img src="${visual.image}" alt="${escHtml(visual.alt)}" width="320" height="220" loading="lazy"></div>`,
+			media: `<div class="explore-card-media${visual.reviewStatus ? " review-media-frame" : ""}"><img src="${visual.image}" alt="${escHtml(visual.alt)}" width="320" height="220" loading="lazy">${visual.reviewStatus ? `<span class="review-media-badge">${escHtml(reviewMediaStatusLabel(visual.reviewStatus))}</span>` : ""}</div>`,
 		});
 	});
 
@@ -5247,12 +4296,13 @@ function renderApplicationPreviewCard(app, options = {}) {
 		.join("");
 	const summary = clampText(app.overview, compact ? 116 : 142);
 	return `<article class="ui-solution-card${compact ? " ui-solution-card-compact" : ""}">
-      <div class="ui-solution-media">
+      <div class="ui-solution-media${visual.reviewStatus ? " review-media-frame" : ""}">
           <picture>
-              <source srcset="${visual.image.replace(".webp", ".avif")}" type="image/avif">
+              ${visual.image.endsWith(".webp") ? `<source srcset="${visual.image.replace(".webp", ".avif")}" type="image/avif">` : ""}
               <img src="${visual.image}" alt="${escHtml(visual.alt)}" width="800" height="520" ${priority ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} class="w-full h-full object-cover">
           </picture>
           <div class="ui-solution-overlay"></div>
+          ${visual.reviewStatus ? `<span class="review-media-badge">${escHtml(reviewMediaStatusLabel(visual.reviewStatus))}</span>` : ""}
       </div>
       <div class="ui-solution-body">
           <div class="ui-kicker mb-3">${glyph(applicationIconName(app.slug), "icon icon-sm")} ${escHtml(visual.eyebrow)}</div>
@@ -5276,8 +4326,13 @@ function renderSolutionProductCard(app, productId) {
 	const product = getProduct(productId);
 	const meta = getMeta(productId);
 	if (!product || !meta) return "";
+	const review = reviewProductMedia(product);
+	const image = review?.image || approvedProductImage(product);
+	const media = image
+		? `<picture>${image.endsWith(".webp") ? `<source srcset="${image.replace(".webp", ".avif")}" type="image/avif">` : ""}<img src="${image}" alt="${escHtml(product.name)}" width="320" height="220" loading="lazy"></picture>${review ? `<span class="review-media-badge">${escHtml(reviewMediaStatusLabel(review.status))}</span>` : ""}`
+		: `<div class="product-media-placeholder" role="img" aria-label="${escHtml(`${product.name}: specification route`)}">${glyph("layers", "icon")}<span>Open the product specification route</span></div>`;
 	return `<article class="ui-stack-product-card">
-      <div class="ui-stack-product-media"><img src="${product.image}" alt="${escHtml(product.name)}" width="320" height="220" loading="eager" fetchpriority="high"></div>
+      <div class="ui-stack-product-media">${media}</div>
       <div class="ui-stack-product-head">
           <div>
               <div class="ui-data-label">Product sheet</div>
@@ -5286,6 +4341,7 @@ function renderSolutionProductCard(app, productId) {
           <span class="ui-meta-pill">${escHtml(product.stage)}</span>
       </div>
       <p class="text-sm text-zinc-500 leading-relaxed mt-4">${escHtml(productRoleForSolution(app.slug, productId))}</p>
+      ${review ? `<p class="review-media-caption">${escHtml(reviewMediaBuyerCaption(review.status))}</p>` : ""}
       <div class="ui-app-badges mt-5">${(product.applications || [])
 				.slice(0, 3)
 				.map((item) => `<span>${escHtml(item)}</span>`)
@@ -5736,25 +4792,29 @@ function renderInsightArticleBody(article) {
 	);
 }
 
-function productCard(productId) {
+function productCard(productId, { reviewMedia = false } = {}) {
 	const p = getProduct(productId);
 	const m = getMeta(productId);
 	if (!p || !m) return "";
+	const review = reviewMedia ? reviewProductMedia(p) : null;
+	const approvedImage = approvedProductImage(p);
+	const image = review?.image || approvedImage;
+	const pictureSource = image?.endsWith(".webp")
+		? `<source srcset="${image.replace(".webp", ".avif")}" type="image/avif">`
+		: "";
+	const media = image
+		? `<picture>${pictureSource}<img src="${image}" alt="${escHtml(p.name)}" width="720" height="540" loading="lazy" class="w-full h-full object-cover"></picture>${review ? `<span class="review-media-badge">${escHtml(reviewMediaStatusLabel(review.status))}</span>` : ""}`
+		: `<div class="product-media-placeholder" role="img" aria-label="${escHtml(`${p.name}: specification route`)}">${glyph("layers", "icon")}<span>Open the product specification route</span></div>`;
+	const statusClass = p.publicStatus === "In stock" ? " is-stocked" : "";
 	return `<a href="/products/${m.slug}/" class="product-card border rounded-xl overflow-hidden transition-colors group">
-    <div class="product-card-img relative overflow-hidden product-card-img-fixed">
-        <picture>
-            <source srcset="${p.image.replace(".webp", ".avif")}" type="image/avif">
-            <img src="${p.image}" alt="${escHtml(p.name)}" width="400" height="280" loading="lazy" class="w-full h-full object-cover">
-        </picture>
-    </div>
+    <div class="product-card-img relative overflow-hidden product-card-img-fixed">${media}</div>
     <div class="p-4">
+        <div class="product-card-status${statusClass}">${escHtml(p.publicStatus || "Current RFQ Route")}</div>
         <h3 class="font-display font-bold text-base tracking-wider mb-1">${escHtml(p.name)}</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed">${escHtml(p.summary.substring(0, 120))}…</p>
+        <p class="text-xs text-zinc-500 leading-relaxed">${escHtml(p.summary)}</p>
+        ${review ? `<p class="review-media-caption">${escHtml(reviewMediaBuyerCaption(review.status))}</p>` : ""}
         <div class="mt-3 flex gap-2 flex-wrap">
-            ${p.industry
-							.slice(0, 2)
-							.map((t) => `<span class="directory-pill">${escHtml(t)}</span>`)
-							.join("")}
+            ${(p.applications || []).slice(0, 2).map((item) => `<span class="directory-pill">${escHtml(item)}</span>`).join("")}
         </div>
     </div>
 </a>`;
@@ -5800,7 +4860,6 @@ function generateHomepage() {
 				width: 192,
 				height: 192,
 			},
-			foundingDate: "1989",
 			sameAs: [COMPANY_LINKEDIN, YASH_LINKEDIN],
 			address: {
 				"@type": "PostalAddress",
@@ -5820,7 +4879,7 @@ function generateHomepage() {
 				availableLanguage: ["English", "Hindi"],
 			},
 			description:
-				"Lamination tooling, panels, flooring, furniture programmes, decorative stainless steel, and industrial press surfaces from Mumbai since 1989.",
+				"Technical RFQ coordination for wood-panel lamination, decorative stainless steel, and electronics press systems from Mumbai.",
 		},
 		{
 			"@context": "https://schema.org",
@@ -5835,9 +4894,9 @@ function generateHomepage() {
 			"@type": "WebPage",
 			"@id": SITE + "/#webpage",
 			url: SITE + "/",
-			name: "Moldart | Lamination tooling, panels, flooring & decorative stainless steel",
+			name: "Moldart | Wood, Steel & Electronics Technical RFQs",
 			description:
-				"Moldart works from Mumbai across wood and steel programmes, aligning sourcing from India and China to the requirement.",
+				"One technical RFQ path for wood-panel lamination, decorative stainless steel, and electronics press systems.",
 			isPartOf: { "@id": SITE + "/#website" },
 			inLanguage: "en-IN",
 		},
@@ -5867,9 +4926,9 @@ function generateHomepage() {
 		.map((item) => renderHomeHeroBrowseRow(item))
 		.join("");
 	const homeProofPoints = [
-		["1989", "Mumbai operating base"],
-		["6", "application routes"],
-		["1", "clean RFQ path"],
+		["3", "product systems"],
+		["17", "technical product routes"],
+		["1", "structured RFQ path"],
 	]
 		.map(
 			([value, label]) =>
@@ -5877,17 +4936,17 @@ function generateHomepage() {
 		)
 		.join("");
 	const homeHeroVisual = `<div class="home-command-visual" role="img" aria-label="Moldart RFQ supply control preview">
-        <div class="home-command-card home-command-card-dark">
-            <div class="home-command-card-head"><span>RFQ control graph</span><strong>Brief → Route → Proof → Delivery</strong></div>
+        <div class="home-command-card home-command-card-light">
+            <div class="home-command-card-head"><span>How your RFQ moves</span><strong>Brief → Route → Proof → Delivery</strong></div>
             <div class="home-command-track" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
             <div class="home-command-nodes" aria-hidden="true"><span>Brief</span><span>Matrix</span><span>Samples</span><span>Ship</span></div>
         </div>
         <div class="home-command-collage">
-            ${renderProductImageCard("decor-paper", "home-command-photo home-command-photo-large", "Decor paper surface reference", true)}
-            ${renderProductImageCard("wood-flooring", "home-command-photo", "Wood flooring finish reference", false)}
-            ${renderProductImageCard("decorative-panels", "home-command-photo", "Decorative stainless steel reference", false)}
+            ${renderReviewProductImageCard("press-plates", "home-command-photo home-command-photo-large", "Wood lamination press plate existing reference", true)}
+            ${renderReviewProductImageCard("decorative-panels", "home-command-photo", "Decorative stainless steel existing reference", false)}
+            ${renderReviewProductImageCard("industrial-press-plates", "home-command-photo", "Electronics press tooling existing reference", false)}
         </div>
-        <div class="home-command-proof-line">Since 1989 · wood + decorative steel · India + China sourcing</div>
+        <div class="home-command-proof-line">Representative product references · exact grade, construction and availability are confirmed in your RFQ</div>
     </div>`;
 	const homeFlowGraph = [
 		["01", "Brief", "Application, quantity, timing, destination."],
@@ -5901,11 +4960,12 @@ function generateHomepage() {
 		)
 		.join("");
 	const homeFitRows = [
-		["Surface finish", "Lamination", "Press plate · pad · decor paper", getSolutionHref("lamination")],
-		["Furniture programme", "Furniture", "Board · face · drawing · sample", getSolutionHref("furniture")],
-		["Flooring package", "Flooring", "Core · wear class · accessories", getSolutionHref("flooring")],
-		["Interior metal", "Architecture", "SS grade · finish · packing", getSolutionHref("architecture")],
-		["Technical press line", "PCB / CCL", "Flatness · hardness · demagnetism", getSolutionHref("pcb-ccl")],
+		["Wood-panel lamination", "Lamination", "Stack · construction · sample · QC", getSolutionHref("lamination")],
+		["Furniture components", "Furniture & cabinetry", "Drawing · board · surface · packing", getSolutionHref("furniture")],
+		["Laminate flooring", "Flooring", "Construction · joint · site · accessories", getSolutionHref("flooring")],
+		["Decorative surfaces", "HPL / LPL / films", "Substrate · process · master sample", getSolutionHref("decorative-surfaces")],
+		["Decorative stainless", "Architecture / metal", "Grade · finish · drawing · packing", getSolutionHref("architecture")],
+		["Electronics pressing", "PCB / CCL / FPC", "Stack · role · process · metrology", getSolutionHref("pcb-ccl")],
 	];
 	const homeFitMatrix = `<div class="home-fit-matrix-wrap"><table class="home-fit-matrix"><caption class="sr-only">Moldart route fit matrix</caption><thead><tr><th scope="col">Need</th><th scope="col">Route</th><th scope="col">Proof to request</th><th scope="col">Start</th></tr></thead><tbody>${homeFitRows
 		.map(
@@ -5914,21 +4974,20 @@ function generateHomepage() {
 		)
 		.join("")}</tbody></table></div>`;
 	const homeVisualCards = [
-		["decor-paper", "Lamination", "Texture, colour, press stack", getSolutionHref("lamination")],
-		["ready-made-furniture", "Furniture", "Boards, faces, finished pieces", getSolutionHref("furniture")],
-		["wood-flooring", "Flooring", "Core, wear class, accessories", getSolutionHref("flooring")],
-		["decorative-panels", "Decorative steel", "Grade, finish, packing", getSolutionHref("architecture")],
+		["press-plates", "Wood-panel systems", "Press tooling, papers, films, boards and laminates", getSolutionHref("lamination")],
+		["decorative-panels", "Decorative stainless steel", "Sheets, profiles, finish approval and packing", getSolutionHref("architecture")],
+		["industrial-press-plates", "Electronics press systems", "Precision tooling, cushion materials and process films", getSolutionHref("pcb-ccl")],
 	]
 		.map(
 			([productId, title, note, href]) =>
-				`<a class="home-visual-card" href="${href}">${renderProductImageCard(productId, "home-visual-card-media", `${title} visual reference`, false)}<span>${escHtml(title)}</span><p>${escHtml(note)}</p></a>`,
+				`<a class="home-visual-card" href="${href}">${renderReviewProductImageCard(productId, "home-visual-card-media", `${title} representative product reference`, false)}<span>${escHtml(title)}</span><p>${escHtml(note)}</p><small>Representative image — confirm the exact specification and availability in your RFQ.</small></a>`,
 		)
 		.join("");
 
 	return (
 		headTag({
-			title: "Moldart | Laminates, Panels, Flooring & Decorative Steel",
-			desc: "Moldart supports RFQ-led sourcing for laminates, panels, flooring, furniture, decorative steel, and industrial press routes from Mumbai.",
+			title: "Moldart | Wood, Steel & Electronics Technical RFQs",
+			desc: "One technical RFQ path for wood-panel lamination, decorative stainless steel, and electronics press systems.",
 			canonical: "/",
 			ogImage: siteSocialPosterRelativePath("moldart-home"),
 			ogImageAlt: "Moldart homepage overview",
@@ -5946,13 +5005,13 @@ function generateHomepage() {
         <section class="max-w mx-auto px py-20 home-hero-section home-hero-section-premium">
             <div class="home-hero-shell-modern home-hero-shell-premium">
                 <div class="home-hero-copy-column">
-                    <div class="home-hero-kicker-line mb-4">${glyph("shield", "icon icon-sm")} Mumbai RFQ desk · since 1989</div>
-                    <h1 class="home-hero-heading">ONE RFQ PATH FOR WOOD + STEEL.</h1>
-                    <p class="home-hero-intro mt-6">Send the requirement once. Moldart maps the route, proof pack, source fit, and delivery steps.</p>
-                    <div class="home-proof-strip mt-7">${homeProofPoints}</div>
+                    <div class="home-hero-kicker-line mb-4">${glyph("shield", "icon icon-sm")} Mumbai technical RFQ desk</div>
+                    <h1 class="home-hero-heading">ONE RFQ PATH FOR WOOD, STEEL + ELECTRONICS.</h1>
+                    <p class="home-hero-intro mt-6">Send the product, application, grade or construction, quantity, timing and destination. Moldart then aligns the supply route, approval evidence, sample requirements and packing basis before quotation.</p>
+                    <div class="home-proof-strip mt-7" aria-label="Moldart route overview">${homeProofPoints}</div>
                     <div class="home-hero-actions mt-8">
-                        <a href="/contact/?intent=buyer-rfq" class="btn-primary btn-lg">Send RFQ</a>
-                        <a href="#fit-matrix" class="btn-outline btn-lg">Match My Requirement</a>
+                        <a href="/contact/?intent=buyer-rfq" class="btn-primary btn-lg">Start Technical RFQ</a>
+                        <a href="/products/" class="btn-outline btn-lg">Browse Product Systems</a>
                     </div>
                     <p class="home-hero-action-note">Start with the product, quantity, timing, and destination. No account is required.</p>
                     <a href="${whatsappHref(WHATSAPP_PRIMARY.number, "Hi Moldart, I would like to discuss a product requirement.")}" target="_blank" rel="noopener noreferrer" class="home-hero-mobile-chat">${glyph("whatsapp-brand", "icon icon-sm")} Prefer WhatsApp? Start a quick chat</a>
@@ -5993,9 +5052,9 @@ function generateHomepage() {
             <div class="home-section-split mb-8">
                 <div>
                     <div class="ui-kicker mb-4">${glyph("layers", "icon icon-sm")} Visual shortlist</div>
-                    <h2 class="home-section-title">THE MAIN MATERIAL LANES.</h2>
+                    <h2 class="home-section-title">THREE PRODUCT SYSTEMS.</h2>
                 </div>
-                <p class="ui-section-subtitle">Compare the main material routes visually, then open the one that matches your application and approval needs.</p>
+                <p class="ui-section-subtitle">Start with wood-panel lamination, decorative stainless steel or electronics press systems. Product construction and evidence are confirmed inside the selected route.</p>
             </div>
             <div class="home-visual-grid">${homeVisualCards}</div>
         </section>
@@ -6284,17 +5343,18 @@ function generateProductsHub() {
 		{ name: "Home", url: "/" },
 		{ name: "Products" },
 	]);
-	const productCards = rawProducts.products
-		.map((product) => productCard(product.id))
-		.filter(Boolean)
+	const systemSections = (rawProducts.systems || [])
+		.map((system) => {
+			const products = rawProducts.products.filter(
+				(product) => product.system === system.id,
+			);
+			return `<section class="product-system-section" id="system-${escHtml(system.id)}"><div class="ui-section-head mb-8"><div class="ui-kicker mb-3">${glyph("layers", "icon icon-sm")} ${products.length} product routes</div><h2 class="ui-section-title">${escHtml(system.name)}</h2><p class="ui-section-subtitle">${escHtml(system.description)}</p></div><div class="ui-library-grid">${products.map((product) => productCard(product.id, { reviewMedia: true })).filter(Boolean).join("\n")}</div></section>`;
+		})
 		.join("\n");
-	const stageChips = [...new Set(rawProducts.products.map((product) => product.stage))]
-		.filter(Boolean)
-		.map((stage) => {
-			const count = rawProducts.products.filter(
-				(product) => product.stage === stage,
-			).length;
-			return `<span class="ui-chip">${glyph("layers", "icon icon-sm")} ${escHtml(stage)} · ${count}</span>`;
+	const systemChips = (rawProducts.systems || [])
+		.map((system) => {
+			const count = rawProducts.products.filter((product) => product.system === system.id).length;
+			return `<a class="ui-chip" href="#system-${escHtml(system.id)}">${glyph("layers", "icon icon-sm")} ${escHtml(system.name)} · ${count}</a>`;
 		})
 		.join("");
 	const schemas = [
@@ -6303,9 +5363,9 @@ function generateProductsHub() {
 			"@type": "CollectionPage",
 			"@id": `${SITE}/products/#webpage`,
 			url: `${SITE}/products/`,
-			name: "Products | Moldart",
+			name: "17 Technical Product Routes | Moldart",
 			description:
-				"Moldart product sheets for laminates, panels, flooring, furniture, decorative steel, and press tooling RFQs.",
+				"Seventeen product routes grouped into wood-panel lamination, decorative stainless steel, and electronics press systems.",
 			isPartOf: { "@id": SITE + "/#website" },
 			inLanguage: "en-IN",
 		},
@@ -6328,8 +5388,8 @@ function generateProductsHub() {
 
 	return (
 		headTag({
-			title: "Moldart Products | Technical Product Sheets",
-			desc: "Browse Moldart product sheets for laminates, panels, flooring, furniture, decorative stainless steel, and industrial press tooling.",
+			title: "17 Product Routes | Wood, Steel & Electronics | Moldart",
+			desc: "Browse 17 technical product routes across wood-panel lamination, decorative stainless steel, and electronics press systems.",
 			canonical: "/products/",
 			ogImageAlt: "Moldart product sheet overview",
 			schemas,
@@ -6345,9 +5405,10 @@ function generateProductsHub() {
             <div class="ui-page-hero">
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph("layers", "icon icon-sm")} Product sheets</div>
-                    <h1 class="ui-page-title">PRODUCT ROUTES<br>FOR CLEANER RFQS.</h1>
-                    <p class="ui-page-lede">Use this hub when the product family is already known. Each sheet keeps specifications, applications, documents, and enquiry inputs visible before commercial discussion.</p>
-                    <div class="ui-chip-row mt-6">${stageChips}</div>
+                    <h1 class="ui-page-title">17 PRODUCT ROUTES.<br>THREE TECHNICAL SYSTEMS.</h1>
+                    <p class="ui-page-lede">Choose the actual product family before comparing quotations. Each page states scope, exclusions, RFQ inputs, evidence, sample controls, QC and packing.</p>
+                    <p class="buyer-media-note"><strong>Visual guide:</strong> Images identify the product family. Final grade, construction, finish, dimensions, evidence and availability are confirmed against your RFQ.</p>
+                    <div class="ui-chip-row mt-6">${systemChips}</div>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-metric-grid">
@@ -6359,13 +5420,8 @@ function generateProductsHub() {
             </div>
         </section>
 
-        <section class="max-w mx-auto px py-16">
-            <div class="ui-section-head mb-8">
-                <div class="ui-kicker mb-4">${glyph("check", "icon icon-sm")} Choose the product family</div>
-                <h2 class="ui-section-title">SPECIFY THE PRODUCT<br>BEFORE ASKING FOR PRICE.</h2>
-                <p class="ui-section-subtitle">Start with the product page, then move into the matching solution route or contact flow when the brief needs document review, sample approval, or quote preparation.</p>
-            </div>
-            <div class="ui-library-grid">${productCards}</div>
+        <section class="max-w mx-auto px py-16 product-systems-list">
+            ${systemSections}
         </section>
 
         ${ctaBlock("NEED PRODUCT<br>CONFIRMATION?", "Share the application, target finish, quantity, destination, and documents needed. Moldart can point the enquiry to the right sheet before quoting.", "Share requirement", "/contact/", "Compare solution routes", "/solutions/")}
@@ -6383,6 +5439,16 @@ function generateProductPage(productId) {
 		console.error(`Missing data for ${productId}`);
 		return;
 	}
+	const image = approvedProductImage(p);
+	const rawPageTitle = String(p.seoShortTitle || m.seoTitle || p.name)
+		.replace(/\s*\|\s*Moldart\s*$/i, "")
+		.trim();
+	const pageTitleBase =
+		`${rawPageTitle} | Moldart`.length <= 68
+			? rawPageTitle
+			: rawPageTitle.replace(/\s*\|\s*Technical RFQ\s*$/i, "");
+	const pageTitle = compactSeoTitle(pageTitleBase, " | Moldart", 68);
+	const metaDescription = safeProductMetaDesc(p);
 
 	const bc = breadcrumb([
 		{ name: "Home", url: "/" },
@@ -6395,8 +5461,8 @@ function generateProductPage(productId) {
 			"@type": "WebPage",
 			"@id": `${SITE}/products/${m.slug}/#webpage`,
 			url: `${SITE}/products/${m.slug}/`,
-			name: m.seoTitle,
-			description: safeProductMetaDesc(p),
+			name: pageTitle,
+			description: metaDescription,
 			isPartOf: { "@id": SITE + "/#website" },
 			inLanguage: "en-IN",
 		},
@@ -6406,7 +5472,7 @@ function generateProductPage(productId) {
 			"@type": "Product",
 			name: p.name,
 			description: p.summary,
-			image: SITE + p.image,
+			...(image ? { image: SITE + image } : {}),
 			category: `${p.stage} / ${p.use}`,
 		},
 	];
@@ -6459,21 +5525,36 @@ function generateProductPage(productId) {
 	const productVideoSection = renderRelatedYoutubeVideos(videosForProduct(productId), {
 		title: `${p.name} video references`,
 		intro:
-			"Use these Moldart videos as a quick technical primer before comparing documents, samples, and RFQ inputs for this product route.",
+			"Use a video only when it explains this exact product decision. Final acceptance still depends on the approved sample, evidence and purchase specification.",
 	});
+	const rfqHref = withQuery("/contact/", {
+		intent: "buyer-rfq",
+		product: p.name,
+	});
+	const statusClass = p.publicStatus === "In stock" ? " is-stocked" : "";
+	const heroMedia = image
+		? `<figure class="product-media-figure"><picture><source srcset="${image.replace(".webp", ".avif")}" type="image/avif"><img src="${image}" alt="${escHtml(p.name)}" width="900" height="700" loading="eager" class="w-full h-full object-cover"></picture><figcaption>${escHtml(p.mediaCaption || "Approved product reference image.")}</figcaption></figure>`
+		: `<div class="product-media-placeholder product-media-placeholder-large" data-media-state="text-first-product-page" role="img" aria-label="${escHtml(`${p.name}: specification overview`)}">${glyph("layers", "icon")}<strong>SPECIFY THIS PRODUCT</strong><span>Use the application, grade or construction, dimensions, quantity and destination to confirm the exact route.</span></div>`;
+	const listCard = (label, title, items, icon = "check") => `<article class="ui-library-card product-control-card"><div class="ui-kicker mb-3">${glyph(icon, "icon icon-sm")} ${escHtml(label)}</div><h3>${escHtml(title)}</h3><ul class="ui-stack-list mt-5">${(items || []).map((item) => `<li>${escHtml(item)}</li>`).join("")}</ul></article>`;
+	const controlCards = [
+		listCard("Evidence", "Evidence and test methods", p.evidence, "file"),
+		listCard("Approval", "Sample and trial route", p.approval, "route"),
+		listCard("QC", "Receiving and hold criteria", p.qc, "shield"),
+		listCard("Packing", "Storage, handling and packing", p.packing, "layers"),
+	].join("");
 
 	return (
 		headTag({
-			title: m.seoTitle,
-			desc: safeProductMetaDesc(p),
+			title: pageTitle,
+			desc: metaDescription,
 			canonical: `/products/${m.slug}/`,
 			ogImage: siteSocialPosterRelativePath(productSocialPosterName(productId)),
 			ogImageAlt: `${p.name} — Moldart product sheet`,
 			schemas,
-			preloadImages: [p.image],
+			preloadImages: image ? [image] : [],
 		}) +
 		"\n" +
-		nav("explore") +
+		nav("products") +
 		`
 
     <main id="main-content" class="pt-16">
@@ -6481,15 +5562,11 @@ function generateProductPage(productId) {
             ${bc.html}
             ${renderContextualReturn(relatedSolutions)}
             <div class="ui-product-hero">
-                <div class="ui-product-media overflow-hidden">
-                    <picture>
-                        <source srcset="${p.image.replace(".webp", ".avif")}" type="image/avif">
-                        <img src="${p.image}" alt="${escHtml(p.name)}" width="900" height="700" loading="eager" class="w-full h-full object-cover">
-                    </picture>
-                </div>
+                <div class="ui-product-media overflow-hidden">${heroMedia}</div>
                 <div class="ui-product-side">
                     <div class="ui-page-hero-copy">
                         <div class="ui-kicker mb-4">${glyph("layers", "icon icon-sm")} ${escHtml(p.stage)} · ${escHtml(p.use)}</div>
+                        <div class="product-public-status${statusClass}">${escHtml(p.publicStatus || "Current RFQ Route")}</div>
                         <h1 class="ui-section-title">${escHtml(p.name)}.</h1>
                         <p class="ui-section-subtitle">${escHtml(p.summary)}</p>
                         <p class="ui-claim-notice">Public technical references are for initial route selection only. Confirm every final value, unit, test method, condition, product/lot scope, source, revision, and contractual status in the approved TDS, sample record, test evidence, and purchase specification.</p>
@@ -6520,12 +5597,24 @@ function generateProductPage(productId) {
                             <p class="ui-data-note">${escHtml(p.specs.slice(1, 3).join(" • "))}</p>
                         </article>
                         <article class="ui-fact-card">
-                            <div class="ui-data-label">Commercial scope</div>
-                            <div class="ui-data-value">Reference sheet only</div>
-                            <p class="ui-data-note">${escHtml(`${p.customization} Final grade, finish, quantity, and commercial route are confirmed directly.`)}</p>
+                            <div class="ui-data-label">Commercial status</div>
+                            <div class="ui-data-value">${escHtml(p.publicStatus || "Current RFQ Route")}</div>
+                            <p class="ui-data-note">${escHtml(p.stockNote || p.commercialNotes || p.customization)}</p>
                         </article>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+            <div class="ui-section-head mb-8">
+                <div class="ui-kicker mb-4">${glyph("compass", "icon icon-sm")} Scope and boundary</div>
+                <h2 class="ui-section-title">USE THE RIGHT PRODUCT ROUTE.</h2>
+            </div>
+            <div class="ui-library-grid product-scope-grid">
+                ${listCard("Public scope", "What this page covers", [p.scope, ...(p.options || [])], "check")}
+                ${listCard("Use this route", "When it fits", [p.useWhen], "route")}
+                ${listCard("Not covered", "Do not assume", p.exclusions, "shield")}
             </div>
         </section>
 
@@ -6552,17 +5641,26 @@ function generateProductPage(productId) {
                 <div class="ui-stack-card">
                     <div class="ui-kicker mb-4">${glyph("book", "icon icon-sm")} Reference pack</div>
                     <p class="text-sm text-zinc-500 leading-relaxed">Use the related documents as the first filter, then confirm the final specification against the real programme.</p>
-                    <div class="resource-library-list resource-library-list-compact mt-6">${referenceCards}</div>
+                    <div class="resource-library-list resource-library-list-compact mt-6">${referenceCards || '<p class="text-sm text-zinc-500 leading-relaxed">No public product document is attached yet. Request the applicable TDS, test or inspection pack in the RFQ.</p>'}</div>
                     ${relatedSolutionPills ? `<div class="mt-8"><div class="ui-data-label mb-3">Used in systems</div><div class="ui-related-row">${relatedSolutionPills}</div></div>` : ""}
                 </div>
             </div>
+        </section>
+
+        <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
+            <div class="ui-section-head mb-8">
+                <div class="ui-kicker mb-4">${glyph("shield", "icon icon-sm")} Evidence and release controls</div>
+                <h2 class="ui-section-title">APPROVE BEFORE SCALE-UP.</h2>
+                <p class="ui-section-subtitle">The RFQ, sample, test method, receiving check and packing basis must describe the same product construction.</p>
+            </div>
+            <div class="ui-library-grid product-control-grid">${controlCards}</div>
         </section>
 
         ${productVideoSection ? `<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">${productVideoSection}</section>` : ""}
 
         ${relatedSolutionCards ? `<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up"><div class="ui-section-head mb-8"><div class="ui-kicker mb-4">${glyph("compass", "icon icon-sm")} System fit</div><h2 class="ui-section-title">SEE WHERE THIS PRODUCT FITS.</h2><p class="ui-section-subtitle">Use the solution views below when the requirement is still being narrowed at the system level and the product sheet alone is not enough.</p></div><div class="ui-library-grid">${relatedSolutionCards}</div></section>` : ""}
 
-        ${ctaBlock(`NEED ${escHtml(p.name.toUpperCase())}<br>SPECS OR PRICING?`, "Share the application, finish expectation, quantity context, and timing for a faster recommendation.", "Share your requirement", "/contact/")}
+        ${ctaBlock(`START A ${escHtml(p.name.toUpperCase())}<br>RFQ.`, "Send the application, construction, dimensions, quantity, timing, destination and required evidence.", "Start technical RFQ", rfqHref, "Review Evidence & QC", "/evidence-qc/")}
     </main>
 
     ${footer()}
@@ -6725,6 +5823,66 @@ function generateApplicationPage(app) {
 		`Redirecting to ${app.name} — Moldart`,
 		`Open ${app.name}`,
 	);
+}
+
+function generateEvidencePage() {
+	const bc = breadcrumb([{ name: "Home", url: "/" }, { name: "Evidence & QC" }]);
+	const evidenceStates = [
+		{ number: "01", icon: "file", title: "Supplier declaration", status: "Screening evidence", copy: "A scoped statement from the proposed source. Useful for screening; not independent test proof." },
+		{ number: "02", icon: "shield", title: "Third-party report", status: "Method + sample scope", copy: "A report tied to the product, method, sample or lot, laboratory and valid revision." },
+		{ number: "03", icon: "check", title: "Buyer-approved sample", status: "Physical acceptance", copy: "The physical or documented reference used to judge colour, texture, fit or function." },
+		{ number: "04", icon: "search", title: "Inspection record", status: "Order-specific", copy: "An inspection record only when Moldart has actually performed or commissioned the agreed check." },
+		{ number: "05", icon: "book", title: "Purchase specification", status: "Contractual basis", copy: "The agreed grade, construction, dimensions, tolerances, evidence and acceptance basis." },
+	];
+	const sampleStages = [
+		["01", "Buyer master", "Record the source, condition and revision of the buyer's reference."],
+		["02", "Counter-sample", "Compare the proposed construction, colour, finish or fit against the master."],
+		["03", "Production sample", "Confirm the actual production route before quantity release where required."],
+		["04", "Retained reference", "Keep the accepted sample, drawing and revision for receiving and reorder checks."],
+	];
+	const documentRows = [
+		["TDS", "Product construction, declared properties and conditions", "Required when technical values or process fit affect approval"],
+		["COA", "Order or lot results against stated checks", "Conditional; only where the product and supplier issue one"],
+		["MTC", "Material and heat or batch identity", "Applicable mainly to metal and tooling routes"],
+		["Test report", "Result, method, sample scope and laboratory", "Required only for the claim or acceptance point it supports"],
+		["Inspection report", "Order-specific dimensions, condition, packing or witnessed checks", "Conditional to the agreed inspection plan"],
+		["Packing list", "Package count, weight, dimensions and marks", "Required for dispatch and receiving reconciliation"],
+	].map((row) => `<tr>${row.map((cell) => `<td>${escHtml(cell)}</td>`).join("")}</tr>`).join("");
+	const qcCards = [
+		["Pre-production", ["Confirm approved specification and drawing", "Check sample and document revisions", "Record hold points and inspection responsibility"]],
+		["In process", ["Check the agreed product and process characteristics", "Record deviations without inventing pass values", "Stop or escalate when the approved basis is missing"]],
+		["Pre-dispatch", ["Reconcile identity, quantity, condition and documents", "Inspect protection, labels and packing", "Release only against the agreed acceptance record"]],
+		["Receiving", ["Check damage, identity and package count before use", "Compare sample, lot and documents", "Quarantine disputed material and preserve evidence"]],
+	].map(([title, items]) => `<article class="ui-library-card"><div class="ui-kicker mb-3">${glyph("shield", "icon icon-sm")} QC stage</div><h3>${escHtml(title)}</h3><ul class="ui-stack-list mt-5">${items.map((item) => `<li>${escHtml(item)}</li>`).join("")}</ul></article>`).join("");
+	const schemas = [{
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		"@id": `${SITE}/evidence-qc/#webpage`,
+		url: `${SITE}/evidence-qc/`,
+		name: "Evidence & QC | Moldart",
+		description: "How Moldart scopes product evidence, samples, inspection, packing and receiving controls without exposing private suppliers.",
+		isPartOf: { "@id": SITE + "/#website" },
+		inLanguage: "en-IN",
+	}, bc.schema];
+	return headTag({
+		title: "Evidence & QC | Samples, Documents & Receiving | Moldart",
+		desc: "Understand Moldart evidence states, sample control, document applicability, inspection stages, packing and receiving controls.",
+		canonical: "/evidence-qc/",
+		ogImage: siteSocialPosterRelativePath("moldart-evidence"),
+		ogImageAlt: "Moldart Evidence and QC control overview",
+		schemas,
+	}) + "\n" + nav("evidence") + `
+	<main id="main-content" class="pt-16">
+		<section class="max-w mx-auto px py-20 border-b border-zinc-100">
+			${bc.html}
+			<div class="ui-page-hero"><div class="ui-page-hero-copy"><div class="ui-kicker mb-4">${glyph("shield", "icon icon-sm")} Evidence & QC</div><h1 class="ui-page-title">PROVE THE RIGHT THING.<br>AT THE RIGHT STAGE.</h1><p class="ui-page-lede">A certificate name alone is not enough. Evidence must match the product construction, test method, sample or lot, revision and purchase specification.</p></div><div class="ui-page-hero-panel"><div class="ui-proof-grid"><article class="ui-proof-card"><div class="ui-proof-label">Evidence</div><div class="ui-proof-value">Scoped</div><p class="ui-proof-copy">Match each claim to the applicable product and method.</p></article><article class="ui-proof-card"><div class="ui-proof-label">Samples</div><div class="ui-proof-value">Retained</div><p class="ui-proof-copy">Keep the accepted master, counter-sample and revision.</p></article><article class="ui-proof-card"><div class="ui-proof-label">QC</div><div class="ui-proof-value">Order-specific</div><p class="ui-proof-copy">Define inspection and hold points before dispatch.</p></article></div></div></div>
+		</section>
+		<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up"><div class="ui-section-head mb-8"><div class="ui-kicker mb-4">${glyph("file", "icon icon-sm")} Evidence states</div><h2 class="ui-section-title">KNOW WHAT EACH RECORD PROVES.</h2><p class="ui-section-subtitle">Five evidence types, each with a different level of independence and acceptance value.</p></div><div class="ui-library-grid evidence-state-grid">${evidenceStates.map((item) => `<article class="ui-library-card evidence-state-card"><div class="evidence-state-head"><span class="evidence-state-icon">${glyph(item.icon, "icon")}</span><span class="evidence-state-number">${escHtml(item.number)}</span></div><div class="ui-meta-pill">${escHtml(item.status)}</div><h3>${escHtml(item.title)}</h3><p>${escHtml(item.copy)}</p></article>`).join("")}</div></section>
+		<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up"><div class="ui-section-head mb-8"><div class="ui-kicker mb-4">${glyph("route", "icon icon-sm")} Sample control</div><h2 class="ui-section-title">MASTER. COUNTER-SAMPLE. PRODUCTION. RETAIN.</h2></div><div class="process-stage-grid-minimal">${sampleStages.map(([number, title, detail]) => `<article class="process-stage-card-minimal"><div class="process-note-step">${number}</div><h3>${escHtml(title)}</h3><p>${escHtml(detail)}</p></article>`).join("")}</div></section>
+		<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up"><div class="ui-section-head mb-8"><div class="ui-kicker mb-4">${glyph("book", "icon icon-sm")} Document applicability</div><h2 class="ui-section-title">REQUIRED DOES NOT MEAN UNIVERSAL.</h2><p class="ui-section-subtitle">Ask for the document that proves the actual acceptance point. Do not request or publish every certificate for every product.</p></div><div class="decision-matrix-wrap"><table class="decision-matrix"><thead><tr><th>Document</th><th>What it can show</th><th>When it applies</th></tr></thead><tbody>${documentRows}</tbody></table></div></section>
+		<section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up"><div class="ui-section-head mb-8"><div class="ui-kicker mb-4">${glyph("shield", "icon icon-sm")} QC sequence</div><h2 class="ui-section-title">CHECK BEFORE, DURING, DISPATCH AND RECEIPT.</h2></div><div class="ui-library-grid">${qcCards}</div></section>
+		<section class="max-w mx-auto px py-16 fade-up"><div class="ui-cta-band"><div class="ui-cta-copy"><div class="ui-kicker mb-3">Confidentiality</div><h2>Private evidence stays private.</h2><p>Supplier and buyer identities, drawings, prices, bank data and private qualification records are segregated from the public website.</p></div><div class="ui-cta-actions"><a href="/contact/?intent=buyer-rfq" class="btn-primary btn-lg">Request evidence checklist →</a><a href="/process/" class="btn-outline btn-lg">Review Process</a></div></div></section>
+	</main>${footer()}${closingElements()}`;
 }
 
 function generateResourcesPage() {
@@ -6999,9 +6157,9 @@ function generateContactPage() {
 			"@type": "WebPage",
 			"@id": SITE + "/contact/#webpage",
 			url: SITE + "/contact/",
-			name: "Contact Moldart | Inquiry, WhatsApp, Phone, Meeting",
+			name: "Start a Technical RFQ | Moldart",
 			description:
-				"Contact Moldart for product specifications, pricing, and industrial sourcing. Phone, WhatsApp, email, LinkedIn, or meeting booking.",
+				"Start a buyer RFQ, supplier capability introduction or general contact with structured technical and commercial context.",
 			isPartOf: { "@id": SITE + "/#website" },
 			inLanguage: "en-IN",
 		},
@@ -7032,8 +6190,8 @@ function generateContactPage() {
 	return (
 		headTag({
 			title:
-				"Contact Moldart | Inquiry Form, WhatsApp, Phone & Meeting Booking",
-			desc: "Contact Moldart in Mumbai for product specifications, pricing, and sourcing support. Reach out by form, WhatsApp, phone, email, or meeting request.",
+				"Start a Technical RFQ | Buyer, Supplier or General Contact | Moldart",
+			desc: "Submit a structured buyer RFQ, supplier capability introduction or general enquiry to Moldart's Mumbai technical desk.",
 			canonical: "/contact/",
 			ogImage: siteSocialPosterRelativePath("moldart-contact"),
 			ogImageAlt: "Moldart contact preview",
@@ -7049,8 +6207,8 @@ function generateContactPage() {
             <div class="ui-page-hero">
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph("message", "icon icon-sm")} Contact Moldart</div>
-                    <h1 class="ui-section-title">SHARE A BRIEF<br>THAT CAN BE REVIEWED.</h1>
-                    <p class="ui-section-subtitle">Use the form for RFQs, supplier introductions, China sourcing questions, payment/logistics context, and document-led follow-up. WhatsApp remains best for a quick first conversation.</p>
+                    <h1 class="ui-section-title">START WITH A BRIEF<br>THAT CAN BE REVIEWED.</h1>
+                    <p class="ui-section-subtitle">Choose Buyer RFQ, Supplier Capability Introduction or General Contact. The public form records the first brief; confidential drawings, prices and private evidence stay outside it.</p>
                     <div class="ui-chip-row mt-8">
                         <span class="ui-chip">${glyph("whatsapp-brand", "icon icon-sm")} WhatsApp</span>
                         <span class="ui-chip">${glyph("mail", "icon icon-sm")} Email</span>
@@ -7065,6 +6223,15 @@ function generateContactPage() {
                         <article class="ui-proof-card"><div class="ui-proof-label">Execution</div><div class="ui-proof-value">Payment + logistics</div><p class="ui-proof-copy">Milestones and documents are controlled in the private portal after approval.</p></article>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section class="max-w mx-auto px py-12 border-b border-zinc-100 fade-up" aria-labelledby="contact-route-heading">
+            <div class="ui-section-head mb-8"><div class="ui-kicker mb-4">${glyph("route", "icon icon-sm")} Choose the contact route</div><h2 id="contact-route-heading" class="ui-section-title">ONE FORM. THREE CLEAR INTENTS.</h2></div>
+            <div class="ui-action-grid">
+                ${renderActionCard({ href: "/contact/?intent=buyer-rfq", title: "Buyer RFQ", detail: "Product, application, construction, quantity, timing, destination and evidence needs.", meta: "Technical and commercial brief", icon: "message" })}
+                ${renderActionCard({ href: "/contact/?intent=supplier-intro", title: "Supplier Capability Introduction", detail: "Legal identity, product scope, manufacturer or trader role, evidence, export and confidentiality context.", meta: "Separate supplier route", icon: "building" })}
+                ${renderActionCard({ href: "/contact/?intent=general", title: "General Contact", detail: "Use this only when the request is not yet a buyer RFQ or supplier capability introduction.", meta: "General enquiry", icon: "mail" })}
             </div>
         </section>
 
@@ -7101,8 +6268,8 @@ function generateContactPage() {
                     </article>
                     <article class="ui-office-card">
                         <div class="ui-kicker mb-4">${glyph("building", "icon icon-sm")} Head office</div>
-                        <div class="font-display font-bold text-xl tracking-wider mb-3">MUMBAI</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed font-light mb-4">#7, Building No. 1, New Sonal Link Industrial Estate,<br>Link Road, Malad (West), Mumbai — 400064<br>Maharashtra, India</p>
+                        <div class="font-bold text-xl mb-2">Mumbai</div>
+                        <address class="ui-address mb-3">${escHtml(COMPANY_ADDRESS)}</address>
                         <div class="flex flex-col gap-2 mb-4">
                             <a href="${whatsappHref(WHATSAPP_PRIMARY.number)}" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-700 font-medium">WhatsApp · ${WHATSAPP_PRIMARY.display}</a>
                             <a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="link-line text-sm text-zinc-700 font-medium">WhatsApp · ${WHATSAPP_SECONDARY.display}</a>
@@ -7144,7 +6311,7 @@ function generateContactPage() {
                                 <select name="inquiry_route" class="form-select" required aria-required="true">
                                     <option value="Buyer RFQ">Buyer RFQ</option>
                                     <option value="Supplier Capability Introduction">Supplier capability introduction</option>
-                                    <option value="Portal Access Request">Portal access request</option>
+                                    <option value="Portal Access Request" hidden>Portal access request</option>
                                     <option value="General Contact">General contact</option>
                                 </select>
                             </label>
@@ -7179,7 +6346,7 @@ function generateContactPage() {
                         <button type="submit" class="btn-primary btn-lg btn-full-centered">Submit Inquiry</button>
                         <p class="text-xs text-zinc-500">Lead time, MOQ, and final commercial timing are confirmed after the requirement is reviewed.</p>
                     </form>
-                    <script>(function(){var form=document.getElementById('inquiry-form');if(!form)return;var params=new URLSearchParams(window.location.search);var intent=(params.get('intent')||'').toLowerCase();var routeMap={'buyer-rfq':'Buyer RFQ','portal-access':'Portal Access Request','supplier-intro':'Supplier Capability Introduction'};var route=routeMap[intent];if(route&&form.elements.inquiry_route){form.elements.inquiry_route.value=route;}if(intent==='portal-access'&&form.elements.message&&!form.elements.message.value){form.elements.message.value='Portal access request: company name, user role, buyer/seller/internal relationship, and reason for access.';}if(intent==='buyer-rfq'&&form.elements.message&&!form.elements.message.value){form.elements.message.value='Buyer RFQ: product/application, dimensions, finish, quantity, timing, destination, payment/logistics context, and documents needed.';}})();</script>
+                    <script>(function(){var form=document.getElementById('inquiry-form');if(!form)return;var params=new URLSearchParams(window.location.search);var intent=(params.get('intent')||'').toLowerCase();var product=(params.get('product')||'').trim();var routeMap={'buyer-rfq':'Buyer RFQ','portal-access':'Portal Access Request','supplier-intro':'Supplier Capability Introduction','general':'General Contact'};var route=routeMap[intent];if(route&&form.elements.inquiry_route){form.elements.inquiry_route.value=route;}if(product&&form.elements.interest){var option=Array.from(form.elements.interest.options).find(function(item){return item.value===product||item.textContent.trim()===product;});if(option)form.elements.interest.value=option.value;}if(intent==='supplier-intro'&&form.elements.lead_type){form.elements.lead_type.value='supplier_introduction';}if(intent==='portal-access'&&form.elements.lead_type){form.elements.lead_type.value='portal_access_request';}if(form.elements.message&&!form.elements.message.value){if(intent==='portal-access')form.elements.message.value='Portal access request: company name, user role, buyer/seller/internal relationship, and reason for access.';else if(intent==='supplier-intro')form.elements.message.value='Supplier capability introduction: legal entity, manufacturer or trader role, product scope, factory/equipment, evidence, export markets, MOQ, packing and confidentiality contact.';else if(intent==='general')form.elements.message.value='General contact: purpose of the enquiry and the best next step.';else form.elements.message.value='Buyer RFQ: '+(product?product+'; ':'')+'application, construction or grade, dimensions, quantity, timing, destination, Incoterm, sample/evidence needs and packing.';}})();</script>
                 </div>
             </div>
         </section>
@@ -7354,8 +6521,8 @@ function generateAboutPage() {
 			"@type": "WebPage",
 			"@id": SITE + "/about/#webpage",
 			url: SITE + "/about/",
-			name: "About Moldart | Since 1989",
-			description: `Moldart works from Mumbai across wood and steel supply programmes, with sourcing aligned per requirement.`,
+			name: "About Moldart | Technical RFQ Coordination",
+			description: `Moldart coordinates technical and commercial RFQs from Mumbai across wood-panel, decorative stainless steel and electronics press systems.`,
 			isPartOf: { "@id": SITE + "/#website" },
 			inLanguage: "en-IN",
 		},
@@ -7364,8 +6531,8 @@ function generateAboutPage() {
 
 	return (
 		headTag({
-			title: "About Moldart | Since 1989",
-			desc: "Founded in 1989 and based in Mumbai, Moldart works across lamination tooling, panels, flooring, furniture, decorative stainless steel, and industrial press surfaces.",
+			title: "About Moldart | Technical RFQ Coordination",
+			desc: "Moldart coordinates product definition, sourcing, samples, evidence, inspection and commercial execution from Mumbai.",
 			canonical: "/about/",
 			ogImage: siteSocialPosterRelativePath("moldart-about"),
 			ogImageAlt: "Moldart about preview",
@@ -7381,20 +6548,20 @@ function generateAboutPage() {
             <div class="ui-page-hero">
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph("shield", "icon icon-sm")} About Moldart</div>
-                    <h1 class="ui-section-title">MUMBAI-LED SUPPLY<br>SINCE 1989.</h1>
-                    <p class="ui-section-subtitle">Moldart works from Mumbai across wood and steel programmes, aligning sourcing by category and requirement rather than treating every order as a generic equivalent.</p>
+                    <h1 class="ui-section-title">A MUMBAI TECHNICAL<br>AND COMMERCIAL RFQ DESK.</h1>
+                    <p class="ui-section-subtitle">Moldart coordinates product definition, sourcing, samples, evidence, inspection, packing and commercial execution across wood-panel, decorative stainless steel and electronics press systems.</p>
                     <div class="ui-chip-row mt-8">
-                        <span class="ui-chip">${glyph("clock", "icon icon-sm")} Founded 1989</span>
                         <span class="ui-chip">${glyph("building", "icon icon-sm")} Malad West, Mumbai</span>
-                        <span class="ui-chip">${glyph("route", "icon icon-sm")} India + China sourcing</span>
+                        <span class="ui-chip">${glyph("route", "icon icon-sm")} India + China coordination</span>
+                        <span class="ui-chip">${glyph("layers", "icon icon-sm")} 3 product systems</span>
                     </div>
                 </div>
                 <div class="ui-page-hero-panel">
                     <div class="ui-proof-grid">
                         <article class="ui-proof-card"><div class="ui-proof-label">Head office</div><div class="ui-proof-value">Mumbai</div><p class="ui-proof-copy">The Malad West office remains the primary commercial and technical contact point.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Founded</div><div class="ui-proof-value">1989</div><p class="ui-proof-copy">A long-running trading and sourcing base across wood and steel product routes.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Core sourcing</div><div class="ui-proof-value">India + China</div><p class="ui-proof-copy">Sourcing routes are aligned to the category, finish route, and programme context.</p></article>
-                        <article class="ui-proof-card"><div class="ui-proof-label">Portfolio</div><div class="ui-proof-value">Wood + steel</div><p class="ui-proof-copy">Wood and steel categories are coordinated through one commercial and technical interface.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Product systems</div><div class="ui-proof-value">3</div><p class="ui-proof-copy">Wood-panel lamination, decorative stainless steel and electronics pressing remain technically separate.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Coordination</div><div class="ui-proof-value">India + China</div><p class="ui-proof-copy">Each route is aligned to product construction, evidence, sample and commercial requirements.</p></article>
+                        <article class="ui-proof-card"><div class="ui-proof-label">Public catalogue</div><div class="ui-proof-value">17 routes</div><p class="ui-proof-copy">Product pages state scope, exclusions and RFQ inputs without exposing private suppliers.</p></article>
                     </div>
                 </div>
             </div>
@@ -7402,9 +6569,9 @@ function generateAboutPage() {
 
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
             <div class="ui-section-head mb-10">
-                <div class="ui-kicker mb-4">${glyph("clock", "icon icon-sm")} Timeline</div>
-                <h2 class="ui-section-title">THE COMPANY ARC.</h2>
-                <p class="ui-section-subtitle">A concise view of how the company moved from a Mumbai trading base into a broader wood and steel supply programme.</p>
+                <div class="ui-kicker mb-4">${glyph("route", "icon icon-sm")} Company timeline</div>
+                <h2 class="ui-section-title">ROOTS. INCORPORATION. TODAY.</h2>
+                <p class="ui-section-subtitle">A concise, evidence-bounded timeline. Moldart is a sourcing, trading and coordination partner; supplier facilities are not presented as Moldart-owned.</p>
             </div>
             <div class="ui-timeline">
                 ${companyMilestones.map((milestone) => renderMilestone(milestone)).join("")}
@@ -7429,7 +6596,7 @@ function generateAboutPage() {
                 <article class="ui-library-card">
                     <div class="ui-kicker mb-3">${glyph("building", "icon icon-sm")} Operating base</div>
                     <h3 class="ui-family-title family-title-large">Mumbai remains the primary coordination point.</h3>
-                    <p class="text-sm text-zinc-500 leading-relaxed mt-3">#7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West), Mumbai — 400064, Maharashtra, India.</p>
+                    <address class="ui-address mt-3">${escHtml(COMPANY_ADDRESS)}</address>
                     <div class="ui-link-row mt-5"><a href="${whatsappHref(WHATSAPP_PRIMARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-link-pill">WhatsApp ${WHATSAPP_PRIMARY.display}</a><a href="${whatsappHref(WHATSAPP_SECONDARY.number)}" target="_blank" rel="noopener noreferrer" class="ui-link-pill">WhatsApp ${WHATSAPP_SECONDARY.display}</a><a href="mailto:info@moldartindia.com" class="ui-link-pill">info@moldartindia.com</a></div>
                 </article>
                 <article class="ui-library-card">
@@ -7451,7 +6618,7 @@ function generateAboutPage() {
                     <div class="ui-family-body">
                         <h3 class="ui-family-title">MR. LALIT DOSHI</h3>
                         <div class="ui-proof-label mb-3">Founder &amp; Partner</div>
-                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Founded Moldart in 1989 as a dedicated agency serving Mumbai's industrial and decorative sectors. Over three decades, he established long-running commercial relationships and built the company's reputation for reliability across wood, panel, and steel supply programmes.</p>
+                        <p class="text-sm text-zinc-500 leading-relaxed font-light">Leads commercial relationships and category experience across Moldart's wood-panel and decorative-surface programmes. Historical dates and entity continuity are published only after primary records are approved.</p>
                     </div>
                 </article>
                 <article class="ui-family-card">
@@ -7494,45 +6661,17 @@ function generateProcessPage() {
 	];
 
 	const stages = [
-		{
-			number: "01",
-			title: "Inquiry",
-			detail: "Share application, size, quantity, timing, and destination.",
-		},
-		{
-			number: "02",
-			title: "Sourcing",
-			detail: "Review product route, supplier fit, and commercial basis.",
-		},
-		{
-			number: "03",
-			title: "Approval",
-			detail: "Lock sample, finish, drawing, quote, and document baseline.",
-		},
-		{
-			number: "04",
-			title: "Payment",
-			detail:
-				"Track deposit and balance milestones through controlled records.",
-		},
-		{
-			number: "05",
-			title: "Logistics",
-			detail: "Track FOB port, ETD, ETA, container, BL/AWB, and delivery.",
-		},
-		{
-			number: "06",
-			title: "Documents",
-			detail:
-				"Keep invoices, packing lists, QC, COO, BL/AWB, and proofs scoped by role.",
-		},
+		{ number: "01", title: "Define", detail: "Record product, application, construction, dimensions, quantity, timing and destination." },
+		{ number: "02", title: "Qualify", detail: "Review source fit, evidence, sample route, packing and commercial basis." },
+		{ number: "03", title: "Approve", detail: "Lock the sample, drawing, document revision, test method and hold criteria." },
+		{ number: "04", title: "Supply", detail: "Coordinate order records, inspection, packing, dispatch and the retained reorder reference." },
 	];
 	schemas.splice(1, 0, {
 		"@context": "https://schema.org",
 		"@type": "HowTo",
 		name: "Moldart RFQ to controlled delivery process",
 		description:
-			"Inquiry, sourcing, approval, payment, logistics, and document-control sequence for Moldart trade requirements.",
+			"Define, qualify, approve and supply sequence for Moldart technical RFQs.",
 		step: stages.map((stage, index) => ({
 			"@type": "HowToStep",
 			position: index + 1,
@@ -7551,10 +6690,10 @@ function generateProcessPage() {
 		"Required certificates or documents",
 	];
 	const processDecisionRows = [
-		["Brief", "Application, quantity, destination", "Unknown material, unclear finish, no timing"],
-		["Route", "India / China / programme-dependent", "MOQ, lead time, or documentation mismatch"],
-		["Approval", "Sample, drawing, finish, certificate", "Shade, substrate, tolerance, packing not locked"],
-		["Dispatch", "Invoice, packing, BL/AWB, ETA", "Payment, document, or freight assumption gap"],
+		["Define", "Product, application, construction, quantity and destination", "The quote is based on an incomplete or wrong product route"],
+		["Qualify", "Evidence, source fit, sample, packing and timing", "Options are compared without the same technical and commercial basis"],
+		["Approve", "Sample, drawing, revision, method and hold criteria", "Production or dispatch proceeds against an ambiguous reference"],
+		["Supply", "Inspection, packing, documents, dispatch and reorder record", "Receiving disputes or repeat-order drift cannot be traced"],
 	]
 		.map(
 			(row) =>
@@ -7583,7 +6722,7 @@ function generateProcessPage() {
                 <div class="ui-page-hero-copy">
                     <div class="ui-kicker mb-4">${glyph("route", "icon icon-sm")} Process</div>
                     <h1 class="ui-section-title">FROM INQUIRY<span class="sr-only"> </span><br>TO CONTROLLED DELIVERY.</h1>
-                    <p class="ui-section-subtitle">Clear inputs, China sourcing review, payment milestones, logistics status, and document control reduce avoidable delays.</p>
+                    <p class="ui-section-subtitle">A usable RFQ, scoped evidence, an approved reference and controlled dispatch reduce avoidable technical and commercial errors.</p>
                     <div class="home-hero-actions mt-8">
                         <a href="/contact/" class="btn-primary btn-lg">Share Requirement →</a>
                     </div>
@@ -7597,7 +6736,7 @@ function generateProcessPage() {
         <section class="max-w mx-auto px py-16 border-b border-zinc-100 fade-up">
             <div class="ui-section-head mb-10">
                 <div class="ui-kicker mb-4">${glyph("clock", "icon icon-sm")} Working sequence</div>
-                <h2 class="ui-section-title">INQUIRY. SOURCING. APPROVAL. PAYMENT. LOGISTICS. DOCUMENTS.</h2>
+                <h2 class="ui-section-title">DEFINE. QUALIFY. APPROVE. SUPPLY.</h2>
             </div>
             <div class="process-stage-grid-minimal">
                 ${stages.map((stage) => `<article class="process-stage-card-minimal"><div class="process-note-step">${stage.number}</div><h3>${escHtml(stage.title)}</h3><p>${escHtml(stage.detail)}</p></article>`).join("")}
@@ -8239,7 +7378,9 @@ function generateInsightArticle(article) {
 			headline: article.title,
 			description: metaDescription,
 			image: articleOgImageUrl,
-			author: { "@type": "Organization", name: article.author || "Moldart" },
+			...(article.author
+				? { author: { "@type": "Organization", name: article.author } }
+				: {}),
 			...(article.date ? { datePublished: article.date } : {}),
 			...(article.technicalReviewedDate
 				? { dateModified: article.technicalReviewedDate }
@@ -8350,6 +7491,8 @@ function generateSitemap() {
 		{ url: "/products/", priority: "0.8", freq: "weekly" },
 		{ url: "/about/", priority: "0.8", freq: "monthly" },
 		{ url: "/insights/", priority: "0.8", freq: "weekly" },
+		{ url: "/evidence-qc/", priority: "0.8", freq: "monthly" },
+		{ url: "/process/", priority: "0.7", freq: "monthly" },
 		{ url: "/resources/", priority: "0.7", freq: "monthly" },
 		{ url: "/contact/", priority: "0.8", freq: "monthly" },
 		{ url: "/faq/", priority: "0.6", freq: "monthly" },
@@ -8423,8 +7566,7 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: ${SITE}/sitemap.xml
-Sitemap: ${SITE}/sitemap-images.xml`;
+Sitemap: ${SITE}/sitemap.xml`;
 }
 
 function markdownLink(label, url) {
@@ -8541,24 +7683,24 @@ const LEGACY_INSIGHT_REDIRECT_TARGETS = {
 	"decorative-panels-guide": "/products/decorative-ss-panels/",
 	"decorative-panels-quality": "/products/decorative-ss-panels/",
 	"decorative-panels-specifications": "/products/decorative-ss-panels/",
-	"engraved-cylinders-applications": "/products/engraved-cylinders/",
+	"engraved-cylinders-applications": "/products/printed-decor-paper/",
 	"engraved-cylinders-buyers-guide": "/insights/engraved-cylinders-repeat-accuracy-guide/",
 	"engraved-cylinders-comparison": "/insights/engraved-cylinders-repeat-accuracy-guide/",
 	"engraved-cylinders-guide": "/insights/engraved-cylinders-repeat-accuracy-guide/",
 	"engraved-cylinders-quality": "/insights/engraved-cylinders-repeat-accuracy-guide/",
-	"engraved-cylinders-specifications": "/products/engraved-cylinders/",
+	"engraved-cylinders-specifications": "/products/printed-decor-paper/",
 	"fiberboard-applications": "/products/fiberboard/",
 	"fiberboard-buyers-guide": "/insights/mdf-vs-hdf-surface-readiness-guide/",
 	"fiberboard-comparison": "/insights/mdf-vs-hdf-surface-readiness-guide/",
 	"fiberboard-guide": "/products/fiberboard/",
 	"fiberboard-quality": "/products/fiberboard/",
 	"fiberboard-specifications": "/products/fiberboard/",
-	"flooring-accessories-applications": "/products/flooring-accessories/",
-	"flooring-accessories-buyers-guide": "/products/flooring-accessories/",
-	"flooring-accessories-comparison": "/products/flooring-accessories/",
-	"flooring-accessories-guide": "/products/flooring-accessories/",
-	"flooring-accessories-quality": "/products/flooring-accessories/",
-	"flooring-accessories-specifications": "/products/flooring-accessories/",
+	"flooring-accessories-applications": "/products/wood-flooring/",
+	"flooring-accessories-buyers-guide": "/products/wood-flooring/",
+	"flooring-accessories-comparison": "/products/wood-flooring/",
+	"flooring-accessories-guide": "/products/wood-flooring/",
+	"flooring-accessories-quality": "/products/wood-flooring/",
+	"flooring-accessories-specifications": "/products/wood-flooring/",
 	"industrial-press-plates-applications": "/products/industrial-press-plates/",
 	"industrial-press-plates-buyers-guide": "/insights/industrial-press-plates-quality-priorities/",
 	"industrial-press-plates-comparison": "/insights/standard-vs-industrial-press-plates/",
@@ -8600,12 +7742,12 @@ const LEGACY_INSIGHT_REDIRECT_TARGETS = {
 	"ready-made-furniture-guide": "/insights/ready-made-furniture-procurement-guide/",
 	"ready-made-furniture-quality": "/insights/ready-made-furniture-procurement-guide/",
 	"ready-made-furniture-specifications": "/insights/ready-made-furniture-procurement-guide/",
-	"ss-furniture-applications": "/products/ss-furniture/",
-	"ss-furniture-buyers-guide": "/products/ss-furniture/",
-	"ss-furniture-comparison": "/products/ss-furniture/",
-	"ss-furniture-guide": "/products/ss-furniture/",
-	"ss-furniture-quality": "/products/ss-furniture/",
-	"ss-furniture-specifications": "/products/ss-furniture/",
+	"ss-furniture-applications": "/solutions/architecture/",
+	"ss-furniture-buyers-guide": "/solutions/architecture/",
+	"ss-furniture-comparison": "/solutions/architecture/",
+	"ss-furniture-guide": "/solutions/architecture/",
+	"ss-furniture-quality": "/solutions/architecture/",
+	"ss-furniture-specifications": "/solutions/architecture/",
 	"ss-profiles-applications": "/products/ss-profiles/",
 	"ss-profiles-buyers-guide": "/insights/ss-profiles-application-guide/",
 	"ss-profiles-comparison": "/insights/ss-profiles-application-guide/",
@@ -8655,12 +7797,22 @@ function generateRedirects() {
 /applications/            /solutions/               301
 /applications/*           /solutions/:splat/        301
 /resources                /resources/               301
+/evidence-qc              /evidence-qc/             301
 /faq                      /faq/                     301
+/process                  /process/                 301
+/products/engraved-cylinders        /products/printed-decor-paper/ 301
+/products/engraved-cylinders/       /products/printed-decor-paper/ 301
+/products/flooring-accessories      /products/wood-flooring/ 301
+/products/flooring-accessories/     /products/wood-flooring/ 301
+/products/custom-furniture          /solutions/furniture/ 301
+/products/custom-furniture/         /solutions/furniture/ 301
+/products/ready-made-furniture      /solutions/furniture/ 301
+/products/ready-made-furniture/     /solutions/furniture/ 301
+/products/ss-furniture              /solutions/architecture/ 301
+/products/ss-furniture/             /solutions/architecture/ 301
 /open-wood-science        /resources/               301
 /open-wood-science/       /resources/               301
 /open-wood-science/*      /resources/               301
-/process                  /contact/#after-rfq       301
-/process/                 /contact/#after-rfq       301
 ${legacyInsightRedirects}
 /insights                 /insights/                301
 /*                        /404.html                 404`;
@@ -8939,6 +8091,7 @@ async function main() {
 	writeFile(path.join(WORK, "explore/index.html"), generateExplorePage());
 	writeFile(path.join(WORK, "about/index.html"), generateAboutPage());
 	writeFile(path.join(WORK, "contact/index.html"), generateContactPage());
+	writeFile(path.join(WORK, "evidence-qc/index.html"), generateEvidencePage());
 	writeFile(path.join(WORK, "privacy/index.html"), generatePrivacyPage());
 	writeFile(path.join(WORK, "terms/index.html"), generateTermsPage());
 	// Portal and login stubs are handled by server-side redirects in _redirects
@@ -8968,7 +8121,7 @@ async function main() {
 	// Utility pages
 	writeFile(path.join(WORK, "resources/index.html"), generateResourcesPage());
 	writeFile(path.join(WORK, "faq/index.html"), generateFAQPage());
-	// Process redirect is handled by server-side redirects in _redirects
+	writeFile(path.join(WORK, "process/index.html"), generateProcessPage());
 
 	console.log("\nGenerating technical-library downloads...");
 	writeTechnicalLibraryDownloads();
