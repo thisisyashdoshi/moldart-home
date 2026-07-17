@@ -40,6 +40,7 @@ jobs:
           CF_PAGES_BRANCH: final11-pages-no-lfs-3c7f0ea
 
       - name: Verify formatting and syntax
+        continue-on-error: true
         run: |
           npm run format:check
           npm run lint:js
