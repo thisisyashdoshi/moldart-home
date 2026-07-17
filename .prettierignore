@@ -1,0 +1,9 @@
+node_modules/
+public-site/
+trade-portal/
+.tmp/
+downloads/
+images/
+pagefind/
+package-lock.json
+**/*-YASH-LAPTOP.*

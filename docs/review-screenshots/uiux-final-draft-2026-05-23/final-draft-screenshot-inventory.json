@@ -1,0 +1,98 @@
+[
+  {
+    "route": "/",
+    "viewport": "desktop",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/home-desktop.png",
+    "size": 520230
+  },
+  {
+    "route": "/",
+    "viewport": "mobile",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/home-mobile.png",
+    "size": 55549
+  },
+  {
+    "route": "/explore/",
+    "viewport": "desktop",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/explore-desktop.png",
+    "size": 200147
+  },
+  {
+    "route": "/explore/",
+    "viewport": "mobile",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/explore-mobile.png",
+    "size": 71807
+  },
+  {
+    "route": "/insights/",
+    "viewport": "desktop",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/insights-desktop.png",
+    "size": 196180
+  },
+  {
+    "route": "/insights/",
+    "viewport": "mobile",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/insights-mobile.png",
+    "size": 72803
+  },
+  {
+    "route": "/contact/",
+    "viewport": "desktop",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/contact-desktop.png",
+    "size": 182850
+  },
+  {
+    "route": "/contact/",
+    "viewport": "mobile",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/contact-mobile.png",
+    "size": 65314
+  },
+  {
+    "route": "/process/",
+    "viewport": "desktop",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/process-desktop.png",
+    "size": 143904
+  },
+  {
+    "route": "/process/",
+    "viewport": "mobile",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/process-mobile.png",
+    "size": 52991
+  },
+  {
+    "route": "/products/",
+    "viewport": "desktop",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/products-desktop.png",
+    "size": 150427
+  },
+  {
+    "route": "/products/",
+    "viewport": "mobile",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/products-mobile.png",
+    "size": 65185
+  },
+  {
+    "route": "/solutions/",
+    "viewport": "desktop",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/solutions-desktop.png",
+    "size": 323448
+  },
+  {
+    "route": "/solutions/",
+    "viewport": "mobile",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/solutions-mobile.png",
+    "size": 64075
+  },
+  {
+    "route": "/resources/",
+    "viewport": "desktop",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/resources-desktop.png",
+    "size": 149021
+  },
+  {
+    "route": "/resources/",
+    "viewport": "mobile",
+    "file": "docs/review-screenshots/uiux-final-draft-2026-05-23/resources-mobile.png",
+    "size": 55109
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "enabledManagers": ["npm", "github-actions"],
+  "dependencyDashboard": true,
+  "automerge": false,
+  "platformAutomerge": false,
+  "ignoreTests": false,
+  "labels": ["dependencies"],
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "minimumReleaseAge": "3 days",
+  "packageRules": [
+    {
+      "description": "Group low-risk development dependency patch and minor updates.",
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "dev dependencies patch/minor",
+      "addLabels": ["dev-dependencies"]
+    },
+    {
+      "description": "Require manual approval for major updates.",
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true,
+      "addLabels": ["major-update", "manual-approval"]
+    },
+    {
+      "description": "Require manual approval for framework, build, test, browser, audit, deployment, and agent-control tooling.",
+      "matchManagers": ["npm"],
+      "matchPackageNames": [
+        "/(^|\\/)(next|react|react-dom|vite|webpack|rollup|parcel|esbuild|typescript)$/",
+        "/(^|\\/)(eslint|@eslint\\/.+|stylelint|html-validate|prettier|vitest|playwright|@playwright\\/.+|@axe-core\\/playwright)$/",
+        "/(^|\\/)(lighthouse|@lhci\\/cli|knip|lefthook|opencode|@opencode\\/.+)$/",
+        "/(^|\\/)(wrangler|netlify-cli|vercel|firebase-tools)$/"
+      ],
+      "dependencyDashboardApproval": true,
+      "addLabels": ["sensitive-tooling", "manual-approval"]
+    },
+    {
+      "description": "Require manual approval for GitHub Actions updates.",
+      "matchManagers": ["github-actions"],
+      "dependencyDashboardApproval": true,
+      "groupName": "github actions",
+      "addLabels": ["ci", "manual-approval"]
+    }
+  ]
+}

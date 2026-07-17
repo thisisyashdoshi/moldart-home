@@ -1,0 +1,10 @@
+⨯ Failed to load next.config.ts, see more info here https://nextjs.org/docs/messages/next-config-error
+Error: Failed to transpile "next.config.ts".
+    at ignore-listed frames {
+  [cause]: Error: UNKNOWN: unknown error, read
+      at ignore-listed frames {
+    errno: -4094,
+    code: 'UNKNOWN',
+    syscall: 'read'
+  }
+}

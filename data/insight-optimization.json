@@ -1,0 +1,516 @@
+{
+  "version": "2026-07-13",
+  "lockedCount": 51,
+  "records": [
+    {
+      "slug": "anti-fingerprint-stainless-steel-use-case-limits-cleaning",
+      "title": "Anti-Fingerprint Stainless Steel: Use Cases, Limits, Cleaning and Approval",
+      "priority": "P1",
+      "decision": "Touch-zone use, coating approval and cleaning limits",
+      "heroSubject": "Controlled touch/cleaning comparison on one approved finish sample",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "china-sample-approval-route-buyer-counter-production-sample",
+      "title": "China Sample Approval Route: Buyer Master, Counter-Sample and Production Sample",
+      "priority": "P0",
+      "decision": "Chain of custody and reapproval triggers",
+      "heroSubject": "Labelled physical-sample chain with revision cards",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "custom-furniture-brief-drawing-sample-guide",
+      "title": "Furniture Component Approval Pack: Drawings, BOM, Finish Samples and Revisions",
+      "priority": "P2",
+      "decision": "Post-quote component approval and change control",
+      "heroSubject": "Redacted revision-controlled drawing, finish and hardware boards",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "custom-furniture-brief-guide",
+      "title": "Furniture Component RFQ Brief: Dimensions, Materials, Hardware and Packing",
+      "priority": "P2",
+      "decision": "Inputs required before component/programme pricing",
+      "heroSubject": "Annotated redacted RFQ brief and room/use schematic",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "decorative-stainless-steel-finish-family-guide",
+      "title": "Decorative Stainless Steel Finish Families: Hairline, No. 4, Mirror, Etched and PVD",
+      "priority": "P1",
+      "decision": "Appearance/finish family comparison, not grade selection",
+      "heroSubject": "Equal-light finish grid with direction arrows",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "decorative-stainless-steel-packing-receiving-checklist",
+      "title": "Decorative Stainless Steel Packing and Receiving Checklist",
+      "priority": "P1",
+      "decision": "Transport protection and receiving only",
+      "heroSubject": "Crate layers, film, interleaving, labels and unloading",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "decorative-ss-panel-approval-guide",
+      "title": "Decorative Stainless Steel Panel Approval: Grade, Finish, Sample and Environment",
+      "priority": "P1",
+      "decision": "Physical/project approval",
+      "heroSubject": "Approved sample under controlled light beside project condition card",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "decorative-stainless-steel-201-304-316-430",
+      "title": "Stainless Steel 201, 304, 316 and 430: Grade Selection for Decorative Use",
+      "priority": "P1",
+      "decision": "Four-grade environment decision",
+      "heroSubject": "Four identically finished samples with environment matrix",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "decorative-stainless-steel-sourcing-note",
+      "title": "Decorative Stainless Steel Sourcing: Specification, Mill Evidence and Quote Comparison",
+      "priority": "P1",
+      "decision": "Supplier/quote normalization and evidence",
+      "heroSubject": "Redacted MTC, finish sample, packing specification and quote matrix",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "engineered-flooring-selection-guide",
+      "title": "Laminate Flooring Selection: Construction, Use Class and System Approval",
+      "priority": "P0",
+      "decision": "Full laminate system selection",
+      "heroSubject": "Accurate overlay/decor/HDF/balancer exploded stack and click profile",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "engraved-cylinders-repeat-accuracy-guide",
+      "title": "Décor Printing Cylinder Coordination: Repeat, Cell Geometry, Runout and Proof Approval",
+      "priority": "P0",
+      "decision": "Inputs a buyer must coordinate with the décor-paper printer; not a standalone Moldart cylinder product",
+      "heroSubject": "Educational process diagram: décor-paper roll, printing cylinder cross-section, repeat marks, proof sheet and approval record",
+      "videoRecommendation": "No standalone product/sales video. Use the unique educational Insight image; optional animation only if it clearly states cylinder coordination is part of a décor-paper programme and has no cylinder RFQ CTA.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media; state prominently that Moldart does not sell cylinders separately; CTA to Printed Décor Paper RFQ; no Product schema"
+    },
+    {
+      "slug": "flooring-accessories-skirting-stair-nosing-t-moulding-reducers-end-caps",
+      "title": "Laminate Flooring Accessories: Skirting, Nosing, T-Moulding, Reducers and End Caps",
+      "priority": "P0",
+      "decision": "Junction-specific accessory selection",
+      "heroSubject": "Labelled profile set with dimensioned junction sketches",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "flooring-site-readiness-before-dispatch",
+      "title": "Laminate Flooring Site Readiness: Subfloor, Moisture, Acclimatisation and Expansion",
+      "priority": "P0",
+      "decision": "Pre-dispatch site gate",
+      "heroSubject": "Moisture meter, flatness check, storage and expansion-gap detail",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "fob-china-rfq-checklist-wood-steel-flooring-furniture-tooling",
+      "title": "FOB China RFQ Checklist: Product Annexes, Quote Basis and Packing",
+      "priority": "P0",
+      "decision": "Core RFQ plus material-specific annexes",
+      "heroSubject": "Annotated neutral RFQ packet and named Incoterm place field",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "formwork-plywood-cost-per-use-vs-first-cost",
+      "title": "Formwork Plywood Cost per Accepted Use: Calculator and Sensitivity",
+      "priority": "P0",
+      "decision": "Cost model with accepted-use denominator",
+      "heroSubject": "Clean calculator sheet, accepted-use log and damage examples",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "hpl-vs-lpl-material-selection-guide",
+      "title": "HPL vs LPL: Pressure Route, Substrate, Use Case and Approval",
+      "priority": "P0",
+      "decision": "Focused HPL/LPL route comparison",
+      "heroSubject": "Construction/process comparison with substrate and application labels",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "hpl-vs-lpl-vs-cpl-vs-veneer-pet-pvc-acrylic",
+      "title": "HPL, LPL, CPL, Veneer, PET, PVC and Acrylic: Surface Route Selection",
+      "priority": "P0",
+      "decision": "Broad surface route map",
+      "heroSubject": "Seven-route sample/construction grid",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "industrial-press-plates-receiving-flatness-checklist",
+      "title": "Industrial Press Plate Receiving: Identity, Damage, Storage and Release",
+      "priority": "P1",
+      "decision": "Logistics, identity and controlled release",
+      "heroSubject": "Crate opening, ID check, protected handling and rack storage",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "industrial-press-plates-pcb-ccl-note",
+      "title": "Industrial Press Plates for PCB, CCL and FPC: Flatness, Surface and Release Control",
+      "priority": "P1",
+      "decision": "Application requirements and tooling role",
+      "heroSubject": "Electronics stack plus plate surface and metrology",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "industrial-press-plates-quality-priorities",
+      "title": "Industrial Press Plate Incoming Inspection: Flatness, Parallelism and Surface",
+      "priority": "P1",
+      "decision": "Metrology and incoming inspection",
+      "heroSubject": "Calibrated measurement grid, roughness and parallelism setup",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "lamination-stack-control-plate-pad-paper-substrate-press-cycle",
+      "title": "Lamination Stack Control: Plate, Pad, Paper, Board and Press Cycle",
+      "priority": "P1",
+      "decision": "Process-window and change control",
+      "heroSubject": "Full annotated stack plus cycle chart and change-control record",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "mdf-vs-hdf-surface-readiness-guide",
+      "title": "MDF vs HDF: Density, Machining and Surface Readiness",
+      "priority": "P2",
+      "decision": "Conversion-route comparison",
+      "heroSubject": "MDF/HDF edges, machined profile and surface result",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "mdf-hdf-emission-grades-e1-e0-carb-tsca-title-vi",
+      "title": "MDF/HDF Formaldehyde Claims: E1, E0, TSCA Title VI and Evidence",
+      "priority": "P2",
+      "decision": "Destination/document validation",
+      "heroSubject": "Redacted certificate, mill/product/thickness scope and label",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "melamine-faced-board-lpl-buying-guide",
+      "title": "Melamine-Faced Board Buying Guide: Core, Surface, Edge and Emissions",
+      "priority": "P0",
+      "decision": "Finished board procurement",
+      "heroSubject": "Finished-board cross-section, edge band and pack label",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "mirror-stainless-steel-scratch-distortion-pvc-film-packing",
+      "title": "Mirror Stainless Steel: Scratch, Distortion, Film and Packing Control",
+      "priority": "P1",
+      "decision": "Mirror finish receiving risk",
+      "heroSubject": "Reflection-grid test, raking-light scratch and protective film",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "osb-application-fit-guide",
+      "title": "OSB Buyer Guide: Grade, Exposure, Orientation and Fastening",
+      "priority": "P2",
+      "decision": "OSB grade/application fit",
+      "heroSubject": "Strand orientation, grade mark, edge and fastener detail",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "particleboard-buyers-guide",
+      "title": "Particleboard Buyer Guide: Density Profile, Machining, Screws and Surface Route",
+      "priority": "P2",
+      "decision": "Particleboard conversion and evidence",
+      "heroSubject": "Edge profile, drilling/chipping and screw test",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "particleboard-vs-mdf-vs-plywood-modular-furniture",
+      "title": "Particleboard vs MDF vs Plywood for Modular Furniture Components",
+      "priority": "P2",
+      "decision": "Component-by-component board selection",
+      "heroSubject": "Cabinet/component material map",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "plywood-vs-fiberboard-substrate-guide",
+      "title": "Plywood vs MDF/HDF: Structural Route, Machining and Surface Choice",
+      "priority": "P2",
+      "decision": "Plywood versus fibreboard decision",
+      "heroSubject": "Cross-sections, machined edges and application comparison",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "press-pad-failure-symptoms-lamination-lines",
+      "title": "Press Pad Failure Symptoms: Dead Zones, Cloudiness and Width-Wise Drift",
+      "priority": "P1",
+      "decision": "Failure symptom diagnosis",
+      "heroSubject": "Used pad, thermal/pressure map and panel symptom",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "press-pads-quality-replacement-checks",
+      "title": "Press Pad Inspection and Replacement: Condition, Logging and Triggers",
+      "priority": "P1",
+      "decision": "Planned inspection and replacement",
+      "heroSubject": "Used-pad defects, measurements and maintenance log",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "press-pads-heat-pressure-note",
+      "title": "Press Pads in Lamination: Heat Transfer, Pressure Balance and Selection",
+      "priority": "P1",
+      "decision": "Function and selection",
+      "heroSubject": "Annotated stack, pad weave and heat/pressure concept",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "press-plate-chrome-condition-guide",
+      "title": "Press Plate Chrome Condition: Inspection, Rechroming and Hold Criteria",
+      "priority": "P1",
+      "decision": "Chrome condition and reconditioning decision",
+      "heroSubject": "Chrome wear/microcracks with inspection setup",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "press-plate-defect-troubleshooting-guide",
+      "title": "Press Plate Defect Atlas: Scratches, Dents, Gloss Drift and Release Marks",
+      "priority": "P1",
+      "decision": "Plate-specific defect atlas",
+      "heroSubject": "Four-to-eight real/anonymised defect photographs",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "press-plates-panel-quality-guide",
+      "title": "Press Plates and Panel Quality: Defect Attribution Before Tooling Change",
+      "priority": "P1",
+      "decision": "Panel-level root-cause isolation",
+      "heroSubject": "Panel defects linked to plate, pad, paper and process causes",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "press-plates-pads-smart-tooling-perfect-panels",
+      "title": "Press Plate and Pad System: Controlling the Lamination Stack",
+      "priority": "P1",
+      "decision": "Integrated plate/pad system overview",
+      "heroSubject": "Annotated plate-pad-paper-board stack",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "press-plates-replacement-programme-guide",
+      "title": "Press Plate Replacement Programme: Reorder Data, Trial and Release",
+      "priority": "P1",
+      "decision": "Replacement/reorder dossier",
+      "heroSubject": "Plate ID, texture master, drawing and trial panel",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "printed-decor-paper-batch-repeat-approval-guide",
+      "title": "Printed Décor Paper Batch Repeat: Lot Control Before Impregnation",
+      "priority": "P2",
+      "decision": "Repeat order and batch control",
+      "heroSubject": "Roll labels, lot map and master/batch comparison",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "printed-decor-paper-colour-matching-master-sample-batch-repeat-metamerism",
+      "title": "Printed Décor Paper Colour Matching: Master, Lighting and Metamerism",
+      "priority": "P2",
+      "decision": "Colour approval under defined viewing conditions",
+      "heroSubject": "Light booth, master/batch/pressed panel and instrument",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "printed-decor-paper-selection-guide",
+      "title": "Printed Décor Paper Selection: Grammage, Width, Repeat and Impregnation Readiness",
+      "priority": "P2",
+      "decision": "Programme selection before impregnation",
+      "heroSubject": "Roll, width/repeat ruler, master sample and pressed outcome",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "pvd-stainless-steel-buyer-checklist",
+      "title": "PVD Stainless Steel Buyer Checklist: Substrate, Colour, Batch and Fabrication",
+      "priority": "P1",
+      "decision": "PVD approval and fabrication limits",
+      "heroSubject": "Same-colour batch, bent edge and welded/fabricated sample",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "ready-made-furniture-procurement-guide",
+      "title": "Furniture Component Procurement: Dispatch QC, Packing and Reorder Control",
+      "priority": "P2",
+      "decision": "Repeat component/SKU dispatch and reorder control",
+      "heroSubject": "Engineered component set, hardware/assembly check, identification label and carton protection",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "shuttering-plywood-surface-finish-note",
+      "title": "Shuttering Plywood Surface and Reuse: Face, Edge Seal, Release and Cleaning",
+      "priority": "P0",
+      "decision": "Accepted-use lifecycle",
+      "heroSubject": "Face, edge seal, release-agent use and concrete outcome",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "ss-201-vs-304-panels",
+      "title": "SS 201 vs SS 304 Decorative Panels: Where Each Grade Fits",
+      "priority": "P1",
+      "decision": "Strict two-grade decision",
+      "heroSubject": "Identically finished 201 and 304 samples under same light",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "ss-profiles-application-guide",
+      "title": "Decorative Stainless Steel Profiles: Cross-Sections, Joints and Installation Control",
+      "priority": "P1",
+      "decision": "Profile and junction control",
+      "heroSubject": "Dimensioned sections, joints and finish-direction match",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "standard-vs-industrial-press-plates",
+      "title": "Standard vs Industrial Press Plates: When Tolerance and Process Control Change",
+      "priority": "P1",
+      "decision": "Route-selection threshold",
+      "heroSubject": "Side-by-side requirement matrix, not product montage",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "super-mirror-shuttering-plywood-guide",
+      "title": "Super-Mirror Shuttering Plywood: Measurable Finish, Trial and Reuse Control",
+      "priority": "P0",
+      "decision": "Translate trade term into measurable approval",
+      "heroSubject": "Reflection/roughness method and trial-casting outcome",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "supplier-document-pack-tds-coa-mtc-test-report-packing-list-hs-discussion",
+      "title": "Supplier Document Pack: What TDS, COA, MTC and Test Reports Actually Prove",
+      "priority": "P0",
+      "decision": "Document applicability and limitations",
+      "heroSubject": "Redacted document applicability matrix",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "upgraded-shuttering-plywood-vs-aluminium-plastic-formwork",
+      "title": "Upgraded Shuttering Plywood vs Aluminium and Plastic Formwork",
+      "priority": "P0",
+      "decision": "System comparison under declared assumptions",
+      "heroSubject": "Three-system comparison of cycle, labour, handling and repair",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "what-buyers-should-not-compare-only-by-price",
+      "title": "Supplier Quote Comparison: Accepted Cost, Risk and Non-Comparable Offers",
+      "priority": "P0",
+      "decision": "Normalized and risk-adjusted quote comparison",
+      "heroSubject": "Three redacted quotes normalized to one basis",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    },
+    {
+      "slug": "wood-flooring-core-moisture-wear-class-guide",
+      "title": "Laminate Flooring Core, Moisture and Wear: What Buyers Should Verify",
+      "priority": "P0",
+      "decision": "Core/moisture/wear evidence",
+      "heroSubject": "HDF core, edge swelling, moisture and wear-test setup",
+      "videoRecommendation": "No dedicated Insight video in the final package website baseline. Use the unique Insight hero/OG image and article-specific diagram/tool; attach one of the approved 20 ten-second clips only when the subject matches exactly, otherwise show no video.",
+      "urlAction": "Keep URL and return 200; self-canonical",
+      "rewriteControls": "Remove generic dashboard/boilerplate; scope/exclusions; evidence matrix; Required/Conditional/N/A documents; article-specific RFQ; reviewer/revision; unique media"
+    }
+  ]
+}

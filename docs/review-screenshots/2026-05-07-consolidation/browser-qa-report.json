@@ -1,0 +1,628 @@
+{
+  "base": "http://127.0.0.1:4173",
+  "outDir": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation",
+  "pages": [
+    {
+      "viewport": "mobile",
+      "page": "home",
+      "url": "/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\mobile-home.png",
+      "consoleErrors": [],
+      "title": "Moldart | Laminates, Panels, Flooring & Decorative Steel",
+      "finalPath": "/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "mobile",
+      "page": "explore",
+      "url": "/explore/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\mobile-explore.png",
+      "consoleErrors": [],
+      "title": "Explore Moldart | Search solutions, product sheets, and guides",
+      "finalPath": "/explore/",
+      "overflowX": 0,
+      "offenders": [
+        "button.site-search-trigger.site-search-trigger-compact"
+      ],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "mobile",
+      "page": "products",
+      "url": "/products/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\mobile-products.png",
+      "consoleErrors": [],
+      "title": "Products | Moldart Product Sheets",
+      "finalPath": "/products/",
+      "overflowX": 0,
+      "offenders": [
+        "button.site-search-trigger.site-search-trigger-compact"
+      ],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "mobile",
+      "page": "press-plates",
+      "url": "/products/press-plates/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\mobile-press-plates.png",
+      "consoleErrors": [],
+      "title": "Press Plates Supplier | Lamination Press Plates — Moldart",
+      "finalPath": "/products/press-plates/",
+      "overflowX": 0,
+      "offenders": [
+        "button.site-search-trigger.site-search-trigger-compact"
+      ],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "mobile",
+      "page": "solutions",
+      "url": "/solutions/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\mobile-solutions.png",
+      "consoleErrors": [],
+      "title": "B2B Sourcing Solutions | Moldart",
+      "finalPath": "/solutions/",
+      "overflowX": 0,
+      "offenders": [
+        "button.site-search-trigger.site-search-trigger-compact",
+        "table",
+        "thead",
+        "tr",
+        "th",
+        "th",
+        "th",
+        "tbody"
+      ],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "mobile",
+      "page": "resources",
+      "url": "/resources/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\mobile-resources.png",
+      "consoleErrors": [],
+      "title": "Resources & Downloads | Product Catalogues — Moldart",
+      "finalPath": "/resources/",
+      "overflowX": 0,
+      "offenders": [
+        "button.site-search-trigger.site-search-trigger-compact"
+      ],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "mobile",
+      "page": "contact",
+      "url": "/contact/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\mobile-contact.png",
+      "consoleErrors": [],
+      "title": "Contact Moldart | RFQ Brief and Workflow",
+      "finalPath": "/contact/",
+      "overflowX": 0,
+      "offenders": [
+        "button.site-search-trigger.site-search-trigger-compact"
+      ],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "mobile",
+      "page": "about",
+      "url": "/about/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\mobile-about.png",
+      "consoleErrors": [],
+      "title": "About Moldart | Since 1989",
+      "finalPath": "/about/",
+      "overflowX": 0,
+      "offenders": [
+        "button.site-search-trigger.site-search-trigger-compact"
+      ],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "mobile",
+      "page": "faq",
+      "url": "/faq/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\mobile-faq.png",
+      "consoleErrors": [],
+      "title": "Sourcing & RFQ FAQ | Moldart",
+      "finalPath": "/faq/",
+      "overflowX": 0,
+      "offenders": [
+        "button.site-search-trigger.site-search-trigger-compact"
+      ],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "mobile",
+      "page": "portal-boundary",
+      "url": "/portal/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\mobile-portal-boundary.png",
+      "consoleErrors": [],
+      "title": "Private Portal Access | Moldart",
+      "finalPath": "/portal/",
+      "overflowX": 0,
+      "offenders": [
+        "button.site-search-trigger.site-search-trigger-compact"
+      ],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "tablet",
+      "page": "home",
+      "url": "/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\tablet-home.png",
+      "consoleErrors": [],
+      "title": "Moldart | Laminates, Panels, Flooring & Decorative Steel",
+      "finalPath": "/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "tablet",
+      "page": "explore",
+      "url": "/explore/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\tablet-explore.png",
+      "consoleErrors": [],
+      "title": "Explore Moldart | Search solutions, product sheets, and guides",
+      "finalPath": "/explore/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "tablet",
+      "page": "products",
+      "url": "/products/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\tablet-products.png",
+      "consoleErrors": [],
+      "title": "Products | Moldart Product Sheets",
+      "finalPath": "/products/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "tablet",
+      "page": "press-plates",
+      "url": "/products/press-plates/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\tablet-press-plates.png",
+      "consoleErrors": [],
+      "title": "Press Plates Supplier | Lamination Press Plates — Moldart",
+      "finalPath": "/products/press-plates/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "tablet",
+      "page": "solutions",
+      "url": "/solutions/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\tablet-solutions.png",
+      "consoleErrors": [],
+      "title": "B2B Sourcing Solutions | Moldart",
+      "finalPath": "/solutions/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "tablet",
+      "page": "resources",
+      "url": "/resources/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\tablet-resources.png",
+      "consoleErrors": [],
+      "title": "Resources & Downloads | Product Catalogues — Moldart",
+      "finalPath": "/resources/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "tablet",
+      "page": "contact",
+      "url": "/contact/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\tablet-contact.png",
+      "consoleErrors": [],
+      "title": "Contact Moldart | RFQ Brief and Workflow",
+      "finalPath": "/contact/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "tablet",
+      "page": "about",
+      "url": "/about/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\tablet-about.png",
+      "consoleErrors": [],
+      "title": "About Moldart | Since 1989",
+      "finalPath": "/about/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "tablet",
+      "page": "faq",
+      "url": "/faq/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\tablet-faq.png",
+      "consoleErrors": [],
+      "title": "Sourcing & RFQ FAQ | Moldart",
+      "finalPath": "/faq/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "tablet",
+      "page": "portal-boundary",
+      "url": "/portal/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\tablet-portal-boundary.png",
+      "consoleErrors": [],
+      "title": "Private Portal Access | Moldart",
+      "finalPath": "/portal/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "desktop",
+      "page": "home",
+      "url": "/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\desktop-home.png",
+      "consoleErrors": [],
+      "title": "Moldart | Laminates, Panels, Flooring & Decorative Steel",
+      "finalPath": "/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "desktop",
+      "page": "explore",
+      "url": "/explore/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\desktop-explore.png",
+      "consoleErrors": [],
+      "title": "Explore Moldart | Search solutions, product sheets, and guides",
+      "finalPath": "/explore/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "desktop",
+      "page": "products",
+      "url": "/products/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\desktop-products.png",
+      "consoleErrors": [],
+      "title": "Products | Moldart Product Sheets",
+      "finalPath": "/products/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "desktop",
+      "page": "press-plates",
+      "url": "/products/press-plates/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\desktop-press-plates.png",
+      "consoleErrors": [],
+      "title": "Press Plates Supplier | Lamination Press Plates — Moldart",
+      "finalPath": "/products/press-plates/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "desktop",
+      "page": "solutions",
+      "url": "/solutions/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\desktop-solutions.png",
+      "consoleErrors": [],
+      "title": "B2B Sourcing Solutions | Moldart",
+      "finalPath": "/solutions/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "desktop",
+      "page": "resources",
+      "url": "/resources/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\desktop-resources.png",
+      "consoleErrors": [],
+      "title": "Resources & Downloads | Product Catalogues — Moldart",
+      "finalPath": "/resources/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "desktop",
+      "page": "contact",
+      "url": "/contact/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\desktop-contact.png",
+      "consoleErrors": [],
+      "title": "Contact Moldart | RFQ Brief and Workflow",
+      "finalPath": "/contact/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "desktop",
+      "page": "about",
+      "url": "/about/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\desktop-about.png",
+      "consoleErrors": [],
+      "title": "About Moldart | Since 1989",
+      "finalPath": "/about/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "desktop",
+      "page": "faq",
+      "url": "/faq/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\desktop-faq.png",
+      "consoleErrors": [],
+      "title": "Sourcing & RFQ FAQ | Moldart",
+      "finalPath": "/faq/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "desktop",
+      "page": "portal-boundary",
+      "url": "/portal/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\desktop-portal-boundary.png",
+      "consoleErrors": [],
+      "title": "Private Portal Access | Moldart",
+      "finalPath": "/portal/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "wide",
+      "page": "home",
+      "url": "/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\wide-home.png",
+      "consoleErrors": [],
+      "title": "Moldart | Laminates, Panels, Flooring & Decorative Steel",
+      "finalPath": "/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "wide",
+      "page": "explore",
+      "url": "/explore/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\wide-explore.png",
+      "consoleErrors": [],
+      "title": "Explore Moldart | Search solutions, product sheets, and guides",
+      "finalPath": "/explore/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "wide",
+      "page": "products",
+      "url": "/products/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\wide-products.png",
+      "consoleErrors": [],
+      "title": "Products | Moldart Product Sheets",
+      "finalPath": "/products/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "wide",
+      "page": "press-plates",
+      "url": "/products/press-plates/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\wide-press-plates.png",
+      "consoleErrors": [],
+      "title": "Press Plates Supplier | Lamination Press Plates — Moldart",
+      "finalPath": "/products/press-plates/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "wide",
+      "page": "solutions",
+      "url": "/solutions/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\wide-solutions.png",
+      "consoleErrors": [],
+      "title": "B2B Sourcing Solutions | Moldart",
+      "finalPath": "/solutions/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "wide",
+      "page": "resources",
+      "url": "/resources/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\wide-resources.png",
+      "consoleErrors": [],
+      "title": "Resources & Downloads | Product Catalogues — Moldart",
+      "finalPath": "/resources/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "wide",
+      "page": "contact",
+      "url": "/contact/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\wide-contact.png",
+      "consoleErrors": [],
+      "title": "Contact Moldart | RFQ Brief and Workflow",
+      "finalPath": "/contact/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "wide",
+      "page": "about",
+      "url": "/about/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\wide-about.png",
+      "consoleErrors": [],
+      "title": "About Moldart | Since 1989",
+      "finalPath": "/about/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "wide",
+      "page": "faq",
+      "url": "/faq/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\wide-faq.png",
+      "consoleErrors": [],
+      "title": "Sourcing & RFQ FAQ | Moldart",
+      "finalPath": "/faq/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    },
+    {
+      "viewport": "wide",
+      "page": "portal-boundary",
+      "url": "/portal/",
+      "screenshot": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-07-consolidation\\wide-portal-boundary.png",
+      "consoleErrors": [],
+      "title": "Private Portal Access | Moldart",
+      "finalPath": "/portal/",
+      "overflowX": 0,
+      "offenders": [],
+      "heroSearchModules": 0,
+      "processLinks": 0
+    }
+  ],
+  "search": [
+    {
+      "query": "press plate",
+      "expected": "/products/press-plates/",
+      "hrefs": [
+        "/products/press-plates/",
+        "/solutions/",
+        "/products/industrial-press-plates/",
+        "/solutions/lamination/",
+        "/downloads/PRESS%20PLATE%20-%20BASIC%20COLLECTION.pdf"
+      ],
+      "ok": true
+    },
+    {
+      "query": "steel panel",
+      "expected": "/products/decorative-ss-panels/",
+      "hrefs": [
+        "/products/decorative-ss-panels/",
+        "/insights/decorative-ss-panel-approval-guide/",
+        "/insights/ss-201-vs-304-panels/"
+      ],
+      "ok": true
+    },
+    {
+      "query": "flooring",
+      "expected": "flooring",
+      "hrefs": [
+        "/solutions/flooring/",
+        "/solutions/",
+        "/solutions/",
+        "/products/press-pads/",
+        "/products/printed-decor-paper/"
+      ],
+      "ok": true
+    },
+    {
+      "query": "catalog",
+      "expected": "/resources/",
+      "hrefs": [
+        "/resources/",
+        "/resources/",
+        "/downloads/INTRODUCTION%20TO%20MOLDART.pdf",
+        "/downloads/PRESS%20PLATE%20-%20BASIC%20COLLECTION.pdf",
+        "/downloads/PRESS%20PLATE%20-%20SHUTTERING%20PLYWOOD.pdf"
+      ],
+      "ok": true
+    },
+    {
+      "query": "RFQ",
+      "expected": "/contact/",
+      "hrefs": [
+        "/contact/",
+        "/products/",
+        "/contact/",
+        "/insights/custom-furniture-brief-guide/",
+        "/insights/press-plates-buyers-guide/"
+      ],
+      "ok": true
+    },
+    {
+      "query": "portal",
+      "expected": "/portal/",
+      "hrefs": [
+        "/portal/",
+        "/portal/"
+      ],
+      "ok": true
+    }
+  ],
+  "checks": {
+    "processRedirect": {
+      "href": "http://127.0.0.1:4173/contact/#workflow",
+      "title": "Contact Moldart | RFQ Brief and Workflow",
+      "hasWorkflow": true
+    }
+  },
+  "failures": []
+}

@@ -1,0 +1,98 @@
+{
+  "version": "2026-07-16",
+  "policy": "Open-license educational references only. These images do not represent Moldart stock, suppliers, factories, tests, projects or approved product constructions.",
+  "items": [
+    {
+      "id": "commons-hpl-colour-sheets",
+      "routes": ["/products/hpl-compact-laminated-boards/", "/solutions/decorative-surfaces/"],
+      "src": "/images/open-license/hpl-colour-sheets.webp",
+      "avif": "/images/open-license/hpl-colour-sheets.avif",
+      "jpg": "/images/open-license/hpl-colour-sheets.jpg",
+      "alt": "Open-license reference photograph of HPL sheets in several solid colours",
+      "caption": "Open-license HPL material reference; not Moldart stock or an approved construction.",
+      "author": "Bauzuschnitt.de",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:HPL-Platten_in_verschiedenen_Uni_Dekoren.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "changes": "Cropped, resized and metadata removed for web delivery."
+    },
+    {
+      "id": "commons-mdf-sample",
+      "routes": ["/products/fiberboard/"],
+      "src": "/images/open-license/mdf-sample.webp",
+      "avif": "/images/open-license/mdf-sample.avif",
+      "jpg": "/images/open-license/mdf-sample.jpg",
+      "alt": "Open-license reference photograph showing medium-density fibreboard material",
+      "caption": "Open-license MDF material reference; not Moldart stock, grade or test evidence.",
+      "author": "Daniel Christensen",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Medium_density_fiberboard.jpg",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "changes": "Cropped, resized and metadata removed for web delivery."
+    },
+    {
+      "id": "commons-osb-mdf-deck",
+      "routes": ["/products/osb/", "/products/fiberboard/"],
+      "src": "/images/open-license/osb-mdf-deck.webp",
+      "avif": "/images/open-license/osb-mdf-deck.avif",
+      "jpg": "/images/open-license/osb-mdf-deck.jpg",
+      "alt": "Open-license material reference showing OSB and MDF board samples",
+      "caption": "Open-license OSB/MDF comparison reference; not Moldart stock or grade evidence.",
+      "author": "Elke Wetzig (Elya)",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:OSB_MDF-Deck_2009.jpg",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "changes": "Cropped, resized and metadata removed for web delivery."
+    },
+    {
+      "id": "commons-melamine-faced-boards",
+      "routes": ["/products/melamine-impregnated-technical-papers/", "/solutions/furniture/"],
+      "src": "/images/open-license/melamine-faced-boards.webp",
+      "avif": "/images/open-license/melamine-faced-boards.avif",
+      "jpg": "/images/open-license/melamine-faced-boards.jpg",
+      "alt": "Open-license reference photograph of melamine-faced boards",
+      "caption": "Open-license example of a melamine-faced output; it does not depict or prove the paper supplied by Moldart.",
+      "author": "Laidler139",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:MFBs.jpg",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "changes": "Cropped, resized and metadata removed for web delivery."
+    },
+    {
+      "id": "commons-laminate-floor-joint",
+      "routes": ["/products/wood-flooring/", "/solutions/flooring/"],
+      "src": "/images/open-license/laminate-floor-joint.webp",
+      "avif": "/images/open-license/laminate-floor-joint.avif",
+      "jpg": "/images/open-license/laminate-floor-joint.jpg",
+      "alt": "Open-license reference photograph of laminate flooring tongue-and-groove assembly",
+      "caption": "Open-license installation reference; not Moldart stock, a specified locking profile or an approved project.",
+      "author": "Wasrts",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Laminate_floor_assembly_-_setting_tongue_and_groove.JPG",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "changes": "Cropped, resized and metadata removed for web delivery."
+    }
+  ],
+  "rejectedOnlineMedia": [
+    {
+      "category": "plastic film rolls",
+      "reason": "The strongest open result was historical Dow Saran packaging, brand-specific and not evidence of PP/PVC/PET/PETG decorative films."
+    },
+    {
+      "category": "press plates and press pads",
+      "reason": "Search results were unrelated, generic machinery or ambiguous products; existing internal review references are more accurate."
+    },
+    {
+      "category": "decor paper and impregnated paper",
+      "reason": "Production/factory images could imply an unrelated manufacturer. Only the melamine-faced output reference is retained with an explicit limitation."
+    },
+    {
+      "category": "decorative stainless sheets and profiles",
+      "reason": "Open search results were sculptures, factories or fabricated objects rather than truthful sheet/profile product references."
+    },
+    {
+      "category": "electronics press pads and films",
+      "reason": "Available images depicted finished PCBs or unrelated films, not the exact lamination consumables. Deterministic diagrams remain safer."
+    }
+  ]
+}

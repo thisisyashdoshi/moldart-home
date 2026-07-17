@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-05-06T06:55:06.745Z",
+  "results": [
+    {
+      "role": "buyer",
+      "attempted": "/portal/admin/dashboard",
+      "finalPath": "/portal/buyer/dashboard",
+      "blocked": true
+    },
+    {
+      "role": "buyer",
+      "attempted": "/portal/seller/dashboard",
+      "finalPath": "/portal/buyer/dashboard",
+      "blocked": true
+    },
+    {
+      "role": "seller",
+      "attempted": "/portal/admin/dashboard",
+      "finalPath": "/portal/seller/dashboard",
+      "blocked": true
+    },
+    {
+      "role": "seller",
+      "attempted": "/portal/buyer/dashboard",
+      "finalPath": "/portal/seller/dashboard",
+      "blocked": true
+    },
+    {
+      "role": "admin",
+      "attempted": "/portal/buyer/dashboard",
+      "finalPath": "/portal/admin/dashboard",
+      "blocked": true
+    },
+    {
+      "role": "admin",
+      "attempted": "/portal/seller/dashboard",
+      "finalPath": "/portal/admin/dashboard",
+      "blocked": true
+    }
+  ],
+  "passed": true
+}
