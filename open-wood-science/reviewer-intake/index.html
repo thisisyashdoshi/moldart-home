@@ -7,20 +7,7 @@
   <meta name="robots" content="noindex,follow">
   <meta name="description" content="Apply to be considered as a controlled external expert reviewer for Moldart Open Wood Science technical drafts.">
   <link rel="canonical" href="https://moldartindia.com/open-wood-science/reviewer-intake/">
-  <style>
-    :root{--ink:#111827;--muted:#526070;--line:#d9e0e7;--soft:#f7f9fb;--brand:#0f766e;--danger:#b42318;--ok:#057a55;--focus:#2563eb}
-    *{box-sizing:border-box} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#fff;line-height:1.55}
-    main{max-width:980px;margin:0 auto;padding:32px 18px 64px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;color:var(--brand);font-size:.78rem;font-weight:700}
-    h1{font-size:clamp(2rem,4vw,3.3rem);line-height:1.05;margin:.35rem 0 1rem} h2{font-size:1.25rem;margin:2rem 0 .75rem}.lead{font-size:1.08rem;color:var(--muted);max-width:76ch}
-    .notice,.panel{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:18px;margin:20px 0}.notice strong{color:var(--brand)}
-    form{margin-top:28px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}@media(max-width:760px){.grid{grid-template-columns:1fr}}
-    label{display:block;font-weight:700;margin:0 0 6px}.hint{display:block;color:var(--muted);font-size:.9rem;font-weight:400;margin-top:4px}.field{margin:0 0 18px}
-    input,select,textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 13px;font:inherit;background:#fff;color:var(--ink)} textarea{min-height:132px;resize:vertical}
-    input:focus,select:focus,textarea:focus{outline:3px solid rgba(37,99,235,.18);border-color:var(--focus)} fieldset{border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 18px} legend{font-weight:800;padding:0 6px}.checks{display:grid;gap:9px;margin-top:8px}.checks label{font-weight:500;display:flex;gap:9px;align-items:flex-start}.checks input{width:auto;margin-top:.25rem}
-    .required{color:var(--danger)}.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:22px}.button{border:0;border-radius:999px;background:var(--brand);color:#fff;padding:13px 20px;font-weight:800;cursor:pointer}.button[disabled]{opacity:.55;cursor:not-allowed}.small{font-size:.9rem;color:var(--muted)}
-    .status{border-radius:14px;padding:14px 16px;margin:18px 0;display:none}.status.error{display:block;border:1px solid #fecdca;background:#fff5f4;color:#7a271a}.status.ok{display:block;border:1px solid #abefc6;background:#f6fef9;color:#054f31}.hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
-    ul.compact{margin:.5rem 0 0;padding-left:1.2rem}.footer-note{border-top:1px solid var(--line);margin-top:36px;padding-top:20px;color:var(--muted);font-size:.92rem}
-  </style>
+  <link rel="stylesheet" href="/open-wood-science/reviewer-intake/inline-reviewer-intake-1.css">
 </head>
 <body>
 <main>
@@ -217,82 +204,6 @@
 
   <p class="footer-note">Moldart, #7, Building No. 1, New Sonal Link Industrial Estate, Link Road, Malad (West), Mumbai - 64, India.</p>
 </main>
-<script>
-  const form = document.getElementById('ows-intake-form');
-  const statusBox = document.getElementById('status');
-
-  function values(name) {
-    return Array.from(form.querySelectorAll(`[name="${name}"]:checked`)).map((input) => input.value);
-  }
-  function show(type, messages) {
-    statusBox.className = `status ${type}`;
-    statusBox.innerHTML = Array.isArray(messages) ? `<ul>${messages.map((m) => `<li>${m}</li>`).join('')}</ul>` : messages;
-  }
-  function collect() {
-    const fd = new FormData(form);
-    return {
-      fullName: fd.get('fullName'),
-      email: fd.get('email'),
-      phone: fd.get('phone'),
-      country: fd.get('country'),
-      organization: fd.get('organization'),
-      designation: fd.get('designation'),
-      yearsExperience: fd.get('yearsExperience'),
-      primaryExpertise: values('primaryExpertise'),
-      materialExpertise: values('materialExpertise'),
-      boardExpertise: values('boardExpertise'),
-      preferredDraft: fd.get('preferredDraft'),
-      profileProof: fd.get('profileProof'),
-      experienceEvidence: fd.get('experienceEvidence'),
-      optionalCvLink: fd.get('optionalCvLink'),
-      publicCreditConsent: fd.get('publicCreditConsent'),
-      conflictOfInterest: fd.get('conflictOfInterest'),
-      confidentialityConfirmation: fd.get('confidentialityConfirmation'),
-      reviewMethodConfirmation: fd.get('reviewMethodConfirmation'),
-      dataConsent: fd.get('dataConsent') === 'yes',
-      sourcePage: fd.get('sourcePage'),
-      website: fd.get('website'),
-    };
-  }
-  function clientValidate(payload) {
-    const errors = [];
-    if (!form.reportValidity()) errors.push('Please complete all required fields in the correct format.');
-    for (const group of ['primaryExpertise', 'materialExpertise', 'boardExpertise']) {
-      if (!payload[group].length) errors.push(`Select at least one ${group.replace(/([A-Z])/g, ' $1').toLowerCase()} option.`);
-    }
-    const bullets = String(payload.experienceEvidence || '').split(/\n|•|\u2022|\d+\)|\d+\.|;|\|/).map((s) => s.trim()).filter((s) => s.length >= 18);
-    if (bullets.length < 3) errors.push('Technical experience evidence must include at least 3 non-confidential bullets.');
-    if (/^(linkedin|na|n\/a|none|-|test)$/i.test(String(payload.profileProof || '').trim())) errors.push('Profile proof cannot be a placeholder; paste a real https URL or official verification note.');
-    return errors;
-  }
-
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const button = form.querySelector('button[type="submit"]');
-    const payload = collect();
-    const errors = clientValidate(payload);
-    if (errors.length) return show('error', errors);
-    button.disabled = true;
-    show('ok', 'Submitting intake for screening…');
-    try {
-      const response = await fetch('/api/ows-intake', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      const result = await response.json().catch(() => ({}));
-      if (!response.ok || !result.ok) {
-        show('error', result.errors || ['Submission could not be accepted. Please email info@moldartindia.com.']);
-      } else {
-        form.reset();
-        show('ok', 'Thank you. Your reviewer intake was received for screening. No document access is granted until Moldart approves a specific private review copy.');
-      }
-    } catch (_) {
-      show('error', ['Network or intake service error. Please email info@moldartindia.com or try again later.']);
-    } finally {
-      button.disabled = false;
-    }
-  });
-</script>
+<script src="/open-wood-science/reviewer-intake/inline-reviewer-intake-1.js"></script>
 </body>
 </html>

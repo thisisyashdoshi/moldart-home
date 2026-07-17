@@ -1,0 +1,181 @@
+{
+  "version": "2026-07-14",
+  "scope": "Noindex visual prototype only",
+  "counts": {
+    "USE_EXISTING_REFERENCE": 11,
+    "DIAGRAM": 6,
+    "SOURCE_REQUIRED": 0
+  },
+  "records": [
+    {
+      "id": "press-plates",
+      "slug": "press-plates",
+      "name": "Wood Lamination Press Plates",
+      "system": "wood",
+      "status": "USE_EXISTING_REFERENCE",
+      "image": "/images/page5_img3.webp",
+      "caption": "Existing review reference. Verify identity, rights, current construction and availability through the RFQ.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "press-pads",
+      "slug": "press-pads",
+      "name": "Wood Lamination Press Pads & Cushion Systems",
+      "system": "wood",
+      "status": "USE_EXISTING_REFERENCE",
+      "image": "/images/press_pad_new.webp",
+      "caption": "Existing review reference. Verify identity, rights, current construction and availability through the RFQ.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "decor-paper",
+      "slug": "printed-decor-paper",
+      "name": "Printed D\u00e9cor Paper",
+      "system": "wood",
+      "status": "USE_EXISTING_REFERENCE",
+      "image": "/images/page5_img2.webp",
+      "caption": "Existing review reference. Verify identity, rights, current construction and availability through the RFQ.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "melamine-impregnated-paper",
+      "slug": "melamine-impregnated-technical-papers",
+      "name": "Melamine-Impregnated & Technical Papers",
+      "system": "wood",
+      "status": "DIAGRAM",
+      "image": "/images/review-diagrams/melamine-impregnated-paper.svg",
+      "caption": "Deterministic route diagram. Not product, stock, factory, test or quality evidence.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "decorative-films-foils",
+      "slug": "decorative-films-foils",
+      "name": "Decorative Films & Foils \u2014 PP, PVC, PET, PETG",
+      "system": "wood",
+      "status": "DIAGRAM",
+      "image": "/images/review-diagrams/decorative-films-foils.svg",
+      "caption": "Deterministic route diagram. Not product, stock, factory, test or quality evidence.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "genuine-vegetable-parchment",
+      "slug": "genuine-vegetable-parchment",
+      "name": "Genuine Vegetable Parchment for Decorative Lamination",
+      "system": "wood",
+      "status": "DIAGRAM",
+      "image": "/images/review-diagrams/genuine-vegetable-parchment.svg",
+      "caption": "Deterministic route diagram. Not product, stock, factory, test or quality evidence.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "fiberboard",
+      "slug": "fiberboard",
+      "name": "MDF & HDF",
+      "system": "wood",
+      "status": "USE_EXISTING_REFERENCE",
+      "image": "/images/page6_img3.webp",
+      "caption": "Existing review reference. Verify identity, rights, current construction and availability through the RFQ.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "particleboard",
+      "slug": "particleboard",
+      "name": "Particleboard",
+      "system": "wood",
+      "status": "USE_EXISTING_REFERENCE",
+      "image": "/images/page6_img4.webp",
+      "caption": "Existing review reference. Verify identity, rights, current construction and availability through the RFQ.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "osb",
+      "slug": "osb",
+      "name": "OSB & Fine-Surface OSB",
+      "system": "wood",
+      "status": "USE_EXISTING_REFERENCE",
+      "image": "/images/page6_img2.webp",
+      "caption": "Existing review reference. Verify identity, rights, current construction and availability through the RFQ.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "plywood",
+      "slug": "plywood",
+      "name": "Plywood",
+      "system": "wood",
+      "status": "USE_EXISTING_REFERENCE",
+      "image": "/images/page6_img1.webp",
+      "caption": "Existing review reference. Verify identity, rights, current construction and availability through the RFQ.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "hpl-compact-laminated-boards",
+      "slug": "hpl-compact-laminated-boards",
+      "name": "HPL, Compact & HPL-Laminated Boards",
+      "system": "wood",
+      "status": "DIAGRAM",
+      "image": "/images/review-diagrams/hpl-compact-laminated-boards.svg",
+      "caption": "Deterministic route diagram. Not product, stock, factory, test or quality evidence.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "wood-flooring",
+      "slug": "wood-flooring",
+      "name": "Laminate Flooring Systems",
+      "system": "wood",
+      "status": "USE_EXISTING_REFERENCE",
+      "image": "/images/page7_img1.webp",
+      "caption": "Existing review reference. Verify identity, rights, current construction and availability through the RFQ.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "decorative-panels",
+      "slug": "decorative-ss-panels",
+      "name": "Decorative Stainless Steel Sheets",
+      "system": "steel",
+      "status": "USE_EXISTING_REFERENCE",
+      "image": "/images/page9_img1.webp",
+      "caption": "Existing review reference. Verify identity, rights, current construction and availability through the RFQ.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "ss-profiles",
+      "slug": "ss-profiles",
+      "name": "Stainless Steel Profiles & Trims",
+      "system": "steel",
+      "status": "USE_EXISTING_REFERENCE",
+      "image": "/images/page9_img2_clean.webp",
+      "caption": "Existing review reference. Verify identity, rights, current construction and availability through the RFQ.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "industrial-press-plates",
+      "slug": "industrial-press-plates",
+      "name": "Precision Press Plates & Tooling for PCB, CCL, FPC and Smart Cards",
+      "system": "electronics",
+      "status": "USE_EXISTING_REFERENCE",
+      "image": "/images/page9_img4.webp",
+      "caption": "Existing review reference. Verify identity, rights, current construction and availability through the RFQ.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "electronics-press-pads",
+      "slug": "electronics-press-pads",
+      "name": "Electronics Press Pads & Cushion Materials",
+      "system": "electronics",
+      "status": "DIAGRAM",
+      "image": "/images/review-diagrams/electronics-press-pads.svg",
+      "caption": "Deterministic route diagram. Not product, stock, factory, test or quality evidence.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    },
+    {
+      "id": "electronics-lamination-films",
+      "slug": "electronics-lamination-films",
+      "name": "Electronics Lamination Films \u2014 Release, Conformal, Carrier & Protection",
+      "system": "electronics",
+      "status": "DIAGRAM",
+      "image": "/images/review-diagrams/electronics-lamination-films.svg",
+      "caption": "Deterministic route diagram. Not product, stock, factory, test or quality evidence.",
+      "websiteUse": "NOINDEX_HOME_PRODUCTS_ONLY"
+    }
+  ]
+}

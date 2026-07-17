@@ -1,0 +1,463 @@
+{
+  "routes": [
+    {
+      "route": "/",
+      "words": 816,
+      "images": 12,
+      "svgs": 45,
+      "tables": 0,
+      "sections": 5,
+      "links": 42,
+      "buttons": 5,
+      "forms": 1,
+      "cardRefs": 162,
+      "cta": 11,
+      "visualDensity": 14,
+      "uxComplexityScore": 92
+    },
+    {
+      "route": "/explore/",
+      "words": 3997,
+      "images": 73,
+      "svgs": 121,
+      "tables": 0,
+      "sections": 6,
+      "links": 122,
+      "buttons": 18,
+      "forms": 1,
+      "cardRefs": 1128,
+      "cta": 2,
+      "visualDensity": 21,
+      "uxComplexityScore": 0
+    },
+    {
+      "route": "/insights/",
+      "words": 3325,
+      "images": 51,
+      "svgs": 90,
+      "tables": 0,
+      "sections": 4,
+      "links": 88,
+      "buttons": 16,
+      "forms": 1,
+      "cardRefs": 315,
+      "cta": 14,
+      "visualDensity": 24,
+      "uxComplexityScore": 0
+    },
+    {
+      "route": "/contact/",
+      "words": 521,
+      "images": 0,
+      "svgs": 32,
+      "tables": 0,
+      "sections": 3,
+      "links": 33,
+      "buttons": 6,
+      "forms": 2,
+      "cardRefs": 19,
+      "cta": 2,
+      "visualDensity": 16,
+      "uxComplexityScore": 100
+    },
+    {
+      "route": "/process/",
+      "words": 333,
+      "images": 0,
+      "svgs": 18,
+      "tables": 0,
+      "sections": 4,
+      "links": 26,
+      "buttons": 5,
+      "forms": 1,
+      "cardRefs": 13,
+      "cta": 3,
+      "visualDensity": 19,
+      "uxComplexityScore": 100
+    },
+    {
+      "route": "/products/",
+      "words": 531,
+      "images": 16,
+      "svgs": 23,
+      "tables": 0,
+      "sections": 3,
+      "links": 42,
+      "buttons": 5,
+      "forms": 1,
+      "cardRefs": 77,
+      "cta": 3,
+      "visualDensity": 14,
+      "uxComplexityScore": 100
+    },
+    {
+      "route": "/solutions/",
+      "words": 729,
+      "images": 6,
+      "svgs": 25,
+      "tables": 0,
+      "sections": 3,
+      "links": 53,
+      "buttons": 5,
+      "forms": 1,
+      "cardRefs": 54,
+      "cta": 8,
+      "visualDensity": 24,
+      "uxComplexityScore": 100
+    },
+    {
+      "route": "/resources/",
+      "words": 744,
+      "images": 0,
+      "svgs": 50,
+      "tables": 0,
+      "sections": 4,
+      "links": 49,
+      "buttons": 5,
+      "forms": 1,
+      "cardRefs": 161,
+      "cta": 2,
+      "visualDensity": 15,
+      "uxComplexityScore": 82
+    },
+    {
+      "route": "/about/",
+      "words": 675,
+      "images": 2,
+      "svgs": 25,
+      "tables": 0,
+      "sections": 6,
+      "links": 29,
+      "buttons": 5,
+      "forms": 1,
+      "cardRefs": 36,
+      "cta": 2,
+      "visualDensity": 25,
+      "uxComplexityScore": 100
+    },
+    {
+      "route": "/faq/",
+      "words": 1165,
+      "images": 0,
+      "svgs": 50,
+      "tables": 0,
+      "sections": 5,
+      "links": 34,
+      "buttons": 5,
+      "forms": 1,
+      "cardRefs": 20,
+      "cta": 2,
+      "visualDensity": 23,
+      "uxComplexityScore": 83
+    },
+    {
+      "route": "/open-wood-science/",
+      "words": 461,
+      "images": 0,
+      "svgs": 15,
+      "tables": 1,
+      "sections": 5,
+      "links": 28,
+      "buttons": 4,
+      "forms": 1,
+      "cardRefs": 9,
+      "cta": 5,
+      "visualDensity": 29,
+      "uxComplexityScore": 100
+    }
+  ],
+  "overlongSections": [
+    {
+      "route": "/",
+      "section": 4,
+      "words": 217,
+      "images": 6,
+      "svgs": 7,
+      "cardRefs": 88,
+      "heading": "START WITH THE APPLICATION. THEN OPEN THE ROUTE."
+    },
+    {
+      "route": "/explore/",
+      "section": 2,
+      "words": 240,
+      "images": 6,
+      "svgs": 7,
+      "cardRefs": 81,
+      "heading": "Solutions"
+    },
+    {
+      "route": "/explore/",
+      "section": 3,
+      "words": 363,
+      "images": 16,
+      "svgs": 16,
+      "cardRefs": 186,
+      "heading": "Product sheets"
+    },
+    {
+      "route": "/explore/",
+      "section": 4,
+      "words": 622,
+      "images": 0,
+      "svgs": 24,
+      "cardRefs": 271,
+      "heading": "Documents"
+    },
+    {
+      "route": "/explore/",
+      "section": 5,
+      "words": 2452,
+      "images": 51,
+      "svgs": 51,
+      "cardRefs": 575,
+      "heading": "Guides"
+    },
+    {
+      "route": "/insights/",
+      "section": 2,
+      "words": 2741,
+      "images": 51,
+      "svgs": 56,
+      "cardRefs": 270,
+      "heading": ""
+    },
+    {
+      "route": "/products/",
+      "section": 2,
+      "words": 252,
+      "images": 16,
+      "svgs": 1,
+      "cardRefs": 63,
+      "heading": "SPECIFY THE PRODUCT BEFORE ASKING FOR PRICE."
+    },
+    {
+      "route": "/solutions/",
+      "section": 2,
+      "words": 432,
+      "images": 6,
+      "svgs": 6,
+      "cardRefs": 40,
+      "heading": ""
+    },
+    {
+      "route": "/resources/",
+      "section": 3,
+      "words": 434,
+      "images": 0,
+      "svgs": 30,
+      "cardRefs": 150,
+      "heading": ""
+    },
+    {
+      "route": "/faq/",
+      "section": 4,
+      "words": 771,
+      "images": 0,
+      "svgs": 25,
+      "cardRefs": 5,
+      "heading": ""
+    }
+  ],
+  "topClasses": [
+    {
+      "className": "icon",
+      "count": 450
+    },
+    {
+      "className": "icon-sm",
+      "count": 409
+    },
+    {
+      "className": "ui-meta-pill",
+      "count": 225
+    },
+    {
+      "className": "ui-footer-link",
+      "count": 165
+    },
+    {
+      "className": "mb-3",
+      "count": 160
+    },
+    {
+      "className": "text-zinc-500",
+      "count": 143
+    },
+    {
+      "className": "leading-relaxed",
+      "count": 129
+    },
+    {
+      "className": "ui-kicker",
+      "count": 126
+    },
+    {
+      "className": "font-display",
+      "count": 115
+    },
+    {
+      "className": "text-sm",
+      "count": 106
+    },
+    {
+      "className": "explore-result-row",
+      "count": 97
+    },
+    {
+      "className": "explore-result-row-media",
+      "count": 97
+    },
+    {
+      "className": "explore-card-media",
+      "count": 97
+    },
+    {
+      "className": "explore-result-row-copy",
+      "count": 97
+    },
+    {
+      "className": "explore-result-row-top",
+      "count": 97
+    },
+    {
+      "className": "explore-result-row-title",
+      "count": 97
+    },
+    {
+      "className": "explore-result-row-desc",
+      "count": 97
+    },
+    {
+      "className": "explore-result-row-meta",
+      "count": 97
+    },
+    {
+      "className": "explore-result-row-action",
+      "count": 97
+    },
+    {
+      "className": "font-bold",
+      "count": 75
+    },
+    {
+      "className": "max-w",
+      "count": 67
+    },
+    {
+      "className": "mx-auto",
+      "count": 67
+    },
+    {
+      "className": "px",
+      "count": 67
+    },
+    {
+      "className": "mb-4",
+      "count": 65
+    },
+    {
+      "className": "mt-5",
+      "count": 63
+    },
+    {
+      "className": "text-xs",
+      "count": 62
+    },
+    {
+      "className": "text-xl",
+      "count": 62
+    },
+    {
+      "className": "form-group",
+      "count": 59
+    },
+    {
+      "className": "form-label",
+      "count": 59
+    },
+    {
+      "className": "form-input",
+      "count": 56
+    },
+    {
+      "className": "flex",
+      "count": 53
+    },
+    {
+      "className": "resource-thumb",
+      "count": 51
+    },
+    {
+      "className": "resource-thumb-type",
+      "count": 51
+    },
+    {
+      "className": "resource-thumb-code",
+      "count": 51
+    },
+    {
+      "className": "explore-card-media-guide",
+      "count": 51
+    },
+    {
+      "className": "insight-card",
+      "count": 51
+    },
+    {
+      "className": "ui-insight-card-media",
+      "count": 51
+    },
+    {
+      "className": "ui-insight-card-badge",
+      "count": 51
+    },
+    {
+      "className": "ui-insight-card-body",
+      "count": 51
+    },
+    {
+      "className": "ui-meta-inline",
+      "count": 51
+    },
+    {
+      "className": "site-nav-link",
+      "count": 50
+    },
+    {
+      "className": "ui-insight-card",
+      "count": 50
+    },
+    {
+      "className": "insight-card-title",
+      "count": 50
+    },
+    {
+      "className": "section-label",
+      "count": 44
+    },
+    {
+      "className": "font-black",
+      "count": 40
+    },
+    {
+      "className": "fade-up",
+      "count": 35
+    },
+    {
+      "className": "ui-footer-card",
+      "count": 33
+    },
+    {
+      "className": "mb-5",
+      "count": 33
+    },
+    {
+      "className": "border-zinc-100",
+      "count": 32
+    },
+    {
+      "className": "overflow-hidden",
+      "count": 32
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+Contact: mailto:info@moldartindia.com
+Contact: https://moldartindia.com/contact
+Expires: 2027-05-04T00:00:00Z
+Preferred-Languages: en, hi
+Canonical: https://moldartindia.com/.well-known/security.txt

@@ -1,0 +1,59 @@
+{
+  "generatedAt": "2026-05-06T07:41:28.464Z",
+  "results": [
+    {
+      "viewport": "desktop",
+      "page": "contact",
+      "status": 200,
+      "imageCount": 1,
+      "broken": [],
+      "overflow": false
+    },
+    {
+      "viewport": "desktop",
+      "page": "process",
+      "status": 200,
+      "imageCount": 1,
+      "broken": [],
+      "overflow": false
+    },
+    {
+      "viewport": "desktop",
+      "page": "portal-boundary",
+      "status": 200,
+      "imageCount": 1,
+      "broken": [],
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "page": "contact",
+      "status": 200,
+      "imageCount": 1,
+      "broken": [],
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "page": "process",
+      "status": 200,
+      "imageCount": 1,
+      "broken": [],
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "page": "portal-boundary",
+      "status": 200,
+      "imageCount": 1,
+      "broken": [],
+      "overflow": false
+    }
+  ],
+  "consoleIssues": [],
+  "summary": {
+    "pages": 6,
+    "failures": 0,
+    "consoleIssues": 0
+  }
+}

@@ -1,0 +1,15 @@
+output: grouped
+
+pre-commit:
+  parallel: true
+  jobs:
+    - run: npm run format:check
+    - run: npm run lint:js
+    - run: npm run test:unit
+    - run: npm run secretlint:check
+
+pre-push:
+  parallel: false
+  jobs:
+    - run: npm run release:check
+    - run: npm run unused:check

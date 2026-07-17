@@ -4,9 +4,18 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=(), accelerometer=(), gyroscope=(), magnetometer=(), display-capture=(), fullscreen=(self)
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://static.cloudflareinsights.com https://cloudflareinsights.com https://*.cloudflareinsights.com; form-action 'self' https://formspree.io https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw=' 'sha256-5SHxeeQ6rjcQnLJwtKN7+RNvU4VAK4kRBKWpPT4Fryo=' 'sha256-7B4lbZjughchUx4cFJNKFtz8N4EFZNXXhlrEj+RegVc=' 'sha256-92I/WCK1ZTlEu7YJqD6KjWU/gNXLrcE/GdrUICSnQc8=' 'sha256-DxuP4y0IqN7brl/J1CNwHTsxdj/SWm0MAFNMlVkUxPk=' 'sha256-Qqnmw+ZQMJvGKCX6T2B/xPXPxsdz4p+fcL++Ewz3w/Y=' 'sha256-VwnmviiWyvga4k40n9A+RgT6qhyrt7UYXkiBH5xjoto=' 'sha256-W563pMG0Utw89OYR5sc6G/iNyVu205FB7X3Pvz00UQU=' 'sha256-iutreESW8K9TMIDCUjetrQ2hM8w3oNjRVyZNIM75Mrg=' 'sha256-kPO4NBkCw5WIoCkb7kJ4h2ec1JO12slrSMhqko+N2tU=' 'sha256-lAK9eaxRtjjZ0Ch/K7tg/0ihq8mrIBFJ5VaPv+lBtTQ=' 'sha256-mMV211VMBpFTCP5r+UOZ5p0tYLHdT4Dy3WQlP4w0YUs=' 'sha256-nh0uPZ9v7xh2dxJhf6dFD5eQiDwN8rjvTnFdYwg+J5w=' 'sha256-qD+WonvTi6KqV7sBz/f9nZ6JgSf9pPRD1kaXxKtH6u0=' 'sha256-zioEV+r7mzlNsUw7rY+0VCtLOjXrsDwuwqqk/jhjMeo=' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://static.cloudflareinsights.com https://cloudflareinsights.com https://*.cloudflareinsights.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/api/*
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/open-wood-science/*
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow, noarchive
 
 /portal/
   Cache-Control: no-store
@@ -22,16 +31,25 @@
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
-  X-Robots-Tag: index, follow
+  X-Robots-Tag: noindex, nofollow, noarchive
 
 /
   Cache-Control: public, max-age=0, must-revalidate
-  X-Robots-Tag: index, follow
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/site.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/home.css
+  Cache-Control: public, max-age=31536000, immutable
 
 /styles.css
   Cache-Control: public, max-age=31536000, immutable
 
 /main.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/lead-forms.js
   Cache-Control: public, max-age=31536000, immutable
 
 /pages.css
@@ -79,3 +97,4 @@
 
 /downloads/*
   Cache-Control: public, max-age=2592000
+

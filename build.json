@@ -1,0 +1,10 @@
+{
+  "version": "2026.07.16.media-rich.final11",
+  "generatedAt": "2026-07-16T17:49:14.763Z",
+  "git": {
+    "sha": "e11cddce01f8c40107a55e837f875d66422eb191",
+    "branch": "draft/non-media-final-20260716"
+  },
+  "site": "https://moldartindia.com",
+  "generator": "moldart-static-generator"
+}

@@ -1,0 +1,618 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum CompanyType {
+  BUYER
+  SELLER
+  INTERNAL
+}
+
+enum CompanyStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  REJECTED
+}
+
+enum UserStatus {
+  PENDING
+  ACTIVE
+  LOCKED
+  DISABLED
+}
+
+enum ProductStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum RfqStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  QUOTED
+  REVISED
+  APPROVED
+  CLOSED
+  CANCELLED
+}
+
+enum QuoteStatus {
+  DRAFT
+  ISSUED
+  REVISED
+  ACCEPTED
+  REJECTED
+  EXPIRED
+  SUPERSEDED
+  CANCELLED
+}
+
+enum OrderStatus {
+  DRAFT
+  AWAITING_PI
+  PI_ISSUED
+  DEPOSIT_PENDING
+  DEPOSIT_RECEIVED
+  PRODUCTION
+  QC_READY
+  BALANCE_PENDING
+  BALANCE_RECEIVED
+  BOOKED
+  ON_BOARD
+  IN_TRANSIT
+  DOCS_SENT
+  DELIVERED
+  CLOSED
+  CANCELLED
+}
+
+enum PaymentType {
+  DEPOSIT
+  BALANCE
+  OTHER
+}
+
+enum PaymentStatus {
+  PENDING
+  DUE
+  REPORTED
+  UNDER_REVIEW
+  RECONCILED
+  FAILED
+  WAIVED
+}
+
+enum ShipmentType {
+  LCL
+  FCL
+  AIR
+  OTHER
+}
+
+enum ShipmentStatus {
+  PLANNING
+  BOOKED
+  ON_BOARD
+  IN_TRANSIT
+  ARRIVED
+  CUSTOMS
+  DELIVERED
+  CLOSED
+  CANCELLED
+}
+
+enum MilestoneStatus {
+  PENDING
+  DONE
+  EXCEPTION
+}
+
+enum DocumentType {
+  TECH_SHEET
+  RFQ_ATTACHMENT
+  QUOTE_PDF
+  PI
+  COMMERCIAL_INVOICE
+  PACKING_LIST
+  QC_REPORT
+  COO
+  BL_AWB
+  PAYMENT_RECEIPT
+  OTHER
+}
+
+enum DocumentStatus {
+  PENDING_SCAN
+  READY
+  REJECTED
+  ARCHIVED
+}
+
+enum DocumentVisibility {
+  BUYER_VISIBLE
+  SELLER_VISIBLE
+  OPS_ONLY
+  FINANCE_ONLY
+}
+
+enum TokenType {
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+}
+
+model Company {
+  id              String         @id @default(cuid())
+  slug            String         @unique
+  name            String
+  companyType     CompanyType
+  status          CompanyStatus  @default(PENDING)
+  countryCode     String?
+  primaryCurrency String         @default("USD")
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  companyUsers              CompanyUser[]
+  sellerProducts            Product[]             @relation("SellerProducts")
+  buyerRfqs                 Rfq[]                 @relation("BuyerRfqs")
+  assignedRfqs              Rfq[]                 @relation("AssignedSellerRfqs")
+  sellerQuotes              Quote[]               @relation("SellerQuotes")
+  buyerOrders               Order[]               @relation("BuyerOrders")
+  sellerOrders              Order[]               @relation("SellerOrders")
+  ownedDocuments            Document[]            @relation("CompanyDocuments")
+  buyerDocumentRules        DocumentAccessRule[]  @relation("BuyerAccessRules")
+  sellerDocumentRules       DocumentAccessRule[]  @relation("SellerAccessRules")
+  notifications             Notification[]
+  auditLogs                 AuditLog[]
+  outgoingInvites           CompanyInvite[]       @relation("InviteCompany")
+}
+
+model User {
+  id                String            @id @default(cuid())
+  email             String            @unique
+  passwordHash      String
+  firstName         String
+  lastName          String
+  status            UserStatus        @default(PENDING)
+  emailVerifiedAt   DateTime?
+  lastLoginAt       DateTime?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  companyUsers      CompanyUser[]
+  createdRfqs       Rfq[]             @relation("CreatedRfqs")
+  createdQuotes     Quote[]           @relation("CreatedQuotes")
+  createdOrders     Order[]           @relation("CreatedOrders")
+  orderStatusHistory OrderStatusHistory[]
+  paymentEvents     PaymentEvent[]
+  shipmentMilestones ShipmentMilestone[]
+  uploadedDocuments Document[]        @relation("UploadedDocuments")
+  auditLogs         AuditLog[]
+  notifications     Notification[]
+  issuedTokens      AuthToken[]
+  sentInvites       CompanyInvite[]   @relation("SentInvites")
+}
+
+model Role {
+  id          String           @id @default(cuid())
+  key         String           @unique
+  label       String
+  companyUsers CompanyUser[]
+  permissions RolePermission[]
+}
+
+model Permission {
+  id          String           @id @default(cuid())
+  key         String           @unique
+  label       String
+  roles       RolePermission[]
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+}
+
+model CompanyUser {
+  id               String    @id @default(cuid())
+  companyId        String
+  userId           String
+  roleId           String
+  title            String?
+  isPrimaryContact Boolean   @default(false)
+  invitedByUserId  String?
+  approvedAt       DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  company          Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role             Role      @relation(fields: [roleId], references: [id])
+
+  @@unique([companyId, userId])
+}
+
+model CompanyInvite {
+  id            String   @id @default(cuid())
+  companyId     String
+  email         String
+  roleId        String
+  invitedById   String
+  token         String   @unique
+  expiresAt     DateTime
+  acceptedAt    DateTime?
+  createdAt     DateTime @default(now())
+
+  company       Company  @relation("InviteCompany", fields: [companyId], references: [id], onDelete: Cascade)
+  invitedBy     User     @relation("SentInvites", fields: [invitedById], references: [id], onDelete: Cascade)
+}
+
+model Product {
+  id                String          @id @default(cuid())
+  slug              String          @unique
+  sellerCompanyId   String
+  title             String
+  category          String
+  description       String
+  originCountry     String          @default("CN")
+  currency          String          @default("USD")
+  indicativeIncoterm String         @default("FOB")
+  indicativePriceUsd Decimal?       @db.Decimal(12, 2)
+  moq               Int?
+  leadTimeDays      Int?
+  sampleAvailable   Boolean         @default(false)
+  isQuoteOnly       Boolean         @default(false)
+  status            ProductStatus   @default(DRAFT)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  sellerCompany     Company         @relation("SellerProducts", fields: [sellerCompanyId], references: [id], onDelete: Cascade)
+  variants          ProductVariant[]
+  rfqItems          RfqItem[]
+  quoteItems        QuoteItem[]
+  orderItems        OrderItem[]
+  documents         ProductDocument[]
+}
+
+model ProductVariant {
+  id                String   @id @default(cuid())
+  productId         String
+  sku               String?
+  finish            String?
+  size              String?
+  grade             String?
+  specificationJson Json?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  product           Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  rfqItems          RfqItem[]
+}
+
+model ProductDocument {
+  id         String   @id @default(cuid())
+  productId  String
+  documentId String
+
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, documentId])
+}
+
+model Rfq {
+  id                    String      @id @default(cuid())
+  publicId              String      @unique
+  buyerCompanyId        String
+  assignedSellerCompanyId String?
+  createdByUserId       String
+  destinationCountry    String
+  destinationPort       String
+  targetShipmentMonth   String
+  incoterm              String      @default("FOB")
+  currency              String      @default("USD")
+  shipmentType          ShipmentType @default(LCL)
+  sourceCountry         String      @default("CN")
+  notes                 String?
+  status                RfqStatus   @default(DRAFT)
+  createdAt             DateTime    @default(now())
+  updatedAt             DateTime    @updatedAt
+
+  buyerCompany          Company     @relation("BuyerRfqs", fields: [buyerCompanyId], references: [id], onDelete: Cascade)
+  assignedSellerCompany Company?    @relation("AssignedSellerRfqs", fields: [assignedSellerCompanyId], references: [id])
+  createdByUser         User        @relation("CreatedRfqs", fields: [createdByUserId], references: [id], onDelete: Cascade)
+  items                 RfqItem[]
+  attachments           RfqAttachment[]
+  quotes                Quote[]
+}
+
+model RfqItem {
+  id                      String          @id @default(cuid())
+  rfqId                   String
+  productId               String?
+  variantId               String?
+  itemNameSnapshot        String
+  specificationSnapshotJson Json?
+  quantity                Int
+  uom                     String
+  note                    String?
+
+  rfq                     Rfq             @relation(fields: [rfqId], references: [id], onDelete: Cascade)
+  product                 Product?        @relation(fields: [productId], references: [id])
+  variant                 ProductVariant? @relation(fields: [variantId], references: [id])
+  quoteItems              QuoteItem[]
+}
+
+model RfqAttachment {
+  id         String   @id @default(cuid())
+  rfqId      String
+  documentId String
+
+  rfq        Rfq      @relation(fields: [rfqId], references: [id], onDelete: Cascade)
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@unique([rfqId, documentId])
+}
+
+model Quote {
+  id            String      @id @default(cuid())
+  publicId      String      @unique
+  rfqId         String
+  sellerCompanyId String
+  createdByUserId String
+  revisionNo    Int         @default(1)
+  currency      String      @default("USD")
+  incoterm      String      @default("FOB")
+  fobPort       String?
+  validityDate  DateTime?
+  leadTimeDays  Int?
+  moqNote       String?
+  subtotalUsd   Decimal     @db.Decimal(12, 2)
+  status        QuoteStatus @default(DRAFT)
+  pdfDocumentId String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  rfq           Rfq         @relation(fields: [rfqId], references: [id], onDelete: Cascade)
+  sellerCompany Company     @relation("SellerQuotes", fields: [sellerCompanyId], references: [id], onDelete: Cascade)
+  createdByUser User        @relation("CreatedQuotes", fields: [createdByUserId], references: [id], onDelete: Cascade)
+  pdfDocument   Document?   @relation("QuotePdfDocument", fields: [pdfDocumentId], references: [id])
+  items         QuoteItem[]
+  order         Order?
+}
+
+model QuoteItem {
+  id            String    @id @default(cuid())
+  quoteId       String
+  rfqItemId     String?
+  productId     String?
+  lineLabel     String
+  quantity      Int
+  unitPriceUsd  Decimal   @db.Decimal(12, 2)
+  totalPriceUsd Decimal   @db.Decimal(12, 2)
+  leadTimeDays  Int?
+  moq           Int?
+  note          String?
+
+  quote         Quote     @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  rfqItem       RfqItem?  @relation(fields: [rfqItemId], references: [id])
+  product       Product?  @relation(fields: [productId], references: [id])
+}
+
+model Order {
+  id                String      @id @default(cuid())
+  publicId          String      @unique
+  quoteId           String      @unique
+  buyerCompanyId    String
+  sellerCompanyId   String
+  createdByUserId   String
+  currency          String      @default("USD")
+  incoterm          String      @default("FOB")
+  shipmentType      ShipmentType @default(LCL)
+  sourceCountry     String      @default("CN")
+  orderTotalUsd     Decimal     @db.Decimal(12, 2)
+  status            OrderStatus @default(DRAFT)
+  commercialSnapshotJson Json
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+
+  quote             Quote       @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  buyerCompany      Company     @relation("BuyerOrders", fields: [buyerCompanyId], references: [id], onDelete: Cascade)
+  sellerCompany     Company     @relation("SellerOrders", fields: [sellerCompanyId], references: [id], onDelete: Cascade)
+  createdByUser     User        @relation("CreatedOrders", fields: [createdByUserId], references: [id], onDelete: Cascade)
+  items             OrderItem[]
+  statusHistory     OrderStatusHistory[]
+  payments          Payment[]
+  shipment          Shipment?
+}
+
+model OrderItem {
+  id                      String   @id @default(cuid())
+  orderId                 String
+  productId               String?
+  lineLabel               String
+  quantity                Int
+  uom                     String
+  unitPriceUsd            Decimal  @db.Decimal(12, 2)
+  totalPriceUsd           Decimal  @db.Decimal(12, 2)
+  specificationSnapshotJson Json?
+
+  order                   Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product                 Product? @relation(fields: [productId], references: [id])
+}
+
+model OrderStatusHistory {
+  id             String      @id @default(cuid())
+  orderId        String
+  fromStatus     OrderStatus?
+  toStatus       OrderStatus
+  changedByUserId String
+  changedAt      DateTime    @default(now())
+  note           String?
+
+  order          Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  changedByUser  User        @relation(fields: [changedByUserId], references: [id], onDelete: Cascade)
+}
+
+model Payment {
+  id             String        @id @default(cuid())
+  orderId        String
+  paymentType    PaymentType
+  dueDate        DateTime?
+  percentage     Decimal?      @db.Decimal(5, 2)
+  amountUsd      Decimal       @db.Decimal(12, 2)
+  status         PaymentStatus @default(PENDING)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  order          Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  events         PaymentEvent[]
+}
+
+model PaymentEvent {
+  id                 String   @id @default(cuid())
+  paymentId          String
+  eventType          String
+  actorUserId        String
+  note               String?
+  remittanceReference String?
+  documentId         String?
+  createdAt          DateTime @default(now())
+
+  payment            Payment  @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  actorUser          User     @relation(fields: [actorUserId], references: [id], onDelete: Cascade)
+  document           Document? @relation("PaymentEventDocument", fields: [documentId], references: [id])
+}
+
+model Shipment {
+  id              String         @id @default(cuid())
+  orderId         String         @unique
+  incoterm        String         @default("FOB")
+  originCountry   String         @default("CN")
+  fobPort         String?
+  etd             DateTime?
+  eta             DateTime?
+  vessel          String?
+  voyage          String?
+  containerNo     String?
+  blNo            String?
+  freightForwarder String?
+  status          ShipmentStatus @default(PLANNING)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  order           Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  milestones      ShipmentMilestone[]
+}
+
+model ShipmentMilestone {
+  id             String          @id @default(cuid())
+  shipmentId     String
+  code           String
+  label          String
+  occurredAt     DateTime?
+  status         MilestoneStatus @default(PENDING)
+  buyerVisible   Boolean         @default(true)
+  sellerVisible  Boolean         @default(true)
+  opsOnly        Boolean         @default(false)
+  note           String?
+  createdByUserId String
+  createdAt      DateTime        @default(now())
+
+  shipment       Shipment        @relation(fields: [shipmentId], references: [id], onDelete: Cascade)
+  createdByUser  User            @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+}
+
+model Document {
+  id               String            @id @default(cuid())
+  publicId         String            @unique
+  ownerCompanyId   String?
+  storageBucket    String
+  storageKey       String
+  originalFilename String
+  storedFilename   String
+  mimeType         String
+  sizeBytes        Int
+  checksumSha256   String
+  documentType     DocumentType
+  status           DocumentStatus    @default(PENDING_SCAN)
+  uploadedByUserId String
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  ownerCompany     Company?          @relation("CompanyDocuments", fields: [ownerCompanyId], references: [id])
+  uploadedByUser   User              @relation("UploadedDocuments", fields: [uploadedByUserId], references: [id], onDelete: Cascade)
+  productLinks     ProductDocument[]
+  rfqLinks         RfqAttachment[]
+  accessRules      DocumentAccessRule[]
+  quotePdfFor      Quote[]           @relation("QuotePdfDocument")
+  paymentEventDocs PaymentEvent[]    @relation("PaymentEventDocument")
+}
+
+model DocumentAccessRule {
+  id               String             @id @default(cuid())
+  documentId       String
+  visibility       DocumentVisibility
+  buyerCompanyId   String?
+  sellerCompanyId  String?
+
+  document         Document           @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  buyerCompany     Company?           @relation("BuyerAccessRules", fields: [buyerCompanyId], references: [id])
+  sellerCompany    Company?           @relation("SellerAccessRules", fields: [sellerCompanyId], references: [id])
+}
+
+model AuditLog {
+  id          String    @id @default(cuid())
+  actorUserId String?
+  companyId   String?
+  entityType  String
+  entityId    String
+  action      String
+  beforeJson  Json?
+  afterJson   Json?
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime  @default(now())
+
+  actorUser   User?     @relation(fields: [actorUserId], references: [id])
+  company     Company?  @relation(fields: [companyId], references: [id])
+}
+
+model Notification {
+  id         String    @id @default(cuid())
+  userId     String
+  companyId  String
+  type       String
+  title      String
+  body       String
+  link       String?
+  readAt     DateTime?
+  createdAt  DateTime  @default(now())
+
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  company    Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+}
+
+model AuthToken {
+  id         String    @id @default(cuid())
+  email      String
+  token      String    @unique
+  tokenType  TokenType
+  expiresAt  DateTime
+  usedAt     DateTime?
+  userId     String?
+  createdAt  DateTime  @default(now())
+
+  user       User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

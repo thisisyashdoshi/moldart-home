@@ -1,0 +1,20 @@
+[
+  {
+    "viewport": "portal-desktop-current",
+    "status": 200,
+    "title": "Moldart Trade Portal",
+    "hasOfflineCopy": false,
+    "overflow": false,
+    "consoleErrors": [],
+    "passed": true
+  },
+  {
+    "viewport": "portal-mobile-current",
+    "status": 200,
+    "title": "Moldart Trade Portal",
+    "hasOfflineCopy": false,
+    "overflow": false,
+    "consoleErrors": [],
+    "passed": true
+  }
+]

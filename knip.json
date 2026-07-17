@@ -1,0 +1,14 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": [
+    "lead-forms.js",
+    "sw.js",
+    "reels/moldart-site-reel/reel.js",
+    "scripts/**/*.{js,mjs}",
+    "functions/**/*.{js,mjs}",
+    "netlify/functions/**/*.{js,mjs}"
+  ],
+  "project": ["**/*.{js,mjs}"],
+  "ignore": ["trade-portal/**", "**/*-YASH-LAPTOP.*"],
+  "ignoreDependencies": ["@secretlint/secretlint-rule-preset-recommend", "linkinator"]
+}

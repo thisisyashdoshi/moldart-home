@@ -1,0 +1,75 @@
+const form = document.getElementById('ows-intake-form');
+  const statusBox = document.getElementById('status');
+
+  function values(name) {
+    return Array.from(form.querySelectorAll(`[name="${name}"]:checked`)).map((input) => input.value);
+  }
+  function show(type, messages) {
+    statusBox.className = `status ${type}`;
+    statusBox.innerHTML = Array.isArray(messages) ? `<ul>${messages.map((m) => `<li>${m}</li>`).join('')}</ul>` : messages;
+  }
+  function collect() {
+    const fd = new FormData(form);
+    return {
+      fullName: fd.get('fullName'),
+      email: fd.get('email'),
+      phone: fd.get('phone'),
+      country: fd.get('country'),
+      organization: fd.get('organization'),
+      designation: fd.get('designation'),
+      yearsExperience: fd.get('yearsExperience'),
+      primaryExpertise: values('primaryExpertise'),
+      materialExpertise: values('materialExpertise'),
+      boardExpertise: values('boardExpertise'),
+      preferredDraft: fd.get('preferredDraft'),
+      profileProof: fd.get('profileProof'),
+      experienceEvidence: fd.get('experienceEvidence'),
+      optionalCvLink: fd.get('optionalCvLink'),
+      publicCreditConsent: fd.get('publicCreditConsent'),
+      conflictOfInterest: fd.get('conflictOfInterest'),
+      confidentialityConfirmation: fd.get('confidentialityConfirmation'),
+      reviewMethodConfirmation: fd.get('reviewMethodConfirmation'),
+      dataConsent: fd.get('dataConsent') === 'yes',
+      sourcePage: fd.get('sourcePage'),
+      website: fd.get('website'),
+    };
+  }
+  function clientValidate(payload) {
+    const errors = [];
+    if (!form.reportValidity()) errors.push('Please complete all required fields in the correct format.');
+    for (const group of ['primaryExpertise', 'materialExpertise', 'boardExpertise']) {
+      if (!payload[group].length) errors.push(`Select at least one ${group.replace(/([A-Z])/g, ' $1').toLowerCase()} option.`);
+    }
+    const bullets = String(payload.experienceEvidence || '').split(/\n|•|\u2022|\d+\)|\d+\.|;|\|/).map((s) => s.trim()).filter((s) => s.length >= 18);
+    if (bullets.length < 3) errors.push('Technical experience evidence must include at least 3 non-confidential bullets.');
+    if (/^(linkedin|na|n\/a|none|-|test)$/i.test(String(payload.profileProof || '').trim())) errors.push('Profile proof cannot be a placeholder; paste a real https URL or official verification note.');
+    return errors;
+  }
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const button = form.querySelector('button[type="submit"]');
+    const payload = collect();
+    const errors = clientValidate(payload);
+    if (errors.length) return show('error', errors);
+    button.disabled = true;
+    show('ok', 'Submitting intake for screening…');
+    try {
+      const response = await fetch('/api/ows-intake', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.ok) {
+        show('error', result.errors || ['Submission could not be accepted. Please email info@moldartindia.com.']);
+      } else {
+        form.reset();
+        show('ok', 'Thank you. Your reviewer intake was received for screening. No document access is granted until Moldart approves a specific private review copy.');
+      }
+    } catch (_) {
+      show('error', ['Network or intake service error. Please email info@moldartindia.com or try again later.']);
+    } finally {
+      button.disabled = false;
+    }
+  });

@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /portal/
+Disallow: /open-wood-science/
 Disallow: /data/
 Disallow: /sw.js
 Disallow: /offline.html
@@ -18,13 +21,12 @@ User-agent: Claude-User
 Allow: /
 
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: ClaudeBot
-Disallow: /
+Allow: /
 
 User-agent: CCBot
-Disallow: /
+Allow: /
 
 Sitemap: https://moldartindia.com/sitemap.xml
-Sitemap: https://moldartindia.com/sitemap-images.xml

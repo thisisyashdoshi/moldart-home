@@ -1,0 +1,75 @@
+services:
+  portal-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: trade_portal
+      POSTGRES_USER: portal
+      POSTGRES_PASSWORD: portal
+    ports:
+      - '55432:5432'
+    volumes:
+      - portal_db_data:/var/lib/postgresql/data
+
+  portal-redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+
+  portal-minio:
+    image: minio/minio:latest
+    command: server /data --console-address ':9001'
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    ports:
+      - '19000:9000'
+      - '19001:9001'
+    volumes:
+      - portal_minio_data:/data
+
+  portal-minio-init:
+    image: minio/mc:latest
+    depends_on:
+      - portal-minio
+    entrypoint: >
+      /bin/sh -c "
+      until /usr/bin/mc alias set local http://portal-minio:9000 minioadmin minioadmin; do sleep 1; done;
+      /usr/bin/mc mb -p local/trade-portal-documents || true;
+      /usr/bin/mc anonymous set none local/trade-portal-documents || true;
+      exit 0;
+      "
+
+  portal-mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+
+  trade-portal-app:
+    build:
+      context: ./trade-portal
+      dockerfile: Dockerfile
+    working_dir: /app
+    command: sh -c "npm install && npm run prisma:generate && npx prisma migrate deploy && npm run dev -- --hostname 0.0.0.0"
+    env_file:
+      - ./trade-portal/.env.example
+    environment:
+      DATABASE_URL: postgresql://portal:portal@portal-db:5432/trade_portal?schema=public
+      REDIS_URL: redis://portal-redis:6379
+      S3_ENDPOINT: http://portal-minio:9000
+      NEXTAUTH_URL: http://localhost:3100
+      APP_URL: http://localhost:3100
+    depends_on:
+      - portal-db
+      - portal-redis
+      - portal-minio
+      - portal-mailpit
+    ports:
+      - '3100:3000'
+    volumes:
+      - ./trade-portal:/app
+      - /app/node_modules
+
+volumes:
+  portal_db_data:
+  portal_minio_data:

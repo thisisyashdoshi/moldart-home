@@ -1,0 +1,494 @@
+{
+  "guideIndex": [
+    "RFQ & Sourcing Control",
+    "Decorative Stainless Steel",
+    "Lamination Tooling",
+    "Printed Decor Paper & Cylinders",
+    "Panel Systems",
+    "Decorative Surfaces",
+    "Flooring Systems",
+    "Furniture Programmes",
+    "Formwork / Shuttering",
+    "Industrial Tooling"
+  ],
+  "existing31": [
+    {
+      "slug": "custom-furniture-brief-guide",
+      "title": "Custom Furniture Briefs: Turning Layout Intent into a Usable RFQ",
+      "status": "upgraded-published",
+      "buyerIntent": "a custom furniture idea needs room/use, dimensions, drawing status, finish, board route, hardware, quantity, packing, destination, and approval-pack language before pricing."
+    },
+    {
+      "slug": "ready-made-furniture-procurement-guide",
+      "title": "Ready-Made Furniture Procurement: What to Lock Before Dispatch",
+      "status": "upgraded-published",
+      "buyerIntent": "ready-made or modular furniture is moving toward dispatch and cartons, hardware, spares, damage tolerance, packing photos, and loading photos need to be controlled."
+    },
+    {
+      "slug": "custom-furniture-brief-drawing-sample-guide",
+      "title": "Custom Furniture Briefs: Drawing, Material Route, and Sample Approval",
+      "status": "upgraded-published",
+      "buyerIntent": "the initial furniture RFQ has moved into post-RFQ approval and drawing, material route, surface sample, hardware, and retained reference need to be frozen."
+    },
+    {
+      "slug": "decorative-ss-panel-approval-guide",
+      "title": "Decorative Stainless Steel Panel Approval: Grade, Finish, Sample, Environment",
+      "status": "upgraded-published",
+      "buyerIntent": "a decorative stainless panel is being approved for dry interior, humid interior, coastal, elevator, hospitality, retail, or public touch-zone use."
+    },
+    {
+      "slug": "decorative-stainless-steel-sourcing-note",
+      "title": "Decorative Stainless Steel: Grades, Finishes, and Sourcing Routes",
+      "status": "upgraded-published",
+      "buyerIntent": "grade, finish family, protection, document proof, and commercial route need to be aligned without relying on a supplier-name or brochure-only comparison."
+    },
+    {
+      "slug": "ss-201-vs-304-panels",
+      "title": "SS 201 vs SS 304: Decorative Stainless Steel Panel Selection",
+      "status": "upgraded-published",
+      "buyerIntent": "SS 201 and SS 304 are being compared for decorative panels and the buyer needs to separate dry interior cost-sensitive use from humid, coastal, public, or longer-service expectations."
+    },
+    {
+      "slug": "ss-profiles-application-guide",
+      "title": "Stainless Steel Profiles: Why the Trim Route Should Follow the Panel Route",
+      "status": "upgraded-published",
+      "buyerIntent": "U, T, L, channel, skirting, divider, inlay, or edge trim needs to match the panel grade, finish, thickness, direction, and site detail."
+    },
+    {
+      "slug": "decorative-stainless-steel-finish-family-guide",
+      "title": "Decorative Stainless Steel Finish Families: What Buyers Should Compare",
+      "status": "upgraded-published",
+      "buyerIntent": "hairline, No.4, mirror, etch, bead blast, PVD, or AFP finishes must be compared by scratch visibility, fingerprint risk, reflection, cleaning, coating fit, and packing sensitivity."
+    },
+    {
+      "slug": "engineered-flooring-selection-guide",
+      "title": "Laminate Flooring Selection: Construction, Use Class, and System Approval",
+      "status": "upgraded-published",
+      "buyerIntent": "an HDF-core laminate flooring system must be selected with its construction, declared use class, locking profile, underlay, accessories, and site-readiness conditions together."
+    },
+    {
+      "slug": "wood-flooring-core-moisture-wear-class-guide",
+      "title": "Laminate Flooring Core, Moisture, and Wear: What Buyers Should Verify",
+      "status": "upgraded-published",
+      "buyerIntent": "a laminate flooring dispatch is being considered before the approved core data, site moisture, acclimatisation, storage, expansion, and underlay requirements are settled."
+    },
+    {
+      "slug": "engraved-cylinders-repeat-accuracy-guide",
+      "title": "Engraved Cylinders: Repeat Accuracy, Depth, and Why the Print Start Point Matters",
+      "status": "upgraded-published",
+      "buyerIntent": "a decor-print cylinder needs circumference, face length, repeat length, engraving depth, proofing sample, start-point mark, and artwork requirement confirmed before production pressure builds."
+    },
+    {
+      "slug": "press-pads-heat-pressure-note",
+      "title": "Press Pads: Why Heat Transfer and Pressure Equalisation Matter More Than Brochure Claims",
+      "status": "upgraded-published",
+      "buyerIntent": "a lamination line is reviewing pad fit and needs heat transfer, pressure equalisation, stack position, and failure symptoms linked to the finished board output."
+    },
+    {
+      "slug": "press-pads-quality-replacement-checks",
+      "title": "Press Pads Quality & Replacement Checks for Running Lamination Lines",
+      "status": "upgraded-published",
+      "buyerIntent": "a running line needs pad cycles, temperature, visible wear, board symptoms, gloss drift, shrinkage, and replacement trigger recorded before panel output drifts further."
+    },
+    {
+      "slug": "press-plates-panel-quality-guide",
+      "title": "Press Plates and Panel Quality: What Actually Changes the Surface",
+      "status": "upgraded-published",
+      "buyerIntent": "dots, scratches, gloss variation, uneven texture, orange peel, pressure marks, contamination, and chrome wear need to be mapped before changing the tooling route."
+    },
+    {
+      "slug": "press-plates-replacement-programme-guide",
+      "title": "Press Plates Replacement Programmes: What Buyers Should Lock Before Reordering",
+      "status": "upgraded-published",
+      "buyerIntent": "an old plate is being reordered and the buyer needs old plate code, texture, size, chrome route, hardness, press line, approved board sample, and earlier defect notes in one record."
+    },
+    {
+      "slug": "printed-decor-paper-selection-guide",
+      "title": "Printed Decor Paper: What to Lock Before Impregnation and Pressing",
+      "status": "upgraded-published",
+      "buyerIntent": "decor paper needs GSM, width, roll length, design code, ink route, wet tensile, repeat continuity, and master sample locked before impregnation."
+    },
+    {
+      "slug": "press-plate-chrome-condition-guide",
+      "title": "Press Plate Chrome Condition: Why Surface Wear Changes Panel Output",
+      "status": "upgraded-published",
+      "buyerIntent": "scratches, pinholes, dullness, edge wear, handling marks, and cleaning marks need to be separated from wider process problems."
+    },
+    {
+      "slug": "press-plates-pads-smart-tooling-perfect-panels",
+      "title": "Press Plates and Press Pads: Smart Tooling for Better Panel Consistency",
+      "status": "upgraded-published",
+      "buyerIntent": "plate, pad, paper, resin, board moisture, temperature, pressure, and time must be reviewed as one lamination stack instead of isolated product claims."
+    },
+    {
+      "slug": "printed-decor-paper-batch-repeat-approval-guide",
+      "title": "Printed Decor Paper Batch Repeat: Approval Before Impregnation",
+      "status": "upgraded-published",
+      "buyerIntent": "a repeat decor batch needs master sample, batch sample, light source, Delta E if available, metamerism check, and retained sample before impregnation."
+    },
+    {
+      "slug": "industrial-press-plates-pcb-ccl-note",
+      "title": "Industrial Press Plates for PCB and CCL: Flatness, Parallelism, and Surface Control",
+      "status": "upgraded-published",
+      "buyerIntent": "industrial press plates are being reviewed for PCB, CCL, or technical laminate work where flatness, parallelism, roughness, hardness, burr-free edge, and protective packing decide acceptance."
+    },
+    {
+      "slug": "industrial-press-plates-quality-priorities",
+      "title": "Industrial Press Plates: Flatness, Parallelism, and Incoming Inspection Priorities",
+      "status": "upgraded-published",
+      "buyerIntent": "incoming inspection needs to focus on flatness, parallelism, surface condition, document match, and handling release without duplicating the receiving checklist."
+    },
+    {
+      "slug": "standard-vs-industrial-press-plates",
+      "title": "Standard Press Plates vs Industrial Press Plates: When the Requirement Changes",
+      "status": "upgraded-published",
+      "buyerIntent": "a buyer needs to decide when decorative lamination, PCB/CCL, security laminate, or technical laminate requirements move from finish approval into tolerance-led tooling control."
+    },
+    {
+      "slug": "industrial-press-plates-receiving-flatness-checklist",
+      "title": "Industrial Press Plate Receiving Checklist: Flatness, Surface, and Handling",
+      "status": "upgraded-published",
+      "buyerIntent": "receiving needs a checklist-format decision page for pack ID, documents, flatness, surface, edge, handling, and release status before the plate enters plant circulation."
+    },
+    {
+      "slug": "mdf-vs-hdf-surface-readiness-guide",
+      "title": "MDF vs HDF: Surface Readiness, Density, and Conversion Fit",
+      "status": "upgraded-published",
+      "buyerIntent": "MDF and HDF need to be compared by density, swelling, internal bond, screw holding, sanding, edge finish, lamination, painting, and routing fit."
+    },
+    {
+      "slug": "osb-application-fit-guide",
+      "title": "OSB: When It Fits, When It Doesn't, and What to Confirm Early",
+      "status": "upgraded-published",
+      "buyerIntent": "OSB is being considered and the buyer needs an OSB/1 to OSB/4 use map, moisture expectation, fastening route, and visual limitation before overbuilding the decision."
+    },
+    {
+      "slug": "particleboard-buyers-guide",
+      "title": "Particleboard Buying Basics for Commercial Furniture Programmes",
+      "status": "upgraded-published",
+      "buyerIntent": "particleboard is being reviewed for commercial furniture and P2/P3/P5 logic, density, swelling, screw holding, edge banding, and emission document route need to be specified."
+    },
+    {
+      "slug": "plywood-vs-fiberboard-substrate-guide",
+      "title": "Plywood vs Fiberboard: Substrate Choice for Furniture Programmes",
+      "status": "upgraded-published",
+      "buyerIntent": "plywood and fiberboard need to be compared by screw holding, flatness, painting, lamination, routing, moisture, weight, and final furniture use."
+    },
+    {
+      "slug": "shuttering-plywood-surface-finish-note",
+      "title": "Shuttering Plywood Surface Finish and Reuse: What Buyers Should Compare",
+      "status": "upgraded-published",
+      "buyerIntent": "shuttering plywood is being compared by cost-per-use, concrete face, stripping, cleaning, oiling, handling, site discipline, and realistic reuse rather than first cost only."
+    },
+    {
+      "slug": "super-mirror-shuttering-plywood-guide",
+      "title": "Super-Mirror Shuttering Plywood: Surface Finish, Reuse, and Practical Fit",
+      "status": "upgraded-published",
+      "buyerIntent": "a premium concrete-facing plywood route is already under review and the buyer needs to confirm when smoother face quality pays back instead of treating it as a default upgrade."
+    },
+    {
+      "slug": "upgraded-shuttering-plywood-vs-aluminium-plastic-formwork",
+      "title": "Upgraded Shuttering Plywood vs Aluminium and Plastic Formwork: A Practical Comparison",
+      "status": "upgraded-published",
+      "buyerIntent": "formwork options need to be compared by first cost, cost per use, labour, repairability, repeatability, concrete finish, and project repetition instead of material name."
+    },
+    {
+      "slug": "hpl-vs-lpl-material-selection-guide",
+      "title": "HPL vs LPL Material Selection: Use Case Before Surface Choice",
+      "status": "upgraded-published",
+      "buyerIntent": "HPL, LPL, CPL, veneer, PET, PVC, acrylic, and melamine board routes need to be mapped from use case, substrate, edge, and approval requirement before price comparison."
+    }
+  ],
+  "new40": [
+    {
+      "slug": "fob-china-rfq-checklist-wood-steel-flooring-furniture-tooling",
+      "title": "FOB China RFQ Checklist for Wood, Steel, Flooring, Furniture, and Tooling",
+      "status": "published",
+      "buyerIntent": "an FOB China enquiry needs product, application, specification, document, packing, inspection, destination, incoterm, and timeline inputs normalized before price comparison."
+    },
+    {
+      "slug": "supplier-document-pack-tds-coa-mtc-test-report-packing-list-hs-discussion",
+      "title": "Supplier Document Pack: TDS, COA, MTC, Test Report, Packing List, HS Discussion",
+      "status": "published",
+      "buyerIntent": "a buyer needs to request only relevant supplier documents and connect each document to the material, approval, import, packing, or receiving decision it supports."
+    },
+    {
+      "slug": "decorative-stainless-steel-201-304-316-430",
+      "title": "Decorative Stainless Steel: 201 vs 304 vs 316 vs 430",
+      "status": "published",
+      "buyerIntent": "201, 304, 316, and 430 need to be compared by environment, finish, magnetic expectation, touch level, document proof, and service expectation."
+    },
+    {
+      "slug": "pvd-stainless-steel-buyer-checklist",
+      "title": "PVD Stainless Steel Buyer Checklist",
+      "status": "published",
+      "buyerIntent": "PVD stainless steel needs colour, substrate grade, finish base, sample, film, cleaning, batch, and receiving controls before project quantity."
+    },
+    {
+      "slug": "anti-fingerprint-stainless-steel-use-case-limits-cleaning",
+      "title": "Anti-Fingerprint Stainless Steel: Use Case, Limits, Cleaning",
+      "status": "published",
+      "buyerIntent": "anti-fingerprint stainless steel is being specified for a touch zone and the buyer needs use case, coating limit, cleaning method, sample, and receiving checks defined."
+    },
+    {
+      "slug": "mirror-stainless-steel-scratch-distortion-pvc-film-packing",
+      "title": "Mirror Stainless Steel: Scratch, Distortion, PVC Film, Packing",
+      "status": "published",
+      "buyerIntent": "mirror stainless steel is being reviewed and scratch visibility, reflection distortion, PVC film, interleaving, and packing evidence need to be controlled."
+    },
+    {
+      "slug": "decorative-stainless-steel-packing-receiving-checklist",
+      "title": "Decorative Stainless Steel Packing and Receiving Checklist",
+      "status": "published",
+      "buyerIntent": "decorative stainless sheets, panels, or profiles are being received and pack condition, PVC film, interleaving, corner protection, finish direction, and photo evidence need to be checked before release."
+    },
+    {
+      "slug": "mdf-hdf-emission-grades-e1-e0-carb-tsca-title-vi",
+      "title": "MDF/HDF Emission Grades: E1, E0, CARB, TSCA Title VI",
+      "status": "published",
+      "buyerIntent": "MDF/HDF emission language needs to be tied to destination, buyer requirement, E1/E0/CARB references, and EPA TSCA Title VI only where US-regulated composite wood rules apply."
+    },
+    {
+      "slug": "particleboard-vs-mdf-vs-plywood-modular-furniture",
+      "title": "Particleboard vs MDF vs Plywood for Modular Furniture",
+      "status": "published",
+      "buyerIntent": "modular furniture substrate options need to be compared by load, screw holding, surface finish, edge banding, moisture exposure, weight, emission route, and cost-to-correct."
+    },
+    {
+      "slug": "melamine-faced-board-lpl-buying-guide",
+      "title": "Melamine-Faced Board / LPL Buying Guide",
+      "status": "published",
+      "buyerIntent": "melamine-faced board or LPL needs board core, decor, edge banding, emission document, quantity, packing, and sample approval defined before programme comparison."
+    },
+    {
+      "slug": "hpl-vs-lpl-vs-cpl-vs-veneer-pet-pvc-acrylic",
+      "title": "HPL vs LPL vs CPL vs Veneer vs PET/PVC/Acrylic",
+      "status": "published",
+      "buyerIntent": "decorative surface families need to be compared by use case, substrate, edge, wear, cleaning, sample, and document proof rather than appearance alone."
+    },
+    {
+      "slug": "press-plate-defect-troubleshooting-guide",
+      "title": "Press Plate Defect Troubleshooting Guide",
+      "status": "published",
+      "buyerIntent": "surface defects such as dots, scratches, gloss drift, orange peel, pressure marks, contamination, or chrome wear need a hold/reject map before replacement decisions."
+    },
+    {
+      "slug": "press-pad-failure-symptoms-lamination-lines",
+      "title": "Press Pad Failure Symptoms in Lamination Lines",
+      "status": "published",
+      "buyerIntent": "a lamination line is seeing symptoms that may indicate pad ageing, compression loss, heat imbalance, or pressure transfer issues."
+    },
+    {
+      "slug": "lamination-stack-control-plate-pad-paper-substrate-press-cycle",
+      "title": "Lamination Stack Control: Plate + Pad + Paper + Substrate + Press Cycle",
+      "status": "published",
+      "buyerIntent": "plate, pad, paper, substrate, resin, board moisture, temperature, pressure, and time need to be aligned before the buyer treats one item as the root cause."
+    },
+    {
+      "slug": "printed-decor-paper-colour-matching-master-sample-batch-repeat-metamerism",
+      "title": "Printed Decor Paper Colour Matching: Master Sample, Batch Repeat, Metamerism",
+      "status": "published",
+      "buyerIntent": "decor paper colour approval needs master sample, batch sample, agreed light source, metamerism check, Delta E if available, and retained sample control."
+    },
+    {
+      "slug": "flooring-accessories-skirting-stair-nosing-t-moulding-reducers-end-caps",
+      "title": "Flooring Accessories: Skirting, Stair Nosing, T-Moulding, Reducers, End Caps",
+      "status": "published",
+      "buyerIntent": "flooring accessories need to be specified with the floor board, decor, height transition, stair detail, expansion gap, and site handover requirement."
+    },
+    {
+      "slug": "flooring-site-readiness-before-dispatch",
+      "title": "Laminate Flooring Site Readiness Before Dispatch",
+      "status": "published",
+      "buyerIntent": "laminate flooring should not be dispatched until subfloor moisture, storage, acclimatisation, underlay, expansion allowance, accessories, and installation limits are checked."
+    },
+    {
+      "slug": "formwork-plywood-cost-per-use-vs-first-cost",
+      "title": "Formwork Plywood: Cost Per Use vs First Cost",
+      "status": "published",
+      "buyerIntent": "formwork plywood needs to be compared by cost per accepted use, repair effort, stripping, cleaning, oiling, concrete finish, and site discipline rather than first invoice value."
+    },
+    {
+      "slug": "china-sample-approval-route-buyer-counter-production-sample",
+      "title": "China Sample Approval Route: Buyer Sample, Counter Sample, Production Sample",
+      "status": "published",
+      "buyerIntent": "a sample-led import or sourcing requirement needs buyer sample, counter sample, production sample, retained sample, approval owner, and receiving check separated into clear gates."
+    },
+    {
+      "slug": "what-buyers-should-not-compare-only-by-price",
+      "title": "What Buyers Should Not Compare Only by Price",
+      "status": "published",
+      "buyerIntent": "two quotes look cheaper or costlier but the buyer has not normalized specification, sample, document, packing, inspection, destination, incoterm, and correction risk."
+    },
+    {
+      "slug": "decorative-steel-for-elevators-panels-profiles-grade-finish-protection",
+      "title": "Decorative Steel for Elevators: Panels, Profiles, Grade, Finish, Protection",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "an elevator interior steel package needs panels, profiles, grade, finish direction, film, AFP/PVD limits, and site protection confirmed before publication as a standalone guide."
+    },
+    {
+      "slug": "decorative-steel-hotels-retail-interiors",
+      "title": "Decorative Steel for Hotels and Retail Interiors",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "hotel or retail decorative steel needs a project-use matrix before it can avoid overlapping the broader decorative stainless guides."
+    },
+    {
+      "slug": "ss-furniture-grade-weld-frame-pvd-afp-approval",
+      "title": "SS Furniture: Grade, Weld, Frame, PVD/AFP Approval",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "stainless furniture needs frame, weld, grade, PVD/AFP, top material, packing, and site handover controls before publication."
+    },
+    {
+      "slug": "stainless-steel-etched-sheets-pattern-depth-pvd-cleaning",
+      "title": "Stainless Steel Etched Sheets: Pattern, Depth, PVD, Cleaning",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "etched stainless sheets need pattern, depth, coating, cleaning, and sample proof separated from generic finish-family content."
+    },
+    {
+      "slug": "matte-bead-blasted-stainless-steel-ra-uniformity-handling",
+      "title": "Matte / Bead-Blasted Stainless Steel: Ra, Uniformity, Handling",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "matte or bead-blasted stainless needs roughness language, uniformity, handling, cleaning, and packing checks before publication."
+    },
+    {
+      "slug": "press-plate-hardness-chrome-what-buyers-should-ask",
+      "title": "Press Plate Hardness and Chrome: What Buyers Should Ask",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "hardness and chrome questions need to stay practical and avoid becoming an unsupported performance claim."
+    },
+    {
+      "slug": "press-plate-storage-handling-sop",
+      "title": "Press Plate Storage and Handling SOP",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "storage and handling needs a real SOP format with hold/reject triggers before it should be public."
+    },
+    {
+      "slug": "press-plate-re-chroming-vs-replacement",
+      "title": "Press Plate Re-Chroming vs Replacement",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "re-chroming versus replacement needs buyer-specific defect history and economics before publication."
+    },
+    {
+      "slug": "engraved-cylinder-approval-decor-paper-printing",
+      "title": "Engraved Cylinder Approval for Decor Paper Printing",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "engraved cylinder approval needs proofing, repeat, start-point, and artwork gates distinct from the existing repeat-accuracy guide."
+    },
+    {
+      "slug": "overlay-paper-wear-layer-basics",
+      "title": "Overlay Paper and Wear Layer Basics",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "overlay paper and wear layer content needs enough distinct buyer demand before it is published separately from surface-route and flooring guides."
+    },
+    {
+      "slug": "edge-banding-match-board-decor-paper-laminate-furniture-route",
+      "title": "Edge Banding Match: Board, Decor Paper, Laminate, Furniture Route",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "edge banding needs a cross-route match guide before publication and must avoid duplicating furniture dispatch content."
+    },
+    {
+      "slug": "mdf-hdf-painting-lamination-routing",
+      "title": "MDF/HDF for Painting vs Lamination vs Routing",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "MDF/HDF conversion needs separate painting, lamination, and routing proof points before publication."
+    },
+    {
+      "slug": "particleboard-screw-holding-edge-banding-risk",
+      "title": "Particleboard Screw Holding and Edge Banding Risk",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "particleboard screw and edge risks need sample-test detail before publication as a narrow troubleshooting guide."
+    },
+    {
+      "slug": "plywood-face-grade-core-gap-glue-line-bond-route",
+      "title": "Plywood Face Grade, Core Gap, Glue Line, Bond Route",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "plywood face/core/bond content needs document and sample proof before publication as a separate technical page."
+    },
+    {
+      "slug": "osb-vs-plywood-structural-fit-moisture-fastening-cost",
+      "title": "OSB vs Plywood: Structural Fit, Moisture, Fastening, Cost",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "OSB versus plywood needs a distinct structural-fit decision matrix before publication."
+    },
+    {
+      "slug": "shuttering-plywood-receiving-checklist",
+      "title": "Shuttering Plywood Receiving Checklist",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "shuttering plywood receiving needs a checklist/download asset and should be published only if it is not duplicating the cost-per-use guide."
+    },
+    {
+      "slug": "super-mirror-shuttering-plywood-premium-surface-payback",
+      "title": "Super-Mirror Shuttering Plywood: When Premium Surface Pays Back",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "premium shuttering plywood needs human confirmation of active commercial focus before it is published as a new page."
+    },
+    {
+      "slug": "furniture-hardware-checklist-before-dispatch",
+      "title": "Furniture Hardware Checklist Before Dispatch",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "furniture hardware needs counts, spare logic, assembly instruction, and carton marking before publication outside the broader dispatch guide."
+    },
+    {
+      "slug": "furniture-packing-kd-flat-pack-carton-marking-site-handover",
+      "title": "Furniture Packing, KD/Flat-Pack, Carton Marking, Site Handover",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "KD and flat-pack furniture content needs stronger non-duplicate packing and site handover evidence before publication."
+    },
+    {
+      "slug": "document-readiness-wood-steel-surface-material-imports",
+      "title": "Document Readiness for Wood, Steel, and Surface Material Imports",
+      "status": "complete-draft-not-public",
+      "buyerIntent": "import document readiness needs stronger differentiation from the supplier document pack before publication."
+    }
+  ],
+  "downloads": [
+    {
+      "id": "fob-china-rfq-checklist",
+      "title": "FOB China RFQ Checklist",
+      "filename": "fob-china-rfq-checklist.txt"
+    },
+    {
+      "id": "supplier-document-pack",
+      "title": "Supplier Document Pack",
+      "filename": "supplier-document-pack.txt"
+    },
+    {
+      "id": "decorative-ss-receiving-checklist",
+      "title": "Decorative SS Receiving Checklist",
+      "filename": "decorative-ss-receiving-checklist.txt"
+    },
+    {
+      "id": "press-plate-receiving-checklist",
+      "title": "Press Plate Receiving Checklist",
+      "filename": "press-plate-receiving-checklist.txt"
+    },
+    {
+      "id": "press-pad-replacement-log",
+      "title": "Press Pad Replacement Log",
+      "filename": "press-pad-replacement-log.txt"
+    },
+    {
+      "id": "flooring-site-readiness-checklist",
+      "title": "Flooring Site Readiness Checklist",
+      "filename": "flooring-site-readiness-checklist.txt"
+    },
+    {
+      "id": "buyer-inspection-plan",
+      "title": "Buyer Inspection Plan",
+      "filename": "buyer-inspection-plan.txt"
+    },
+    {
+      "id": "furniture-dispatch-checklist",
+      "title": "Furniture Dispatch Checklist",
+      "filename": "furniture-dispatch-checklist.txt"
+    },
+    {
+      "id": "shuttering-plywood-receiving-checklist",
+      "title": "Shuttering Plywood Receiving Checklist",
+      "filename": "shuttering-plywood-receiving-checklist.txt"
+    }
+  ],
+  "generatedAt": "2026-07-16",
+  "publishedInsightCount": 51,
+  "draftInsightCount": 20
+}

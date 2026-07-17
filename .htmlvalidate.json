@@ -1,0 +1,10 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "attr-quotes": "off",
+    "no-trailing-whitespace": "off",
+    "no-inline-style": "off",
+    "prefer-button": "off",
+    "prefer-native-element": "off"
+  }
+}

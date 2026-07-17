@@ -1,0 +1,26 @@
+[
+  {
+    "route": "/explore/",
+    "viewport": "desktop",
+    "file": "docs/review-screenshots/uiux-2026-05-23-after-guided/explore-desktop.png",
+    "size": 200147
+  },
+  {
+    "route": "/explore/",
+    "viewport": "mobile",
+    "file": "docs/review-screenshots/uiux-2026-05-23-after-guided/explore-mobile.png",
+    "size": 71807
+  },
+  {
+    "route": "/insights/",
+    "viewport": "desktop",
+    "file": "docs/review-screenshots/uiux-2026-05-23-after-guided/insights-desktop.png",
+    "size": 196180
+  },
+  {
+    "route": "/insights/",
+    "viewport": "mobile",
+    "file": "docs/review-screenshots/uiux-2026-05-23-after-guided/insights-mobile.png",
+    "size": 72803
+  }
+]

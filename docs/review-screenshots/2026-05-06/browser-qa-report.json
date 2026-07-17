@@ -1,0 +1,437 @@
+{
+  "generatedAt": "2026-05-06T06:54:36.008Z",
+  "outDir": "C:\\Users\\Yash\\OneDrive - Deco Metal\\WORK\\OTHERS\\MASTER - YASH\\MARKETING\\TECH\\WEBSITE\\existing-new\\work\\docs\\review-screenshots\\2026-05-06",
+  "results": [
+    {
+      "surface": "site",
+      "viewport": "mobile",
+      "page": "home",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "mobile",
+      "page": "solutions",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "mobile",
+      "page": "resources",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "mobile",
+      "page": "process",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "mobile",
+      "page": "contact",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "mobile",
+      "page": "portal",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "tablet",
+      "page": "home",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "tablet",
+      "page": "solutions",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "tablet",
+      "page": "resources",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "tablet",
+      "page": "process",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "tablet",
+      "page": "contact",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "tablet",
+      "page": "portal",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "desktop",
+      "page": "home",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "desktop",
+      "page": "solutions",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "desktop",
+      "page": "resources",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "desktop",
+      "page": "process",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "desktop",
+      "page": "contact",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "desktop",
+      "page": "portal",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "wide",
+      "page": "home",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "wide",
+      "page": "solutions",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "wide",
+      "page": "resources",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "wide",
+      "page": "process",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "wide",
+      "page": "contact",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "site",
+      "viewport": "wide",
+      "page": "portal",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-login",
+      "viewport": "desktop",
+      "page": "login",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-login",
+      "viewport": "mobile",
+      "page": "login",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-buyer",
+      "viewport": "desktop",
+      "page": "/portal/buyer/dashboard",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-buyer",
+      "viewport": "desktop",
+      "page": "/portal/buyer/rfqs/new",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-buyer",
+      "viewport": "desktop",
+      "page": "/portal/buyer/quotes",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-buyer",
+      "viewport": "desktop",
+      "page": "/portal/buyer/orders",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-buyer",
+      "viewport": "desktop",
+      "page": "/portal/buyer/payments",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-buyer",
+      "viewport": "desktop",
+      "page": "/portal/buyer/logistics",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-buyer",
+      "viewport": "desktop",
+      "page": "/portal/buyer/documents",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-seller",
+      "viewport": "desktop",
+      "page": "/portal/seller/dashboard",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-seller",
+      "viewport": "desktop",
+      "page": "/portal/seller/inquiries",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-seller",
+      "viewport": "desktop",
+      "page": "/portal/seller/quotes",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-seller",
+      "viewport": "desktop",
+      "page": "/portal/seller/orders",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-seller",
+      "viewport": "desktop",
+      "page": "/portal/seller/logistics",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-seller",
+      "viewport": "desktop",
+      "page": "/portal/seller/documents",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-admin",
+      "viewport": "desktop",
+      "page": "/portal/admin/dashboard",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-admin",
+      "viewport": "desktop",
+      "page": "/portal/admin/rfqs",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-admin",
+      "viewport": "desktop",
+      "page": "/portal/admin/quotes",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-admin",
+      "viewport": "desktop",
+      "page": "/portal/admin/orders",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-admin",
+      "viewport": "desktop",
+      "page": "/portal/admin/payments",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-admin",
+      "viewport": "desktop",
+      "page": "/portal/admin/logistics",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-admin",
+      "viewport": "desktop",
+      "page": "/portal/admin/documents",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    },
+    {
+      "surface": "portal-admin",
+      "viewport": "desktop",
+      "page": "/portal/admin/audit",
+      "status": 200,
+      "hasOffline": false,
+      "hasVisibleSeedBlock": false,
+      "hasNextAction": true
+    }
+  ],
+  "consoleIssues": [],
+  "summary": {
+    "pages": 47,
+    "failures": 0,
+    "offlineFindings": 0,
+    "visibleSeedBlockFindings": 0,
+    "consoleIssues": 0
+  }
+}

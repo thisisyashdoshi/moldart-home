@@ -1,0 +1,390 @@
+{
+  "branch": "master",
+  "total": 378,
+  "buckets": {
+    "source": 64,
+    "generated": 191,
+    "docs": 9,
+    "tooling": 1,
+    "assets": 81,
+    "node": 0,
+    "tmp": 0,
+    "other": 32
+  },
+  "examples": {
+    "source": [
+      {
+        "status": " M",
+        "file": "_headers"
+      },
+      {
+        "status": " M",
+        "file": "_redirects"
+      },
+      {
+        "status": " M",
+        "file": "build.js"
+      },
+      {
+        "status": " M",
+        "file": "data/search-index.json"
+      },
+      {
+        "status": " M",
+        "file": "functions/api/chat.js"
+      },
+      {
+        "status": " M",
+        "file": "generate.js"
+      },
+      {
+        "status": " M",
+        "file": "main.js"
+      },
+      {
+        "status": " M",
+        "file": "package.json"
+      },
+      {
+        "status": " M",
+        "file": "site-overrides.css"
+      },
+      {
+        "status": " M",
+        "file": "site.webmanifest"
+      },
+      {
+        "status": " M",
+        "file": "wrangler.toml"
+      },
+      {
+        "status": "??",
+        "file": ".github/"
+      },
+      {
+        "status": "??",
+        "file": ".htmlvalidate.json"
+      },
+      {
+        "status": "??",
+        "file": ".prettierrc.json"
+      },
+      {
+        "status": "??",
+        "file": ".stylelintrc.json"
+      },
+      {
+        "status": "??",
+        "file": "data/ai-visual-manifest.json"
+      },
+      {
+        "status": "??",
+        "file": "data/ai-visual-prompts.json"
+      },
+      {
+        "status": "??",
+        "file": "data/online-presence-standard.json"
+      },
+      {
+        "status": "??",
+        "file": "data/youtube-library.json"
+      },
+      {
+        "status": "??",
+        "file": "eslint.config.mjs"
+      }
+    ],
+    "generated": [
+      {
+        "status": " M",
+        "file": "404.html"
+      },
+      {
+        "status": " M",
+        "file": "about/index.html"
+      },
+      {
+        "status": " M",
+        "file": "applications/architecture/index.html"
+      },
+      {
+        "status": " M",
+        "file": "applications/flooring/index.html"
+      },
+      {
+        "status": " M",
+        "file": "applications/furniture/index.html"
+      },
+      {
+        "status": " M",
+        "file": "applications/index.html"
+      },
+      {
+        "status": " M",
+        "file": "applications/lamination/index.html"
+      },
+      {
+        "status": " M",
+        "file": "applications/metal-finishing/index.html"
+      },
+      {
+        "status": " M",
+        "file": "applications/pcb-ccl/index.html"
+      },
+      {
+        "status": " M",
+        "file": "contact/index.html"
+      },
+      {
+        "status": " M",
+        "file": "explore/index.html"
+      },
+      {
+        "status": " M",
+        "file": "faq/index.html"
+      },
+      {
+        "status": " M",
+        "file": "index.html"
+      },
+      {
+        "status": " M",
+        "file": "industry/index.html"
+      },
+      {
+        "status": " M",
+        "file": "insights/custom-furniture-applications/index.html"
+      },
+      {
+        "status": " M",
+        "file": "insights/custom-furniture-brief-drawing-sample-guide/index.html"
+      },
+      {
+        "status": " M",
+        "file": "insights/custom-furniture-brief-guide/index.html"
+      },
+      {
+        "status": " M",
+        "file": "insights/custom-furniture-buyers-guide/index.html"
+      },
+      {
+        "status": " M",
+        "file": "insights/custom-furniture-comparison/index.html"
+      },
+      {
+        "status": " M",
+        "file": "insights/custom-furniture-guide/index.html"
+      }
+    ],
+    "docs": [
+      {
+        "status": "??",
+        "file": "AGENTS.md"
+      },
+      {
+        "status": "??",
+        "file": "architecture.md"
+      },
+      {
+        "status": "??",
+        "file": "data-model.md"
+      },
+      {
+        "status": "??",
+        "file": "docs/"
+      },
+      {
+        "status": "??",
+        "file": "insight-media-coverage.generated.md"
+      },
+      {
+        "status": "??",
+        "file": "roles-permissions-matrix.md"
+      },
+      {
+        "status": "??",
+        "file": "route-map.md"
+      },
+      {
+        "status": "??",
+        "file": "workflow-state-machines.md"
+      },
+      {
+        "status": "??",
+        "file": "youtube-insight-integration-report.generated.md"
+      }
+    ],
+    "tooling": [
+      {
+        "status": "??",
+        "file": "tests/"
+      }
+    ],
+    "assets": [
+      {
+        "status": " M",
+        "file": "images/insights/custom-furniture-brief-drawing-sample-guide.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/custom-furniture-brief-guide.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/decorative-ss-panel-approval-guide.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/decorative-stainless-steel-finish-family-guide.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/decorative-stainless-steel-sourcing-note.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/engineered-flooring-selection-guide.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/engraved-cylinders-repeat-accuracy-guide.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/hpl-vs-lpl-material-selection-guide.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/industrial-press-plates-quality-priorities.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/industrial-press-plates-receiving-flatness-checklist.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/mdf-vs-hdf-surface-readiness-guide.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/osb-application-fit-guide.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/particleboard-buyers-guide.png"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/particleboard-buyers-guide.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/press-pads-quality-replacement-checks.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/press-plate-chrome-condition-guide.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/press-plates-pads-smart-tooling-perfect-panels.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/printed-decor-paper-batch-repeat-approval-guide.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/printed-decor-paper-selection-guide.svg"
+      },
+      {
+        "status": " M",
+        "file": "images/insights/ready-made-furniture-procurement-guide.svg"
+      }
+    ],
+    "node": [],
+    "tmp": [],
+    "other": [
+      {
+        "status": "M ",
+        "file": "gitignore"
+      },
+      {
+        "status": " M",
+        "file": "llms-full.txt"
+      },
+      {
+        "status": " M",
+        "file": "llms.txt"
+      },
+      {
+        "status": " M",
+        "file": "netlify.toml"
+      },
+      {
+        "status": " M",
+        "file": "netlify/functions/chat.js"
+      },
+      {
+        "status": " D",
+        "file": "offline.html"
+      },
+      {
+        "status": " M",
+        "file": "portal/approvals/index.html"
+      },
+      {
+        "status": " M",
+        "file": "portal/catalog/index.html"
+      },
+      {
+        "status": " M",
+        "file": "portal/dashboard/index.html"
+      },
+      {
+        "status": " M",
+        "file": "portal/index.html"
+      },
+      {
+        "status": " M",
+        "file": "portal/orders/index.html"
+      },
+      {
+        "status": " M",
+        "file": "portal/rfq/index.html"
+      },
+      {
+        "status": " M",
+        "file": "portal/sign-in/index.html"
+      },
+      {
+        "status": " M",
+        "file": "portal/sign-up/index.html"
+      },
+      {
+        "status": " M",
+        "file": "preview-server.js"
+      },
+      {
+        "status": " M",
+        "file": "sw.js"
+      },
+      {
+        "status": "??",
+        "file": ".env.example"
+      },
+      {
+        "status": "??",
+        "file": ".pi-lens/"
+      },
+      {
+        "status": "??",
+        "file": ".prettierignore"
+      },
+      {
+        "status": "??",
+        "file": ".stylelintignore"
+      }
+    ]
+  }
+}
