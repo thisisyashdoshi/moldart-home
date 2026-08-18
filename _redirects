@@ -15,6 +15,10 @@
 /explore                  /explore/                 301
 /solutions                /solutions/               301
 /products                 /products/                301
+/products/decor-paper     /products/printed-decor-paper/ 301
+/products/decor-paper/    /products/printed-decor-paper/ 301
+/products/decorative-panels  /products/decorative-ss-panels/ 301
+/products/decorative-panels/ /products/decorative-ss-panels/ 301
 /applications             /solutions/               301
 /applications/            /solutions/               301
 /applications/*           /solutions/:splat/        301
