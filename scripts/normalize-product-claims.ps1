@@ -5,8 +5,11 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 $root = Split-Path -Parent $PSScriptRoot
-$dataPath = Join-Path $root 'data\product-directory.json'
-$data = Get-Content -LiteralPath $dataPath -Raw | ConvertFrom-Json -Depth 100
+$dataPaths = @(
+    (Join-Path $root 'data\product-directory.json'),
+    (Join-Path $root 'public-site\data\product-directory.json')
+)
+$data = Get-Content -LiteralPath $dataPaths[0] -Raw | ConvertFrom-Json -Depth 100
 
 $safe = [ordered]@{
     'press-plates' = @('Application and pressed product', 'Press type, stack position, and working size', 'Approved surface reference and acceptance method', 'Grade, coating, quantity, and timing confirmed per programme')
@@ -43,7 +46,41 @@ foreach ($product in @($data.products)) {
 }
 
 $json = $data | ConvertTo-Json -Depth 100
-[System.IO.File]::WriteAllText($dataPath, $json + [Environment]::NewLine, [System.Text.UTF8Encoding]::new($false))
+foreach ($dataPath in $dataPaths) {
+    [System.IO.File]::WriteAllText($dataPath, $json + [Environment]::NewLine, [System.Text.UTF8Encoding]::new($false))
+}
+
+$blockedSearchPatterns = @(
+    '(?i)\bHRC\b',
+    '(?i)\b\d[\d,]*(?:[–-]\d[\d,]*)?\s*kg/m(?:³|3)\b',
+    '(?i)\b\d[\d,]*(?:[–-]\d[\d,]*)?\s*cycles\b',
+    '(?i)\b(?:Ra\s*)?\d+(?:\.\d+)?(?:[–-]\d+(?:\.\d+)?)?\s*(?:μm|um)\b',
+    '(?i)\b\d+(?:[–-]\d+)?\s*GSM\b',
+    '(?i)\b(?:(?:above)\s*)?\d+(?:\.\d+)?\s*(?:MPa|N/mm²|N)\b',
+    '(?i)(?:±\s*\d+(?:\.\d+)?\s*mm|below\s*\d+(?:\.\d+)?\s*mm/m)',
+    '(?i)\bAC[3-5](?:[–-]AC[3-5])?\b',
+    '(?i)\bEN\s*13329\b',
+    '(?i)\b(?:above|below)\s*\d+(?:\.\d+)?%',
+    '(?i)\bThickness:\s*\d+(?:[–-]\d+)?\s*mm',
+    '(?i)\bMaximum width:\s*\d+(?:\.\d+)?\s*mm',
+    '(?i)\b(?:SS|SUS)\s*(?:201|301|304|316|420|430|630)\b',
+    '(?i)\b(?:E1|E0|CARB-NAF|F4 star|TSCA Title VI)\b'
+)
+$searchPaths = @(
+    (Join-Path $root 'data\search-index.json'),
+    (Join-Path $root 'public-site\data\search-index.json')
+)
+foreach ($searchPath in $searchPaths) {
+    $search = Get-Content -LiteralPath $searchPath -Raw | ConvertFrom-Json -Depth 100
+    foreach ($item in @($search)) {
+        if (@($blockedSearchPatterns | Where-Object { [string]$item.meta -match $_ }).Count) { $item.meta = 'Specification review inputs' }
+        $item.keywords = @($item.keywords | Where-Object {
+            $keyword = [string]$_
+            @($blockedSearchPatterns | Where-Object { $keyword -match $_ }).Count -eq 0
+        })
+    }
+    [System.IO.File]::WriteAllText($searchPath, (($search | ConvertTo-Json -Depth 100 -Compress) + [Environment]::NewLine), [System.Text.UTF8Encoding]::new($false))
+}
 
 $htmlFiles = @(
     Get-ChildItem -LiteralPath (Join-Path $root 'products') -Recurse -Filter index.html -File
@@ -104,5 +141,7 @@ foreach ($file in $htmlFiles) {
     productsNormalized = @($data.products).Count
     htmlFilesScanned = $htmlFiles.Count
     htmlFilesChanged = $changed
+    productDirectoryFiles = $dataPaths.Count
+    searchIndexFiles = $searchPaths.Count
     policy = 'Buyer-input fields replace unsupported supplier-specific specifications; exact values stay on evidence hold.'
 } | ConvertTo-Json

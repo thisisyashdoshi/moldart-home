@@ -7,6 +7,7 @@ $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 $files = @(
     Get-Item -LiteralPath (Join-Path $root 'data\product-directory.json')
+    Get-Item -LiteralPath (Join-Path $root 'public-site\data\product-directory.json')
     Get-ChildItem -LiteralPath (Join-Path $root 'products') -Recurse -Filter index.html -File
     Get-ChildItem -LiteralPath (Join-Path $root 'public-site\products') -Recurse -Filter index.html -File
 )
@@ -42,12 +43,33 @@ foreach ($file in $files) {
     }
 }
 
-$data = Get-Content -LiteralPath (Join-Path $root 'data\product-directory.json') -Raw | ConvertFrom-Json -Depth 100
-foreach ($product in @($data.products)) {
-    if (@($product.specs).Count -ne 4) { throw "Product $($product.id) does not have exactly four buyer inputs." }
-    if (@($product.technical.grades) -cne @('Confirm against the approved supplier record')) { throw "Product $($product.id) exposes unverified grades." }
-    if (@($product.technical.certifications).Count -ne 0) { throw "Product $($product.id) exposes an unverified certification." }
-    if ($product.technical.origin -cne 'Programme-dependent') { throw "Product $($product.id) exposes an unverified origin." }
+foreach ($searchPath in @((Join-Path $root 'data\search-index.json'), (Join-Path $root 'public-site\data\search-index.json'))) {
+    $search = Get-Content -LiteralPath $searchPath -Raw | ConvertFrom-Json -Depth 100
+    foreach ($item in @($search)) {
+        $claimFields = @([string]$item.meta) + @($item.keywords | ForEach-Object { [string]$_ })
+        foreach ($entry in $blocked.GetEnumerator()) {
+            $matches = @($claimFields | Where-Object { $_ -match [string]$entry.Value })
+            if ($matches.Count) {
+                $violations.Add([ordered]@{
+                    file = [System.IO.Path]::GetRelativePath($root, $searchPath)
+                    item = [string]$item.url
+                    rule = [string]$entry.Key
+                    count = $matches.Count
+                    examples = @($matches | Select-Object -Unique)
+                })
+            }
+        }
+    }
+}
+
+foreach ($dataPath in @((Join-Path $root 'data\product-directory.json'), (Join-Path $root 'public-site\data\product-directory.json'))) {
+    $data = Get-Content -LiteralPath $dataPath -Raw | ConvertFrom-Json -Depth 100
+    foreach ($product in @($data.products)) {
+        if (@($product.specs).Count -ne 4) { throw "Product $($product.id) does not have exactly four buyer inputs in $dataPath." }
+        if (@($product.technical.grades) -cne @('Confirm against the approved supplier record')) { throw "Product $($product.id) exposes unverified grades in $dataPath." }
+        if (@($product.technical.certifications).Count -ne 0) { throw "Product $($product.id) exposes an unverified certification in $dataPath." }
+        if ($product.technical.origin -cne 'Programme-dependent') { throw "Product $($product.id) exposes an unverified origin in $dataPath." }
+    }
 }
 $aliases = [ordered]@{
     'products\decor-paper\index.html' = 'https://moldartindia.com/products/printed-decor-paper/'
