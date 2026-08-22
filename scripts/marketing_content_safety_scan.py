@@ -3,8 +3,9 @@
 
 This is a narrow regression guard for MKT-009. It covers:
 1) printed/decor-paper universal GSM / wet-strength wording; and
-2) press-plate generalized numeric acceptance values that the current technical
-   master explicitly keeps order/drawing/material/coating/test-method specific.
+2) press-plate generalized acceptance values plus specific application/grade/surface
+   generalizations that the current technical sources keep order/application/drawing/
+   grade/coating/test-method specific.
 
 It does not replace Supply & Procurement technical validation.
 """
@@ -50,16 +51,36 @@ PRESS_PLATE_RULES = [
     (
         "UNIVERSAL_PRESS_PLATE_CORE_HARDNESS",
         re.compile(r"(?i)\bApprox\.\s*40\s*[-–—]\s*45\s*HRC\b"),
-        "Do not publish a universal substrate/core hardness; keep hardness tied to the exact grade, heat/condition, MTC/test evidence and approved order.",
+        "Do not publish a universal substrate/core hardness; keep hardness tied to exact grade, condition, MTC/test evidence and approved order.",
+    ),
+    (
+        "UNIVERSAL_PRESS_PLATE_CORE_HARDNESS_HRC_FIRST",
+        re.compile(r"(?i)\bapprox\.\s*HRC\s*40\s*[-–—]\s*45\b"),
+        "Do not publish a universal substrate/core hardness; keep hardness tied to exact grade, condition, test evidence and approved order.",
+    ),
+    (
+        "UNIVERSAL_PRESS_PLATE_CORE_HARDNESS_ROUGHLY",
+        re.compile(r"(?i)\broughly\s*40\s*[-–—]\s*45\s*HRC\b"),
+        "Do not publish a universal substrate/core hardness; keep hardness tied to exact grade, condition, test evidence and approved order.",
     ),
     (
         "UNIVERSAL_PRESS_PLATE_COATING_HARDNESS",
         re.compile(r"(?i)\bApprox\.\s*65\s*[-–—]\s*70\s*HRC\b"),
-        "Do not publish a universal coating hardness; keep the coating and test method/order-specific acceptance tied to approved evidence.",
+        "Do not publish a universal coating hardness; keep coating acceptance and test method tied to approved evidence.",
+    ),
+    (
+        "UNIVERSAL_PRESS_PLATE_COATING_HARDNESS_ROUGHLY",
+        re.compile(r"(?i)\broughly\s*65\s*[-–—]\s*70\s*HRC\b"),
+        "Do not publish blanket hard-chrome HRC; coating microhardness must be tied to the agreed test method and order evidence.",
     ),
     (
         "UNIVERSAL_PRESS_PLATE_FLATNESS",
         re.compile(r"(?i)\bSub[-‐‑‒–— ]*0\.05\s*mm\s*/\s*m\b"),
+        "Do not publish a universal flatness limit; use the exact approved drawing/specification and measurement basis.",
+    ),
+    (
+        "UNIVERSAL_PRESS_PLATE_FLATNESS_BELOW",
+        re.compile(r"(?i)\b(?:flatness\s+)?below\s*0\.05\s*mm\s*(?:/\s*m|per\s+metre)\b"),
         "Do not publish a universal flatness limit; use the exact approved drawing/specification and measurement basis.",
     ),
     (
@@ -68,14 +89,44 @@ PRESS_PLATE_RULES = [
         "Do not publish a universal parallelism value; use the exact approved drawing/specification and measurement basis.",
     ),
     (
+        "UNIVERSAL_PRESS_PLATE_PARALLELISM_AROUND",
+        re.compile(r"(?i)\bparallelism\s+(?:around|approx\.?)\s*0\.02\s*mm\b"),
+        "Do not publish a universal parallelism value; use the exact approved drawing/specification and measurement basis.",
+    ),
+    (
         "UNIVERSAL_PRESS_PLATE_ROUGHNESS",
         re.compile(r"(?i)\bRa\s*<\s*0\.05\s*[µμu]m\b"),
-        "Do not publish a universal Ra value; surface-texture acceptance and evaluation method remain order-specific.",
+        "Do not publish a universal Ra value; surface acceptance and evaluation method remain order-specific.",
+    ),
+    (
+        "UNIVERSAL_PRESS_PLATE_ROUGHNESS_BELOW",
+        re.compile(r"(?i)\bRa\s+below\s*0\.1\s*[µμu]m\b"),
+        "Do not publish a universal Ra value; surface acceptance and evaluation method remain order-specific.",
     ),
     (
         "UNIVERSAL_PRESS_PLATE_COATING_THICKNESS_WINDOW",
         re.compile(r"(?i)\bApprox\.\s*20\s*[-–—]\s*100\s*[µμu]m\b"),
         "Do not publish a universal chrome/coating thickness window; use the exact approved coating specification and measurement basis.",
+    ),
+    (
+        "UNIVERSAL_PRESS_PLATE_GRADE_PLATFORM_SLASH",
+        re.compile(r"(?i)\bSUS\s*301\s*/\s*420\s*/\s*630\b"),
+        "Do not publish a blanket grade platform; grade selection must follow the approved application/order and supplier technical basis.",
+    ),
+    (
+        "UNIVERSAL_PRESS_PLATE_GRADE_PLATFORM_LIST",
+        re.compile(r"(?i)\bSUS\s*301\s*,\s*SUS\s*420\s*,\s*(?:and\s*)?SUS\s*630\b"),
+        "Do not publish a blanket grade list as the universal route; tie grade selection to the approved application/order.",
+    ),
+    (
+        "UNIVERSAL_PRESS_PLATE_WOOD_GRADE_LIST",
+        re.compile(r"(?i)SS\s*304,\s*SS\s*420,\s*and\s*SS\s*630\s+are\s+the\s+most\s+frequently\s+referenced\s+working\s+grades"),
+        "Current press-plate policy is application/specification-specific; do not publish this older blanket grade statement.",
+    ),
+    (
+        "UNIVERSAL_PRESS_PLATE_VERY_LOW_ROUGHNESS",
+        re.compile(r"(?i)\bVery low roughness\b"),
+        "Do not publish a universal surface-roughness descriptor as an acceptance route; tie surface requirement to the approved order and method.",
     ),
 ]
 
