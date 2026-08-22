@@ -1,0 +1,48 @@
+name: Content Safety
+
+on:
+  pull_request:
+    paths:
+      - 'data/**'
+      - 'downloads/**'
+      - 'products/**'
+      - 'public-site/**'
+      - 'resources/**'
+      - 'scripts/**'
+      - '.github/workflows/content-safety.yml'
+  push:
+    branches:
+      - master
+    paths:
+      - 'data/**'
+      - 'downloads/**'
+      - 'products/**'
+      - 'public-site/**'
+      - 'resources/**'
+      - 'scripts/**'
+      - '.github/workflows/content-safety.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  product-claim-policy:
+    name: Product claim policy
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Test public product claims
+        shell: pwsh
+        run: ./scripts/test-product-claim-policy.ps1
+
+  withdrawn-pdf-policy:
+    name: Withdrawn PDF policy
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Test withdrawn PDFs and links
+        shell: pwsh
+        run: ./scripts/test-pdf-withdrawal.ps1
