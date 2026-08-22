@@ -1,0 +1,55 @@
+{
+  "id": "MKT-009",
+  "date": "2026-08-22",
+  "title": "Live Content Safety & SEO Consolidation Audit",
+  "status": "DRAFT_AUDIT_NO_PUBLIC_CHANGE",
+  "purpose": "Prevent unsafe/outdated public claims and SEO cannibalization before releasing MKT-004 through MKT-007.",
+  "decision": "DO_NOT_ADD_NEW_OVERLAPPING_INDEXED_URLS_YET",
+  "verified_findings": [
+    {
+      "type": "seo_overlap",
+      "finding": "The live Moldart Insights library already contains extensive overlapping guides across press plates, press pads, decorative stainless steel and printed decor paper. Proposed MKT-004 to MKT-007 pages should be treated as remediation/consolidation source material rather than automatically creating additional indexed URLs.",
+      "action": "Audit the existing canonical guide for each topic, update the strongest URL, consolidate or redirect weaker duplicates only after content/SEO review, and keep PRs 6-9 noindex/unmerged until that mapping is complete."
+    },
+    {
+      "type": "public_claim_risk",
+      "url": "https://moldartindia.com/products/press-plates/",
+      "claim_classes_seen_live": ["specific stainless grades", "numeric core hardness HRC", "numeric hard-chrome hardness HRC"],
+      "current_safe_direction": "Programme-specific grade/build/dimensions/flatness/hardness/surface condition confirmed against approved evidence; do not publish universal grade or hardness values.",
+      "action": "Remediate the existing indexed product page before using it as a destination for new marketing traffic."
+    },
+    {
+      "type": "public_claim_risk",
+      "url": "https://moldartindia.com/products/industrial-press-plates/",
+      "claim_classes_seen_live": ["specific SUS grades", "numeric hardness HRC", "numeric flatness tolerance"],
+      "current_safe_direction": "Capture SUS grade, hardness, flatness, parallelism, surface roughness, residual magnetism, edge condition, packing and traceability as order/RFQ requirements; do not present remembered values as universal Moldart acceptance criteria.",
+      "action": "Remediate the existing indexed industrial-press-plate page before new campaign amplification."
+    },
+    {
+      "type": "public_claim_risk",
+      "url": "https://moldartindia.com/insights/printed-decor-paper-selection-guide/",
+      "claim_classes_seen_live": ["60-85 GSM universal range", "wet tensile above 6 N universal threshold"],
+      "current_safe_direction": "Basis weight/tolerance, mechanical properties, moisture, opacity/colour, printability, impregnation/resin penetration, dimensional stability and runnability remain product/order/test-method specific.",
+      "action": "Replace universal numeric thresholds with requirement-capture/test-method language and consolidate MKT-007 into the existing canonical guide instead of launching a near-duplicate URL."
+    }
+  ],
+  "repo_policy_context": {
+    "workflow": ".github/workflows/content-safety.yml",
+    "claim_policy": "scripts/test-product-claim-policy.ps1",
+    "note": "The current claim-policy script blocks HRC, cycles, micrometre/Ra, GSM, strength, numeric tolerance, specific SS/SUS grades and other numeric claim classes in public product pages/data. Insights require a separate content audit because the current script does not comprehensively police all guide prose/SVG assets."
+  },
+  "mkt_004_to_007_release_rule": {
+    "mkt_004": "Use as safer rewrite/consolidation source for existing press-plate content; no new indexed URL until canonical mapping is complete.",
+    "mkt_005": "Use as safer rewrite/consolidation source for existing decorative-stainless content; no new indexed URL until canonical mapping is complete.",
+    "mkt_006": "Use as safer rewrite/consolidation source for existing press-pad content; no new indexed URL until canonical mapping is complete.",
+    "mkt_007": "Use as safer rewrite/consolidation source for existing printed-decor-paper content; prioritize correcting the live 60-85 GSM / >6 N guide claims before any new URL."
+  },
+  "publication_state": "NO_PUBLIC_CHANGE_THIS_RUN",
+  "paid_spend": 0,
+  "next_actions": [
+    "Build one canonical URL map for MKT-004 to MKT-007 against the existing Insights library.",
+    "Prioritize claim remediation on press-plate product pages and printed-decor-paper guide before directing new traffic.",
+    "Extend automated content-safety scanning to insights prose/SVG assets or create an equivalent audit check before future merges.",
+    "After remediation, use tracked platform-specific derivatives to the corrected canonical pages rather than multiplying near-duplicate URLs."
+  ]
+}
