@@ -2,7 +2,7 @@
   "id": "MKT-009",
   "date": "2026-08-22",
   "title": "Live Content Safety & SEO Consolidation Audit",
-  "status": "DRAFT_AUDIT_NO_PUBLIC_CHANGE",
+  "status": "DRAFT_REMEDIATION_IN_PROGRESS_NO_PUBLIC_CHANGE",
   "purpose": "Prevent unsafe/outdated public claims and SEO cannibalization before releasing MKT-004 through MKT-007.",
   "decision": "DO_NOT_ADD_NEW_OVERLAPPING_INDEXED_URLS_YET",
   "verified_findings": [
@@ -33,6 +33,33 @@
       "action": "Replace universal numeric thresholds with requirement-capture/test-method language and consolidate MKT-007 into the existing canonical guide instead of launching a near-duplicate URL."
     }
   ],
+  "remediation_progress": {
+    "completed_on_draft_branch": [
+      "images/insights/printed-decor-paper-selection-guide.svg",
+      "public-site/images/insights/printed-decor-paper-selection-guide.svg",
+      "images/insights/decor-paper-guide.svg",
+      "public-site/images/insights/decor-paper-guide.svg",
+      "images/insights/decor-paper-quality.svg",
+      "public-site/images/insights/decor-paper-quality.svg",
+      "images/insights/decor-paper-comparison.svg",
+      "public-site/images/insights/decor-paper-comparison.svg"
+    ],
+    "replacement_rule": {
+      "basis_weight": "Per approved grade",
+      "wet_strength": "Method + grade"
+    },
+    "remaining_verified_targets": [
+      "insights/printed-decor-paper-selection-guide/index.html",
+      "public-site/insights/printed-decor-paper-selection-guide/index.html",
+      "images/insights/decor-paper-buyers-guide.svg",
+      "public-site/images/insights/decor-paper-buyers-guide.svg",
+      "images/insights/decor-paper-applications.svg",
+      "public-site/images/insights/decor-paper-applications.svg",
+      "images/insights/decor-paper-specifications.svg",
+      "public-site/images/insights/decor-paper-specifications.svg"
+    ],
+    "note": "Repository code search on the current base identifies the same unsafe threshold class across the remaining targets. The draft branch has not yet modified those remaining files, so they stay blocked from release/amplification."
+  },
   "repo_policy_context": {
     "workflow": ".github/workflows/content-safety.yml",
     "claim_policy": "scripts/test-product-claim-policy.ps1",
@@ -47,9 +74,9 @@
   "publication_state": "NO_PUBLIC_CHANGE_THIS_RUN",
   "paid_spend": 0,
   "next_actions": [
-    "Build one canonical URL map for MKT-004 to MKT-007 against the existing Insights library.",
-    "Prioritize claim remediation on press-plate product pages and printed-decor-paper guide before directing new traffic.",
-    "Extend automated content-safety scanning to insights prose/SVG assets or create an equivalent audit check before future merges.",
-    "After remediation, use tracked platform-specific derivatives to the corrected canonical pages rather than multiplying near-duplicate URLs."
+    "Remediate the two canonical printed-decor-paper HTML copies containing universal GSM / wet-strength language.",
+    "Remediate the buyers-guide, applications and specifications SVG pairs using requirement-led grade/method wording.",
+    "Add an automated Insights content-safety scan so the same threshold class cannot silently re-enter public prose/SVG assets.",
+    "Then proceed to press-plate claim-class repair using the canonical map before directing new marketing traffic."
   ]
 }
