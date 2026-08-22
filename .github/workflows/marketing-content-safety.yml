@@ -1,0 +1,24 @@
+name: Marketing content safety
+
+on:
+  pull_request:
+    paths:
+      - 'insights/**'
+      - 'public-site/insights/**'
+      - 'images/insights/**'
+      - 'public-site/images/insights/**'
+      - 'scripts/marketing_content_safety_scan.py'
+      - '.github/workflows/marketing-content-safety.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  printed-decor-paper-claim-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run MKT-009 claim regression scan
+        run: python3 scripts/marketing_content_safety_scan.py
