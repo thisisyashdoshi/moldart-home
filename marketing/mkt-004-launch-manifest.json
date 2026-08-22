@@ -1,0 +1,46 @@
+{
+  "campaign_id": "MKT-004",
+  "campaign": "press_plate_rfq_guide",
+  "status": "draft_calibration_hold",
+  "topic": "How to Specify Press Plates for Wood-Panel Lamination",
+  "purpose": "qualified technical enquiries and RFQs",
+  "canonical_url": "https://moldartindia.com/insights/how-to-specify-press-plates-for-wood-panel-lamination/",
+  "technical_claim_state": "PASS_framework_only_order_specific_values",
+  "publication_gate": "user_calibration_approval_required_before_first_public_release",
+  "attribution": {
+    "medium": "organic_social",
+    "primary_conversion": "qualified_enquiry_or_rfq",
+    "secondary_events": ["article_visit", "contact_page_click", "drawing_or_specification_submission_where_traceable"]
+  },
+  "derivatives": [
+    {
+      "platform": "linkedin_company_page",
+      "route_state": "HOLD_unverified_company_page_publishing_route",
+      "format": "technical_text_post_plus_article_link",
+      "utm_source": "linkedin",
+      "utm_content": "technical_post_v1",
+      "tracked_url": "https://moldartindia.com/insights/how-to-specify-press-plates-for-wood-panel-lamination/?utm_source=linkedin&utm_medium=organic_social&utm_campaign=press_plate_rfq_guide&utm_content=technical_post_v1"
+    },
+    {
+      "platform": "facebook",
+      "route_state": "HOLD_until_article_approved_and_live",
+      "format": "short_visual_first_post_plus_one_cta",
+      "utm_source": "facebook",
+      "utm_content": "rfq_checklist_v1",
+      "tracked_url": "https://moldartindia.com/insights/how-to-specify-press-plates-for-wood-panel-lamination/?utm_source=facebook&utm_medium=organic_social&utm_campaign=press_plate_rfq_guide&utm_content=rfq_checklist_v1"
+    },
+    {
+      "platform": "instagram",
+      "route_state": "HOLD_until_visual_system_and_live_article_route_approved",
+      "format": "five_frame_carousel_not_facebook_repost",
+      "utm_source": "instagram",
+      "utm_content": "carousel_v1",
+      "tracked_url": "https://moldartindia.com/insights/how-to-specify-press-plates-for-wood-panel-lamination/?utm_source=instagram&utm_medium=organic_social&utm_campaign=press_plate_rfq_guide&utm_content=carousel_v1"
+    }
+  ],
+  "performance_baseline_2026_08_15_to_2026_08_22": {
+    "facebook": {"posts_published": 61, "page_views": 4, "post_impressions": 4, "page_interactions": 0, "post_clicks": 0, "page_followers": 3},
+    "instagram": {"posts_published": 49, "post_views_returned": 6, "account_reach_returned": 0, "post_interactions": 0, "accounts_engaged": 0, "followers": 3}
+  },
+  "decision": "STOP_repetitive_high_frequency_posting_KEEP_fewer_source_backed_attribution_ready_assets"
+}
