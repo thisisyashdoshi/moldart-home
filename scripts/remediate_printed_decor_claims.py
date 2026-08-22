@@ -5,6 +5,8 @@ This is a narrow MKT-009 cleanup utility for existing Insights source/public fil
 It does not introduce product specifications. It replaces only the already-verified
 unsafe universal basis-weight / wet-strength wording with requirement-capture
 language that keeps the exact value tied to the approved grade/order/test method.
+
+Post-remediation verification is performed by scripts/marketing_content_safety_scan.py.
 """
 from __future__ import annotations
 
