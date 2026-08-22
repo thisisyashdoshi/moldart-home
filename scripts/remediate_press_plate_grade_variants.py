@@ -3,6 +3,7 @@
 
 Narrow scope only: press-plate / lamination-stack Insights content and data mirrors.
 No grade is introduced; blanket SS 304/420/630 lists are converted to application-specific wording.
+This helper is intentionally watched by the branch remediation workflow so verified variants are repaired before review.
 """
 from __future__ import annotations
 
