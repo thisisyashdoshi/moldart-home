@@ -8,6 +8,7 @@ on:
       - 'scripts/remediate_printed_decor_claims.py'
       - 'scripts/remediate_press_plate_claims.py'
       - 'scripts/remediate_press_plate_grade_variants.py'
+      - 'scripts/remediate_press_plate_semantic_claims.py'
       - '.github/workflows/marketing-content-remediation.yml'
 
 permissions:
@@ -27,6 +28,8 @@ jobs:
         run: python3 scripts/remediate_press_plate_claims.py
       - name: Apply narrow MKT-009 press-plate SS304 grade-variant remediation
         run: python3 scripts/remediate_press_plate_grade_variants.py
+      - name: Apply narrow MKT-009 press-plate semantic claim remediation
+        run: python3 scripts/remediate_press_plate_semantic_claims.py
       - name: Validate worktree
         run: git diff --check
       - name: Commit remediation when needed
