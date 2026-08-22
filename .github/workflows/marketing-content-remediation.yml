@@ -6,21 +6,24 @@ on:
       - marketing/mkt-009-live-content-safety-consolidation
     paths:
       - 'scripts/remediate_printed_decor_claims.py'
+      - 'scripts/remediate_press_plate_claims.py'
       - '.github/workflows/marketing-content-remediation.yml'
 
 permissions:
   contents: write
 
 jobs:
-  remediate-known-printed-decor-claims:
+  remediate-known-marketing-claim-classes:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.ref_name }}
-      - name: Apply narrow MKT-009 remediation
+      - name: Apply narrow MKT-009 printed-decor remediation
         run: python3 scripts/remediate_printed_decor_claims.py
+      - name: Apply narrow MKT-009 press-plate remediation
+        run: python3 scripts/remediate_press_plate_claims.py
       - name: Validate worktree
         run: git diff --check
       - name: Commit remediation when needed
@@ -32,6 +35,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add insights public-site/insights images/insights public-site/images/insights
-          git commit -m "MKT-009: remediate remaining printed decor claim patterns"
+          git add insights public-site/insights images/insights public-site/images/insights data/insights.json public-site/data/insights.json
+          git commit -m "MKT-009: remediate verified marketing claim patterns"
           git push origin HEAD:${{ github.ref_name }}
