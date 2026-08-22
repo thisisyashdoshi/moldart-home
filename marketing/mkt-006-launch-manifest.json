@@ -1,0 +1,77 @@
+{
+  "campaign_id": "MKT-006",
+  "title": "Press Pad Enquiry Guide for Lamination Presses",
+  "product_topic": "Press pads - requirement capture and technical evaluation framework",
+  "purpose": "Qualified technical enquiries / RFQs",
+  "audience": [
+    "Lamination and wood-panel production teams",
+    "Technical / process engineering",
+    "Procurement / sourcing",
+    "Quality / inspection"
+  ],
+  "website": {
+    "path": "/insights/how-to-specify-press-pads-for-a-lamination-press-enquiry/",
+    "state": "DRAFT_NO_INDEX",
+    "publication_gate": "USER_CALIBRATION_APPROVAL_REQUIRED",
+    "meta_title": "Press Pad Enquiry Guide for Lamination Presses | MOLDART",
+    "meta_description": "A practical RFQ checklist for lamination press pads: construction traceability, dimensions, press/application basis, temperature profile, specific pressure, thermal/compressibility methods, durability, cleanliness and inspection requirements."
+  },
+  "technical_validation": {
+    "source": "Moldart Industrial and Architectural Product Specifications - Press Pads row",
+    "source_status": "VERIFIED_FRAMEWORK_OPEN_VALUES",
+    "public_claim_status": "PASS_FRAMEWORK_ONLY",
+    "explicit_holds": [
+      "universal cycle life",
+      "universal temperature limit",
+      "universal pressure or specific-pressure limit",
+      "universal thermal conductivity/resistance value",
+      "universal compressibility or recovery value",
+      "universal wire-count class",
+      "universal cleanliness/outgassing/migration limit",
+      "universal application assignment"
+    ],
+    "notes": "Qualification remains exact-product and exact-process specific. Comparative laboratory methods can support review where technically appropriate but are not direct production proof."
+  },
+  "rights_source": {
+    "product_image_dependency": false,
+    "third_party_product_image_used": false,
+    "status": "SOURCE_SAFE_TEXT_LED_ASSET"
+  },
+  "platform_derivatives": {
+    "linkedin": {
+      "state": "DRAFT_HOLD_UNTIL_COMPANY_PAGE_ROUTE_AND_CALIBRATION",
+      "copy": "Press-pad qualification becomes more useful when the pad construction, press stack and operating conditions are reviewed together. Our new enquiry guide covers dimensions, temperature profile, specific-pressure basis, comparative thermal/compressibility methods, durability, cleanliness and final disposition - without treating generic cycle-life or thermal claims as universal. Read the guide: {tracked_url}",
+      "utm_source": "linkedin",
+      "utm_medium": "organic_social",
+      "utm_campaign": "press_pad_enquiry_guide"
+    },
+    "facebook": {
+      "state": "DRAFT_HOLD_UNTIL_WEBSITE_RELEASE_AND_CALIBRATION",
+      "copy": "Specifying a press pad? Share the actual pad construction/reference, L x W x t, press/application/stack, temperature profile, specific-pressure basis and evaluation method. Generic cycle-life or thermal values are not enough for qualification. Full RFQ guide: {tracked_url}",
+      "utm_source": "facebook",
+      "utm_medium": "organic_social",
+      "utm_campaign": "press_pad_enquiry_guide"
+    },
+    "instagram": {
+      "state": "DRAFT_CAROUSEL_DIRECTION_HOLD_UNTIL_VISUAL_CALIBRATION",
+      "format": "5-frame educational carousel",
+      "frames": [
+        "What to specify for a press-pad enquiry",
+        "Construction + traceability + nominal dimensions",
+        "Press stack + actual temperature + specific-pressure basis",
+        "Thermal/compressibility/durability evaluation methods",
+        "Inspection + final PASS / FAIL / OPEN disposition"
+      ],
+      "caption": "Press-pad evaluation should start from the actual pad construction and press conditions - not from a generic cycle-life claim. Save this checklist for your next RFQ. Full guide via the MOLDART website after release.",
+      "utm_source": "instagram",
+      "utm_medium": "organic_social",
+      "utm_campaign": "press_pad_enquiry_guide"
+    }
+  },
+  "cta": "Send the pad construction/reference, nominal dimensions, press/application/stack, temperature profile, specific-pressure basis, evaluation methods and quantity for technical review.",
+  "primary_kpi": "qualified enquiry / RFQ",
+  "secondary_kpis": ["website visits", "useful engagement", "sales handoff"],
+  "publication_state": "HOLD_CALIBRATION",
+  "version": "v1",
+  "created_date": "2026-08-22"
+}
