@@ -1,0 +1,76 @@
+{
+  "campaign_id": "MKT-007",
+  "title": "Printed Decor Paper Enquiry Guide for LPL / HPL",
+  "product_topic": "Printed decor paper - requirement capture and qualification framework",
+  "purpose": "Qualified technical enquiries / RFQs",
+  "audience": [
+    "LPL / HPL manufacturers",
+    "Decor-paper printers",
+    "Impregnation / converting teams",
+    "Technical / process engineering",
+    "Procurement / sourcing",
+    "Quality / incoming inspection"
+  ],
+  "website": {
+    "path": "/insights/how-to-specify-printed-decor-paper-for-lpl-hpl-enquiry/",
+    "state": "DRAFT_NO_INDEX",
+    "publication_gate": "USER_CALIBRATION_APPROVAL_REQUIRED",
+    "meta_title": "Printed Decor Paper Enquiry Guide for LPL and HPL | MOLDART",
+    "meta_description": "A practical RFQ checklist for printed decor paper used in LPL and HPL: exact paper grade, basis weight and tolerance, colour/opacity, printability, impregnation behaviour, dimensional stability, moisture, runnability and test methods."
+  },
+  "technical_validation": {
+    "primary_source": "Moldart Industrial and Architectural Product Specifications - Printed Decor Paper row",
+    "source_status": "PROVISIONAL_FRAMEWORK_ORDER_SPECIFIC_VALUES",
+    "public_claim_status": "PASS_REQUIREMENT_CAPTURE_ONLY",
+    "official_corroboration": [
+      "Koehler Decor Paper / Print Base Paper - printing and impregnation, dimensional stability, colour consistency, LPL/HPL use",
+      "Felix Schoeller TECHNOCELL print-base papers - LPL/HPL converting, printability, runnability, dimensional quality, resin penetration"
+    ],
+    "explicit_holds": [
+      "Universal 60-85 gsm range",
+      "Wet tensile >6 N without exact method/specimen direction/conditioning",
+      "Universal moisture limit",
+      "Universal opacity limit",
+      "Universal resin uptake / penetration number",
+      "Universal dimensional-stability tolerance",
+      "Any supplier-grade performance value not tied to the exact product datasheet/test method"
+    ]
+  },
+  "rights_source": {
+    "product_image_dependency": "NONE",
+    "third_party_visuals_used": false,
+    "content_basis": "Internal technical master plus current official manufacturer literature used for framework corroboration only"
+  },
+  "platform_derivatives": {
+    "linkedin": {
+      "state": "HOLD_UNTIL_COMPANY_PAGE_ROUTE_VERIFIED_AND_ARTICLE_LIVE",
+      "angle": "Why GSM alone is not enough to qualify printed decor paper",
+      "cta": "Use the RFQ checklist and share the exact paper/process basis"
+    },
+    "facebook": {
+      "state": "HOLD_UNTIL_ARTICLE_APPROVED_AND_LIVE",
+      "angle": "Printed decor paper enquiry checklist",
+      "cta": "Share grade, GSM, colour/opacity, printing and impregnation basis"
+    },
+    "instagram": {
+      "state": "HOLD_UNTIL_VISUAL_CALIBRATION_AND_ARTICLE_LIVE",
+      "format": "Educational carousel",
+      "frames": [
+        "GSM alone is not a complete decor-paper specification",
+        "Paper grade + basis weight/tolerance",
+        "Colour/opacity + printability",
+        "Impregnation/resin penetration + dimensional stability",
+        "Test methods + final approval basis"
+      ]
+    }
+  },
+  "attribution": {
+    "utm_campaign": "printed_decor_paper_rfq_guide",
+    "utm_medium": "organic_social",
+    "utm_sources": ["linkedin", "facebook", "instagram"],
+    "primary_conversion": "qualified_enquiry_or_rfq"
+  },
+  "publication_state": "HOLD_NOT_PUBLISHED_NOT_SCHEDULED",
+  "kpi_state": "NOT_LIVE",
+  "notes": "Created as a new rolling marketing lane beyond press plates, press pads and decorative stainless. No product-image source gate is triggered because the asset is text-led and depicts no exact product pixels."
+}
