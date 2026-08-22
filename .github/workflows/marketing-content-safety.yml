@@ -7,8 +7,11 @@ on:
       - 'public-site/insights/**'
       - 'images/insights/**'
       - 'public-site/images/insights/**'
+      - 'data/insights.json'
+      - 'public-site/data/insights.json'
       - 'scripts/marketing_content_safety_scan.py'
       - 'scripts/marketing_content_grade_variant_scan.py'
+      - 'scripts/marketing_content_semantic_claim_scan.py'
       - '.github/workflows/marketing-content-safety.yml'
   workflow_dispatch:
 
@@ -25,3 +28,5 @@ jobs:
         run: python3 scripts/marketing_content_safety_scan.py
       - name: Run MKT-009 SS304 grade-variant scan
         run: python3 scripts/marketing_content_grade_variant_scan.py
+      - name: Run MKT-009 press-plate semantic claim scan
+        run: python3 scripts/marketing_content_semantic_claim_scan.py
