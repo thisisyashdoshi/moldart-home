@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Fail CI if verified blanket SS 304/420/630 press-plate grade lists reappear.
 
-This is a narrow MKT-009 regression guard. It does not replace Supply & Procurement technical validation.
+This is a narrow MKT-009 regression guard for both slash-form and comma-list grade-platform wording.
+It does not replace Supply & Procurement technical validation.
 """
 from __future__ import annotations
 
