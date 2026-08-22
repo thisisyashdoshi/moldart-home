@@ -1,0 +1,69 @@
+{
+  "asset_id": "MKT-005",
+  "version": "v1",
+  "campaign": "decorative_stainless_enquiry_guide",
+  "product_topic": "Decorative stainless steel — architectural enquiry specification framework",
+  "purpose": "Education + qualified enquiry/RFQ generation",
+  "audience": [
+    "Architectural fabricators",
+    "Facade/interior specialists",
+    "Panel/profile manufacturers",
+    "Procurement teams",
+    "Project teams"
+  ],
+  "website": {
+    "path": "/insights/how-to-specify-decorative-stainless-steel-for-an-architectural-enquiry/",
+    "state": "draft-noindex",
+    "canonical": "https://moldartindia.com/insights/how-to-specify-decorative-stainless-steel-for-an-architectural-enquiry/",
+    "publication_gate": "user calibration approval before first public release"
+  },
+  "technical_validation": {
+    "source_state": "PROVISIONAL",
+    "public_claim_scope": "Requirement-capture framework only",
+    "safe_surface_families": ["No.4", "Hairline", "Mirror"],
+    "conditional_systems": ["PVD", "AFP"],
+    "hold_without_exact_system_evidence": [
+      "PVD chemistry",
+      "colour tolerance",
+      "coating thickness",
+      "hardness",
+      "adhesion",
+      "corrosion performance",
+      "AFP performance",
+      "universal fabrication tolerances"
+    ]
+  },
+  "attribution": {
+    "utm_campaign": "decorative_stainless_enquiry_guide",
+    "utm_medium": "organic_social",
+    "sources": ["linkedin", "facebook", "instagram"],
+    "primary_conversion": "qualified_enquiry_or_rfq",
+    "secondary_conversion": "website_visit_or_technical_document_submission"
+  },
+  "platform_derivatives": {
+    "linkedin": {
+      "state": "hold-route-unverified",
+      "angle": "Decorative stainless is not one specification",
+      "cta": "Share drawing, finish reference, quantity and application for technical review"
+    },
+    "facebook": {
+      "state": "hold-until-article-approved-live",
+      "angle": "Decorative stainless requirement checklist",
+      "cta": "Send requirement for technical review"
+    },
+    "instagram": {
+      "state": "hold-until-visual-calibration-and-live-route",
+      "format": "5-frame carousel",
+      "frames": [
+        "What to specify",
+        "Product form + nominal dimensions/thickness",
+        "Finish or approved visual/sample reference",
+        "Drawing/fabrication details where applicable",
+        "Application + quantity + destination + inspection basis"
+      ]
+    }
+  },
+  "rights_status": "Original written content; no third-party image reused",
+  "publication_state": "DRAFT / NOT PUBLISHED / NOT SCHEDULED",
+  "kpi_state": "Not live yet"
+}
