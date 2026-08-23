@@ -13,7 +13,7 @@ as the U.S. compliance/certification route for covered composite wood products, 
 E1 is an EN 13986 emission class and other labels/schemes must be tied to the actual
 destination, test method and evidence. This guard does not replace Supply & Procurement
 technical or regulatory validation.
-Post-remediation verification marker: 2026-08-23.
+Post-remediation verification marker: 2026-08-23 emissions-route second pass.
 """
 from __future__ import annotations
 
@@ -52,6 +52,10 @@ RULES = [
     (
         "INTERCHANGEABLE_EMISSION_GRADE_TITLE",
         re.compile(r"(?i)\bMDF/HDF\s+Emission\s+Grades:\s*E1,\s*E0,\s*CARB,\s*TSCA\s+Title\s+VI\b"),
+    ),
+    (
+        "TRUNCATED_INTERCHANGEABLE_EMISSION_GRADE_LABEL",
+        re.compile(r"(?i)\bMDF/HDF\s+Emission\s+Grades:\s*E1,\s*E0,\s*CARB,\s*TSCA\s+Tit\.\.\."),
     ),
     (
         "GENERIC_E1_E0_CARB_REFERENCE_GROUP",
