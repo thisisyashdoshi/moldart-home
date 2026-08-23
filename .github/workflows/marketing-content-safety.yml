@@ -1,6 +1,6 @@
 name: Marketing content safety
 
-# MKT-009 verification marker 2026-08-24a: verify MDF/HDF/fiberboard application-fit remediation.
+# MKT-009 verification marker 2026-08-24b: verify residual MDF/HDF/fiberboard application-fit closure.
 on:
   pull_request:
     paths:
