@@ -1,6 +1,6 @@
 name: Marketing content remediation
 
-# MKT-009 execution marker 2026-08-23e: run lamination diagnostic + press-pad remediation.
+# MKT-009 execution marker 2026-08-23f: trigger lamination diagnostic + press-pad remediation.
 on:
   push:
     branches:
