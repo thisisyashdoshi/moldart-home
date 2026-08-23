@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
-# MKT-009 execution marker: semantic remediation activated for the verified 8-occurrence gate on 2026-08-23.
+# MKT-009 semantic remediation: data-layer claims plus fifth-pass article causation/priority claims.
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGETS = [
     ROOT / "data" / "insights.json",
     ROOT / "public-site" / "data" / "insights.json",
+    ROOT / "insights" / "press-plate-chrome-condition-guide" / "index.html",
+    ROOT / "public-site" / "insights" / "press-plate-chrome-condition-guide" / "index.html",
+    ROOT / "insights" / "press-plates-pads-smart-tooling-perfect-panels" / "index.html",
+    ROOT / "public-site" / "insights" / "press-plates-pads-smart-tooling-perfect-panels" / "index.html",
 ]
 
 REPLACEMENTS = {
+    # Data-layer semantic claims already verified in the fourth pass.
     "A practical guide to how press plate grade, hardness, chrome condition, and handling shape the finished panel surface.":
         "A practical guide to how press-plate specification, surface condition, handling, and press context should be reviewed together.",
     "Gloss level, texture fidelity, repeat consistency, and wear marks all move together when the plate condition is not being controlled.":
@@ -17,6 +22,68 @@ REPLACEMENTS = {
         "**Grade / condition and any coating requirement** — verify these against the approved order, material/coating evidence, and agreed test method before using them in wear or replacement decisions.",
     "tooling whose value depends on finish output, cycle life, and stability inside the actual press route.":
         "tooling whose value depends on the approved finish output, verified condition, and fit with the actual press route.",
+
+    # Fifth-pass chrome-condition article: remove unsupported causal ordering / early-warning hierarchy.
+    "Press Plate Chrome Condition: Why Surface Wear Changes Panel Output":
+        "Press Plate Chrome Condition: How to Review Surface Wear and Panel Output",
+    "Treat it as the surface that protects finish retention, not as cosmetic language.":
+        "Where a coated plate is specified, verify coating condition against the approved order and inspection basis.",
+    "A stable route often starts signalling change here before one obvious failure appears.":
+        "Track gloss only where it is part of the approved finish or inspection basis; do not use it as a universal early-failure signal.",
+    "What usually exposes chrome deterioration first":
+        "What to review when coating condition is questioned",
+    "Illustrative weighting for how finish-sensitive lines tend to notice working-face change.":
+        "Diagnostic checklist only; sequence and significance depend on the exact product, coating, press conditions, and approved inspection basis.",
+    "<text x=\"302\" y=\"63\" class=\"chart-value\">Earliest signal</text>":
+        "<text x=\"302\" y=\"63\" class=\"chart-value\">If specified</text>",
+    "<text x=\"302\" y=\"141\" class=\"chart-value\">High</text>":
+        "<text x=\"302\" y=\"141\" class=\"chart-value\">Review</text>",
+    "<text x=\"302\" y=\"219\" class=\"chart-value\">Obvious but late</text>":
+        "<text x=\"302\" y=\"219\" class=\"chart-value\">Visual check</text>",
+    "<text x=\"302\" y=\"297\" class=\"chart-value\">Often secondary</text>":
+        "<text x=\"302\" y=\"297\" class=\"chart-value\">Review together</text>",
+    "The approved panel begins to look slightly off before the team wants to admit the plate has moved.":
+        "Compare the panel against the approved reference and inspect the plate or coating using the agreed method before assigning cause.",
+    "The route may start feeling less predictable even when grade language is unchanged.":
+        "If release behaviour changes, review plate or coating condition and the wider press stack before assigning cause.",
+    "Once they are easy to see, the finish route is already under pressure.":
+        "Visible scratches or dents should be documented and dispositioned against the approved defect and inspection basis.",
+    "Those checks still matter, but the plate should be reviewed before the discussion narrows too far.":
+        "Review paper, resin, plate, coating, and wider stack evidence together; no universal diagnostic priority is assumed.",
+
+    # Fifth-pass plate + pad article: remove blanket grade bias, outcome guarantees, and unsupported root-cause weighting.
+    "Press Plates and Press Pads: Smart Tooling for Better Panel Consistency":
+        "Press Plates and Press Pads: Reviewing the Lamination Stack",
+    "400 / 600-series bias":
+        "Grade per approved application",
+    "The article focuses on harder tooling routes rather than broad stainless substitution.":
+        "Grade and condition selection remain application- and order-specific; do not substitute by material family alone.",
+    "Lower repeat defects":
+        "Controlled evaluation",
+    "The goal is a more predictable press, not just a better brochure.":
+        "The goal is an evidence-based review of the stack against the approved process and inspection basis.",
+    "Where chronic panel defects usually begin":
+        "Stack elements to review when panel defects appear",
+    "Illustrative weighting for first-pass diagnostics based on the research note and press-stack logic.":
+        "Diagnostic checklist only; no universal weighting or root-cause priority is implied.",
+    "<text x=\"302\" y=\"63\" class=\"chart-value\">Primary</text>":
+        "<text x=\"302\" y=\"63\" class=\"chart-value\">Review</text>",
+    "<text x=\"302\" y=\"141\" class=\"chart-value\">Primary</text>":
+        "<text x=\"302\" y=\"141\" class=\"chart-value\">Review</text>",
+    "<text x=\"302\" y=\"219\" class=\"chart-value\">High</text>":
+        "<text x=\"302\" y=\"219\" class=\"chart-value\">Review</text>",
+    "<text x=\"302\" y=\"297\" class=\"chart-value\">Secondary</text>":
+        "<text x=\"302\" y=\"297\" class=\"chart-value\">Review</text>",
+    "Finish drift often starts with the working surface itself.":
+        "Inspect the approved plate surface and geometry against the documented criteria before assigning cause.",
+    "Shows up as cloudy areas, pressure drift, and width-wise inconsistency.":
+        "Inspect pad condition and the relevant pressure or thermal evidence under the actual line conditions before assigning cause.",
+    "Wear, micro-cracking, or roughness drift can change release and gloss.":
+        "Where a coated plate is specified, inspect coating condition against the approved coating and measurement criteria.",
+    "Important, but often blamed too early when the stack is unstable.":
+        "Review paper and resin evidence alongside the rest of the stack; do not assign universal diagnostic priority to one layer.",
+    "Protects the working surface over repeated cycles.":
+        "Keeps coating-related acceptance tied to documented inspection evidence and the approved coating requirement.",
 }
 
 changed_files = 0
