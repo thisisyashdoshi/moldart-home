@@ -1,6 +1,6 @@
 name: Marketing content remediation
 
-# MKT-009 execution marker 2026-08-23g: extend remediation to press-pad product/social claims.
+# MKT-009 execution marker 2026-08-23h: force press-pad product/social remediation after safety gate exposed 40 occurrences.
 on:
   push:
     branches:
