@@ -1,5 +1,6 @@
 from pathlib import Path
 
+# MKT-009 verification marker 2026-08-23 18:18 IST: verify SS-furniture grade remediation after bot commit.
 TARGETS = [
     Path('images/insights/ss-furniture-guide.svg'),
     Path('images/insights/ss-furniture-quality.svg'),
