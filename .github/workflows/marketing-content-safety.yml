@@ -1,6 +1,6 @@
 name: Marketing content safety
 
-# MKT-009 verification marker 2026-08-23j: verify post-remediation decorative-stainless PVD grade/colour/AFP guard.
+# MKT-009 verification marker 2026-08-23k: verify residual decorative-stainless PVD grade wording closure.
 on:
   pull_request:
     paths:
