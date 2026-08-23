@@ -6,6 +6,7 @@ register rejects a universal combined MDF/HDF 720–1,000 kg/m³ acceptance rang
 the prior 2–25 mm thickness range. Exact EN 622-5 product type/class, supplier grade,
 density, thickness and surface/performance requirements remain product/order specific.
 This guard does not replace Supply & Procurement technical validation.
+Post-remediation verification marker: 2026-08-23.
 """
 from __future__ import annotations
 
