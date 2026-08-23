@@ -191,7 +191,7 @@
         "Architecture"
       ],
       "image": "/images/page6_img3.webp",
-      "summary": "MDF and HDF panels for lamination, painting, and conversion.",
+      "summary": "MDF and HDF panels supplied against the approved application, service condition, surface and conversion route.",
       "specs": [
         "Application and conversion process",
         "Panel dimensions and quantity",
@@ -199,10 +199,9 @@
         "Acceptance and packing requirements"
       ],
       "applications": [
-        "Furniture fronts",
-        "Door skins",
-        "Decorative panel systems",
-        "Flooring cores"
+        "Application-specific panel programmes",
+        "Lamination / conversion where qualified",
+        "Service-condition-specific use"
       ],
       "customization": "Board type and panel programme are matched to the final application.",
       "technical": {
