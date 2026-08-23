@@ -21,7 +21,9 @@ Application fit is guarded separately: the current product-specification registe
 furniture / panel / lamination use is acceptable only where the exact board type/class,
 service condition, surface/conversion route and regulatory requirements are qualified.
 Therefore blanket "best-fit" furniture-front / door-skin / flooring-core positioning is
-not allowed as a generic MDF/HDF product claim.
+not allowed as a generic MDF/HDF product claim. The guard includes both legacy SVG /
+dashboard wording and HTML signal cards so visually prominent residual defaults cannot
+escape the release gate.
 """
 from __future__ import annotations
 
@@ -98,6 +100,14 @@ RULES = [
     (
         "UNQUALIFIED_FIBERBOARD_BEST_FIT_ROUTE",
         re.compile(r"(?i)BEST-FIT\s+ROUTE"),
+    ),
+    (
+        "UNQUALIFIED_FIBERBOARD_HTML_SIGNAL_BEST_FIT",
+        re.compile(r"(?i)<div\s+class=\"article-signal-label\">Best\s+fit</div>\s*<div\s+class=\"article-signal-value\">Furniture\s+fronts</div>"),
+    ),
+    (
+        "UNQUALIFIED_FIBERBOARD_HTML_SIGNAL_DOOR_SKINS",
+        re.compile(r"(?i)<p\s+class=\"article-signal-note\">Door\s+skins\s*•\s*Decorative\s+panel\s+systems</p>"),
     ),
     (
         "UNQUALIFIED_FIBERBOARD_PRODUCT_FIT_FURNITURE",
