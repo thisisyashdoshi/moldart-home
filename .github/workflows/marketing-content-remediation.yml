@@ -1,6 +1,6 @@
 name: Marketing content remediation
 
-# MKT-009 execution marker 2026-08-23o: add verified MDF/HDF/fiberboard remediation.
+# MKT-009 execution marker 2026-08-23p: execute verified MDF/HDF/fiberboard remediation.
 on:
   push:
     branches:
