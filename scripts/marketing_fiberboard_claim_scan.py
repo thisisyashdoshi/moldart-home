@@ -21,9 +21,14 @@ Application fit is guarded separately: the current product-specification registe
 furniture / panel / lamination use is acceptable only where the exact board type/class,
 service condition, surface/conversion route and regulatory requirements are qualified.
 Therefore blanket "best-fit" furniture-front / door-skin / flooring-core positioning is
-not allowed as a generic MDF/HDF product claim. The guard includes both legacy SVG /
-dashboard wording and HTML signal cards so visually prominent residual defaults cannot
+not allowed as a generic MDF/HDF product claim. The guard includes legacy SVG,
+dashboard and HTML signal-card wording so visually prominent residual defaults cannot
 escape the release gate.
+
+Surface-readiness wording is also guarded where it presents a smooth surface as a
+complete painting/lamination acceptance criterion. Smooth/homogeneous surfaces may be
+common MDF characteristics, but the exact surface requirement still belongs to the
+approved conversion route and product/order evidence.
 """
 from __future__ import annotations
 
@@ -110,6 +115,14 @@ RULES = [
         re.compile(r"(?i)<p\s+class=\"article-signal-note\">Door\s+skins\s*•\s*Decorative\s+panel\s+systems</p>"),
     ),
     (
+        "UNQUALIFIED_FIBERBOARD_DASHBOARD_DOOR_SKINS",
+        re.compile(r"(?i)<p\s+class=\"article-dashboard-note\">Door\s+skins\s*•\s*Decorative\s+panel\s+systems</p>"),
+    ),
+    (
+        "INCOMPLETE_FIBERBOARD_SURFACE_ACCEPTANCE_REFERENCE",
+        re.compile(r"(?i)<td\s+data-label=\"Reference\">Smooth\s+surface\s+for\s+painting\s+or\s+lamination</td>"),
+    ),
+    (
         "UNQUALIFIED_FIBERBOARD_PRODUCT_FIT_FURNITURE",
         re.compile(r"(?i)>Furniture\s+fronts</text>"),
     ),
@@ -166,7 +179,7 @@ def main() -> int:
         return 1
     print(
         "PASS: no known combined MDF/HDF density, universal 720–1,000 kg/m³ / 2–25 mm, "
-        "interchangeable E1/E0/CARB/TSCA Title VI, or unqualified fiberboard application-fit patterns found."
+        "interchangeable E1/E0/CARB/TSCA Title VI, incomplete surface-readiness, or unqualified fiberboard application-fit patterns found."
     )
     return 0
 
