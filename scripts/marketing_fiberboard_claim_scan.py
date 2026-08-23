@@ -13,7 +13,7 @@ as the U.S. compliance/certification route for covered composite wood products, 
 E1 is an EN 13986 emission class and other labels/schemes must be tied to the actual
 destination, test method and evidence. This guard does not replace Supply & Procurement
 technical or regulatory validation.
-Post-remediation verification marker: 2026-08-23 emissions-route second pass.
+Post-remediation verification marker: 2026-08-23 emissions-route post-bot verification.
 """
 from __future__ import annotations
 
