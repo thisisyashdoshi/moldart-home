@@ -1,6 +1,6 @@
 name: Marketing content safety
 
-# MKT-009 verification marker 2026-08-23l: verify ready-made-furniture scratch/CNC/edge/abrasion claim remediation.
+# MKT-009 verification marker 2026-08-23m: verify ready-made-furniture service-environment/application-fit remediation.
 on:
   pull_request:
     paths:
