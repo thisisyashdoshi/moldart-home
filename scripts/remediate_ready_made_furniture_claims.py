@@ -7,6 +7,7 @@ one abrasion-cycle value across MFC/HPL systems. Exact surface product, test met
 drawing/process capability and edge specification remain order/product specific.
 
 Scope is deliberately limited to ready-made-furniture product/Insight source + public mirrors.
+Execution marker: 2026-08-23 ready-made-furniture remediation verification.
 """
 from __future__ import annotations
 
