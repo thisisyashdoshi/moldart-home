@@ -1,6 +1,6 @@
 from pathlib import Path
 
-# MKT-009 force marker 2026-08-23 14:18 IST: execute after decorative-stainless PVD guard exposed 10 occurrences.
+# MKT-009 force marker 2026-08-23 15:25 IST: close residual decorative-stainless PVD grade signal wording.
 TARGETS = [
     Path('insights/pvd-stainless-steel-buyer-checklist/index.html'),
     Path('public-site/insights/pvd-stainless-steel-buyer-checklist/index.html'),
@@ -9,6 +9,7 @@ TARGETS = [
 REPLACEMENTS = {
     '>SS 201 / 304<': '>Grade per approved application<',
     '>SS 201 / SS 304, SS 316 on request<': '>Grade per approved application / project<',
+    'SS 201 / SS 304, SS 316 on request': 'Grade per approved application / project',
     '>Gold, Rose Gold, Black<': '>Colour per approved sample / project<',
     '<td data-label="Checkpoint">Anti-fingerprint coating available</td><td data-label="Reference">Anti-fingerprint coating available</td>': '<td data-label="Checkpoint">Anti-fingerprint route</td><td data-label="Reference">Only if specified and validated</td>',
 }
