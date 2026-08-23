@@ -1,6 +1,6 @@
 name: Marketing content remediation
 
-# MKT-009 verification marker 2026-08-24e: verify fiberboard performance-semantic remediation.
+# MKT-009 verification marker 2026-08-24f: execute fiberboard performance-semantic remediation.
 on:
   push:
     branches:
