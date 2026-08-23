@@ -9,11 +9,13 @@ destination and order specific.
 
 The emissions/compliance lane is also guarded against treating E1, buyer-used "E0",
 CARB and TSCA Title VI as interchangeable "emission grades". EPA treats TSCA Title VI
-as the U.S. compliance/certification route for covered composite wood products, while
-E1 is an EN 13986 emission class and other labels/schemes must be tied to the actual
-destination, test method and evidence. This guard does not replace Supply & Procurement
-technical or regulatory validation.
-Post-remediation verification marker: 2026-08-23 emissions-route post-bot verification.
+as the U.S. compliance/certification route for covered composite wood products. EU
+REACH Annex XVII entry 77 separately regulates formaldehyde released from articles
+placed on the market after 6 Aug 2026, subject to its scope and exemptions. This guard
+does not replace independent technical or regulatory validation.
+
+The guard also catches stale URL-encoded social/share titles that still advertise the
+old interchangeable grade ladder after visible-page remediation.
 """
 from __future__ import annotations
 
@@ -56,6 +58,10 @@ RULES = [
     (
         "TRUNCATED_INTERCHANGEABLE_EMISSION_GRADE_LABEL",
         re.compile(r"(?i)\bMDF/HDF\s+Emission\s+Grades:\s*E1,\s*E0,\s*CARB,\s*TSCA\s+Tit\.\.\."),
+    ),
+    (
+        "URL_ENCODED_INTERCHANGEABLE_EMISSION_TITLE",
+        re.compile(r"MDF%2FHDF%20Emission%20Grades%3A%20E1%2C%20E0%2C%20CARB%2C%20TSCA%20Title%20VI", re.I),
     ),
     (
         "GENERIC_E1_E0_CARB_REFERENCE_GROUP",
@@ -106,7 +112,7 @@ def main() -> int:
         return 1
     print(
         "PASS: no known combined MDF/HDF density, universal 720–1,000 kg/m³ / 2–25 mm, "
-        "or interchangeable E1/E0/CARB/TSCA Title VI compliance-label patterns found."
+        "or interchangeable E1/E0/CARB/TSCA Title VI visible/share-title patterns found."
     )
     return 0
 
