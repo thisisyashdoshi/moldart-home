@@ -1,6 +1,6 @@
 name: Marketing content safety
 
-# MKT-009 verification marker 2026-08-23h: verify post-remediation press-pad product/social closure.
+# MKT-009 verification marker 2026-08-23i: add decorative-stainless PVD default-grade/colour/AFP guard.
 on:
   pull_request:
     paths:
@@ -21,6 +21,7 @@ on:
       - 'scripts/marketing_content_semantic_claim_scan.py'
       - 'scripts/marketing_lamination_diagnostic_claim_scan.py'
       - 'scripts/marketing_press_pad_product_claim_scan.py'
+      - 'scripts/marketing_decorative_stainless_pvd_claim_scan.py'
       - '.github/workflows/marketing-content-safety.yml'
   workflow_dispatch:
 
@@ -43,3 +44,5 @@ jobs:
         run: python3 scripts/marketing_lamination_diagnostic_claim_scan.py
       - name: Run MKT-009 press-pad product/social claim scan
         run: python3 scripts/marketing_press_pad_product_claim_scan.py
+      - name: Run MKT-009 decorative-stainless PVD claim scan
+        run: python3 scripts/marketing_decorative_stainless_pvd_claim_scan.py
