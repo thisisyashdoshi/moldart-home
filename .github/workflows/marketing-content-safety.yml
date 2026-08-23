@@ -1,6 +1,6 @@
 name: Marketing content safety
 
-# MKT-009 verification marker 2026-08-23f: verify post-remediation lamination diagnostic + press-pad closure.
+# MKT-009 verification marker 2026-08-23g: include press-pad product/social claim gate.
 on:
   pull_request:
     paths:
@@ -10,10 +10,17 @@ on:
       - 'public-site/images/insights/**'
       - 'data/insights.json'
       - 'public-site/data/insights.json'
+      - 'products/**'
+      - 'public-site/products/**'
+      - 'data/product-directory.json'
+      - 'public-site/data/product-directory.json'
+      - 'images/social/moldart-product-press-pads.svg'
+      - 'public-site/images/social/moldart-product-press-pads.svg'
       - 'scripts/marketing_content_safety_scan.py'
       - 'scripts/marketing_content_grade_variant_scan.py'
       - 'scripts/marketing_content_semantic_claim_scan.py'
       - 'scripts/marketing_lamination_diagnostic_claim_scan.py'
+      - 'scripts/marketing_press_pad_product_claim_scan.py'
       - '.github/workflows/marketing-content-safety.yml'
   workflow_dispatch:
 
@@ -34,3 +41,5 @@ jobs:
         run: python3 scripts/marketing_content_semantic_claim_scan.py
       - name: Run MKT-009 lamination diagnostic / press-pad claim scan
         run: python3 scripts/marketing_lamination_diagnostic_claim_scan.py
+      - name: Run MKT-009 press-pad product/social claim scan
+        run: python3 scripts/marketing_press_pad_product_claim_scan.py
