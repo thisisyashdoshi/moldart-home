@@ -1,6 +1,6 @@
 name: Marketing content remediation
 
-# MKT-009 execution marker 2026-08-23f: trigger lamination diagnostic + press-pad remediation.
+# MKT-009 execution marker 2026-08-23g: extend remediation to press-pad product/social claims.
 on:
   push:
     branches:
@@ -11,6 +11,7 @@ on:
       - 'scripts/remediate_press_plate_grade_variants.py'
       - 'scripts/remediate_press_plate_semantic_claims.py'
       - 'scripts/remediate_lamination_diagnostic_claims.py'
+      - 'scripts/remediate_press_pad_product_claims.py'
       - '.github/workflows/marketing-content-remediation.yml'
 
 permissions:
@@ -34,6 +35,8 @@ jobs:
         run: python3 scripts/remediate_press_plate_semantic_claims.py
       - name: Apply narrow MKT-009 lamination diagnostic and press-pad remediation
         run: python3 scripts/remediate_lamination_diagnostic_claims.py
+      - name: Apply narrow MKT-009 press-pad product/social remediation
+        run: python3 scripts/remediate_press_pad_product_claims.py
       - name: Validate worktree
         run: git diff --check
       - name: Commit remediation when needed
@@ -45,6 +48,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add insights public-site/insights images/insights public-site/images/insights data/insights.json public-site/data/insights.json
+          git add insights public-site/insights images/insights public-site/images/insights data/insights.json public-site/data/insights.json products public-site/products data/product-directory.json public-site/data/product-directory.json images/social/moldart-product-press-pads.svg public-site/images/social/moldart-product-press-pads.svg
           git commit -m "MKT-009: remediate verified marketing claim patterns"
           git push origin HEAD:${{ github.ref_name }}
