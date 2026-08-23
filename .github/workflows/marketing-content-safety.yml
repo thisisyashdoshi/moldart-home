@@ -1,6 +1,6 @@
 name: Marketing content safety
 
-# MKT-009 verification marker 2026-08-23n: add SS-furniture blanket-grade regression guard.
+# MKT-009 verification marker 2026-08-23o: add MDF/HDF/fiberboard regression guard.
 on:
   pull_request:
     paths:
@@ -16,6 +16,8 @@ on:
       - 'public-site/data/product-directory.json'
       - 'images/social/moldart-product-press-pads.svg'
       - 'public-site/images/social/moldart-product-press-pads.svg'
+      - 'images/social/moldart-product-fiberboard.svg'
+      - 'public-site/images/social/moldart-product-fiberboard.svg'
       - 'scripts/marketing_content_safety_scan.py'
       - 'scripts/marketing_content_grade_variant_scan.py'
       - 'scripts/marketing_content_semantic_claim_scan.py'
@@ -24,6 +26,7 @@ on:
       - 'scripts/marketing_decorative_stainless_pvd_claim_scan.py'
       - 'scripts/marketing_ready_made_furniture_claim_scan.py'
       - 'scripts/marketing_ss_furniture_grade_claim_scan.py'
+      - 'scripts/marketing_fiberboard_claim_scan.py'
       - '.github/workflows/marketing-content-safety.yml'
   workflow_dispatch:
 
@@ -52,3 +55,5 @@ jobs:
         run: python3 scripts/marketing_ready_made_furniture_claim_scan.py
       - name: Run MKT-009 SS-furniture grade claim scan
         run: python3 scripts/marketing_ss_furniture_grade_claim_scan.py
+      - name: Run MKT-009 MDF/HDF/fiberboard claim scan
+        run: python3 scripts/marketing_fiberboard_claim_scan.py
