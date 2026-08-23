@@ -19,10 +19,14 @@ UNSAFE_PATTERNS = [
     "**Hardness and chrome condition** — these influence wear resistance and how long the approved finish route stays repeatable.",
     "tooling whose value depends on finish output, cycle life, and stability inside the actual press route.",
 
-    # Chrome-condition article unsupported causal ordering / early-warning hierarchy.
+    # Chrome-condition article unsupported causal ordering / early-warning hierarchy / stale metadata.
     "Press Plate Chrome Condition: Why Surface Wear Changes Panel Output",
+    "Press Plate Chrome Condition: Why Surface Wear Changes Panel...",
+    "Press%20Plate%20Chrome%20Condition%3A%20Why%20Surface%20Wear%20Changes%20Panel%20Output",
     "Treat it as the surface that protects finish retention, not as cosmetic language.",
     "A stable route often starts signalling change here before one obvious failure appears.",
+    "<div class=\"article-dashboard-label\">Watch first</div>",
+    "Casual storage and rushed cleaning can damage the route earlier than expected.",
     "What usually exposes chrome deterioration first",
     "Illustrative weighting for how finish-sensitive lines tend to notice working-face change.",
     "Earliest signal",
@@ -32,11 +36,20 @@ UNSAFE_PATTERNS = [
     "The route may start feeling less predictable even when grade language is unchanged.",
     "Once they are easy to see, the finish route is already under pressure.",
     "Those checks still matter, but the plate should be reviewed before the discussion narrows too far.",
+    "What is the first warning that chrome condition is moving?",
+    "Usually a slower drift rather than one dramatic failure: gloss variation, weaker release, or a finish that no longer matches the approved panel as cleanly as before.",
+    "When should the plate be inspected against the working face, not only the grade?",
+    "Inspect earlier when the route becomes visually sensitive or when repeated finish change appears without staying tied to one paper or resin batch.",
+    "Stops the route from drifting until the defect becomes expensive.",
 
-    # Plate + pad article unsupported grade bias, guaranteed outcome, and root-cause weighting.
+    # Plate + pad article unsupported grade bias, guaranteed outcome, root-cause weighting, stale metadata.
     "Press Plates and Press Pads: Smart Tooling for Better Panel Consistency",
+    "Press Plates and Press Pads: Smart Tooling for Better Panel...",
+    "Press%20Plates%20and%20Press%20Pads%3A%20Smart%20Tooling%20for%20Better%20Panel%20Consistency",
     "400 / 600-series bias",
     "The article focuses on harder tooling routes rather than broad stainless substitution.",
+    "A controlled working band matters more than decorative chrome language.",
+    "Used to stabilise pressure and thermal spread across the stack.",
     "Lower repeat defects",
     "The goal is a more predictable press, not just a better brochure.",
     "Where chronic panel defects usually begin",
