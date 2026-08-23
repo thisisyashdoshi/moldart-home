@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-# MKT-009 semantic remediation: data-layer claims plus fifth-pass article causation/priority claims.
-# Execution marker 2026-08-23: trigger fifth-pass branch remediation after regression-guard expansion.
+# MKT-009 semantic remediation: data-layer claims plus article causation/priority/metadata claims.
+# Execution marker 2026-08-23b: close fifth-pass residual title/FAQ/share-card semantic claims.
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,13 +24,21 @@ REPLACEMENTS = {
     "tooling whose value depends on finish output, cycle life, and stability inside the actual press route.":
         "tooling whose value depends on the approved finish output, verified condition, and fit with the actual press route.",
 
-    # Fifth-pass chrome-condition article: remove unsupported causal ordering / early-warning hierarchy.
+    # Chrome-condition article: remove unsupported causal ordering / early-warning hierarchy.
     "Press Plate Chrome Condition: Why Surface Wear Changes Panel Output":
         "Press Plate Chrome Condition: How to Review Surface Wear and Panel Output",
+    "Press Plate Chrome Condition: Why Surface Wear Changes Panel...":
+        "Press Plate Chrome Condition: Review Surface Wear and Panel...",
+    "Press%20Plate%20Chrome%20Condition%3A%20Why%20Surface%20Wear%20Changes%20Panel%20Output":
+        "Press%20Plate%20Chrome%20Condition%3A%20How%20to%20Review%20Surface%20Wear%20and%20Panel%20Output",
     "Treat it as the surface that protects finish retention, not as cosmetic language.":
         "Where a coated plate is specified, verify coating condition against the approved order and inspection basis.",
     "A stable route often starts signalling change here before one obvious failure appears.":
         "Track gloss only where it is part of the approved finish or inspection basis; do not use it as a universal early-failure signal.",
+    "<div class=\"article-dashboard-label\">Watch first</div>":
+        "<div class=\"article-dashboard-label\">If specified</div>",
+    "Casual storage and rushed cleaning can damage the route earlier than expected.":
+        "Record storage and cleaning history when investigating visible, release, or finish changes.",
     "What usually exposes chrome deterioration first":
         "What to review when coating condition is questioned",
     "Illustrative weighting for how finish-sensitive lines tend to notice working-face change.":
@@ -51,14 +59,32 @@ REPLACEMENTS = {
         "Visible scratches or dents should be documented and dispositioned against the approved defect and inspection basis.",
     "Those checks still matter, but the plate should be reviewed before the discussion narrows too far.":
         "Review paper, resin, plate, coating, and wider stack evidence together; no universal diagnostic priority is assumed.",
+    "What is the first warning that chrome condition is moving?":
+        "What should be reviewed when coating condition is questioned?",
+    "Usually a slower drift rather than one dramatic failure: gloss variation, weaker release, or a finish that no longer matches the approved panel as cleanly as before.":
+        "Compare the approved panel or finish reference with current output, then review plate/coating condition and the wider press stack using the agreed inspection basis before assigning cause.",
+    "When should the plate be inspected against the working face, not only the grade?":
+        "What should be checked when finish or release behaviour changes?",
+    "Inspect earlier when the route becomes visually sensitive or when repeated finish change appears without staying tied to one paper or resin batch.":
+        "Review the approved finish reference, working-face condition, coating where applicable, paper/resin evidence, and press conditions together before assigning cause.",
+    "Stops the route from drifting until the defect becomes expensive.":
+        "Keeps follow-up timing documented rather than ad hoc.",
 
-    # Fifth-pass plate + pad article: remove blanket grade bias, outcome guarantees, and unsupported root-cause weighting.
+    # Plate + pad article: remove blanket grade bias, outcome guarantees, and unsupported root-cause weighting.
     "Press Plates and Press Pads: Smart Tooling for Better Panel Consistency":
         "Press Plates and Press Pads: Reviewing the Lamination Stack",
+    "Press Plates and Press Pads: Smart Tooling for Better Panel...":
+        "Press Plates and Press Pads: Reviewing the Lamination Stack",
+    "Press%20Plates%20and%20Press%20Pads%3A%20Smart%20Tooling%20for%20Better%20Panel%20Consistency":
+        "Press%20Plates%20and%20Press%20Pads%3A%20Reviewing%20the%20Lamination%20Stack",
     "400 / 600-series bias":
         "Grade per approved application",
     "The article focuses on harder tooling routes rather than broad stainless substitution.":
         "Grade and condition selection remain application- and order-specific; do not substitute by material family alone.",
+    "A controlled working band matters more than decorative chrome language.":
+        "Where coating is specified, define and verify coating criteria against the approved order and agreed test method.",
+    "Used to stabilise pressure and thermal spread across the stack.":
+        "Verify pad construction and relevant pressure/thermal response against the exact product and press application.",
     "Lower repeat defects":
         "Controlled evaluation",
     "The goal is a more predictable press, not just a better brochure.":
