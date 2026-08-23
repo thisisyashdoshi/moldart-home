@@ -1,0 +1,44 @@
+[
+  {
+    "asset_id": "MKT-010-A01",
+    "campaign": "MKT-010 Press Pad Evaluation Framework",
+    "platform": "Instagram/Facebook",
+    "filename": "MKT-010_press_pad_evaluation_IG-FB_v1.svg",
+    "purpose": "Educational technical awareness -> qualified press-pad enquiry",
+    "product_topic": "Lamination press-pad evaluation framework",
+    "source_basis": "Evaluating Press Pads for Purchase — working draft; requirement-led/open-values only",
+    "rights_status": "PASS — original deterministic illustration; no supplier/customer/stock image",
+    "claim_status": "PASS-FRAMEWORK-ONLY",
+    "visual_semantic_qa": "PASS — generic lamination press stack with clearly illustrative press-pad layer",
+    "publication_state": "DRAFT / CALIBRATION HOLD",
+    "cta": "Share press / stack / process basis for technical review"
+  },
+  {
+    "asset_id": "MKT-010-A02",
+    "campaign": "MKT-010 Press Pad Evaluation Framework",
+    "platform": "LinkedIn",
+    "filename": "MKT-010_press_pad_evaluation_LinkedIn_v1.svg",
+    "purpose": "Technical/business explainer -> qualified enquiry",
+    "product_topic": "Press-pad evaluation inside the lamination stack",
+    "source_basis": "Same verified framework",
+    "rights_status": "PASS — original deterministic illustration",
+    "claim_status": "PASS-FRAMEWORK-ONLY",
+    "visual_semantic_qa": "PASS after visual correction — copy contained within text column; no visual overlap",
+    "publication_state": "DRAFT / LINKEDIN COMPANY-PAGE ROUTE HOLD",
+    "cta": "Technical review / website"
+  },
+  {
+    "asset_id": "MKT-010-A03",
+    "campaign": "MKT-010 Press Pad Evaluation Framework",
+    "platform": "Website/SEO support figure",
+    "filename": "MKT-010_press_pad_evaluation_Web_v1.svg",
+    "purpose": "Article/guide visual support",
+    "product_topic": "Lamination press stack evaluation",
+    "source_basis": "Same verified framework",
+    "rights_status": "PASS — original deterministic illustration",
+    "claim_status": "PASS-FRAMEWORK-ONLY",
+    "visual_semantic_qa": "PASS after visual correction — clean stack legend and evaluation-input panel; no overlapping labels",
+    "publication_state": "DRAFT / WEBSITE CALIBRATION HOLD",
+    "cta": "N/A"
+  }
+]
