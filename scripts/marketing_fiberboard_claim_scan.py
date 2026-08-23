@@ -16,6 +16,12 @@ does not replace independent technical or regulatory validation.
 
 The guard also catches stale URL-encoded social/share titles that still advertise the
 old interchangeable grade ladder after visible-page remediation.
+
+Application fit is guarded separately: the current product-specification register says
+furniture / panel / lamination use is acceptable only where the exact board type/class,
+service condition, surface/conversion route and regulatory requirements are qualified.
+Therefore blanket "best-fit" furniture-front / door-skin / flooring-core positioning is
+not allowed as a generic MDF/HDF product claim.
 """
 from __future__ import annotations
 
@@ -34,6 +40,8 @@ EXACT = [
     ROOT / "public-site" / "insights" / "mdf-hdf-emission-grades-e1-e0-carb-tsca-title-vi" / "index.html",
     ROOT / "images" / "social" / "moldart-product-fiberboard.svg",
     ROOT / "public-site" / "images" / "social" / "moldart-product-fiberboard.svg",
+    ROOT / "data" / "product-directory.json",
+    ROOT / "public-site" / "data" / "product-directory.json",
 ]
 
 GLOB_ROOTS = [
@@ -79,6 +87,42 @@ RULES = [
         "SVG_EMISSION_GRADE_LINE",
         re.compile(r"(?i)Grades:\s*E1,\s*E0,"),
     ),
+    (
+        "UNQUALIFIED_FIBERBOARD_SUMMARY",
+        re.compile(r"(?i)\bMDF\s+and\s+HDF\s+panels\s+for\s+lamination,\s*painting,\s*and\s+conversion\."),
+    ),
+    (
+        "UNQUALIFIED_FIBERBOARD_META_FURNITURE_FRONTS",
+        re.compile(r"(?i)RFQ-led\s+supply\s+support\s+for\s+Furniture\s+fronts\."),
+    ),
+    (
+        "UNQUALIFIED_FIBERBOARD_BEST_FIT_ROUTE",
+        re.compile(r"(?i)BEST-FIT\s+ROUTE"),
+    ),
+    (
+        "UNQUALIFIED_FIBERBOARD_PRODUCT_FIT_FURNITURE",
+        re.compile(r"(?i)>Furniture\s+fronts</text>"),
+    ),
+    (
+        "UNQUALIFIED_FIBERBOARD_PRODUCT_FIT_DOOR_SKINS",
+        re.compile(r"(?i)>Door\s+skins</text>"),
+    ),
+    (
+        "UNQUALIFIED_FIBERBOARD_FLOORING_CORE_CLAIM",
+        re.compile(r"(?i)\bflooring\s+cores\b"),
+    ),
+    (
+        "UNQUALIFIED_FIBERBOARD_CORE_SUBSTRATE_SENTENCE",
+        re.compile(r"(?i)Fiberboard\s+panels\s+serve\s+as\s+the\s+core\s+substrate\s+in\s+laminated\s+furniture\s+fronts,\s*door\s+skins,\s*decorative\s+panel\s+systems,\s*and\s+flooring\s+cores"),
+    ),
+    (
+        "UNQUALIFIED_FIBERBOARD_RFQ_DEFAULT",
+        re.compile(r"(?i)End\s+use\s+or\s+application:\s*Furniture\s+fronts"),
+    ),
+    (
+        "UNQUALIFIED_FIBERBOARD_COMPARE_DEFAULT",
+        re.compile(r"(?i)Comparing\s+options\s+outside\s+Furniture\s+fronts"),
+    ),
 ]
 
 
@@ -112,7 +156,7 @@ def main() -> int:
         return 1
     print(
         "PASS: no known combined MDF/HDF density, universal 720–1,000 kg/m³ / 2–25 mm, "
-        "or interchangeable E1/E0/CARB/TSCA Title VI visible/share-title patterns found."
+        "interchangeable E1/E0/CARB/TSCA Title VI, or unqualified fiberboard application-fit patterns found."
     )
     return 0
 
