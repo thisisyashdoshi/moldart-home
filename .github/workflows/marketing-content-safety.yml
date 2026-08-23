@@ -1,6 +1,6 @@
 name: Marketing content safety
 
-# MKT-009 verification marker 2026-08-23k: verify residual decorative-stainless PVD grade wording closure.
+# MKT-009 verification marker 2026-08-23l: verify ready-made-furniture scratch/CNC/edge/abrasion claim remediation.
 on:
   pull_request:
     paths:
@@ -22,6 +22,7 @@ on:
       - 'scripts/marketing_lamination_diagnostic_claim_scan.py'
       - 'scripts/marketing_press_pad_product_claim_scan.py'
       - 'scripts/marketing_decorative_stainless_pvd_claim_scan.py'
+      - 'scripts/marketing_ready_made_furniture_claim_scan.py'
       - '.github/workflows/marketing-content-safety.yml'
   workflow_dispatch:
 
@@ -46,3 +47,5 @@ jobs:
         run: python3 scripts/marketing_press_pad_product_claim_scan.py
       - name: Run MKT-009 decorative-stainless PVD claim scan
         run: python3 scripts/marketing_decorative_stainless_pvd_claim_scan.py
+      - name: Run MKT-009 ready-made furniture claim scan
+        run: python3 scripts/marketing_ready_made_furniture_claim_scan.py
