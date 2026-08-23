@@ -29,6 +29,10 @@ RULES = [
     ("BLANKET_MATCH_PERFORMANCE_ROUTE", re.compile(r"(?i)Match density, swelling, screw holding, surface sanding, and edge route")),
     ("UNQUALIFIED_SMOOTH_SURFACE_APPLICATION", re.compile(r"(?i)Smooth surface for painting(?: or lamination)?")),
     ("BOARD_ROUTE_LADDER", re.compile(r"(?i)Board route ladder: plywood -> MDF/HDF -> particleboard -> OSB, checked against strength, face, edge, moisture, and document needs\.")),
+    ("DIAGNOSTIC_LIKELY_CAUSE_HEADER", re.compile(r"(?i)>Likely cause</th>")),
+    ("DIAGNOSTIC_WRONG_BOARD_ROUTE", re.compile(r"(?i)Wrong board route for hardware or edge banding")),
+    ("DIAGNOSTIC_MOISTURE_CAUSE", re.compile(r"(?i)Moisture exposure or poor surface readiness")),
+    ("DIAGNOSTIC_EMISSION_CAUSE", re.compile(r"(?i)Emission route not confirmed before order")),
 ]
 
 
@@ -52,7 +56,7 @@ def main() -> int:
         for path, rule_id, snippet in failures:
             print(f"- {path} [{rule_id}] {snippet}")
         return 1
-    print("PASS: no known verified fiberboard causal / blanket performance-semantic patterns found.")
+    print("PASS: no known verified fiberboard causal / blanket performance-semantic or diagnostic-causation patterns found.")
     return 0
 
 
