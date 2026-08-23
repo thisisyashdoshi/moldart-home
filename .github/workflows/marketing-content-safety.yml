@@ -1,5 +1,6 @@
 name: Marketing content safety
 
+# MKT-009 verification marker 2026-08-23d: verify post-bot residual semantic closure.
 on:
   pull_request:
     paths:
