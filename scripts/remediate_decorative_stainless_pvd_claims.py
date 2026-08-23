@@ -1,5 +1,6 @@
 from pathlib import Path
 
+# MKT-009 force marker 2026-08-23 14:18 IST: execute after decorative-stainless PVD guard exposed 10 occurrences.
 TARGETS = [
     Path('insights/pvd-stainless-steel-buyer-checklist/index.html'),
     Path('public-site/insights/pvd-stainless-steel-buyer-checklist/index.html'),
