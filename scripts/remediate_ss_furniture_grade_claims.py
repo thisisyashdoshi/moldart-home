@@ -1,6 +1,6 @@
 from pathlib import Path
 
-# MKT-009 2026-08-23: SS-furniture grade + construction/finish default remediation.
+# MKT-009 2026-08-23 20:20 IST: SS-furniture grade + construction/finish default remediation execution marker.
 TARGETS = [
     Path('images/insights/ss-furniture-guide.svg'),
     Path('images/insights/ss-furniture-quality.svg'),
