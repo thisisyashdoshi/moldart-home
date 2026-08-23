@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Remove residual unqualified fiberboard application-fit defaults.
+"""Remove residual unqualified fiberboard application-fit / surface-readiness defaults.
 
 The current Moldart product-specification register permits furniture/panel/lamination use
 only when the exact board type/class, service condition, surface/conversion route and
-regulatory requirements are qualified. This script only replaces verified residual
-HTML dashboard/signal defaults; it does not claim a substitute application.
+regulatory requirements are qualified. It also states that a smooth MDF/HDF surface is
+not, by itself, a complete acceptance criterion for painting or lamination. This script
+only replaces verified residual HTML defaults; it does not claim a substitute
+application or universal surface requirement.
 """
 from pathlib import Path
 
@@ -24,6 +26,14 @@ REPLACEMENTS = [
     (
         '<article class="article-signal-card"><div class="article-signal-label">Best fit</div><div class="article-signal-value">Furniture fronts</div><p class="article-signal-note">Door skins • Decorative panel systems</p></article>',
         '<article class="article-signal-card"><div class="article-signal-label">Application fit</div><div class="article-signal-value">Confirm exact route</div><p class="article-signal-note">Qualify board type • service condition • conversion route</p></article>',
+    ),
+    (
+        '<p class="article-dashboard-note">Door skins • Decorative panel systems</p>',
+        '<p class="article-dashboard-note">Qualify board type • service condition • conversion route</p>',
+    ),
+    (
+        '<td data-label="Reference">Smooth surface for painting or lamination</td>',
+        '<td data-label="Reference">Surface readiness per approved conversion route</td>',
     ),
 ]
 
