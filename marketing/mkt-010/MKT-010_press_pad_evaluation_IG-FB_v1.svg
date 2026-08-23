@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350">
+  <rect width="1080" height="1350" fill="#F4F1EA"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="68" y="80" font-size="34" font-weight="700" fill="#1E1E1F">MOLDART</text>
+    <text x="1012" y="80" font-size="18" font-weight="700" text-anchor="end" fill="#68645E">moldartindia.com</text>
+    <text x="68" y="166" font-size="20" font-weight="700" fill="#84573C">LAMINATION PRESS SYSTEM</text>
+    <text x="68" y="244" font-size="56" font-weight="700" fill="#1E1E1F">PRESS PAD EVALUATION</text>
+    <text x="68" y="290" font-size="25" fill="#68645E">Review the full press stack—not the pad in isolation.</text>
+    <line x1="68" y1="318" x2="1012" y2="318" stroke="#CFC9BD" stroke-width="2"/>
+
+    <!-- illustrative press stack -->
+    <g transform="translate(292,442)">
+      <polygon points="0,47 494,0 494,133 0,180" fill="#8E9294"/>
+      <polygon points="0,180 494,133 494,159 0,206" fill="#595D5F"/>
+      <polygon points="0,162 494,115 494,248 0,295" fill="#424548"/>
+      <polygon points="0,295 494,248 494,274 0,321" fill="#2A2C2E"/>
+      <polygon points="0,277 494,230 494,363 0,410" fill="#B6BABC"/>
+      <polygon points="0,410 494,363 494,389 0,436" fill="#70767A"/>
+      <polygon points="0,392 494,345 494,478 0,525" fill="#D3C7B0"/>
+      <polygon points="0,525 494,478 494,504 0,551" fill="#A99A82"/>
+      <line x1="586" y1="20" x2="586" y2="525" stroke="#84573C" stroke-width="4"/>
+      <polygon points="586,20 574,42 598,42" fill="#84573C"/>
+      <polygon points="586,525 574,503 598,503" fill="#84573C"/>
+    </g>
+
+    <rect x="68" y="1010" width="944" height="194" rx="18" fill="#FAFAF9" stroke="#CFC9BD" stroke-width="2"/>
+    <text x="96" y="1058" font-size="20" font-weight="700" fill="#1E1E1F">VERIFY AGAINST THE ACTUAL PRESS RECIPE</text>
+    <g font-size="18" fill="#68645E">
+      <circle cx="101" cy="1107" r="5" fill="#84573C"/><text x="116" y="1113">Specific pressure</text>
+      <circle cx="373" cy="1107" r="5" fill="#84573C"/><text x="388" y="1113">Temperature</text>
+      <circle cx="608" cy="1107" r="5" fill="#84573C"/><text x="623" y="1113">Dwell / cycle</text>
+      <circle cx="101" cy="1161" r="5" fill="#84573C"/><text x="116" y="1167">Stack condition</text>
+      <circle cx="373" cy="1161" r="5" fill="#84573C"/><text x="388" y="1167">Pad construction</text>
+    </g>
+    <line x1="68" y1="1245" x2="1012" y2="1245" stroke="#CFC9BD" stroke-width="2"/>
+    <text x="540" y="1296" font-size="16" text-anchor="middle" fill="#68645E">Illustrative system visual · no universal construction or performance claim</text>
+  </g>
+</svg>
