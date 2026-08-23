@@ -49,6 +49,10 @@ COMMON_REPLACEMENTS = [
         "MDF/HDF Formaldehyde Compliance: Destination-Specific Routes",
     ),
     (
+        re.compile(r"(?i)\bMDF/HDF\s+Emission\s+Grades:\s*E1,\s*E0,\s*CARB,\s*TSCA\s+Tit\.\.\."),
+        "MDF/HDF Formaldehyde Compliance: Destination-Specific...",
+    ),
+    (
         re.compile(r"(?i)\bE1\s*/\s*E0\s*/\s*CARB\s+references,?\s+and\s+EPA\s+TSCA\s+Title\s+VI\s+only\s+where\s+US-regulated\s+composite\s+wood\s+rules\s+apply\b"),
         "destination-specific formaldehyde requirements, the applicable legal / certification / test route, and EPA TSCA Title VI where US-regulated composite wood rules apply",
     ),
