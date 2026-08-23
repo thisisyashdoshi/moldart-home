@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#F4F1EA"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="70" y="76" font-size="28" font-weight="700" fill="#1E1E1F">LAMINATION PRESS STACK — ILLUSTRATIVE</text>
+    <text x="70" y="118" font-size="22" fill="#68645E">Use the complete stack and process evidence when evaluating a press pad.</text>
+
+    <rect x="70" y="220" width="330" height="430" rx="16" fill="#FAFAF9" stroke="#CFC9BD" stroke-width="2"/>
+    <text x="105" y="275" font-size="21" font-weight="700" fill="#1E1E1F">STACK ELEMENTS</text>
+    <rect x="105" y="315" width="40" height="26" rx="5" fill="#8E9294"/><text x="165" y="336" font-size="17" fill="#68645E">Heated platen</text>
+    <rect x="105" y="377" width="40" height="26" rx="5" fill="#424548"/><text x="165" y="398" font-size="17" fill="#68645E">Press pad — illustrative</text>
+    <rect x="105" y="439" width="40" height="26" rx="5" fill="#B6BABC"/><text x="165" y="460" font-size="17" fill="#68645E">Press plate</text>
+    <rect x="105" y="501" width="40" height="26" rx="5" fill="#D3C7B0"/><text x="165" y="522" font-size="17" fill="#68645E">Laminate / panel stack</text>
+
+    <g transform="translate(555,190)">
+      <polygon points="0,45 500,0 500,135 0,180" fill="#8E9294"/>
+      <polygon points="0,180 500,135 500,161 0,206" fill="#595D5F"/>
+      <polygon points="0,162 500,117 500,252 0,297" fill="#424548"/>
+      <polygon points="0,297 500,252 500,278 0,323" fill="#2A2C2E"/>
+      <polygon points="0,279 500,234 500,369 0,414" fill="#B6BABC"/>
+      <polygon points="0,414 500,369 500,395 0,440" fill="#70767A"/>
+      <polygon points="0,396 500,351 500,486 0,531" fill="#D3C7B0"/>
+      <polygon points="0,531 500,486 500,512 0,557" fill="#A99A82"/>
+      <line x1="586" y1="20" x2="586" y2="530" stroke="#84573C" stroke-width="4"/>
+      <polygon points="586,20 575,40 597,40" fill="#84573C"/>
+      <polygon points="586,530 575,510 597,510" fill="#84573C"/>
+    </g>
+
+    <rect x="1190" y="210" width="340" height="470" rx="16" fill="#FAFAF9" stroke="#CFC9BD" stroke-width="2"/>
+    <text x="1225" y="265" font-size="21" font-weight="700" fill="#1E1E1F">EVALUATION INPUTS</text>
+    <g font-size="17" fill="#68645E">
+      <circle cx="1232" cy="317" r="4" fill="#84573C"/><text x="1252" y="323">Press ID / type</text>
+      <circle cx="1232" cy="360" r="4" fill="#84573C"/><text x="1252" y="366">Loaded area</text>
+      <circle cx="1232" cy="403" r="4" fill="#84573C"/><text x="1252" y="409">Specific pressure</text>
+      <circle cx="1232" cy="446" r="4" fill="#84573C"/><text x="1252" y="452">Temperature profile</text>
+      <circle cx="1232" cy="489" r="4" fill="#84573C"/><text x="1252" y="495">Dwell / cycle</text>
+      <circle cx="1232" cy="532" r="4" fill="#84573C"/><text x="1252" y="538">Pad product / revision</text>
+      <circle cx="1232" cy="575" r="4" fill="#84573C"/><text x="1252" y="581">Incumbent baseline</text>
+      <circle cx="1232" cy="618" r="4" fill="#84573C"/><text x="1252" y="624">Observed issue / KPI</text>
+    </g>
+    <text x="70" y="860" font-size="17" fill="#68645E">Source-safe original diagram · no supplier image · no exact construction or lifecycle claim</text>
+  </g>
+</svg>

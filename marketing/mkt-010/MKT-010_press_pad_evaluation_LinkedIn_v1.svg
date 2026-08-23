@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#F4F1EA"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="58" y="66" font-size="30" font-weight="700" fill="#1E1E1F">MOLDART</text>
+    <text x="58" y="148" font-size="44" font-weight="700" fill="#1E1E1F">PRESS PAD EVALUATION</text>
+    <text x="58" y="184" font-size="21" fill="#68645E">Validate the press pad inside the actual</text>
+    <text x="58" y="211" font-size="21" fill="#68645E">lamination stack—not in isolation.</text>
+    <line x1="58" y1="226" x2="560" y2="226" stroke="#CFC9BD" stroke-width="2"/>
+    <g font-size="17" fill="#1E1E1F">
+      <circle cx="63" cy="273" r="5" fill="#84573C"/><text x="78" y="280">Separate hydraulic gauge pressure from</text><text x="78" y="303">specific pressure.</text>
+      <circle cx="63" cy="331" r="5" fill="#84573C"/><text x="78" y="338">Use the actual temperature and dwell</text><text x="78" y="361">profile.</text>
+      <circle cx="63" cy="389" r="5" fill="#84573C"/><text x="78" y="396">Compare pressure / thermal response</text><text x="78" y="419">against the incumbent stack.</text>
+      <circle cx="63" cy="447" r="5" fill="#84573C"/><text x="78" y="454">Treat service life and construction as</text><text x="78" y="477">product-specific evidence.</text>
+    </g>
+
+    <g transform="translate(780,150)">
+      <polygon points="0,40 344,8 344,103 0,135" fill="#8E9294"/>
+      <polygon points="0,135 344,103 344,121 0,153" fill="#595D5F"/>
+      <polygon points="0,121 344,89 344,184 0,216" fill="#424548"/>
+      <polygon points="0,216 344,184 344,202 0,234" fill="#2A2C2E"/>
+      <polygon points="0,202 344,170 344,265 0,297" fill="#B6BABC"/>
+      <polygon points="0,297 344,265 344,283 0,315" fill="#70767A"/>
+      <polygon points="0,283 344,251 344,346 0,378" fill="#D3C7B0"/>
+      <polygon points="0,378 344,346 344,364 0,396" fill="#A99A82"/>
+      <line x1="404" y1="20" x2="404" y2="378" stroke="#84573C" stroke-width="4"/>
+      <polygon points="404,20 393,40 415,40" fill="#84573C"/>
+      <polygon points="404,378 393,358 415,358" fill="#84573C"/>
+    </g>
+    <text x="58" y="642" font-size="15" fill="#68645E">Technical discussion visual · requirement-led · exact product construction not implied</text>
+  </g>
+</svg>
