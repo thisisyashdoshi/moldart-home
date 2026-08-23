@@ -1,6 +1,6 @@
 name: Marketing content safety
 
-# MKT-009 verification marker 2026-08-23i: add decorative-stainless PVD default-grade/colour/AFP guard.
+# MKT-009 verification marker 2026-08-23j: verify post-remediation decorative-stainless PVD grade/colour/AFP guard.
 on:
   pull_request:
     paths:
