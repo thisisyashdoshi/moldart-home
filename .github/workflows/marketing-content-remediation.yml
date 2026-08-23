@@ -1,6 +1,6 @@
 name: Marketing content remediation
 
-# MKT-009 execution marker 2026-08-24b: execute residual fiberboard application-fit remediation.
+# MKT-009 execution marker 2026-08-24c: execute fiberboard performance-semantic remediation.
 on:
   push:
     branches:
@@ -17,6 +17,7 @@ on:
       - 'scripts/remediate_ss_furniture_grade_claims.py'
       - 'scripts/remediate_fiberboard_claims.py'
       - 'scripts/remediate_fiberboard_application_fit_residual.py'
+      - 'scripts/remediate_fiberboard_performance_semantics.py'
       - '.github/workflows/marketing-content-remediation.yml'
 
 permissions:
@@ -52,6 +53,8 @@ jobs:
         run: python3 scripts/remediate_fiberboard_claims.py
       - name: Apply residual MKT-009 fiberboard application-fit remediation
         run: python3 scripts/remediate_fiberboard_application_fit_residual.py
+      - name: Apply MKT-009 fiberboard performance-semantic remediation
+        run: python3 scripts/remediate_fiberboard_performance_semantics.py
       - name: Validate worktree
         run: git diff --check
       - name: Commit remediation when needed
