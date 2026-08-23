@@ -1,6 +1,6 @@
 name: Marketing content remediation
 
-# MKT-009 execution marker 2026-08-23c: run expanded residual semantic remediation.
+# MKT-009 execution marker 2026-08-23e: run lamination diagnostic + press-pad remediation.
 on:
   push:
     branches:
@@ -10,6 +10,7 @@ on:
       - 'scripts/remediate_press_plate_claims.py'
       - 'scripts/remediate_press_plate_grade_variants.py'
       - 'scripts/remediate_press_plate_semantic_claims.py'
+      - 'scripts/remediate_lamination_diagnostic_claims.py'
       - '.github/workflows/marketing-content-remediation.yml'
 
 permissions:
@@ -31,6 +32,8 @@ jobs:
         run: python3 scripts/remediate_press_plate_grade_variants.py
       - name: Apply narrow MKT-009 press-plate semantic claim remediation
         run: python3 scripts/remediate_press_plate_semantic_claims.py
+      - name: Apply narrow MKT-009 lamination diagnostic and press-pad remediation
+        run: python3 scripts/remediate_lamination_diagnostic_claims.py
       - name: Validate worktree
         run: git diff --check
       - name: Commit remediation when needed
