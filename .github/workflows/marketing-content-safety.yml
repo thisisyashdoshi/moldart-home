@@ -1,6 +1,6 @@
 name: Marketing content safety
 
-# MKT-009 verification marker 2026-08-23g: include press-pad product/social claim gate.
+# MKT-009 verification marker 2026-08-23h: verify post-remediation press-pad product/social closure.
 on:
   pull_request:
     paths:
