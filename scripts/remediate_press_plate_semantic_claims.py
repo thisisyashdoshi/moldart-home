@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# MKT-009 execution marker: semantic remediation activated for the verified 8-occurrence gate on 2026-08-23.
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
