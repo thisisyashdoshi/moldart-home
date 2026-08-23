@@ -4,8 +4,15 @@
 Narrow MKT-009 regression guard. The authoritative Moldart product-specification
 register rejects a universal combined MDF/HDF 720–1,000 kg/m³ acceptance range and
 the prior 2–25 mm thickness range. Exact EN 622-5 product type/class, supplier grade,
-density, thickness and surface/performance requirements remain product/order specific.
-This guard does not replace Supply & Procurement technical validation.
+density, thickness, emissions and surface/performance requirements remain product,
+destination and order specific.
+
+The emissions/compliance lane is also guarded against treating E1, buyer-used "E0",
+CARB and TSCA Title VI as interchangeable "emission grades". EPA treats TSCA Title VI
+as the U.S. compliance/certification route for covered composite wood products, while
+E1 is an EN 13986 emission class and other labels/schemes must be tied to the actual
+destination, test method and evidence. This guard does not replace Supply & Procurement
+technical or regulatory validation.
 Post-remediation verification marker: 2026-08-23.
 """
 from __future__ import annotations
@@ -42,6 +49,26 @@ RULES = [
         "UNIVERSAL_FIBERBOARD_THICKNESS_RANGE",
         re.compile(r"(?i)\b2\s*(?:[-–—]|to)\s*25\s*mm\b"),
     ),
+    (
+        "INTERCHANGEABLE_EMISSION_GRADE_TITLE",
+        re.compile(r"(?i)\bMDF/HDF\s+Emission\s+Grades:\s*E1,\s*E0,\s*CARB,\s*TSCA\s+Title\s+VI\b"),
+    ),
+    (
+        "GENERIC_E1_E0_CARB_REFERENCE_GROUP",
+        re.compile(r"(?i)\bE1\s*/\s*E0\s*/\s*CARB\s+references\b"),
+    ),
+    (
+        "GENERIC_E1_E0_CARB_TSCA_ROUTE_LIST",
+        re.compile(r"(?i)\b(?:confirm\s+)?E1\s*/\s*E0\s*/\s*CARB\s*/\s*TSCA\s+Title\s+VI(?:\s+only\s+where\s+applicable)?\b"),
+    ),
+    (
+        "GENERIC_E1_E0_CARB_TSCA_COMMA_LIST",
+        re.compile(r"(?i)\bE1,\s*E0,\s*CARB,\s*TSCA\s+Title\s+VI\s+where\s+required\b"),
+    ),
+    (
+        "SVG_EMISSION_GRADE_LINE",
+        re.compile(r"(?i)Grades:\s*E1,\s*E0,"),
+    ),
 ]
 
 
@@ -73,7 +100,10 @@ def main() -> int:
         for path, rule_id, snippet in failures:
             print(f"- {path} [{rule_id}] {snippet}")
         return 1
-    print("PASS: no known combined MDF/HDF density or universal 720–1,000 kg/m³ / 2–25 mm fiberboard patterns found.")
+    print(
+        "PASS: no known combined MDF/HDF density, universal 720–1,000 kg/m³ / 2–25 mm, "
+        "or interchangeable E1/E0/CARB/TSCA Title VI compliance-label patterns found."
+    )
     return 0
 
 
