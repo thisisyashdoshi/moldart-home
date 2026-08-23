@@ -1,6 +1,6 @@
 name: Marketing content safety
 
-# MKT-009 verification marker 2026-08-23m: verify ready-made-furniture service-environment/application-fit remediation.
+# MKT-009 verification marker 2026-08-23n: add SS-furniture blanket-grade regression guard.
 on:
   pull_request:
     paths:
@@ -23,6 +23,7 @@ on:
       - 'scripts/marketing_press_pad_product_claim_scan.py'
       - 'scripts/marketing_decorative_stainless_pvd_claim_scan.py'
       - 'scripts/marketing_ready_made_furniture_claim_scan.py'
+      - 'scripts/marketing_ss_furniture_grade_claim_scan.py'
       - '.github/workflows/marketing-content-safety.yml'
   workflow_dispatch:
 
@@ -49,3 +50,5 @@ jobs:
         run: python3 scripts/marketing_decorative_stainless_pvd_claim_scan.py
       - name: Run MKT-009 ready-made furniture claim scan
         run: python3 scripts/marketing_ready_made_furniture_claim_scan.py
+      - name: Run MKT-009 SS-furniture grade claim scan
+        run: python3 scripts/marketing_ss_furniture_grade_claim_scan.py
