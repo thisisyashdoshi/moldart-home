@@ -1,5 +1,6 @@
 name: Marketing content remediation
 
+# MKT-009 execution marker 2026-08-23c: run expanded residual semantic remediation.
 on:
   push:
     branches:
