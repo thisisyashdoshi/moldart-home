@@ -1,6 +1,6 @@
 name: Marketing content safety
 
-# MKT-009 verification marker 2026-08-23o: add MDF/HDF/fiberboard regression guard.
+# MKT-009 verification marker 2026-08-24a: verify MDF/HDF/fiberboard application-fit remediation.
 on:
   pull_request:
     paths:
