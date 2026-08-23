@@ -1,6 +1,6 @@
 from pathlib import Path
 
-# MKT-009 verification marker 2026-08-23 18:18 IST: verify SS-furniture grade remediation after bot commit.
+# MKT-009 verification marker 2026-08-23 19:18 IST: verify SS-furniture grade + construction/finish default remediation.
 TARGETS = [
     Path('images/insights/ss-furniture-guide.svg'),
     Path('images/insights/ss-furniture-quality.svg'),
@@ -14,11 +14,15 @@ TARGETS = [
     Path('public-site/images/insights/ss-furniture-applications.svg'),
     Path('public-site/images/insights/ss-furniture-buyers-guide.svg'),
     Path('public-site/images/insights/ss-furniture-specifications.svg'),
+    Path('products/ss-furniture/index.html'),
+    Path('public-site/products/ss-furniture/index.html'),
 ]
 
 UNSAFE_PATTERNS = [
     'SS 304…',
     'SS 304...',
+    'Stainless Steel Furniture | PVD-Plated Luxury Furniture — Moldart',
+    'SS furniture is fabricated from stainless steel frames, finished with PVD or electroplating, then assembled with selected top materials (marble, glass, MDF) before delivery to site.',
 ]
 
 hits = []
@@ -34,9 +38,9 @@ for path in TARGETS:
 
 if hits:
     total = sum(count for _, _, count in hits)
-    print(f'MKT-009 SS-furniture grade safety FAIL: {total} known blanket SS304 signals remain.')
+    print(f'MKT-009 SS-furniture safety FAIL: {total} known blanket grade/construction/finish defaults remain.')
     for path, pattern, count in hits:
         print(f'{path}: {count} x {pattern}')
     raise SystemExit(1)
 
-print('MKT-009 SS-furniture grade safety PASS: 12 files scanned; 0 known blanket SS304 signals.')
+print('MKT-009 SS-furniture safety PASS: 14 files scanned; 0 known blanket grade/construction/finish defaults.')
