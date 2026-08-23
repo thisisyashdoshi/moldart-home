@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Narrow remediation for verified MDF/HDF/fiberboard performance-semantic overclaims.
 
-This pass does not create product limits or recommend a universal board route. It only
-converts verified causal / blanket performance language to evidence-led wording. Exact
-board type/class, service condition, density, swelling, internal bond, screw holding,
-surface readiness, edge behaviour and conversion fit remain product/order/process
-specific and must be supported by the applicable supplier / test / project evidence.
+This pass does not create product limits, universal performance claims, or recommend a
+universal board route. It only converts verified causal / blanket language to evidence-
+led wording. Exact board type/class, service condition, density, swelling, internal bond,
+screw holding, surface readiness, edge behaviour and conversion fit remain product /
+order / process specific and must be supported by applicable supplier / test / project
+evidence.
 """
 from __future__ import annotations
 
@@ -53,6 +54,22 @@ REPLACEMENTS = [
     (
         re.compile(r"(?i)Board route ladder: plywood -> MDF/HDF -> particleboard -> OSB, checked against strength, face, edge, moisture, and document needs\."),
         "Compare candidate board types against the approved strength, surface, edge, moisture / service-condition and document requirements.",
+    ),
+    (
+        re.compile(r"(?i)>Likely cause</th>"),
+        ">Factors to review</th>",
+    ),
+    (
+        re.compile(r"(?i)Wrong board route for hardware or edge banding"),
+        "Board type / class, hardware and edge-band route",
+    ),
+    (
+        re.compile(r"(?i)Moisture exposure or poor surface readiness"),
+        "Service-condition exposure, storage / sealing and surface readiness",
+    ),
+    (
+        re.compile(r"(?i)Emission route not confirmed before order"),
+        "Destination compliance / document route not confirmed before order",
     ),
 ]
 
