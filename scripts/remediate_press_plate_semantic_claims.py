@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # MKT-009 semantic remediation: data-layer claims plus fifth-pass article causation/priority claims.
+# Execution marker 2026-08-23: trigger fifth-pass branch remediation after regression-guard expansion.
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
