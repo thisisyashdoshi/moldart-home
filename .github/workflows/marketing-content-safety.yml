@@ -1,6 +1,6 @@
 name: Marketing content safety
 
-# MKT-009 verification marker 2026-08-23e: include lamination diagnostic + press-pad claim guard.
+# MKT-009 verification marker 2026-08-23f: verify post-remediation lamination diagnostic + press-pad closure.
 on:
   pull_request:
     paths:
