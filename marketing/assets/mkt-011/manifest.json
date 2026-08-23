@@ -1,0 +1,17 @@
+{
+  "campaign": "MKT-011 Press Plate Incoming Inspection",
+  "purpose": "Technical education -> qualified press-plate enquiry/RFQ",
+  "topic": "Press plate incoming inspection / acceptance framework",
+  "source_basis": "Internal Moldart incoming-inspection framework; measurement-plan wording only",
+  "claim_status": "PASS-FRAMEWORK-ONLY",
+  "rights_status": "PASS — original deterministic schematics; no supplier/customer/stock image",
+  "visual_semantic_qa": "PASS — exact inspection topic depicted; measurement points are illustrative",
+  "publication_state": "DRAFT / CALIBRATION HOLD",
+  "assets": [
+    {"id":"MKT-011-A01","platform":"Instagram/Facebook","file":"MKT-011_press_plate_inspection_IG-FB_v1.svg"},
+    {"id":"MKT-011-A02","platform":"LinkedIn","file":"MKT-011_press_plate_inspection_LinkedIn_v1.svg"},
+    {"id":"MKT-011-A03","platform":"Website/SEO support","file":"MKT-011_press_plate_inspection_Web_v1.svg"}
+  ],
+  "approval_gate": "First public use of this new visual pattern requires user calibration approval",
+  "technical_limit": "Actual measurement locations, methods and acceptance limits remain order/drawing specific"
+}
