@@ -5,6 +5,7 @@ This is a narrow MKT-009 regression guard. It does not replace Supply & Procurem
 technical validation. It only covers the verified public claim class rejected by the current
 Moldart product-specification register: universal >3 N scratch resistance, CNC ±0.1 mm,
 0.4–2.0 mm edge-band thickness and one >300-cycle abrasion value across mixed surface systems.
+Verification marker: 2026-08-23 post-remediation scan.
 """
 from __future__ import annotations
 
