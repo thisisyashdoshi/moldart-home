@@ -1,0 +1,62 @@
+name: Marketing content safety
+
+# MKT-009 verification marker 2026-08-24c: verify fiberboard performance-semantic closure.
+on:
+  pull_request:
+    paths:
+      - 'insights/**'
+      - 'public-site/insights/**'
+      - 'images/insights/**'
+      - 'public-site/images/insights/**'
+      - 'data/insights.json'
+      - 'public-site/data/insights.json'
+      - 'products/**'
+      - 'public-site/products/**'
+      - 'data/product-directory.json'
+      - 'public-site/data/product-directory.json'
+      - 'images/social/moldart-product-press-pads.svg'
+      - 'public-site/images/social/moldart-product-press-pads.svg'
+      - 'images/social/moldart-product-fiberboard.svg'
+      - 'public-site/images/social/moldart-product-fiberboard.svg'
+      - 'scripts/marketing_content_safety_scan.py'
+      - 'scripts/marketing_content_grade_variant_scan.py'
+      - 'scripts/marketing_content_semantic_claim_scan.py'
+      - 'scripts/marketing_lamination_diagnostic_claim_scan.py'
+      - 'scripts/marketing_press_pad_product_claim_scan.py'
+      - 'scripts/marketing_decorative_stainless_pvd_claim_scan.py'
+      - 'scripts/marketing_ready_made_furniture_claim_scan.py'
+      - 'scripts/marketing_ss_furniture_grade_claim_scan.py'
+      - 'scripts/marketing_fiberboard_claim_scan.py'
+      - 'scripts/marketing_fiberboard_performance_claim_scan.py'
+      - '.github/workflows/marketing-content-safety.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  printed-decor-paper-claim-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run MKT-009 claim regression scan
+        run: python3 scripts/marketing_content_safety_scan.py
+      - name: Run MKT-009 SS304 grade-variant scan
+        run: python3 scripts/marketing_content_grade_variant_scan.py
+      - name: Run MKT-009 press-plate semantic claim scan
+        run: python3 scripts/marketing_content_semantic_claim_scan.py
+      - name: Run MKT-009 lamination diagnostic / press-pad claim scan
+        run: python3 scripts/marketing_lamination_diagnostic_claim_scan.py
+      - name: Run MKT-009 press-pad product/social claim scan
+        run: python3 scripts/marketing_press_pad_product_claim_scan.py
+      - name: Run MKT-009 decorative-stainless PVD claim scan
+        run: python3 scripts/marketing_decorative_stainless_pvd_claim_scan.py
+      - name: Run MKT-009 ready-made furniture claim scan
+        run: python3 scripts/marketing_ready_made_furniture_claim_scan.py
+      - name: Run MKT-009 SS-furniture grade claim scan
+        run: python3 scripts/marketing_ss_furniture_grade_claim_scan.py
+      - name: Run MKT-009 MDF/HDF/fiberboard claim scan
+        run: python3 scripts/marketing_fiberboard_claim_scan.py
+      - name: Run MKT-009 MDF/HDF/fiberboard performance-semantic scan
+        run: python3 scripts/marketing_fiberboard_performance_claim_scan.py

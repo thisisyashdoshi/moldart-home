@@ -1,0 +1,75 @@
+{
+  "campaign": "MKT-009",
+  "updated": "2026-08-22",
+  "purpose": "Consolidate MKT-004–007 into existing indexed authority and remove generalized technical claims before directing new traffic.",
+  "publication_state": "DRAFT_BRANCH_ONLY",
+  "public_change": false,
+  "mappings": [
+    {
+      "source_campaign": "MKT-004",
+      "topic": "Press plate RFQ / specification guidance",
+      "release_strategy": "CONSOLIDATE_EXISTING_CANONICAL_CONTENT",
+      "primary_canonical_candidate": "/insights/standard-vs-industrial-press-plates/",
+      "secondary_support": [
+        "/insights/press-plates-panel-quality-guide/",
+        "/insights/press-plates-pads-smart-tooling-perfect-panels/",
+        "/insights/lamination-stack-control-plate-pad-paper-substrate-press-cycle/"
+      ],
+      "claim_gate": "Order-specific dimensions, geometry, surface, material/coating and inspection basis; no universal tolerances, hardness, chrome thickness, Ra/gloss, lifecycle or certification claims.",
+      "next_action": "Compare MKT-004 copy against primary/secondary pages; rewrite unsafe/generalized classes before any merge or traffic push."
+    },
+    {
+      "source_campaign": "MKT-005",
+      "topic": "Decorative stainless steel enquiry guidance",
+      "release_strategy": "CONSOLIDATE_EXISTING_CANONICAL_CONTENT",
+      "primary_canonical_candidate": "/insights/decorative-stainless-steel-201-304-316-430/",
+      "secondary_support": [
+        "/insights/ss-201-vs-304-panels/",
+        "/solutions/metal-finishing/"
+      ],
+      "claim_gate": "Finish/system qualification remains exact-order specific; do not universalize PVD/AFP colour, hardness, coating thickness, adhesion, corrosion, AFP performance or fabrication tolerances.",
+      "next_action": "Use MKT-005 as rewrite source for the strongest canonical page; preserve system-specific qualification language."
+    },
+    {
+      "source_campaign": "MKT-006",
+      "topic": "Press pad RFQ / technical-evaluation guidance",
+      "release_strategy": "CONSOLIDATE_EXISTING_CANONICAL_CONTENT",
+      "primary_canonical_candidate": "/insights/press-pad-failure-symptoms-lamination-lines/",
+      "secondary_support": [
+        "/insights/lamination-stack-control-plate-pad-paper-substrate-press-cycle/"
+      ],
+      "claim_gate": "No universal cycle life, temperature, pressure, thermal, recovery, wire-count, cleanliness or application-assignment claims without exact validated system evidence.",
+      "next_action": "Map MKT-006 framework into the strongest existing press-pad page and remove unsupported universal numeric/performance language before public release."
+    },
+    {
+      "source_campaign": "MKT-007",
+      "topic": "Printed decor paper qualification guidance",
+      "release_strategy": "LIVE_CLAIM_REMEDIATION_PLUS_CONSOLIDATION",
+      "primary_canonical_candidate": "/insights/printed-decor-paper-selection-guide/",
+      "secondary_support": [
+        "/insights/printed-decor-paper-batch-repeat-approval-guide/",
+        "/insights/printed-decor-paper-colour-matching-master-sample-batch-repeat-metamerism/"
+      ],
+      "claim_gate": "Basis weight, wet strength, moisture, opacity, resin uptake/penetration, dimensional stability and related acceptance criteria remain exact grade/order/test-method specific.",
+      "remediated_draft_assets": [
+        "images/insights/printed-decor-paper-selection-guide.svg",
+        "public-site/images/insights/printed-decor-paper-selection-guide.svg"
+      ],
+      "remediation_delta": "Removed universal 60–85 GSM and Above 6N thresholds from the canonical insight visual in the MKT-009 draft branch; replaced with requirement-led wording: basis weight per approved grade, wet strength by method + grade.",
+      "remaining_open": [
+        "Canonical HTML prose still needs targeted removal/rewrite of universal 60–85 GSM / wet-tensile threshold language.",
+        "Related decor-paper SVGs and comparison/buyer-guide assets identified by repo search need claim-class audit before merge.",
+        "Public merge remains approval-gated."
+      ]
+    }
+  ],
+  "release_order": [
+    "MKT-007 live claim remediation",
+    "MKT-004 press-plate canonical claim repair",
+    "MKT-006 press-pad canonical consolidation",
+    "MKT-005 decorative-stainless canonical consolidation"
+  ],
+  "seo_rule": "Do not add a new indexed URL when a strong overlapping canonical page already exists; consolidate authority and repair claims first.",
+  "traffic_rule": "Do not direct new organic/social traffic to a page with unresolved technical-claim risk.",
+  "approval_gate": "Public merge/release of the remediated canonical pattern remains user calibration approval; internal branch remediation and QA remain autonomous."
+}

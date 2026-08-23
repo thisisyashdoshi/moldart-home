@@ -1,0 +1,82 @@
+{
+  "id": "MKT-009",
+  "date": "2026-08-22",
+  "title": "Live Content Safety & SEO Consolidation Audit",
+  "status": "DRAFT_REMEDIATION_IN_PROGRESS_NO_PUBLIC_CHANGE",
+  "purpose": "Prevent unsafe/outdated public claims and SEO cannibalization before releasing MKT-004 through MKT-007.",
+  "decision": "DO_NOT_ADD_NEW_OVERLAPPING_INDEXED_URLS_YET",
+  "verified_findings": [
+    {
+      "type": "seo_overlap",
+      "finding": "The live Moldart Insights library already contains extensive overlapping guides across press plates, press pads, decorative stainless steel and printed decor paper. Proposed MKT-004 to MKT-007 pages should be treated as remediation/consolidation source material rather than automatically creating additional indexed URLs.",
+      "action": "Audit the existing canonical guide for each topic, update the strongest URL, consolidate or redirect weaker duplicates only after content/SEO review, and keep PRs 6-9 noindex/unmerged until that mapping is complete."
+    },
+    {
+      "type": "public_claim_risk",
+      "url": "https://moldartindia.com/products/press-plates/",
+      "claim_classes_seen_live": ["specific stainless grades", "numeric core hardness HRC", "numeric hard-chrome hardness HRC"],
+      "current_safe_direction": "Programme-specific grade/build/dimensions/flatness/hardness/surface condition confirmed against approved evidence; do not publish universal grade or hardness values.",
+      "action": "Remediate the existing indexed product page before using it as a destination for new marketing traffic."
+    },
+    {
+      "type": "public_claim_risk",
+      "url": "https://moldartindia.com/products/industrial-press-plates/",
+      "claim_classes_seen_live": ["specific SUS grades", "numeric hardness HRC", "numeric flatness tolerance"],
+      "current_safe_direction": "Capture SUS grade, hardness, flatness, parallelism, surface roughness, residual magnetism, edge condition, packing and traceability as order/RFQ requirements; do not present remembered values as universal Moldart acceptance criteria.",
+      "action": "Remediate the existing indexed industrial-press-plate page before new campaign amplification."
+    },
+    {
+      "type": "public_claim_risk",
+      "url": "https://moldartindia.com/insights/printed-decor-paper-selection-guide/",
+      "claim_classes_seen_live": ["60-85 GSM universal range", "wet tensile above 6 N universal threshold"],
+      "current_safe_direction": "Basis weight/tolerance, mechanical properties, moisture, opacity/colour, printability, impregnation/resin penetration, dimensional stability and runnability remain product/order/test-method specific.",
+      "action": "Replace universal numeric thresholds with requirement-capture/test-method language and consolidate MKT-007 into the existing canonical guide instead of launching a near-duplicate URL."
+    }
+  ],
+  "remediation_progress": {
+    "completed_on_draft_branch": [
+      "images/insights/printed-decor-paper-selection-guide.svg",
+      "public-site/images/insights/printed-decor-paper-selection-guide.svg",
+      "images/insights/decor-paper-guide.svg",
+      "public-site/images/insights/decor-paper-guide.svg",
+      "images/insights/decor-paper-quality.svg",
+      "public-site/images/insights/decor-paper-quality.svg",
+      "images/insights/decor-paper-comparison.svg",
+      "public-site/images/insights/decor-paper-comparison.svg"
+    ],
+    "replacement_rule": {
+      "basis_weight": "Per approved grade",
+      "wet_strength": "Method + grade"
+    },
+    "remaining_verified_targets": [
+      "insights/printed-decor-paper-selection-guide/index.html",
+      "public-site/insights/printed-decor-paper-selection-guide/index.html",
+      "images/insights/decor-paper-buyers-guide.svg",
+      "public-site/images/insights/decor-paper-buyers-guide.svg",
+      "images/insights/decor-paper-applications.svg",
+      "public-site/images/insights/decor-paper-applications.svg",
+      "images/insights/decor-paper-specifications.svg",
+      "public-site/images/insights/decor-paper-specifications.svg"
+    ],
+    "note": "Repository code search on the current base identifies the same unsafe threshold class across the remaining targets. The draft branch has not yet modified those remaining files, so they stay blocked from release/amplification."
+  },
+  "repo_policy_context": {
+    "workflow": ".github/workflows/content-safety.yml",
+    "claim_policy": "scripts/test-product-claim-policy.ps1",
+    "note": "The current claim-policy script blocks HRC, cycles, micrometre/Ra, GSM, strength, numeric tolerance, specific SS/SUS grades and other numeric claim classes in public product pages/data. Insights require a separate content audit because the current script does not comprehensively police all guide prose/SVG assets."
+  },
+  "mkt_004_to_007_release_rule": {
+    "mkt_004": "Use as safer rewrite/consolidation source for existing press-plate content; no new indexed URL until canonical mapping is complete.",
+    "mkt_005": "Use as safer rewrite/consolidation source for existing decorative-stainless content; no new indexed URL until canonical mapping is complete.",
+    "mkt_006": "Use as safer rewrite/consolidation source for existing press-pad content; no new indexed URL until canonical mapping is complete.",
+    "mkt_007": "Use as safer rewrite/consolidation source for existing printed-decor-paper content; prioritize correcting the live 60-85 GSM / >6 N guide claims before any new URL."
+  },
+  "publication_state": "NO_PUBLIC_CHANGE_THIS_RUN",
+  "paid_spend": 0,
+  "next_actions": [
+    "Remediate the two canonical printed-decor-paper HTML copies containing universal GSM / wet-strength language.",
+    "Remediate the buyers-guide, applications and specifications SVG pairs using requirement-led grade/method wording.",
+    "Add an automated Insights content-safety scan so the same threshold class cannot silently re-enter public prose/SVG assets.",
+    "Then proceed to press-plate claim-class repair using the canonical map before directing new marketing traffic."
+  ]
+}

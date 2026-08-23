@@ -53,7 +53,7 @@
         "Furniture"
       ],
       "image": "/images/press_pad_new.webp",
-      "summary": "Silicone-copper composite pads for heat transfer and pressure equalisation in lamination.",
+      "summary": "Press pads for lamination applications; construction and pressure/thermal response are confirmed against the exact product and press programme.",
       "specs": [
         "Press and application",
         "Stack position and working size",
@@ -61,9 +61,9 @@
         "Quantity, acceptance method, and timing confirmed per programme"
       ],
       "applications": [
-        "Short-cycle lamination",
-        "High-volume pressing",
-        "Decorative board manufacturing"
+        "Lamination press applications",
+        "Press-line technical review",
+        "Programme-specific sourcing"
       ],
       "customization": "Width and construction are aligned to the press line and programme.",
       "technical": {
@@ -191,7 +191,7 @@
         "Architecture"
       ],
       "image": "/images/page6_img3.webp",
-      "summary": "MDF and HDF panels for lamination, painting, and conversion.",
+      "summary": "MDF and HDF panels supplied against the approved application, service condition, surface and conversion route.",
       "specs": [
         "Application and conversion process",
         "Panel dimensions and quantity",
@@ -199,10 +199,9 @@
         "Acceptance and packing requirements"
       ],
       "applications": [
-        "Furniture fronts",
-        "Door skins",
-        "Decorative panel systems",
-        "Flooring cores"
+        "Application-specific panel programmes",
+        "Lamination / conversion where qualified",
+        "Service-condition-specific use"
       ],
       "customization": "Board type and panel programme are matched to the final application.",
       "technical": {

@@ -1,0 +1,71 @@
+name: Marketing content remediation
+
+# MKT-009 verification marker 2026-08-24f: execute fiberboard performance-semantic remediation.
+on:
+  push:
+    branches:
+      - marketing/mkt-009-live-content-safety-consolidation
+    paths:
+      - 'scripts/remediate_printed_decor_claims.py'
+      - 'scripts/remediate_press_plate_claims.py'
+      - 'scripts/remediate_press_plate_grade_variants.py'
+      - 'scripts/remediate_press_plate_semantic_claims.py'
+      - 'scripts/remediate_lamination_diagnostic_claims.py'
+      - 'scripts/remediate_press_pad_product_claims.py'
+      - 'scripts/remediate_decorative_stainless_pvd_claims.py'
+      - 'scripts/remediate_ready_made_furniture_claims.py'
+      - 'scripts/remediate_ss_furniture_grade_claims.py'
+      - 'scripts/remediate_fiberboard_claims.py'
+      - 'scripts/remediate_fiberboard_application_fit_residual.py'
+      - 'scripts/remediate_fiberboard_performance_semantics.py'
+      - '.github/workflows/marketing-content-remediation.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  remediate-known-marketing-claim-classes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - name: Apply narrow MKT-009 printed-decor remediation
+        run: python3 scripts/remediate_printed_decor_claims.py
+      - name: Apply narrow MKT-009 press-plate remediation
+        run: python3 scripts/remediate_press_plate_claims.py
+      - name: Apply narrow MKT-009 press-plate SS304 grade-variant remediation
+        run: python3 scripts/remediate_press_plate_grade_variants.py
+      - name: Apply narrow MKT-009 press-plate semantic claim remediation
+        run: python3 scripts/remediate_press_plate_semantic_claims.py
+      - name: Apply narrow MKT-009 lamination diagnostic and press-pad remediation
+        run: python3 scripts/remediate_lamination_diagnostic_claims.py
+      - name: Apply narrow MKT-009 press-pad product/social remediation
+        run: python3 scripts/remediate_press_pad_product_claims.py
+      - name: Apply narrow MKT-009 decorative-stainless PVD remediation
+        run: python3 scripts/remediate_decorative_stainless_pvd_claims.py
+      - name: Apply narrow MKT-009 ready-made furniture remediation
+        run: python3 scripts/remediate_ready_made_furniture_claims.py
+      - name: Apply narrow MKT-009 SS-furniture grade remediation
+        run: python3 scripts/remediate_ss_furniture_grade_claims.py
+      - name: Apply narrow MKT-009 MDF/HDF/fiberboard remediation
+        run: python3 scripts/remediate_fiberboard_claims.py
+      - name: Apply residual MKT-009 fiberboard application-fit remediation
+        run: python3 scripts/remediate_fiberboard_application_fit_residual.py
+      - name: Apply MKT-009 fiberboard performance-semantic remediation
+        run: python3 scripts/remediate_fiberboard_performance_semantics.py
+      - name: Validate worktree
+        run: git diff --check
+      - name: Commit remediation when needed
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No remediation changes required."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add insights public-site/insights images/insights public-site/images/insights data/insights.json public-site/data/insights.json products public-site/products data/product-directory.json public-site/data/product-directory.json images/social/moldart-product-press-pads.svg public-site/images/social/moldart-product-press-pads.svg images/social/moldart-product-fiberboard.svg public-site/images/social/moldart-product-fiberboard.svg
+          git commit -m "MKT-009: remediate verified marketing claim patterns"
+          git push origin HEAD:${{ github.ref_name }}
