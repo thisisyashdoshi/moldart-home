@@ -1,0 +1,13 @@
+{
+  "lane": "MKT-009A",
+  "title": "Printed décor paper selection-guide visual claim remediation",
+  "source_pr": 10,
+  "scope": [
+    "images/insights/printed-decor-paper-selection-guide.svg",
+    "public-site/images/insights/printed-decor-paper-selection-guide.svg"
+  ],
+  "claim_boundary": "No universal 60–85 GSM or >6 N wet-strength acceptance claim. Basis weight and wet strength remain approved-grade / method specific.",
+  "visual_semantic_qa": "PASS — visual is explicitly printed décor paper selection/approval guidance; no unrelated product photo or exact proprietary construction is depicted.",
+  "publication_state": "HOLD — split PR is review-only; no public merge/release authorized.",
+  "next": "After this micro-release unit is green, migrate the remaining printed décor paper source/public visual and canonical HTML corrections from PR #10 into additional reviewable split units."
+}
