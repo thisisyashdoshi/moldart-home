@@ -1,0 +1,18 @@
+name: Marketing printed decor release safety
+
+on:
+  pull_request:
+    paths:
+      - 'images/insights/printed-decor-paper-selection-guide.svg'
+      - 'public-site/images/insights/printed-decor-paper-selection-guide.svg'
+      - 'scripts/marketing_printed_decor_release_scan.py'
+      - '.github/workflows/marketing-printed-decor-release-safety.yml'
+  workflow_dispatch:
+
+jobs:
+  printed-decor-claim-safety:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan printed décor paper selection-guide visual
+        run: python3 scripts/marketing_printed_decor_release_scan.py
